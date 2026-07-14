@@ -1088,7 +1088,7 @@ class Interpreter
   #-----------------------------------------------------------------------------
   def command_303
     if $player
-      $player.name = pbEnterPlayerName(_INTL("Your name?"), 1, @parameters[1], $player.name)
+      $player.name = pbEnterPlayerName(_INTL("你的名字是？"), 1, @parameters[1], $player.name)
       return true
     end
     if $game_actors && $data_actors && $data_actors[@parameters[0]]
@@ -1097,7 +1097,7 @@ class Interpreter
         sscene = PokemonEntryScene.new
         sscreen = PokemonEntry.new(sscene)
         $game_actors[@parameters[0]].name = sscreen.pbStartScreen(
-          _INTL("Enter {1}'s name.", $game_actors[@parameters[0]].name),
+          _INTL("请输入{1}的名字。", $game_actors[@parameters[0]].name),
           1, @parameters[1], $game_actors[@parameters[0]].name
         )
       end

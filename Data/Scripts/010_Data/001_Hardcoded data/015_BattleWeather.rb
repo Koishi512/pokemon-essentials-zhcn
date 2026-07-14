@@ -36,59 +36,59 @@ end
 
 GameData::BattleWeather.register({
   :id   => :None,
-  :name => _INTL("None")
+  :name => _INTL("无")
 })
 
 GameData::BattleWeather.register({
   :id        => :Sun,
-  :name      => _INTL("Sun"),
+  :name      => _INTL("大晴天"),
   :animation => "Sun"
 })
 
 GameData::BattleWeather.register({
   :id        => :Rain,
-  :name      => _INTL("Rain"),
+  :name      => _INTL("下雨"),
   :animation => "Rain"
 })
 
 GameData::BattleWeather.register({
   :id        => :Sandstorm,
-  :name      => _INTL("Sandstorm"),
+  :name      => _INTL("沙暴"),
   :animation => "Sandstorm"
 })
 
 GameData::BattleWeather.register({
   :id        => :Hail,
-  :name      => _INTL("Hail"),
+  :name      => _INTL("冰雹"),
   :animation => "Hail"
 })
 
 GameData::BattleWeather.register({
   :id        => :Snowstorm,
-  :name      => _INTL("Snowstorm"),
+  :name      => _INTL("下雪"),
   :animation => "Snowstorm"
 })
 
 GameData::BattleWeather.register({
   :id        => :HarshSun,
-  :name      => _INTL("Harsh Sun"),
+  :name      => _INTL("大日照"),
   :animation => "HarshSun"
 })
 
 GameData::BattleWeather.register({
   :id        => :HeavyRain,
-  :name      => _INTL("Heavy Rain"),
+  :name      => _INTL("大雨"),
   :animation => "HeavyRain"
 })
 
 GameData::BattleWeather.register({
   :id        => :StrongWinds,
-  :name      => _INTL("Strong Winds"),
+  :name      => _INTL("乱流"),
   :animation => "StrongWinds"
 })
 
 GameData::BattleWeather.register({
   :id        => :ShadowSky,
-  :name      => _INTL("Shadow Sky"),
+  :name      => _INTL("黑暗气场"),
   :animation => "ShadowSky"
 })

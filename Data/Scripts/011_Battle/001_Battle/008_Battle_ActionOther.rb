@@ -44,15 +44,15 @@ class Battle
     clearStagesChangeRecords
     battler = @battlers[idxBattler]
     trainerName = pbGetOwnerName(idxBattler)
-    pbDisplay(_INTL("{1} called {2}!", trainerName, battler.pbThis(true)))
-    pbDisplay(_INTL("{1}!", battler.name))
+    pbDisplay(_INTL("{1}呼唤了{2}！", trainerName, battler.pbThis(true)))
+    pbDisplay(_INTL("{1}！", battler.name))
     if battler.shadowPokemon?
       if battler.inHyperMode?
         battler.pokemon.hyper_mode = false
         battler.pokemon.change_heart_gauge("call")
-        pbDisplay(_INTL("{1} came to its senses from the Trainer's call!", battler.pbThis))
+        pbDisplay(_INTL("{1}因为训练家的呼唤回过神了！", battler.pbThis))
       else
-        pbDisplay(_INTL("But nothing happened!"))
+        pbDisplay(_INTL("但是，什么也没有发生！"))
       end
     elsif battler.status == :SLEEP
       battler.pbCureStatus
@@ -61,7 +61,7 @@ class Battle
       battler.pbItemStatRestoreCheck   # White Herb
       battler.pbItemOnStatDropped   # Eject Pack
     else
-      pbDisplay(_INTL("But nothing happened!"))
+      pbDisplay(_INTL("但是，什么也没有发生！"))
     end
     checkStatChangeResponses
   end
@@ -92,7 +92,7 @@ class Battle
         end
       end
     end
-    return _INTL("Mega Ring")
+    return _INTL("超级环")
   end
 
   def pbCanMegaEvolve?(idxBattler)
@@ -153,9 +153,9 @@ class Battle
     # Mega Evolve
     case battler.pokemon.megaMessage
     when 1   # Rayquaza
-      pbDisplay(_INTL("{1}'s fervent wish has reached {2}!", trainerName, battler.pbThis))
+      pbDisplay(_INTL("{1}衷心的祈愿传递到了{2}那里！", trainerName, battler.pbThis))
     else
-      pbDisplay(_INTL("{1} {2} is reacting to {3}'s {4}!",
+      pbDisplay(_INTL("{1}{2}和{3}的{4}起了反应！",
                       battler.pbOfThis, battler.itemName, trainerName, pbGetMegaRingName(idxBattler)))
     end
     pbCommonAnimation("MegaEvolution", battler)
@@ -166,8 +166,8 @@ class Battle
     @scene.pbRefreshOne(idxBattler)
     pbCommonAnimation("MegaEvolution2", battler)
     megaName = battler.pokemon.megaName
-    megaName = _INTL("Mega {1}", battler.pokemon.speciesName) if nil_or_empty?(megaName)
-    pbDisplay(_INTL("{1} has Mega Evolved into {2}!", battler.pbThis, megaName))
+    megaName = _INTL("超级{1}", battler.pokemon.speciesName) if nil_or_empty?(megaName)
+    pbDisplay(_INTL("{1}超级进化成了{2}！", battler.pbThis, megaName))
     side  = battler.idxOwnSide
     owner = pbGetOwnerIndexFromBattlerIndex(idxBattler)
     @megaEvolution[side][owner] = -2
@@ -206,6 +206,6 @@ class Battle
     elsif battler.isSpecies?(:GROUDON)
       pbCommonAnimation("PrimalGroudon2", battler)
     end
-    pbDisplay(_INTL("{1} Primal Reversion!\nIt reverted to its primal form!", battler.pbOfThis))
+    pbDisplay(_INTL("{1}原始回归！\n恢复了原始的样子！", battler.pbOfThis))
   end
 end

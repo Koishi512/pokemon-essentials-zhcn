@@ -34,50 +34,50 @@ end
 
 GameData::Habitat.register({
   :id   => :None,
-  :name => _INTL("None")
+  :name => _INTL("无")
 })
 
 GameData::Habitat.register({
   :id   => :Grassland,
-  :name => _INTL("Grassland")
+  :name => _INTL("草原")
 })
 
 GameData::Habitat.register({
   :id   => :Forest,
-  :name => _INTL("Forest")
+  :name => _INTL("森林")
 })
 
 GameData::Habitat.register({
   :id   => :WatersEdge,
-  :name => _INTL("Water's Edge")
+  :name => _INTL("水域边缘")
 })
 
 GameData::Habitat.register({
   :id   => :Sea,
-  :name => _INTL("Sea")
+  :name => _INTL("海洋")
 })
 
 GameData::Habitat.register({
   :id   => :Cave,
-  :name => _INTL("Cave")
+  :name => _INTL("洞穴")
 })
 
 GameData::Habitat.register({
   :id   => :Mountain,
-  :name => _INTL("Mountain")
+  :name => _INTL("山脉")
 })
 
 GameData::Habitat.register({
   :id   => :RoughTerrain,
-  :name => _INTL("Rough Terrain")
+  :name => _INTL("崎岖地形")
 })
 
 GameData::Habitat.register({
   :id   => :Urban,
-  :name => _INTL("Urban")
+  :name => _INTL("城市")
 })
 
 GameData::Habitat.register({
   :id   => :Rare,
-  :name => _INTL("Rare")
+  :name => _INTL("稀有")
 })

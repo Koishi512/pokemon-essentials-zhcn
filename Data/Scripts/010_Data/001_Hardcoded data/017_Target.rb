@@ -59,32 +59,32 @@ end
 # Bide, Counter, Metal Burst, Mirror Coat (calculate a target)
 GameData::Target.register({
   :id               => :None,
-  :name             => _INTL("None")
+  :name             => _INTL("无")
 })
 
 GameData::Target.register({
   :id               => :User,
-  :name             => _INTL("User")
+  :name             => _INTL("自己")
 })
 
 # Aromatic Mist, Helping Hand, Hold Hands
 GameData::Target.register({
   :id               => :NearAlly,
-  :name             => _INTL("Near Ally"),
+  :name             => _INTL("任意同伴"),
   :num_targets      => 1
 })
 
 # Acupressure
 GameData::Target.register({
   :id               => :UserOrNearAlly,
-  :name             => _INTL("User or Near Ally"),
+  :name             => _INTL("自己或我方一只"),
   :num_targets      => 1
 })
 
 # Coaching
 GameData::Target.register({
   :id               => :AllAllies,
-  :name             => _INTL("All Allies"),
+  :name             => _INTL("全部同伴"),
   :num_targets      => 2,
   :targets_all      => true,
   :long_range       => true
@@ -93,7 +93,7 @@ GameData::Target.register({
 # Aromatherapy, Gear Up, Heal Bell, Life Dew, Magnetic Flux, Howl (in Gen 8+)
 GameData::Target.register({
   :id               => :UserAndAllies,
-  :name             => _INTL("User and Allies"),
+  :name             => _INTL("我方全体"),
   :num_targets      => 2,
   :long_range       => true
 })
@@ -101,7 +101,7 @@ GameData::Target.register({
 # Me First
 GameData::Target.register({
   :id               => :NearFoe,
-  :name             => _INTL("Near Foe"),
+  :name             => _INTL("只能选择对手"),
   :num_targets      => 1,
   :targets_foe      => true
 })
@@ -109,14 +109,14 @@ GameData::Target.register({
 # Petal Dance, Outrage, Struggle, Thrash, Uproar
 GameData::Target.register({
   :id               => :RandomNearFoe,
-  :name             => _INTL("Random Near Foe"),
+  :name             => _INTL("对手随机"),
   :num_targets      => 1,
   :targets_foe      => true
 })
 
 GameData::Target.register({
   :id               => :AllNearFoes,
-  :name             => _INTL("All Near Foes"),
+  :name             => _INTL("对手全体"),
   :num_targets      => 2,
   :targets_foe      => true
 })
@@ -124,7 +124,7 @@ GameData::Target.register({
 # For throwing a Poké Ball
 GameData::Target.register({
   :id               => :Foe,
-  :name             => _INTL("Foe"),
+  :name             => _INTL("对手"),
   :num_targets      => 1,
   :targets_foe      => true,
   :long_range       => true
@@ -133,7 +133,7 @@ GameData::Target.register({
 # Unused
 GameData::Target.register({
   :id               => :AllFoes,
-  :name             => _INTL("All Foes"),
+  :name             => _INTL("全部对手"),
   :num_targets      => 2,
   :targets_foe      => true,
   :long_range       => true
@@ -141,14 +141,14 @@ GameData::Target.register({
 
 GameData::Target.register({
   :id               => :NearOther,
-  :name             => _INTL("Near Other"),
+  :name             => _INTL("对手或同伴"),
   :num_targets      => 1,
   :targets_foe      => true
 })
 
 GameData::Target.register({
   :id               => :AllNearOthers,
-  :name             => _INTL("All Near Others"),
+  :name             => _INTL("自己外全体"),
   :num_targets      => 2,
   :targets_foe      => true
 })
@@ -156,7 +156,7 @@ GameData::Target.register({
 # Most Flying-type moves, pulse moves (hits non-near targets)
 GameData::Target.register({
   :id               => :Other,
-  :name             => _INTL("Other"),
+  :name             => _INTL("远程招式"),
   :num_targets      => 1,
   :targets_foe      => true,
   :long_range       => true
@@ -165,7 +165,7 @@ GameData::Target.register({
 # Flower Shield, Perish Song, Rototiller, Teatime
 GameData::Target.register({
   :id               => :AllBattlers,
-  :name             => _INTL("All Battlers"),
+  :name             => _INTL("全体"),
   :num_targets      => 2,
   :targets_foe      => true,
   :targets_all      => true,
@@ -174,18 +174,18 @@ GameData::Target.register({
 
 GameData::Target.register({
   :id               => :UserSide,
-  :name             => _INTL("User Side")
+  :name             => _INTL("我方场地")
 })
 
 # Entry hazards
 GameData::Target.register({
   :id               => :FoeSide,
-  :name             => _INTL("Foe Side"),
+  :name             => _INTL("对手场地"),
   :affects_foe_side => true
 })
 
 GameData::Target.register({
   :id               => :BothSides,
-  :name             => _INTL("Both Sides"),
+  :name             => _INTL("整个场地"),
   :affects_foe_side => true
 })

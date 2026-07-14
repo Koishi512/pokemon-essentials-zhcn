@@ -24,7 +24,7 @@ class Battle::Move
   end
 
   def pbDisplayUseMessage(user)
-    @battle.pbDisplayBrief(_INTL("{1} used {2}!", user.pbThis, @name))
+    @battle.pbDisplayBrief(_INTL("{1}使出了{2}！", user.pbThis, @name))
   end
 
   def pbShowFailMessages?(targets); return true; end
@@ -120,7 +120,7 @@ class Battle::Move
            !b.movedThisRound?
     end
     if !unmoved
-      @battle.pbDisplay(_INTL("But it failed!")) if showMessage
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if showMessage
       return true
     end
     return false
@@ -129,7 +129,7 @@ class Battle::Move
   def pbMoveFailedTargetAlreadyMoved?(target, showMessage = true)
     if (@battle.choices[target.index][0] != :UseMove &&
        @battle.choices[target.index][0] != :Shift) || target.movedThisRound?
-      @battle.pbDisplay(_INTL("But it failed!")) if showMessage
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if showMessage
       return true
     end
     return false
@@ -140,9 +140,9 @@ class Battle::Move
       if showMessage
         @battle.pbShowAbilitySplash(target)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
+          @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", target.pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",
+          @battle.pbDisplay(_INTL("因为{2}，对于{1}完全没有效果！",
                                   target.pbThis, target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
@@ -154,9 +154,9 @@ class Battle::Move
       if showMessage
         @battle.pbShowAbilitySplash(b)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
+          @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", target.pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} is unaffected because of {2} {3}!",
+          @battle.pbDisplay(_INTL("因为{2}{3}，对于{1}完全没有效果！",
                                   target.pbThis, b.pbOfThis(true), b.abilityName))
         end
         @battle.pbHideAbilitySplash(b)
@@ -291,15 +291,15 @@ class Battle::Move
     return if target.damageState.disguise || target.damageState.iceFace
     if Effectiveness.super_effective?(target.damageState.typeMod)
       if numTargets > 1
-        @battle.pbDisplay(_INTL("It's super effective on {1}!", target.pbThis(true)))
+        @battle.pbDisplay(_INTL("对{1}效果绝佳！", target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("It's super effective!"))
+        @battle.pbDisplay(_INTL("效果绝佳！"))
       end
     elsif Effectiveness.not_very_effective?(target.damageState.typeMod)
       if numTargets > 1
-        @battle.pbDisplay(_INTL("It's not very effective on {1}...", target.pbThis(true)))
+        @battle.pbDisplay(_INTL("对{1}效果不好。", target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("It's not very effective..."))
+        @battle.pbDisplay(_INTL("好像效果不好……"))
       end
     end
   end
@@ -307,7 +307,7 @@ class Battle::Move
   def pbHitEffectivenessMessages(user, target, numTargets = 1)
     return if target.damageState.disguise || target.damageState.iceFace
     if target.damageState.substitute
-      @battle.pbDisplay(_INTL("The substitute took damage for {1}!", target.pbThis(true)))
+      @battle.pbDisplay(_INTL("替身代替{1}承受了攻击！", target.pbThis(true)))
     end
     if target.damageState.critical
       if user.pokemon.isSpecies?(:FARFETCHD) && user.pokemon.form == 1
@@ -316,15 +316,15 @@ class Battle::Move
       crit_color = Battle::Scene::MESSAGE_BASE_CRITICAL_COLOR.to_rgb24 + "," + Battle::Scene::MESSAGE_SHADOW_CRITICAL_COLOR.to_rgb24
       if target.damageState.affection_critical
         if numTargets > 1
-          @battle.pbDisplay(_INTL("{1} <c3={2}>landed a critical hit</c3> on {3}, wishing to be praised!",
+          @battle.pbDisplay(_INTL("为了得到夸奖，{1}在瞄准后<c3={2}>击中了</c3>{3}的<c3={2}>要害！</c3>",
                                   user.pbThis, crit_color, target.pbThis(true)))
         else
-          @battle.pbDisplay(_INTL("{1} <c3={2}>landed a critical hit</c3>, wishing to be praised!", user.pbThis, crit_color))
+          @battle.pbDisplay(_INTL("为了得到夸奖，{1}在瞄准后<c3={2}>击中了要害！</c3>", user.pbThis, crit_color))
         end
       elsif numTargets > 1
-        @battle.pbDisplay(_INTL("<c3={1}>A critical hit</c3> on {2}!", crit_color, target.pbThis(true)))
+        @battle.pbDisplay(_INTL("<c3={1}>击中了</c3>{2}的<c3={1}>要害！</c3>", crit_color, target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("<c3={1}>A critical hit!</c3>", crit_color))
+        @battle.pbDisplay(_INTL("<c3={1}>击中了要害！</c3>", crit_color))
       end
     end
     # Effectiveness message, for moves with 1 hit
@@ -333,7 +333,7 @@ class Battle::Move
     end
     if target.damageState.substitute && target.effects[PBEffects::Substitute] == 0
       target.effects[PBEffects::Substitute] = 0
-      @battle.pbDisplay(_INTL("{1} substitute faded!", target.pbOfThis))
+      @battle.pbDisplay(_INTL("{1}替身消失了……", target.pbOfThis))
     end
   end
 
@@ -341,39 +341,39 @@ class Battle::Move
     if target.damageState.disguise
       @battle.pbShowAbilitySplash(target)
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("Its disguise served it as a decoy!"))
+        @battle.pbDisplay(_INTL("画皮变成了替身！"))
       else
-        @battle.pbDisplay(_INTL("{1} disguise served it as a decoy!", target.pbOfThis))
+        @battle.pbDisplay(_INTL("{1}画皮变成了替身！", target.pbOfThis))
       end
       @battle.pbHideAbilitySplash(target)
-      target.pbChangeForm(1, _INTL("{1} disguise was busted!", target.pbOfThis))
+      target.pbChangeForm(1, _INTL("{1}画皮脱落了！", target.pbOfThis))
       target.pbReduceHP(target.totalhp / 8, false) if Settings::MECHANICS_GENERATION >= 8
     elsif target.damageState.iceFace
       @battle.pbShowAbilitySplash(target)
       if !Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} {2} activated!", target.pbOfThis, target.abilityName))
+        @battle.pbDisplay(_INTL("{1}{2}发动了！", target.pbOfThis, target.abilityName))
       end
-      target.pbChangeForm(1, _INTL("{1} transformed!", target.pbThis))
+      target.pbChangeForm(1, _INTL("{1}变成其他样子了！", target.pbThis))
       @battle.pbHideAbilitySplash(target)
     elsif target.damageState.endured
-      @battle.pbDisplay(_INTL("{1} endured the hit!", target.pbThis))
+      @battle.pbDisplay(_INTL("{1}挺住了攻击！", target.pbThis))
     elsif target.damageState.sturdy
       @battle.pbShowAbilitySplash(target)
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} endured the hit!", target.pbThis))
+        @battle.pbDisplay(_INTL("{1}挺住了攻击！", target.pbThis))
       else
-        @battle.pbDisplay(_INTL("{1} hung on with Sturdy!", target.pbThis))
+        @battle.pbDisplay(_INTL("{1}靠着结实特性撑住了！", target.pbThis))
       end
       @battle.pbHideAbilitySplash(target)
     elsif target.damageState.focusSash
       @battle.pbCommonAnimation("UseItem", target)
-      @battle.pbDisplay(_INTL("{1} hung on using its Focus Sash!", target.pbThis))
+      @battle.pbDisplay(_INTL("{1}用气势披带撑住了！", target.pbThis))
       target.pbConsumeItem
     elsif target.damageState.focusBand
       @battle.pbCommonAnimation("UseItem", target)
-      @battle.pbDisplay(_INTL("{1} hung on using its Focus Band!", target.pbThis))
+      @battle.pbDisplay(_INTL("{1}用气势头带撑住了！", target.pbThis))
     elsif target.damageState.affection_endured
-      @battle.pbDisplay(_INTL("{1} toughed it out so you wouldn't feel sad!", target.pbThis))
+      @battle.pbDisplay(_INTL("为了不让你伤心，{1}撑住了！", target.pbThis))
     end
   end
 

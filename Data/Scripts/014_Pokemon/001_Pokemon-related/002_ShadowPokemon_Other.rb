@@ -229,7 +229,7 @@ end
 #===============================================================================
 def pbRaiseHappinessAndReduceHeart(pkmn, screen, multiplier, show_fail_message = true)
   if !pkmn.shadowPokemon? || (pkmn.happiness == 255 && pkmn.heart_gauge == 0)
-    screen.pbDisplay(_INTL("It won't have any effect.")) if show_fail_message
+    screen.pbDisplay(_INTL("即便使用也无效果哦。")) if show_fail_message
     return false
   end
   old_gauge = pkmn.heart_gauge
@@ -280,7 +280,7 @@ ItemHandlers::UseOnPokemon.add(:VIVIDSCENT, proc { |item, qty, pkmn, screen|
 
 ItemHandlers::UseOnPokemon.add(:TIMEFLUTE, proc { |item, qty, pkmn, screen|
   if !pkmn.shadowPokemon? || pkmn.heart_gauge == 0 || pkmn.isSpecies?(:LUGIA)
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbPurify(pkmn, screen)
@@ -289,7 +289,7 @@ ItemHandlers::UseOnPokemon.add(:TIMEFLUTE, proc { |item, qty, pkmn, screen|
 
 ItemHandlers::CanUseInBattle.add(:JOYSCENT, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !pokemon.shadowPokemon? || (pokemon.happiness == 255 && pokemon.heart_gauge == 0)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -334,7 +334,7 @@ ItemHandlers::BattleUseOnPokemon.add(:VIVIDSCENT, proc { |item, pokemon, battler
 class Battle::Move::AllBattlersLoseHalfHPUserSkipsNextTurn < Battle::Move
   def pbMoveFailed?(user, targets)
     if @battle.allBattlers.none? { |b| b.hp > 1 }
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -397,7 +397,7 @@ class Battle::Move::RemoveAllScreensAndSafeguard < Battle::Move
                            side.effects[PBEffects::Safeguard] > 0
     end
     if will_fail
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false

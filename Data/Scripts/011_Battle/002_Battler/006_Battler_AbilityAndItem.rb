@@ -90,7 +90,7 @@ class Battle::Battler
 
   def pbAbilitiesOnNeutralizingGasEnding
     return if @battle.pbCheckGlobalAbility(:NEUTRALIZINGGAS)
-    @battle.pbDisplay(_INTL("The effects of the neutralizing gas wore off!"))
+    @battle.pbDisplay(_INTL("化学变化气体的效果消失了！"))
     @battle.pbEndPrimordialWeather
     @battle.checkStatChangeResponses
     @battle.pbPriority(true).each do |b|
@@ -119,7 +119,7 @@ class Battle::Battler
         choice = choices[@battle.pbRandom(choices.length)]
         @battle.pbShowAbilitySplash(self)
         self.ability = choice.ability
-        @battle.pbDisplay(_INTL("{1} traced {2} {3}!", pbThis, choice.pbOfThis(true), choice.abilityName))
+        @battle.pbDisplay(_INTL("{1}复制了{2}{3}！", pbThis, choice.pbOfThis(true), choice.abilityName))
         @battle.pbHideAbilitySplash(self)
         if !onSwitchIn && (unstoppableAbility? || abilityActive?)
           Battle::AbilityEffects.triggerOnSwitchIn(self.ability, self, @battle)
@@ -140,7 +140,7 @@ class Battle::Battler
       if ally
         @battle.pbShowAbilitySplash(self)
         @battle.pbCommonAnimation("Commander", self, ally)
-        @battle.pbDisplay(_INTL("{1} was swallowed by {2} and became {2} commander!", pbThis, ally.pbOfThis(true)))
+        @battle.pbDisplay(_INTL("{1}作为发号施令的要员而被{2}吞下去了！", pbThis, ally.pbOfThis(true)))
         @effects[PBEffects::Commanding] = ally.index
         ally.effects[PBEffects::CommandedBy] = @index
         # Reset various values
@@ -205,9 +205,9 @@ class Battle::Battler
           pbRaiseStatStageByCause(stat, increment, self, abilityName)
         end
       elsif Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("It doesn't affect {1}...", pbThis(true)))
+        @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!", pbOfThis, abilityName, move.name))
+        @battle.pbDisplay(_INTL("{1}{2}使{3}没有效果！", pbOfThis, abilityName, move.name))
       end
       @battle.pbHideAbilitySplash(self)
     end
@@ -227,14 +227,14 @@ class Battle::Battler
       @battle.pbShowAbilitySplash(self)
       if canHeal? && pbRecoverHP(@totalhp / 4) > 0
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1}'s HP was restored.", pbThis))
+          @battle.pbDisplay(_INTL("{1}的体力回复了！", pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} {2} restored its HP.", pbOfThis, abilityName))
+          @battle.pbDisplay(_INTL("{1}{2}回复了体力！", pbOfThis, abilityName))
         end
       elsif Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("It doesn't affect {1}...", pbThis(true)))
+        @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!", pbOfThis, abilityName, move.name))
+        @battle.pbDisplay(_INTL("{1}{2}使{3}没有效果！", pbOfThis, abilityName, move.name))
       end
       @battle.pbHideAbilitySplash(self)
     end
@@ -255,7 +255,7 @@ class Battle::Battler
       @effects[PBEffects::Illusion] = nil
       if !@effects[PBEffects::Transform]
         @battle.scene.pbChangePokemon(self, @pokemon)
-        @battle.pbDisplay(_INTL("{1} {2} wore off!", pbOfThis, GameData::Ability.get(oldAbil).name))
+        @battle.pbDisplay(_INTL("{1}{2}消失了！", pbOfThis, GameData::Ability.get(oldAbil).name))
         @battle.pbSetSeen(self)
       end
     end
@@ -340,10 +340,10 @@ class Battle::Battler
       next if unlosableItem?(b.item)
       @battle.pbShowAbilitySplash(b)
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} shared its {2} with {3}!",
+        @battle.pbDisplay(_INTL("{1}将{2}交给了{3}！",
                                 b.pbThis, b.itemName, pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("{1} {2} let it share its {3} with {4}!",
+        @battle.pbDisplay(_INTL("{1}{2}使其将{3}交给了{4}！",
                                 b.pbOfThis, b.abilityName, b.itemName, pbThis(true)))
       end
       self.item = b.item
@@ -363,9 +363,9 @@ class Battle::Battler
       @battle.pbShowAbilitySplash(self)
       pbRecoverHP(@totalhp / 3)
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1}'s HP was restored.", pbThis))
+        @battle.pbDisplay(_INTL("{1}的体力回复了！", pbThis))
       else
-        @battle.pbDisplay(_INTL("{1} {2} restored its HP.", pbOfThis, abilityName))
+        @battle.pbDisplay(_INTL("{1}{2}回复了体力！", pbOfThis, abilityName))
       end
       @battle.pbHideAbilitySplash(self)
     end
@@ -519,9 +519,9 @@ class Battle::Battler
     if amt > 0
       if forced
         PBDebug.log("[Item triggered] Forced consuming of #{used_item_name}")
-        @battle.pbDisplay(_INTL("{1}'s HP was restored.", pbThis))
+        @battle.pbDisplay(_INTL("{1}的体力回复了！", pbThis))
       else
-        @battle.pbDisplay(_INTL("{1} restored its health using its {2}!", pbThis, used_item_name))
+        @battle.pbDisplay(_INTL("{1}{2}回复了体力！", pbThis, used_item_name))
       end
     end
     if self.nature.stat_changes.any? { |val| val[0] == confuse_stat && val[1] < 0 }

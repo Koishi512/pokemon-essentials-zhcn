@@ -12,7 +12,7 @@ class Battle::Battler
     if tryFlee && wild? && @battle.rules[:roamer_flees] && @battle.pbCanRun?(@index)
       pbBeginTurn(choice)
       pbSEPlay("Battle flee")
-      @battle.pbDisplay(_INTL("{1} fled from battle!", pbThis))
+      @battle.pbDisplay(_INTL("{1}脱离了战斗！", pbThis))
       @battle.decision = Battle::Outcome::FLEE
       pbEndTurn(choice)
       return true
@@ -32,9 +32,9 @@ class Battle::Battler
         @battle.pbSwapBattlers(@index, idxOther)
         case @battle.pbSideSize(@index)
         when 2
-          @battle.pbDisplay(_INTL("{1} moved across!", pbThis))
+          @battle.pbDisplay(_INTL("{1}移动到了一边！", pbThis))
         when 3
-          @battle.pbDisplay(_INTL("{1} moved to the center!", pbThis))
+          @battle.pbDisplay(_INTL("{1}移动到了中央！", pbThis))
         end
       end
       pbBeginTurn(choice)
@@ -88,7 +88,7 @@ class Battle::Battler
     # Outragers get confused anyway if they are disrupted during their final
     # turn of using the move
     if @effects[PBEffects::Outrage] == 1 && pbCanConfuseSelf?(false) && !full_cancel
-      pbConfuse(_INTL("{1} became confused due to fatigue!", pbThis))
+      pbConfuse(_INTL("{1}因精疲力尽而混乱了！", pbThis))
     end
     # Cancel usage of most multi-turn moves
     @effects[PBEffects::TwoTurnAttack] = nil
@@ -212,8 +212,8 @@ class Battle::Battler
     return if !move   # if move was not chosen somehow
     # Subtract PP
     if !specialUsage && !pbReducePP(move)
-      @battle.pbDisplay(_INTL("{1} used {2}!", pbThis, move.name))
-      @battle.pbDisplay(_INTL("But there was no PP left for the move!"))
+      @battle.pbDisplay(_INTL("{1}使出了{2}！", pbThis, move.name))
+      @battle.pbDisplay(_INTL("但是，招式的剩余点数已经用完了！"))
       @lastMoveUsed          = nil
       @lastMoveUsedType      = nil
       @lastRegularMoveUsed   = nil
@@ -226,9 +226,9 @@ class Battle::Battler
     # Stance Change
     if isSpecies?(:AEGISLASH) && self.ability == :STANCECHANGE
       if move.damagingMove?
-        pbChangeForm(1, _INTL("{1} changed to Blade Forme!", pbThis))
+        pbChangeForm(1, _INTL("{1}变形成了刀剑形态！", pbThis))
       elsif move.id == :KINGSSHIELD
-        pbChangeForm(0, _INTL("{1} changed to Shield Forme!", pbThis))
+        pbChangeForm(0, _INTL("{1}变形成了盾牌形态！", pbThis))
       end
     end
     # Calculate the move's type during this usage
@@ -295,9 +295,9 @@ class Battle::Battler
     @battle.pbPriority(true).each do |b|
       next if !b || !b.abilityActive?
       if Battle::AbilityEffects.triggerMoveBlocking(b.ability, b, user, targets, move, @battle)
-        @battle.pbDisplayBrief(_INTL("{1} used {2}!", user.pbThis, move.name))
+        @battle.pbDisplayBrief(_INTL("{1}使出了{2}！", user.pbThis, move.name))
         @battle.pbShowAbilitySplash(b)
-        @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, move.name))
+        @battle.pbDisplay(_INTL("{1}无法使用{2}！", user.pbThis, move.name))
         @battle.pbHideAbilitySplash(b)
         user.lastMoveFailed = true
         pbCancelMoves
@@ -314,7 +314,7 @@ class Battle::Battler
     # Snatch's message (user is the new user, self is the original user)
     if move.snatched
       @lastMoveFailed = true   # Intentionally applies to self, not user
-      @battle.pbDisplay(_INTL("{1} snatched {2} move!", user.pbThis, pbOfThis(true)))
+      @battle.pbDisplay(_INTL("{1}抢夺了{2}的招式！", user.pbThis, pbOfThis(true)))
     end
     # "But it failed!" checks
     if move.pbMoveFailed?(user, targets)
@@ -330,16 +330,16 @@ class Battle::Battler
     # Self-thawing due to the move
     if user.status == :FROZEN && move.thawsUser?
       user.pbCureStatus(false)
-      @battle.pbDisplay(_INTL("{1} melted the ice!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}的冰冻被融化了！", user.pbThis))
     end
     # Powder
     if user.effects[PBEffects::Powder] && move.calcType == :FIRE
       @battle.pbCommonAnimation("Powder", user)
-      @battle.pbDisplay(_INTL("When the flame touched the powder on the Pokémon, it exploded!"))
+      @battle.pbDisplay(_INTL("和火焰起了反应，粉尘爆炸了！"))
       user.lastMoveFailed = true
       if ![:Rain, :HeavyRain].include?(user.effectiveWeather) && user.takesIndirectDamage?
         user.pbTakeEffectDamage((user.totalhp / 4.0).round, false) do |hp_lost|
-          @battle.pbDisplay(_INTL("{1} is hurt by Powder!", user.pbThis))
+          @battle.pbDisplay(_INTL("{1}受到了粉尘的伤害！", user.pbThis))
         end
         @battle.pbGainExp   # In case user is KO'd by this
       end
@@ -352,7 +352,7 @@ class Battle::Battler
       case @battle.pbWeather
       when :HeavyRain
         if move.calcType == :FIRE
-          @battle.pbDisplay(_INTL("The Fire-type attack fizzled out in the heavy rain!"))
+          @battle.pbDisplay(_INTL("受暴雨的影响，火属性的攻击被扑灭了！"))
           user.lastMoveFailed = true
           pbCancelMoves
           pbEndTurn(choice)
@@ -360,7 +360,7 @@ class Battle::Battler
         end
       when :HarshSun
         if move.calcType == :WATER
-          @battle.pbDisplay(_INTL("The Water-type attack evaporated in the harsh sunlight!"))
+          @battle.pbDisplay(_INTL("受强日照的影响，水属性的攻击被蒸发了！"))
           user.lastMoveFailed = true
           pbCancelMoves
           pbEndTurn(choice)
@@ -375,7 +375,7 @@ class Battle::Battler
       @battle.pbShowAbilitySplash(user)
       user.pbChangeTypes(move.calcType)
       typeName = GameData::Type.get(move.calcType).name
-      @battle.pbDisplay(_INTL("{1}'s type changed to {2}!", user.pbThis, typeName))
+      @battle.pbDisplay(_INTL("{1}变成了{2}属性！", user.pbThis, typeName))
       user.markAbilityUsedThisSwitchIn if Settings::MECHANICS_GENERATION >= 9
       @battle.pbHideAbilitySplash(user)
       # NOTE: The GF games say that if Curse is used by a non-Ghost-type
@@ -396,7 +396,7 @@ class Battle::Battler
       # def pbFindTargets should have found a target(s), but it didn't because
       # they were all fainted
       # All target types except: None, User, UserSide, FoeSide, BothSides
-      @battle.pbDisplay(_INTL("But there was no target..."))
+      @battle.pbDisplay(_INTL("但是没有目标……"))
       user.lastMoveFailed = true
     else   # We have targets, or move doesn't use targets
       # Reset whole damage state, perform various success checks (not accuracy)
@@ -473,9 +473,9 @@ class Battle::Battler
           end
         end
         if realNumHits == 1
-          @battle.pbDisplay(_INTL("Hit 1 time!"))
+          @battle.pbDisplay(_INTL("击中了1次！"))
         elsif realNumHits > 1
-          @battle.pbDisplay(_INTL("Hit {1} times!", realNumHits))
+          @battle.pbDisplay(_INTL("击中了{1}次！", realNumHits))
         end
       end
       # Magic Coat's bouncing back (move has targets)
@@ -483,7 +483,7 @@ class Battle::Battler
         next if b.fainted?
         next if !b.damageState.magicCoat && !b.damageState.magicBounce
         @battle.pbShowAbilitySplash(b) if b.damageState.magicBounce
-        @battle.pbDisplay(_INTL("{1} bounced the {2} back!", b.pbThis, move.name))
+        @battle.pbDisplay(_INTL("{1}将{2}反射了回去！", b.pbThis, move.name))
         @battle.pbHideAbilitySplash(b) if b.damageState.magicBounce
         newChoice = choice.clone
         newChoice[3] = user.index
@@ -511,7 +511,7 @@ class Battle::Battler
         if !mc.fainted?
           user.lastMoveFailed = true
           @battle.pbShowAbilitySplash(mc) if magicBouncer >= 0
-          @battle.pbDisplay(_INTL("{1} bounced the {2} back!", mc.pbThis, move.name))
+          @battle.pbDisplay(_INTL("{1}将{2}反射了回去！", mc.pbThis, move.name))
           @battle.pbHideAbilitySplash(mc) if magicBouncer >= 0
           success = false
           if !move.pbMoveFailed?(mc, [])
@@ -553,7 +553,7 @@ class Battle::Battler
       b.eachMoveWithIndex { |m, i| idxMove = i if m.id == b.lastMoveUsed }
       next if idxMove < 0
       oldLastRoundMoved = b.lastRoundMoved
-      @battle.pbDisplay(_INTL("{1} used the move instructed by {2}!", b.pbThis, user.pbThis(true)))
+      @battle.pbDisplay(_INTL("根据{2}的指示，{1}使出了招式！", b.pbThis, user.pbThis(true)))
       b.effects[PBEffects::Instructed] = true
       if b.pbCanChooseMove?(b.moves[idxMove], false)
         PBDebug.logonerr do
@@ -592,7 +592,7 @@ class Battle::Battler
         @battle.pbShowAbilitySplash(nextUser, true)
         @battle.pbHideAbilitySplash(nextUser)
         if !Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} kept the dance going with {2}!",
+          @battle.pbDisplay(_INTL("因为{2}，{1}继续跳着舞！",
                                   nextUser.pbThis, nextUser.abilityName))
         end
         nextUser.effects[PBEffects::Dancer] = true
@@ -684,7 +684,7 @@ class Battle::Battler
       # NOTE: The consume animation and message for Gems are shown now, but the
       #       actual removal of the item happens in def pbEffectsAfterMove.
       @battle.pbCommonAnimation("UseItem", user)
-      @battle.pbDisplay(_INTL("The {1} strengthened {2}'s power!",
+      @battle.pbDisplay(_INTL("{1}加强了{2}的威力！",
                               GameData::Item.get(user.effects[PBEffects::GemConsumed]).name, move.name))
     end
     # Messages about missed target(s) (relevant for multi-target moves only)
@@ -785,7 +785,7 @@ class Battle::Battler
       next if b.damageState.unaffected
       next if !b.damageState.berryWeakened
       b.damageState.berryWeakened = false   # Weakening only applies for one hit
-      @battle.pbDisplay(_INTL("The {1} weakened the damage to {2}!", b.itemName, b.pbThis(true)))
+      @battle.pbDisplay(_INTL("{1}减轻了对{2}造成的伤害！", b.itemName, b.pbThis(true)))
       b.pbConsumeItem
     end
     # Steam Engine (goes here because it should be after stat changes caused by

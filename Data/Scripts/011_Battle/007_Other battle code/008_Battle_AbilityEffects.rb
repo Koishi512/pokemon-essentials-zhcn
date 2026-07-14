@@ -1057,7 +1057,7 @@ Battle::AbilityEffects::MoveImmunity.add(:BULLETPROOF,
     if show_message
       battle.pbShowAbilitySplash(target)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+        battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
         battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!",
                                target.pbOfThis, target.abilityName, move.name))
@@ -1089,7 +1089,7 @@ Battle::AbilityEffects::MoveImmunity.add(:FLASHFIRE,
                                  target.pbOfThis(true), target.abilityName))
         end
       elsif Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+        battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
         battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!",
                                target.pbOfThis, target.abilityName, move.name))
@@ -1134,7 +1134,7 @@ Battle::AbilityEffects::MoveImmunity.add(:SOUNDPROOF,
     if show_message
       battle.pbShowAbilitySplash(target)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+        battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
         battle.pbDisplay(_INTL("{1} {2} blocks {3}!", target.pbOfThis, target.abilityName, move.name))
       end
@@ -1203,7 +1203,7 @@ Battle::AbilityEffects::MoveImmunity.add(:WINDRIDER,
           target.pbRaiseStatStageByCause(:ATTACK, 1, target, target.abilityName)
         end
       elsif Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+        battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
         battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!", target.pbOfThis, target.abilityName, move.name))
       end
@@ -1220,7 +1220,7 @@ Battle::AbilityEffects::MoveImmunity.add(:WONDERGUARD,
     if show_message
       battle.pbShowAbilitySplash(target)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+        battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
         battle.pbDisplay(_INTL("{1} avoided damage with {2}!", target.pbThis, target.abilityName))
       end
@@ -2663,7 +2663,7 @@ Battle::AbilityEffects::EndOfRoundWeather.add(:ICEFACE,
     if !Battle::Scene::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
     end
-    battler.pbChangeForm(0, _INTL("{1} transformed!", battler.pbThis))
+    battler.pbChangeForm(0, _INTL("{1}变成其他样子了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3279,7 +3279,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:ICEFACE,
     if !Battle::Scene::USE_ABILITY_SPLASH
       battle.pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
     end
-    battler.pbChangeForm(0, _INTL("{1} transformed!", battler.pbThis))
+    battler.pbChangeForm(0, _INTL("{1}变成其他样子了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )

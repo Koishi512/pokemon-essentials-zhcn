@@ -88,7 +88,7 @@ end
 
 GameData::BagPocket.register({
   :id            => :Items,
-  :name          => _INTL("Other Items"),
+  :name          => _INTL("其他道具"),
   :icon_position => 0,
   :order         => 10
 })
@@ -100,21 +100,21 @@ GameData::BagPocket.register({
 
 GameData::BagPocket.register({
   :id            => :Medicine,
-  :name          => _INTL("Medicine"),
+  :name          => _INTL("回复道具"),
   :icon_position => 1,
   :order         => 20
 })
 
 GameData::BagPocket.register({
   :id            => :PokeBalls,
-  :name          => _INTL("Poké Balls"),
+  :name          => _INTL("精灵球"),
   :icon_position => 2,
   :order         => 30
 })
 
 GameData::BagPocket.register({
   :id            => :Berries,
-  :name          => _INTL("Berries"),
+  :name          => _INTL("树果"),
   :icon_position => 3,
   :order         => 40,
   :auto_sort     => true
@@ -122,7 +122,7 @@ GameData::BagPocket.register({
 
 GameData::BagPocket.register({
   :id            => :HeldItems,
-  :name          => _INTL("Held Items"),
+  :name          => _INTL("持有物"),
   :icon_position => 4,
   :order         => 50
 })
@@ -134,7 +134,7 @@ GameData::BagPocket.register({
 
 GameData::BagPocket.register({
   :id            => :BattleItems,
-  :name          => _INTL("Battle Items"),
+  :name          => _INTL("战斗道具"),
   :icon_position => 5,
   :order         => 60
 })
@@ -146,7 +146,7 @@ GameData::BagPocket.register({
 # so that's not a problem).
 GameData::BagPocket.register({
   :id            => :Machines,
-  :name          => _INTL("TMs & HMs"),
+  :name          => _INTL("学习器"),
   :icon_position => 6,
   :order         => 70,
   :auto_sort     => true
@@ -154,7 +154,7 @@ GameData::BagPocket.register({
 
 GameData::BagPocket.register({
   :id            => :KeyItems,
-  :name          => _INTL("Key Items"),
+  :name          => _INTL("重要道具"),
   :icon_position => 7,
   :order         => 80
 })

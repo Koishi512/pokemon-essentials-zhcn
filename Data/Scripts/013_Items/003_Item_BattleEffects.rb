@@ -4,7 +4,7 @@
 
 ItemHandlers::CanUseInBattle.add(:GUARDSPEC, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battler || battler.pbOwnSide.effects[PBEffects::Mist] > 0
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -67,7 +67,7 @@ ItemHandlers::CanUseInBattle.addIf(:poke_balls,
 
 ItemHandlers::CanUseInBattle.add(:POTION, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !pokemon.able? || pokemon.hp == pokemon.totalhp
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -88,7 +88,7 @@ ItemHandlers::CanUseInBattle.copy(:AWAKENING, :CHESTOBERRY)
 
 ItemHandlers::CanUseInBattle.add(:BLUEFLUTE, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if battler&.hasActiveAbility?(:SOUNDPROOF)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next pbBattleItemCanCureStatus?(:SLEEP, pokemon, scene, showMessages)
@@ -122,7 +122,7 @@ ItemHandlers::CanUseInBattle.add(:FULLHEAL, proc { |item, pokemon, battler, move
   if !pokemon.able? ||
      (pokemon.status == :NONE &&
      (!battler || battler.effects[PBEffects::Confusion] == 0))
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -138,7 +138,7 @@ ItemHandlers::CanUseInBattle.add(:FULLRESTORE, proc { |item, pokemon, battler, m
   if !pokemon.able? ||
      (pokemon.hp == pokemon.totalhp && pokemon.status == :NONE &&
      (!battler || battler.effects[PBEffects::Confusion] == 0))
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -146,7 +146,7 @@ ItemHandlers::CanUseInBattle.add(:FULLRESTORE, proc { |item, pokemon, battler, m
 
 ItemHandlers::CanUseInBattle.add(:REVIVE, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !pokemon.fainted?
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -158,7 +158,7 @@ ItemHandlers::CanUseInBattle.add(:ETHER, proc { |item, pokemon, battler, move, f
   if !pokemon.able? || move < 0 ||
      pokemon.moves[move].total_pp <= 0 ||
      pokemon.moves[move].pp == pokemon.moves[move].total_pp
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -168,7 +168,7 @@ ItemHandlers::CanUseInBattle.copy(:ETHER, :MAXETHER, :LEPPABERRY)
 
 ItemHandlers::CanUseInBattle.add(:ELIXIR, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !pokemon.able?
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   canRestore = false
@@ -179,7 +179,7 @@ ItemHandlers::CanUseInBattle.add(:ELIXIR, proc { |item, pokemon, battler, move, 
     break
   end
   if !canRestore
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -190,7 +190,7 @@ ItemHandlers::CanUseInBattle.copy(:ELIXIR, :MAXELIXIR)
 ItemHandlers::CanUseInBattle.add(:REDFLUTE, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battler || battler.effects[PBEffects::Attract] < 0 ||
      battler.hasActiveAbility?(:SOUNDPROOF)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -198,7 +198,7 @@ ItemHandlers::CanUseInBattle.add(:REDFLUTE, proc { |item, pokemon, battler, move
 
 ItemHandlers::CanUseInBattle.add(:PERSIMBERRY, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battler || battler.effects[PBEffects::Confusion] == 0
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -207,7 +207,7 @@ ItemHandlers::CanUseInBattle.add(:PERSIMBERRY, proc { |item, pokemon, battler, m
 ItemHandlers::CanUseInBattle.add(:YELLOWFLUTE, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battler || battler.effects[PBEffects::Confusion] == 0 ||
      battler.hasActiveAbility?(:SOUNDPROOF)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -259,7 +259,7 @@ ItemHandlers::CanUseInBattle.add(:MAXMUSHROOMS, proc { |item, pokemon, battler, 
      !pbBattleItemCanRaiseStat?(:SPECIAL_ATTACK, battler, scene, false) &&
      !pbBattleItemCanRaiseStat?(:SPECIAL_DEFENSE, battler, scene, false) &&
      !pbBattleItemCanRaiseStat?(:SPEED, battler, scene, false)
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -267,7 +267,7 @@ ItemHandlers::CanUseInBattle.add(:MAXMUSHROOMS, proc { |item, pokemon, battler, 
 
 ItemHandlers::CanUseInBattle.add(:DIREHIT, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battler || battler.criticalHitRate >= 2
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -275,7 +275,7 @@ ItemHandlers::CanUseInBattle.add(:DIREHIT, proc { |item, pokemon, battler, move,
 
 ItemHandlers::CanUseInBattle.add(:DIREHIT2, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battler || battler.criticalHitRate >= 2
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -283,7 +283,7 @@ ItemHandlers::CanUseInBattle.add(:DIREHIT2, proc { |item, pokemon, battler, move
 
 ItemHandlers::CanUseInBattle.add(:DIREHIT3, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battler || battler.criticalHitRate >= 3
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true
@@ -291,7 +291,7 @@ ItemHandlers::CanUseInBattle.add(:DIREHIT3, proc { |item, pokemon, battler, move
 
 ItemHandlers::CanUseInBattle.add(:POKEFLUTE, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if battle.allBattlers.none? { |b| b.status == :SLEEP && !b.hasActiveAbility?(:SOUNDPROOF) }
-    scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     next false
   end
   next true

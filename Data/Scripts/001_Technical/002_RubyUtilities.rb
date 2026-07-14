@@ -80,23 +80,23 @@ class Numeric
   end
 
   def to_word
-    ret = [_INTL("zero"), _INTL("one"), _INTL("two"), _INTL("three"),
-           _INTL("four"), _INTL("five"), _INTL("six"), _INTL("seven"),
-           _INTL("eight"), _INTL("nine"), _INTL("ten"), _INTL("eleven"),
-           _INTL("twelve"), _INTL("thirteen"), _INTL("fourteen"), _INTL("fifteen"),
-           _INTL("sixteen"), _INTL("seventeen"), _INTL("eighteen"), _INTL("nineteen"),
-           _INTL("twenty")]
+    ret = [_INTL("零"), _INTL("一"), _INTL("二"), _INTL("三"),
+           _INTL("四"), _INTL("五"), _INTL("六"), _INTL("七"),
+           _INTL("八"), _INTL("九"), _INTL("十"), _INTL("十一"),
+           _INTL("十二"), _INTL("十三"), _INTL("十四"), _INTL("十五"),
+           _INTL("十六"), _INTL("十七"), _INTL("十八"), _INTL("十九"),
+           _INTL("二十")]
     return ret[self] if self.is_a?(Integer) && self >= 0 && self <= ret.length - 1
     return self.to_s
   end
 
   def to_ordinal
-    ret = [_INTL("zeroth"), _INTL("first"), _INTL("second"), _INTL("third"),
-          _INTL("fourth"), _INTL("fifth"), _INTL("sixth"), _INTL("seventh"),
-          _INTL("eighth"), _INTL("ninth"), _INTL("tenth"), _INTL("eleventh"),
-          _INTL("twelfth"), _INTL("thirteenth"), _INTL("fourteenth"), _INTL("fifteenth"),
-          _INTL("sixteenth"), _INTL("seventeenth"), _INTL("eighteenth"), _INTL("nineteenth"),
-          _INTL("twentieth")]
+    ret = [_INTL("第零"), _INTL("第一"), _INTL("第二"), _INTL("第三"),
+           _INTL("第四"), _INTL("第五"), _INTL("第六"), _INTL("第七"),
+           _INTL("第八"), _INTL("第九"), _INTL("第十"), _INTL("第十一"),
+           _INTL("第十二"), _INTL("第十三"), _INTL("第十四"), _INTL("第十五"),
+           _INTL("第十六"), _INTL("第十七"), _INTL("第十八"), _INTL("第十九"),
+           _INTL("第二十")]
     return ret[self] if self.is_a?(Integer) && self >= 0 && self <= ret.length - 1
     return self.to_ord
   end
@@ -222,7 +222,7 @@ class Color
 
   # New constructor, accepts RGB values as well as a hex number or string value.
   def initialize(*args)
-    pbPrintException("Wrong number of arguments! At least 1 is needed!") if args.length < 1
+    pbPrintException("参数数量错误！至少需要1个参数！") if args.length < 1
     case args.length
     when 1
       case args.first
@@ -233,7 +233,7 @@ class Color
         return init_original(*try_rgb_format.map(&:to_i)) if try_rgb_format.length.between?(3, 4)
         hex = args.first.delete("#")
       end
-      pbPrintException("Wrong type of argument given!") if !hex
+      pbPrintException("参数类型错误！") if !hex
       r = hex[0...2].to_i(16)
       g = hex[2...4].to_i(16)
       b = hex[4...6].to_i(16)

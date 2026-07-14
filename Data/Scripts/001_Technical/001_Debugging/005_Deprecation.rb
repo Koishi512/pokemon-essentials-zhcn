@@ -10,12 +10,12 @@ module Deprecation
   # @param removal_version [String] version the method is removed in
   # @param alternative [String] preferred alternative method
   def warn_method(method_name, removal_version = nil, alternative = nil)
-    text = _INTL('Usage of deprecated method "{1}" or its alias.', method_name)
+    text = _INTL('使用了被撤销的方法"{1}"或别名。', method_name)
     unless removal_version.nil?
-      text += "\n" + _INTL("The method is slated to be removed in Essentials {1}.", removal_version)
+      text += "\n" + _INTL("该方法计划在 Essentials {1} 中被移除。", removal_version)
     end
     unless alternative.nil?
-      text += "\n" + _INTL("Use \"{1}\" instead.", alternative)
+      text += "\n" + _INTL("请使用 \"{1}\" 代替。", alternative)
     end
     Console.echo_warn text
   end
@@ -42,7 +42,7 @@ class Module
     class_name = self.name
 
     unless target.method_defined?(aliased_method)
-      raise ArgumentError, "#{class_name} does not have method #{aliased_method} defined"
+      raise ArgumentError, "#{class_name}未定义方法#{aliased_method}"
     end
 
     delimiter = class_method ? "." : "#"

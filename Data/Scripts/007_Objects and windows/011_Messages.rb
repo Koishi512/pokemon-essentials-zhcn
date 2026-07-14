@@ -268,7 +268,7 @@ def pbCsvField!(str)
     end
     str[0, fieldbytes] = ""
     if !str[/\A\s*,/] && !str[/\A\s*$/]
-      raise _INTL("Invalid quoted field (in: {1})", ret)
+      raise _INTL("引号包围的字段无效（位于：{1}）", ret)
     end
     str[0, str.length] = $~.post_match
   else
@@ -287,7 +287,7 @@ end
 def pbCsvPosInt!(str)
   ret = pbCsvField!(str)
   if !ret[/\A\d+$/]
-    raise _INTL("Field {1} is not a positive integer", ret)
+    raise _INTL("字段{1}不是正整数", ret)
   end
   return ret.to_i
 end
@@ -352,7 +352,7 @@ end
 
 def pbDisplayGoldWindow(msgwindow)
   moneyString = pbGetGoldString
-  goldwindow = Window_AdvancedTextPokemon.new(_INTL("Money:\n<ar>{1}</ar>", moneyString))
+  goldwindow = Window_AdvancedTextPokemon.new(_INTL("零花钱：\n<ar>{1}</ar>", moneyString))
   goldwindow.setSkin("Graphics/Windowskins/goldskin")
   goldwindow.resizeToFit(goldwindow.text, Graphics.width)
   goldwindow.width = 160 if goldwindow.width <= 160
@@ -368,7 +368,7 @@ end
 
 def pbDisplayCoinsWindow(msgwindow, goldwindow)
   coinString = ($player) ? $player.coins.to_s_formatted : "0"
-  coinwindow = Window_AdvancedTextPokemon.new(_INTL("Coins:\n<ar>{1}</ar>", coinString))
+  coinwindow = Window_AdvancedTextPokemon.new(_INTL("代币：\n<ar>{1}</ar>", coinString))
   coinwindow.setSkin("Graphics/Windowskins/goldskin")
   coinwindow.resizeToFit(coinwindow.text, Graphics.width)
   coinwindow.width = 160 if coinwindow.width <= 160
@@ -384,7 +384,7 @@ end
 
 def pbDisplayBattlePointsWindow(msgwindow)
   pointsString = ($player) ? $player.battle_points.to_s_formatted : "0"
-  pointswindow = Window_AdvancedTextPokemon.new(_INTL("Battle Points:\n<ar>{1}</ar>", pointsString))
+  pointswindow = Window_AdvancedTextPokemon.new(_INTL("战斗点数：\n<ar>{1}</ar>", pointsString))
   pointswindow.setSkin("Graphics/Windowskins/goldskin")
   pointswindow.resizeToFit(pointswindow.text, Graphics.width)
   pointswindow.width = 160 if pointswindow.width <= 160
@@ -713,11 +713,11 @@ def pbMessage(message, commands = nil, cmdIfCancel = 0, skin = nil, defaultCmd =
 end
 
 def pbConfirmMessage(message, &block)
-  return (pbMessage(message, [_INTL("Yes"), _INTL("No")], 2, &block) == 0)
+  return (pbMessage(message, [_INTL("是"), _INTL("否")], 2, &block) == 0)
 end
 
 def pbConfirmMessageSerious(message, &block)
-  return (pbMessage(message, [_INTL("No"), _INTL("Yes")], 1, &block) == 1)
+  return (pbMessage(message, [_INTL("否"), _INTL("是")], 1, &block) == 1)
 end
 
 def pbMessageChooseNumber(message, params, &block)

@@ -16,22 +16,22 @@ class Battle
     return false if idxParty >= party.length
     return false if !party[idxParty]
     if party[idxParty].egg?
-      party_screen&.show_message(_INTL("An Egg can't battle!"))
+      party_screen&.show_message(_INTL("无法让蛋出场战斗。"))
       return false
     end
     if !pbIsOwner?(idxBattler, idxParty)
       if party_screen
         owner = pbGetOwnerFromPartyIndex(idxBattler, idxParty)
-        party_screen.show_message(_INTL("You can't switch {1}'s Pokémon with one of yours!", owner.name))
+        party_screen.show_message(_INTL("无法选择同伴{1}的宝可梦！", owner.name))
       end
       return false
     end
     if party[idxParty].fainted?
-      party_screen&.show_message(_INTL("{1} has no energy left to battle!", party[idxParty].name))
+      party_screen&.show_message(_INTL("{1}已没有再战的力气了！", party[idxParty].name))
       return false
     end
     if pbFindBattler(idxParty, idxBattler)
-      party_screen&.show_message(_INTL("{1} is already in battle!", party[idxParty].name))
+      party_screen&.show_message(_INTL("{1}已经在战斗了。", party[idxParty].name))
       return false
     end
     return true
@@ -54,21 +54,21 @@ class Battle
     return true if Settings::MORE_TYPE_EFFECTS && battler.pbHasType?(:GHOST)
     # Other certain trapping effects
     if battler.trappedInBattle?
-      party_screen&.show_message(_INTL("{1} can't be switched out!", battler.pbThis))
+      party_screen&.show_message(_INTL("无法让{1}回来！", battler.pbThis))
       return false
     end
     # Trapping abilities/items
     allOtherSideBattlers(idxBattler).each do |b|
       next if !b.abilityActive?
       if Battle::AbilityEffects.triggerTrappingByTarget(b.ability, battler, b, self)
-        party_screen&.show_message(_INTL("{1} {2} prevents switching!", b.pbOfThis, b.abilityName))
+        party_screen&.show_message(_INTL("因{1}{2}而无法进行替换！", b.pbOfThis, b.abilityName))
         return false
       end
     end
     allOtherSideBattlers(idxBattler).each do |b|
       next if !b.itemActive?
       if Battle::ItemEffects.triggerTrappingByTarget(b.item, battler, b, self)
-        party_screen&.show_message(_INTL("{1} {2} prevents switching!", b.pbOfThis, b.itemName))
+        party_screen&.show_message(_INTL("因{1}{2}而无法进行替换！", b.pbOfThis, b.itemName))
         return false
       end
     end
@@ -86,7 +86,7 @@ class Battle
     # Pokémon
     allSameSideBattlers(idxBattler).each do |b|
       next if choices[b.index][0] != :SwitchOut || choices[b.index][1] != idxParty
-      party_screen&.show_message(_INTL("{1} has already been selected.",
+      party_screen&.show_message(_INTL("{1}已经被选中了。",
                                        pbParty(idxBattler)[idxParty].name))
       return false
     end
@@ -175,7 +175,7 @@ class Battle
               new_index = pbLastInTeam(idxBattler)
               idxPartyForName = new_index if new_index >= 0 && new_index != idxPartyNew
             end
-            if pbDisplayConfirm(_INTL("{1} is about to send out {2}. Will you switch your Pokémon?",
+            if pbDisplayConfirm(_INTL("{1}正准备派出{2}。要替换宝可梦吗？",
                                       opponent.full_name, enemyParty[idxPartyForName].name))
               idxPlayerPartyNew = pbSwitchInBetween(0, false, true)
               if idxPlayerPartyNew >= 0
@@ -195,7 +195,7 @@ class Battle
           switch = false
           if pbPlayerBattlerCount > 0
             switch = true
-          elsif pbDisplayConfirm(_INTL("Use next Pokémon?"))
+          elsif pbDisplayConfirm(_INTL("使用下只宝可梦吗？"))
             switch = true
           else
             switch = (pbRun(idxBattler, true) <= 0)
@@ -237,19 +237,19 @@ class Battle
   def pbMessageOnRecall(battler)
     if battler.pbOwnedByPlayer?
       if battler.hp <= battler.totalhp / 4
-        pbDisplayBrief(_INTL("Good job, {1}! Come back!", battler.name))
+        pbDisplayBrief(_INTL("{1}，干得漂亮！回来！", battler.name))
       elsif battler.hp <= battler.totalhp / 2
-        pbDisplayBrief(_INTL("OK, {1}! Come back!", battler.name))
+        pbDisplayBrief(_INTL("{1}，很好！回来！", battler.name))
       elsif battler.turnCount >= 5
-        pbDisplayBrief(_INTL("{1}, that's enough! Come back!", battler.name))
+        pbDisplayBrief(_INTL("{1}，好了！回来！", battler.name))
       elsif battler.turnCount >= 2
-        pbDisplayBrief(_INTL("{1}, come back!", battler.name))
+        pbDisplayBrief(_INTL("{1}，回来！", battler.name))
       else
-        pbDisplayBrief(_INTL("{1}, switch out! Come back!", battler.name))
+        pbDisplayBrief(_INTL("{1}，替换！回来！", battler.name))
       end
     else
       owner = pbGetOwnerName(battler.index)
-      pbDisplayBrief(_INTL("{1} withdrew {2}!", owner, battler.name))
+      pbDisplayBrief(_INTL("{1}换下了{2}！", owner, battler.name))
     end
   end
 
@@ -264,17 +264,17 @@ class Battle
     if pbOwnedByPlayer?(idxBattler)
       opposing = @battlers[idxBattler].pbDirectOpposing
       if opposing.fainted? || opposing.hp == opposing.totalhp
-        pbDisplayBrief(_INTL("You're in charge, {1}!", newPkmnName))
+        pbDisplayBrief(_INTL("看你的了，{1}！", newPkmnName))
       elsif opposing.hp >= opposing.totalhp / 2
-        pbDisplayBrief(_INTL("Go for it, {1}!", newPkmnName))
+        pbDisplayBrief(_INTL("加油，{1}！", newPkmnName))
       elsif opposing.hp >= opposing.totalhp / 4
-        pbDisplayBrief(_INTL("Just a little more! Hang in there, {1}!", newPkmnName))
+        pbDisplayBrief(_INTL("只差一点了！加油，{1}！", newPkmnName))
       else
-        pbDisplayBrief(_INTL("Your opponent's weak! Get 'em, {1}!", newPkmnName))
+        pbDisplayBrief(_INTL("对手变弱了！机会来了！ {1}！", newPkmnName))
       end
     else
       owner = pbGetOwnerFromBattlerIndex(idxBattler)
-      pbDisplayBrief(_INTL("{1} sent out {2}!", owner.full_name, newPkmnName))
+      pbDisplayBrief(_INTL("{1}派出了{2}！", owner.full_name, newPkmnName))
     end
   end
 
@@ -404,7 +404,7 @@ class Battle
     # Introduce Shadow Pokémon
     if battler.shadowPokemon?
       pbCommonAnimation("Shadow", battler)
-      pbDisplay(_INTL("Oh!\nA Shadow Pokémon!")) if battler.opposes?
+      pbDisplay(_INTL("啊！\n是黑暗宝可梦！")) if battler.opposes?
     end
   end
 
@@ -415,7 +415,7 @@ class Battle
     if position.effects[PBEffects::HealingWish]
       if battler.canHeal? || battler.status != :NONE
         pbCommonAnimation("HealingWish", battler)
-        pbDisplay(_INTL("The healing wish came true for {1}!", battler.pbThis(true)))
+        pbDisplay(_INTL("治愈之愿在{1}身上实现了！", battler.pbThis(true)))
         battler.pbRecoverHP(battler.totalhp)
         battler.pbCureStatus(false)
         position.effects[PBEffects::HealingWish] = false
@@ -429,7 +429,7 @@ class Battle
       battler.eachMove { |m| full_pp = false if m.pp < m.total_pp }
       if battler.canHeal? || battler.status != :NONE || !full_pp
         pbCommonAnimation("LunarDance", battler)
-        pbDisplay(_INTL("{1} became cloaked in mystical moonlight!", battler.pbThis))
+        pbDisplay(_INTL("{1}被神秘的月光包围了！", battler.pbThis))
         battler.pbRecoverHP(battler.totalhp)
         battler.pbCureStatus(false)
         battler.eachMove { |m| battler.pbSetPP(m, m.total_pp) }
@@ -449,7 +449,7 @@ class Battle
       eff = Effectiveness.calculate(:ROCK, *bTypes)
       if !Effectiveness.ineffective?(eff)
         battler.pbReduceHP(battler.totalhp * eff / 8, false)
-        pbDisplay(_INTL("Pointed stones dug into {1}!", battler.pbThis))
+        pbDisplay(_INTL("尖锐的岩石扎进了{1}的体内！", battler.pbThis))
         battler.pbItemHPHealCheck
       end
     end
@@ -458,26 +458,26 @@ class Battle
        !battler.airborne? && !battler.hasActiveItem?(:HEAVYDUTYBOOTS)
       spikesDiv = [8, 6, 4][battler_side.effects[PBEffects::Spikes] - 1]
       battler.pbReduceHP(battler.totalhp / spikesDiv, false)
-      pbDisplay(_INTL("{1} is hurt by the spikes!", battler.pbThis))
+      pbDisplay(_INTL("{1}受到了撒菱的伤害！", battler.pbThis))
       battler.pbItemHPHealCheck
     end
     # Toxic Spikes
     if battler_side.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.airborne?
       if battler.pbHasType?(:POISON)
         battler_side.effects[PBEffects::ToxicSpikes] = 0
-        pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))
+        pbDisplay(_INTL("{1}吸收了毒菱！", battler.pbThis))
       elsif battler.pbCanPoison?(nil, false) && !battler.hasActiveItem?(:HEAVYDUTYBOOTS)
         if battler_side.effects[PBEffects::ToxicSpikes] == 2
-          battler.pbPoison(nil, _INTL("{1} was badly poisoned by the poison spikes!", battler.pbThis), true)
+          battler.pbPoison(nil, _INTL("{1}因毒菱中剧毒了！", battler.pbThis), true)
         else
-          battler.pbPoison(nil, _INTL("{1} was poisoned by the poison spikes!", battler.pbThis))
+          battler.pbPoison(nil, _INTL("{1}因毒菱中毒了！", battler.pbThis))
         end
       end
     end
     # Sticky Web
     if battler_side.effects[PBEffects::StickyWeb] && !battler.fainted? && !battler.airborne? &&
        !battler.hasActiveItem?(:HEAVYDUTYBOOTS)
-      pbDisplay(_INTL("{1} was caught in a sticky web!", battler.pbThis))
+      pbDisplay(_INTL("{1}被黏黏网黏住了！", battler.pbThis))
       if battler.pbCanLowerStatStage?(:SPEED)
         battler.pbLowerStatStage(:SPEED, 1, nil)
         battler.pbItemStatRestoreCheck   # White Herb

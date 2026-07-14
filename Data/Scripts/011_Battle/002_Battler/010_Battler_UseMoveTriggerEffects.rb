@@ -50,7 +50,7 @@ class Battle::Battler
       # Rage
       if target.effects[PBEffects::Rage] && !target.fainted? &&
          target.pbCanRaiseStatStage?(:ATTACK, target)
-        @battle.pbDisplay(_INTL("{1} rage is building!", target.pbOfThis))
+        @battle.pbDisplay(_INTL("{1}怒气正在上升！", target.pbOfThis))
         target.pbRaiseStatStage(:ATTACK, 1, target)
       end
       # Beak Blast
@@ -72,8 +72,8 @@ class Battle::Battler
       # Grudge
       if target.effects[PBEffects::Grudge] && target.fainted?
         user.pbSetPP(move, 0)
-        @battle.pbDisplay(_INTL("{1} {2} lost all of its PP due to the grudge!",
-                                user.pbOfThis, move.name))
+        @battle.pbDisplay(_INTL("因为怨念，{1}失去了其招式{2}的所有PP！",
+                                user.pbThis, move.name))
       end
       # Destiny Bond (recording that it should apply)
       if target.effects[PBEffects::DestinyBond] && target.fainted? &&
@@ -103,7 +103,7 @@ class Battle::Battler
     #       to trigger at the same time as Grudge).
     if user.effects[PBEffects::DestinyBondTarget] >= 0 && !user.fainted?
       dbName = @battle.battlers[user.effects[PBEffects::DestinyBondTarget]].pbThis
-      @battle.pbDisplay(_INTL("{1} took its attacker down with it!", dbName))
+      @battle.pbDisplay(_INTL("{1}和对手同归于尽了！", dbName))
       user.pbReduceHP(user.hp, false)
       user.pbItemHPHealCheck
       user.pbFaint
@@ -121,10 +121,10 @@ class Battle::Battler
          user.ability == :BATTLEBOND && !user.abilityUsedOnce? &&
          targets.any? { |target| target.damageState.fainted }
         user.markAbilityUsedOnce
-        @battle.pbDisplay(_INTL("{1} became fully charged due to its bond with its Trainer!", user.pbThis))
+        @battle.pbDisplay(_INTL("{1}浑身充满了牵绊之力！", user.pbThis))
         @battle.pbShowAbilitySplash(user, true)
         @battle.pbHideAbilitySplash(user)
-        user.pbChangeForm(2, _INTL("{1} became Ash-Greninja!", user.pbThis))
+        user.pbChangeForm(2, _INTL("{1}变身成了小智版甲贺忍蛙！", user.pbThis))
       end
       # Cramorant = Gulp Missile
       if user.isSpecies?(:CRAMORANT) && user.ability == :GULPMISSILE &&

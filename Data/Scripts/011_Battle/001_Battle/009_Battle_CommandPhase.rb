@@ -107,7 +107,7 @@ class Battle
 
   def pbItemMenu(idxBattler, firstAction)
     if !@internalBattle || @rules[:disable_bag]
-      pbDisplay(_INTL("Items can't be used here."))
+      pbDisplay(_INTL("这里无法使用道具。"))
       return false
     end
     ret = false
@@ -234,7 +234,7 @@ class Battle
         cmd = pbCommandMenu(idxBattler, actioned.length == 1)
         # If being Sky Dropped, can't do anything except use a move
         if cmd != :fight && @battlers[idxBattler].effects[PBEffects::SkyDrop] >= 0
-          pbDisplay(_INTL("Sky Drop won't let {1} go!", @battlers[idxBattler].pbThis(true)))
+          pbDisplay(_INTL("{1}因自由落体而无法自由行动！", @battlers[idxBattler].pbThis(true)))
           next
         end
         case cmd

@@ -13,21 +13,21 @@ module Kernel
   # @raise [ArgumentError] if validation fails
   def validate(value_pairs)
     unless value_pairs.is_a?(Hash)
-      raise ArgumentError, "Non-hash argument #{value_pairs.inspect} passed into validate."
+      raise ArgumentError, "非哈希参数#{value_pairs.inspect}传递进入检验。"
     end
     errors = value_pairs.map do |value, condition|
       if condition.is_a?(Array)
         unless condition.any? { |klass| value.is_a?(klass) }
-          next "Expected #{value.inspect} to be one of #{condition.inspect}, but got #{value.class.name}."
+          next "预期#{value.inspect}为#{condition.inspect}之一，但得到了#{value.class.name}。"
         end
       elsif condition.is_a?(Symbol)
-        next "Expected #{value.inspect} to respond to #{condition}." unless value.respond_to?(condition)
+        next "预期#{value.inspect}响应#{condition}方法。" unless value.respond_to?(condition)
       elsif !value.is_a?(condition)
-        next "Expected #{value.inspect} to be a #{condition.name}, but got #{value.class.name}."
+        next "预期#{value.inspect}为#{condition.name}类型，但得到了#{value.class.name}。"
       end
     end
     errors.compact!
     return if errors.empty?
-    raise ArgumentError, "Invalid argument passed to method.\r\n" + errors.join("\r\n")
+    raise ArgumentError, "传递给方法的参数无效。\r\n" + errors.join("\r\n")
   end
 end

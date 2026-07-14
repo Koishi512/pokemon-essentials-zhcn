@@ -35,7 +35,7 @@ module GameData
       return nil if !species || !form
       validate species => [Symbol, String]
       validate form => Integer
-      raise _INTL("Undefined species {1}.", species) if !GameData::Species.exists?(species)
+      raise _INTL("未定义的物种{1}。", species) if !GameData::Species.exists?(species)
       species = species.to_sym if species.is_a?(String)
       if form > 0
         trial = sprintf("%s_%d", species, form).to_sym

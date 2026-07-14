@@ -185,7 +185,7 @@ ItemHandlers::UseInField.add(:SACREDASH, proc { |item|
     pbMessage(_INTL("There is no Pokémon."))
     next false
   elsif $player.pokemon_party.none? { |pkmn| pkmn.fainted? }
-    pbMessage(_INTL("It won't have any effect."))
+    pbMessage(_INTL("即便使用也无效果哦。"))
     next false
   end
   revived = 0
@@ -201,7 +201,7 @@ ItemHandlers::UseInField.add(:SACREDASH, proc { |item|
         pbSEPlay("Use item in party")
         screen.show_message(_INTL("{1}'s HP was restored.", pkmn.name))
       end
-      screen.show_message(_INTL("It won't have any effect.")) if revived == 0
+      screen.show_message(_INTL("即便使用也无效果哦。")) if revived == 0
     end
   end
   next (revived > 0)
@@ -419,7 +419,7 @@ ItemHandlers::UseOnPokemon.addIf(:evolution_stones,
   proc { |item| GameData::Item.get(item).is_evolution_stone? },
   proc { |item, qty, pkmn, screen|
     if pkmn.shadowPokemon?
-      screen.show_message(_INTL("It won't have any effect."))
+      screen.show_message(_INTL("即便使用也无效果哦。"))
       next false
     end
     new_species = pkmn.check_evolution_on_use_item(item)
@@ -442,7 +442,7 @@ ItemHandlers::UseOnPokemon.addIf(:evolution_stones,
       end
       next true
     end
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   }
 )
@@ -457,7 +457,7 @@ ItemHandlers::UsableOnPokemon.add(:SCROLLOFWATERS, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS, proc { |item, qty, pkmn, screen|
   if pkmn.shadowPokemon?
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   new_species = pkmn.check_evolution_on_use_item(item)
@@ -481,7 +481,7 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS, proc { |item, qty, pkmn, screen|
     end
     next true
   end
-  screen.show_message(_INTL("It won't have any effect."))
+  screen.show_message(_INTL("即便使用也无效果哦。"))
   next false
 })
 ItemHandlers::UseOpensScreen.add(:SCROLLOFWATERS,
@@ -491,7 +491,7 @@ ItemHandlers::UseOpensScreen.add(:SCROLLOFWATERS,
 ItemHandlers::UsableOnPokemon.copy(:SCROLLOFWATERS, :SCROLLOFDARKNESS)
 ItemHandlers::UseOnPokemon.add(:SCROLLOFDARKNESS, proc { |item, qty, pkmn, screen|
   if pkmn.shadowPokemon?
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   new_species = pkmn.check_evolution_on_use_item(item)
@@ -514,7 +514,7 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFDARKNESS, proc { |item, qty, pkmn, scree
     end
     next true
   end
-  screen.show_message(_INTL("It won't have any effect."))
+  screen.show_message(_INTL("即便使用也无效果哦。"))
   next false
 })
 ItemHandlers::UseOpensScreen.copy(:SCROLLOFWATERS, :SCROLLOFDARKNESS)
@@ -588,7 +588,7 @@ ItemHandlers::UsableOnPokemon.add(:AWAKENING, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:AWAKENING, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || pkmn.status != :SLEEP
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -606,7 +606,7 @@ ItemHandlers::UsableOnPokemon.add(:ANTIDOTE, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:ANTIDOTE, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || pkmn.status != :POISON
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -624,7 +624,7 @@ ItemHandlers::UsableOnPokemon.add(:BURNHEAL, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:BURNHEAL, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || pkmn.status != :BURN
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -642,7 +642,7 @@ ItemHandlers::UsableOnPokemon.add(:PARALYZEHEAL, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:PARALYZEHEAL, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || pkmn.status != :PARALYSIS
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -660,7 +660,7 @@ ItemHandlers::UsableOnPokemon.add(:ICEHEAL, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:ICEHEAL, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || pkmn.status != :FROZEN
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -678,7 +678,7 @@ ItemHandlers::UsableOnPokemon.add(:FULLHEAL, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:FULLHEAL, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || pkmn.status == :NONE
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -709,7 +709,7 @@ ItemHandlers::UsableOnPokemon.add(:FULLRESTORE, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:FULLRESTORE, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || (pkmn.hp == pkmn.totalhp && pkmn.status == :NONE)
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -731,7 +731,7 @@ ItemHandlers::UsableOnPokemon.add(:REVIVE, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:REVIVE, proc { |item, qty, pkmn, screen|
   if !pkmn.fainted?
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -746,7 +746,7 @@ ItemHandlers::UseOnPokemon.add(:REVIVE, proc { |item, qty, pkmn, screen|
 ItemHandlers::UsableOnPokemon.copy(:REVIVE, :MAXREVIVE)
 ItemHandlers::UseOnPokemon.add(:MAXREVIVE, proc { |item, qty, pkmn, screen|
   if !pkmn.fainted?
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -785,7 +785,7 @@ ItemHandlers::UseOnPokemon.add(:ENERGYROOT, proc { |item, qty, pkmn, screen|
 ItemHandlers::UsableOnPokemon.copy(:FULLHEAL, :HEALPOWDER)
 ItemHandlers::UseOnPokemon.add(:HEALPOWDER, proc { |item, qty, pkmn, screen|
   if pkmn.fainted? || pkmn.status == :NONE
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -799,7 +799,7 @@ ItemHandlers::UseOnPokemon.add(:HEALPOWDER, proc { |item, qty, pkmn, screen|
 ItemHandlers::UsableOnPokemon.copy(:REVIVE, :REVIVALHERB)
 ItemHandlers::UseOnPokemon.add(:REVIVALHERB, proc { |item, qty, pkmn, screen|
   if !pkmn.fainted?
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -821,7 +821,7 @@ ItemHandlers::UseOnPokemon.add(:ETHER, proc { |item, qty, pkmn, screen|
   move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to restore?"))
   next false if move < 0
   if pbRestorePP(pkmn, move, 10) == 0
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -838,7 +838,7 @@ ItemHandlers::UseOnPokemon.add(:MAXETHER, proc { |item, qty, pkmn, screen|
   move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to restore?"))
   next false if move < 0
   if pbRestorePP(pkmn, move, pkmn.moves[move].total_pp - pkmn.moves[move].pp) == 0
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -853,7 +853,7 @@ ItemHandlers::UseOnPokemon.add(:ELIXIR, proc { |item, qty, pkmn, screen|
     pprestored += pbRestorePP(pkmn, i, 10)
   end
   if pprestored == 0
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -868,7 +868,7 @@ ItemHandlers::UseOnPokemon.add(:MAXELIXIR, proc { |item, qty, pkmn, screen|
     pprestored += pbRestorePP(pkmn, i, pkmn.moves[i].total_pp - pkmn.moves[i].pp)
   end
   if pprestored == 0
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -886,7 +886,7 @@ ItemHandlers::UseOnPokemon.add(:PPUP, proc { |item, qty, pkmn, screen|
   move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to increase?"))
   next false if move < 0
   if pkmn.moves[move].total_pp <= 1 || pkmn.moves[move].ppup >= 3
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -902,7 +902,7 @@ ItemHandlers::UseOnPokemon.add(:PPMAX, proc { |item, qty, pkmn, screen|
   move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to increase?"))
   next false if move < 0
   if pkmn.moves[move].total_pp <= 1 || pkmn.moves[move].ppup >= 3
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
@@ -1097,7 +1097,7 @@ ItemHandlers::UsableOnPokemon.add(:FRESHSTARTMOCHI, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:FRESHSTARTMOCHI, proc { |item, qty, pkmn, screen|
   if !pkmn.ev.any? { |stat, value| value > 0 }
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   GameData::Stat.each_main { |s| pkmn.ev[s.id] = 0 }
@@ -1264,13 +1264,13 @@ ItemHandlers::UseOnPokemonMaximum.add(:RARECANDY, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:RARECANDY, proc { |item, qty, pkmn, screen|
   if pkmn.shadowPokemon?
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   if pkmn.level >= GameData::GrowthRate.max_level
     new_species = pkmn.check_evolution_on_level_up
     if !Settings::RARE_CANDY_USABLE_AT_MAX_LEVEL || !new_species
-      screen.show_message(_INTL("It won't have any effect."))
+      screen.show_message(_INTL("即便使用也无效果哦。"))
       next false
     end
     # Check for evolution
@@ -1456,7 +1456,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, qty, pkmn, screen|
       abil2 = i[0] if i[1] == 1
     end
     if abil1.nil? || abil2.nil? || pkmn.hasHiddenAbility? || pkmn.isSpecies?(:ZYGARDE)
-      screen.show_message(_INTL("It won't have any effect."))
+      screen.show_message(_INTL("即便使用也无效果哦。"))
       next false
     end
     newabil = (pkmn.ability_index + 1) % 2
@@ -1490,7 +1490,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, qty, pkmn, screen|
       abils.each { |a| new_ability_id = a[0] if a[1] == 2 }   # Hidden ability
     end
     if !new_ability_id || pkmn.isSpecies?(:ZYGARDE)
-      screen.show_message(_INTL("It won't have any effect."))
+      screen.show_message(_INTL("即便使用也无效果哦。"))
       next false
     end
     new_ability_name = GameData::Ability.get(new_ability_id).name
@@ -1519,7 +1519,7 @@ ItemHandlers::UseOnPokemon.add(:METEORITE, proc { |item, qty, pkmn, screen|
   new_form = (pkmn.form + 1) % 4   # Normal, Attack, Defense, Speed
   pkmn.setForm(new_form) do
     screen.refresh
-    screen.show_message(_INTL("{1} transformed!", pkmn.name))
+    screen.show_message(_INTL("{1}变成其他样子了！", pkmn.name))
   end
   next true
 })
@@ -1682,12 +1682,12 @@ ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, qty, pkmn, screen|
   ]
   new_form = screen.show_choice_message(_INTL("Which appliance would you like to order?"), choices, pkmn.form)
   if new_form == pkmn.form
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif new_form >= 0 && new_form < choices.length - 1
     pkmn.setForm(new_form) do
       screen.refresh
-      screen.show_message(_INTL("{1} transformed!", pkmn.name))
+      screen.show_message(_INTL("{1}变成其他样子了！", pkmn.name))
     end
     next true
   end
@@ -1711,7 +1711,7 @@ ItemHandlers::UseOnPokemon.add(:ZYGARDECUBE, proc { |item, qty, pkmn, screen|
     newForm = (pkmn.form == 0) ? 1 : 0
     pkmn.setForm(newForm) do
       screen.refresh
-      screen.show_message(_INTL("{1} transformed!", pkmn.name))
+      screen.show_message(_INTL("{1}变成其他样子了！", pkmn.name))
     end
     next true
   when 1   # Change ability

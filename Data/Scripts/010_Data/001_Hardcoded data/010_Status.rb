@@ -45,40 +45,40 @@ end
 
 GameData::Status.register({
   :id            => :NONE,
-  :name          => _INTL("None")
+  :name          => _INTL("无")
 })
 
 GameData::Status.register({
   :id            => :SLEEP,
-  :name          => _INTL("Sleep"),
+  :name          => _INTL("睡眠"),
   :animation     => "Sleep",
   :icon_position => 0
 })
 
 GameData::Status.register({
   :id            => :POISON,
-  :name          => _INTL("Poison"),
+  :name          => _INTL("中毒"),
   :animation     => "Poison",
   :icon_position => 1
 })
 
 GameData::Status.register({
   :id            => :BURN,
-  :name          => _INTL("Burn"),
+  :name          => _INTL("灼伤"),
   :animation     => "Burn",
   :icon_position => 2
 })
 
 GameData::Status.register({
   :id            => :PARALYSIS,
-  :name          => _INTL("Paralysis"),
+  :name          => _INTL("麻痹"),
   :animation     => "Paralysis",
   :icon_position => 3
 })
 
 GameData::Status.register({
   :id            => :FROZEN,
-  :name          => _INTL("Frozen"),
+  :name          => _INTL("冰冻"),
   :animation     => "Frozen",
   :icon_position => 4
 })

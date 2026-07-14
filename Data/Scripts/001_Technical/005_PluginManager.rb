@@ -128,20 +128,20 @@ module PluginManager
       case key
       when :name   # Plugin name
         if nil_or_empty?(value)
-          self.error("Plugin name must be a non-empty string.")
+          self.error("插件名必须为非空字符串。")
         end
         if !@@Plugins[value].nil?
-          self.error("A plugin called '#{value}' already exists.")
+          self.error("名为'#{value}'的插件已经存在。")
         end
         name = value
       when :version   # Plugin version
-        self.error("Plugin version must be a string.") if nil_or_empty?(value)
+        self.error("插件版本必须为字符串。") if nil_or_empty?(value)
         version = value
       when :essentials
         essentials = value
       when :link   # Plugin website
         if nil_or_empty?(value)
-          self.error("Plugin link must be a non-empty string.")
+          self.error("插件链接必须为非空字符串。")
         end
         link = value
       when :dependencies   # Plugin dependencies
@@ -151,7 +151,7 @@ module PluginManager
           case dep
           when String   # "plugin name"
             if !self.installed?(dep)
-              self.error("Plugin '#{name}' requires plugin '#{dep}' to be installed above it.")
+              self.error("插件'#{name}'需要安装插件'#{dep}'才能在其上方运行。")
             end
           when Array
             case dep.size
@@ -159,40 +159,39 @@ module PluginManager
               if dep[0].is_a?(String)
                 dep_name = dep[0]
                 if !self.installed?(dep_name)
-                  self.error("Plugin '#{name}' requires plugin '#{dep_name}' to be installed above it.")
+                  self.error("插件'#{name}'需要安装插件'#{dep_name}'才能在其上方运行。")
                 end
               else
-                self.error("Expected the plugin name as a string, but got #{dep[0].inspect}.")
+                self.error("预期插件名为字符串，但是得到了#{dep[0].inspect}。")
               end
             when 2   # ["plugin name", "version"]
               if dep[0].is_a?(Symbol)
-                self.error("A plugin version comparator symbol was given but no version was given.")
+                self.error("给出了插件版本比较器的符号，但未提供版本号。")
               elsif dep[0].is_a?(String) && dep[1].is_a?(String)
                 dep_name    = dep[0]
                 dep_version = dep[1]
                 next if self.installed?(dep_name, dep_version)
                 if self.installed?(dep_name)   # Have plugin but lower version
-                  msg = "Plugin '#{name}' requires plugin '#{dep_name}' version #{dep_version} or higher, " +
-                        "but the installed version is #{self.version(dep_name)}."
+                  msg = "插件'#{name}'需要插件'#{dep_name}'版本#{dep_version}或更高，" +
+                        "但已安装的版本是#{self.version(dep_name)}。"
                   dep_link = self.link(dep_name)
                   if dep_link
-                    msg += "\r\nCheck #{dep_link} for an update to plugin '#{dep_name}'."
+                    msg += "\r\n检查#{dep_link}以获取插件'#{dep_name}'的更新。"
                   end
                   self.error(msg)
                 else   # Don't have plugin
-                  self.error("Plugin '#{name}' requires plugin '#{dep_name}' version #{dep_version} " +
-                      "or higher to be installed above it.")
+                  self.error("插件'#{name}'需要安装插件'#{dep_name}'版本#{dep_version}或更高才能在其上方运行。")
                 end
               end
             when 3   # [:optional/:exact/:optional_exact, "plugin name", "version"]
               if !dep[0].is_a?(Symbol)
-                self.error("Expected first dependency argument to be a symbol, but got #{dep[0].inspect}.")
+                self.error("预期第一个依赖参数为符号，但得到了#{dep[0].inspect}。")
               end
               if !dep[1].is_a?(String)
-                self.error("Expected second dependency argument to be a plugin name, but got #{dep[1].inspect}.")
+                self.error("预期第二个依赖参数为插件名，但得到了#{dep[1].inspect}。")
               end
               if !dep[2].is_a?(String)
-                self.error("Expected third dependency argument to be the plugin version, but got #{dep[2].inspect}.")
+                self.error("预期第三个依赖参数为插件版本，但得到了#{dep[2].inspect}。")
               end
               dep_arg     = dep[0]
               dep_name    = dep[1]
@@ -208,34 +207,34 @@ module PluginManager
                 optional = true
                 exact = true
               else
-                self.error("Expected first dependency argument to be one of " +
-                           ":optional, :exact or :optional_exact, but got #{dep_arg.inspect}.")
+                self.error("预期第一个依赖参数为以下之一: " +
+                           ":optional, :exact 或 :optional_exact, 但得到了#{dep_arg.inspect}。")
               end
               if optional
                 if self.installed?(dep_name) &&   # Have plugin but lower version
                    !self.installed?(dep_name, dep_version, exact)
-                  msg = "Plugin '#{name}' requires plugin '#{dep_name}', if installed, to be version #{dep_version}"
-                  msg << " or higher" if !exact
-                  msg << ", but the installed version was #{self.version(dep_name)}."
+                  msg = "插件'#{name}'需要插件'#{dep_name}', 如果已安装，版本必须为 #{dep_version}"
+                  msg << " 或更高" if !exact
+                  msg << "，但已安装的版本是 #{self.version(dep_name)}。"
                   dep_link = self.link(dep_name)
                   if dep_link
-                    msg << "\r\nCheck #{dep_link} for an update to plugin '#{dep_name}'."
+                    msg << "\r\n检查#{dep_link}以获取插件'#{dep_name}'的更新。"
                   end
                   self.error(msg)
                 end
               elsif !self.installed?(dep_name, dep_version, exact)
                 if self.installed?(dep_name)   # Have plugin but lower version
-                  msg = "Plugin '#{name}' requires plugin '#{dep_name}' to be version #{dep_version}"
-                  msg << " or later" if !exact
-                  msg << ", but the installed version was #{self.version(dep_name)}."
+                  msg = "插件'#{name}'需要插件'#{dep_name}'版本 #{dep_version}"
+                  msg << " 或更高" if !exact
+                  msg << "，但已安装的版本是 #{self.version(dep_name)}。"
                   dep_link = self.link(dep_name)
                   if dep_link
-                    msg << "\r\nCheck #{dep_link} for an update to plugin '#{dep_name}'."
+                    msg << "\r\n检查#{dep_link}以获取插件'#{dep_name}'的更新。"
                   end
                 else   # Don't have plugin
-                  msg = "Plugin '#{name}' requires plugin '#{dep_name}' version #{dep_version} "
-                  msg << "or later " if !exact
-                  msg << "to be installed above it."
+                  msg = "插件'#{name}'需要插件'#{dep_name}'版本 #{dep_version} "
+                  msg << "或更高 " if !exact
+                  msg << "才能在其上方运行。"
                 end
                 self.error(msg)
               end
@@ -247,7 +246,7 @@ module PluginManager
         incompats = [incompats] if !incompats.is_a?(Array)
         incompats.each do |incompat|
           if self.installed?(incompat)
-            self.error("Plugin '#{name}' is incompatible with '#{incompat}'. They cannot both be used at the same time.")
+            self.error("插件'#{name}'与'#{incompat}'不兼容。它们不能同时使用。")
           end
         end
       when :credits # Plugin credits
@@ -257,19 +256,19 @@ module PluginManager
             if entry.is_a?(String)
               credits << entry
             else
-              self.error("Plugin '#{name}'s credits array contains a non-string value.")
+              self.error("插件'#{name}'的credits数组包含非字符串值。")
             end
           end
         else
-          self.error("Plugin '#{name}'s credits field must contain a string, or a string array.")
+          self.error("插件'#{name}'的credits字段必须包含字符串或字符串数组。")
         end
       else
-        self.error("Invalid plugin registry key '#{key}'.")
+        self.error("无效的插件注册键 '#{key}'。")
       end
     end
     @@Plugins.each_value do |plugin|
       if plugin[:incompatibilities]&.include?(name)
-        self.error("Plugin '#{plugin[:name]}' is incompatible with '#{name}'. They cannot both be used at the same time.")
+        self.error("插件'#{plugin[:name]}'与'#{name}'不兼容。它们不能同时使用。")
       end
     end
     # Add plugin to class variable
@@ -430,7 +429,7 @@ module PluginManager
     Compiler.pbCompilerEachPreppedLine(filename) do |line, line_no|
       # split line up into property name and values
       if !line[/^\s*(\w+)\s*=\s*(.*)$/]
-        raise _INTL("Bad line syntax (expected syntax like XXX=YYY).") + "\n" + FileLineData.linereport
+        raise _INTL("行语法错误（预期语法应为 XXX=YYY）。") + "\n" + FileLineData.linereport
       end
       property = $~[1].upcase
       data = $~[2].split(",")

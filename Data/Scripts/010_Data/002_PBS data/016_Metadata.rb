@@ -40,17 +40,17 @@ module GameData
 
     def self.editor_properties
       return [
-        ["StartMoney",        LimitProperty.new(Settings::MAX_MONEY), _INTL("The amount of money that the player starts the game with.")],
-        ["StartItemStorage",  GameDataPoolProperty.new(:Item),        _INTL("Items that are already in the player's PC at the start of the game.")],
-        ["Home",              MapCoordsFacingProperty, _INTL("Map ID and X/Y coordinates of where the player goes after a loss if no Pokémon Center was visited.")],
-        ["StorageCreator",    StringProperty,          _INTL("Name of the Pokémon Storage creator (the storage option is named \"XXX's PC\").")],
-        ["WildBattleBGM",     BGMProperty,             _INTL("Default BGM for wild Pokémon battles.")],
-        ["TrainerBattleBGM",  BGMProperty,             _INTL("Default BGM for Trainer battles.")],
-        ["WildVictoryBGM",    BGMProperty,             _INTL("Default BGM played after winning a wild Pokémon battle.")],
-        ["TrainerVictoryBGM", BGMProperty,             _INTL("Default BGM played after winning a Trainer battle.")],
-        ["WildCaptureME",     MEProperty,              _INTL("Default ME played after catching a Pokémon.")],
-        ["SurfBGM",           BGMProperty,             _INTL("BGM played while surfing.")],
-        ["BicycleBGM",        BGMProperty,             _INTL("BGM played while on a bicycle.")]
+        ["StartMoney",        LimitProperty.new(Settings::MAX_MONEY), _INTL("玩家开始游戏时拥有的零花钱数量。")],
+        ["StartItemStorage",  GameDataPoolProperty.new(:Item),        _INTL("玩家在游戏开始时已有的道具。")],
+        ["Home",              MapCoordsFacingProperty, _INTL("玩家在失败后未访问过宝可梦中心时前往的地点的地图ID和X/Y坐标。")],
+        ["StorageCreator",    StringProperty,          _INTL("宝可梦寄放系统创建者的名称（存储选项名为\"XXX的电脑\"）。")],
+        ["WildBattleBGM",     BGMProperty,             _INTL("野生宝可梦战斗的默认BGM。")],
+        ["TrainerBattleBGM",  BGMProperty,             _INTL("训练家战斗的默认BGM。")],
+        ["WildVictoryBGM",    BGMProperty,             _INTL("玩家战胜野生宝可梦后播放的BGM。")],
+        ["TrainerVictoryBGM", BGMProperty,             _INTL("玩家战胜训练家后播放的BGM。")],
+        ["WildCaptureME",     MEProperty,              _INTL("捕捉宝可梦后播放的ME。")],
+        ["SurfBGM",           BGMProperty,             _INTL("冲浪时播放的BGM。")],
+        ["BicycleBGM",        BGMProperty,             _INTL("骑自行车时播放的BGM。")]
       ]
     end
 
@@ -79,7 +79,6 @@ module GameData
     # @return [String] the translated name of the Pokémon Storage creator
     def storage_creator
       ret = pbGetMessageFromHash(MessageTypes::STORAGE_CREATOR_NAME, @real_storage_creator)
-      return nil_or_empty?(ret) ? _INTL("Bill") : ret
-    end
+      return nil_or_empty?(ret) ? _INTL("正辉") : ret
   end
 end

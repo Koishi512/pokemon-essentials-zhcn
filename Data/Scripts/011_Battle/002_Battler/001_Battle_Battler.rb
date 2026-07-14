@@ -230,12 +230,12 @@ class Battle::Battler
   def pbThis(lowerCase = false)
     if opposes?
       if @battle.trainerBattle?
-        return lowerCase ? _INTL("the opposing {1}", name) : _INTL("The opposing {1}", name)
+        return lowerCase ? _INTL("对手的{1}", name) : _INTL("对手的{1}", name)
       else
-        return lowerCase ? _INTL("the wild {1}", name) : _INTL("The wild {1}", name)
+        return lowerCase ? _INTL("野生的{1}", name) : _INTL("野生的{1}", name)
       end
     elsif !pbOwnedByPlayer?
-      return lowerCase ? _INTL("the ally {1}", name) : _INTL("The ally {1}", name)
+      return lowerCase ? _INTL("我方的{1}", name) : _INTL("我方的{1}", name)
     end
     return name
   end
@@ -243,42 +243,42 @@ class Battle::Battler
   def pbOfThis(lowerCase = false)
     if opposes?
       if @battle.trainerBattle?
-        return lowerCase ? _INTL("the opposing {1}'s", name) : _INTL("The opposing {1}'s", name)
+        return lowerCase ? _INTL("对手的{1}的", name) : _INTL("对手的{1}的", name)
       else
-        return lowerCase ? _INTL("the wild {1}'s", name) : _INTL("The wild {1}'s", name)
+        return lowerCase ? _INTL("野生的{1}的", name) : _INTL("野生的{1}的", name)
       end
     elsif !pbOwnedByPlayer?
-      return lowerCase ? _INTL("the ally {1}'s", name) : _INTL("The ally {1}'s", name)
+      return lowerCase ? _INTL("我方的{1}的", name) : _INTL("我方的{1}的", name)
     end
-    return _INTL("{1}'s", name)
+    return _INTL("{1}的", name)
   end
 
   def pbTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("the opposing team") : _INTL("The opposing team")
+      return lowerCase ? _INTL("对手") : _INTL("对手")
     end
-    return lowerCase ? _INTL("your team") : _INTL("Your team")
-  end
+      return lowerCase ? _INTL("我方") : _INTL("我方")
+    end
 
   def pbOfTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("the opposing team's") : _INTL("The opposing team's")
+      return lowerCase ? _INTL("对手的") : _INTL("对手的")
     end
-    return lowerCase ? _INTL("your team's") : _INTL("Your team's")
+    return lowerCase ? _INTL("我方的") : _INTL("我方的")
   end
 
   def pbOpposingTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("your team") : _INTL("Your team")
+      return lowerCase ? _INTL("我方") : _INTL("我方")
     end
-    return lowerCase ? _INTL("the opposing team") : _INTL("The opposing team")
+    return lowerCase ? _INTL("对手") : _INTL("对手")
   end
 
   def pbOfOpposingTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("your team's") : _INTL("Your team's")
+      return lowerCase ? _INTL("我方的") : _INTL("我方的")
     end
-    return lowerCase ? _INTL("the opposing team's") : _INTL("The opposing team's")
+    return lowerCase ? _INTL("对手的") : _INTL("对手的")
   end
 
   #-----------------------------------------------------------------------------
@@ -304,7 +304,7 @@ class Battle::Battler
     when :SPECIAL_DEFENSE then stat_value = self.spdef
     when :SPEED           then stat_value = self.speed
     else
-      raise _INTL("Can't get the stat with stages for {1}.", stat)
+      raise _INTL("无法得到含能力变化的{1}。", stat)
     end
     stage = @stages[stat] + STAT_STAGE_MAXIMUM
     return (stat_value.to_f * STAT_STAGE_MULTIPLIERS[stage] / STAT_STAGE_DIVISORS[stage]).floor
@@ -710,9 +710,9 @@ class Battle::Battler
       if showMsg
         @battle.pbShowAbilitySplash(self)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
+          @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, abilityName))
+          @battle.pbDisplay(_INTL("因为{2}，对于{1}完全没有效果！", pbThis, abilityName))
         end
         @battle.pbHideAbilitySplash(self)
       end
@@ -762,7 +762,7 @@ class Battle::Battler
   def affectedByPowder?(showMsg = false)
     return false if fainted?
     if pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
-      @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis)) if showMsg
+      @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis)) if showMsg
       return false
     end
     if Settings::MECHANICS_GENERATION >= 6
@@ -770,9 +770,9 @@ class Battle::Battler
         if showMsg
           @battle.pbShowAbilitySplash(self)
           if Battle::Scene::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
+            @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
           else
-            @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, abilityName))
+            @battle.pbDisplay(_INTL("因为{2}，对于{1}完全没有效果！", pbThis, abilityName))
           end
           @battle.pbHideAbilitySplash(self)
         end
@@ -780,7 +780,7 @@ class Battle::Battler
       end
       if hasActiveItem?(:SAFETYGOGGLES)
         if showMsg
-          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!", pbThis, itemName))
+          @battle.pbDisplay(_INTL("因为{2}，对于{1}完全没有效果！", pbThis, itemName))
         end
         return false
       end
@@ -797,7 +797,7 @@ class Battle::Battler
   def affectedByContactEffect?(showMsg = false)
     return false if fainted?
     if hasActiveItem?(:PROTECTIVEPADS)
-      @battle.pbDisplay(_INTL("{1} protected itself with the {2}!", pbThis, itemName)) if showMsg
+      @battle.pbDisplay(_INTL("{1}靠着{2}防住了！", pbThis, itemName)) if showMsg
       return false
     end
     return true
@@ -819,16 +819,16 @@ class Battle::Battler
   # battler's move.
   def canBeForcedOutOfBattle?(show_message = true)
     if @effects[PBEffects::Commanding] >= 0 || @effects[PBEffects::CommandedBy] >= 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return false
     end
     if hasActiveAbility?(:SUCTIONCUPS) && !beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(self)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} anchors itself!", pbThis))
+          @battle.pbDisplay(_INTL("{1}屹立不动！", pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} anchors itself with {2}!", pbThis, abilityName))
+          @battle.pbDisplay(_INTL("{1}的{2}固定住了自己！", pbThis, abilityName))
         end
         @battle.pbHideAbilitySplash(self)
       end
@@ -836,7 +836,7 @@ class Battle::Battler
     end
     return false if hasActiveAbility?(:GUARDDOG) && !beingMoldBroken?
     if @effects[PBEffects::Ingrain]
-      @battle.pbDisplay(_INTL("{1} anchored itself with its roots!", pbThis)) if show_message
+      @battle.pbDisplay(_INTL("{1}扎下了根，屹立不动！", pbThis)) if show_message
       return false
     end
     return true

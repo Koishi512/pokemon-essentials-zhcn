@@ -27,7 +27,7 @@ class Battle
     #       sides.
     if trainerBattle? && (@sideSizes[0] > 2 || @sideSizes[1] > 2) &&
        @player.length > 1 && @opponent.length > 1
-      raise _INTL("Can't have battles larger than 2v2 where both sides have multiple trainers")
+      raise _INTL("当双方有多个训练家时，不能进行超过2v2的战斗")
     end
     # Find out how many Pokémon each trainer has
     side1counts = pbAbleTeamCounts(0)
@@ -58,24 +58,24 @@ class Battle
         end
         # Compare the have values with the need values
         if requireds.length > sideCounts.length
-          raise _INTL("Error: def pbGetOwnerIndexFromBattlerIndex gives invalid owner index ({1} for battle type {2}v{3}, trainers {4}v{5})",
+          raise _INTL("错误: def pbGetOwnerIndexFromBattlerIndex给出了无效的拥有者索引（{1}用于战斗类型{2}v{3},训练家{4}v{5}）",
                       requireds.length - 1, @sideSizes[0], @sideSizes[1], side1counts.length, side2counts.length)
         end
         sideCounts.each_with_index do |_count, i|
           if !requireds[i] || requireds[i] == 0
             case side
             when 0
-              raise _INTL("Player-side trainer {1} has no battler position for their Pokémon to go (trying {2}v{3} battle)",
+              raise _INTL("玩家方训练家{1}没有宝可梦可以出场的位置（尝试{2}v{3}战斗）",
                           i + 1, @sideSizes[0], @sideSizes[1])
             when 1
-              raise _INTL("Opposing trainer {1} has no battler position for their Pokémon to go (trying {2}v{3} battle)",
+              raise _INTL("对手训练家{1}没有宝可梦可以出场的位置（尝试{2}v{3}战斗）",
                           i + 1, @sideSizes[0], @sideSizes[1])
             end
           end
           next if requireds[i] <= sideCounts[i]   # Trainer has enough Pokémon to fill their positions
           if requireds[i] == 1
-            raise _INTL("Player-side trainer {1} has no able Pokémon", i + 1) if side == 0
-            raise _INTL("Opposing trainer {1} has no able Pokémon", i + 1) if side == 1
+            raise _INTL("玩家方训练家{1}没有可用的宝可梦", i + 1) if side == 0
+            raise _INTL("对手训练家{1}没有可用的宝可梦", i + 1) if side == 1
           end
           # Not enough Pokémon, try lowering the number of battler positions
           needsChanging = true
@@ -86,23 +86,23 @@ class Battle
       break if !needsChanging
       # Reduce one or both side's sizes by 1 and try again
       if wildBattle?
-        PBDebug.log("#{@sideSizes[0]}v#{@sideSizes[1]} battle isn't possible " +
-                    "(#{side1counts} player-side teams versus #{side2counts[0]} wild Pokémon)")
+        PBDebug.log("不可能进行#{@sideSizes[0]}v#{@sideSizes[1]}战斗" +
+                    "（#{side1counts}玩家方队伍对#{side2counts[0]}野生宝可梦）")
         newSize = @sideSizes[0] - 1
       else
-        PBDebug.log("#{@sideSizes[0]}v#{@sideSizes[1]} battle isn't possible " +
-                    "(#{side1counts} player-side teams versus #{side2counts} opposing teams)")
+        PBDebug.log("不可能进行#{@sideSizes[0]}v#{@sideSizes[1]}战斗" +
+                    "（#{side1counts}玩家方队伍对#{side2counts}对手队伍）")
         newSize = @sideSizes.max - 1
       end
       if newSize == 0
-        raise _INTL("Couldn't lower either side's size any further, battle isn't possible")
+        raise _INTL("无法继续降低任一方的队伍规模，无法进行战斗")
       end
       2.times do |side|
         next if side == 1 && wildBattle?   # Wild Pokémon's side size is fixed
         next if @sideSizes[side] == 1 || newSize > @sideSizes[side]
         @sideSizes[side] = newSize
       end
-      PBDebug.log("Trying #{@sideSizes[0]}v#{@sideSizes[1]} battle instead")
+      PBDebug.log("尝试进行#{@sideSizes[0]}v#{@sideSizes[1]}战斗")
     end
   end
 
@@ -112,7 +112,7 @@ class Battle
 
   def pbCreateBattler(idxBattler, pkmn, idxParty)
     if !@battlers[idxBattler].nil?
-      raise _INTL("Battler index {1} already exists", idxBattler)
+      raise _INTL("战斗者索引{1}已存在", idxBattler)
     end
     @battlers[idxBattler] = Battler.new(self, idxBattler)
     @positions[idxBattler] = ActivePosition.new
@@ -197,23 +197,23 @@ class Battle
       foeParty = pbParty(1)
       case foeParty.length
       when 1
-        pbDisplayPaused(_INTL("Oh! A wild {1} appeared!", foeParty[0].name))
+        pbDisplayPaused(_INTL("啊！野生的{1}出现了！", foeParty[0].name))
       when 2
-        pbDisplayPaused(_INTL("Oh! A wild {1} and {2} appeared!", foeParty[0].name,
+        pbDisplayPaused(_INTL("啊！野生的{1}和{2}出现了！", foeParty[0].name,
                               foeParty[1].name))
       when 3
-        pbDisplayPaused(_INTL("Oh! A wild {1}, {2} and {3} appeared!", foeParty[0].name,
+        pbDisplayPaused(_INTL("啊！野生的{1}、{2}和{3}出现了！", foeParty[0].name,
                               foeParty[1].name, foeParty[2].name))
       end
     else   # Trainer battle
       case @opponent.length
       when 1
-        pbDisplayPaused(_INTL("You are challenged by {1}!", @opponent[0].full_name))
+        pbDisplayPaused(_INTL("{1}前来挑战了！", @opponent[0].full_name))
       when 2
-        pbDisplayPaused(_INTL("You are challenged by {1} and {2}!", @opponent[0].full_name,
+        pbDisplayPaused(_INTL("{1}和{2}前来挑战了！", @opponent[0].full_name,
                               @opponent[1].full_name))
       when 3
-        pbDisplayPaused(_INTL("You are challenged by {1}, {2} and {3}!",
+        pbDisplayPaused(_INTL("{1}、{2}和{3}前来挑战了！", 
                               @opponent[0].full_name, @opponent[1].full_name, @opponent[2].full_name))
       end
     end
@@ -246,23 +246,23 @@ class Battle
     if side == 0 && trainer_index == 0   # Player
       case sent_out_indices.length
       when 1
-        ret += _INTL("Go! {1}!", @battlers[sent_out_indices[0]].name)
+        ret += _INTL("上吧！{1}！", @battlers[sent_out_indices[0]].name)
       when 2
-        ret += _INTL("Go! {1} and {2}!", @battlers[sent_out_indices[0]].name,
+        ret += _INTL("上吧！{1}和{2}！", @battlers[sent_out_indices[0]].name,
                      @battlers[sent_out_indices[1]].name)
       when 3
-        ret += _INTL("Go! {1}, {2} and {3}!", @battlers[sent_out_indices[0]].name,
+        ret += _INTL("上吧！{1}、{2}和{3}！", @battlers[sent_out_indices[0]].name,
                      @battlers[sent_out_indices[1]].name, @battlers[sent_out_indices[2]].name)
       end
     else   # NPC trainer
       case sent_out_indices.length
       when 1
-        ret += _INTL("{1} sent out {2}!", trainer.full_name, @battlers[sent_out_indices[0]].name)
+        ret += _INTL("{1}派出了{2}！", trainer.full_name, @battlers[sent_out_indices[0]].name)
       when 2
-        ret += _INTL("{1} sent out {2} and {3}!", trainer.full_name,
+        ret += _INTL("{1}派出了{2}和{3}！", trainer.full_name,
                      @battlers[sent_out_indices[0]].name, @battlers[sent_out_indices[1]].name)
       when 3
-        ret += _INTL("{1} sent out {2}, {3} and {4}!", trainer.full_name,
+        ret += _INTL("{1}派出了{2}、{3}和{4}！", trainer.full_name,
                      @battlers[sent_out_indices[0]].name, @battlers[sent_out_indices[1]].name,
                      @battlers[sent_out_indices[2]].name)
       end
@@ -318,28 +318,28 @@ class Battle
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if weather_data
     case @field.weather
-    when :Sun         then pbDisplay(_INTL("The sunlight is strong."))
-    when :Rain        then pbDisplay(_INTL("It is raining."))
-    when :Sandstorm   then pbDisplay(_INTL("A sandstorm is raging."))
-    when :Hail        then pbDisplay(_INTL("Hail is falling."))
-    when :Snowstorm   then pbDisplay(_INTL("It is snowing."))
-    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
-    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
-    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
-    when :ShadowSky   then pbDisplay(_INTL("The sky is shadowy."))
+    when :Sun         then pbDisplay(_INTL("日照强烈。"))
+    when :Rain        then pbDisplay(_INTL("正在下雨。"))
+    when :Sandstorm   then pbDisplay(_INTL("沙暴肆虐。"))
+    when :Hail        then pbDisplay(_INTL("正在下冰雹。"))
+    when :Snowstorm   then pbDisplay(_INTL("正在下雪。"))
+    when :HarshSun    then pbDisplay(_INTL("强日照势头不减！"))
+    when :HeavyRain   then pbDisplay(_INTL("暴雨势头不减！"))
+    when :StrongWinds then pbDisplay(_INTL("神秘的乱流势头不减！"))
+    when :ShadowSky   then pbDisplay(_INTL("天空阴暗。"))
     end
     # Terrain announcement
     terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
     pbCommonAnimation(terrain_data.animation) if terrain_data
     case @field.terrain
     when :Electric
-      pbDisplay(_INTL("An electric current runs across the battlefield!"))
+      pbDisplay(_INTL("脚下电光飞闪！"))
     when :Grassy
-      pbDisplay(_INTL("Grass is covering the battlefield!"))
+      pbDisplay(_INTL("脚下青草如茵！"))
     when :Misty
-      pbDisplay(_INTL("Mist swirls about the battlefield!"))
+      pbDisplay(_INTL("脚下雾气缭绕！"))
     when :Psychic
-      pbDisplay(_INTL("The battlefield is weird!"))
+      pbDisplay(_INTL("脚下传来了奇妙的感觉！"))
     end
     # Abilities upon entering battle
     pbOnAllBattlersEnteringBattle
@@ -397,7 +397,7 @@ class Battle
       moneyGained = pbPlayer.money - oldMoney
       if moneyGained > 0
         $stats.battle_money_gained += moneyGained
-        pbDisplayPaused(_INTL("You got ${1} for winning!", moneyGained.to_s_formatted))
+        pbDisplayPaused(_INTL("作为奖金，你得到了${1}！", moneyGained.to_s_formatted))
       end
     end
     # Pick up money scattered by Pay Day
@@ -409,7 +409,7 @@ class Battle
       moneyGained = pbPlayer.money - oldMoney
       if moneyGained > 0
         $stats.battle_money_gained += moneyGained
-        pbDisplayPaused(_INTL("You picked up ${1}!", moneyGained.to_s_formatted))
+        pbDisplayPaused(_INTL("你捡到了${1}！", moneyGained.to_s_formatted))
       end
     end
   end
@@ -428,9 +428,9 @@ class Battle
     if moneyLost > 0
       $stats.battle_money_lost += moneyLost
       if trainerBattle?
-        pbDisplayPaused(_INTL("You gave ${1} to the winner...", moneyLost.to_s_formatted))
+        pbDisplayPaused(_INTL("你支付了${1}作为奖金……", moneyLost.to_s_formatted))
       else
-        pbDisplayPaused(_INTL("You panicked and dropped ${1}...", moneyLost.to_s_formatted))
+        pbDisplayPaused(_INTL("你在慌乱中丢失了${1}……", moneyLost.to_s_formatted))
       end
     end
   end
@@ -447,12 +447,12 @@ class Battle
         @scene.pbTrainerBattleSuccess
         case @opponent.length
         when 1
-          pbDisplayPaused(_INTL("You defeated {1}!", @opponent[0].full_name))
+          pbDisplayPaused(_INTL("战胜了{1}！", @opponent[0].full_name))
         when 2
-          pbDisplayPaused(_INTL("You defeated {1} and {2}!", @opponent[0].full_name,
+          pbDisplayPaused(_INTL("战胜了{1}和{2}！", @opponent[0].full_name,
                                 @opponent[1].full_name))
         when 3
-          pbDisplayPaused(_INTL("You defeated {1}, {2} and {3}!", @opponent[0].full_name,
+          pbDisplayPaused(_INTL("战胜了{1}、{2}和{3}！", @opponent[0].full_name,
                                 @opponent[1].full_name, @opponent[2].full_name))
         end
         @opponent.each_with_index do |trainer, i|
@@ -474,23 +474,23 @@ class Battle
       PBDebug.log("")
       if @internalBattle
         if pbPlayerBattlerCount == 0
-          pbDisplayPaused(_INTL("You have no more Pokémon that can fight!"))
+          pbDisplayPaused(_INTL("你的手上没有可以战斗的宝可梦！"))
           if trainerBattle?
             case @opponent.length
             when 1
-              pbDisplayPaused(_INTL("You lost against {1}!", @opponent[0].full_name))
+              pbDisplayPaused(_INTL("被{1}打败了！", @opponent[0].full_name))
             when 2
-              pbDisplayPaused(_INTL("You lost against {1} and {2}!",
+              pbDisplayPaused(_INTL("被{1}和{2}打败了！",
                                     @opponent[0].full_name, @opponent[1].full_name))
             when 3
-              pbDisplayPaused(_INTL("You lost against {1}, {2} and {3}!",
+              pbDisplayPaused(_INTL("被{1}、{2}和{3}打败了！",
                                     @opponent[0].full_name, @opponent[1].full_name, @opponent[2].full_name))
             end
           end
         end
         # Lose money from losing a battle
         pbLoseMoney
-        pbDisplayPaused(_INTL("You blacked out!")) if !@rules[:continue_if_lose] && pbPlayerBattlerCount == 0
+        pbDisplayPaused(_INTL("你的眼前变得一片漆黑！")) if !@rules[:continue_if_lose] && pbPlayerBattlerCount == 0
       elsif @decision == Outcome::LOSE   # Lost in a Battle Frontier battle
         if @opponent
           @opponent.each_with_index do |trainer, i|

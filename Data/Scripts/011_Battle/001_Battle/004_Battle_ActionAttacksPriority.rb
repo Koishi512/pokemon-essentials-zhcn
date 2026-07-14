@@ -11,7 +11,7 @@ class Battle
     move = battler.moves[idxMove]
     return false unless move
     if move.pp == 0 && move.total_pp > 0 && !sleepTalk
-      pbDisplayPaused(_INTL("There's no PP left for this move!")) if showMessages
+      pbDisplayPaused(_INTL("但是，招式的剩余点数已经用完了！")) if showMessages
       return false
     end
     if battler.effects[PBEffects::Encore] > 0
@@ -54,7 +54,7 @@ class Battle
       return true if singleBattle?
       if pbOwnedByPlayer?(idxBattler)
         if showMessages
-          pbDisplayPaused(_INTL("{1} has to use {2}!", battler.name, encoreMove.name))
+          pbDisplayPaused(_INTL("{1}只能使出{2}！", battler.name, encoreMove.name))
         end
         return pbChooseTarget(battler, encoreMove)
       end
@@ -62,7 +62,7 @@ class Battle
     end
     # Struggle
     if pbOwnedByPlayer?(idxBattler) && showMessages
-      pbDisplayPaused(_INTL("{1} has no moves left!", battler.name))
+      pbDisplayPaused(_INTL("{1}没有可用的招式了！", battler.name))
     end
     @choices[idxBattler][0] = :UseMove    # "Use move"
     @choices[idxBattler][1] = -1          # Index of move to be used

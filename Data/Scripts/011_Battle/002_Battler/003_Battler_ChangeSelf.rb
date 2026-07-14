@@ -13,8 +13,8 @@ class Battle::Battler
     oldHP = @hp
     self.hp -= amt
     PBDebug.log("[HP change] #{pbThis} lost #{amt} HP (#{oldHP} -> #{@hp})") if amt > 0
-    raise _INTL("HP less than 0") if @hp < 0
-    raise _INTL("HP greater than total HP") if @hp > @totalhp
+    raise _INTL("HP低于0") if @hp < 0
+    raise _INTL("HP超过最大值") if @hp > @totalhp
     @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt > 0
     if amt > 0 && registerDamage
       @droppedBelowHalfHP = true if @hp < @totalhp / 2 && @hp + amt >= @totalhp / 2
@@ -31,8 +31,8 @@ class Battle::Battler
     oldHP = @hp
     self.hp += amt
     PBDebug.log("[HP change] #{pbThis} gained #{amt} HP (#{oldHP} -> #{@hp})") if amt > 0
-    raise _INTL("HP less than 0") if @hp < 0
-    raise _INTL("HP greater than total HP") if @hp > @totalhp
+    raise _INTL("HP低于0") if @hp < 0
+    raise _INTL("HP超过最大值") if @hp > @totalhp
     @battle.scene.pbHPChanged(self, oldHP, anim) if anyAnim && amt > 0
     @droppedBelowHalfHP = false if @hp >= @totalhp / 2
     return amt
@@ -42,14 +42,14 @@ class Battle::Battler
     if target.hasActiveAbility?(:LIQUIDOOZE, true)
       @battle.pbShowAbilitySplash(target)
       pbReduceHP(amt)
-      @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", pbThis))
+      @battle.pbDisplay(_INTL("{1}吸到了污泥浆！", pbThis))
       @battle.pbHideAbilitySplash(target)
       pbItemHPHealCheck
     else
       if Translation.more_possessive_messages?
-        msg = _INTL("{1} energy was drained!", target.pbOfThis) if nil_or_empty?(msg)
+        msg = _INTL("{1}体力被吸取了！", target.pbOfThis) if nil_or_empty?(msg)
       else
-        msg = _INTL("{1} had its energy drained!", target.pbThis) if nil_or_empty?(msg)
+        msg = _INTL("从{1}那里吸取了体力！", target.pbThis) if nil_or_empty?(msg)
       end
       @battle.pbDisplay(msg)
       if canHeal?
@@ -75,7 +75,7 @@ class Battle::Battler
       return
     end
     return if @fainted   # Has already fainted properly
-    @battle.pbDisplayBrief(_INTL("{1} fainted!", pbThis)) if showMessage
+    @battle.pbDisplayBrief(_INTL("{1}倒下了！", pbThis)) if showMessage
     PBDebug.log("[Pokémon fainted] #{pbThis} (#{@index})") if !showMessage
     @battle.scene.pbFaintBattler(self)
     @battle.pbSetDefeated(self) if opposes?
@@ -179,7 +179,7 @@ class Battle::Battler
     return if fainted? || @effects[PBEffects::Transform]
     # Shaymin - reverts if frozen
     if isSpecies?(:SHAYMIN) && frozen?
-      pbChangeForm(0, _INTL("{1} transformed!", pbThis))
+      pbChangeForm(0, _INTL("{1}变成其他样子了！", pbThis))
     end
   end
 
@@ -189,7 +189,7 @@ class Battle::Battler
     if isSpecies?(:KELDEO)
       newForm = 0
       newForm = 1 if pbHasMove?(:SECRETSWORD)
-      pbChangeForm(newForm, _INTL("{1} transformed!", pbThis))
+      pbChangeForm(newForm, _INTL("{1}变成其他样子了！", pbThis))
     end
   end
 
@@ -207,10 +207,10 @@ class Battle::Battler
         if @form != newForm
           @battle.pbShowAbilitySplash(self, true)
           @battle.pbHideAbilitySplash(self)
-          pbChangeForm(newForm, _INTL("{1} transformed!", pbThis))
+          pbChangeForm(newForm, _INTL("{1}变成其他样子了！", pbThis))
         end
       else
-        pbChangeForm(0, _INTL("{1} transformed!", pbThis))
+        pbChangeForm(0, _INTL("{1}变成其他样子了！", pbThis))
       end
     end
     # Cherrim - Flower Gift
@@ -221,10 +221,10 @@ class Battle::Battler
         if @form != newForm
           @battle.pbShowAbilitySplash(self, true)
           @battle.pbHideAbilitySplash(self)
-          pbChangeForm(newForm, _INTL("{1} transformed!", pbThis))
+          pbChangeForm(newForm, _INTL("{1}变成其他样子了！", pbThis))
         end
       else
-        pbChangeForm(0, _INTL("{1} transformed!", pbThis))
+        pbChangeForm(0, _INTL("{1}变成其他样子了！", pbThis))
       end
     end
     # Eiscue - Ice Face
@@ -251,12 +251,12 @@ class Battle::Battler
         if @form.even?
           @battle.pbShowAbilitySplash(self, true)
           @battle.pbHideAbilitySplash(self)
-          pbChangeForm(@form + 1, _INTL("{1} triggered!", abilityName))
+          pbChangeForm(@form + 1, _INTL("{1}，启动！", abilityName))
         end
       elsif @form.odd?
         @battle.pbShowAbilitySplash(self, true)
         @battle.pbHideAbilitySplash(self)
-        pbChangeForm(@form - 1, _INTL("{1} triggered!", abilityName))
+        pbChangeForm(@form - 1, _INTL("{1}，启动！", abilityName))
       end
     end
     # Minior - Shields Down
@@ -266,12 +266,12 @@ class Battle::Battler
         if @form != newForm
           @battle.pbShowAbilitySplash(self, true)
           @battle.pbHideAbilitySplash(self)
-          pbChangeForm(newForm, _INTL("{1} deactivated!", abilityName))
+          pbChangeForm(newForm, _INTL("{1}解除！", abilityName))
         end
       elsif @form < 7   # Turn into Core form
         @battle.pbShowAbilitySplash(self, true)
         @battle.pbHideAbilitySplash(self)
-        pbChangeForm(@form + 7, _INTL("{1} activated!", abilityName))
+        pbChangeForm(@form + 7, _INTL("{1}启动！", abilityName))
       end
     end
     # Wishiwashi - Schooling
@@ -280,22 +280,22 @@ class Battle::Battler
         if @form != 1
           @battle.pbShowAbilitySplash(self, true)
           @battle.pbHideAbilitySplash(self)
-          pbChangeForm(1, _INTL("{1} formed a school!", pbThis))
+          pbChangeForm(1, _INTL("{1}一群群地聚集起来了！", pbThis))
         end
       elsif @form != 0
         @battle.pbShowAbilitySplash(self, true)
         @battle.pbHideAbilitySplash(self)
-        pbChangeForm(0, _INTL("{1} stopped schooling!", pbThis))
+        pbChangeForm(0, _INTL("{1}一群群地四散而去了！", pbThis))
       end
     end
     # Zygarde - Power Construct
     if isSpecies?(:ZYGARDE) && self.ability == :POWERCONSTRUCT && endOfRound &&
        @hp <= @totalhp / 2 && @form < 2   # Turn into Complete Forme
       newForm = @form + 2
-      @battle.pbDisplay(_INTL("You sense the presence of many!"))
+      @battle.pbDisplay(_INTL("你感受到了大量的气息……！"))
       @battle.pbShowAbilitySplash(self, true)
       @battle.pbHideAbilitySplash(self)
-      pbChangeForm(newForm, _INTL("{1} transformed into its Complete Forme!", pbThis))
+      pbChangeForm(newForm, _INTL("{1}变成了完全体形态！", pbThis))
     end
     # Morpeko - Hunger Switch
     if isSpecies?(:MORPEKO) && !@effects[PBEffects::Transform] &&
@@ -309,7 +309,7 @@ class Battle::Battler
        self.ability == :TERASHIFT && @form == 0
       @battle.pbShowAbilitySplash(self, true)
       @battle.pbHideAbilitySplash(self)
-      pbChangeForm(1, _INTL("{1} transformed!", pbThis))
+      pbChangeForm(1, _INTL("{1}变成其他样子了！", pbThis))
     end
   end
 
@@ -341,7 +341,7 @@ class Battle::Battler
     @effects[PBEffects::WeightChange] = target.effects[PBEffects::WeightChange]
     @battle.hitsTakenCounts[idxOwnSide][pokemonIndex] = @battle.hitsTakenCounts[target.idxOwnSide][target.pokemonIndex]
     @battle.scene.pbRefreshOne(@index)
-    @battle.pbDisplay(_INTL("{1} transformed into {2}!", pbThis, target.pbThis(true)))
+    @battle.pbDisplay(_INTL("{1}变身成了{2}！", pbThis, target.pbThis(true)))
     pbOnLosingAbility(oldAbil)
   end
 

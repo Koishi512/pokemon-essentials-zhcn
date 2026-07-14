@@ -49,27 +49,27 @@ module GameData
     include InstanceMethods
 
     def self.editor_properties
-      field_use_array = [_INTL("Can't use in field")]
+      field_use_array = [_INTL("战斗外无法使用")]
       self.schema["FieldUse"][2].each { |key, value| field_use_array[value] = key if !field_use_array[value] }
-      battle_use_array = [_INTL("Can't use in battle")]
+      battle_use_array = [_INTL("战斗中无法使用")]
       self.schema["BattleUse"][2].each { |key, value| battle_use_array[value] = key if !battle_use_array[value] }
       return [
-        ["ID",                ReadOnlyProperty,                        _INTL("ID of this item (used as a symbol like :XXX).")],
-        ["Name",              ItemNameProperty,                        _INTL("Name of this item as displayed by the game.")],
-        ["NamePlural",        ItemNameProperty,                        _INTL("Plural name of this item as displayed by the game.")],
-        ["PortionName",       ItemNameProperty,                        _INTL("Name of a portion of this item as displayed by the game.")],
-        ["PortionNamePlural", ItemNameProperty,                        _INTL("Name of 2 or more portions of this item as displayed by the game.")],
-        ["Pocket",            PocketProperty,                          _INTL("Pocket in the Bag where this item is stored.")],
-        ["Price",             LimitProperty.new(Settings::MAX_MONEY),  _INTL("Purchase price of this item.")],
-        ["SellPrice",         LimitProperty2.new(Settings::MAX_MONEY), _INTL("Sell price of this item. If blank, is usually half the purchase price.")],
-        ["BPPrice",           LimitProperty.new(Settings::MAX_BATTLE_POINTS), _INTL("Purchase price of this item in Battle Points (BP).")],
-        ["FieldUse",          EnumProperty.new(field_use_array),       _INTL("How this item can be used outside of battle.")],
-        ["BattleUse",         EnumProperty.new(battle_use_array),      _INTL("How this item can be used within a battle.")],
-        ["Flags",             StringListProperty,                      _INTL("Words/phrases that can be used to group certain kinds of items.")],
-        ["Consumable",        BooleanProperty,                         _INTL("Whether this item is consumed after use.")],
-        ["ShowQuantity",      BooleanProperty,                         _INTL("Whether the Bag shows how many of this item are in there.")],
-        ["Move",              MoveProperty,                            _INTL("Move taught by this HM, TM or TR.")],
-        ["Description",       StringProperty,                          _INTL("Description of this item.")]
+        ["ID",                ReadOnlyProperty,                        _INTL("道具的ID（用于类似于:XXX的标识）")],
+        ["Name",              ItemNameProperty,                        _INTL("道具的名称")],
+        ["NamePlural",        ItemNameProperty,                        _INTL("道具的复数名称")],
+        ["PortionName",       ItemNameProperty,                        _INTL("道具部分的名称")],
+        ["PortionNamePlural", ItemNameProperty,                        _INTL("道具多个部分的名称")],
+        ["Pocket",            PocketProperty,                          _INTL("道具在背包中的口袋")],
+        ["Price",             LimitProperty.new(Settings::MAX_MONEY),  _INTL("道具的购买价格")],
+        ["SellPrice",         LimitProperty2.new(Settings::MAX_MONEY), _INTL("道具的出售价格。如果留空，通常是购买价格的一半。")],
+        ["BPPrice",           LimitProperty.new(Settings::MAX_BATTLE_POINTS), _INTL("道具以战斗点数 (BP) 的购买价格。")],
+        ["FieldUse",          EnumProperty.new(field_use_array),       _INTL("道具在战斗外的使用方式")],
+        ["BattleUse",         EnumProperty.new(battle_use_array),      _INTL("道具在战斗中的使用方式")],
+        ["Flags",             StringListProperty,                      _INTL("可用于分组某些类型道具的词语/短语。")]
+        ["Consumable",        BooleanProperty,                         _INTL("道具在使用后是否消耗。")],
+        ["ShowQuantity",      BooleanProperty,                         _INTL("背包是否显示该道具的数量。")],
+        ["Move",              MoveProperty,                            _INTL("由该HM、TM或TR教授的招式。")],
+        ["Description",       StringProperty,                          _INTL("道具的描述。")]
       ]
     end
 

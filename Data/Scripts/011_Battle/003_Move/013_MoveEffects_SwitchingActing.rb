@@ -4,14 +4,14 @@
 class Battle::Move::FleeFromBattle < Battle::Move
   def pbMoveFailed?(user, targets)
     if !@battle.pbCanRun?(user.index) || (user.wild? && user.allAllies.length > 0)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
   end
 
   def pbEffectGeneral(user)
-    @battle.pbDisplay(_INTL("{1} fled from battle!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}脱离了战斗！", user.pbThis))
     @battle.decision = Battle::Outcome::FLEE
   end
 end
@@ -24,12 +24,12 @@ class Battle::Move::SwitchOutUserStatusMove < Battle::Move
   def pbMoveFailed?(user, targets)
     if user.wild?
       if !@battle.pbCanRun?(user.index) || user.allAllies.length > 0
-        @battle.pbDisplay(_INTL("But it failed!"))
+        @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
         return true
       end
     elsif !@battle.pbCanChooseNonActive?(user.index) ||
           user.effects[PBEffects::Commanding] >= 0 || user.effects[PBEffects::CommandedBy] >= 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -37,14 +37,14 @@ class Battle::Move::SwitchOutUserStatusMove < Battle::Move
 
   def pbEffectGeneral(user)
     if user.wild?
-      @battle.pbDisplay(_INTL("{1} fled from battle!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}脱离了战斗！", user.pbThis))
       @battle.decision = Battle::Outcome::FLEE
     end
   end
 
   def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
     return if user.wild?
-    @battle.pbDisplay(_INTL("{1} went back to {2}!", user.pbThis,
+    @battle.pbDisplay(_INTL("{1}要回到{2}的身边了！", user.pbThis,
                             @battle.pbGetOwnerName(user.index)))
     @battle.pbPursuit(user.index)
     return if user.fainted?
@@ -72,7 +72,7 @@ class Battle::Move::SwitchOutUserDamagingMove < Battle::Move
     return if targetSwitched
     return if !@battle.pbCanChooseNonActive?(user.index)
     return if user.effects[PBEffects::Commanding] >= 0 || user.effects[PBEffects::CommandedBy] >= 0
-    @battle.pbDisplay(_INTL("{1} went back to {2}!", user.pbThis,
+    @battle.pbDisplay(_INTL("{1}要回到{2}的身边了！", user.pbThis,
                             @battle.pbGetOwnerName(user.index)))
     @battle.pbPursuit(user.index)
     return if user.fainted?
@@ -105,7 +105,7 @@ class Battle::Move::LowerTargetAtkSpAtk1SwitchOutUser < Battle::Move::TargetMult
     return if switcher.fainted? || numHits == 0
     return if !@battle.pbCanChooseNonActive?(switcher.index)
     return if user.effects[PBEffects::Commanding] >= 0 || user.effects[PBEffects::CommandedBy] >= 0
-    @battle.pbDisplay(_INTL("{1} went back to {2}!", switcher.pbThis,
+    @battle.pbDisplay(_INTL("{1}要回到{2}的身边了！", switcher.pbThis,
                             @battle.pbGetOwnerName(switcher.index)))
     @battle.pbPursuit(switcher.index)
     return if switcher.fainted?
@@ -127,7 +127,7 @@ class Battle::Move::SwitchOutUserPassOnEffects < Battle::Move
   def pbMoveFailed?(user, targets)
     if !@battle.pbCanChooseNonActive?(user.index) ||
        user.effects[PBEffects::Commanding] >= 0 || user.effects[PBEffects::CommandedBy] >= 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -155,20 +155,20 @@ end
 class Battle::Move::UserMakeSubstituteSwitchOutUser < Battle::Move
   def pbMoveFailed?(user, targets)
     if user.effects[PBEffects::Substitute] > 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     @subLife = [(user.totalhp / 2.0).ceil, 1].max
     if user.hp <= @subLife
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if user.wild? || !@battle.pbCanChooseNonActive?(user.index)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if user.effects[PBEffects::Commanding] >= 0 || user.effects[PBEffects::CommandedBy] >= 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -183,12 +183,12 @@ class Battle::Move::UserMakeSubstituteSwitchOutUser < Battle::Move
     user.effects[PBEffects::Trapping]     = 0
     user.effects[PBEffects::TrappingMove] = nil
     user.effects[PBEffects::Substitute]   = @subLife / 2
-    @battle.pbDisplay(_INTL("{1} put in a substitute!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}的替身出现了！", user.pbThis))
   end
 
   def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
     return if user.wild? || !@battle.pbCanChooseNonActive?(user.index)
-    @battle.pbDisplay(_INTL("{1} went back to {2}!", user.pbThis,
+    @battle.pbDisplay(_INTL("{1}要回到{2}的身边了！", user.pbThis,
                             @battle.pbGetOwnerName(user.index)))
     @battle.pbPursuit(user.index)
     return if user.fainted?
@@ -209,13 +209,13 @@ end
 #===============================================================================
 class Battle::Move::StartSnowstormWeatherSwitchOutUser < Battle::Move
   def pbDisplayChargeMessage(user)
-    @battle.pbDisplay(_INTL("{1} is preparing to tell a chillingly bad joke!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}说出了冷笑话！", user.pbThis))
   end
 
   def pbMoveFailed?(user, targets)
     if user.wild? || !@battle.pbCanChooseNonActive?(user.index)
       if !@battle.pbCanStartWeather?(:Snowstorm)
-        @battle.pbDisplay(_INTL("But it failed!"))
+        @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
         return true
       end
     end
@@ -229,7 +229,7 @@ class Battle::Move::StartSnowstormWeatherSwitchOutUser < Battle::Move
   def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)
     return if user.wild? || !@battle.pbCanChooseNonActive?(user.index)
     return if user.effects[PBEffects::Commanding] >= 0 || user.effects[PBEffects::CommandedBy] >= 0
-    @battle.pbDisplay(_INTL("{1} went back to {2}!", user.pbThis,
+    @battle.pbDisplay(_INTL("{1}要回到{2}的身边了！", user.pbThis,
                             @battle.pbGetOwnerName(user.index)))
     @battle.pbPursuit(user.index)
     return if user.fainted?
@@ -260,11 +260,11 @@ class Battle::Move::SwitchOutTargetStatusMove < Battle::Move
        @battle.wildBattle? && !@battle.rules[:cannot_run]
       # End the battle
       if target.level > user.level
-        @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
         return true
       end
     elsif target.wild?
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     else
       canSwitch = false
@@ -273,7 +273,7 @@ class Battle::Move::SwitchOutTargetStatusMove < Battle::Move
         break if canSwitch
       end
       if !canSwitch
-        @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
         return true
       end
     end
@@ -297,7 +297,7 @@ class Battle::Move::SwitchOutTargetStatusMove < Battle::Move
       newPkmn = @battle.pbGetReplacementPokemonIndex(b.index, true)   # Random
       next if newPkmn < 0
       @battle.pbRecallAndReplace(b.index, newPkmn, true)
-      @battle.pbDisplay(_INTL("{1} was dragged out!", b.pbThis))
+      @battle.pbDisplay(_INTL("{1}被拖进了战斗！", b.pbThis))
       @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
       @battle.pbOnBattlerEnteringBattle(b.index)
       switched_battlers.push(b.index)
@@ -333,7 +333,7 @@ class Battle::Move::SwitchOutTargetDamagingMove < Battle::Move
       newPkmn = @battle.pbGetReplacementPokemonIndex(b.index, true)   # Random
       next if newPkmn < 0
       @battle.pbRecallAndReplace(b.index, newPkmn, true)
-      @battle.pbDisplay(_INTL("{1} was dragged out!", b.pbThis))
+      @battle.pbDisplay(_INTL("{1}被拖进了战斗！", b.pbThis))
       @battle.pbClearChoice(b.index)   # Replacement Pokémon does nothing this round
       @battle.pbOnBattlerEnteringBattle(b.index)
       switched_battlers.push(b.index)
@@ -359,32 +359,32 @@ class Battle::Move::BindTarget < Battle::Move
     target.effects[PBEffects::TrappingMove] = @id
     target.effects[PBEffects::TrappingUser] = user.index
     # Message
-    msg = _INTL("{1} was trapped in the vortex!", target.pbThis)
+    msg = _INTL("{1}被困在了旋涡之中！", target.pbThis)
     case @id
     when :BIND
       if Translation.more_possessive_messages?
-        msg = _INTL("{1} is subject to {2} squeezing!", target.pbThis, user.pbOfThis(true))
+        msg = _INTL("{1}受到{2}紧绑！", target.pbThis, user.pbOfThis(true))
       else
-        msg = _INTL("{1} was squeezed by {2}!", target.pbThis, user.pbThis(true))
+        msg = _INTL("{1}被{2}紧紧绑住了！", target.pbThis, user.pbThis(true))
       end
     when :CLAMP
       if Translation.more_possessive_messages?
-        msg = _INTL("{1} is subject to {2} clamping!", target.pbThis, user.pbOfThis(true))
+        msg = _INTL("{1}受到{2}夹击！", target.pbThis, user.pbOfThis(true))
       else
-        msg = _INTL("{1} clamped {2}!", user.pbThis, target.pbThis(true))
+        msg = _INTL("{2}被{1}夹住了！", user.pbThis, target.pbThis(true))
       end
     when :FIRESPIN
-      msg = _INTL("{1} was trapped in the fiery vortex!", target.pbThis)
+      msg = _INTL("{1}被困在了火焰旋涡之中！", target.pbThis)
     when :INFESTATION
-      msg = _INTL("{1} has been afflicted with an infestation by {2}!", target.pbThis, user.pbThis(true))
+      msg = _INTL("{1}受到了{2}的死缠烂打！", target.pbThis, user.pbThis(true))
     when :MAGMASTORM
-      msg = _INTL("{1} became trapped by Magma Storm!", target.pbThis)
+      msg = _INTL("{1}被困在了熔岩旋涡之中！", target.pbThis)
     when :SANDTOMB
-      msg = _INTL("{1} became trapped by Sand Tomb!", target.pbThis)
+      msg = _INTL("{1}陷入了流沙地狱！", target.pbThis)
     when :WHIRLPOOL
-      msg = _INTL("{1} became trapped in the vortex!", target.pbThis)
+      msg = _INTL("{1}被困在了旋涡之中！", target.pbThis)
     when :WRAP
-      msg = _INTL("{1} was wrapped by {2}!", target.pbThis, user.pbThis(true))
+      msg = _INTL("{1}被{2}紧紧束缚住了！", target.pbThis, user.pbThis(true))
     end
     @battle.pbDisplay(msg)
   end
@@ -415,11 +415,11 @@ class Battle::Move::TrapTargetInBattle < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     return false if damagingMove?
     if target.effects[PBEffects::MeanLook] >= 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if Settings::MORE_TYPE_EFFECTS && target.pbHasType?(:GHOST)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
       return true
     end
     return false
@@ -428,7 +428,7 @@ class Battle::Move::TrapTargetInBattle < Battle::Move
   def pbEffectAgainstTarget(user, target)
     return if damagingMove?
     target.effects[PBEffects::MeanLook] = user.index
-    @battle.pbDisplay(_INTL("{1} can no longer escape!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}已经无法逃走了！", target.pbThis))
   end
 
   def pbAdditionalEffect(user, target)
@@ -436,7 +436,7 @@ class Battle::Move::TrapTargetInBattle < Battle::Move
     return if target.effects[PBEffects::MeanLook] >= 0
     return if Settings::MORE_TYPE_EFFECTS && target.pbHasType?(:GHOST)
     target.effects[PBEffects::MeanLook] = user.index
-    @battle.pbDisplay(_INTL("{1} can no longer escape!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}已经无法逃走了！", target.pbThis))
   end
 end
 
@@ -452,7 +452,7 @@ class Battle::Move::TrapTargetInBattleMainEffect < Battle::Move
     return if target.effects[PBEffects::MeanLook] >= 0
     return if Settings::MORE_TYPE_EFFECTS && target.pbHasType?(:GHOST)
     target.effects[PBEffects::MeanLook] = user.index
-    @battle.pbDisplay(_INTL("{1} can no longer escape!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}已经无法逃走了！", target.pbThis))
   end
 end
 
@@ -465,11 +465,11 @@ class Battle::Move::TrapTargetInBattleLowerTargetDefSpDef1EachTurn < Battle::Mov
   def pbFailsAgainstTarget?(user, target, show_message)
     return false if damagingMove?
     if target.effects[PBEffects::Octolock] >= 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if Settings::MORE_TYPE_EFFECTS && target.pbHasType?(:GHOST)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
       return true
     end
     return false
@@ -477,7 +477,7 @@ class Battle::Move::TrapTargetInBattleLowerTargetDefSpDef1EachTurn < Battle::Mov
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Octolock] = user.index
-    @battle.pbDisplay(_INTL("{1} can no longer escape because of {2}!", target.pbThis, @name))
+    @battle.pbDisplay(_INTL("{1}受到{2}的效果影响，变得无法逃走了……", target.pbThis, @name))
   end
 end
 
@@ -492,7 +492,7 @@ class Battle::Move::TrapUserAndTargetInBattle < Battle::Move
     return if Settings::MORE_TYPE_EFFECTS && target.pbHasType?(:GHOST)
     return if user.trappedInBattle? || target.trappedInBattle?
     target.effects[PBEffects::JawLock] = user.index
-    @battle.pbDisplay(_INTL("Neither Pokémon can run away!"))
+    @battle.pbDisplay(_INTL("双方的宝可梦无法逃走了！"))
   end
 end
 
@@ -502,7 +502,7 @@ end
 class Battle::Move::TrapAllBattlersInBattleForOneTurn < Battle::Move
   def pbMoveFailed?(user, targets)
     if @battle.field.effects[PBEffects::FairyLock] > 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -510,7 +510,7 @@ class Battle::Move::TrapAllBattlersInBattleForOneTurn < Battle::Move
 
   def pbEffectGeneral(user)
     @battle.field.effects[PBEffects::FairyLock] = 2
-    @battle.pbDisplay(_INTL("No one will be able to run away during the next turn!"))
+    @battle.pbDisplay(_INTL("下回合无法逃走！"))
   end
 end
 
@@ -539,7 +539,7 @@ class Battle::Move::UsedAfterUserTakesPhysicalDamage < Battle::Move
   def pbDisplayChargeMessage(user)
     user.effects[PBEffects::ShellTrap] = true
     @battle.pbCommonAnimation("ShellTrap", user)
-    @battle.pbDisplay(_INTL("{1} set a shell trap!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}设置了陷阱甲壳！", user.pbThis))
   end
 
   def pbDisplayUseMessage(user)
@@ -548,11 +548,11 @@ class Battle::Move::UsedAfterUserTakesPhysicalDamage < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.effects[PBEffects::ShellTrap]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if !user.tookPhysicalHit
-      @battle.pbDisplay(_INTL("{1} shell trap didn't work!", user.pbOfThis))
+      @battle.pbDisplay(_INTL("{1}的陷阱甲壳没有被触发！", user.pbOfThis))
       return true
     end
     return false
@@ -592,13 +592,13 @@ class Battle::Move::TargetActsNext < Battle::Move
     return true if pbMoveFailedTargetAlreadyMoved?(target, show_message)
     # Target was going to move next anyway (somehow)
     if target.effects[PBEffects::MoveNext]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     # Target didn't choose to use a move this round
     oppMove = @battle.choices[target.index][2]
     if !oppMove
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -607,7 +607,7 @@ class Battle::Move::TargetActsNext < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::MoveNext] = true
     target.effects[PBEffects::Quash]    = 0
-    @battle.pbDisplay(_INTL("{1} took the kind offer!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}接受了对手的好意！", target.pbThis))
   end
 end
 
@@ -620,7 +620,7 @@ class Battle::Move::TargetActsLast < Battle::Move
     # Target isn't going to use a move
     oppMove = @battle.choices[target.index][2]
     if !oppMove
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     # Target is already maximally Quashed and will move last anyway
@@ -630,12 +630,12 @@ class Battle::Move::TargetActsLast < Battle::Move
       highestQuash = b.effects[PBEffects::Quash]
     end
     if highestQuash > 0 && target.effects[PBEffects::Quash] == highestQuash
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     # Target was already going to move last
     if highestQuash == 0 && @battle.pbPriority.last.index == target.index
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -649,7 +649,7 @@ class Battle::Move::TargetActsLast < Battle::Move
     end
     target.effects[PBEffects::Quash]    = highestQuash + 1
     target.effects[PBEffects::MoveNext] = false
-    @battle.pbDisplay(_INTL("{1}'s move was postponed!", target.pbThis))
+    @battle.pbDisplay(_INTL("延后了{1}的顺序！", target.pbThis))
   end
 end
 
@@ -708,22 +708,22 @@ class Battle::Move::TargetUsesItsLastUsedMoveAgain < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.lastRegularMoveUsed || !target.pbHasMove?(target.lastRegularMoveUsed) ||
        !GameData::Move.exists?(target.lastRegularMoveUsed)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.usingMultiTurnAttack?
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     targetMove = @battle.choices[target.index][2]
     if targetMove && (targetMove.function_code == "FailsIfUserDamagedThisTurn" ||   # Focus Punch
                       targetMove.function_code == "UsedAfterUserTakesPhysicalDamage" ||   # Shell Trap
                       targetMove.function_code == "BurnAttackerBeforeUserActs")    # Beak Blast
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if @moveBlacklist.include?(GameData::Move.get(target.lastRegularMoveUsed).function_code)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     idxMove = -1
@@ -731,7 +731,7 @@ class Battle::Move::TargetUsesItsLastUsedMoveAgain < Battle::Move
       idxMove = i if m.id == target.lastRegularMoveUsed
     end
     if target.moves[idxMove].pp == 0 && target.moves[idxMove].total_pp > 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -750,10 +750,10 @@ class Battle::Move::StartSlowerBattlersActFirst < Battle::Move
   def pbEffectGeneral(user)
     if @battle.field.effects[PBEffects::TrickRoom] > 0
       @battle.field.effects[PBEffects::TrickRoom] = 0
-      @battle.pbDisplay(_INTL("{1} reverted the dimensions!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}逆转了时空！", user.pbThis))
     else
       @battle.field.effects[PBEffects::TrickRoom] = 5
-      @battle.pbDisplay(_INTL("{1} twisted the dimensions!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}扭曲了时空！", user.pbThis))
     end
   end
 
@@ -785,7 +785,7 @@ class Battle::Move::LowerPPOfTargetLastMoveBy3 < Battle::Move
     return if !last_move || last_move.pp == 0 || last_move.total_pp <= 0
     reduction = [3, last_move.pp].min
     target.pbSetPP(last_move, last_move.pp - reduction)
-    @battle.pbDisplay(_INTL("It reduced the PP of {1} {2} by {3}!",
+    @battle.pbDisplay(_INTL("削减了{1}{2}{3}点！",
                             target.pbOfThis(true), last_move.name, reduction))
   end
 end
@@ -800,7 +800,7 @@ class Battle::Move::LowerPPOfTargetLastMoveBy4 < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     last_move = target.pbGetMoveWithID(target.lastRegularMoveUsed)
     if !last_move || last_move.pp == 0 || last_move.total_pp <= 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -810,7 +810,7 @@ class Battle::Move::LowerPPOfTargetLastMoveBy4 < Battle::Move
     last_move = target.pbGetMoveWithID(target.lastRegularMoveUsed)
     reduction = [4, last_move.pp].min
     target.pbSetPP(last_move, last_move.pp - reduction)
-    @battle.pbDisplay(_INTL("It reduced the PP of {1} {2} by {3}!",
+    @battle.pbDisplay(_INTL("削减了{1}{2}{3}点！",
                             target.pbOfThis(true), last_move.name, reduction))
   end
 end
@@ -824,7 +824,7 @@ class Battle::Move::DisableTargetLastMoveUsed < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::Disable] > 0 || !target.lastRegularMoveUsed
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return true if pbMoveFailedAromaVeil?(user, target, show_message)
@@ -836,7 +836,7 @@ class Battle::Move::DisableTargetLastMoveUsed < Battle::Move
       break
     end
     if !canDisable
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -845,7 +845,7 @@ class Battle::Move::DisableTargetLastMoveUsed < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Disable]     = 5
     target.effects[PBEffects::DisableMove] = target.lastRegularMoveUsed
-    @battle.pbDisplay(_INTL("{1} {2} was disabled!", target.pbOfThis,
+    @battle.pbDisplay(_INTL("封住了{1}{2}！", target.pbOfThis,
                             GameData::Move.get(target.lastRegularMoveUsed).name))
     target.pbItemStatusCureCheck
   end
@@ -863,7 +863,7 @@ class Battle::Move::DisableTargetUsingSameMoveConsecutively < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::Torment]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return true if pbMoveFailedAromaVeil?(user, target, show_message)
@@ -872,7 +872,7 @@ class Battle::Move::DisableTargetUsingSameMoveConsecutively < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Torment] = true
-    @battle.pbDisplay(_INTL("{1} was subjected to torment!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}遭到了无理取闹！", target.pbThis))
     target.pbItemStatusCureCheck
   end
 end
@@ -915,17 +915,17 @@ class Battle::Move::DisableTargetUsingDifferentMove < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::Encore] > 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if !target.lastRegularMoveUsed ||
        !GameData::Move.exists?(target.lastRegularMoveUsed) ||
        @moveBlacklist.include?(GameData::Move.get(target.lastRegularMoveUsed).function_code)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.effects[PBEffects::ShellTrap]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return true if pbMoveFailedAromaVeil?(user, target, show_message)
@@ -937,7 +937,7 @@ class Battle::Move::DisableTargetUsingDifferentMove < Battle::Move
       break
     end
     if !canEncore
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -946,7 +946,7 @@ class Battle::Move::DisableTargetUsingDifferentMove < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Encore]     = 4
     target.effects[PBEffects::EncoreMove] = target.lastRegularMoveUsed
-    @battle.pbDisplay(_INTL("{1} received an encore!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}接受了再来一次！", target.pbThis))
     target.pbItemStatusCureCheck
   end
 end
@@ -960,7 +960,7 @@ class Battle::Move::DisableTargetStatusMoves < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::Taunt] > 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return true if pbMoveFailedAromaVeil?(user, target, show_message)
@@ -969,9 +969,9 @@ class Battle::Move::DisableTargetStatusMoves < Battle::Move
       if show_message
         @battle.pbShowAbilitySplash(target)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("But it failed!"))
+          @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
         else
-          @battle.pbDisplay(_INTL("But it failed because of {1} {2}!",
+          @battle.pbDisplay(_INTL("但由于{1}{2}，失败了！",
                                   target.pbOfThis(true), target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
@@ -983,7 +983,7 @@ class Battle::Move::DisableTargetStatusMoves < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Taunt] = 4
-    @battle.pbDisplay(_INTL("{1} fell for the taunt!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}中了挑衅！", target.pbThis))
     target.pbItemStatusCureCheck
   end
 end
@@ -996,7 +996,7 @@ class Battle::Move::DisableTargetHealingMoves < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::HealBlock] > 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return true if pbMoveFailedAromaVeil?(user, target, show_message)
@@ -1005,7 +1005,7 @@ class Battle::Move::DisableTargetHealingMoves < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::HealBlock] = 5
-    @battle.pbDisplay(_INTL("{1} was prevented from healing!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}的回复行为被封住了！", target.pbThis))
     target.pbItemStatusCureCheck
   end
 end
@@ -1019,7 +1019,7 @@ class Battle::Move::StartTargetCannotHeal < Battle::Move
     return if pbMoveFailedAromaVeil?(user, target, false)
     return if target.effects[PBEffects::HealBlock] > 0
     target.effects[PBEffects::HealBlock] = 2
-    @battle.pbDisplay(_INTL("{1} was prevented from healing!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}的回复行为被封住了！", target.pbThis))
     target.pbItemStatusCureCheck
   end
 end
@@ -1043,7 +1043,7 @@ class Battle::Move::DisableTargetMovesKnownByUser < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if user.effects[PBEffects::Imprison]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1051,6 +1051,6 @@ class Battle::Move::DisableTargetMovesKnownByUser < Battle::Move
 
   def pbEffectGeneral(user)
     user.effects[PBEffects::Imprison] = true
-    @battle.pbDisplay(_INTL("{1} sealed any moves its target shares with it!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}封印了对手的招式！", user.pbThis))
   end
 end

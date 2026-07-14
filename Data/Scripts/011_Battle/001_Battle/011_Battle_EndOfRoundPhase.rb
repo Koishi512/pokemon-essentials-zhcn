@@ -22,15 +22,15 @@ class Battle
     weather_data = GameData::BattleWeather.try_get(@field.weather)
     pbCommonAnimation(weather_data.animation) if weather_data
     case @field.weather
-    when :Sun         then pbDisplay(_INTL("The sunlight is strong."))
-    when :Rain        then pbDisplay(_INTL("Rain continues to fall."))
-    when :Sandstorm   then pbDisplay(_INTL("The sandstorm is raging."))
-    when :Hail        then pbDisplay(_INTL("The hail is crashing down."))
-    when :Snowstorm   then pbDisplay(_INTL("The snow is blowing about!"))
-    when :HarshSun    then pbDisplay(_INTL("The sunlight is extremely harsh."))
-    when :HeavyRain   then pbDisplay(_INTL("It is raining heavily."))
-    when :StrongWinds then pbDisplay(_INTL("The wind is strong."))
-    when :ShadowSky   then pbDisplay(_INTL("The shadow sky continues."))
+    when :Sun         then pbDisplay(_INTL("日照强烈。"))
+    when :Rain        then pbDisplay(_INTL("正在下雨。"))
+    when :Sandstorm   then pbDisplay(_INTL("沙暴肆虐。"))
+    when :Hail        then pbDisplay(_INTL("正在下冰雹。"))
+    when :Snowstorm   then pbDisplay(_INTL("正在下雪。"))
+    when :HarshSun    then pbDisplay(_INTL("强日照势头不减！"))
+    when :HeavyRain   then pbDisplay(_INTL("暴雨势头不减！"))
+    when :StrongWinds then pbDisplay(_INTL("神秘的乱流势头不减！"))
+    when :ShadowSky   then pbDisplay(_INTL("天空阴暗。"))
     end
     # Effects due to weather
     priority.each do |battler|
@@ -50,15 +50,15 @@ class Battle
     case battler.effectiveWeather
     when :Sandstorm
       return if !battler.takesSandstormDamage?
-      pbDisplay(_INTL("{1} is buffeted by the sandstorm!", battler.pbThis))
+      pbDisplay(_INTL("沙暴袭击了{1}！", battler.pbThis))
       amt = battler.totalhp / 16
     when :Hail
       return if !battler.takesHailDamage?
-      pbDisplay(_INTL("{1} is buffeted by the hail!", battler.pbThis))
+      pbDisplay(_INTL("冰雹袭击了{1}！", battler.pbThis))
       amt = battler.totalhp / 16
     when :ShadowSky
       return if !battler.takesShadowSkyDamage?
-      pbDisplay(_INTL("{1} is hurt by the shadow sky!", battler.pbThis))
+      pbDisplay(_INTL("黑暗气场伤害了{1}！", battler.pbThis))
       amt = battler.totalhp / 16
     end
     return if amt < 0
@@ -124,7 +124,7 @@ class Battle
       next if !@battlers[idxPos] || !@battlers[idxPos].canHeal?
       wishMaker = pbOfThisEx(idxPos, pos.effects[PBEffects::WishMaker])
       @battlers[idxPos].pbRecoverHP(pos.effects[PBEffects::WishAmount])
-      pbDisplay(_INTL("{1} wish came true!", wishMaker))
+      pbDisplay(_INTL("{1}祈愿实现了！", wishMaker))
     end
   end
 
@@ -143,7 +143,7 @@ class Battle
         next if !battler.takesIndirectDamage? || battler.pbHasType?(:FIRE)
         @scene.pbDamageAnimation(battler)
         battler.pbTakeEffectDamage(battler.totalhp / 8, false) do |hp_lost|
-          pbDisplay(_INTL("{1} is hurt by the sea of fire!", battler.pbThis))
+          pbDisplay(_INTL("{1}受到了火海的伤害！", battler.pbThis))
         end
       end
     end
@@ -159,7 +159,7 @@ class Battle
     if @field.terrain == :Grassy && battler.affectedByTerrain? && battler.canHeal?
       PBDebug.log("[Lingering effect] Grassy Terrain heals #{battler.pbThis(true)}")
       battler.pbRecoverHP(battler.totalhp / 16)
-      pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     end
   end
 
@@ -176,7 +176,7 @@ class Battle
       hpGain = battler.totalhp / 16
       hpGain = (hpGain * 1.3).floor if battler.hasActiveItem?(:BIGROOT)
       battler.pbRecoverHP(hpGain)
-      pbDisplay(_INTL("Aqua Ring restored {1} HP!", battler.pbOfThis(true)))
+      pbDisplay(_INTL("水环回复了{1}体力！", battler.pbOfThis(true)))
     end
     # Ingrain
     priority.each do |battler|
@@ -186,7 +186,7 @@ class Battle
       hpGain = battler.totalhp / 16
       hpGain = (hpGain * 1.3).floor if battler.hasActiveItem?(:BIGROOT)
       battler.pbRecoverHP(hpGain)
-      pbDisplay(_INTL("{1} absorbed nutrients with its roots!", battler.pbThis))
+      pbDisplay(_INTL("{1}从根上吸取了养分！", battler.pbThis))
     end
     # Leech Seed
     priority.each do |battler|
@@ -197,7 +197,7 @@ class Battle
       pbCommonAnimation("LeechSeed", recipient, battler)
       battler.pbTakeEffectDamage(battler.totalhp / 8) do |hp_lost|
         recipient.pbRecoverHPFromDrain(hp_lost, battler,
-                                       _INTL("{1} health is sapped by Leech Seed!", battler.pbOfThis))
+                                       _INTL("寄生植物夺取了{1}体力！", battler.pbOfThis))
         recipient.pbAbilitiesOnDamageTaken
       end
       recipient.pbFaint if recipient.fainted?
@@ -224,9 +224,9 @@ class Battle
           pbShowAbilitySplash(battler)
           battler.pbRecoverHP(battler.totalhp / 8)
           if Scene::USE_ABILITY_SPLASH
-            pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+            pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
           else
-            pbDisplay(_INTL("{1} {2} restored its HP.", battler.pbOfThis, battler.abilityName))
+            pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, battler.abilityName))
           end
           pbHideAbilitySplash(battler)
         end
@@ -266,7 +266,7 @@ class Battle
       next if !battler.effects[PBEffects::Nightmare] || !battler.takesIndirectDamage?
       pbCommonAnimation("Nightmare", battler)
       battler.pbTakeEffectDamage(battler.totalhp / 4) do |hp_lost|
-        pbDisplay(_INTL("{1} is locked in a nightmare!", battler.pbThis))
+        pbDisplay(_INTL("{1}正被恶梦缠身！", battler.pbThis))
       end
     end
     # Curse
@@ -274,7 +274,7 @@ class Battle
       next if !battler.effects[PBEffects::Curse] || !battler.takesIndirectDamage?
       pbCommonAnimation("Curse", battler)
       battler.pbTakeEffectDamage(battler.totalhp / 4) do |hp_lost|
-        pbDisplay(_INTL("{1} is afflicted by the curse!", battler.pbThis))
+        pbDisplay(_INTL("{1}正受到诅咒！", battler.pbThis))
       end
     end
     # Salt Cure
@@ -283,7 +283,7 @@ class Battle
       pbCommonAnimation("SaltCure", battler)
       fraction = (battler.pbHasType?(:STEEL) || battler.pbHasType?(:WATER)) ? 4 : 8
       battler.pbTakeEffectDamage(battler.totalhp / fraction) do |hp_lost|
-        pbDisplay(_INTL("{1} is hurt by Salt Cure!", battler.pbThis))
+        pbDisplay(_INTL("{1}受到了盐腌的伤害！", battler.pbThis))
       end
     end
   end
@@ -307,7 +307,7 @@ class Battle
     battler.effects[PBEffects::Trapping] -= 1
     move_name = GameData::Move.get(battler.effects[PBEffects::TrappingMove]).name
     if battler.effects[PBEffects::Trapping] == 0
-      pbDisplay(_INTL("{1} was freed from {2}!", battler.pbThis, move_name))
+      pbDisplay(_INTL("{1}摆脱了{2}的束缚！", battler.pbThis, move_name))
       return
     end
     anim = TRAPPING_MOVE_COMMON_ANIMATIONS[battler.effects[PBEffects::TrappingMove]] || "Wrap"
@@ -319,7 +319,7 @@ class Battle
     end
     @scene.pbDamageAnimation(battler)
     battler.pbTakeEffectDamage(hpLoss, false) do |hp_lost|
-      pbDisplay(_INTL("{1} is hurt by {2}!", battler.pbThis, move_name))
+      pbDisplay(_INTL("{1}受到了{2}的伤害！", battler.pbThis, move_name))
     end
   end
 
@@ -362,7 +362,7 @@ class Battle
         item = battler.effects[PBEffects::CudChewBerry]
         item_name = GameData::Item.get(battler.effects[PBEffects::CudChewBerry]).name
         battler.setBelched
-        pbDisplay(_INTL("{1} stole and ate its target's {2}!", battler.pbThis, item_name))
+        pbDisplay(_INTL("{1}夺取并吃掉了{2}！", battler.pbThis, item_name))
         battler.pbHeldItemTriggerCheck(item)
         battler.pbSymbiosis
       end
@@ -370,7 +370,7 @@ class Battle
     end
     # Taunt
     pbEORCountDownBattlerEffect(priority, PBEffects::Taunt) do |battler|
-      pbDisplay(_INTL("{1}'s taunt wore off!", battler.pbThis))
+      pbDisplay(_INTL("{1}的挑衅效果解除了！", battler.pbThis))
     end
     # Encore
     priority.each do |battler|
@@ -380,7 +380,7 @@ class Battle
         battler.effects[PBEffects::Encore] -= 1
         if battler.effects[PBEffects::Encore] == 0 || battler.moves[idxEncoreMove].pp == 0
           battler.effects[PBEffects::Encore] = 0
-          pbDisplay(_INTL("{1}'s encore ended!", battler.pbThis))
+          pbDisplay(_INTL("{1}的再来一次状态解除了！", battler.pbThis))
         end
       else
         PBDebug.log("[End of effect] #{battler.pbThis}'s encore ended (encored move no longer known)")
@@ -391,23 +391,23 @@ class Battle
     # Disable/Cursed Body
     pbEORCountDownBattlerEffect(priority, PBEffects::Disable) do |battler|
       battler.effects[PBEffects::DisableMove] = nil
-      pbDisplay(_INTL("{1} is no longer disabled!", battler.pbThis))
+      pbDisplay(_INTL("{1}的定身法解除了！", battler.pbThis))
     end
     # Magnet Rise
     pbEORCountDownBattlerEffect(priority, PBEffects::MagnetRise) do |battler|
-      pbDisplay(_INTL("{1} electromagnetism wore off!", battler.pbOfThis))
+      pbDisplay(_INTL("{1}电磁力消失了！", battler.pbOfThis))
     end
     # Telekinesis
     pbEORCountDownBattlerEffect(priority, PBEffects::Telekinesis) do |battler|
-      pbDisplay(_INTL("{1} was freed from the telekinesis!", battler.pbThis))
+      pbDisplay(_INTL("{1}摆脱了意念移物！", battler.pbThis))
     end
     # Heal Block
     pbEORCountDownBattlerEffect(priority, PBEffects::HealBlock) do |battler|
-      pbDisplay(_INTL("{1} is no longer prevented from healing!", battler.pbThis))
+      pbDisplay(_INTL("{1}的回复封锁的效果消失了！", battler.pbThis))
     end
     # Embargo
     pbEORCountDownBattlerEffect(priority, PBEffects::Embargo) do |battler|
-      pbDisplay(_INTL("{1} can use items again!", battler.pbThis))
+      pbDisplay(_INTL("{1}变得可以使用道具了！", battler.pbThis))
       battler.pbItemOnWeatherChange(@field.weather)
       battler.pbItemOnTerrainChange(@field.terrain)
     end
@@ -423,7 +423,7 @@ class Battle
     priority.each do |battler|
       next if battler.fainted? || battler.effects[PBEffects::PerishSong] == 0
       battler.effects[PBEffects::PerishSong] -= 1
-      pbDisplay(_INTL("{1} perish count fell to {2}!", battler.pbOfThis, battler.effects[PBEffects::PerishSong]))
+      pbDisplay(_INTL("{1}的灭亡计时变成{2}了！", battler.pbOfThis, battler.effects[PBEffects::PerishSong]))
       if battler.effects[PBEffects::PerishSong] == 0
         perishSongUsers.push(battler.effects[PBEffects::PerishSongUser])
         battler.pbReduceHP(battler.hp)
@@ -452,34 +452,34 @@ class Battle
   def pbEOREndSideEffects(side, priority)
     # Reflect
     pbEORCountDownSideEffect(side, PBEffects::Reflect,
-                             _INTL("{1} Reflect wore off!", @battlers[side].pbOfTeam))
+                             _INTL("{1}反射壁消失了！", @battlers[side].pbOfTeam))
     # Light Screen
     pbEORCountDownSideEffect(side, PBEffects::LightScreen,
-                             _INTL("{1} Light Screen wore off!", @battlers[side].pbOfTeam))
+                             _INTL("{1}光墙消失了！", @battlers[side].pbOfTeam))
     # Safeguard
     pbEORCountDownSideEffect(side, PBEffects::Safeguard,
-                             _INTL("{1} is no longer protected by Safeguard!", @battlers[side].pbTeam))
+                             _INTL("包围{1}的神秘之幕消失了！", @battlers[side].pbTeam))
     # Mist
     pbEORCountDownSideEffect(side, PBEffects::Mist,
-                             _INTL("{1} is no longer protected by mist!", @battlers[side].pbTeam))
+                             _INTL("包围{1}的白雾消失了！", @battlers[side].pbTeam))
     # Tailwind
     pbEORCountDownSideEffect(side, PBEffects::Tailwind,
-                             _INTL("{1} Tailwind petered out!", @battlers[side].pbOfTeam))
+                             _INTL("{1}顺风停止了！", @battlers[side].pbOfTeam))
     # Lucky Chant
     pbEORCountDownSideEffect(side, PBEffects::LuckyChant,
-                             _INTL("{1} Lucky Chant wore off!", @battlers[side].pbOfTeam))
+                             _INTL("{1}幸运咒语解除了！", @battlers[side].pbOfTeam))
     # Pledge Rainbow
     pbEORCountDownSideEffect(side, PBEffects::Rainbow,
-                             _INTL("The rainbow on {1} side disappeared!", @battlers[side].pbOfTeam(true)))
+                             _INTL("彩虹从{1}上空消失了！", @battlers[side].pbOfTeam(true)))
     # Pledge Sea of Fire
     pbEORCountDownSideEffect(side, PBEffects::SeaOfFire,
-                             _INTL("The sea of fire around {1} disappeared!", @battlers[side].pbTeam(true)))
+                             _INTL("{1}周围的火海消失不见了！", @battlers[side].pbTeam(true)))
     # Pledge Swamp
     pbEORCountDownSideEffect(side, PBEffects::Swamp,
-                             _INTL("The swamp around {1} disappeared!", @battlers[side].pbTeam(true)))
+                             _INTL("{1}周围的湿地消失了！", @battlers[side].pbTeam(true)))
     # Aurora Veil
     pbEORCountDownSideEffect(side, PBEffects::AuroraVeil,
-                             _INTL("{1} Aurora Veil wore off!", @battlers[side].pbOfTeam))
+                             _INTL("{1}极光幕消失了！", @battlers[side].pbOfTeam))
   end
 
   #-----------------------------------------------------------------------------
@@ -502,22 +502,22 @@ class Battle
   def pbEOREndFieldEffects(priority)
     # Trick Room
     pbEORCountDownFieldEffect(PBEffects::TrickRoom,
-                              _INTL("The twisted dimensions returned to normal!"))
+                              _INTL("扭曲的时空复原了！"))
     # Gravity
     pbEORCountDownFieldEffect(PBEffects::Gravity,
-                              _INTL("Gravity returned to normal!"))
+                              _INTL("重力复原了！"))
     # Water Sport
     pbEORCountDownFieldEffect(PBEffects::WaterSportField,
-                              _INTL("The effects of Water Sport have faded."))
+                              _INTL("玩水的效果消失了！"))
     # Mud Sport
     pbEORCountDownFieldEffect(PBEffects::MudSportField,
-                              _INTL("The effects of Mud Sport have faded."))
+                              _INTL("玩泥巴的效果消失了！"))
     # Wonder Room
     pbEORCountDownFieldEffect(PBEffects::WonderRoom,
-                              _INTL("Wonder Room wore off, and Defense and Sp. Def stats returned to normal!"))
+                              _INTL("奇妙空间被解除，防御和特防复原了！"))
     # Magic Room
     pbEORCountDownFieldEffect(PBEffects::MagicRoom,
-                              _INTL("Magic Room wore off, and held items' effects returned to normal!"))
+                              _INTL("魔法空间被解除，道具的效果复原了！"))
   end
 
   #-----------------------------------------------------------------------------
@@ -538,10 +538,10 @@ class Battle
     terrain_data = GameData::BattleTerrain.try_get(@field.terrain)
     pbCommonAnimation(terrain_data.animation) if terrain_data
     case @field.terrain
-    when :Electric then pbDisplay(_INTL("An electric current is running across the battlefield."))
-    when :Grassy   then pbDisplay(_INTL("Grass is covering the battlefield."))
-    when :Misty    then pbDisplay(_INTL("Mist is swirling about the battlefield."))
-    when :Psychic  then pbDisplay(_INTL("The battlefield is weird."))
+    when :Electric then pbDisplay(_INTL("脚下电光飞闪。"))
+    when :Grassy   then pbDisplay(_INTL("脚下青草如茵。"))
+    when :Misty    then pbDisplay(_INTL("脚下雾气缭绕。"))
+    when :Psychic  then pbDisplay(_INTL("脚下有奇妙的感觉。"))
     end
   end
 
@@ -555,25 +555,25 @@ class Battle
     if battler.inHyperMode?
       if pbRandom(100) < 10
         battler.pokemon.hyper_mode = false
-        pbDisplay(_INTL("{1} came to its senses!", battler.pbThis))
+        pbDisplay(_INTL("{1}恢复了理性！", battler.pbThis))
       else
-        pbDisplay(_INTL("{1} is in Hyper Mode!", battler.pbThis))
+        pbDisplay(_INTL("{1}正处于兴奋状态！", battler.pbThis))
       end
     end
     # Uproar
     if battler.effects[PBEffects::Uproar] > 0
       battler.effects[PBEffects::Uproar] -= 1
       if battler.effects[PBEffects::Uproar] == 0
-        pbDisplay(_INTL("{1} calmed down.", battler.pbThis))
+        pbDisplay(_INTL("{1}平静了下来！", battler.pbThis))
       else
-        pbDisplay(_INTL("{1} is making an uproar!", battler.pbThis))
+        pbDisplay(_INTL("{1}吵闹个不停！", battler.pbThis))
       end
     end
     # Slow Start's end message
     if battler.effects[PBEffects::SlowStart] > 0
       battler.effects[PBEffects::SlowStart] -= 1
       if battler.effects[PBEffects::SlowStart] == 0
-        pbDisplay(_INTL("{1} finally got its act together!", battler.pbThis))
+        pbDisplay(_INTL("{1}恢复了平时的水平！", battler.pbThis))
       end
     end
   end
@@ -626,9 +626,9 @@ class Battle
         next if !pbSwapBattlers(pair[0], pair[1])
         case pbSideSize(pair[1])
         when 2
-          pbDisplay(_INTL("{1} moved across!", @battlers[pair[1]].pbThis))
+          pbDisplay(_INTL("{1}移动到了一边！", @battlers[pair[1]].pbThis))
         when 3
-          pbDisplay(_INTL("{1} moved to the center!", @battlers[pair[1]].pbThis))
+          pbDisplay(_INTL("{1}移动到了中央！", @battlers[pair[1]].pbThis))
         end
       end
     end
@@ -676,15 +676,15 @@ class Battle
         battler.pbCureStatus(false)
         case old_status
         when :SLEEP
-          pbDisplay(_INTL("{1} shook itself awake so you wouldn't worry!", battler.pbThis))
+          pbDisplay(_INTL("为了不让你担心，{1}努力醒过来了！", battler.pbThis))
         when :POISON
-          pbDisplay(_INTL("{1} managed to expel the poison so you wouldn't worry!", battler.pbThis))
+          pbDisplay(_INTL("为了不让你担心，{1}靠自己治愈了中毒！", battler.pbThis))
         when :BURN
-          pbDisplay(_INTL("{1} healed its burn with its sheer determination so you wouldn't worry!", battler.pbThis))
+          pbDisplay(_INTL("为了不让你担心，{1}靠毅力治愈了灼伤！", battler.pbThis))
         when :PARALYSIS
-          pbDisplay(_INTL("{1} gathered all its energy to break through its paralysis so you wouldn't worry!", battler.pbThis))
+          pbDisplay(_INTL("为了不让你担心，{1}靠斗志治愈了麻痹！", battler.pbThis))
         when :FROZEN
-          pbDisplay(_INTL("{1} melted the ice with its fiery determination so you wouldn't worry!", battler.pbThis))
+          pbDisplay(_INTL("为了不让你担心，{1}努力融化了冰冻！", battler.pbThis))
         end
       end
     end
@@ -696,7 +696,7 @@ class Battle
       hpLoss = battler.totalhp / 24
       @scene.pbDamageAnimation(battler)
       battler.pbReduceHP(hpLoss, false)
-      pbDisplay(_INTL("The Hyper Mode attack hurts {1}!", battler.pbThis(true)))
+      pbDisplay(_INTL("兴奋状态让{1}受到了伤害！", battler.pbThis(true)))
       battler.pbFaint if battler.fainted?
     end
     # Damage from poison/burn

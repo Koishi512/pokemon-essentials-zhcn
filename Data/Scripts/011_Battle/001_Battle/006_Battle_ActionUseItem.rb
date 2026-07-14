@@ -8,20 +8,20 @@ class Battle
 
   def pbCanUseItemOnPokemon?(item, pkmn, battler, scene, showMessages = true)
     if !pkmn || pkmn.egg?
-      scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+      scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
       return false
     end
     # Embargo
     if battler && battler.effects[PBEffects::Embargo] > 0
       if showMessages
-        scene.pbDisplay(_INTL("Embargo's effect prevents the item's use on {1}!",
+        scene.pbDisplay(_INTL("因为查封的效果，不能对{1}使用道具！",
                               battler.pbThis(true)))
       end
       return false
     end
     # Hyper Mode and non-Scents
     if pkmn.hyper_mode && !GameData::Item.get(item)&.is_scent?
-      scene.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+      scene.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
       return false
     end
     return true
@@ -56,7 +56,7 @@ class Battle
     return if !GameData::Item.get(item).consumed_after_use?
     if pbOwnedByPlayer?(idxBattler)
       if !$bag.remove(item)
-        raise _INTL("Tried to consume item that wasn't in the Bag somehow.")
+        raise _INTL("试图使用包包中没有的道具。")
       end
     else
       items = pbGetOwnerItems(idxBattler)
@@ -71,7 +71,7 @@ class Battle
       if $bag&.can_add?(item)
         $bag.add(item)
       else
-        raise _INTL("Couldn't return unused item to Bag somehow.")
+        raise _INTL("无法将未使用的道具返还至包包。")
       end
     else
       items = pbGetOwnerItems(idxBattler)
@@ -88,15 +88,15 @@ class Battle
       # because the effects of items used on party Pokémon all mention the
       # Pokémon's name so it doesn't need specifying here too)
       if item_name.starts_with_vowel?
-        pbDisplayBrief(_INTL("{1} used an {2} on {3}.", trainer_name, item_name, battler.name))
+        pbDisplayBrief(_INTL("{1}对{3}使用了{2}。", trainer_name, item_name, battler.name))
       else
-        pbDisplayBrief(_INTL("{1} used a {2} on {3}.", trainer_name, item_name, battler.name))
+        pbDisplayBrief(_INTL("{1}对{3}使用了{2}。", trainer_name, item_name, battler.name))
       end
     else
       if item_name.starts_with_vowel?
-        pbDisplayBrief(_INTL("{1} used an {2}.", trainer_name, item_name))
+        pbDisplayBrief(_INTL("{1}使用了{2}。", trainer_name, item_name))
       else
-        pbDisplayBrief(_INTL("{1} used a {2}.", trainer_name, item_name))
+        pbDisplayBrief(_INTL("{1}使用了{2}。", trainer_name, item_name))
       end
     end
   end
@@ -113,7 +113,7 @@ class Battle
       ch[1] = nil   # Delete item from choice
       return
     end
-    pbDisplay(_INTL("But it had no effect!"))
+    pbDisplay(_INTL("但是，没有效果！"))
     # Return unused item to Bag
     pbReturnUnusedItemToBag(item, userBattler.index)
   end
@@ -132,10 +132,10 @@ class Battle
         battler.pbItemOnStatDropped   # Eject Pack
         return
       else
-        pbDisplay(_INTL("But it had no effect!"))
+        pbDisplay(_INTL("但是，没有效果！"))
       end
     else
-      pbDisplay(_INTL("But it's not where this item can be used!"))
+      pbDisplay(_INTL("但是，现在不是使用这个道具的时候！"))
     end
     # Return unused item to Bag
     pbReturnUnusedItemToBag(item, userBattler.index)
@@ -161,7 +161,7 @@ class Battle
       ch[1] = nil   # Delete item from choice
       return
     end
-    pbDisplay(_INTL("But it had no effect!"))
+    pbDisplay(_INTL("但是，没有效果！"))
     # Return unused item to Bag
     pbReturnUnusedItemToBag(item, userBattler.index)
   end

@@ -29,16 +29,16 @@ module GameData
 
     def self.editor_properties
       return [
-        ["ID",              ReadOnlyProperty,        _INTL("ID number of this player.")],
-        ["TrainerType",     TrainerTypeProperty,     _INTL("Trainer type of this player.")],
-        ["WalkCharset",     CharacterProperty,       _INTL("Charset used while the player is still or walking.")],
-        ["RunCharset",      CharacterProperty,       _INTL("Charset used while the player is running. Uses WalkCharset if undefined.")],
-        ["CycleCharset",    CharacterProperty,       _INTL("Charset used while the player is cycling. Uses RunCharset if undefined.")],
-        ["SurfCharset",     CharacterProperty,       _INTL("Charset used while the player is surfing. Uses CycleCharset if undefined.")],
-        ["DiveCharset",     CharacterProperty,       _INTL("Charset used while the player is diving. Uses SurfCharset if undefined.")],
-        ["FishCharset",     CharacterProperty,       _INTL("Charset used while the player is fishing. Uses WalkCharset if undefined.")],
-        ["SurfFishCharset", CharacterProperty,       _INTL("Charset used while the player is fishing while surfing. Uses FishCharset if undefined.")],
-        ["Home",            MapCoordsFacingProperty, _INTL("Map ID and X/Y coordinates of where the player goes after a loss if no Pokémon Center was visited.")]
+        ["ID",              ReadOnlyProperty,        _INTL("玩家的ID编号。")],
+        ["TrainerType",     TrainerTypeProperty,     _INTL("此玩家的训练家类型。")],
+        ["WalkCharset",     CharacterProperty,       _INTL("玩家静止或行走时使用的行走图。")],
+        ["RunCharset",      CharacterProperty,       _INTL("玩家跑步时使用的行走图。未定义时使用WalkCharset。")],
+        ["CycleCharset",    CharacterProperty,       _INTL("玩家骑自行车时使用的行走图。未定义时使用RunCharset。")],
+        ["SurfCharset",     CharacterProperty,       _INTL("玩家冲浪时使用的行走图。未定义时使用CycleCharset。")],
+        ["DiveCharset",     CharacterProperty,       _INTL("玩家潜水时使用的行走图。未定义时使用SurfCharset。")],
+        ["FishCharset",     CharacterProperty,       _INTL("玩家钓鱼时使用的行走图。未定义时使用WalkCharset。")],
+        ["SurfFishCharset", CharacterProperty,       _INTL("玩家冲浪时钓鱼使用的行走图。未定义时使用FishCharset。")],
+        ["Home",            MapCoordsFacingProperty, _INTL("玩家在失败后未访问过宝可梦中心时前往的地点的地图ID和X/Y坐标。")]
       ]
     end
 

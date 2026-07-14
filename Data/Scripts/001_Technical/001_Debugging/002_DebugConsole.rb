@@ -8,20 +8,18 @@ module Console
 
   def setup_console
     return unless $DEBUG
-    echoln "GPU Cache Max: #{Bitmap.max_size}"
-    echoln Console.markup_style("You can ignore any messages above about fluidsynth.", text: :brown)
+    echoln "GPU最大缓存：#{Bitmap.max_size}"
+    echoln Console.markup_style("你可以忽略以上关于fluidsynth的消息。", text: :brown)
     echoln ""
     echoln Console.markup_style("===============================================================================", text: :yellow)
     echoln Console.markup_style("\"#{System.game_title}\" Debug Console Window", text: :yellow)
     echoln Console.markup_style("===============================================================================", text: :yellow)
-    echoln "You are playing in Debug Mode, probably because you clicked the \"Playtest\""
-    echoln "button in RPG Maker XP. If you want to play as a regular player, run Game.exe"
-    echoln "directly."
+    echoln "你正在以调试模式运行，可能是因为你点击了 RPG Maker XP 中的 \"测试\" 按钮。如果你想以普通玩家身份运行游戏，请直接运行 Game.exe。"
     echoln ""
-    echoln "Closing this window will close the game."
+    echoln "关闭此窗口将关闭游戏。"
     echoln ""
     echoln Console.markup_style("===============================================================================", text: :yellow)
-    echoln Console.markup_style("Debug Output:", text: :yellow)
+    echoln Console.markup_style("调试输出：", text: :yellow)
     echoln Console.markup_style("===============================================================================", text: :yellow)
     echoln ""
   end
@@ -106,12 +104,12 @@ module Console
 
   # warning message
   def echo_warn(msg)
-    echoln markup_style("WARNING: #{msg}", text: :yellow)
+    echoln markup_style("警告：#{msg}", text: :yellow)
   end
 
   # error message
   def echo_error(msg)
-    echoln markup_style("ERROR: #{msg}", text: :light_red)
+    echoln markup_style("错误：#{msg}", text: :light_red)
   end
 
   # status output

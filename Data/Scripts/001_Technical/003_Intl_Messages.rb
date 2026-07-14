@@ -252,7 +252,7 @@ module Translator
       language_messages = orig_messages.core_messages
       default_messages = orig_messages.default_core_messages
       if !default_messages || default_messages.length == 0
-        pbMessageDisplay(msg_window, _INTL("The default core messages file \"messages_core.dat\" was not found."))
+        pbMessageDisplay(msg_window, _INTL("未找到默认核心文件\"messages_core.dat\"。"))
         pbDisposeMessageWindow(msg_window)
         return
       end
@@ -260,7 +260,7 @@ module Translator
       language_messages = orig_messages.game_messages
       default_messages = orig_messages.default_game_messages
       if !default_messages || default_messages.length == 0
-        pbMessageDisplay(msg_window, _INTL("The default game messages file \"messages_game.dat\" was not found."))
+        pbMessageDisplay(msg_window, _INTL("未找到默认游戏文件\"messages_game.dat\"。"))
         pbDisposeMessageWindow(msg_window)
         return
       end
@@ -273,7 +273,7 @@ module Translator
         has_files = true
         break
       end
-      if has_files && !pbConfirmMessageSerious(_INTL("Replace all text files in folder '{1}'?", dir_name))
+      if has_files && !pbConfirmMessageSerious(_INTL("要替换'{1}'中的所有文本文件吗？", dir_name))
         pbDisposeMessageWindow(msg_window)
         return
       end
@@ -291,7 +291,7 @@ module Translator
       f.write("\#-------------------------------\r\n") if with_line
     end
     # Extract the text
-    pbMessageDisplay(msg_window, "\\ts[]" + _INTL("Extracting text, please wait.") + "\\wtnp[0]")
+    pbMessageDisplay(msg_window, "\\ts[]" + _INTL("正在提取文本，请稍候。") + "\\wtnp[0]")
     # Get all the section IDs to cycle through
     max_section_id = default_messages.length
     max_section_id = language_messages.length if language_messages && language_messages.length > max_section_id
@@ -340,12 +340,12 @@ module Translator
     end
     msg_window.textspeed = MessageConfig.pbSettingToTextSpeed($PokemonSystem.textspeed)
     if core_text
-      pbMessageDisplay(msg_window, _INTL("All core text was extracted to files in the folder \"{1}\".", dir_name) + "\1")
+      pbMessageDisplay(msg_window, _INTL("所有核心文本已提取到文件夹 \"{1}\" 中。", dir_name) + "\1")
     else
-      pbMessageDisplay(msg_window, _INTL("All game text was extracted to files in the folder \"{1}\".", dir_name) + "\1")
+      pbMessageDisplay(msg_window, _INTL("所有游戏文本已提取到文件夹 \"{1}\" 中。", dir_name) + "\1")
     end
-    pbMessageDisplay(msg_window, _INTL("To localize this text, translate every second line in those files.") + "\1")
-    pbMessageDisplay(msg_window, _INTL("After translating, choose \"Compile Translated Text\" in the Debug menu."))
+    pbMessageDisplay(msg_window, _INTL("要本地化这些文本，请翻译这些文件中的每一行。") + "\1")
+    pbMessageDisplay(msg_window, _INTL("翻译完成后，在调试菜单中选择\"编译翻译后的文本\"。"))
     pbDisposeMessageWindow(msg_window)
   end
 
@@ -377,7 +377,7 @@ module Translator
 
   def compile_text(dir_name, dat_filename)
     msg_window = pbCreateMessageWindow
-    pbMessageDisplay(msg_window, "\\ts[]" + _INTL("Compiling text, please wait.") + "\\wtnp[0]")
+    pbMessageDisplay(msg_window, "\\ts[]" + _INTL("正在编译文本，请稍候。") + "\\wtnp[0]")
     outfile = File.open("Data/messages_" + dat_filename + ".dat", "wb")
     all_text = []
     begin
@@ -391,8 +391,8 @@ module Translator
     end
     msg_window.textspeed = MessageConfig.pbSettingToTextSpeed($PokemonSystem.textspeed)
     pbMessageDisplay(msg_window,
-       _INTL("Text files in the folder \"Text_{1}\" were successfully compiled into file \"Data/messages_{2}.dat\".", dir_name, dat_filename))
-    pbMessageDisplay(msg_window, _INTL("You may need to close the game to see any changes to messages."))
+       _INTL("文本文件在文件夹 \"Text_{1}\" 中已成功编译到文件 \"Data/messages_{2}.dat\"。", dir_name, dat_filename))
+    pbMessageDisplay(msg_window, _INTL("您可能需要关闭游戏以查看消息的任何更改。"))
     pbDisposeMessageWindow(msg_window)
   end
 
@@ -400,7 +400,7 @@ module Translator
     begin
       file = File.open(text_file, "rb")
     rescue
-      raise _INTL("Can't find or open '{1}'.", text_file)
+      raise _INTL("无法找到或打开文件 '{1}'。", text_file)
     end
     begin
       Compiler.pbEachSection(file) do |contents, section_name|
@@ -416,7 +416,7 @@ module Translator
           is_map = true
           section_id = $~[1].to_i
         end
-        raise _INTL("Invalid section name {1}", section_name) if section_id < 0
+        raise _INTL("无效部分名称{1}", section_name) if section_id < 0
         # Decide whether the section contains text stored in an ordered list (an
         # array) or an ordered hash
         item_length = 0
@@ -424,16 +424,16 @@ module Translator
           text_hash = []
           item_length = 3
           if is_map
-            raise _INTL("Section {1} can't be an ordered list (section was recognized as an ordered list because its first line is a number).", section_name)
+            raise _INTL("部分{1}不能是有序列表（该部分被识别为有序列表，因为其第一行是一个数字）。", section_name)
           end
           if contents.length % 3 != 0
-            raise _INTL("Section {1}'s line count is not divisible by 3 (section was recognized as an ordered list because its first line is a number).", section_name)
+            raise _INTL("部分{1}的行数不能被 3 整除（该部分被识别为有序列表，因为其第一行是一个数字）.", section_name)
           end
         else   # Text is stored in a hash
           text_hash = {}
           item_length = 2
           if contents.length.odd?
-            raise _INTL("Section {1} has an odd number of entries (section was recognized as a hash because its first line is not a number).", section_name)
+            raise _INTL("部分{1}有奇数个条目（该部分被识别为哈希，因为其第一行不是数字）。", section_name)
           end
         end
         # Add text in section to ordered list/hash
@@ -441,7 +441,7 @@ module Translator
         loop do
           if item_length == 3
             if !contents[i][/^\d+$/]
-              raise _INTL("Expected a number in section {1}, got {2} instead", section_name, contents[i])
+              raise _INTL("{1}部分预期是一个数字，但实际得到的是{2}", section_name, contents[i])
             end
             key = contents[i].to_i
             i += 1

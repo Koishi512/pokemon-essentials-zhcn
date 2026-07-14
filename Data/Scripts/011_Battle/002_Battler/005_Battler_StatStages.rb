@@ -19,7 +19,7 @@ class Battle::Battler
     # Check the stat stage
     if statStageAtMax?(stat)
       if showFailMsg
-        @battle.pbDisplay(_INTL("{1} {2} won't go any higher!",
+        @battle.pbDisplay(_INTL("{1}{2}已经无法再提高了！",
                                 pbOfThis, GameData::Stat.get(stat).name))
       end
       return false
@@ -61,9 +61,9 @@ class Battle::Battler
     # Stat up animation and message
     @battle.pbCommonAnimation("StatUp", self) if showAnim
     arrStatTexts = [
-      _INTL("{1} {2} rose!", pbOfThis, GameData::Stat.get(stat).name),
-      _INTL("{1} {2} rose sharply!", pbOfThis, GameData::Stat.get(stat).name),
-      _INTL("{1} {2} rose drastically!", pbOfThis, GameData::Stat.get(stat).name)
+      _INTL("{1}{2}提高了！", pbOfThis, GameData::Stat.get(stat).name),
+      _INTL("{1}{2}大幅提高了！", pbOfThis, GameData::Stat.get(stat).name),
+      _INTL("{1}{2}巨幅提高了！", pbOfThis, GameData::Stat.get(stat).name)
     ]
     @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
     # Trigger abilities upon stat gain
@@ -85,15 +85,15 @@ class Battle::Battler
     @battle.pbCommonAnimation("StatUp", self) if showAnim
     if user.index == @index
       arrStatTexts = [
-        _INTL("{1} {2} raised its {3}!", pbOfThis, cause, GameData::Stat.get(stat).name),
-        _INTL("{1} {2} sharply raised its {3}!", pbOfThis, cause, GameData::Stat.get(stat).name),
-        _INTL("{1} {2} drastically raised its {3}!", pbOfThis, cause, GameData::Stat.get(stat).name)
+        _INTL("{1}{2}提高了{3}！", pbOfThis, cause, GameData::Stat.get(stat).name),
+        _INTL("{1}{2}大幅提高了{3}！", pbOfThis, cause, GameData::Stat.get(stat).name),
+        _INTL("{1}{2}巨幅提高了{3}！", pbOfThis, cause, GameData::Stat.get(stat).name)
       ]
     else
       arrStatTexts = [
-        _INTL("{1} {2} raised {3} {4}!", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
-        _INTL("{1} {2} sharply raised {3} {4}!", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
-        _INTL("{1} {2} drastically raised {3} {4}!", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name)
+        _INTL("{1}{2}提高了{3}{4}！", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
+        _INTL("{1}{2}大幅提高了{3}{4}！", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
+        _INTL("{1}{2}巨幅提高了{3}{4}！", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name)
       ]
     end
     @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
@@ -144,12 +144,12 @@ class Battle::Battler
     if !user || user.index != @index   # Not self-inflicted
       if @effects[PBEffects::Substitute] > 0 &&
          (ignoreMirrorArmor || !(move && move.ignoresSubstitute?(user)))
-        @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis)) if showFailMsg
+        @battle.pbDisplay(_INTL("{1}正受到替身的保护！", pbThis)) if showFailMsg
         return false
       end
       if pbOwnSide.effects[PBEffects::Mist] > 0 &&
          !(user && user.hasActiveAbility?(:INFILTRATOR))
-        @battle.pbDisplay(_INTL("{1} is protected by Mist!", pbThis)) if showFailMsg
+        @battle.pbDisplay(_INTL("{1}正受到白雾的保护！", pbThis)) if showFailMsg
         return false
       end
       if abilityActive?
@@ -175,7 +175,7 @@ class Battle::Battler
     # Check the stat stage
     if statStageAtMin?(stat)
       if showFailMsg
-        @battle.pbDisplay(_INTL("{1} {2} won't go any lower!",
+        @battle.pbDisplay(_INTL("{1}{2}已经无法再降低了！",
                                 pbOfThis, GameData::Stat.get(stat).name))
       end
       return false
@@ -220,7 +220,7 @@ class Battle::Battler
         if mirrorArmorSplash < 2
           @battle.pbShowAbilitySplash(self)
           if !Battle::Scene::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} {2} activated!", pbOfThis, abilityName))
+            @battle.pbDisplay(_INTL("{1}{2}发动了！", pbOfThis, abilityName))
           end
         end
         ret = false
@@ -237,9 +237,9 @@ class Battle::Battler
     # Stat down animation and message
     @battle.pbCommonAnimation("StatDown", self) if showAnim
     arrStatTexts = [
-      _INTL("{1} {2} fell!", pbOfThis, GameData::Stat.get(stat).name),
-      _INTL("{1} {2} harshly fell!", pbOfThis, GameData::Stat.get(stat).name),
-      _INTL("{1} {2} severely fell!", pbOfThis, GameData::Stat.get(stat).name)
+      _INTL("{1}{2}降低了！", pbOfThis, GameData::Stat.get(stat).name),
+      _INTL("{1}{2}大幅降低了！", pbOfThis, GameData::Stat.get(stat).name),
+      _INTL("{1}{2}巨幅降低了！", pbOfThis, GameData::Stat.get(stat).name)
     ]
     @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
     # Trigger abilities upon stat loss
@@ -261,7 +261,7 @@ class Battle::Battler
          user && user.index != @index && !statStageAtMin?(stat)
         @battle.pbShowAbilitySplash(self)
         if !Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} {2} activated!", pbOfThis, abilityName))
+          @battle.pbDisplay(_INTL("{1}{2}发动了！", pbOfThis, abilityName))
         end
         ret = false
         if user.pbCanLowerStatStage?(stat, self, nil, true, ignoreContrary, true)
@@ -278,15 +278,15 @@ class Battle::Battler
     @battle.pbCommonAnimation("StatDown", self) if showAnim
     if user.index == @index
       arrStatTexts = [
-        _INTL("{1} {2} lowered its {3}!", pbOfThis, cause, GameData::Stat.get(stat).name),
-        _INTL("{1} {2} harshly lowered its {3}!", pbOfThis, cause, GameData::Stat.get(stat).name),
-        _INTL("{1} {2} severely lowered its {3}!", pbOfThis, cause, GameData::Stat.get(stat).name)
+        _INTL("{1}{2}降低了{3}！", pbOfThis, cause, GameData::Stat.get(stat).name),
+        _INTL("{1}{2}大幅降低了{3}！", pbOfThis, cause, GameData::Stat.get(stat).name),
+        _INTL("{1}{2}巨幅降低了{3}！", pbOfThis, cause, GameData::Stat.get(stat).name)
       ]
     else
       arrStatTexts = [
-        _INTL("{1} {2} lowered {3} {4}!", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
-        _INTL("{1} {2} harshly lowered {3} {4}!", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
-        _INTL("{1} {2} severely lowered {3} {4}!", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name)
+        _INTL("{1}{2}降低了{3}{4}！", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
+        _INTL("{1}{2}大幅降低了{3}{4}！", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name),
+        _INTL("{1}{2}巨幅降低了{3}{4}！", user.pbOfThis, cause, pbOfThis(true), GameData::Stat.get(stat).name)
       ]
     end
     @battle.pbDisplay(arrStatTexts[[increment - 1, 2].min])
@@ -317,9 +317,9 @@ class Battle::Battler
     # NOTE: Substitute intentionally blocks Intimidate even if self has Contrary.
     if @effects[PBEffects::Substitute] > 0
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
+        @battle.pbDisplay(_INTL("{1}正受到替身的保护！", pbThis))
       else
-        @battle.pbDisplay(_INTL("{1} substitute protected it from {2} {3}!",
+        @battle.pbDisplay(_INTL("{1}替身阻止了{2}{3}！",
                                 pbOfThis, user.pbOfThis(true), user.abilityName))
       end
       return false
@@ -327,9 +327,9 @@ class Battle::Battler
     if Settings::MECHANICS_GENERATION >= 8 && hasActiveAbility?([:OBLIVIOUS, :OWNTEMPO, :INNERFOCUS, :SCRAPPY])
       @battle.pbShowAbilitySplash(self)
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} {2} cannot be lowered!", pbOfThis, GameData::Stat.get(:ATTACK).name))
+        @battle.pbDisplay(_INTL("{1}{2}不会降低！", pbOfThis, GameData::Stat.get(:ATTACK).name))
       else
-        @battle.pbDisplay(_INTL("{1} {2} prevents {3} loss!", pbOfThis, abilityName,
+        @battle.pbDisplay(_INTL("{1}{2}阻止了{3}降低！", pbOfThis, abilityName,
                                 GameData::Stat.get(:ATTACK).name))
       end
       @battle.pbHideAbilitySplash(self)
@@ -350,28 +350,28 @@ class Battle::Battler
     #       Intimidate ability by name).
     if !hasActiveAbility?(:CONTRARY)
       if pbOwnSide.effects[PBEffects::Mist] > 0
-        @battle.pbDisplay(_INTL("{1} is protected from {2} {3} by Mist!",
+        @battle.pbDisplay(_INTL("白雾使{1}抵挡了{2}{3}！",
                                 pbThis, user.pbOfThis(true), user.abilityName))
         return false
       end
       if abilityActive? &&
          (Battle::AbilityEffects.triggerStatLossImmunity(self.ability, self, :ATTACK, @battle, false) ||
           Battle::AbilityEffects.triggerStatLossImmunityNonIgnorable(self.ability, self, :ATTACK, @battle, false))
-        @battle.pbDisplay(_INTL("{1} {2} prevented {3} {4} from working!",
+        @battle.pbDisplay(_INTL("{1}{2}阻止了{3}{4}生效！",
                                 pbOfThis, abilityName, user.pbOfThis(true), user.abilityName))
         return false
       end
       allAllies.each do |b|
         next if !b.abilityActive?
         if Battle::AbilityEffects.triggerStatLossImmunityFromAlly(b.ability, b, self, :ATTACK, @battle, false)
-          @battle.pbDisplay(_INTL("{1} is protected from {2} {3} by {4} {5}!",
-                                  pbThis, user.pbOfThis(true), user.abilityName, b.pbOfThis(true), b.abilityName))
+          @battle.pbDisplay(_INTL("{4}{5}使{1}抵挡了{2}{3}！",
+                                  pbThis, b.pbOfThis(true), b.abilityName, user.pbOfThis(true), user.abilityName))
           return false
         end
       end
       if itemActive? &&
          Battle::ItemEffects.triggerStatLossImmunity(self.item, self, :ATTACK, @battle, false)
-        @battle.pbDisplay(_INTL("{1} {2} prevented {3} {4} from working!",
+        @battle.pbDisplay(_INTL("{1}{2}阻止了{3}{4}生效！",
                                 pbOfThis, itemName, user.pbOfThis(true), user.abilityName))
         return false
       end
@@ -390,9 +390,9 @@ class Battle::Battler
     #       Contrary.
     if @effects[PBEffects::Substitute] > 0
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} is protected by its substitute!", pbThis))
+        @battle.pbDisplay(_INTL("{1}正受到替身的保护！", pbThis))
       else
-        @battle.pbDisplay(_INTL("{1} substitute protected it from {2} {3}!",
+        @battle.pbDisplay(_INTL("{1}替身阻止了{2}{3}！",
                                 pbOfThis, user.pbOfThis(true), user.abilityName))
       end
       return false
@@ -405,28 +405,28 @@ class Battle::Battler
     #       mention the Supersweet Syrup ability by name).
     if !hasActiveAbility?(:CONTRARY)
       if pbOwnSide.effects[PBEffects::Mist] > 0
-        @battle.pbDisplay(_INTL("{1} is protected from {2} {3} by Mist!",
+        @battle.pbDisplay(_INTL("白雾使{1}抵挡了{2}{3}！",
                                 pbThis, user.pbOfThis(true), user.abilityName))
         return false
       end
       if abilityActive? &&
          (Battle::AbilityEffects.triggerStatLossImmunity(self.ability, self, :EVASION, @battle, false) ||
           Battle::AbilityEffects.triggerStatLossImmunityNonIgnorable(self.ability, self, :EVASION, @battle, false))
-        @battle.pbDisplay(_INTL("{1} {2} prevented {3} {4} from working!",
+        @battle.pbDisplay(_INTL("{1}{2}阻止了{3}{4}生效！",
                                 pbOfThis, abilityName, user.pbOfThis(true), user.abilityName))
         return false
       end
       allAllies.each do |b|
         next if !b.abilityActive?
         if Battle::AbilityEffects.triggerStatLossImmunityFromAlly(b.ability, b, self, :EVASION, @battle, false)
-          @battle.pbDisplay(_INTL("{1} is protected from {2} {3} by {4} {5}!",
+          @battle.pbDisplay(_INTL("{4}{5}使{1}抵挡了{2}{3}！",
                                   pbThis, user.pbOfThis(true), user.abilityName, b.pbOfThis(true), b.abilityName))
           return false
         end
       end
       if itemActive? &&
          Battle::ItemEffects.triggerStatLossImmunity(self.item, self, :EVASION, @battle, false)
-        @battle.pbDisplay(_INTL("{1} {2} prevented {3} {4} from working!",
+        @battle.pbDisplay(_INTL("{1}{2}阻止了{3}{4}生效！",
                                 pbOfThis, itemName, user.pbOfThis(true), user.abilityName))
         return false
       end

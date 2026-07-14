@@ -185,7 +185,7 @@ class Battle::Move::HitOncePerUserTeamMember < Battle::Move
       @beatUpList.push(i)
     end
     if @beatUpList.length == 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -217,7 +217,7 @@ end
 #===============================================================================
 class Battle::Move::TwoTurnAttack < Battle::Move::TwoTurnMove
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} whipped up a whirlwind!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}周围的空气产生了旋涡！", user.pbThis))
   end
 end
 
@@ -239,7 +239,7 @@ class Battle::Move::TwoTurnAttackOneTurnInSun < Battle::Move::TwoTurnMove
   end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} took in sunlight!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}吸收了阳光！", user.pbThis))
   end
 
   def pbBasePowerMultiplier(power_mult, user, target)
@@ -254,7 +254,7 @@ end
 #===============================================================================
 class Battle::Move::TwoTurnAttackParalyzeTarget < Battle::Move::TwoTurnMove
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} became cloaked in a freezing light!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}被冷光包围了！", user.pbThis))
   end
 
   def pbAdditionalEffect(user, target)
@@ -270,7 +270,7 @@ end
 #===============================================================================
 class Battle::Move::TwoTurnAttackBurnTarget < Battle::Move::TwoTurnMove
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} became cloaked in freezing air!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}被冰冻的空气包围了！", user.pbThis))
   end
 
   def pbAdditionalEffect(user, target)
@@ -288,7 +288,7 @@ class Battle::Move::TwoTurnAttackFlinchTarget < Battle::Move::TwoTurnMove
   def flinchingMove?; return true; end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} became cloaked in a harsh light!", user.pbThis))
+    @battle.pbDisplay(_INTL("强光包围了{1}！", user.pbThis))
   end
 
   def pbAdditionalEffect(user, target)
@@ -319,14 +319,14 @@ class Battle::Move::TwoTurnAttackRaiseUserSpAtkSpDefSpd2 < Battle::Move::TwoTurn
       break
     end
     if failed
-      @battle.pbDisplay(_INTL("{1} stats won't go any higher!", user.pbOfThis))
+      @battle.pbDisplay(_INTL("{1}能力已经无法再提高了！", user.pbOfThis))
       return true
     end
     return false
   end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} is absorbing power!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}正在积蓄力量！", user.pbThis))
   end
 
   def pbEffectGeneral(user)
@@ -354,7 +354,7 @@ class Battle::Move::TwoTurnAttackChargeRaiseUserDefense1 < Battle::Move::TwoTurn
   end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} tucked in its head!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}把头缩了进去！", user.pbThis))
   end
 
   def pbChargingTurnEffect(user, target)
@@ -377,7 +377,7 @@ class Battle::Move::TwoTurnAttackChargeRaiseUserSpAtk1 < Battle::Move::TwoTurnMo
   end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} is overflowing with space power!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}身上溢出了宇宙之力！", user.pbThis))
   end
 
   def pbChargingTurnEffect(user, target)
@@ -406,7 +406,7 @@ class Battle::Move::TwoTurnAttackOneTurnInRainChargeRaiseUserSpAtk1 < Battle::Mo
   end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} absorbed electricity!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}吸收了电力！", user.pbThis))
   end
 end
 
@@ -416,7 +416,7 @@ end
 #===============================================================================
 class Battle::Move::TwoTurnAttackInvulnerableUnderground < Battle::Move::TwoTurnMove
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} burrowed its way under the ground!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}钻入了地里！", user.pbThis))
   end
 end
 
@@ -426,7 +426,7 @@ end
 #===============================================================================
 class Battle::Move::TwoTurnAttackInvulnerableUnderwater < Battle::Move::TwoTurnMove
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} hid underwater!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}潜入了水中！", user.pbThis))
   end
 end
 
@@ -438,7 +438,7 @@ class Battle::Move::TwoTurnAttackInvulnerableInSky < Battle::Move::TwoTurnMove
   def unusableInGravity?; return true; end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} flew up high!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}飞向了高空！", user.pbThis))
   end
 end
 
@@ -451,7 +451,7 @@ class Battle::Move::TwoTurnAttackInvulnerableInSkyParalyzeTarget < Battle::Move:
   def unusableInGravity?; return true; end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} sprang up!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}高高地跳了起来！", user.pbThis))
   end
 
   def pbAdditionalEffect(user, target)
@@ -481,24 +481,24 @@ class Battle::Move::TwoTurnAttackInvulnerableInSkyTargetCannotAct < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.opposes?(user)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.effects[PBEffects::Substitute] > 0 && !ignoresSubstitute?(user)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if Settings::MECHANICS_GENERATION >= 6 && target.pbWeight >= 2000   # 200.0kg
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.semiInvulnerable? ||
        (target.effects[PBEffects::SkyDrop] >= 0 && @chargingTurn)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.effects[PBEffects::SkyDrop] != user.index && @damagingTurn
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -518,11 +518,11 @@ class Battle::Move::TwoTurnAttackInvulnerableInSkyTargetCannotAct < Battle::Move
   end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} took {2} into the sky!", user.pbThis, targets[0].pbThis(true)))
+    @battle.pbDisplay(_INTL("{1}将{2}带上了高空！", user.pbThis, targets[0].pbThis(true)))
   end
 
   def pbAttackingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} was freed from the Sky Drop!", targets[0].pbThis))
+    @battle.pbDisplay(_INTL("{1}摆脱了自由落体！", targets[0].pbThis))
   end
 
   def pbChargingTurnEffect(user, target)
@@ -540,7 +540,7 @@ end
 #===============================================================================
 class Battle::Move::TwoTurnAttackInvulnerableRemoveProtections < Battle::Move::TwoTurnMove
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} vanished instantly!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}的身影瞬间消失了！", user.pbThis))
   end
 
   def pbAttackingTurnEffect(user, target)
@@ -570,7 +570,7 @@ class Battle::Move::MultiTurnAttackPreventSleeping < Battle::Move
     return if user.effects[PBEffects::Uproar] > 0
     user.effects[PBEffects::Uproar] = 3
     user.currentMove = @id
-    @battle.pbDisplay(_INTL("{1} caused an uproar!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}吵闹了起来！", user.pbThis))
     @battle.pbPriority(true).each do |b|
       next if b.fainted? || b.status != :SLEEP
       next if b.hasActiveAbility?(:SOUNDPROOF)
@@ -592,7 +592,7 @@ class Battle::Move::MultiTurnAttackConfuseUserAtEnd < Battle::Move
     if user.effects[PBEffects::Outrage] > 0
       user.effects[PBEffects::Outrage] -= 1
       if user.effects[PBEffects::Outrage] == 0 && user.pbCanConfuseSelf?(false)
-        user.pbConfuse(_INTL("{1} became confused due to fatigue!", user.pbThis))
+        user.pbConfuse(_INTL("{1}因精疲力尽而混乱了！", user.pbThis))
       end
     end
   end
@@ -640,12 +640,12 @@ class Battle::Move::MultiTurnAttackBideThenReturnDoubleDamage < Battle::Move::Fi
   def pbMoveFailed?(user, targets)
     return false if user.effects[PBEffects::Bide] != 1   # Not the attack turn
     if user.effects[PBEffects::BideDamage] == 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       user.effects[PBEffects::Bide] = 0   # No need to reset other Bide variables
       return true
     end
     if targets.length == 0
-      @battle.pbDisplay(_INTL("But there was no target..."))
+      @battle.pbDisplay(_INTL("但是没有目标……"))
       user.effects[PBEffects::Bide] = 0   # No need to reset other Bide variables
       return true
     end
@@ -658,9 +658,9 @@ class Battle::Move::MultiTurnAttackBideThenReturnDoubleDamage < Battle::Move::Fi
 
   def pbDisplayUseMessage(user)
     if @damagingTurn   # Attack turn
-      @battle.pbDisplayBrief(_INTL("{1} unleashed energy!", user.pbThis))
+      @battle.pbDisplayBrief(_INTL("{1}的忍耐被解除了！", user.pbThis))
     elsif user.effects[PBEffects::Bide] > 1   # Charging turns
-      @battle.pbDisplayBrief(_INTL("{1} is storing energy!", user.pbThis))
+      @battle.pbDisplayBrief(_INTL("{1}正在忍耐。", user.pbThis))
     else
       super   # Start using Bide
     end

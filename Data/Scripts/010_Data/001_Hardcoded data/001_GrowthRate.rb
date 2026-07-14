@@ -44,10 +44,10 @@ module GameData
     # @param level [Integer] a level number
     # @return [Integer] the minimum Exp needed to be at the given level
     def minimum_exp_for_level(level)
-      return ArgumentError.new("Level #{level} is invalid.") if !level || level <= 0
+      return ArgumentError.new("等级#{level}无效。") if !level || level <= 0
       level = [level, GrowthRate.max_level].min
       return @exp_values[level] if level < @exp_values.length
-      raise "No Exp formula is defined for growth rate #{name}" if !@exp_formula
+      raise "成长率#{name}没有定义经验值公式" if !@exp_formula
       return @exp_formula.call(level)
     end
 
@@ -66,7 +66,7 @@ module GameData
     # @param exp [Integer] an Exp amount
     # @return [Integer] the level of a Pokémon that has the given Exp amount
     def level_from_exp(exp)
-      return ArgumentError.new("Exp amount #{level} is invalid.") if !exp || exp < 0
+      return ArgumentError.new("经验值#{exp}无效。") if !exp || exp < 0
       max = GrowthRate.max_level
       return max if exp >= maximum_exp
       (1..max).each do |level|
@@ -83,7 +83,7 @@ end
 
 GameData::GrowthRate.register({
   :id          => :Medium,   # Also known as Medium Fast
-  :name        => _INTL("Medium"),
+  :name        => _INTL("较快"),
   :exp_values  => [-1,
                    0,      8,      27,     64,     125,    216,    343,    512,    729,    1000,
                    1331,   1728,   2197,   2744,   3375,   4096,   4913,   5832,   6859,   8000,
@@ -105,7 +105,7 @@ GameData::GrowthRate.register({
 #   For levels 99-100: n**3 * (160 - n) / 100
 GameData::GrowthRate.register({
   :id          => :Erratic,
-  :name        => _INTL("Erratic"),
+  :name        => _INTL("最快"),
   :exp_values  => [-1,
                    0,      15,      52,    122,    237,    406,    637,    942,    1326,   1800,
                    2369,   3041,   3822,   4719,   5737,   6881,   8155,   9564,   11111,  12800,
@@ -126,7 +126,7 @@ GameData::GrowthRate.register({
 #   For levels 36-100: n**3 * (32 + (n / 2)) / 50
 GameData::GrowthRate.register({
   :id          => :Fluctuating,
-  :name        => _INTL("Fluctuating"),
+  :name        => _INTL("最慢"),
   :exp_values  => [-1,
                    0,       4,       13,      32,      65,      112,     178,     276,     393,     540,
                    745,     967,     1230,    1591,    1957,    2457,    3046,    3732,    4526,    5440,
@@ -145,7 +145,7 @@ GameData::GrowthRate.register({
 
 GameData::GrowthRate.register({
   :id          => :Parabolic,   # Also known as Medium Slow
-  :name        => _INTL("Parabolic"),
+  :name        => _INTL("较慢"),
   :exp_values  => [-1,
                    0,      9,      57,     96,     135,    179,    236,    314,    419,     560,
                    742,    973,    1261,   1612,   2035,   2535,   3120,   3798,   4575,    5460,
@@ -162,7 +162,7 @@ GameData::GrowthRate.register({
 
 GameData::GrowthRate.register({
   :id          => :Fast,
-  :name        => _INTL("Fast"),
+  :name        => _INTL("快"),
   :exp_values  => [-1,
                    0,      6,      21,     51,     100,    172,    274,    409,    583,    800,
                    1064,   1382,   1757,   2195,   2700,   3276,   3930,   4665,   5487,   6400,
@@ -179,7 +179,7 @@ GameData::GrowthRate.register({
 
 GameData::GrowthRate.register({
   :id          => :Slow,
-  :name        => _INTL("Slow"),
+  :name        => _INTL("慢"),
   :exp_values  => [-1,
                    0,      10,     33,      80,      156,     270,     428,     640,     911,     1250,
                    1663,   2160,   2746,    3430,    4218,    5120,    6141,    7290,    8573,    10000,

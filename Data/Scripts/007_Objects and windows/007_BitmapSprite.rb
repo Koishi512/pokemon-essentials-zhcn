@@ -131,19 +131,19 @@ class AnimatedSprite < Sprite
   def initializeLong(animname, framecount, framewidth, frameheight, frameskip)
     @animname = pbBitmapName(animname)
     @time_per_frame = [1, frameskip].max / 20.0
-    raise _INTL("Frame width is 0") if framewidth == 0
-    raise _INTL("Frame height is 0") if frameheight == 0
+    raise _INTL("帧宽度为0") if framewidth == 0
+    raise _INTL("帧高度为0") if frameheight == 0
     begin
       @animbitmap = AnimatedBitmap.new(animname).deanimate
     rescue
       @animbitmap = Bitmap.new(framewidth, frameheight)
     end
     if @animbitmap.width % framewidth != 0
-      raise _INTL("Bitmap's width ({1}) is not a multiple of frame width ({2}) [Bitmap={3}]",
+      raise _INTL("位图宽度({1})不是帧宽度({2})的倍数[Bitmap={3}]",
                   @animbitmap.width, framewidth, animname)
     end
     if @animbitmap.height % frameheight != 0
-      raise _INTL("Bitmap's height ({1}) is not a multiple of frame height ({2}) [Bitmap={3}]",
+      raise _INTL("位图高度({1})不是帧高度({2})的倍数[Bitmap={3}]",
                   @animbitmap.height, frameheight, animname)
     end
     @framecount = framecount
@@ -169,8 +169,8 @@ class AnimatedSprite < Sprite
       @animbitmap = Bitmap.new(framecount * 4, 32)
     end
     if @animbitmap.width % framecount != 0
-      raise _INTL("Bitmap's width ({1}) is not a multiple of frame count ({2}) [Bitmap={3}]",
-                  @animbitmap.width, framewidth, animname)
+      raise _INTL("位图宽度({1})不是帧数量({2})的倍数[Bitmap={3}]",
+                  @animbitmap.width, framecount, animname)
     end
     @framecount = framecount
     @framewidth = @animbitmap.width / @framecount
@@ -338,7 +338,7 @@ class ChangelingSprite < Sprite
   #-----------------------------------------------------------------------------
 
   def add_bitmap(mode, *data)
-    raise ArgumentError.new(_INTL("wrong number of arguments (given {1}, expected 2 or 6)", data.length + 1)) if ![1, 5].include?(data.length)
+    raise ArgumentError.new(_INTL("参数数量错误（给出{1}，预期为2-6）", data.length + 1)) if ![1, 5].include?(data.length)
     filepath = (data[0].is_a?(Array)) ? data[0][0] : data[0]
     @bitmaps[filepath] = AnimatedBitmap.new(filepath) if !@bitmaps[filepath]
     @changeling_data[mode] = (data[0].is_a?(Array) ? data[0].clone : [data[0]])

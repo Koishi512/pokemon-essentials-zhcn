@@ -34,11 +34,11 @@ class Battle::Battler
       if showMessages
         msg = ""
         case self.status
-        when :SLEEP     then msg = _INTL("{1} is already asleep!", pbThis)
-        when :POISON    then msg = _INTL("{1} is already poisoned!", pbThis)
-        when :BURN      then msg = _INTL("{1} already has a burn!", pbThis)
-        when :PARALYSIS then msg = _INTL("{1} is already paralyzed!", pbThis)
-        when :FROZEN    then msg = _INTL("{1} is already frozen solid!", pbThis)
+        when :SLEEP     then msg = _INTL("{1}已经睡着了。", pbThis)
+        when :POISON    then msg = _INTL("{1}已经中毒了。", pbThis)
+        when :BURN      then msg = _INTL("{1}已经被灼伤了。", pbThis)
+        when :PARALYSIS then msg = _INTL("{1}已经麻痹了。", pbThis)
+        when :FROZEN    then msg = _INTL("{1}已经冻住了。", pbThis)
         end
         @battle.pbDisplay(msg)
       end
@@ -46,18 +46,18 @@ class Battle::Battler
     end
     # Trying to replace a status problem with another one
     if self.status != :NONE && !ignoreStatus && !(self_inflicted && move)   # Rest can replace a status problem
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", pbThis(true))) if showMessages
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true))) if showMessages
       return false
     end
     # Trying to inflict a status problem on a Pokémon behind a substitute
     if @effects[PBEffects::Substitute] > 0 && !(move && move.ignoresSubstitute?(user)) &&
        !self_inflicted
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", pbThis(true))) if showMessages
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true))) if showMessages
       return false
     end
     # Weather immunity
     if newStatus == :FROZEN && [:Sun, :HarshSun].include?(effectiveWeather)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", pbThis(true))) if showMessages
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true))) if showMessages
       return false
     end
     # Terrains immunity
@@ -66,12 +66,12 @@ class Battle::Battler
       when :Electric
         if newStatus == :SLEEP
           if showMessages
-            @battle.pbDisplay(_INTL("{1} surrounds itself with electrified terrain!", pbThis))
+            @battle.pbDisplay(_INTL("{1}正受到电气场地的保护！", pbThis))
           end
           return false
         end
       when :Misty
-        @battle.pbDisplay(_INTL("{1} surrounds itself with misty terrain!", pbThis)) if showMessages
+        @battle.pbDisplay(_INTL("{1}正受到薄雾场地的保护！", pbThis)) if showMessages
         return false
       end
     end
@@ -79,7 +79,7 @@ class Battle::Battler
     if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !beingMoldBroken?)
       @battle.allBattlers(true).each do |b|
         next if b.effects[PBEffects::Uproar] == 0
-        @battle.pbDisplay(_INTL("But the uproar kept {1} awake!", pbThis(true))) if showMessages
+        @battle.pbDisplay(_INTL("但是，{1}被吵得无法入睡！", pbThis(true))) if showMessages
         return false
       end
     end
@@ -101,7 +101,7 @@ class Battle::Battler
       hasImmuneType |= pbHasType?(:ICE)
     end
     if hasImmuneType
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", pbThis(true))) if showMessages
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true))) if showMessages
       return false
     end
     # Ability immunity
@@ -127,37 +127,37 @@ class Battle::Battler
         msg = ""
         if Battle::Scene::USE_ABILITY_SPLASH
           case newStatus
-          when :SLEEP     then msg = _INTL("{1} stays awake!", pbThis)
-          when :POISON    then msg = _INTL("{1} cannot be poisoned!", pbThis)
-          when :BURN      then msg = _INTL("{1} cannot be burned!", pbThis)
-          when :PARALYSIS then msg = _INTL("{1} cannot be paralyzed!", pbThis)
-          when :FROZEN    then msg = _INTL("{1} cannot be frozen solid!", pbThis)
+          when :SLEEP     then msg = _INTL("{1}不会睡着！", pbThis)
+          when :POISON    then msg = _INTL("{1}不会中毒！", pbThis)
+          when :BURN      then msg = _INTL("{1}不会被灼伤！", pbThis)
+          when :PARALYSIS then msg = _INTL("{1}不会被麻痹！", pbThis)
+          when :FROZEN    then msg = _INTL("{1}不会被冻住！", pbThis)
           end
         elsif immAlly
           case newStatus
           when :SLEEP
-            msg = _INTL("{1} stays awake because of {2} {3}!",
+            msg = _INTL("因为{2}{3}，{1}不会睡着！",
                         pbThis, immAlly.pbOfThis(true), immAlly.abilityName)
           when :POISON
-            msg = _INTL("{1} cannot be poisoned because of {2} {3}!",
+            msg = _INTL("因为{2}{3}，{1}不会中毒！",
                         pbThis, immAlly.pbOfThis(true), immAlly.abilityName)
           when :BURN
-            msg = _INTL("{1} cannot be burned because of {2} {3}!",
+            msg = _INTL("因为{2}{3}，{1}不会被灼伤！",
                         pbThis, immAlly.pbOfThis(true), immAlly.abilityName)
           when :PARALYSIS
-            msg = _INTL("{1} cannot be paralyzed because of {2} {3}!",
+            msg = _INTL("因为{2}{3}，{1}不会被麻痹！",
                         pbThis, immAlly.pbOfThis(true), immAlly.abilityName)
           when :FROZEN
-            msg = _INTL("{1} cannot be frozen solid because of {2} {3}!",
+            msg = _INTL("因为{2}{3}，{1}不会被冻住！",
                         pbThis, immAlly.pbOfThis(true), immAlly.abilityName)
           end
         else
           case newStatus
-          when :SLEEP     then msg = _INTL("{1} stays awake because of its {2}!", pbThis, abilityName)
-          when :POISON    then msg = _INTL("{1} {2} prevents poisoning!", pbOfThis, abilityName)
-          when :BURN      then msg = _INTL("{1} {2} prevents burns!", pbOfThis, abilityName)
-          when :PARALYSIS then msg = _INTL("{1} {2} prevents paralysis!", pbOfThis, abilityName)
-          when :FROZEN    then msg = _INTL("{1} {2} prevents freezing!", pbOfThis, abilityName)
+          when :SLEEP     then msg = _INTL("由于{2}，{1}不会睡着！", pbThis, abilityName)
+          when :POISON    then msg = _INTL("{1}{2}阻止了中毒！", pbOfThis, abilityName)
+          when :BURN      then msg = _INTL("{1}{2}阻止了灼伤！", pbOfThis, abilityName)
+          when :PARALYSIS then msg = _INTL("{1}{2}阻止了麻痹！", pbOfThis, abilityName)
+          when :FROZEN    then msg = _INTL("{1}{2}阻止了冻住！", pbOfThis, abilityName)
           end
         end
         @battle.pbDisplay(msg)
@@ -168,7 +168,7 @@ class Battle::Battler
     # Safeguard immunity
     if pbOwnSide.effects[PBEffects::Safeguard] > 0 && !self_inflicted && move &&
        !(user && user.hasActiveAbility?(:INFILTRATOR))
-      @battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
+      @battle.pbDisplay(_INTL("{1}正受到神秘之幕的保护！", pbThis)) if showMessages
       return false
     end
     return true
@@ -238,19 +238,19 @@ class Battle::Battler
     else
       case newStatus
       when :SLEEP
-        @battle.pbDisplay(_INTL("{1} fell asleep!", pbThis))
+        @battle.pbDisplay(_INTL("{1}睡着了！", pbThis))
       when :POISON
         if newStatusCount > 0
-          @battle.pbDisplay(_INTL("{1} was badly poisoned!", pbThis))
+          @battle.pbDisplay(_INTL("{1}中剧毒了！", pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} was poisoned!", pbThis))
+          @battle.pbDisplay(_INTL("{1}中毒了！", pbThis))
         end
       when :BURN
-        @battle.pbDisplay(_INTL("{1} was burned!", pbThis))
+        @battle.pbDisplay(_INTL("{1}被灼伤了！", pbThis))
       when :PARALYSIS
-        @battle.pbDisplay(_INTL("{1} is paralyzed! It may be unable to move!", pbThis))
+        @battle.pbDisplay(_INTL("{1}麻痹了，很难使出招式！", pbThis))
       when :FROZEN
-        @battle.pbDisplay(_INTL("{1} was frozen solid!", pbThis))
+        @battle.pbDisplay(_INTL("{1}冻住了！", pbThis))
       end
     end
     PBDebug.log("[Status change] #{pbOfThis} sleep count is #{newStatusCount}") if newStatus == :SLEEP
@@ -423,15 +423,15 @@ class Battle::Battler
     yield if block_given?
     case self.status
     when :SLEEP
-      @battle.pbDisplay(_INTL("{1} is fast asleep.", pbThis))
+      @battle.pbDisplay(_INTL("{1}正在呼呼大睡。", pbThis))
     when :POISON
-      @battle.pbDisplay(_INTL("{1} was hurt by poison!", pbThis))
+      @battle.pbDisplay(_INTL("{1}受到了毒的伤害！", pbThis))
     when :BURN
-      @battle.pbDisplay(_INTL("{1} was hurt by its burn!", pbThis))
+      @battle.pbDisplay(_INTL("{1}受到了灼伤的伤害！", pbThis))
     when :PARALYSIS
-      @battle.pbDisplay(_INTL("{1} is paralyzed! It can't move!", pbThis))
+      @battle.pbDisplay(_INTL("{1}因身体麻痹而无法行动！", pbThis))
     when :FROZEN
-      @battle.pbDisplay(_INTL("{1} is frozen solid!", pbThis))
+      @battle.pbDisplay(_INTL("{1}因冻住了而无法行动！", pbThis))
     end
     PBDebug.log("[Status continues] #{pbOfThis} sleep count is #{@statusCount}") if self.status == :SLEEP
   end
@@ -441,11 +441,11 @@ class Battle::Battler
     self.status = :NONE
     if showMessages
       case oldStatus
-      when :SLEEP     then @battle.pbDisplay(_INTL("{1} woke up!", pbThis))
-      when :POISON    then @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", pbThis))
-      when :BURN      then @battle.pbDisplay(_INTL("{1}'s burn was healed.", pbThis))
-      when :PARALYSIS then @battle.pbDisplay(_INTL("{1} was cured of paralysis.", pbThis))
-      when :FROZEN    then @battle.pbDisplay(_INTL("{1} thawed out!", pbThis))
+      when :SLEEP     then @battle.pbDisplay(_INTL("{1}醒过来了！", pbThis))
+      when :POISON    then @battle.pbDisplay(_INTL("{1}中的毒彻底清除了！", pbThis))
+      when :BURN      then @battle.pbDisplay(_INTL("{1}的灼伤治愈了！", pbThis))
+      when :PARALYSIS then @battle.pbDisplay(_INTL("{1}的麻痹被解除了！", pbThis))
+      when :FROZEN    then @battle.pbDisplay(_INTL("{1}的冰冻被融化了！", pbThis))
       end
     end
     PBDebug.log("[Status change] #{pbOfThis} status was cured") if !showMessages
@@ -458,26 +458,26 @@ class Battle::Battler
   def pbCanConfuse?(user = nil, showMessages = true, move = nil, selfInflicted = false)
     return false if fainted?
     if @effects[PBEffects::Confusion] > 0
-      @battle.pbDisplay(_INTL("{1} is already confused.", pbThis)) if showMessages
+      @battle.pbDisplay(_INTL("{1}已经混乱了。", pbThis)) if showMessages
       return false
     end
     if @effects[PBEffects::Substitute] > 0 && !(move && move.ignoresSubstitute?(user)) &&
        !selfInflicted
-      @battle.pbDisplay(_INTL("But it failed!")) if showMessages
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if showMessages
       return false
     end
     # Terrains immunity
     if affectedByTerrain? && @battle.field.terrain == :Misty && Settings::MECHANICS_GENERATION >= 7
-      @battle.pbDisplay(_INTL("{1} surrounds itself with misty terrain!", pbThis)) if showMessages
+      @battle.pbDisplay(_INTL("{1}正受到薄雾场地的保护！", pbThis)) if showMessages
       return false
     end
     if (selfInflicted || !beingMoldBroken?) && hasActiveAbility?(:OWNTEMPO)
       if showMessages
         @battle.pbShowAbilitySplash(self)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} doesn't become confused!", pbThis))
+          @battle.pbDisplay(_INTL("{1}不会混乱！", pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} {2} prevents confusion!", pbOfThis, abilityName))
+          @battle.pbDisplay(_INTL("{1}{2}阻止了混乱！", pbOfThis, abilityName))
         end
         @battle.pbHideAbilitySplash(self)
       end
@@ -485,7 +485,7 @@ class Battle::Battler
     end
     if pbOwnSide.effects[PBEffects::Safeguard] > 0 && !selfInflicted &&
        !(user && user.hasActiveAbility?(:INFILTRATOR))
-      @battle.pbDisplay(_INTL("{1}'s team is protected by Safeguard!", pbThis)) if showMessages
+      @battle.pbDisplay(_INTL("{1}正受到神秘之幕的保护！", pbThis)) if showMessages
       return false
     end
     return true
@@ -498,7 +498,7 @@ class Battle::Battler
   def pbConfuse(msg = nil)
     @effects[PBEffects::Confusion] = pbConfusionDuration
     @battle.pbCommonAnimation("Confusion", self)
-    msg = _INTL("{1} became confused!", pbThis) if nil_or_empty?(msg)
+    msg = _INTL("{1}混乱了！", pbThis) if nil_or_empty?(msg)
     @battle.pbDisplay(msg)
     PBDebug.log("[Lingering effect] #{pbOfThis} confusion count is #{@effects[PBEffects::Confusion]}")
     # Confusion cures
@@ -523,22 +523,22 @@ class Battle::Battler
     return false if fainted?
     return false if !user || user.fainted?
     if @effects[PBEffects::Attract] >= 0
-      @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis)) if showMessages
+      @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis)) if showMessages
       return false
     end
     agender = user.gender
     ogender = gender
     if agender == 2 || ogender == 2 || agender == ogender
-      @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis)) if showMessages
+      @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis)) if showMessages
       return false
     end
     if hasActiveAbility?([:AROMAVEIL, :OBLIVIOUS]) && !beingMoldBroken?
       if showMessages
         @battle.pbShowAbilitySplash(self)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
+          @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} {2} prevents romance!", pbOfThis, abilityName))
+          @battle.pbDisplay(_INTL("{1}{2}阻止了着迷！", pbOfThis, abilityName))
         end
         @battle.pbHideAbilitySplash(self)
       end
@@ -549,9 +549,9 @@ class Battle::Battler
         if showMessages
           @battle.pbShowAbilitySplash(b)
           if Battle::Scene::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} is unaffected!", pbThis))
+            @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
           else
-            @battle.pbDisplay(_INTL("{1} {2} prevents romance!", b.pbOfThis, b.abilityName))
+            @battle.pbDisplay(_INTL("{1}{2}阻止了着迷！", b.pbOfThis, b.abilityName))
           end
           @battle.pbHideAbilitySplash(b)
         end
@@ -564,11 +564,11 @@ class Battle::Battler
   def pbAttract(user, msg = nil)
     @effects[PBEffects::Attract] = user.index
     @battle.pbCommonAnimation("Attract", self)
-    msg = _INTL("{1} fell in love!", pbThis) if nil_or_empty?(msg)
+    msg = _INTL("{1}着迷了！", pbThis) if nil_or_empty?(msg)
     @battle.pbDisplay(msg)
     # Destiny Knot
     if hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(self, false)
-      user.pbAttract(self, _INTL("{1} fell in love from the {2}!", user.pbThis(true), itemName))
+      user.pbAttract(self, _INTL("{2}让{1}着迷了！", user.pbThis(true), itemName))
     end
     # Attraction cures
     pbItemStatusCureCheck

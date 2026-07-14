@@ -45,45 +45,45 @@ end
 
 GameData::GenderRatio.register({
   :id            => :AlwaysMale,
-  :name          => _INTL("Always Male")
+  :name          => _INTL("只有雄性")
 })
 
 GameData::GenderRatio.register({
   :id            => :AlwaysFemale,
-  :name          => _INTL("Always Female")
+  :name          => _INTL("只有雌性")
 })
 
 GameData::GenderRatio.register({
   :id            => :Genderless,
-  :name          => _INTL("Genderless")
+  :name          => _INTL("无性别")
 })
 
 GameData::GenderRatio.register({
   :id            => :FemaleOneEighth,
-  :name          => _INTL("Female One Eighth"),
+  :name          => _INTL("1/8 雌性"),
   :female_chance => 32
 })
 
 GameData::GenderRatio.register({
   :id            => :Female25Percent,
-  :name          => _INTL("Female 25 Percent"),
+  :name          => _INTL("25% 雌性"),
   :female_chance => 64
 })
 
 GameData::GenderRatio.register({
   :id            => :Female50Percent,
-  :name          => _INTL("Female 50 Percent"),
+  :name          => _INTL("50% 雌性"),
   :female_chance => 128
 })
 
 GameData::GenderRatio.register({
   :id            => :Female75Percent,
-  :name          => _INTL("Female 75 Percent"),
+  :name          => _INTL("75% 雌性"),
   :female_chance => 192
 })
 
 GameData::GenderRatio.register({
   :id            => :FemaleSevenEighths,
-  :name          => _INTL("Female Seven Eighths"),
+  :name          => _INTL("7/8 雌性"),
   :female_chance => 224
 })

@@ -203,13 +203,13 @@ module SaveData
     return false if conversions_to_run.none?
     filepath = SaveData::DIRECTORY + SaveData.filename_from_index(save_data[:stats].save_filename_number || 0)
     File.open(filepath + ".bak", "wb") { |f| Marshal.dump(save_data, f) }
-    Console.echo_h1(_INTL("Converting save file"))
+    Console.echo_h1(_INTL("正在转换存档数据..."))
     conversions_to_run.each do |conversion|
       Console.echo_li("#{conversion.title}...")
       conversion.run(save_data)
       Console.echo_done(true)
     end
-    Console.echoln_li_done(_INTL("Successfully applied {1} save file conversion(s)", conversions_to_run.length))
+    Console.echoln_li_done(_INTL("成功应用{1}个存档转换", conversions_to_run.length))
     save_data[:essentials_version] = Essentials::VERSION
     save_data[:game_version] = Settings::GAME_VERSION
     return true

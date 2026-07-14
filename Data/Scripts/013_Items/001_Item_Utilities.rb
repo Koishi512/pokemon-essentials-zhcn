@@ -641,7 +641,7 @@ end
 
 def pbGainExpFromExpCandy(pkmn, base_amt, qty, screen)
   if pkmn.level >= GameData::GrowthRate.max_level || pkmn.shadowPokemon?
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     return false
   end
   pbSEPlay("Pkmn level up")
@@ -668,7 +668,7 @@ end
 
 def pbHPItem(pkmn, restoreHP, screen)
   if !pkmn.able? || pkmn.hp == pkmn.totalhp
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     return false
   end
   pbSEPlay("Use item in party")
@@ -761,7 +761,7 @@ def pbUseEVRaisingItem(stat, amt_per_use, qty, pkmn, happiness_type, screen, no_
     end
   end
   if !ret
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     return false
   end
   pbSEPlay("Use item in party")
@@ -795,7 +795,7 @@ def pbRaiseHappinessAndLowerEV(pkmn, screen, stat, qty, messages)
   h = pkmn.happiness < 255
   e = pkmn.ev[stat] > 0
   if !h && !e
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     return false
   end
   if h
@@ -816,7 +816,7 @@ end
 #===============================================================================
 def pbNatureChangingMint(new_nature, item, pkmn, screen)
   if pkmn.nature_for_stats == new_nature
-    screen.show_message(_INTL("It won't have any effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     return false
   end
   if !screen.show_confirm_message(_INTL("It might affect {1}'s stats. Are you sure you want to use it?", pkmn.name))
@@ -835,7 +835,7 @@ end
 #===============================================================================
 def pbBattleItemCanCureStatus?(status, pkmn, screen, showMessages)
   if !pkmn.able? || pkmn.status != status
-    screen.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    screen.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     return false
   end
   return true
@@ -843,7 +843,7 @@ end
 
 def pbBattleItemCanRaiseStat?(stat, battler, screen, showMessages)
   if !battler || !battler.pbCanRaiseStatStage?(stat, battler)
-    screen.pbDisplay(_INTL("It won't have any effect.")) if showMessages
+    screen.pbDisplay(_INTL("即便使用也无效果哦。")) if showMessages
     return false
   end
   return true

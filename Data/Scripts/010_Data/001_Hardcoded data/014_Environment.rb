@@ -36,103 +36,103 @@ end
 
 GameData::Environment.register({
   :id   => :None,
-  :name => _INTL("None")
+  :name => _INTL("无")
 })
 
 GameData::Environment.register({
   :id          => :Grass,
-  :name        => _INTL("Grass"),
+  :name        => _INTL("草地"),
   :battle_base => "grass"
 })
 
 GameData::Environment.register({
   :id          => :TallGrass,
-  :name        => _INTL("Tall grass"),
+  :name        => _INTL("高草"),
   :battle_base => "grass"
 })
 
 GameData::Environment.register({
   :id          => :MovingWater,
-  :name        => _INTL("Moving water"),
+  :name        => _INTL("流动的水"),
   :battle_base => "water"
 })
 
 GameData::Environment.register({
   :id          => :StillWater,
-  :name        => _INTL("Still water"),
+  :name        => _INTL("静止的水"),
   :battle_base => "water"
 })
 
 GameData::Environment.register({
   :id          => :Puddle,
-  :name        => _INTL("Puddle"),
+  :name        => _INTL("水洼"),
   :battle_base => "puddle"
 })
 
 GameData::Environment.register({
   :id   => :Underwater,
-  :name => _INTL("Underwater")
+  :name => _INTL("水下")
 })
 
 GameData::Environment.register({
   :id   => :Cave,
-  :name => _INTL("Cave")
+  :name => _INTL("洞穴")
 })
 
 GameData::Environment.register({
   :id   => :Rock,
-  :name => _INTL("Rock")
+  :name => _INTL("岩石")
 })
 
 GameData::Environment.register({
   :id          => :Sand,
-  :name        => _INTL("Sand"),
+  :name        => _INTL("沙地"),
   :battle_base => "sand"
 })
 
 GameData::Environment.register({
   :id   => :Forest,
-  :name => _INTL("Forest")
+  :name => _INTL("森林")
 })
 
 GameData::Environment.register({
   :id          => :ForestGrass,
-  :name        => _INTL("Forest grass"),
+  :name        => _INTL("森林草地"),
   :battle_base => "grass"
 })
 
 GameData::Environment.register({
   :id   => :Snow,
-  :name => _INTL("Snow")
+  :name => _INTL("雪地")
 })
 
 GameData::Environment.register({
   :id          => :Ice,
-  :name        => _INTL("Ice"),
+  :name        => _INTL("冰面"),
   :battle_base => "ice"
 })
 
 GameData::Environment.register({
   :id   => :Volcano,
-  :name => _INTL("Volcano")
+  :name => _INTL("火山")
 })
 
 GameData::Environment.register({
   :id   => :Graveyard,
-  :name => _INTL("Graveyard")
+  :name => _INTL("墓地")
 })
 
 GameData::Environment.register({
   :id   => :Sky,
-  :name => _INTL("Sky")
+  :name => _INTL("天空")
 })
 
 GameData::Environment.register({
   :id   => :Space,
-  :name => _INTL("Space")
+  :name => _INTL("太空")
 })
 
 GameData::Environment.register({
   :id   => :UltraSpace,
-  :name => _INTL("Ultra Space")
+  :name => _INTL("究极太空")
 })

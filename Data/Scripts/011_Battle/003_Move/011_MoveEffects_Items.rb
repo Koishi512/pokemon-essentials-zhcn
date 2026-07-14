@@ -19,7 +19,7 @@ class Battle::Move::UserTakesTargetItem < Battle::Move
     else
       @battle.swapHeldItems(user, target)
     end
-    @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!", user.pbThis, target.pbThis(true), user.itemName))
+    @battle.pbDisplay(_INTL("{1}从{2}那里夺取了{3}！", user.pbThis, target.pbThis(true), user.itemName))
     user.pbHeldItemTriggerCheck
   end
 end
@@ -36,7 +36,7 @@ class Battle::Move::TargetTakesUserItem < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.item || user.unlosableItem?(user.item)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -44,7 +44,7 @@ class Battle::Move::TargetTakesUserItem < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.item || target.unlosableItem?(user.item)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -53,9 +53,9 @@ class Battle::Move::TargetTakesUserItem < Battle::Move
   def pbEffectAgainstTarget(user, target)
     @battle.swapHeldItems(user, target)
     if Translation.more_possessive_messages?
-      @battle.pbDisplay(_INTL("{1} received {2} {3}!", target.pbThis, user.pbOfThis(true), target.itemName))
+      @battle.pbDisplay(_INTL("{1}得到了{2}{3}！", target.pbThis, user.pbOfThis(true), target.itemName))
     else
-      @battle.pbDisplay(_INTL("{1} received {2} from {3}!", target.pbThis, target.itemName, user.pbThis(true)))
+      @battle.pbDisplay(_INTL("{1}从{2}那里得到了{3}！", target.pbThis, target.itemName, user.pbThis(true)))
     end
     target.pbHeldItemTriggerCheck
   end
@@ -68,7 +68,7 @@ end
 class Battle::Move::UserTargetSwapItems < Battle::Move
   def pbMoveFailed?(user, targets)
     if user.wild?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -76,23 +76,23 @@ class Battle::Move::UserTargetSwapItems < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !user.item && !target.item
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.unlosableItem?(target.item) ||
        target.unlosableItem?(user.item) ||
        user.unlosableItem?(user.item) ||
        user.unlosableItem?(target.item)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.hasActiveAbility?(:STICKYHOLD) && !target.beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(target)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("But it failed to affect {1}!", target.pbThis(true)))
+          @battle.pbDisplay(_INTL("对于{1}没有起到效果！！", target.pbThis(true)))
         else
-          @battle.pbDisplay(_INTL("But it failed to affect {1} because of its {2}!",
+          @battle.pbDisplay(_INTL("因为{2}，对于{1}没有起到效果！！",
                                   target.pbThis(true), target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
@@ -104,9 +104,9 @@ class Battle::Move::UserTargetSwapItems < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     @battle.swapHeldItems(user, target)
-    @battle.pbDisplay(_INTL("{1} switched items with its opponent!", user.pbThis))
-    @battle.pbDisplay(_INTL("{1} obtained {2}.", user.pbThis, user.itemName)) if user.item
-    @battle.pbDisplay(_INTL("{1} obtained {2}.", target.pbThis, target.itemName)) if target.item
+    @battle.pbDisplay(_INTL("{1}互换了各自的道具！", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}获得了{2}！", user.pbThis, user.itemName)) if user.item
+    @battle.pbDisplay(_INTL("{1}获得了{2}！", target.pbThis, target.itemName)) if target.item
     user.pbHeldItemTriggerCheck
     target.pbHeldItemTriggerCheck
   end
@@ -120,7 +120,7 @@ class Battle::Move::RestoreUserConsumedItem < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.recycleItem || user.item
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -133,9 +133,9 @@ class Battle::Move::RestoreUserConsumedItem < Battle::Move
     user.effects[PBEffects::PickupUse]  = 0
     item_name = user.itemName
     if item_name.starts_with_vowel?
-      @battle.pbDisplay(_INTL("{1} found an {2}!", user.pbThis, item_name))
+      @battle.pbDisplay(_INTL("{1}找到了{2}！", user.pbThis, item_name))
     else
-      @battle.pbDisplay(_INTL("{1} found a {2}!", user.pbThis, item_name))
+      @battle.pbDisplay(_INTL("{1}找到了{2}！", user.pbThis, item_name))
     end
     user.pbHeldItemTriggerCheck
   end
@@ -165,7 +165,7 @@ class Battle::Move::RemoveTargetItem < Battle::Move
     itemName = target.itemName
     target.pbRemoveItem
     target.knockOffItem
-    @battle.pbDisplay(_INTL("{1} dropped its {2}!", target.pbThis, itemName))
+    @battle.pbDisplay(_INTL("{1}掉落了{2}！", target.pbThis, itemName))
   end
 end
 
@@ -181,7 +181,7 @@ class Battle::Move::DestroyTargetBerryOrGem < Battle::Move
     return if target.hasActiveAbility?(:STICKYHOLD) && !target.beingMoldBroken?
     item_name = target.itemName
     target.pbRemoveItem
-    @battle.pbDisplay(_INTL("{1} {2} was incinerated!", target.pbOfThis, item_name))
+    @battle.pbDisplay(_INTL("{1}{2}被烧净了！", target.pbOfThis, item_name))
   end
 end
 
@@ -197,16 +197,16 @@ class Battle::Move::CorrodeTargetItem < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.item || target.unlosableItem?(target.item) ||
        target.effects[PBEffects::Substitute] > 0
-      @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("{1}没有受到影响！", target.pbThis)) if show_message
       return true
     end
     if target.hasActiveAbility?(:STICKYHOLD) && !target.beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(target)
         if Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis))
+          @battle.pbDisplay(_INTL("{1}没有受到影响！", target.pbThis))
         else
-          @battle.pbDisplay(_INTL("{1} is unaffected because of its {2}!",
+          @battle.pbDisplay(_INTL("因为{2}，对于{1}没有起到效果！！",
                                   target.pbThis(true), target.abilityName))
         end
         @battle.pbHideAbilitySplash(target)
@@ -214,7 +214,7 @@ class Battle::Move::CorrodeTargetItem < Battle::Move
       return true
     end
     if @battle.corrosiveGas[target.index % 2][target.pokemonIndex]
-      @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("{1}没有受到影响！", target.pbThis)) if show_message
       return true
     end
     return false
@@ -222,7 +222,7 @@ class Battle::Move::CorrodeTargetItem < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     @battle.corrosiveGas[target.index % 2][target.pokemonIndex] = true
-    @battle.pbDisplay(_INTL("{1} corroded {2} {3}!",
+    @battle.pbDisplay(_INTL("{1}把{2}{3}融化了！",
                             user.pbThis, target.pbOfThis(true), target.itemName))
   end
 end
@@ -236,7 +236,7 @@ class Battle::Move::StartTargetCannotUseItem < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::Embargo] > 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -244,7 +244,7 @@ class Battle::Move::StartTargetCannotUseItem < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Embargo] = 5
-    @battle.pbDisplay(_INTL("{1} can't use items anymore!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}无法使用道具了！", target.pbThis))
   end
 end
 
@@ -256,10 +256,10 @@ class Battle::Move::StartNegateHeldItems < Battle::Move
   def pbEffectGeneral(user)
     if @battle.field.effects[PBEffects::MagicRoom] > 0
       @battle.field.effects[PBEffects::MagicRoom] = 0
-      @battle.pbDisplay(_INTL("The area returned to normal!"))
+      @battle.pbDisplay(_INTL("空间恢复正常了！"))
     else
       @battle.field.effects[PBEffects::MagicRoom] = 5
-      @battle.pbDisplay(_INTL("It created a bizarre area in which Pokémon's held items lose their effects!"))
+      @battle.pbDisplay(_INTL("凭空制造出了会让持有道具的效果消失的空间！"))
     end
   end
 
@@ -285,7 +285,7 @@ class Battle::Move::UserConsumeBerryRaiseDefense2 < Battle::Move::StatUpMove
     item = user.item
     if !item || !item.is_berry? || !user.itemActive?
       if showMessages
-        msg = _INTL("{1} can't use that move because it doesn't have a Berry!", user.pbThis)
+        msg = _INTL("{1}没有携带树果，无法使出招式！", user.pbThis)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -297,7 +297,7 @@ class Battle::Move::UserConsumeBerryRaiseDefense2 < Battle::Move::StatUpMove
     # NOTE: Unnerve does not stop a Pokémon using this move.
     item = user.item
     if !item || !item.is_berry? || !user.itemActive?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return super
@@ -305,7 +305,7 @@ class Battle::Move::UserConsumeBerryRaiseDefense2 < Battle::Move::StatUpMove
 
   def pbEffectGeneral(user)
     super
-    @battle.pbDisplay(_INTL("{1} ate its {2}!", user.pbThis, user.itemName))
+    @battle.pbDisplay(_INTL("{1}吃掉了{2}！", user.pbThis, user.itemName))
     item = user.item
     user.pbConsumeItem(true, false)   # Don't trigger Symbiosis yet
     user.pbHeldItemTriggerCheck(item.id, false)
@@ -330,14 +330,14 @@ class Battle::Move::AllBattlersConsumeBerry < Battle::Move
       break
     end
     if failed
-      @battle.pbDisplay(_INTL("But nothing happened!"))
+      @battle.pbDisplay(_INTL("但是，什么也没有发生！"))
       return true
     end
     return false
   end
 
   def pbOnStartUse(user, targets)
-    @battle.pbDisplay(_INTL("It's teatime! Everyone dug in to their Berries!"))
+    @battle.pbDisplay(_INTL("大家开茶会，吃了树果！"))
   end
 
   def pbFailsAgainstTarget?(user, target, show_message)
@@ -371,7 +371,7 @@ class Battle::Move::UserConsumeTargetBerry < Battle::Move
     itemName = target.itemName
     user.setBelched
     target.pbRemoveItem
-    @battle.pbDisplay(_INTL("{1} stole and ate its target's {2}!", user.pbThis, itemName))
+    @battle.pbDisplay(_INTL("{1}夺取并吃掉了{2}！", user.pbThis, itemName))
     user.pbHeldItemTriggerCheck(item.id, false)
     user.pbSymbiosis
   end
@@ -392,7 +392,7 @@ class Battle::Move::ThrowUserItemAtTarget < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if @willFail
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -402,7 +402,7 @@ class Battle::Move::ThrowUserItemAtTarget < Battle::Move
     super
     pbCheckFlingSuccess(user)
     if !@willFail
-      @battle.pbDisplay(_INTL("{1} flung its {2}!", user.pbThis, user.itemName))
+      @battle.pbDisplay(_INTL("{1}投掷了{2}！", user.pbThis, user.itemName))
     end
   end
 

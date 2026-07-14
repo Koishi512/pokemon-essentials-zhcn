@@ -27,7 +27,7 @@ end
 class Battle::Move::SleepTargetIfUserDarkrai < Battle::Move::SleepTarget
   def pbMoveFailed?(user, targets)
     if !user.isSpecies?(:DARKRAI) && user.effects[PBEffects::TransformSpecies] != :DARKRAI
-      @battle.pbDisplay(_INTL("But {1} can't use the move!", user.pbThis))
+      @battle.pbDisplay(_INTL("但是，{1}无法使用！", user.pbThis))
       return true
     end
     return false
@@ -45,7 +45,7 @@ class Battle::Move::SleepTargetChangeUserMeloettaForm < Battle::Move::SleepTarge
     return if !user.isSpecies?(:MELOETTA)
     return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect > 0
     newForm = (user.form + 1) % 2
-    user.pbChangeForm(newForm, _INTL("{1} transformed!", user.pbThis))
+    user.pbChangeForm(newForm, _INTL("{1}变成其他样子了！", user.pbThis))
   end
 end
 
@@ -57,7 +57,7 @@ class Battle::Move::SleepTargetNextTurn < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::Yawn] > 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return true if !target.pbCanSleep?(user, true, self)
@@ -66,7 +66,7 @@ class Battle::Move::SleepTargetNextTurn < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Yawn] = 2
-    @battle.pbDisplay(_INTL("{1} made {2} drowsy!", user.pbThis, target.pbThis(true)))
+    @battle.pbDisplay(_INTL("{1}让{2}产生睡意了！", user.pbThis, target.pbThis(true)))
   end
 end
 
@@ -114,7 +114,7 @@ class Battle::Move::PoisonTargetLowerTargetSpeed1 < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.pbCanPoison?(user, false, self) &&
        !target.pbCanLowerStatStage?(@statDown[0], user, self)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -138,30 +138,30 @@ class Battle::Move::PoisonTargetRemoveUserBindingAndEntryHazards < Battle::Move:
     if user.effects[PBEffects::Trapping] > 0
       trapMove = GameData::Move.get(user.effects[PBEffects::TrappingMove]).name
       trapUser = @battle.battlers[user.effects[PBEffects::TrappingUser]]
-      @battle.pbDisplay(_INTL("{1} got free of {2} {3}!", user.pbThis, trapUser.pbOfThis(true), trapMove))
+      @battle.pbDisplay(_INTL("{1}挣脱了{2}{3}！", user.pbThis, trapUser.pbOfThis(true), trapMove))
       user.effects[PBEffects::Trapping]     = 0
       user.effects[PBEffects::TrappingMove] = nil
       user.effects[PBEffects::TrappingUser] = -1
     end
     if user.effects[PBEffects::LeechSeed] >= 0
       user.effects[PBEffects::LeechSeed] = -1
-      @battle.pbDisplay(_INTL("{1} shed Leech Seed!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}挣脱了寄生种子！", user.pbThis))
     end
     if user.pbOwnSide.effects[PBEffects::StealthRock]
       user.pbOwnSide.effects[PBEffects::StealthRock] = false
-      @battle.pbDisplay(_INTL("{1} blew away stealth rocks!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}吹飞了隐形岩！", user.pbThis))
     end
     if user.pbOwnSide.effects[PBEffects::Spikes] > 0
       user.pbOwnSide.effects[PBEffects::Spikes] = 0
-      @battle.pbDisplay(_INTL("{1} blew away spikes!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}吹飞了撒菱！", user.pbThis))
     end
     if user.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
       user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
-      @battle.pbDisplay(_INTL("{1} blew away poison spikes!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}吹飞了毒菱！", user.pbThis))
     end
     if user.pbOwnSide.effects[PBEffects::StickyWeb]
       user.pbOwnSide.effects[PBEffects::StickyWeb] = false
-      @battle.pbDisplay(_INTL("{1} blew away sticky webs!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}吹飞了黏黏网！", user.pbThis))
     end
   end
 end
@@ -210,7 +210,7 @@ end
 class Battle::Move::ParalyzeTargetIfNotTypeImmune < Battle::Move::ParalyzeTarget
   def pbFailsAgainstTarget?(user, target, show_message)
     if Effectiveness.ineffective?(target.damageState.typeMod)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
       return true
     end
     return super
@@ -422,7 +422,7 @@ end
 class Battle::Move::GiveUserStatusToTarget < Battle::Move
   def pbMoveFailed?(user, targets)
     if user.status == :NONE
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -430,7 +430,7 @@ class Battle::Move::GiveUserStatusToTarget < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.pbCanInflictStatus?(user.status, user, false, self)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -441,19 +441,19 @@ class Battle::Move::GiveUserStatusToTarget < Battle::Move
     case user.status
     when :SLEEP
       target.pbSleep(user)
-      msg = _INTL("{1} woke up.", user.pbThis)
+      msg = _INTL("{1}醒过来了！", user.pbThis)
     when :POISON
       target.pbPoison(user, nil, user.statusCount != 0)
-      msg = _INTL("{1} was cured of its poisoning.", user.pbThis)
+      msg = _INTL("{1}的毒消失得干干净净！", user.pbThis)
     when :BURN
       target.pbBurn(user)
-      msg = _INTL("{1}'s burn was healed.", user.pbThis)
+      msg = _INTL("{1}的灼伤治愈了！", user.pbThis)
     when :PARALYSIS
       target.pbParalyze(user)
-      msg = _INTL("{1} was cured of paralysis.", user.pbThis)
+      msg = _INTL("{1}身体的麻痹状态消除了！", user.pbThis)
     when :FROZEN
       target.pbFreeze(user)
-      msg = _INTL("{1} was thawed out.", user.pbThis)
+      msg = _INTL("{1}身体的冰融化了！", user.pbThis)
     end
     if msg != ""
       user.pbCureStatus(false)
@@ -470,7 +470,7 @@ class Battle::Move::CureUserBurnPoisonParalysis < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if ![:BURN, :POISON, :PARALYSIS].include?(user.status)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -481,11 +481,11 @@ class Battle::Move::CureUserBurnPoisonParalysis < Battle::Move
     user.pbCureStatus(false)
     case old_status
     when :BURN
-      @battle.pbDisplay(_INTL("{1} healed its burn!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}的灼伤治愈了！", user.pbThis))
     when :POISON
-      @battle.pbDisplay(_INTL("{1} cured its poisoning!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}的毒消失得干干净净！", user.pbThis))
     when :PARALYSIS
-      @battle.pbDisplay(_INTL("{1} cured its paralysis!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}身体的麻痹状态消除了！", user.pbThis))
     end
   end
 end
@@ -506,7 +506,7 @@ class Battle::Move::CureUserPartyStatus < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if @battle.pbParty(user.index).none? { |pkmn| pkmn&.able? && pkmn.status != :NONE }
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -527,15 +527,15 @@ class Battle::Move::CureUserPartyStatus < Battle::Move
     end
     case oldStatus
     when :SLEEP
-      @battle.pbDisplay(_INTL("{1} was woken from sleep.", curedName))
+      @battle.pbDisplay(_INTL("{1}从睡眠中被叫醒了！", curedName))
     when :POISON
-      @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", curedName))
+      @battle.pbDisplay(_INTL("{1}中的毒彻底清除了！", curedName))
     when :BURN
-      @battle.pbDisplay(_INTL("{1}'s burn was healed.", curedName))
+      @battle.pbDisplay(_INTL("{1}的灼伤治愈了！", curedName))
     when :PARALYSIS
-      @battle.pbDisplay(_INTL("{1} was cured of paralysis.", curedName))
+      @battle.pbDisplay(_INTL("{1}的麻痹被解除了！", curedName))
     when :FROZEN
-      @battle.pbDisplay(_INTL("{1} was thawed out.", curedName))
+      @battle.pbDisplay(_INTL("{1}身体的冰融化了！", curedName))
     end
   end
 
@@ -566,9 +566,9 @@ class Battle::Move::CureUserPartyStatus < Battle::Move
     super
     case @id
     when :AROMATHERAPY
-      @battle.pbDisplay(_INTL("A soothing aroma wafted through the area!"))
+      @battle.pbDisplay(_INTL("怡人的香气扩散了开来！"))
     when :HEALBELL
-      @battle.pbDisplay(_INTL("A bell chimed!"))
+      @battle.pbDisplay(_INTL("铃声响彻四周！"))
     end
   end
 end
@@ -594,7 +594,7 @@ class Battle::Move::StartUserSideImmunityToInflictedStatus < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if user.pbOwnSide.effects[PBEffects::Safeguard] > 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -602,7 +602,7 @@ class Battle::Move::StartUserSideImmunityToInflictedStatus < Battle::Move
 
   def pbEffectGeneral(user)
     user.pbOwnSide.effects[PBEffects::Safeguard] = 5
-    @battle.pbDisplay(_INTL("{1} became cloaked in a mystical veil!", user.pbTeam))
+    @battle.pbDisplay(_INTL("{1}被神秘之幕包围了！", user.pbTeam))
   end
 end
 
@@ -632,7 +632,7 @@ class Battle::Move::FlinchTargetFailsIfUserNotAsleep < Battle::Move::FlinchTarge
 
   def pbMoveFailed?(user, targets)
     if !user.asleep?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -646,7 +646,7 @@ end
 class Battle::Move::FlinchTargetFailsIfNotUserFirstTurn < Battle::Move::FlinchTarget
   def pbMoveFailed?(user, targets)
     if user.turnCount > 1
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -666,7 +666,7 @@ class Battle::Move::FlinchTargetFailsIfTargetNotUsingPriorityMove < Battle::Move
       end
     end
     if failed
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -741,7 +741,7 @@ class Battle::Move::ConfuseTargetCrashDamageIfFails < Battle::Move::ConfuseTarge
 
   def pbCrashDamage(user)
     return if !user.takesIndirectDamage?
-    @battle.pbDisplay(_INTL("{1} kept going and crashed!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}因势头过猛而撞到了地面！", user.pbThis))
     @battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(user.totalhp / 2, false)
     user.pbItemHPHealCheck
@@ -820,7 +820,7 @@ class Battle::Move::SetUserTypesBasedOnEnvironment < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.canChangeType?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     @newType = :NORMAL
@@ -832,7 +832,7 @@ class Battle::Move::SetUserTypesBasedOnEnvironment < Battle::Move
       @newType = :NORMAL if !GameData::Type.exists?(@newType)
     end
     if !GameData::Type.exists?(@newType) || !user.pbHasOtherType?(@newType)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -841,7 +841,7 @@ class Battle::Move::SetUserTypesBasedOnEnvironment < Battle::Move
   def pbEffectGeneral(user)
     user.pbChangeTypes(@newType)
     typeName = GameData::Type.get(@newType).name
-    @battle.pbDisplay(_INTL("{1}'s type changed to {2}!", user.pbThis, typeName))
+    @battle.pbDisplay(_INTL("{1}变身成了{2}属性！", user.pbThis, typeName))
   end
 end
 
@@ -854,7 +854,7 @@ class Battle::Move::SetUserTypesToResistLastAttack < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.canChangeType?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -863,7 +863,7 @@ class Battle::Move::SetUserTypesToResistLastAttack < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.lastMoveUsed || !target.lastMoveUsedType ||
        GameData::Type.get(target.lastMoveUsedType).pseudo_type
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     @newTypes = []
@@ -873,7 +873,7 @@ class Battle::Move::SetUserTypesToResistLastAttack < Battle::Move
       @newTypes.push(t.id)
     end
     if @newTypes.length == 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -883,8 +883,8 @@ class Battle::Move::SetUserTypesToResistLastAttack < Battle::Move
     newType = @newTypes[@battle.pbRandom(@newTypes.length)]
     user.pbChangeTypes(newType)
     typeName = GameData::Type.get(newType).name
-    @battle.pbDisplay(_INTL("{1}'s type changed to {2}!", user.pbThis, typeName))
-  end
+      @battle.pbDisplay(_INTL("{1}变身成了{2}属性！", user.pbThis, typeName))
+    end
 end
 
 #===============================================================================
@@ -895,7 +895,7 @@ class Battle::Move::SetUserTypesToTargetTypes < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.canChangeType?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -904,12 +904,12 @@ class Battle::Move::SetUserTypesToTargetTypes < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     newTypes = target.pbTypes(true)
     if newTypes.length == 0   # Target has no type to copy
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if user.pbTypes == target.pbTypes &&
        user.effects[PBEffects::ExtraType] == target.effects[PBEffects::ExtraType]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -917,7 +917,7 @@ class Battle::Move::SetUserTypesToTargetTypes < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     user.pbChangeTypes(target)
-    @battle.pbDisplay(_INTL("{1}'s type changed to match {2}'s!",
+    @battle.pbDisplay(_INTL("{1}的属性变成了与{2}相同的属性！",
                             user.pbThis, target.pbThis(true)))
   end
 end
@@ -932,7 +932,7 @@ class Battle::Move::SetUserTypesToUserMoveType < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.canChangeType?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     userTypes = user.pbTypes(true)
@@ -944,7 +944,7 @@ class Battle::Move::SetUserTypesToUserMoveType < Battle::Move
       @newTypes.push(m.type) if !@newTypes.include?(m.type)
     end
     if @newTypes.length == 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -954,7 +954,7 @@ class Battle::Move::SetUserTypesToUserMoveType < Battle::Move
     newType = @newTypes[@battle.pbRandom(@newTypes.length)]
     user.pbChangeTypes(newType)
     typeName = GameData::Type.get(newType).name
-    @battle.pbDisplay(_INTL("{1}'s type changed to {2}!", user.pbThis, typeName))
+    @battle.pbDisplay(_INTL("{1}变身成了{2}属性！", user.pbThis, typeName))
   end
 end
 
@@ -967,7 +967,7 @@ class Battle::Move::SetTargetTypesToPsychic < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.canChangeType? || !GameData::Type.exists?(:PSYCHIC) ||
        !target.pbHasOtherType?(:PSYCHIC)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -976,7 +976,7 @@ class Battle::Move::SetTargetTypesToPsychic < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.pbChangeTypes(:PSYCHIC)
     typeName = GameData::Type.get(:PSYCHIC).name
-    @battle.pbDisplay(_INTL("{1}'s type changed to {2}!", target.pbThis, typeName))
+    @battle.pbDisplay(_INTL("{1}的属性变成了{2}！", target.pbThis, typeName))
   end
 end
 
@@ -989,7 +989,7 @@ class Battle::Move::SetTargetTypesToWater < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.canChangeType? || !GameData::Type.exists?(:WATER) ||
        !target.pbHasOtherType?(:WATER)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -998,7 +998,7 @@ class Battle::Move::SetTargetTypesToWater < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.pbChangeTypes(:WATER)
     typeName = GameData::Type.get(:WATER).name
-    @battle.pbDisplay(_INTL("{1}'s type changed to {2}!", target.pbThis, typeName))
+    @battle.pbDisplay(_INTL("{1}的属性变成了{2}！", target.pbThis, typeName))
   end
 end
 
@@ -1010,7 +1010,7 @@ class Battle::Move::AddGhostTypeToTarget < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.canChangeType? || !GameData::Type.exists?(:GHOST) || target.pbHasType?(:GHOST)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1019,7 +1019,7 @@ class Battle::Move::AddGhostTypeToTarget < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::ExtraType] = :GHOST
     typeName = GameData::Type.get(:GHOST).name
-    @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
+    @battle.pbDisplay(_INTL("{1}变身成了{2}属性！", target.pbThis, typeName))
   end
 end
 
@@ -1031,7 +1031,7 @@ class Battle::Move::AddGrassTypeToTarget < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.canChangeType? || !GameData::Type.exists?(:GRASS) || target.pbHasType?(:GRASS)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1040,7 +1040,7 @@ class Battle::Move::AddGrassTypeToTarget < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::ExtraType] = :GRASS
     typeName = GameData::Type.get(:GRASS).name
-    @battle.pbDisplay(_INTL("{1} transformed into the {2} type!", target.pbThis, typeName))
+    @battle.pbDisplay(_INTL("{1}变身成了{2}属性！", target.pbThis, typeName))
   end
 end
 
@@ -1050,7 +1050,7 @@ end
 class Battle::Move::UserLosesFireType < Battle::Move
   def pbMoveFailed?(user, targets)
     if !user.pbHasType?(:FIRE)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1059,7 +1059,7 @@ class Battle::Move::UserLosesFireType < Battle::Move
   def pbEffectAfterAllHits(user, target)
     if !user.effects[PBEffects::BurnUp]
       user.effects[PBEffects::BurnUp] = true
-      @battle.pbDisplay(_INTL("{1} burned itself out!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}的火焰燃尽了！", user.pbThis))
     end
   end
 end
@@ -1071,7 +1071,7 @@ end
 class Battle::Move::UserLosesElectricType < Battle::Move
   def pbMoveFailed?(user, targets)
     if !user.pbHasType?(:ELECTRIC)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1080,7 +1080,7 @@ class Battle::Move::UserLosesElectricType < Battle::Move
   def pbEffectAfterAllHits(user, target)
     if !user.effects[PBEffects::DoubleShock]
       user.effects[PBEffects::DoubleShock] = true
-      @battle.pbDisplay(_INTL("{1} used up all its electricity!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}用尽电力了！", user.pbThis))
     end
   end
 end
@@ -1093,7 +1093,7 @@ class Battle::Move::SetTargetAbilityToSimple < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !GameData::Ability.exists?(:SIMPLE)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1101,7 +1101,7 @@ class Battle::Move::SetTargetAbilityToSimple < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.unlosableAbility? || [:SIMPLE, :TRUANT].include?(target.ability_id)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1112,7 +1112,7 @@ class Battle::Move::SetTargetAbilityToSimple < Battle::Move
     oldAbil = target.ability
     target.ability = :SIMPLE
     @battle.pbReplaceAbilitySplash(target)
-    @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, target.abilityName))
+    @battle.pbDisplay(_INTL("{1}的特性变为{2}了！", target.pbThis, target.abilityName))
     @battle.pbHideAbilitySplash(target)
     target.pbOnLosingAbility(oldAbil)
     target.pbTriggerAbilityOnGainingIt
@@ -1127,7 +1127,7 @@ class Battle::Move::SetTargetAbilityToInsomnia < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !GameData::Ability.exists?(:INSOMNIA)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1135,7 +1135,7 @@ class Battle::Move::SetTargetAbilityToInsomnia < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.unlosableAbility? || [:INSOMNIA, :TRUANT].include?(target.ability_id)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1146,7 +1146,7 @@ class Battle::Move::SetTargetAbilityToInsomnia < Battle::Move
     oldAbil = target.ability
     target.ability = :INSOMNIA
     @battle.pbReplaceAbilitySplash(target)
-    @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, target.abilityName))
+    @battle.pbDisplay(_INTL("{1}的特性变为{2}了！", target.pbThis, target.abilityName))
     @battle.pbHideAbilitySplash(target)
     target.pbOnLosingAbility(oldAbil)
     target.pbTriggerAbilityOnGainingIt
@@ -1161,7 +1161,7 @@ class Battle::Move::SetUserAbilityToTargetAbility < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if user.unlosableAbility?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1169,12 +1169,12 @@ class Battle::Move::SetUserAbilityToTargetAbility < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.ability || user.ability == target.ability
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.ungainableAbility? ||
        [:HADRONENGINE, :ORICHALCUMPULSE].include?(target.ability_id)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1185,7 +1185,7 @@ class Battle::Move::SetUserAbilityToTargetAbility < Battle::Move
     oldAbil = user.ability
     user.ability = target.ability
     @battle.pbReplaceAbilitySplash(user)
-    @battle.pbDisplay(_INTL("{1} copied {2} {3}!",
+    @battle.pbDisplay(_INTL("{1}复制了{2}{3}！",
                             user.pbThis, target.pbOfThis(true), target.abilityName))
     @battle.pbHideAbilitySplash(user)
     user.pbOnLosingAbility(oldAbil)
@@ -1204,7 +1204,7 @@ class Battle::Move::SetUserAndAlliesAbilityToTargetAbility < Battle::Move
     @valid_targets = [user] + user.allAllies
     @valid_targets.delete_if { |battler| battler.unlosableAbility? }
     if @valid_targets.empty?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1212,17 +1212,17 @@ class Battle::Move::SetUserAndAlliesAbilityToTargetAbility < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.ability
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     @valid_targets.delete_if { |battler| battler.ability_id == target.ability_id }
     if @valid_targets.empty?
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.ungainableAbility? ||
        [:HADRONENGINE, :ORICHALCUMPULSE].include?(target.ability_id)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1236,7 +1236,7 @@ class Battle::Move::SetUserAndAlliesAbilityToTargetAbility < Battle::Move
       @battle.pbShowAbilitySplash(battler, true, false)
       battler.ability = target.ability
       @battle.pbReplaceAbilitySplash(battler)
-      @battle.pbDisplay(_INTL("{1} copied {2} {3}!",
+      @battle.pbDisplay(_INTL("{1}复制了{2}{3}！",
                               battler.pbThis, target.pbOfThis(true), target.abilityName))
       @battle.pbHideAbilitySplash(battler)
     end
@@ -1254,11 +1254,11 @@ class Battle::Move::SetTargetAbilityToUserAbility < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.ability
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if user.ungainableAbility?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1267,7 +1267,7 @@ class Battle::Move::SetTargetAbilityToUserAbility < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.unlosableAbility? ||
        [:HADRONENGINE, :ORICHALCUMPULSE, :TRUANT].include?(target.ability_id)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1278,7 +1278,7 @@ class Battle::Move::SetTargetAbilityToUserAbility < Battle::Move
     oldAbil = target.ability
     target.ability = user.ability
     @battle.pbReplaceAbilitySplash(target)
-    @battle.pbDisplay(_INTL("{1} acquired {2}!", target.pbThis, target.abilityName))
+    @battle.pbDisplay(_INTL("{1}的特性变为{2}了！", target.pbThis, target.abilityName))
     @battle.pbHideAbilitySplash(target)
     target.pbOnLosingAbility(oldAbil)
     target.pbTriggerAbilityOnGainingIt
@@ -1293,16 +1293,16 @@ class Battle::Move::UserTargetSwapAbilities < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !user.ability
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if user.unlosableAbility?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if user.ungainableAbility? ||
        [:HADRONENGINE, :ORICHALCUMPULSE].include?(user.ability_id)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1311,16 +1311,16 @@ class Battle::Move::UserTargetSwapAbilities < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.ability ||
        (user.ability == target.ability && Settings::MECHANICS_GENERATION <= 5)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.unlosableAbility?
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.ungainableAbility? ||
        [:HADRONENGINE, :ORICHALCUMPULSE].include?(target.ability_id)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1340,9 +1340,9 @@ class Battle::Move::UserTargetSwapAbilities < Battle::Move
       @battle.pbReplaceAbilitySplash(target)
     end
     if Battle::Scene::USE_ABILITY_SPLASH
-      @battle.pbDisplay(_INTL("{1} swapped Abilities with its target!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}互换了各自的特性！", user.pbThis))
     else
-      @battle.pbDisplay(_INTL("{1} swapped its {2} Ability with its target's {3} Ability!",
+      @battle.pbDisplay(_INTL("{1}互换了其{2}特性与目标的{3}特性！",
                               user.pbThis, target.abilityName, user.abilityName))
     end
     if user.opposes?(target)
@@ -1364,7 +1364,7 @@ class Battle::Move::NegateTargetAbility < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.unstoppableAbility? || target.effects[PBEffects::GastroAcid]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1373,7 +1373,7 @@ class Battle::Move::NegateTargetAbility < Battle::Move
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::GastroAcid] = true
     target.effects[PBEffects::Truant]     = false
-    @battle.pbDisplay(_INTL("{1} Ability was suppressed!", target.pbOfThis))
+    @battle.pbDisplay(_INTL("{1}特性变得无效了！", target.pbOfThis))
     target.pbOnLosingAbility(target.ability, true)
   end
 end
@@ -1391,7 +1391,7 @@ class Battle::Move::NegateTargetAbilityIfTargetActed < Battle::Move
               @battle.choices[target.index][0] == :Shift) && target.movedThisRound?)
     target.effects[PBEffects::GastroAcid] = true
     target.effects[PBEffects::Truant]     = false
-    @battle.pbDisplay(_INTL("{1} Ability was suppressed!", target.pbOfThis))
+    @battle.pbDisplay(_INTL("{1}特性变得无效了！", target.pbOfThis))
     target.pbOnLosingAbility(target.ability, true)
   end
 end
@@ -1428,7 +1428,7 @@ class Battle::Move::StartUserAirborne < Battle::Move
     if user.effects[PBEffects::Ingrain] ||
        user.effects[PBEffects::SmackDown] ||
        user.effects[PBEffects::MagnetRise] > 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1436,7 +1436,7 @@ class Battle::Move::StartUserAirborne < Battle::Move
 
   def pbEffectGeneral(user)
     user.effects[PBEffects::MagnetRise] = 5
-    @battle.pbDisplay(_INTL("{1} levitated with electromagnetism!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}因电磁力浮了起来！", user.pbThis))
   end
 end
 
@@ -1451,7 +1451,7 @@ class Battle::Move::StartTargetAirborneAndAlwaysHitByMoves < Battle::Move
     if target.effects[PBEffects::Ingrain] ||
        target.effects[PBEffects::SmackDown] ||
        target.effects[PBEffects::Telekinesis] > 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     if target.isSpecies?(:DIGLETT) ||
@@ -1459,7 +1459,7 @@ class Battle::Move::StartTargetAirborneAndAlwaysHitByMoves < Battle::Move
        target.isSpecies?(:SANDYGAST) ||
        target.isSpecies?(:PALOSSAND) ||
        (target.isSpecies?(:GENGAR) && target.mega?)
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -1467,7 +1467,7 @@ class Battle::Move::StartTargetAirborneAndAlwaysHitByMoves < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Telekinesis] = 3
-    @battle.pbDisplay(_INTL("{1} was hurled into the air!", target.pbThis))
+    @battle.pbDisplay(_INTL("让{1}浮在了空中！", target.pbThis))
   end
 end
 
@@ -1505,7 +1505,7 @@ class Battle::Move::HitsTargetInSkyGroundsTarget < Battle::Move
     end
     target.effects[PBEffects::MagnetRise]  = 0
     target.effects[PBEffects::Telekinesis] = 0
-    @battle.pbDisplay(_INTL("{1} fell straight down!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}被击落，掉到了地面！", target.pbThis))
   end
 end
 
@@ -1516,7 +1516,7 @@ end
 class Battle::Move::StartGravity < Battle::Move
   def pbMoveFailed?(user, targets)
     if @battle.field.effects[PBEffects::Gravity] > 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1524,7 +1524,7 @@ class Battle::Move::StartGravity < Battle::Move
 
   def pbEffectGeneral(user)
     @battle.field.effects[PBEffects::Gravity] = 5
-    @battle.pbDisplay(_INTL("Gravity intensified!"))
+    @battle.pbDisplay(_INTL("重力变强了！"))
     @battle.allBattlers(true).each do |b|
       showMessage = false
       if b.inTwoTurnAttack?("TwoTurnAttackInvulnerableInSky",
@@ -1543,7 +1543,7 @@ class Battle::Move::StartGravity < Battle::Move
         showMessage = true
       end
       if showMessage
-        @battle.pbDisplay(_INTL("{1} couldn't stay airborne because of gravity!", b.pbThis))
+        @battle.pbDisplay(_INTL("{1}因受到重力影响而无法待在空中！", b.pbThis))
       end
     end
   end
@@ -1557,7 +1557,7 @@ class Battle::Move::StartSaltCureTarget < Battle::Move
   def pbEffectAgainstTarget(user, target)
     return if !target.affectedByAdditionalEffects?
     target.effects[PBEffects::SaltCure] = true
-    @battle.pbDisplay(_INTL("{1} is being salt cured}!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}陷入了盐腌状态！", target.pbThis))
   end
 end
 
@@ -1567,7 +1567,7 @@ end
 class Battle::Move::TransformUserIntoTarget < Battle::Move
   def pbMoveFailed?(user, targets)
     if user.effects[PBEffects::Transform]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -1576,7 +1576,7 @@ class Battle::Move::TransformUserIntoTarget < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::Transform] ||
        target.effects[PBEffects::Illusion]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false

@@ -111,7 +111,7 @@ class Battle::Move::RaiseUserEvasion1
 
   def pbMoveFailed?(user, targets)
     if !damagingMove? && @battle.rules["evasionclause"]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return __clauses__pbMoveFailed?(user, targets)
@@ -128,7 +128,7 @@ class Battle::Move::RaiseUserEvasion2MinimizeUser
 
   def pbMoveFailed?(user, targets)
     if !damagingMove? && @battle.rules["evasionclause"]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return __clauses__pbMoveFailed?(user, targets)
@@ -145,7 +145,7 @@ class Battle::Move::UserTargetSwapAbilities
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["skillswapclause"]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)
@@ -162,7 +162,7 @@ class Battle::Move::FixedDamage20
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["sonicboomclause"]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)
@@ -179,7 +179,7 @@ class Battle::Move::FixedDamage40
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["sonicboomclause"]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)
@@ -196,7 +196,7 @@ class Battle::Move::OHKO
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["ohkoclause"]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)
@@ -213,7 +213,7 @@ class Battle::Move::OHKOIce
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["ohkoclause"]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)
@@ -230,7 +230,7 @@ class Battle::Move::OHKOHitsUndergroundTarget
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["ohkoclause"]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)
@@ -280,7 +280,7 @@ class Battle::Move::StartPerishCountsForAllBattlers
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["perishsongclause"] &&
        @battle.pbAbleNonActiveCount(user.idxOwnSide) == 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)
@@ -298,7 +298,7 @@ class Battle::Move::AttackerFaintsIfUserFaints
   def pbFailsAgainstTarget?(user, target, show_message)
     if @battle.rules["perishsongclause"] &&
        @battle.pbAbleNonActiveCount(user.idxOwnSide) == 0
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return __clauses__pbFailsAgainstTarget?(user, target, show_message)

@@ -32,11 +32,11 @@ class Battle
   #  1: Ended the battle via Debug means
   def pbDebugRun
     return 0 if !$DEBUG || !Input.press?(Input::CTRL)
-    commands = [_INTL("Treat as a win"), _INTL("Treat as a loss"),
-                _INTL("Treat as a draw"), _INTL("Treat as running away/forfeit")]
-    commands.push(_INTL("Treat as a capture")) if wildBattle?
-    commands.push(_INTL("Cancel"))
-    case pbShowCommands(_INTL("Choose the outcome of this battle."), commands)
+    commands = [_INTL("判定为胜利"), _INTL("判定为失败"),
+                _INTL("判定为平局"), _INTL("判定为逃跑/认输")]
+    commands.push(_INTL("判定为捕捉")) if wildBattle?
+    commands.push(_INTL("取消"))
+    case pbShowCommands(_INTL("选择本场战斗的结果。"), commands)
     when 0
       @decision = Outcome::WIN
     when 1
@@ -45,7 +45,7 @@ class Battle
       @decision = Outcome::DRAW
     when 3
       pbSEPlay("Battle flee")
-      pbDisplayPaused(_INTL("You got away safely!"))
+      pbDisplayPaused(_INTL("顺利逃走了！"))
       @decision = Outcome::FLEE
     when 4
       return -1 if trainerBattle?
@@ -78,30 +78,30 @@ class Battle
     if trainerBattle?
       if @internalBattle
         if Settings::CAN_FORFEIT_TRAINER_BATTLES
-          pbDisplayPaused(_INTL("Would you like to give up on this battle and quit now?"))
-          if pbDisplayConfirm(_INTL("Quitting the battle is the same as losing the battle."))
+          pbDisplayPaused(_INTL("即将放弃对战直接投降。"))
+          if pbDisplayConfirm(_INTL("这将被判为输掉对战，可以吗？"))
             @decision = Outcome::LOSE   # Treated as a loss
             return 1
           end
         else
-          pbDisplayPaused(_INTL("No! There's no running from a Trainer battle!"))
+          pbDisplayPaused(_INTL("不行！不能在对战中临阵脱逃！"))
         end
         return 0
-      elsif pbDisplayConfirm(_INTL("Would you like to forfeit the match and quit now?"))
+      elsif pbDisplayConfirm(_INTL("要放弃对战，直接投降吗？"))
         pbSEPlay("Battle flee")
-        pbDisplay(_INTL("{1} forfeited the match!", self.pbPlayer.name))
+        pbDisplay(_INTL("{1}投降了！", self.pbPlayer.name))
         @decision = Outcome::FLEE
         return 1
       end
     end
     if @rules[:cannot_run]
-      pbDisplayPaused(_INTL("You can't escape!"))
+      pbDisplayPaused(_INTL("无法逃走！"))
       return 0
     end
     if !duringBattle
       if battler.pbHasType?(:GHOST) && Settings::MORE_TYPE_EFFECTS
         pbSEPlay("Battle flee")
-        pbDisplayPaused(_INTL("You got away safely!"))
+        pbDisplayPaused(_INTL("顺利逃走了！"))
         @decision = Outcome::FLEE
         return 1
       end
@@ -111,7 +111,7 @@ class Battle
         pbShowAbilitySplash(battler, true)
         pbHideAbilitySplash(battler)
         pbSEPlay("Battle flee")
-        pbDisplayPaused(_INTL("You got away safely!"))
+        pbDisplayPaused(_INTL("顺利逃走了！"))
         @decision = Outcome::FLEE
         return 1
       end
@@ -119,27 +119,27 @@ class Battle
       if battler.itemActive? &&
          Battle::ItemEffects.triggerCertainEscapeFromBattle(battler.item, battler)
         pbSEPlay("Battle flee")
-        pbDisplayPaused(_INTL("{1} fled using its {2}!", battler.pbThis, battler.itemName))
+        pbDisplayPaused(_INTL("{1}使用其所携带的{2}逃走了！", battler.pbThis, battler.itemName))
         @decision = Outcome::FLEE
         return 1
       end
       # Other certain trapping effects
       if battler.trappedInBattle?
-        pbDisplayPaused(_INTL("You can't escape!"))
+        pbDisplayPaused(_INTL("无法逃走！"))
         return 0
       end
       # Trapping abilities/items
       allOtherSideBattlers(idxBattler).each do |b|
         next if !b.abilityActive?
         if Battle::AbilityEffects.triggerTrappingByTarget(b.ability, battler, b, self)
-          pbDisplayPaused(_INTL("{1} prevents escape with {2}!", b.pbThis, b.abilityName))
+          pbDisplayPaused(_INTL("因{1}的{2}而无法逃走！", b.pbThis, b.abilityName))
           return 0
         end
       end
       allOtherSideBattlers(idxBattler).each do |b|
         next if !b.itemActive?
         if Battle::ItemEffects.triggerTrappingByTarget(b.item, battler, b, self)
-          pbDisplayPaused(_INTL("{1} prevents escape with {2}!", b.pbThis, b.itemName))
+          pbDisplayPaused(_INTL("因{1}的{2}而无法逃走！", b.pbThis, b.itemName))
           return 0
         end
       end
@@ -163,11 +163,11 @@ class Battle
     end
     if rate >= 256 || @battleAI.pbAIRandom(256) < rate
       pbSEPlay("Battle flee")
-      pbDisplayPaused(_INTL("You got away safely!"))
+      pbDisplayPaused(_INTL("顺利逃走了！"))
       @decision = Outcome::FLEE
       return 1
     end
-    pbDisplayPaused(_INTL("You couldn't get away!"))
+    pbDisplayPaused(_INTL("无法逃走！"))
     return -1
   end
 end

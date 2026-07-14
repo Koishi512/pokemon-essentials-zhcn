@@ -16,7 +16,7 @@ module Game
     GameData.load_all
     map_file = sprintf("Data/Map%03d.rxdata", $data_system.start_map_id)
     if $data_system.start_map_id == 0 || !pbRgssExists?(map_file)
-      raise _INTL("No starting position was set in the map editor.")
+      raise _INTL("地图编辑器未设置开始位置。")
     end
   end
 
@@ -82,13 +82,13 @@ module Game
         $map_factory.setup($game_map.map_id)
       rescue Errno::ENOENT
         if $DEBUG
-          pbMessage(_INTL("Map {1} was not found.", $game_map.map_id))
+          pbMessage(_INTL("地图{1}未找到。", $game_map.map_id))
           map = pbWarpToMap
           exit unless map
           $map_factory.setup(map[0])
           $game_player.moveto(map[1], map[2])
         else
-          raise _INTL("The map was not found. The game cannot continue.")
+          raise _INTL("地图未找到。游戏无法继续。")
         end
       end
       $game_player.center($game_player.x, $game_player.y)
@@ -96,7 +96,7 @@ module Game
       $map_factory.setMapChanged($game_map.map_id)
     end
     if $game_map.events.nil?
-      raise _INTL("The map is corrupt. The game cannot continue.")
+      raise _INTL("地图已损坏。游戏无法继续。")
     end
     $PokemonEncounters = PokemonEncounters.new
     $PokemonEncounters.setup($game_map.map_id)

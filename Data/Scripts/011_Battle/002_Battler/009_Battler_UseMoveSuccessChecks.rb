@@ -12,7 +12,7 @@ class Battle::Battler
     # Disable
     if @effects[PBEffects::DisableMove] == move.id && !specialUsage
       if showMessages
-        msg = _INTL("{1} {2} is disabled!", pbOfThis, move.name)
+        msg = _INTL("{1}因定身法而无法使出{2}！", pbThis, move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -20,7 +20,7 @@ class Battle::Battler
     # Heal Block
     if @effects[PBEffects::HealBlock] > 0 && move.healingMove?
       if showMessages
-        msg = _INTL("{1} can't use {2} because of Heal Block!", pbThis, move.name)
+        msg = _INTL("{1}因回复封锁而无法使出{2}！", pbThis, move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -28,7 +28,7 @@ class Battle::Battler
     # Gravity
     if @battle.field.effects[PBEffects::Gravity] > 0 && move.unusableInGravity?
       if showMessages
-        msg = _INTL("{1} can't use {2} because of gravity!", pbThis, move.name)
+        msg = _INTL("{1}因重力太强而无法使出{2}！", pbThis, move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -36,7 +36,7 @@ class Battle::Battler
     # Throat Chop
     if @effects[PBEffects::ThroatChop] > 0 && move.soundMove?
       if showMessages
-        msg = _INTL("{1} can't use {2} because of Throat Chop!", pbThis, move.name)
+        msg = _INTL("{1}因深渊突刺而无法使出{2}！", pbThis, move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -49,13 +49,13 @@ class Battle::Battler
       if choiced_move
         if hasActiveItem?([:CHOICEBAND, :CHOICESPECS, :CHOICESCARF])
           if showMessages
-            msg = _INTL("The {1} only allows the use of {2}!", itemName, choiced_move.name)
+            msg = _INTL("因为{1}的效果，只能使出{2}！", itemName, choiced_move.name)
             (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
           end
           return false
         elsif hasActiveAbility?(:GORILLATACTICS)
           if showMessages
-            msg = _INTL("{1} can only use {2}!", pbThis, choiced_move.name)
+            msg = _INTL("{1}只能使出{2}！", pbThis, choiced_move.name)
             (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
           end
           return false
@@ -65,7 +65,7 @@ class Battle::Battler
     # Taunt
     if @effects[PBEffects::Taunt] > 0 && move.statusMove? && !specialUsage
       if showMessages
-        msg = _INTL("{1} can't use {2} after the taunt!", pbThis, move.name)
+        msg = _INTL("{1}受到了挑衅，无法使出{2}！", pbThis, move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -74,7 +74,7 @@ class Battle::Battler
     if @effects[PBEffects::Torment] && !@effects[PBEffects::Instructed] && !specialUsage &&
        @lastMoveUsed && move.id == @lastMoveUsed && move.id != @battle.struggle.id
       if showMessages
-        msg = _INTL("{1} can't use the same move twice in a row due to the torment!", pbThis)
+        msg = _INTL("{1}遭到了无理取闹，因此无法继续使出相同的招式！", pbThis)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -82,7 +82,7 @@ class Battle::Battler
     # Imprison
     if @battle.allOtherSideBattlers(@index, true).any? { |b| b.effects[PBEffects::Imprison] && b.pbHasMove?(move.id) }
       if showMessages
-        msg = _INTL("{1} can't use its sealed {2}!", pbThis, move.name)
+        msg = _INTL("{1}因封印而无法使出{2}！", pbThis, move.name)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -92,7 +92,7 @@ class Battle::Battler
     if hasActiveItem?(:ASSAULTVEST) && move.statusMove? &&
        move.function_code != "UseMoveTargetIsAboutToUse" && commandPhase
       if showMessages
-        msg = _INTL("The effects of the {1} prevent status moves from being used!", itemName)
+        msg = _INTL("因为{1}的效果，无法使出变化招式！", itemName)
         (commandPhase) ? @battle.pbDisplayPaused(msg) : @battle.pbDisplay(msg)
       end
       return false
@@ -146,13 +146,13 @@ class Battle::Battler
     @effects[PBEffects::Rage] = false
     # Do nothing if using Snore/Sleep Talk
     if @status == :SLEEP && move.usableWhenAsleep?
-      @battle.pbDisplay(_INTL("{1} ignored orders and kept sleeping!", pbThis))
+      @battle.pbDisplay(_INTL("{1}仍在睡觉，没有服从命令！", pbThis))
       return false
     end
     b = ((@level + badge_level) * @battle.pbRandom(256) / 256).floor
     # Use another move
     if b < badge_level
-      @battle.pbDisplay(_INTL("{1} ignored orders!", pbThis))
+      @battle.pbDisplay(_INTL("{1}没有服从命令！", pbThis))
       return false if !@battle.pbCanShowFightMenu?(@index)
       otherMoves = []
       eachMoveWithIndex do |_m, i|
@@ -170,21 +170,21 @@ class Battle::Battler
     r = @battle.pbRandom(256)
     # Fall asleep
     if r < c && pbCanSleep?(self, false)
-      pbSleepSelf(_INTL("{1} began to nap!", pbThis))
+      pbSleepSelf(_INTL("{1}开始睡午觉了！", pbThis))
       return false
     end
     # Hurt self in confusion
     r -= c
     if r < c && @status != :SLEEP
-      pbConfusionDamage(_INTL("{1} won't obey! It hurt itself in its confusion!", pbThis))
+      pbConfusionDamage(_INTL("{1}不听话！不知所以地攻击了自己！", pbThis))
       return false
     end
     # Show refusal message and do nothing
     case @battle.pbRandom(4)
-    when 0 then @battle.pbDisplay(_INTL("{1} won't obey!", pbThis))
-    when 1 then @battle.pbDisplay(_INTL("{1} turned away!", pbThis))
-    when 2 then @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
-    when 3 then @battle.pbDisplay(_INTL("{1} pretended not to notice!", pbThis))
+    when 0 then @battle.pbDisplay(_INTL("{1}不听话！", pbThis))
+    when 1 then @battle.pbDisplay(_INTL("{1}把头转向了一旁！", pbThis))
+    when 2 then @battle.pbDisplay(_INTL("{1}在偷懒！", pbThis))
+    when 3 then @battle.pbDisplay(_INTL("{1}在装傻！", pbThis))
     end
     return false
   end
@@ -209,13 +209,13 @@ class Battle::Battler
     end
     if @effects[PBEffects::HyperBeam] > 0   # Intentionally before Truant
       PBDebug.log("[Move failed] #{pbThis} is recharging after using #{move.name}")
-      @battle.pbDisplay(_INTL("{1} must recharge!", pbThis))
+      @battle.pbDisplay(_INTL("{1}因攻击的反作用力而无法动弹！", pbThis))
       @effects[PBEffects::Truant] = !@effects[PBEffects::Truant] if hasActiveAbility?(:TRUANT)
       return false
     end
     if choice[1] == -2   # Battle Palace
       PBDebug.log("[Move failed] #{pbThis} can't act in the Battle Palace somehow")
-      @battle.pbDisplay(_INTL("{1} appears incapable of using its power!", pbThis))
+      @battle.pbDisplay(_INTL("{1}似乎无法使出力量！", pbThis))
       return false
     end
     # Skip checking all applied effects that could make self fail doing something
@@ -253,7 +253,7 @@ class Battle::Battler
       @effects[PBEffects::Truant] = !@effects[PBEffects::Truant]
       if !@effects[PBEffects::Truant]   # True means loafing, but was just inverted
         @battle.pbShowAbilitySplash(self)
-        @battle.pbDisplay(_INTL("{1} is loafing around!", pbThis))
+        @battle.pbDisplay(_INTL("{1}正在偷懒。", pbThis))
         @lastMoveFailed = true
         @battle.pbHideAbilitySplash(self)
         PBDebug.log("[Move failed] #{pbThis} can't act because of #{abilityName}")
@@ -262,7 +262,7 @@ class Battle::Battler
     end
     # Flinching
     if @effects[PBEffects::Flinch]
-      @battle.pbDisplay(_INTL("{1} flinched and couldn't move!", pbThis))
+      @battle.pbDisplay(_INTL("{1}畏缩了，无法使出招式！", pbThis))
       PBDebug.log("[Move failed] #{pbThis} flinched")
       if abilityActive?
         Battle::AbilityEffects.triggerOnFlinch(self.ability, self, @battle)
@@ -275,13 +275,13 @@ class Battle::Battler
       @effects[PBEffects::Confusion] -= 1
       if @effects[PBEffects::Confusion] <= 0
         pbCureConfusion
-        @battle.pbDisplay(_INTL("{1} snapped out of its confusion.", pbThis))
+        @battle.pbDisplay(_INTL("{1}的混乱解除了！", pbThis))
       else
         @battle.pbCommonAnimation("Confusion", self)
-        @battle.pbDisplay(_INTL("{1} is confused!", pbThis))
+        @battle.pbDisplay(_INTL("{1}正在混乱中！", pbThis))
         threshold = (Settings::MECHANICS_GENERATION >= 7) ? 33 : 50   # % chance
         if @battle.pbRandom(100) < threshold
-          pbConfusionDamage(_INTL("It hurt itself in its confusion!"))
+          pbConfusionDamage(_INTL("不知所以地攻击了自己！"))
           PBDebug.log("[Move failed] #{pbThis} hurt itself in its confusion")
           @lastMoveFailed = true
           return false
@@ -299,14 +299,14 @@ class Battle::Battler
     if @effects[PBEffects::Attract] >= 0
       @battle.pbCommonAnimation("Attract", self)
       if Translation.more_possessive_messages?
-        @battle.pbDisplay(_INTL("{1} is in love with {2}!", pbThis,
+        @battle.pbDisplay(_INTL("{1}对{2}着迷了！", pbThis,
                                 @battle.battlers[@effects[PBEffects::Attract]].pbOfThis(true)))
       else
-        @battle.pbDisplay(_INTL("{1} is in love with {2}!", pbThis,
+        @battle.pbDisplay(_INTL("{2}让{1}着迷了！", pbThis,
                                 @battle.battlers[@effects[PBEffects::Attract]].pbThis(true)))
       end
       if @battle.pbRandom(100) < 50
-        @battle.pbDisplay(_INTL("{1} is immobilized by love!", pbThis))
+        @battle.pbDisplay(_INTL("{1}因着迷了而无法使出招式！", pbThis))
         PBDebug.log("[Move failed] #{pbThis} is immobilized by love")
         @lastMoveFailed = true
         return false
@@ -341,7 +341,7 @@ class Battle::Battler
     # Immunity to priority moves because of Psychic Terrain
     if @battle.field.terrain == :Psychic && target.affectedByTerrain? && target.opposes?(user) &&
        @battle.choices[user.index][4] > 0   # Move priority saved from pbCalculatePriority
-      @battle.pbDisplay(_INTL("{1} surrounds itself with psychic terrain!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("{1}正受到精神场地的保护！", target.pbThis)) if show_message
       return false
     end
     # Crafty Shield
@@ -349,7 +349,7 @@ class Battle::Battler
        move.statusMove? && !move.pbTarget(user).targets_all
       if show_message
         @battle.pbCommonAnimation("CraftyShield", target)
-        @battle.pbDisplay(_INTL("Crafty Shield protected {1}!", target.pbThis(true)))
+        @battle.pbDisplay(_INTL("{1}受到了戏法防守的保护！", target.pbThis(true)))
       end
       target.damageState.protected = true
       @battle.successStates[user.index].protected = true
@@ -363,7 +363,7 @@ class Battle::Battler
          (Settings::MECHANICS_GENERATION >= 7 || move.damagingMove?)
         if show_message
           @battle.pbCommonAnimation("WideGuard", target)
-          @battle.pbDisplay(_INTL("Wide Guard protected {1}!", target.pbThis(true)))
+          @battle.pbDisplay(_INTL("{1}受到了广域防守的保护！", target.pbThis(true)))
         end
         target.damageState.protected = true
         @battle.successStates[user.index].protected = true
@@ -375,7 +375,7 @@ class Battle::Battler
            @battle.choices[user.index][4] > 0   # Move priority saved from pbCalculatePriority
           if show_message
             @battle.pbCommonAnimation("QuickGuard", target)
-            @battle.pbDisplay(_INTL("Quick Guard protected {1}!", target.pbThis(true)))
+            @battle.pbDisplay(_INTL("{1}受到了快速防守的保护！", target.pbThis(true)))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
@@ -385,7 +385,7 @@ class Battle::Battler
         if target.effects[PBEffects::Protect]
           if show_message
             @battle.pbCommonAnimation("Protect", target)
-            @battle.pbDisplay(_INTL("{1} protected itself!", target.pbThis))
+            @battle.pbDisplay(_INTL("{1}在攻击中守护住了自己！", target.pbThis))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
@@ -394,7 +394,7 @@ class Battle::Battler
         # Mat Block
         if target.pbOwnSide.effects[PBEffects::MatBlock] && move.damagingMove?
           # NOTE: Confirmed no common animation for this effect.
-          @battle.pbDisplay(_INTL("{1} was blocked by the kicked-up mat!", move.name)) if show_message
+          @battle.pbDisplay(_INTL("{1}被掀榻榻米保护住了！", move.name)) if show_message
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
           return false
@@ -403,7 +403,7 @@ class Battle::Battler
         if target.effects[PBEffects::KingsShield] && move.damagingMove?
           if show_message
             @battle.pbCommonAnimation("KingsShield", target)
-            @battle.pbDisplay(_INTL("{1} protected itself!", target.pbThis))
+            @battle.pbDisplay(_INTL("{1}在攻击中守护住了自己！", target.pbThis))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
@@ -417,7 +417,7 @@ class Battle::Battler
         if target.effects[PBEffects::Obstruct] && move.damagingMove?
           if show_message
             @battle.pbCommonAnimation("Obstruct", target)
-            @battle.pbDisplay(_INTL("{1} protected itself!", target.pbThis))
+            @battle.pbDisplay(_INTL("{1}在攻击中守护住了自己！", target.pbThis))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
@@ -431,7 +431,7 @@ class Battle::Battler
         if target.effects[PBEffects::SilkTrap] && move.damagingMove?
           if show_message
             @battle.pbCommonAnimation("SilkTrap", target)
-            @battle.pbDisplay(_INTL("{1} protected itself!", target.pbThis))
+            @battle.pbDisplay(_INTL("{1}在攻击中守护住了自己！", target.pbThis))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
@@ -445,14 +445,14 @@ class Battle::Battler
         if target.effects[PBEffects::SpikyShield]
           if show_message
             @battle.pbCommonAnimation("SpikyShield", target)
-            @battle.pbDisplay(_INTL("{1} protected itself!", target.pbThis))
+            @battle.pbDisplay(_INTL("{1}在攻击中守护住了自己！", target.pbThis))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
           if move.pbContactMove?(user) && user.affectedByContactEffect? && user.takesIndirectDamage?
             @battle.scene.pbDamageAnimation(user)
             user.pbReduceHP(user.totalhp / 8, false)
-            @battle.pbDisplay(_INTL("{1} was hurt!", user.pbThis))
+            @battle.pbDisplay(_INTL("{1}受伤了！", user.pbThis))
             user.pbItemHPHealCheck
           end
           return false
@@ -461,7 +461,7 @@ class Battle::Battler
         if target.effects[PBEffects::BanefulBunker]
           if show_message
             @battle.pbCommonAnimation("BanefulBunker", target)
-            @battle.pbDisplay(_INTL("{1} protected itself!", target.pbThis))
+            @battle.pbDisplay(_INTL("{1}在攻击中守护住了自己！", target.pbThis))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
@@ -475,7 +475,7 @@ class Battle::Battler
         if target.effects[PBEffects::BurningBulwark]
           if show_message
             @battle.pbCommonAnimation("BurningBulwark", target)
-            @battle.pbDisplay(_INTL("{1} protected itself!", target.pbThis))
+            @battle.pbDisplay(_INTL("{1}在攻击中守护住了自己！", target.pbThis))
           end
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
@@ -508,14 +508,14 @@ class Battle::Battler
     # Type immunity
     if move.pbDamagingMove? && Effectiveness.ineffective?(typeMod)
       PBDebug.log("[Target immune] #{target.pbOfThis} type immunity")
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
       return false
     end
     # Dark-type immunity to status moves made faster by Prankster
     if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::Prankster] &&
        target.pbHasType?(:DARK) && target.opposes?(user)
       PBDebug.log("[Target immune] #{target.pbThis} is Dark-type and immune to Prankster-boosted moves")
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
       return false
     end
     # Airborne-based immunity to Ground moves
@@ -525,24 +525,24 @@ class Battle::Battler
         if show_message
           @battle.pbShowAbilitySplash(target)
           if Battle::Scene::USE_ABILITY_SPLASH
-            @battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis))
+            @battle.pbDisplay(_INTL("没有击中{1}！", target.pbThis))
           else
-            @battle.pbDisplay(_INTL("{1} avoided the attack with {2}!", target.pbThis, target.abilityName))
+            @battle.pbDisplay(_INTL("因为{2}，没有击中{1}！", target.pbThis, target.abilityName))
           end
           @battle.pbHideAbilitySplash(target)
         end
         return false
       end
       if target.hasActiveItem?(:AIRBALLOON)
-        @battle.pbDisplay(_INTL("{1} {2} makes Ground moves miss!", target.pbOfThis, target.itemName)) if show_message
+        @battle.pbDisplay(_INTL("{1}{2}使地面属性招式没有击中！", target.pbOfThis, target.itemName)) if show_message
         return false
       end
       if target.effects[PBEffects::MagnetRise] > 0
-        @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Magnet Rise!", target.pbThis)) if show_message
+        @battle.pbDisplay(_INTL("电磁飘浮使地面属性招式没有击中{1}！", target.pbThis)) if show_message
         return false
       end
       if target.effects[PBEffects::Telekinesis] > 0
-        @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Telekinesis!", target.pbThis)) if show_message
+        @battle.pbDisplay(_INTL("意念移物使地面属性招式没有击中{1}！", target.pbThis)) if show_message
         return false
       end
     end
@@ -550,7 +550,7 @@ class Battle::Battler
     if move.powderMove?
       if target.pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
         PBDebug.log("[Target immune] #{target.pbThis} is Grass-type and immune to powder-based moves")
-        @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+        @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
         return false
       end
       if Settings::MECHANICS_GENERATION >= 6
@@ -558,9 +558,9 @@ class Battle::Battler
           if show_message
             @battle.pbShowAbilitySplash(target)
             if Battle::Scene::USE_ABILITY_SPLASH
-              @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+              @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
             else
-              @battle.pbDisplay(_INTL("It doesn't affect {1} because of its {2}.", target.pbThis(true), target.abilityName))
+              @battle.pbDisplay(_INTL("因为{2}，对{1}没有效果。", target.pbThis(true), target.abilityName))
             end
             @battle.pbHideAbilitySplash(target)
           end
@@ -568,7 +568,7 @@ class Battle::Battler
         end
         if target.hasActiveItem?(:SAFETYGOGGLES)
           PBDebug.log("[Item triggered] #{target.pbThis} has Safety Goggles and is immune to powder-based moves")
-          @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+          @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
           return false
         end
       end
@@ -577,7 +577,7 @@ class Battle::Battler
     if target.effects[PBEffects::Substitute] > 0 && move.statusMove? &&
        !move.ignoresSubstitute?(user) && user.index != target.index
       PBDebug.log("[Target immune] #{target.pbThis} is protected by its Substitute")
-      @battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis(true))) if show_message
+      @battle.pbDisplay(_INTL("没有击中{1}！", target.pbThis(true))) if show_message
       return false
     end
     return true
@@ -649,11 +649,11 @@ class Battle::Battler
   # Message shown when a move fails the per-hit success check above.
   def pbMissMessage(move, user, target)
     if target.damageState.affection_missed
-      @battle.pbDisplay(_INTL("{1} avoided the move in time with your shout!", target.pbThis))
+      @battle.pbDisplay(_INTL("{1}回应着你的呼喊躲过了招式！", target.pbThis))
     elsif move.pbTarget(user).num_targets > 1 || target.effects[PBEffects::TwoTurnAttack]
-      @battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis))
+      @battle.pbDisplay(_INTL("没有击中{1}！", target.pbThis))
     elsif !move.pbMissMessage(user, target)
-      @battle.pbDisplay(_INTL("{1}'s attack missed!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}的攻击没有命中！", user.pbThis))
     end
   end
 end

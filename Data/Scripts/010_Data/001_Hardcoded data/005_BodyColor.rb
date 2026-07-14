@@ -35,50 +35,50 @@ end
 
 GameData::BodyColor.register({
   :id   => :Red,
-  :name => _INTL("Red")
+  :name => _INTL("红色")
 })
 
 GameData::BodyColor.register({
   :id   => :Blue,
-  :name => _INTL("Blue")
+  :name => _INTL("蓝色")
 })
 
 GameData::BodyColor.register({
   :id   => :Yellow,
-  :name => _INTL("Yellow")
+  :name => _INTL("黄色")
 })
 
 GameData::BodyColor.register({
   :id   => :Green,
-  :name => _INTL("Green")
+  :name => _INTL("绿色")
 })
 
 GameData::BodyColor.register({
   :id   => :Black,
-  :name => _INTL("Black")
+  :name => _INTL("黑色")
 })
 
 GameData::BodyColor.register({
   :id   => :Brown,
-  :name => _INTL("Brown")
+  :name => _INTL("棕色")
 })
 
 GameData::BodyColor.register({
   :id   => :Purple,
-  :name => _INTL("Purple")
+  :name => _INTL("紫色")
 })
 
 GameData::BodyColor.register({
   :id   => :Gray,
-  :name => _INTL("Gray")
+  :name => _INTL("灰色")
 })
 
 GameData::BodyColor.register({
   :id   => :White,
-  :name => _INTL("White")
+  :name => _INTL("白色")
 })
 
 GameData::BodyColor.register({
   :id   => :Pink,
-  :name => _INTL("Pink")
+  :name => _INTL("粉色")
 })

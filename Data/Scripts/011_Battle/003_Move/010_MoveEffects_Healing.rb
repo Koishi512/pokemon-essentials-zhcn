@@ -4,7 +4,7 @@
 class Battle::Move::HealUserFullyAndFallAsleep < Battle::Move::HealingMove
   def pbMoveFailed?(user, targets)
     if user.asleep?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return true if !user.pbCanSleep?(user, true, self, true)
@@ -17,7 +17,7 @@ class Battle::Move::HealUserFullyAndFallAsleep < Battle::Move::HealingMove
   end
 
   def pbEffectGeneral(user)
-    user.pbSleepSelf(_INTL("{1} slept and became healthy!", user.pbThis), 3)
+    user.pbSleepSelf(_INTL("{1}睡着了，并且变得精力充沛！", user.pbThis), 3)
     super
   end
 end
@@ -91,7 +91,7 @@ class Battle::Move::CureTargetStatusHealUserHalfOfTotalHP < Battle::Move::Healin
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.status == :NONE
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -131,11 +131,11 @@ class Battle::Move::HealUserByTargetAttackLowerTargetAttack1 < Battle::Move
     #       other effect.
     if target.hasActiveAbility?(:CONTRARY) && !target.beingMoldBroken?
       if target.statStageAtMax?(@statDown[0])
-        @battle.pbDisplay(_INTL("But it failed!")) if show_message
+        @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
         return true
       end
     elsif target.statStageAtMin?(@statDown[0])
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -151,13 +151,13 @@ class Battle::Move::HealUserByTargetAttackLowerTargetAttack1 < Battle::Move
     if target.hasActiveAbility?(:LIQUIDOOZE, true)
       @battle.pbShowAbilitySplash(target)
       user.pbReduceHP(healAmt)
-      @battle.pbDisplay(_INTL("{1} sucked up the liquid ooze!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}吸到了污泥浆！", user.pbThis))
       @battle.pbHideAbilitySplash(target)
       user.pbItemHPHealCheck
     elsif user.canHeal?
       healAmt = (healAmt * 1.3).floor if user.hasActiveItem?(:BIGROOT)
       user.pbRecoverHP(healAmt)
-      @battle.pbDisplay(_INTL("{1}'s HP was restored.", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}的体力回复了！", user.pbThis))
     end
   end
 end
@@ -184,7 +184,7 @@ class Battle::Move::HealUserByHalfOfDamageDoneIfTargetAsleep < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.asleep?
-      @battle.pbDisplay(_INTL("{1} wasn't affected!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("{1}不会受到影响！", target.pbThis)) if show_message
       return true
     end
     return false
@@ -231,7 +231,7 @@ class Battle::Move::HealUserAndAlliesQuarterOfTotalHP < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if @battle.allSameSideBattlers(user).none? { |b| b.canHeal? }
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -243,7 +243,7 @@ class Battle::Move::HealUserAndAlliesQuarterOfTotalHP < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.pbRecoverHP(target.totalhp / 4)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}的体力回复了！", target.pbThis))
   end
 end
 
@@ -256,7 +256,7 @@ class Battle::Move::HealUserAndAlliesQuarterOfTotalHPCureStatus < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if @battle.allSameSideBattlers(user).none? { |b| b.canHeal? || b.status != :NONE }
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -269,22 +269,22 @@ class Battle::Move::HealUserAndAlliesQuarterOfTotalHPCureStatus < Battle::Move
   def pbEffectAgainstTarget(user, target)
     if target.canHeal?
       target.pbRecoverHP(target.totalhp / 4)
-      @battle.pbDisplay(_INTL("{1}'s HP was restored.", target.pbThis))
+      @battle.pbDisplay(_INTL("{1}的体力回复了！", target.pbThis))
     end
     if target.status != :NONE
       old_status = target.status
       target.pbCureStatus(false)
       case old_status
       when :SLEEP
-        @battle.pbDisplay(_INTL("{1} was woken from sleep.", target.pbThis))
+        @battle.pbDisplay(_INTL("{1}从睡眠中被叫醒了！", target.pbThis))
       when :POISON
-        @battle.pbDisplay(_INTL("{1} was cured of its poisoning.", target.pbThis))
+        @battle.pbDisplay(_INTL("{1}中的毒彻底清除了！", target.pbThis))
       when :BURN
-        @battle.pbDisplay(_INTL("{1}'s burn was healed.", target.pbThis))
+        @battle.pbDisplay(_INTL("{1}的灼伤治愈了！", target.pbThis))
       when :PARALYSIS
-        @battle.pbDisplay(_INTL("{1} was cured of paralysis.", target.pbThis))
+        @battle.pbDisplay(_INTL("{1}的麻痹被解除了！", target.pbThis))
       when :FROZEN
-        @battle.pbDisplay(_INTL("{1} was thawed out.", target.pbThis))
+        @battle.pbDisplay(_INTL("{1}身体的冰融化了！", target.pbThis))
       end
     end
   end
@@ -299,10 +299,10 @@ class Battle::Move::HealTargetHalfOfTotalHP < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.hp == target.totalhp
-      @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("但是，{1}的体力是全满的！", target.pbThis)) if show_message
       return true
     elsif !target.canHeal?
-      @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", target.pbThis)) if show_message
       return true
     end
     return false
@@ -314,7 +314,7 @@ class Battle::Move::HealTargetHalfOfTotalHP < Battle::Move
       hpGain = (target.totalhp * 3 / 4.0).round
     end
     target.pbRecoverHP(hpGain)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}的体力回复了！", target.pbThis))
   end
 end
 
@@ -328,10 +328,10 @@ class Battle::Move::HealTargetDependingOnGrassyTerrain < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.hp == target.totalhp
-      @battle.pbDisplay(_INTL("{1}'s HP is full!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("但是，{1}的体力是全满的！", target.pbThis)) if show_message
       return true
     elsif !target.canHeal?
-      @battle.pbDisplay(_INTL("{1} is unaffected!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", target.pbThis)) if show_message
       return true
     end
     return false
@@ -341,7 +341,7 @@ class Battle::Move::HealTargetDependingOnGrassyTerrain < Battle::Move
     hpGain = (target.totalhp / 2.0).round
     hpGain = (target.totalhp * 2 / 3.0).round if @battle.field.terrain == :Grassy
     target.pbRecoverHP(hpGain)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}的体力回复了！", target.pbThis))
   end
 end
 
@@ -355,7 +355,7 @@ class Battle::Move::HealUserPositionNextTurn < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if @battle.positions[user.index].effects[PBEffects::Wish] > 0
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -377,7 +377,7 @@ class Battle::Move::StartHealUserEachTurn < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if user.effects[PBEffects::AquaRing]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -385,7 +385,7 @@ class Battle::Move::StartHealUserEachTurn < Battle::Move
 
   def pbEffectGeneral(user)
     user.effects[PBEffects::AquaRing] = true
-    @battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}套上了水环！", user.pbThis))
   end
 end
 
@@ -398,7 +398,7 @@ class Battle::Move::StartHealUserEachTurnTrapUserInBattle < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if user.effects[PBEffects::Ingrain]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -406,7 +406,7 @@ class Battle::Move::StartHealUserEachTurnTrapUserInBattle < Battle::Move
 
   def pbEffectGeneral(user)
     user.effects[PBEffects::Ingrain] = true
-    @battle.pbDisplay(_INTL("{1} planted its roots!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}扎下了根！", user.pbThis))
   end
 end
 
@@ -416,7 +416,7 @@ end
 class Battle::Move::StartDamageTargetEachTurnIfTargetAsleep < Battle::Move
   def pbFailsAgainstTarget?(user, target, show_message)
     if !target.asleep? || target.effects[PBEffects::Nightmare]
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return true
     end
     return false
@@ -424,7 +424,7 @@ class Battle::Move::StartDamageTargetEachTurnIfTargetAsleep < Battle::Move
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::Nightmare] = true
-    @battle.pbDisplay(_INTL("{1} began having a nightmare!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}开始做恶梦了！", target.pbThis))
   end
 end
 
@@ -437,24 +437,24 @@ class Battle::Move::StartLeechSeedTarget < Battle::Move
 
   def pbFailsAgainstTarget?(user, target, show_message)
     if target.effects[PBEffects::LeechSeed] >= 0
-      @battle.pbDisplay(_INTL("{1} evaded the attack!", target.pbThis)) if show_message
+      @battle.pbDisplay(_INTL("{1}躲过了攻击！", target.pbThis)) if show_message
       return true
     end
     if target.pbHasType?(:GRASS)
-      @battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true))) if show_message
+      @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true))) if show_message
       return true
     end
     return false
   end
 
   def pbMissMessage(user, target)
-    @battle.pbDisplay(_INTL("{1} evaded the attack!", target.pbThis))
+    @battle.pbDisplay(_INTL("{1}躲过了攻击！", target.pbThis))
     return true
   end
 
   def pbEffectAgainstTarget(user, target)
     target.effects[PBEffects::LeechSeed] = user.index
-    @battle.pbDisplay(_INTL("{1} was seeded!", target.pbThis))
+    @battle.pbDisplay(_INTL("将种子种植在了{1}身上！", target.pbThis))
   end
 end
 
@@ -468,7 +468,7 @@ class Battle::Move::UserLosesHalfOfTotalHP < Battle::Move
     amt = (user.totalhp / 2.0).ceil
     amt = 1 if amt < 1
     user.pbReduceHP(amt, false)
-    @battle.pbDisplay(_INTL("{1} is damaged by recoil!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}受到了反作用力造成的伤害！", user.pbThis))
     user.pbItemHPHealCheck
   end
 end
@@ -484,9 +484,9 @@ class Battle::Move::UserLosesHalfOfTotalHPExplosive < Battle::Move
     if bearer
       @battle.pbShowAbilitySplash(bearer)
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, @name))
+        @battle.pbDisplay(_INTL("{1}无法使用{2}！", user.pbThis, @name))
       else
-        @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3} {4}!",
+        @battle.pbDisplay(_INTL("因为{3}的{4}，{1}无法使出{2}！",
                                 user.pbThis, @name, bearer.pbOfThis(true), bearer.abilityName))
       end
       @battle.pbHideAbilitySplash(bearer)
@@ -514,9 +514,9 @@ class Battle::Move::UserFaintsExplosive < Battle::Move
     if bearer
       @battle.pbShowAbilitySplash(bearer)
       if Battle::Scene::USE_ABILITY_SPLASH
-        @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, @name))
+        @battle.pbDisplay(_INTL("{1}无法使用{2}！", user.pbThis, @name))
       else
-        @battle.pbDisplay(_INTL("{1} cannot use {2} because of {3} {4}!",
+        @battle.pbDisplay(_INTL("因为{3}的{4}，{1}无法使出{2}！", 
                                 user.pbThis, @name, bearer.pbOfThis(true), bearer.abilityName))
       end
       @battle.pbHideAbilitySplash(bearer)
@@ -600,7 +600,7 @@ class Battle::Move::UserFaintsHealAndCureReplacement < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !@battle.pbCanChooseNonActive?(user.index)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -624,7 +624,7 @@ class Battle::Move::UserFaintsHealAndCureReplacementRestorePP < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !@battle.pbCanChooseNonActive?(user.index)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -650,7 +650,7 @@ class Battle::Move::StartPerishCountsForAllBattlers < Battle::Move
       break
     end
     if failed
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -667,7 +667,7 @@ class Battle::Move::StartPerishCountsForAllBattlers < Battle::Move
 
   def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
     super
-    @battle.pbDisplay(_INTL("All Pokémon that hear the song will faint in three turns!"))
+    @battle.pbDisplay(_INTL("听过终焉之歌的宝可梦会在3回合后步向终焉！"))
   end
 end
 
@@ -678,7 +678,7 @@ end
 class Battle::Move::AttackerFaintsIfUserFaints < Battle::Move
   def pbMoveFailed?(user, targets)
     if Settings::MECHANICS_GENERATION >= 7 && user.effects[PBEffects::DestinyBondPrevious]
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -686,7 +686,7 @@ class Battle::Move::AttackerFaintsIfUserFaints < Battle::Move
 
   def pbEffectGeneral(user)
     user.effects[PBEffects::DestinyBond] = true
-    @battle.pbDisplay(_INTL("{1} is hoping to take its attacker down with it!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}想和对手同归于尽！", user.pbThis))
   end
 end
 
@@ -697,7 +697,7 @@ end
 class Battle::Move::SetAttackerMovePPTo0IfUserFaints < Battle::Move
   def pbEffectGeneral(user)
     user.effects[PBEffects::Grudge] = true
-    @battle.pbDisplay(_INTL("{1} wants its target to bear a grudge!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}想向对手施放怨念！", user.pbThis))
   end
 end
 
@@ -712,7 +712,7 @@ class Battle::Move::RevivePokemonToHalfHP < Battle::Move
       break if !failed
     end
     if failed
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -725,10 +725,10 @@ class Battle::Move::RevivePokemonToHalfHP < Battle::Move
       @battle.scene.pbPartyScreen(user.index, false, 3) do |idxParty, party_screen|
         pkmn = @battle.pbParty(user.idxOwnSide)[idxParty]
         if pkmn.egg?
-          party_screen.show_message(_INTL("You can't revive an egg!"))
+          party_screen.show_message(_INTL("你无法复活蛋！"))
           next false
         elsif !pkmn.fainted?
-          party_screen.show_message(_INTL("This Pokémon cannot be revived."))
+          party_screen.show_message(_INTL("无法复活这只宝可梦！"))
           next false
         end
         next true
@@ -740,6 +740,6 @@ class Battle::Move::RevivePokemonToHalfHP < Battle::Move
     pkmn.hp = (pkmn.totalhp / 2).floor
     pkmn.hp = 1 if pkmn.hp <= 0
     pkmn.heal_status
-    @battle.pbDisplay(_INTL("{1} was revived and is ready to fight again!", pkmn.name))
+    @battle.pbDisplay(_INTL("{1}复活并能继续战斗了！", pkmn.name))
   end
 end

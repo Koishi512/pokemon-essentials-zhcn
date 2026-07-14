@@ -41,16 +41,16 @@ module GameData
       gender_array = []
       self.schema["Gender"][2].each { |key, value| gender_array[value] = key if !gender_array[value] }
       return [
-        ["ID",         ReadOnlyProperty,               _INTL("ID of this Trainer Type (used as a symbol like :XXX).")],
-        ["Name",       StringProperty,                 _INTL("Name of this Trainer Type as displayed by the game.")],
-        ["Gender",     EnumProperty.new(gender_array), _INTL("Gender of this Trainer Type.")],
-        ["BaseMoney",  LimitProperty.new(9999),        _INTL("Player earns this much money times the highest level among the trainer's Pokémon.")],
-        ["SkillLevel", LimitProperty2.new(9999),       _INTL("Skill level of this Trainer Type.")],
-        ["PokeBall",   ItemProperty,                   _INTL("Default Poké Ball that all Pokémon of trainers of this Trainer Type are in.")],
-        ["Flags",      StringListProperty,             _INTL("Words/phrases that can be used to make trainers of this type behave differently to others.")],
-        ["IntroBGM",   BGMProperty,                    _INTL("BGM played before battles against trainers of this type.")],
-        ["BattleBGM",  BGMProperty,                    _INTL("BGM played in battles against trainers of this type.")],
-        ["VictoryBGM", BGMProperty,                    _INTL("BGM played when player wins battles against trainers of this type.")]
+        ["ID",         ReadOnlyProperty,               _INTL("训练家类型的ID（用于符号表示，如:XXX）")],
+        ["Name",       StringProperty,                 _INTL("此训练家类型的名称，显示在游戏中的")],
+        ["Gender",     EnumProperty.new(gender_array), _INTL("此训练家类型的性别。")],
+        ["BaseMoney",  LimitProperty.new(9999),        _INTL("玩家在与该类型的训练家对战时获得的钱币数量，乘以训练家的宝可梦的最高等级。")],
+        ["SkillLevel", LimitProperty2.new(9999),       _INTL("此训练家类型的技能等级。")],
+        ["PokeBall",   ItemProperty,                   _INTL("此训练家类型的所有宝可梦默认使用的精灵球。")],
+        ["Flags",      StringListProperty,             _INTL("可用于让此训练家类型的行为与其他类型不同的单词或短语。")],
+        ["IntroBGM",   BGMProperty,                    _INTL("与此类训练家对战前播放的BGM。")],
+        ["BattleBGM",  BGMProperty,                    _INTL("与此类训练家对战时播放的BGM。")],
+        ["VictoryBGM", BGMProperty,                    _INTL("玩家战胜此类训练家时播放的BGM。")]
       ]
     end
 

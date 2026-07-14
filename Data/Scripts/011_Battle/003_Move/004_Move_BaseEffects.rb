@@ -10,7 +10,7 @@
 class Battle::Move::Unimplemented < Battle::Move
   def pbMoveFailed?(user, targets)
     if statusMove?
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -53,7 +53,7 @@ class Battle::Move::Struggle < Battle::Move
     @battle        = battle
     @realMove      = nil                     # Not associated with a move
     @id            = :STRUGGLE
-    @name          = _INTL("Struggle")
+    @name          = _INTL("挣扎")
     @function_code = "Struggle"
     @power         = 50
     @type          = nil
@@ -74,7 +74,7 @@ class Battle::Move::Struggle < Battle::Move
   def pbEffectAfterAllHits(user, target)
     return if target.damageState.unaffected
     user.pbReduceHP((user.totalhp / 4.0).round, false)
-    @battle.pbDisplay(_INTL("{1} is damaged by recoil!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}受到了反作用力造成的伤害！", user.pbThis))
     user.pbItemHPHealCheck
   end
 end
@@ -123,7 +123,7 @@ class Battle::Move::MultiStatUpMove < Battle::Move
       break
     end
     if failed
-      @battle.pbDisplay(_INTL("{1} stats won't go any higher!", user.pbOfThis))
+      @battle.pbDisplay(_INTL("{1}能力已经无法再提高了！", user.pbOfThis))
       return true
     end
     return false
@@ -227,14 +227,14 @@ class Battle::Move::TargetMultiStatDownMove < Battle::Move
           canLower = true
           break
         end
-        @battle.pbDisplay(_INTL("{1} stats won't go any higher!", user.pbOfThis)) if !canLower && show_message
+        @battle.pbDisplay(_INTL("{1}能力已经无法再提高了！", user.pbOfThis)) if !canLower && show_message
       else
         (@statDown.length / 2).times do |i|
           next if target.statStageAtMin?(@statDown[i * 2])
           canLower = true
           break
         end
-        @battle.pbDisplay(_INTL("{1} stats won't go any lower!", user.pbOfThis)) if !canLower && show_message
+        @battle.pbDisplay(_INTL("{1}能力已经无法再降低了！", user.pbOfThis)) if !canLower && show_message
       end
       if canLower
         target.pbCanLowerStatStage?(@statDown[0], user, self, show_message)
@@ -256,7 +256,7 @@ class Battle::Move::TargetMultiStatDownMove < Battle::Move
       if failed
         @battle.pbShowAbilitySplash(target)
         if !Battle::Scene::USE_ABILITY_SPLASH
-          @battle.pbDisplay(_INTL("{1} {2} activated!", target.pbOfThis, target.abilityName))
+          @battle.pbDisplay(_INTL("{1}{2}发动了！", target.pbOfThis, target.abilityName))
         end
         user.pbCanLowerStatStage?(@statDown[0], target, self, true, false, true)   # Show fail message
         @battle.pbHideAbilitySplash(target)
@@ -354,7 +354,7 @@ class Battle::Move::TwoTurnMove < Battle::Move
            "TwoTurnAttackInvulnerableInSkyTargetCannotAct"].include?(@function_code)
         @battle.pbCommonAnimation("UseItem", user)
       end
-      @battle.pbDisplay(_INTL("{1} became fully charged due to its Power Herb!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}用了强力香草后，充满了力量！", user.pbThis))
       user.pbConsumeItem
     end
   end
@@ -373,7 +373,7 @@ class Battle::Move::TwoTurnMove < Battle::Move
   end
 
   def pbChargingTurnMessage(user, targets)
-    @battle.pbDisplay(_INTL("{1} began charging up!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}开始蓄力了！", user.pbThis))
   end
 
   def pbAttackingTurnMessage(user, targets); end
@@ -409,7 +409,7 @@ class Battle::Move::HealingMove < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if user.hp == user.totalhp
-      @battle.pbDisplay(_INTL("{1}'s HP is full!", user.pbThis))
+      @battle.pbDisplay(_INTL("但是，{1}的体力是全满的！", user.pbThis))
       return true
     end
     return false
@@ -418,7 +418,7 @@ class Battle::Move::HealingMove < Battle::Move
   def pbEffectGeneral(user)
     amt = pbHealAmount(user)
     user.pbRecoverHP(amt)
-    @battle.pbDisplay(_INTL("{1}'s HP was restored.", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}的体力回复了！", user.pbThis))
   end
 end
 
@@ -439,7 +439,7 @@ class Battle::Move::RecoilMove < Battle::Move
       user.pokemon.evolution_counter += amt
     end
     user.pbReduceHP(amt, false)
-    @battle.pbDisplay(_INTL("{1} is damaged by recoil!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}受到了反作用力造成的伤害！", user.pbThis))
     user.pbItemHPHealCheck
   end
 end
@@ -463,19 +463,19 @@ class Battle::Move::ProtectMove < Battle::Move
     if @sidedEffect
       if user.pbOwnSide.effects[@effect]
         user.effects[PBEffects::ProtectRate] = 1
-        @battle.pbDisplay(_INTL("But it failed!"))
+        @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
         return true
       end
     elsif user.effects[@effect]
       user.effects[PBEffects::ProtectRate] = 1
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if (!@sidedEffect || Settings::MECHANICS_GENERATION <= 5) &&
        user.effects[PBEffects::ProtectRate] > 1 &&
        @battle.pbRandom(user.effects[PBEffects::ProtectRate]) != 0
       user.effects[PBEffects::ProtectRate] = 1
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     if pbMoveFailedLastInRound?(user)
@@ -497,9 +497,9 @@ class Battle::Move::ProtectMove < Battle::Move
 
   def pbProtectMessage(user)
     if @sidedEffect
-      @battle.pbDisplay(_INTL("{1} protected {2}!", @name, user.pbTeam(true)))
+      @battle.pbDisplay(_INTL("{2}受到了{1}的保护！", @name, user.pbTeam(true)))
     else
-      @battle.pbDisplay(_INTL("{1} protected itself!", user.pbThis))
+      @battle.pbDisplay(_INTL("{1}摆出了防守的架势！", user.pbThis))
     end
   end
 end
@@ -518,17 +518,17 @@ class Battle::Move::WeatherMove < Battle::Move
   def pbMoveFailed?(user, targets)
     case @battle.field.weather
     when :HarshSun
-      @battle.pbDisplay(_INTL("The extremely harsh sunlight was not lessened at all!"))
+      @battle.pbDisplay(_INTL("强日照势头不减！"))
       return true
     when :HeavyRain
-      @battle.pbDisplay(_INTL("There is no relief from this heavy rain!"))
+      @battle.pbDisplay(_INTL("暴雨势头不减！"))
       return true
     when :StrongWinds
-      @battle.pbDisplay(_INTL("The mysterious air current blows on regardless!"))
+      @battle.pbDisplay(_INTL("神秘的乱流势头不减！"))
       return true
     end
     if !@battle.pbCanStartWeather?(@weatherType)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -552,7 +552,7 @@ class Battle::Move::TerrainMove < Battle::Move
 
   def pbMoveFailed?(user, targets)
     if !@battle.pbCanStartTerrain?(@terrainType)
-      @battle.pbDisplay(_INTL("But it failed!"))
+      @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
     end
     return false
@@ -576,7 +576,7 @@ class Battle::Move::PledgeMove < Battle::Move
     # Check whether this is the use of a combo move
     @combos.each do |i|
       next if i[0] != user.effects[PBEffects::FirstPledge]
-      @battle.pbDisplay(_INTL("The two moves have become one! It's a combined move!"))
+      @battle.pbDisplay(_INTL("两个招式合二为一！这是合体招式！！"))
       @pledgeCombo = true
       @comboEffect = i[1]
       @overrideAnim = i[3]
@@ -622,7 +622,7 @@ class Battle::Move::PledgeMove < Battle::Move
   def pbEffectGeneral(user)
     user.effects[PBEffects::FirstPledge] = nil
     return if !@pledgeSetup
-    @battle.pbDisplay(_INTL("{1} is waiting for {2}'s move...",
+    @battle.pbDisplay(_INTL("{1}正在等待{2}的招式……",
                             user.pbThis, @pledgeOtherUser.pbThis(true)))
     @pledgeOtherUser.effects[PBEffects::FirstPledge] = @function_code
     @pledgeOtherUser.effects[PBEffects::MoveNext]    = true
@@ -637,19 +637,19 @@ class Battle::Move::PledgeMove < Battle::Move
     when :SeaOfFire   # Grass + Fire
       if user.pbOpposingSide.effects[PBEffects::SeaOfFire] == 0
         user.pbOpposingSide.effects[PBEffects::SeaOfFire] = 4
-        msg = _INTL("A sea of fire enveloped {1}!", user.pbOpposingTeam(true))
+        msg = _INTL("{1}周围被火海包围了！", user.pbOpposingTeam(true))
         animName = (user.opposes?) ? "SeaOfFire" : "SeaOfFireOpp"
       end
     when :Rainbow   # Fire + Water
       if user.pbOwnSide.effects[PBEffects::Rainbow] == 0
         user.pbOwnSide.effects[PBEffects::Rainbow] = 4
-        msg = _INTL("A rainbow appeared in the sky on {1} side!", user.pbOfTeam(true))
+        msg = _INTL("彩虹出现在了{1}的上空！", user.pbOfTeam(true))
         animName = (user.opposes?) ? "RainbowOpp" : "Rainbow"
       end
     when :Swamp   # Water + Grass
       if user.pbOpposingSide.effects[PBEffects::Swamp] == 0
         user.pbOpposingSide.effects[PBEffects::Swamp] = 4
-        msg = _INTL("A swamp enveloped {1}!", user.pbOpposingTeam(true))
+        msg = _INTL("在{1}周围延伸出了湿地！", user.pbOpposingTeam(true))
         animName = (user.opposes?) ? "Swamp" : "SwampOpp"
       end
     end

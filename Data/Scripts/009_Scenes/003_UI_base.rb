@@ -132,7 +132,7 @@ module UI
     # width, in a horizontal row.
     def draw_number_from_image(bitmap, string, text_x, text_y, align: :left, overlay: :overlay)
       string = string.to_s
-      raise _INTL("Can't draw {1} as a number.", string) if !string.scan(/[^\d\/]/).empty?
+      raise _INTL("无法将{1}绘制为数字。", string) if !string.scan(/[^\d\/]/).empty?
       char_width  = bitmap.width / 11
       char_height = bitmap.height
       chars = string.split(//)
@@ -482,7 +482,7 @@ module UI
       @sprites[:speech_box].visible = true
       @sprites[:speech_box].text    = text
       position_speech_box(text)
-      using(cmd_window = Window_CommandPokemon.new([_INTL("Yes"), _INTL("No")])) do
+      using(cmd_window = Window_CommandPokemon.new([_INTL("是"), _INTL("否")])) do
         cmd_window.z       = @viewport.z + 1
         cmd_window.visible = false
         pbBottomRight(cmd_window)
@@ -516,7 +516,7 @@ module UI
       @sprites[:speech_box].visible = true
       @sprites[:speech_box].text    = text
       position_speech_box(text)
-      using(cmd_window = Window_CommandPokemon.new([_INTL("No"), _INTL("Yes")])) do
+      using(cmd_window = Window_CommandPokemon.new([_INTL("否"), _INTL("是")])) do
         cmd_window.z       = @viewport.z + 1
         cmd_window.visible = false
         pbBottomRight(cmd_window)

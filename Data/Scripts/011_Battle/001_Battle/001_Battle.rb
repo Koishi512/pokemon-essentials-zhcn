@@ -115,9 +115,9 @@ class Battle
 
   def initialize(scene, p1, p2, player, opponent)
     if p1.length == 0
-      raise ArgumentError.new(_INTL("Party 1 has no Pokémon."))
+      raise ArgumentError.new(_INTL("队伍1没有宝可梦。"))
     elsif p2.length == 0
-      raise ArgumentError.new(_INTL("Party 2 has no Pokémon."))
+      raise ArgumentError.new(_INTL("队伍2没有宝可梦。"))
     end
     @scene             = scene
     @peer              = Peer.new
@@ -684,10 +684,10 @@ class Battle
   def pbThisEx(idxBattler, idxParty)
     party = pbParty(idxBattler)
     if opposes?(idxBattler)
-      return _INTL("The opposing {1}", party[idxParty].name) if trainerBattle?
-      return _INTL("The wild {1}", party[idxParty].name)
+      return _INTL("对手的{1}", party[idxParty].name) if trainerBattle?
+      return _INTL("野生的{1}", party[idxParty].name)
     end
-    return _INTL("The ally {1}", party[idxParty].name) if !pbOwnedByPlayer?(idxBattler)
+    return _INTL("同伴的{1}", party[idxParty].name) if !pbOwnedByPlayer?(idxBattler)
     return party[idxParty].name
   end
 
@@ -695,11 +695,11 @@ class Battle
   def pbOfThisEx(idxBattler, idxParty)
     party = pbParty(idxBattler)
     if opposes?(idxBattler)
-      return _INTL("The opposing {1}'s", party[idxParty].name) if trainerBattle?
-      return _INTL("The wild {1}'s", party[idxParty].name)
+      return _INTL("对手的{1}的", party[idxParty].name) if trainerBattle?
+      return _INTL("野生的{1}的", party[idxParty].name)
     end
-    return _INTL("The ally {1}'s", party[idxParty].name) if !pbOwnedByPlayer?(idxBattler)
-    return _INTL("{1}'s", party[idxParty].name)
+    return _INTL("同伴的{1}的", party[idxParty].name) if !pbOwnedByPlayer?(idxBattler)
+    return _INTL("{1}的", party[idxParty].name)
   end
 
   def pbSetSeen(battler)
@@ -835,15 +835,15 @@ class Battle
       pbDisplay(message)
     else
       case @field.weather
-      when :Sun         then pbDisplay(_INTL("The sunlight turned harsh!"))
-      when :Rain        then pbDisplay(_INTL("It started to rain!"))
-      when :Sandstorm   then pbDisplay(_INTL("A sandstorm brewed!"))
-      when :Hail        then pbDisplay(_INTL("It started to hail!"))
-      when :Snowstorm   then pbDisplay(_INTL("It started to snow!"))
-      when :HarshSun    then pbDisplay(_INTL("The sunlight turned extremely harsh!"))
-      when :HeavyRain   then pbDisplay(_INTL("A heavy rain began to fall!"))
-      when :StrongWinds then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
-      when :ShadowSky   then pbDisplay(_INTL("A shadow sky appeared!"))
+      when :Sun         then pbDisplay(_INTL("日照变强了！"))
+      when :Rain        then pbDisplay(_INTL("开始下雨了！"))
+      when :Sandstorm   then pbDisplay(_INTL("开始刮沙暴了！"))
+      when :Hail        then pbDisplay(_INTL("开始下冰雹了！"))
+      when :Snowstorm   then pbDisplay(_INTL("开始下雪了！"))
+      when :HarshSun    then pbDisplay(_INTL("日照变得非常强了！"))
+      when :HeavyRain   then pbDisplay(_INTL("开始下起了暴雨！"))
+      when :StrongWinds then pbDisplay(_INTL("神秘的乱流保护着飞行属性宝可梦！"))
+      when :ShadowSky   then pbDisplay(_INTL("黑暗气场布满了天空！"))
       end
     end
     # Check for end of primordial weather, and weather-triggered form changes
@@ -858,15 +858,15 @@ class Battle
   def pbEndWeather
     old_weather = @field.weather
     case @field.weather
-    when :Sun         then pbDisplay(_INTL("The sunlight faded."))
-    when :Rain        then pbDisplay(_INTL("The rain stopped."))
-    when :Sandstorm   then pbDisplay(_INTL("The sandstorm subsided."))
-    when :Hail        then pbDisplay(_INTL("The hail stopped."))
-    when :Snowstorm   then pbDisplay(_INTL("The snow stopped."))
-    when :HarshSun    then pbDisplay(_INTL("The harsh sunlight faded."))
-    when :HeavyRain   then pbDisplay(_INTL("The heavy rain has lifted."))
-    when :StrongWinds then pbDisplay(_INTL("The mysterious air current has dissipated."))
-    when :ShadowSky   then pbDisplay(_INTL("The shadow sky faded."))
+    when :Sun         then pbDisplay(_INTL("日照复原了！"))
+    when :Rain        then pbDisplay(_INTL("雨停了！"))
+    when :Sandstorm   then pbDisplay(_INTL("沙暴停止了！"))
+    when :Hail        then pbDisplay(_INTL("冰雹停了！"))
+    when :Snowstorm   then pbDisplay(_INTL("雪停了！"))
+    when :HarshSun    then pbDisplay(_INTL("日照复原了！"))
+    when :HeavyRain   then pbDisplay(_INTL("暴雨停了！"))
+    when :StrongWinds then pbDisplay(_INTL("神秘的乱流停止了！"))
+    when :ShadowSky   then pbDisplay(_INTL("黑暗气场消失不见了！"))
     end
     @field.weather = :None
     # Check for form changes/abilities/items caused by the weather changing
@@ -883,17 +883,17 @@ class Battle
     when :HarshSun
       if !pbCheckGlobalAbility(:DESOLATELAND)
         @field.weather = :None
-        pbDisplay(_INTL("The harsh sunlight faded!"))
+        pbDisplay(_INTL("日照复原了！"))
       end
     when :HeavyRain
       if !pbCheckGlobalAbility(:PRIMORDIALSEA)
         @field.weather = :None
-        pbDisplay(_INTL("The heavy rain has lifted!"))
+        pbDisplay(_INTL("暴雨停了！"))
       end
     when :StrongWinds
       if !pbCheckGlobalAbility(:DELTASTREAM)
         @field.weather = :None
-        pbDisplay(_INTL("The mysterious air current has dissipated!"))
+        pbDisplay(_INTL("神秘的乱流停止了！"))
       end
     end
     if @field.weather != old_weather
@@ -910,7 +910,7 @@ class Battle
     return if !pbCanStartWeather?(new_weather, ignore_primal)
     pbShowAbilitySplash(battler)
     if !Scene::USE_ABILITY_SPLASH
-      pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
+      pbDisplay(_INTL("{1}{2}发动了！", battler.pbOfThis, battler.abilityName))
     end
     fixed_duration = false
     fixed_duration = true if Settings::FIXED_DURATION_WEATHER_FROM_ABILITY &&
@@ -953,10 +953,10 @@ class Battle
       pbDisplay(message)
     else
       case @field.terrain
-      when :Electric then pbDisplay(_INTL("An electric current runs across the battlefield!"))
-      when :Grassy   then pbDisplay(_INTL("Grass grew to cover the battlefield!"))
-      when :Misty    then pbDisplay(_INTL("Mist swirled about the battlefield!"))
-      when :Psychic  then pbDisplay(_INTL("The battlefield got weird!"))
+      when :Electric then pbDisplay(_INTL("脚下电光飞闪！"))
+      when :Grassy   then pbDisplay(_INTL("脚下青草如茵！"))
+      when :Misty    then pbDisplay(_INTL("脚下雾气缭绕！"))
+      when :Psychic  then pbDisplay(_INTL("脚下传来了奇妙的感觉！"))
       end
     end
     # Check for abilities/items that trigger upon the terrain changing
@@ -970,10 +970,10 @@ class Battle
   def pbEndTerrain
     old_terrain = @field.terrain
     case @field.terrain
-    when :Electric then pbDisplay(_INTL("The electricity disappeared from the battlefield."))
-    when :Grassy   then pbDisplay(_INTL("The grass disappeared from the battlefield."))
-    when :Misty    then pbDisplay(_INTL("The mist disappeared from the battlefield."))
-    when :Psychic  then pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
+    when :Electric then pbDisplay(_INTL("脚下的电光消失不见了！"))
+    when :Grassy   then pbDisplay(_INTL("脚下的青草消失不见了！"))
+    when :Misty    then pbDisplay(_INTL("脚下的雾气消失不见了！"))
+    when :Psychic  then pbDisplay(_INTL("脚下的奇妙感觉消失了！"))
     end
     @field.terrain = :None
     # Check for form changes/abilities/items caused by the terrain changing
@@ -986,7 +986,7 @@ class Battle
     return if !pbCanStartTerrain?(new_terrain)
     pbShowAbilitySplash(battler)
     if !Scene::USE_ABILITY_SPLASH
-      pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
+      pbDisplay(_INTL("{1}{2}发动了！", battler.pbOfThis, battler.abilityName))
     end
     fixed_duration = true
     pbStartTerrain(battler, new_terrain, fixed_duration, message)
