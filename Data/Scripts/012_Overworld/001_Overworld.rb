@@ -50,7 +50,7 @@ EventHandlers.add(:on_frame_update, :low_battery_warning,
     next if $game_temp.in_menu || $game_temp.in_battle || $game_player.move_route_forcing ||
             $game_temp.message_window_showing || pbMapInterpreterRunning?
     $game_temp.warned_low_battery = true
-    pbMessage(_INTL("The game has detected that the battery is low. You should save soon to avoid losing your progress."))
+    pbMessage(_INTL("已检测到电量过低。请及时记录游戏以防进度丢失。"))
   }
 )
 
@@ -97,12 +97,12 @@ EventHandlers.add(:on_player_step_taken_can_transfer, :poison_party,
       pkmn.hp -= 1 if pkmn.hp > 1 || Settings::POISON_FAINT_IN_FIELD
       if pkmn.hp == 1 && !Settings::POISON_FAINT_IN_FIELD
         pkmn.status = :NONE
-        pbMessage(_INTL("{1} survived the poisoning.\nThe poison faded away!", pkmn.name))
+        pbMessage(_INTL("{1}撑过了中毒。\n毒素消失了！", pkmn.name))
         next
       elsif pkmn.hp == 0
         pkmn.changeHappiness("faint")
         pkmn.status = :NONE
-        pbMessage(_INTL("{1} fainted...", pkmn.name))
+        pbMessage(_INTL("{1}倒下了……", pkmn.name))
       end
       if $player.able_pokemon_count == 0
         handled[0] = true
@@ -114,8 +114,8 @@ EventHandlers.add(:on_player_step_taken_can_transfer, :poison_party,
 
 def pbCheckAllFainted
   if $player.able_pokemon_count == 0
-    pbMessage(_INTL("You have no more Pokémon that can fight!") + "\1")
-    pbMessage(_INTL("You blacked out!"))
+    pbMessage(_INTL("你的手上没有可以战斗的宝可梦！") + "\1")
+    pbMessage(_INTL("你的眼前变得一片漆黑！"))
     pbBGMFade(1.0)
     pbBGSFade(1.0)
     pbFadeOutIn { pbStartOver }
@@ -692,41 +692,41 @@ def pbItemBall(item, quantity = 1)
   if $bag.add(item, quantity)   # If item can be picked up
     meName = (item.is_key_item?) ? "Key item get" : "Item get"
     if item == :DNASPLICERS
-      pbMessage("\\me[#{meName}]" + _INTL("You found \\c[1]{1}\\c[0]!", itemname) + "\\wtnp[40]")
+      pbMessage("\\me[#{meName}]" + _INTL("你找到了\\c[1]{1}\\c[0]！", itemname) + "\\wtnp[40]")
     elsif item.is_machine?   # TM or HM
       if quantity > 1
-        pbMessage("\\me[Machine get]" + _INTL("You found {1} \\c[1]{2} {3}\\c[0]!",
+        pbMessage("\\me[Machine get]" + _INTL("你找到了{1}个\\c[1]{2} {3}\\c[0]！",
                                               quantity, itemname, GameData::Move.get(move).name) + "\\wtnp[70]")
       else
-        pbMessage("\\me[Machine get]" + _INTL("You found \\c[1]{1} {2}\\c[0]!",
+        pbMessage("\\me[Machine get]" + _INTL("你找到了\\c[1]{1} {2}\\c[0]！",
                                               itemname, GameData::Move.get(move).name) + "\\wtnp[70]")
       end
     elsif quantity > 1
-      pbMessage("\\me[#{meName}]" + _INTL("You found {1} \\c[1]{2}\\c[0]!", quantity, itemname) + "\\wtnp[40]")
+      pbMessage("\\me[#{meName}]" + _INTL("你找到了{1}个\\c[1]{2}\\c[0]！", quantity, itemname) + "\\wtnp[40]")
     elsif itemname.starts_with_vowel?
-      pbMessage("\\me[#{meName}]" + _INTL("You found an \\c[1]{1}\\c[0]!", itemname) + "\\wtnp[40]")
+      pbMessage("\\me[#{meName}]" + _INTL("你找到了\\c[1]{1}\\c[0]！", itemname) + "\\wtnp[40]")
     else
-      pbMessage("\\me[#{meName}]" + _INTL("You found a \\c[1]{1}\\c[0]!", itemname) + "\\wtnp[40]")
+      pbMessage("\\me[#{meName}]" + _INTL("你找到了\\c[1]{1}\\c[0]！", itemname) + "\\wtnp[40]")
     end
-    pbMessage(_INTL("You put the {1} in\nyour Bag's <icon=bagPocket{2}>\\c[1]{3}\\c[0] pocket.",
+    pbMessage(_INTL("将{1}放入了\n<icon=bagPocket{2}>\\c[1]{3}\\c[0]口袋。",
                     itemname, pocket, GameData::BagPocket.get(pocket).name))
     return true
   end
   # Can't add the item
   if item.is_machine?   # TM or HM
     if quantity > 1
-      pbMessage(_INTL("You found {1} \\c[1]{2} {3}\\c[0]!", quantity, itemname, GameData::Move.get(move).name))
+      pbMessage(_INTL("你找到了{1}个\\c[1]{2}\\c[0]！", quantity, itemname, GameData::Move.get(move).name))
     else
-      pbMessage(_INTL("You found \\c[1]{1} {2}\\c[0]!", itemname, GameData::Move.get(move).name))
+      pbMessage(_INTL("你找到了\\c[1]{1} {2}\\c[0]！", itemname, GameData::Move.get(move).name))
     end
   elsif quantity > 1
-    pbMessage(_INTL("You found {1} \\c[1]{2}\\c[0]!", quantity, itemname))
+    pbMessage(_INTL("你找到了{1}个\\c[1]{2}\\c[0]！", quantity, itemname))
   elsif itemname.starts_with_vowel?
-    pbMessage(_INTL("You found an \\c[1]{1}\\c[0]!", itemname))
+    pbMessage(_INTL("你找到了\\c[1]{1}\\c[0]！", itemname))
   else
-    pbMessage(_INTL("You found a \\c[1]{1}\\c[0]!", itemname))
+    pbMessage(_INTL("你找到了\\c[1]{1}\\c[0]！", itemname))
   end
-  pbMessage(_INTL("But your Bag is full..."))
+  pbMessage(_INTL("但是你的包包满了……"))
   return false
 end
 
@@ -741,24 +741,24 @@ def pbReceiveItem(item, quantity = 1)
   move = item.move
   meName = (item.is_key_item?) ? "Key item get" : "Item get"
   if item == :DNASPLICERS
-    pbMessage("\\me[#{meName}]" + _INTL("You obtained \\c[1]{1}\\c[0]!", itemname) + "\\wtnp[40]")
+    pbMessage("\\me[#{meName}]" + _INTL("你得到了\c[1]{1}\c[0]！", itemname) + "\\wtnp[40]")
   elsif item.is_machine?   # TM or HM
     if quantity > 1
-      pbMessage("\\me[Machine get]" + _INTL("You obtained {1} \\c[1]{2} {3}\\c[0]!",
+      pbMessage("\\me[Machine get]" + _INTL("你得到了{1}个\c[1]{2} {3}\c[0]！",
                                             quantity, itemname, GameData::Move.get(move).name) + "\\wtnp[70]")
     else
-      pbMessage("\\me[Machine get]" + _INTL("You obtained \\c[1]{1} {2}\\c[0]!",
+      pbMessage("\\me[Machine get]" + _INTL("你得到了\c[1]{1} {2}\c[0]！",
                                             itemname, GameData::Move.get(move).name) + "\\wtnp[70]")
     end
   elsif quantity > 1
-    pbMessage("\\me[#{meName}]" + _INTL("You obtained {1} \\c[1]{2}\\c[0]!", quantity, itemname) + "\\wtnp[40]")
+    pbMessage("\\me[#{meName}]" + _INTL("你得到了{1}个\c[1]{2}\c[0]！", quantity, itemname) + "\\wtnp[40]")
   elsif itemname.starts_with_vowel?
-    pbMessage("\\me[#{meName}]" + _INTL("You obtained an \\c[1]{1}\\c[0]!", itemname) + "\\wtnp[40]")
+    pbMessage("\\me[#{meName}]" + _INTL("你得到了\c[1]{1}\c[0]！", itemname) + "\\wtnp[40]")
   else
-    pbMessage("\\me[#{meName}]" + _INTL("You obtained a \\c[1]{1}\\c[0]!", itemname) + "\\wtnp[40]")
+    pbMessage("\\me[#{meName}]" + _INTL("你得到了\c[1]{1}\c[0]！", itemname) + "\\wtnp[40]")
   end
   if $bag.add(item, quantity)   # If item can be added
-    pbMessage(_INTL("You put the {1} in\nyour Bag's <icon=bagPocket{2}>\\c[1]{3}\\c[0] pocket.",
+    pbMessage(_INTL("将{1}放入了\n<icon=bagPocket{2}>\\c[1]{3}\\c[0]口袋。",
                     itemname, pocket, GameData::BagPocket.get(pocket).name))
     return true
   end
@@ -774,7 +774,7 @@ def pbBuyPrize(item, quantity = 1)
   item_name = (quantity > 1) ? item.portion_name_plural : item.portion_name
   pocket = item.bag_pocket
   return false if !$bag.add(item, quantity)
-  pbMessage("\\CN" + _INTL("You put the {1} in\nyour Bag's <icon=bagPocket{2}>\\c[1]{3}\\c[0] pocket.",
+  pbMessage("\\CN" + _INTL("将{1}放入了\n<icon=bagPocket{2}>\\c[1]{3}\\c[0]口袋。",
                            item_name, pocket, GameData::BagPocket.get(pocket).name))
   return true
 end

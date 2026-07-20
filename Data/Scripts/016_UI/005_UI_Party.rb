@@ -362,10 +362,10 @@ class UI::PartyVisuals < UI::BaseVisuals
   def initialize_cancel_button
     party_max = Settings::MAX_PARTY_SIZE
     if @multi_select
-      @sprites["pokemon#{party_max}"] = UI::PartyVisualsButton.new(_INTL("CONFIRM"), 396, 308, true, @viewport)
-      @sprites["pokemon#{party_max + 1}"] = UI::PartyVisualsButton.new(_INTL("CANCEL"), 396, 346, true, @viewport)
+      @sprites["pokemon#{party_max}"] = UI::PartyVisualsButton.new(_INTL("确定"), 396, 308, true, @viewport)
+      @sprites["pokemon#{party_max + 1}"] = UI::PartyVisualsButton.new(_INTL("取消"), 396, 346, true, @viewport)
     else
-      @sprites["pokemon#{party_max}"] = UI::PartyVisualsButton.new(_INTL("CANCEL"), 396, 328, false, @viewport)
+      @sprites["pokemon#{party_max}"] = UI::PartyVisualsButton.new(_INTL("取消"), 396, 328, false, @viewport)
     end
   end
 
@@ -576,7 +576,7 @@ class UI::PartyVisuals < UI::BaseVisuals
         usability2 = @use_proc2.call(@party[i])
         usability = usability2 if usability.nil? || !@valid_values2.include?(usability2)
       end
-      annot = _INTL("Cannot Choose")
+      annot = _INTL("无法选择")
       annot = @use_annotations[usability] if @use_annotations && @use_annotations[usability]
       annot = @use_annotations2[usability] if @use_annotations2 && @use_annotations2[usability]
       @sprites["pokemon#{i}"].text = annot
@@ -585,7 +585,7 @@ class UI::PartyVisuals < UI::BaseVisuals
 
   def draw_input_helpers
     return if !can_access_screen_menu?
-    draw_input_icon(48, Graphics.height - 96, Input::ACTION, _INTL("Menu"), theme: :input_helper)
+    draw_input_icon(48, Graphics.height - 96, Input::ACTION, _INTL("菜单"), theme: :input_helper)
   end
 
   #-----------------------------------------------------------------------------
@@ -812,17 +812,17 @@ class UI::Party < UI::BaseScreen
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:screen_menu, {
     :menu         => :party_screen_menu,
-    :menu_message => proc { |screen| _INTL("Choose an option.") }
+    :menu_message => proc { |screen| _INTL("请选择一个选项。") }
   })
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:interact_menu, {
     :menu         => :party_screen_interact,
-    :menu_message => proc { |screen| _INTL("Do what with {1}?", screen.pokemon.name) }
+    :menu_message => proc { |screen| _INTL("要对{1}做什么？", screen.pokemon.name) }
   })
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:item_menu, {
     :menu         => :party_screen_interact_item,
-    :menu_message => proc { |screen| _INTL("Do what with an item?") }
+    :menu_message => proc { |screen| _INTL("要对道具做什么？") }
   })
 
   alias pbShowCommands show_menu
@@ -984,7 +984,7 @@ class UI::Party < UI::BaseScreen
       old_item = old_pkmn.item
       old_item_name = old_item.name
       old_item_portion_name = old_item.portion_name
-      screen.set_help_text(_INTL("Move held item to where?"))
+      screen.set_help_text(_INTL("要将持有物移动到哪里？"))
       old_party_idx = screen.index
       moved = false
       loop do
@@ -996,33 +996,33 @@ class UI::Party < UI::BaseScreen
         end
         new_pkmn = screen.party[new_party_idx]
         if new_pkmn.egg?
-          screen.show_message(_INTL("Eggs can't hold items."))
+          screen.show_message(_INTL("蛋不能携带道具。"))
           next
         elsif !new_pkmn.hasItem?
           new_pkmn.item = old_item
           old_pkmn.item = nil
           screen.end_switching
-          screen.show_message(_INTL("{1} was given the {2} to hold.", new_pkmn.name, old_item_portion_name))
+          screen.show_message(_INTL("给{1}携带了{2}。", new_pkmn.name, old_item_portion_name))
           moved = true
           break
         elsif new_pkmn.item.is_mail?
-          screen.show_message(_INTL("{1}'s mail must be removed before giving it an item.", new_pkmn.name))
+          screen.show_message(_INTL("在给{1}携带道具前，必须把邮件取走。", new_pkmn.name))
           next
         end
         # New Pokémon is also holding an item; ask what to do with it
         new_item = new_pkmn.item
         new_item_portion_name = new_item.portion_name
         if new_item_portion_name.starts_with_vowel?
-          screen.show_message(_INTL("{1} is already holding an {2}.", new_pkmn.name, new_item_portion_name) + "\1")
+          screen.show_message(_INTL("{1}已经携带了{2}。", new_pkmn.name, new_item_portion_name) + "\1")
         else
-          screen.show_message(_INTL("{1} is already holding a {2}.", new_pkmn.name, new_item_portion_name) + "\1")
+          screen.show_message(_INTL("{1}已经携带了{2}。", new_pkmn.name, new_item_portion_name) + "\1")
         end
-        next if !screen.show_confirm_message(_INTL("Would you like to switch the two items?"))
+        next if !screen.show_confirm_message(_INTL("你想交换这两个道具吗？"))
         new_pkmn.item = old_item
         old_pkmn.item = new_item
         screen.end_switching
-        screen.show_message(_INTL("{1} was given the {2} to hold.", new_pkmn.name, old_item_portion_name) + "\1")
-        screen.show_message(_INTL("{1} was given the {2} to hold.", old_pkmn.name, new_item_portion_name))
+        screen.show_message(_INTL("给{1}携带了{2}。", new_pkmn.name, old_item_portion_name) + "\1")
+        screen.show_message(_INTL("给{1}携带了{2}。", old_pkmn.name, new_item_portion_name))
         moved = true
         break
       end
@@ -1031,7 +1031,7 @@ class UI::Party < UI::BaseScreen
   })
   ACTIONS.add(:mail_menu, {
     :menu         => :party_screen_interact_mail,
-    :menu_message => proc { |screen| _INTL("Do what with the Mail?") }
+    :menu_message => proc { |screen| _INTL("要对邮件做什么？") }
   })
   ACTIONS.add(:item_move_mode, {
     :effect => proc { |screen|
@@ -1084,13 +1084,13 @@ class UI::Party < UI::BaseScreen
     when :SOFTBOILED, :MILKDRINK
       heal_amt = [(pkmn.totalhp / 5).floor, 1].max
       if pkmn.hp <= heal_amt
-        show_message(_INTL("Not enough HP..."))
+        show_message(_INTL("HP不够……"))
         return
       end
       old_party_idx = index
       start_switching(old_party_idx)
       loop do
-        set_help_text(_INTL("Use on which Pokémon?"))
+        set_help_text(_INTL("要在哪只宝可梦身上使用？"))
         new_party_idx = choose_pokemon_core
         if new_party_idx < 0 || new_party_idx == old_party_idx
           end_switching
@@ -1098,15 +1098,15 @@ class UI::Party < UI::BaseScreen
         end
         new_pkmn = pokemon
         if new_party_idx == old_party_idx
-          show_message(_INTL("{1} can't use {2} on itself!", pkmn.name, move_name))
+          show_message(_INTL("{1}不能把{2}用在自己身上！", pkmn.name, move_name))
         elsif new_pkmn.egg?
-          show_message(_INTL("{1} can't be used on an Egg!", move_name))
+          show_message(_INTL("{1}不能用在蛋上！", move_name))
         elsif new_pkmn.fainted? || new_pkmn.hp == new_pkmn.totalhp
-          show_message(_INTL("{1} can't be used on that Pokémon.", move_name))
+          show_message(_INTL("{1}不能用在那只宝可梦身上！", move_name))
         else
           pkmn.hp -= heal_amt
           hp_gain = pbItemRestoreHP(new_pkmn, heal_amt)
-          show_message(_INTL("{1}'s HP was restored by {2} points.", new_pkmn.name, hp_gain))
+          show_message(_INTL("{1}的体力回复了{2}！", new_pkmn.name, hp_gain))
           refresh
         end
         break if pkmn.hp <= heal_amt
@@ -1146,33 +1146,33 @@ class UI::Party < UI::BaseScreen
     case @mode
     when :normal
       if switching?
-        set_help_text(_INTL("Move to where?"))
+        set_help_text(_INTL("要移动到哪里？"))
       else
         case @visuals.sub_mode
         when :switch_pokemon
-          set_help_text(_INTL("Choose Pokémon to switch."))
+          set_help_text(_INTL("选择要交换的宝可梦。"))
         when :switch_items
-          set_help_text(_INTL("Choose to switch items."))
+          set_help_text(_INTL("选择以交换道具。"))
         else
-          set_help_text((@party.length > 1) ? _INTL("Choose a Pokémon.") : _INTL("Choose Pokémon or cancel."))
+          set_help_text((@party.length > 1) ? _INTL("请选择宝可梦。") : _INTL("选择宝可梦或取消。"))
         end
       end
     when :choose_pokemon, :battle_choose_pokemon
       if switching?
-        set_help_text(_INTL("Move to where?"))
+        set_help_text(_INTL("要移动到哪里？"))
       else
-        set_help_text(_INTL("Choose a Pokémon."))
+        set_help_text(_INTL("请选择宝可梦。"))
       end
     when :use_item, :battle_use_item
-      set_help_text(_INTL("Use on which Pokémon?"))
+      set_help_text(_INTL("要在哪只宝可梦身上使用？"))
     when :teach_pokemon
-      set_help_text(_INTL("Teach which Pokémon?"))
+      set_help_text(_INTL("要教给哪只宝可梦？"))
     when :battle_choose_to_box
-      set_help_text(_INTL("Send which Pokémon to Boxes?"))
+      set_help_text(_INTL("要发送哪只宝可梦呢？"))
     when :battle_choose_to_revive
-      set_help_text(_INTL("Choose Pokémon to revive."))
+      set_help_text(_INTL("请选择要复活的宝可梦。"))
     when :choose_entry_order
-      set_help_text(_INTL("Choose Pokémon and confirm."))
+      set_help_text(_INTL("选择宝可梦并确认。"))
     end
   end
 
@@ -1217,9 +1217,9 @@ class UI::Party < UI::BaseScreen
         end
         if !(@valid_values&.include?(usability) || @valid_values2&.include?(usability))
           if pokemon.egg?
-            show_message(_INTL("This egg can't be chosen."))
+            show_message(_INTL("无法选择这个蛋。"))
           else
-            show_message(_INTL("This Pokémon can't be chosen."))
+            show_message(_INTL("无法选择这只宝可梦。"))
           end
           next
         end
@@ -1236,10 +1236,10 @@ class UI::Party < UI::BaseScreen
     # Setup party panel annotations
     annot = []
     statuses = []
-    ordinals = [_INTL("INELIGIBLE"), _INTL("Not Entered"), _INTL("BANNED")]
-    positions = [_INTL("First"), _INTL("Second"), _INTL("Third"), _INTL("Fourth"),
-                 _INTL("Fifth"), _INTL("Sixth"), _INTL("Seventh"), _INTL("Eighth"),
-                 _INTL("Ninth"), _INTL("Tenth"), _INTL("Eleventh"), _INTL("Twelfth")]
+    ordinals = [_INTL("无法选择"), _INTL("可以参加"), _INTL("无法参加")]
+    positions = [_INTL("第一"), _INTL("第二"), _INTL("第三"), _INTL("第四"),
+                 _INTL("第五"), _INTL("第六"), _INTL("第七"), _INTL("第八"),
+                 _INTL("第九"), _INTL("第十"), _INTL("第十一"), _INTL("第十二")]
     Settings::MAX_PARTY_SIZE.times do |i|
       ordinals.push(positions[i] || "#{i + 1}th")
     end
@@ -1278,15 +1278,15 @@ class UI::Party < UI::BaseScreen
       case command
       when :chosen
         commands = {}
-        commands[:enter]     = _INTL("Entry") if (statuses[index] || 0) == 1   # Not entered yet
-        commands[:not_enter] = _INTL("No Entry") if (statuses[index] || 0) > 2   # Already entered
-        commands[:summary]   = _INTL("Summary")
-        commands[:cancel]    = _INTL("Cancel")
-        chosen_command = show_menu(_INTL("Do what with {1}?", pokemon.name), commands)
+        commands[:enter]     = _INTL("参加") if (statuses[index] || 0) == 1   # Not entered yet
+        commands[:not_enter] = _INTL("不参加") if (statuses[index] || 0) > 2   # Already entered
+        commands[:summary]   = _INTL("查看能力")
+        commands[:cancel]    = _INTL("取消")
+        chosen_command = show_menu(_INTL("要对{1}做什么？", pokemon.name), commands)
         case chosen_command
         when :enter
           if real_order.length >= ruleset.number && ruleset.number > 0
-            show_message(_INTL("No more than {1} Pokémon may enter.", ruleset.number))
+            show_message(_INTL("最多只有{1}只宝可梦可以参加。", ruleset.number))
           else
             statuses[index] = real_order.length + 3
             added_entry = true
@@ -1334,37 +1334,37 @@ end
 # Menu options for choice menus that exist in the party screen.
 #===============================================================================
 MenuHandlers.add(:party_screen_menu, :open_storage, {
-  "name"      => _INTL("Access Pokémon Boxes"),
+  "name"      => _INTL("访问宝可梦盒子"),
   "order"     => 10,
   "condition" => proc { |screen| next screen.can_access_storage? }
 })
 
 MenuHandlers.add(:party_screen_menu, :switch_pokemon_mode, {
-  "name"      => _INTL("Mode: Switch Pokémon"),
+  "name"      => _INTL("模式：交换宝可梦"),
   "order"     => 20,
   "condition" => proc { |screen| next screen.party.length > 1 }
 })
 
 MenuHandlers.add(:party_screen_menu, :item_move_mode, {
-  "name"      => _INTL("Mode: Switch items"),
+  "name"      => _INTL("模式：交换道具"),
   "order"     => 30,
   "condition" => proc { |screen| next screen.party.length > 1 }
 })
 
 MenuHandlers.add(:party_screen_menu, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 
 #-------------------------------------------------------------------------------
 
 MenuHandlers.add(:party_screen_interact, :summary, {
-  "name"      => _INTL("Summary"),
+  "name"      => _INTL("查看能力"),
   "order"     => 10
 })
 
 MenuHandlers.add(:party_screen_interact, :debug, {
-  "name"      => _INTL("Debug"),
+  "name"      => _INTL("调试"),
   "order"     => 20,
   "condition" => proc { |screen| next $DEBUG }
 })
@@ -1384,67 +1384,67 @@ MenuHandlers.add(:party_screen_interact, :field_moves, {
 })
 
 MenuHandlers.add(:party_screen_interact, :switch_pokemon_start, {
-  "name"      => _INTL("Switch"),
+  "name"      => _INTL("交换"),
   "order"     => 40,
   "condition" => proc { |screen| next screen.party.length > 1 }
 })
 
 MenuHandlers.add(:party_screen_interact, :item_menu, {
-  "name"      => _INTL("Item"),
+  "name"      => _INTL("道具"),
   "order"     => 50,
   "condition" => proc { |screen| next !screen.pokemon.egg? && !screen.pokemon.mail }
 })
 
 MenuHandlers.add(:party_screen_interact_item, :item_use, {
-  "name"      => _INTL("Use"),
+  "name"      => _INTL("使用"),
   "order"     => 10
 })
 
 MenuHandlers.add(:party_screen_interact_item, :item_give, {
-  "name"      => _INTL("Give"),
+  "name"      => _INTL("给予"),
   "order"     => 20
 })
 
 MenuHandlers.add(:party_screen_interact_item, :item_take, {
-  "name"      => _INTL("Take"),
+  "name"      => _INTL("取走"),
   "order"     => 30,
   "condition" => proc { |screen| next screen.pokemon.hasItem? }
 })
 
 MenuHandlers.add(:party_screen_interact_item, :item_move, {
-  "name"      => _INTL("Move"),
+  "name"      => _INTL("移动"),
   "order"     => 40,
   "condition" => proc { |screen| next screen.pokemon.hasItem? && !screen.pokemon.item.is_mail? }
 })
 
 MenuHandlers.add(:party_screen_interact_item, :item_cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 
 MenuHandlers.add(:party_screen_interact, :mail_menu, {
-  "name"      => _INTL("Mail"),
+  "name"      => _INTL("邮件"),
   "order"     => 50,
   "condition" => proc { |screen| next !screen.pokemon.egg? && screen.pokemon.mail }
 })
 
 MenuHandlers.add(:party_screen_interact_mail, :mail_read, {
-  "name"      => _INTL("Read"),
+  "name"      => _INTL("阅读"),
   "order"     => 10
 })
 
 MenuHandlers.add(:party_screen_interact_mail, :mail_take, {
-  "name"      => _INTL("Take"),
+  "name"      => _INTL("取走"),
   "order"     => 20
 })
 
 MenuHandlers.add(:party_screen_interact_mail, :mail_cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 30
 })
 
 MenuHandlers.add(:party_screen_interact, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 
@@ -1471,8 +1471,8 @@ def pbChoosePokemon(index_game_var, name_game_var, able_proc = nil, _allow_ineli
     if able_proc
       valid_values = [true]
       use_annotations = {
-        true  => _INTL("Can Choose"),
-        false => _INTL("Cannot Choose")
+        true  => _INTL("能选择！"),
+        false => _INTL("不能选择")
       }
       screen.set_able_annotation_proc(able_proc, valid_values, use_annotations)
     end
@@ -1498,8 +1498,8 @@ def pbChooseTradablePokemon(index_game_var, name_game_var, able_proc = nil, _all
     screen = UI::Party.new($player.party, mode: :choose_pokemon)
     valid_values = [true]
     use_annotations = {
-      true  => _INTL("Can Choose"),
-      false => _INTL("Cannot Choose")
+      true  => _INTL("能选择！"),
+      false => _INTL("不能选择")
     }
     screen.set_able_annotation_proc(able_proc, valid_values, use_annotations) if able_proc
     able_proc2 = proc { |pkmn| next !pkmn.egg? && !pkmn.shadowPokemon? && !pkmn.cannot_trade }

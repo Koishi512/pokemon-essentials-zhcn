@@ -54,12 +54,12 @@ class BugContestBattle < Battle
   def pbStorePokemon(pkmn)
     if pbBugContestState.lastPokemon
       lastPokemon = pbBugContestState.lastPokemon
-      pbDisplayPaused(_INTL("You already caught a {1}.", lastPokemon.name))
-      helptext = _INTL("Stock Pokémon:\n{1} Lv.{2} Max HP: {3}\nThis Pokémon:\n{4} Lv.{5} Max HP: {6}",
+      pbDisplayPaused(_INTL("你已经收服{1}了。", lastPokemon.name))
+      helptext = _INTL("现有的宝可梦：\n{1} Lv.{2} 最大HP：{3}\n这只宝可梦：\n{4} Lv.{5} 最大HP：{6}",
                        lastPokemon.name, lastPokemon.level, lastPokemon.totalhp,
                        pkmn.name, pkmn.level, pkmn.totalhp)
       @scene.pbShowHelp(helptext)
-      if pbDisplayConfirm(_INTL("Switch Pokémon?"))
+      if pbDisplayConfirm(_INTL("要替换宝可梦吗？"))
         pbBugContestState.lastPokemon = pkmn
         @scene.pbHideHelp
       else
@@ -69,7 +69,7 @@ class BugContestBattle < Battle
     else
       pbBugContestState.lastPokemon = pkmn
     end
-    pbDisplay(_INTL("Caught {1}!", pkmn.name))
+    pbDisplay(_INTL("收服了{1}！", pkmn.name))
   end
 
   def pbEndOfRoundPhase

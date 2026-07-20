@@ -61,9 +61,9 @@ class DayCare
 
     def generate_basic_egg(species)
       egg = Pokemon.new(species, Settings::EGG_LEVEL)
-      egg.name           = _INTL("Egg")
+      egg.name           = _INTL("蛋")
       egg.steps_to_hatch = egg.species_data.hatch_steps
-      egg.obtain_text    = _INTL("Day-Care Couple")
+      egg.obtain_text    = _INTL("培育屋夫妇")
       egg.happiness      = 120
       egg.form           = 0 if species == :SINISTEA
       # Set regional form
@@ -438,7 +438,7 @@ class DayCare
     $stats.day_care_deposits += 1
     day_care = $PokemonGlobal.day_care
     pkmn = $player.party[party_index]
-    raise _INTL("No Pokémon at index {1} in party.", party_index) if pkmn.nil?
+    raise _INTL("队伍中无索引为{1}的宝可梦。", party_index) if pkmn.nil?
     day_care.slots.each do |slot|
       next if slot.filled?
       slot.deposit(pkmn)
@@ -446,16 +446,16 @@ class DayCare
       day_care.reset_egg_counters
       return
     end
-    raise _INTL("No room to deposit a Pokémon.")
+    raise _INTL("没有寄放宝可梦的空间了。")
   end
 
   def self.withdraw(index)
     day_care = $PokemonGlobal.day_care
     slot = day_care[index]
     if !slot.filled?
-      raise _INTL("No Pokémon found in slot {1}.", index)
+      raise _INTL("在槽{1}中未找到宝可梦。", index)
     elsif $player.party_full?
-      raise _INTL("No room in party for Pokémon.")
+      raise _INTL("队伍中没有空间来接收宝可梦。")
     end
     $stats.day_care_levels_gained += slot.level_gain
     $player.party.push(slot.pokemon)
@@ -467,7 +467,7 @@ class DayCare
     day_care = $PokemonGlobal.day_care
     case day_care.count
     when 0
-      raise _INTL("No Pokémon found in Day Care to choose from.")
+      raise _INTL("在培育屋中未找到宝可梦。")
     when 1
       day_care.slots.each_with_index { |slot, i| $game_variables[choice_var] = i if slot.filled? }
     else
@@ -479,7 +479,7 @@ class DayCare
         commands.push(choice_text)
         indices.push(i)
       end
-      commands.push(_INTL("CANCEL"))
+      commands.push(_INTL("取消"))
       command = pbMessage(message, commands, commands.length)
       $game_variables[choice_var] = (command == commands.length - 1) ? -1 : indices[command]
     end
@@ -488,8 +488,8 @@ class DayCare
   def self.collect_egg
     day_care = $PokemonGlobal.day_care
     egg = day_care.generate_egg
-    raise _INTL("Couldn't generate the egg.") if egg.nil?
-    raise _INTL("No room in party for egg.") if $player.party_full?
+    raise _INTL("无法生成蛋。") if egg.nil?
+    raise _INTL("队伍中没有放蛋的空间了。") if $player.party_full?
     $player.party.push(egg)
     day_care.reset_egg_counters
   end
@@ -509,7 +509,7 @@ class DayCare
         pkmn2 = slot.pokemon
       end
     end
-    raise _INTL("Couldn't find 2 deposited Pokémon.") if pkmn2.nil?
+    raise _INTL("找不到2只已寄放的宝可梦。") if pkmn2.nil?
     return pkmn1, pkmn2
   end
 

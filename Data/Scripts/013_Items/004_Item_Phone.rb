@@ -179,7 +179,7 @@ class Phone
       else
         contact = $PokemonGlobal.phone.get(false, args[1])
       end
-      pbMessage("\\me[Register phone]" + _INTL("Registered {1} in the Pokégear!", contact.display_name) + "\\wtnp[60]")
+      pbMessage("\\me[Register phone]" + _INTL("将{1}登录到宝可装置里！", contact.display_name) + "\\wtnp[60]")
     end
     return ret
   end
@@ -328,12 +328,12 @@ class Phone
     def can_call_contact?(contact)
       return false if !contact
       if !can_make?
-        pbMessage(_INTL("There is no phone signal here..."))
+        pbMessage(_INTL("这里没有手机信号……"))
         return false
       end
       return true if !contact.trainer?
       if contact.map_id == $game_map.map_id
-        pbMessage(_INTL("The Trainer is close by.\nTalk to the Trainer in person!"))
+        pbMessage(_INTL("训练家就在附近。\n亲自去找他吧！"))
         return false
       end
       caller_map_metadata = GameData::MapMetadata.try_get(contact.map_id)
@@ -341,7 +341,7 @@ class Phone
       if !caller_map_metadata || !caller_map_metadata.town_map_position ||
          !this_map_metadata || !this_map_metadata.town_map_position ||
          caller_map_metadata.town_map_position[0] != this_map_metadata.town_map_position[0]
-        pbMessage(_INTL("The Trainer is out of range."))
+        pbMessage(_INTL("训练家不在范围内。"))
         return false
       end
       return true
@@ -374,7 +374,7 @@ class Phone
       return if !contact
       if contact.common_event_call?
         if !pbCommonEvent(contact.common_event_id)
-          pbMessage(_INTL("{1}'s messages not defined.\nCouldn't call common event {2}.",
+          pbMessage(_INTL("未定义{1}的消息。\n无法调用公用事件{2}。",
                           contact.display_name, contact.common_event_id))
         end
       else
@@ -394,11 +394,11 @@ class Phone
       else
         contact = Phone.get(false, args[0])   # Non-trainer
       end
-      raise _INTL("Couldn't find phone contact given: {1}.", args.inspect) if !contact
+      raise _INTL("找不到给出的电话联系人：{1}。", args.inspect) if !contact
       return if !can_call_contact?(contact)
       if contact.common_event_call?
         if !pbCommonEvent(contact.common_event_id)
-          pbMessage(_INTL("{1}'s messages not defined.\nCouldn't call common event {2}.",
+          pbMessage(_INTL("未定义{1}的消息。\n无法调用公用事件{2}。",
                           contact.display_name, contact.common_event_id))
         end
       else
@@ -439,7 +439,7 @@ class Phone
     end
 
     def end_message(contact = nil)
-      pbMessage(_INTL("Click!") + "\\wt[10]\n......\\wt[5] ......\1")
+      pbMessage(_INTL("哔！") + "\\wt[10]\n......\\wt[5] ......\1")
     end
 
     #-----------------------------------------------------------------------------

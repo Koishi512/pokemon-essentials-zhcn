@@ -312,12 +312,12 @@ class Battle::Scene
   # Shows stats windows upon a Pokémon levelling up.
   def pbLevelUp(pkmn, _battler, oldTotalHP, oldAttack, oldDefense, oldSpAtk, oldSpDef, oldSpeed)
     pbTopRightWindow(
-      _INTL("Max. HP<r>+{1}\nAttack<r>+{2}\nDefense<r>+{3}\nSp. Atk<r>+{4}\nSp. Def<r>+{5}\nSpeed<r>+{6}",
+      _INTL("最大HP<r>+{1}\n攻击<r>+{2}\n防御<r>+{3}\n特攻<r>+{4}\n特防<r>+{5}\n速度<r>+{6}",
             pkmn.totalhp - oldTotalHP, pkmn.attack - oldAttack, pkmn.defense - oldDefense,
             pkmn.spatk - oldSpAtk, pkmn.spdef - oldSpDef, pkmn.speed - oldSpeed)
     )
     pbTopRightWindow(
-      _INTL("Max. HP<r>{1}\nAttack<r>{2}\nDefense<r>{3}\nSp. Atk<r>{4}\nSp. Def<r>{5}\nSpeed<r>{6}",
+      _INTL("最大HP<r>{1}\n攻击<r>{2}\n防御<r>{3}\n特攻<r>{4}\n特防<r>{5}\n速度<r>{6}",
             pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed)
     )
   end

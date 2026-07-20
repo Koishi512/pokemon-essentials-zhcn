@@ -27,7 +27,7 @@ def pbMoveToMailbox(pokemon)
 end
 
 def pbStoreMail(pkmn, item, message, poke1 = nil, poke2 = nil, poke3 = nil)
-  raise _INTL("Pokémon already has mail") if pkmn.mail
+  raise _INTL("宝可梦已携带邮件") if pkmn.mail
   pkmn.mail = Mail.new(item, message, $player.name, poke1, poke2, poke3)
 end
 
@@ -100,7 +100,7 @@ end
 def pbWriteMail(item, pkmn, pkmnid, scene)
   message = ""
   loop do
-    message = pbMessageFreeText(_INTL("Please enter a message (max. 250 characters)."),
+    message = pbMessageFreeText(_INTL("请输入消息（最大250文字）。"),
                                 "", false, 250, Graphics.width) { scene.update }
     if message != ""
       # Store mail if a message was written
@@ -120,6 +120,6 @@ def pbWriteMail(item, pkmn, pkmnid, scene)
       pbStoreMail(pkmn, item, message, poke1, poke2, poke3)
       return true
     end
-    return false if scene.show_confirm_message(_INTL("Stop giving the Pokémon Mail?"))
+    return false if scene.show_confirm_message(_INTL("要停止给宝可梦送邮件吗？"))
   end
 end

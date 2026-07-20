@@ -85,7 +85,7 @@ class Pokemon
       amt = (heart_amounts[@nature]) ? heart_amounts[@nature][3] : 100
       amt *= multiplier
     else
-      raise _INTL("Unknown heart gauge-changing method: {1}", method.to_s)
+      raise _INTL("未知的净化计改变方法：{1}", method.to_s)
     end
     adjustHeart(-amt)
   end
@@ -194,7 +194,7 @@ class Pokemon
   def check_ready_to_purify
     return if !shadowPokemon?
     update_shadow_moves
-    pbMessage(_INTL("{1} can now be purified!", self.name)) if self.heart_gauge == 0
+    pbMessage(_INTL("现在可以净化{1}了！", self.name)) if self.heart_gauge == 0
   end
 
   def add_evs(added_evs)

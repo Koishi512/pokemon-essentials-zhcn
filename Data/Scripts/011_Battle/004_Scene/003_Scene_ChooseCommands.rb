@@ -142,18 +142,18 @@ class Battle::Scene
     screen.cannot_cancel = !canCancel
     screen.choose_pokemon do |pkmn, party_index|
       if party_index < 0
-        screen.show_message(_INTL("You have to choose a Pokémon!")) if !canCancel
+        screen.show_message(_INTL("你必须选择一只宝可梦！")) if !canCancel
         next canCancel
       end
       # Choose a command for the selected Pokémon
       commands = {}
-      commands[:switch_in]     = _INTL("Switch In") if mode == 0 && pkmn.able? &&
+      commands[:switch_in]     = _INTL("调换") if mode == 0 && pkmn.able? &&
                                                        (!@battle.rules[:cannot_switch] || !canCancel)
-      commands[:send_to_boxes] = _INTL("Send to Boxes") if mode == 1 && !pkmn.cannot_store
-      commands[:select]        = _INTL("Select") if mode == 3
-      commands[:summary]       = _INTL("Summary")
-      commands[:cancel]        = _INTL("Cancel")
-      choice = screen.show_menu(_INTL("Do what with {1}?", pkmn.name), commands)
+      commands[:send_to_boxes] = _INTL("发送到盒子里") if mode == 1 && !pkmn.cannot_store
+      commands[:select]        = _INTL("选择") if mode == 3
+      commands[:summary]       = _INTL("查看能力")
+      commands[:cancel]        = _INTL("取消")
+      choice = screen.show_menu(_INTL("要对{1}做什么？", pkmn.name), commands)
       next false if choice.nil?
       case choice
       when :select, :switch_in, :send_to_boxes
@@ -213,9 +213,9 @@ class Battle::Scene
         useType = item.battle_use
         cmdUse = -1
         commands = []
-        commands[cmdUse = commands.length] = _INTL("Use") if useType && useType != 0
-        commands[commands.length]          = _INTL("Cancel")
-        command = bag_screen.show_menu(_INTL("{1} is selected.", itemName), commands)
+        commands[cmdUse = commands.length] = _INTL("使用") if useType && useType != 0
+        commands[commands.length]          = _INTL("取消")
+        command = bag_screen.show_menu(_INTL("{1}被选中了。", itemName), commands)
         next unless cmdUse >= 0 && command == cmdUse   # Use
         # Use types:
         # 0 = not usable in battle
@@ -270,7 +270,7 @@ class Battle::Scene
             next false if !pkmn || pkmn.egg?
             move_index = -1
             if useType == 2   # Use on Pokémon's move
-              move_index = party_screen.choose_move(pkmn, _INTL("Restore which move?"))
+              move_index = party_screen.choose_move(pkmn, _INTL("要回复哪个招式？"))
               next false if move_index < 0
             end
             if yield item.id, useType, real_party_index, move_index, party_screen

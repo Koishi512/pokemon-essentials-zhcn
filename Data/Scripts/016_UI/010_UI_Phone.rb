@@ -54,7 +54,7 @@ class PokemonPhone_Scene
     end
     # Title text
     @sprites["header"] = Window_UnformattedTextPokemon.newWithSize(
-      _INTL("Phone"), 2, -18, 128, 64, @viewport
+      _INTL("电话"), 2, -18, 128, 64, @viewport
     )
     @sprites["header"].baseColor   = Color.new(248, 248, 248)
     @sprites["header"].shadowColor = Color.black
@@ -93,9 +93,9 @@ class PokemonPhone_Scene
       @sprites["list"].top_row = @sprites["list"].itemCount - @sprites["list"].page_item_max
     end
     # Set info text
-    infotext = _INTL("Registered") + "<br>"
+    infotext = _INTL("已登录") + "<br>"
     infotext += "<r>" + @sprites["list"].commands.length.to_s + "<br>"
-    infotext += _INTL("Waiting for a rematch") + "<r>" + rematch_count.to_s
+    infotext += _INTL("等待再战") + "<r>" + rematch_count.to_s
     @sprites["info"].text = infotext
     pbRefreshScreen
   end
@@ -209,7 +209,7 @@ class PokemonPhoneScreen
 
   def pbStartScreen
     if $PokemonGlobal.phone.contacts.none? { |con| con.visible? }
-      pbMessage(_INTL("There are no phone numbers stored."))
+      pbMessage(_INTL("没有存储任何电话号码。"))
       return
     end
     @scene.pbStartScene
@@ -217,10 +217,10 @@ class PokemonPhoneScreen
       contact = @scene.pbChooseContact
       break if !contact
       commands = []
-      commands.push(_INTL("Call"))
-      commands.push(_INTL("Delete")) if contact.can_hide?
-      commands.push(_INTL("Sort Contacts"))
-      commands.push(_INTL("Cancel"))
+      commands.push(_INTL("打电话"))
+      commands.push(_INTL("删除")) if contact.can_hide?
+      commands.push(_INTL("排序联系人"))
+      commands.push(_INTL("取消"))
       cmd = pbShowCommands(nil, commands, -1)
       cmd += 1 if cmd >= 1 && !contact.can_hide?
       case cmd
@@ -228,22 +228,22 @@ class PokemonPhoneScreen
         Phone::Call.make_outgoing(contact)
       when 1   # Delete
         name = contact.display_name
-        if pbConfirmMessage(_INTL("Are you sure you want to delete {1} from your phone?", name))
+        if pbConfirmMessage(_INTL("你确定要从电话簿中删除{1}吗？", name))
           contact.visible = false
           $PokemonGlobal.phone.sort_contacts
           @scene.pbRefreshList
-          pbMessage(_INTL("{1} was deleted from your phone contacts.", name))
+          pbMessage(_INTL("{1}已从你的联系人中删除。", name))
           if $PokemonGlobal.phone.contacts.none? { |con| con.visible? }
-            pbMessage(_INTL("There are no phone numbers stored."))
+            pbMessage(_INTL("没有存储任何电话号码。"))
             break
           end
         end
       when 2   # Sort Contacts
-        case pbMessage(_INTL("How do you want to sort the contacts?"),
-                       [_INTL("By name"),
-                        _INTL("By Trainer type"),
-                        _INTL("Special contacts first"),
-                        _INTL("Cancel")], -1, nil, 0)
+        case pbMessage(_INTL("要按照哪种排序进行更改？"),
+                       [_INTL("按姓名"),
+                        _INTL("按训练家类型"),
+                        _INTL("特殊联系人优先"),
+                        _INTL("取消")], -1, nil, 0)
         when 0   # By name
           $PokemonGlobal.phone.contacts.sort! { |a, b| a.name <=> b.name }
           $PokemonGlobal.phone.sort_contacts

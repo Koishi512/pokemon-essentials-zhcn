@@ -65,7 +65,7 @@ class PokemonStorage
   def initialize(maxBoxes = Settings::NUM_STORAGE_BOXES, maxPokemon = PokemonBox::BOX_SIZE)
     @boxes = []
     maxBoxes.times do |i|
-      @boxes[i] = PokemonBox.new(_INTL("Box {1}", i + 1), maxPokemon)
+      @boxes[i] = PokemonBox.new(_INTL("盒子{1}", i + 1), maxPokemon)
       @boxes[i].background = i % BASIC_WALLPAPER_COUNT
     end
     @currentBox = 0
@@ -84,17 +84,17 @@ class PokemonStorage
   def allWallpapers
     return [
       # Basic wallpapers
-      _INTL("Forest"), _INTL("City"), _INTL("Desert"), _INTL("Savanna"),
-      _INTL("Crag"), _INTL("Volcano"), _INTL("Snow"), _INTL("Cave"),
-      _INTL("Beach"), _INTL("Seafloor"), _INTL("River"), _INTL("Sky"),
-      _INTL("Poké Center"), _INTL("Machine"), _INTL("Checks"), _INTL("Simple"),
+      _INTL("森林"), _INTL("城市"), _INTL("沙漠"), _INTL("稀树草原"),
+      _INTL("悬崖"), _INTL("火山"), _INTL("雪地"), _INTL("洞穴"),
+      _INTL("海滩"), _INTL("海底"), _INTL("河流"), _INTL("天空"),
+      _INTL("宝可梦中心"), _INTL("机器"), _INTL("检查"), _INTL("简单"),
       # Special wallpapers
-      _INTL("Space"), _INTL("Backyard"), _INTL("Nostalgic 1"), _INTL("Torchic"),
-      _INTL("Trio 1"), _INTL("PikaPika 1"), _INTL("Legend 1"), _INTL("Galactic 1"),
-      _INTL("Distortion"), _INTL("Contest"), _INTL("Nostalgic 2"), _INTL("Croagunk"),
-      _INTL("Trio 2"), _INTL("PikaPika 2"), _INTL("Legend 2"), _INTL("Galactic 2"),
-      _INTL("Heart"), _INTL("Soul"), _INTL("Big Brother"), _INTL("Pokéathlon"),
-      _INTL("Trio 3"), _INTL("Spiky Pika"), _INTL("Kimono Girl"), _INTL("Revival")
+      _INTL("太空"), _INTL("后院"), _INTL("怀旧1"), _INTL("火稚鸡"),
+      _INTL("三人组1"), _INTL("皮卡丘1"), _INTL("传说1"), _INTL("银河1"),
+      _INTL("毁坏"), _INTL("大赛"), _INTL("怀旧2"), _INTL("不良蛙"),
+      _INTL("三人组2"), _INTL("皮卡丘2"), _INTL("传说2"), _INTL("银河2"),
+      _INTL("心灵"), _INTL("灵魂"), _INTL("大哥"), _INTL("宝可全能"),
+      _INTL("三人组3"), _INTL("刺刺耳"), _INTL("和服女孩"), _INTL("复活")
     ]
   end
 
@@ -277,14 +277,14 @@ class RegionalStorage
 
   def getCurrentStorage
     if !$game_map
-      raise _INTL("The player is not on a map, so the region could not be determined.")
+      raise _INTL("玩家不处于地图上，无法确定所处的地区。")
     end
     if @lastmap != $game_map.map_id
       @rgnmap = pbGetCurrentRegion   # may access file IO, so caching result
       @lastmap = $game_map.map_id
     end
     if @rgnmap < 0
-      raise _INTL("The current map has no region set. Please set the MapPosition metadata setting for this map.")
+      raise _INTL("当前地图没有设置地区。请为该地图设置MapPosition元数据设置。")
     end
     @storages[@rgnmap] = PokemonStorage.new if !@storages[@rgnmap]
     return @storages[@rgnmap]

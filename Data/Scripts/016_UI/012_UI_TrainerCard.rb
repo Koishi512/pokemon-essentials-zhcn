@@ -18,7 +18,7 @@ class UI::TrainerCardVisuals < UI::BaseVisuals
     # Player sprite (coordinates are the bottom middle of the sprite)
     add_icon_sprite(:player, 400, 240, GameData::TrainerType.player_front_sprite_filename($player.trainer_type))
     if !@sprites[:player].bitmap
-      raise _INTL("No trainer front sprite exists for the player character, expected a file at {1}.",
+      raise _INTL("玩家角色的训练家正面立绘不存在，预期在{1}位置应有一个文件。",
                   "Graphics/Trainers/" + $player.trainer_type.to_s + ".png")
     end
     @sprites[:player].x -= @sprites[:player].bitmap.width / 2
@@ -37,7 +37,7 @@ class UI::TrainerCardVisuals < UI::BaseVisuals
 
   # Draws the player's name and ID number onto the overlay.
   def draw_ID
-    draw_text(_INTL("Name"), 34, 70, theme: :gray)
+    draw_text(_INTL("姓名"), 34, 70, theme: :gray)
     draw_text($player.name, 302, 70, align: :right, theme: :gray)
     draw_text(_INTL("ID No."), 332, 70, theme: :gray)
     draw_text(sprintf("%05d", $player.public_ID), 468, 70, align: :right, theme: :gray)
@@ -58,24 +58,24 @@ class UI::TrainerCardVisuals < UI::BaseVisuals
     # Create start date text
     $PokemonGlobal.startTime = Time.now if !$PokemonGlobal.startTime
     if Translation.month_day_date_format?
-      start_date_text = _INTL("{1} {2}, {3}",
+      start_date_text = _INTL("{3}年{1}{2}日",
                               pbGetAbbrevMonthName($PokemonGlobal.startTime.mon),
                               $PokemonGlobal.startTime.day,
                               $PokemonGlobal.startTime.year)
     else
-      start_date_text = _INTL("{1} {2}, {3}",
+      start_date_text = _INTL("{3}年{2}{1}日",
                               $PokemonGlobal.startTime.day,
                               pbGetAbbrevMonthName($PokemonGlobal.startTime.mon),
                               $PokemonGlobal.startTime.year)
     end
     # Draw text
-    draw_text(_INTL("Money"), 34, 118, theme: :gray)
+    draw_text(_INTL("零花钱"), 34, 118, theme: :gray)
     draw_text(money_text, 302, 118, align: :right, theme: :gray)
-    draw_text(_INTL("Pokédex"), 34, 166, theme: :gray)
+    draw_text(_INTL("图鉴"), 34, 166, theme: :gray)
     draw_text(pokedex_text, 302, 166, align: :right, theme: :gray)
-    draw_text(_INTL("Time"), 34, 214, theme: :gray)
+    draw_text(_INTL("时间"), 34, 214, theme: :gray)
     draw_text(play_time_text, 302, 214, align: :right, theme: :gray)
-    draw_text(_INTL("Started"), 34, 262, theme: :gray)
+    draw_text(_INTL("开始日期"), 34, 262, theme: :gray)
     draw_text(start_date_text, 302, 262, align: :right, theme: :gray)
   end
 

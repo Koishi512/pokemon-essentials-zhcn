@@ -42,7 +42,7 @@ def pbFishing(hasEncounter, rodType = 1)
     message = ""
     time.times { message += ".   " }
     if pbWaitMessage(msgWindow, time)
-      pbFishingEnd { pbMessageDisplay(msgWindow, _INTL("Not even a nibble...")) }
+      pbFishingEnd { pbMessageDisplay(msgWindow, _INTL("钓不到啊……")) }
       break
     end
     if hasEncounter && rand(100) < biteChance
@@ -50,13 +50,13 @@ def pbFishing(hasEncounter, rodType = 1)
       $game_player.animation_height = 3
       $game_player.animation_regular_tone = true
       duration = rand(5..10) / 10.0   # 0.5-1 seconds
-      if !pbWaitForInput(msgWindow, message + "\n" + _INTL("Oh! A bite!"), duration)
-        pbFishingEnd { pbMessageDisplay(msgWindow, _INTL("The Pokémon got away...")) }
+      if !pbWaitForInput(msgWindow, message + "\n" + _INTL("哦！上钩了！"), duration)
+        pbFishingEnd { pbMessageDisplay(msgWindow, _INTL("被逃掉了……")) }
         break
       end
       if Settings::FISHING_AUTO_HOOK || rand(100) < hookChance
         pbFishingEnd do
-          pbMessageDisplay(msgWindow, _INTL("Landed a Pokémon!")) if !Settings::FISHING_AUTO_HOOK
+          pbMessageDisplay(msgWindow, _INTL("钓到宝可梦了！")) if !Settings::FISHING_AUTO_HOOK
         end
         ret = true
         break
@@ -64,7 +64,7 @@ def pbFishing(hasEncounter, rodType = 1)
 #      biteChance += 15
 #      hookChance += 15
     else
-      pbFishingEnd { pbMessageDisplay(msgWindow, _INTL("Not even a nibble...")) }
+      pbFishingEnd { pbMessageDisplay(msgWindow, _INTL("钓不到啊……")) }
       break
     end
   end

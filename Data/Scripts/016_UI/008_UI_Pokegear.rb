@@ -159,7 +159,7 @@ end
 #===============================================================================
 
 MenuHandlers.add(:pokegear_menu, :map, {
-  "name"      => _INTL("Map"),
+  "name"      => _INTL("地图"),
   "icon_name" => "map",
   "order"     => 10,
   "effect"    => proc { |menu|
@@ -177,7 +177,7 @@ MenuHandlers.add(:pokegear_menu, :map, {
 })
 
 MenuHandlers.add(:pokegear_menu, :phone, {
-  "name"      => _INTL("Phone"),
+  "name"      => _INTL("电话"),
   "icon_name" => "phone",
   "order"     => 20,
 #  "condition" => proc { next $PokemonGlobal.phone && $PokemonGlobal.phone.contacts.length > 0 },
@@ -192,7 +192,7 @@ MenuHandlers.add(:pokegear_menu, :phone, {
 })
 
 MenuHandlers.add(:pokegear_menu, :jukebox, {
-  "name"      => _INTL("Jukebox"),
+  "name"      => _INTL("音乐盒"),
   "icon_name" => "jukebox",
   "order"     => 30,
   "effect"    => proc { |menu|

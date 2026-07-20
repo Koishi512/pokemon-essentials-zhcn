@@ -12,7 +12,7 @@ module UI::LoadSaveDataMixin
     ret = SaveData.read_from_file(directory + filename)
     if !SaveData.valid?(ret)
       if File.file?(directory + filename + ".bak")
-        show_message(_INTL("The save file is corrupt. A backup will be loaded."))
+        show_message(_INTL("存档文件已损坏。将加载备份。"))
         ret = load_save_file(directory, filename + ".bak")
       end
       if prompt_corrupted_save_deletion(filename)
@@ -26,18 +26,18 @@ module UI::LoadSaveDataMixin
   end
 
   def prompt_corrupted_save_deletion(filename)
-    show_message(_INTL("The save file is corrupt, or is incompatible with this game.") + "\1")
+    show_message(_INTL("存档文件已损坏，或与当前游戏不兼容。") + "\1")
     pbPlayDecisionSE
-    return show_confirm_serious_message(_INTL("Do you want to delete the save file and start anew?"))
+    return show_confirm_serious_message(_INTL("是否要删除存档文件并重新开始？"))
   end
 
   def delete_save_data(filename)
     begin
       SaveData.delete_file(filename)
       yield if block_given?
-      show_message(_INTL("The save file was deleted."))
+      show_message(_INTL("已删除存档文件。"))
     rescue SystemCallError
-      show_message(_INTL("The save file could not be deleted."))
+      show_message(_INTL("无法删除存档文件。"))
     end
   end
 end
@@ -146,7 +146,7 @@ class UI::LoadContinuePanel < UI::LoadPanel
     filename = pbGetPlayerCharset(meta.walk_charset, @save_data[:player], true)
     @sprites[:player] = TrainerWalkingCharSprite.new(filename, @viewport)
     if !@sprites[:player].bitmap
-      raise _INTL("Player character {1}'s walking charset was not found (filename: \"{2}\").",
+      raise _INTL("未找到玩家角色{1}的行走图（文件名：\"{2}\"）。",
                   @save_data[:player].character_ID, filename)
     end
     @sprites[:player].x = 48 - (@sprites[:player].bitmap.width / 8)
@@ -223,7 +223,7 @@ class UI::LoadContinuePanel < UI::LoadPanel
     filename = pbGetPlayerCharset(meta.walk_charset, @save_data[:player], true)
     @sprites[:player].charset = filename
     if !@sprites[:player].bitmap
-      raise _INTL("Player character {1}'s walking charset was not found (filename: \"{2}\").",
+      raise _INTL("未找到玩家角色{1}的行走图（文件名：\"{2}\"）。",
                   @save_data[:player].character_ID, filename)
     end
   end
@@ -264,17 +264,17 @@ class UI::LoadContinuePanel < UI::LoadPanel
     map_name = map_name.gsub(/\\v\[(\d+)\]/) { |num| @save_data[:variables][$~[1].to_i].to_s }
     draw_text(map_name, 18, 114, theme: gender_theme)
     # Gym Badges
-    draw_text(_INTL("Badges:"), 18, 146, theme: :gray)
+    draw_text(_INTL("徽章："), 18, 146, theme: :gray)
     draw_text(@save_data[:player].badge_count.to_s, 156, 146, theme: gender_theme)
     # Pokédex owned count
-    draw_text(_INTL("Pokédex:"), 18, 178, theme: :gray)
+    draw_text(_INTL("图鉴："), 18, 178, theme: :gray)
     draw_text(@save_data[:player].pokedex.seen_count.to_s, 156, 178, theme: gender_theme)
     # Time played
-    draw_text(_INTL("Time played:"), 18, 210, theme: :gray)
+    draw_text(_INTL("游戏时间："), 18, 210, theme: :gray)
     play_time = @save_data[:stats]&.play_time.to_i || 0
     hour = (play_time / 60) / 60
     min  = (play_time / 60) % 60
-    play_time_text = (hour > 0) ? _INTL("{1}h {2}m", hour, min) : _INTL("{1}m", min)
+    play_time_text = (hour > 0) ? _INTL("{1}时{2}分", hour, min) : _INTL("{1}分", min)
     draw_text(play_time_text, 156, 210, theme: gender_theme)
     save_time = @save_data[:stats]&.real_time_saved
     if save_time
@@ -620,10 +620,10 @@ class UI::Load < UI::BaseScreen
   end
 
   def prompt_save_deletion(filename)
-    if show_confirm_serious_message(_INTL("Delete this save file?"))
-      show_message(_INTL("Once a save file has been deleted, there is no way to recover it.") + "\1")
+    if show_confirm_serious_message(_INTL("要删除这个存档文件吗？"))
+      show_message(_INTL("一旦存档文件被删除，将无法恢复。") + "\1")
       pbPlayDecisionSE
-      if show_confirm_serious_message(_INTL("Delete the save file anyway?"))
+      if show_confirm_serious_message(_INTL("确定要删除存档文件吗？"))
         delete_save_data(filename) {
           @save_data.delete_if { |save| save[0] == filename }
           @visuals.refresh_after_save_file_deleted
@@ -690,7 +690,7 @@ end
 #       UI::Load.
 #===============================================================================
 MenuHandlers.add(:load_screen, :continue, {
-  "name"      => _INTL("Continue"),
+  "name"      => _INTL("继续游戏"),
   "order"     => 10,
   "condition" => proc { |screen| next screen.save_data && !screen.save_data.empty? }
 })
@@ -699,28 +699,28 @@ MenuHandlers.add(:load_screen, :continue, {
 #       have unlocked it. Whether it is shown depends on the selected save file,
 #       and its visibility is toggled elsewhere because of that.
 MenuHandlers.add(:load_screen, :mystery_gift, {
-  "name"      => _INTL("Mystery Gift"),
+  "name"      => _INTL("神秘礼物"),
   "order"     => 20,
   "condition" => proc { |screen| next screen.save_data && !screen.save_data.empty? }
 })
 
 MenuHandlers.add(:load_screen, :new_game, {
-  "name"      => _INTL("New Game"),
+  "name"      => _INTL("新游戏"),
   "order"     => 30
 })
 
 MenuHandlers.add(:load_screen, :options, {
-  "name"      => _INTL("Options"),
+  "name"      => _INTL("设置"),
   "order"     => 40
 })
 
 MenuHandlers.add(:load_screen, :debug, {
-  "name"      => _INTL("Debug"),
+  "name"      => _INTL("调试"),
   "order"     => 900,
   "condition" => proc { |screen| next $DEBUG }
 })
 
 MenuHandlers.add(:load_screen, :quit_game, {
-  "name"      => _INTL("Quit Game"),
+  "name"      => _INTL("退出游戏"),
   "order"     => 9999
 })

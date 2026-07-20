@@ -467,12 +467,12 @@ class UI::PokedexVisuals < UI::BaseVisuals
 
   def order_texts
     return {
-      :number       => _INTL("Numerical"),
-      :alphabetical => _INTL("A to Z"),
-      :heaviest     => _INTL("Heaviest"),
-      :lightest     => _INTL("Lightest"),
-      :tallest      => _INTL("Tallest"),
-      :shortest     => _INTL("Smallest")
+      :number       => _INTL("图鉴编号顺序"),
+      :alphabetical => _INTL("字母表顺序"),
+      :heaviest     => _INTL("自重至轻"),
+      :lightest     => _INTL("自轻至重"),
+      :tallest      => _INTL("自高至矮"),
+      :shortest     => _INTL("自矮至高")
     }
   end
 
@@ -665,7 +665,7 @@ class UI::PokedexVisuals < UI::BaseVisuals
   #-----------------------------------------------------------------------------
 
   def draw_dex_name
-    dex_name = _INTL("Pokédex")
+    dex_name = _INTL("图鉴")
     this_dex = Settings.pokedex_names[@dex_id]
     if this_dex
       dex_name = (this_dex.is_a?(Array)) ? this_dex[0] : this_dex
@@ -674,39 +674,39 @@ class UI::PokedexVisuals < UI::BaseVisuals
   end
 
   def draw_input_helpers
-    search_text = _INTL("Search")
+    search_text = _INTL("搜索")
     image_x = Graphics.width - 4
     draw_input_icon(image_x, 2, Input::ACTION, search_text, align: :right, theme: :white)
   end
 
   def draw_completion_info
     return if list_filtered?
-    draw_text(_INTL("Seen:"), 42, 314)
+    draw_text(_INTL("已发现："), 42, 314)
     draw_text($player.pokedex.seen_count(@dex_id).to_s, 166, 314, align: :right)
-    draw_text(_INTL("Owned:"), 42, 346)
+    draw_text(_INTL("已捕获："), 42, 346)
     draw_text($player.pokedex.owned_count(@dex_id).to_s, 166, 346, align: :right)
   end
 
   def draw_search_results_info
     return if !list_filtered?
-    draw_text(_INTL("Search results"), 104, 314, align: :center)
+    draw_text(_INTL("搜索结果"), 104, 314, align: :center)
     draw_text(@display_dex.length.to_s, 104, 346, align: :center)
   end
 
   def draw_search_page
     imperial_offset = Translation.imperial_measurements?
     # Draw title
-    draw_text(_INTL("Search Mode"), Graphics.width / 2, 10, align: :center, theme: :search)
+    draw_text(_INTL("搜索模式"), Graphics.width / 2, 10, align: :center, theme: :search)
     # Draw sort order
-    draw_text(_INTL("Order"), 136, 64, align: :center, theme: :search)
+    draw_text(_INTL("排序方式"), 136, 64, align: :center, theme: :search)
     order_text = order_texts[@filters[:sort_by]]
     draw_text(order_text, 344, 66, align: :center, theme: :search, outline: :outline)
     # Draw "name starts with"
-    draw_text(_INTL("Name"), 58, 122, align: :center, theme: :search)
+    draw_text(_INTL("名字"), 58, 122, align: :center, theme: :search)
     first_letter_text = @filters[:first_letter]&.upcase || "----"
     draw_text(first_letter_text, 176, 124, align: :center, theme: :search, outline: :outline)
     # Draw type
-    draw_text(_INTL("Type"), 58, 174, align: :center, theme: :search)
+    draw_text(_INTL("属性"), 58, 174, align: :center, theme: :search)
     if @filters[:type1]
       type_number = GameData::Type.get(@filters[:type1]).icon_position
       draw_image(@bitmaps[:types], 128, 168,
@@ -724,7 +724,7 @@ class UI::PokedexVisuals < UI::BaseVisuals
       draw_text("----", 304, 176, align: :center, theme: :search, outline: :outline)
     end
     # Draw height
-    draw_text(_INTL("Height"), 58, 226, align: :center, theme: :search)
+    draw_text(_INTL("身高"), 58, 226, align: :center, theme: :search)
     min_height = @filters[:min_height] || HEIGHT_INTERVALS.first
     max_height = @filters[:max_height] || HEIGHT_INTERVALS.last
     if imperial_offset
@@ -741,7 +741,7 @@ class UI::PokedexVisuals < UI::BaseVisuals
     draw_image(@bitmaps[:height_weight], 344, 214,
                0, (imperial_offset) ? 44 : 0, 32, 44)
     # Draw weight
-    draw_text(_INTL("Weight"), 58, 278, align: :center, theme: :search)
+    draw_text(_INTL("体重"), 58, 278, align: :center, theme: :search)
     min_weight = @filters[:min_weight] || WEIGHT_INTERVALS.first
     max_weight = @filters[:max_weight] || WEIGHT_INTERVALS.last
     if imperial_offset
@@ -753,37 +753,37 @@ class UI::PokedexVisuals < UI::BaseVisuals
     draw_image(@bitmaps[:height_weight], 344, 266,
                32, (imperial_offset) ? 44 : 0, 32, 44)
     # Draw color
-    draw_text(_INTL("Color"), 326, 122, align: :center, theme: :search)
+    draw_text(_INTL("颜色"), 326, 122, align: :center, theme: :search)
     color_name = (@filters[:color]) ? GameData::BodyColor.get(@filters[:color]).name : "----"
     draw_text(color_name, 444, 124, align: :center, theme: :search, outline: :outline)
     # Draw shape
-    draw_text(_INTL("Shape"), 454, 174, align: :center, theme: :search)
+    draw_text(_INTL("形状"), 454, 174, align: :center, theme: :search)
     if @filters[:shape]
       shape_number = GameData::BodyShape.get(@filters[:shape]).icon_position
       draw_image(@bitmaps[:shapes], 424, 218,
                  0, shape_number * GameData::BodyShape::ICON_SIZE[1], *GameData::BodyShape::ICON_SIZE)
     end
     # Draw bottom bar text
-    draw_text(_INTL("Reset"), 80, 346, align: :center, theme: :search, outline: :outline)
-    draw_text(_INTL("Start"), Graphics.width / 2, 346, align: :center, theme: :search, outline: :outline)
-    draw_text(_INTL("Cancel"), Graphics.width - 80, 346, align: :center, theme: :search, outline: :outline)
+    draw_text(_INTL("重置"), 80, 346, align: :center, theme: :search, outline: :outline)
+    draw_text(_INTL("开始"), Graphics.width / 2, 346, align: :center, theme: :search, outline: :outline)
+    draw_text(_INTL("取消"), Graphics.width - 80, 346, align: :center, theme: :search, outline: :outline)
   end
 
   def draw_common_search_sub_page_contents
     # Draw title
-    draw_text(_INTL("Search Mode"), Graphics.width / 2, 10, align: :center, theme: :search)
+    draw_text(_INTL("搜索模式"), Graphics.width / 2, 10, align: :center, theme: :search)
     # Draw bottom buttons text
-    draw_text(_INTL("OK"), 80, 346, align: :center, theme: :search, outline: :outline)
-    draw_text(_INTL("Cancel"), Graphics.width - 80, 346, align: :center, theme: :search, outline: :outline)
+    draw_text(_INTL("好了"), 80, 346, align: :center, theme: :search, outline: :outline)
+    draw_text(_INTL("取消"), Graphics.width - 80, 346, align: :center, theme: :search, outline: :outline)
     # Draw filter name
     filter_name = {
-      :sort_by      => _INTL("Order"),
-      :first_letter => _INTL("Name"),
-      :type         => _INTL("Type"),
-      :height       => _INTL("Height"),
-      :weight       => _INTL("Weight"),
-      :color        => _INTL("Color"),
-      :shape        => _INTL("Shape")
+      :sort_by      => _INTL("顺序"),
+      :first_letter => _INTL("名字"),
+      :type         => _INTL("属性"),
+      :height       => _INTL("身高"),
+      :weight       => _INTL("体重"),
+      :color        => _INTL("颜色"),
+      :shape        => _INTL("形状")
     }[@page]
     draw_text(filter_name, 102, (@page == :shape) ? 70 : 64, theme: :search)
   end
@@ -1078,7 +1078,7 @@ class UI::PokedexVisuals < UI::BaseVisuals
         old_display_dex = @display_dex
         refresh_display_dex
         if @display_dex.empty?
-          show_message(_INTL("No matching Pokémon were found."))
+          show_message(_INTL("未找到符合条件的宝可梦。"))
           @display_dex = old_display_dex   # Revert to previous results
         else
           return true
@@ -1436,7 +1436,7 @@ class UI::Pokedex < UI::BaseScreen
     else
       all_species = pbAllRegionalSpecies(@dex_id)
       if !all_species || all_species.empty?
-        raise _INTL("Regional Dex number {1} is undefined or empty.", @dex_id)
+        raise _INTL("地区图鉴编号{1}未定义或为空。", @dex_id)
       end
     end
     @dex = []

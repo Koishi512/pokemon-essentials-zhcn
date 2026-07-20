@@ -147,13 +147,13 @@ class BattlePalaceBattle < Battle
     battler.effects[PBEffects::Pinch] = true
     case nature
     when :QUIET, :BASHFUL, :NAIVE, :QUIRKY, :HARDY, :DOCILE, :SERIOUS
-      pbDisplay(_INTL("{1} is eager for more!", battler.pbThis))
+      pbDisplay(_INTL("{1}想要更多！", battler.pbThis))
     when :CAREFUL, :RASH, :LAX, :SASSY, :MILD, :TIMID
-      pbDisplay(_INTL("{1} began growling deeply!", battler.pbThis))
+      pbDisplay(_INTL("{1}开始深沉地吼叫！", battler.pbThis))
     when :GENTLE, :ADAMANT, :HASTY, :LONELY, :RELAXED, :NAUGHTY
-      pbDisplay(_INTL("A glint appears in {1} eyes!", battler.pbOfThis(true)))
+      pbDisplay(_INTL("{1}眼中闪闪发光！", battler.pbOfThis(true)))
     when :JOLLY, :BOLD, :BRAVE, :CALM, :IMPISH, :MODEST
-      pbDisplay(_INTL("{1} is getting into position!", battler.pbThis))
+      pbDisplay(_INTL("{1}准备就绪了！", battler.pbThis))
     end
   end
 

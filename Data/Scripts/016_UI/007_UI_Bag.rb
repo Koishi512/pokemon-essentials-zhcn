@@ -99,7 +99,7 @@ class UI::BagVisualsList < Window_DrawableCommand
     rect = Rect.new(rect.x + 16, rect.y + 16, rect.width - 16, rect.height)
     if index == self.itemCount - 1
       pbDrawShadowText(self.contents, rect.x, rect.y + 2, rect.width, rect.height,
-                       _INTL("CLOSE BAG"), self.baseColor, self.shadowColor)
+                       _INTL("合上包包"), self.baseColor, self.shadowColor)
       return
     end
     this_item_id = @items[index][0]
@@ -449,13 +449,13 @@ class UI::BagVisuals < UI::BaseVisuals
     action_icon_x = 4
     action_icon_y = 244
     if @pocket == :Machines
-      action_text = _INTL("Show details")
+      action_text = _INTL("显示详情")
       if @show_move_details
         action_icon_y = 78
-        action_text = _INTL("Hide details")
+        action_text = _INTL("隐藏详情")
       end
     elsif can_access_screen_menu?
-      action_text = _INTL("Sort pocket")
+      action_text = _INTL("整理口袋")
     end
     if action_text
       draw_input_icon(action_icon_x, action_icon_y, Input::ACTION, action_text, theme: :white)
@@ -532,7 +532,7 @@ class UI::BagVisuals < UI::BaseVisuals
     if selected_item
       @sprites[:item_description].text = GameData::Item.get(selected_item).description
     else
-      @sprites[:item_description].text = _INTL("Close bag.")
+      @sprites[:item_description].text = _INTL("合上包包。")
     end
     refresh_party_display
     refresh_move_details
@@ -583,24 +583,24 @@ class UI::BagVisuals < UI::BaseVisuals
     move = GameData::Item.get(item).move
     move_data = GameData::Move.get(move)
     # Type
-    draw_text(_INTL("Type"), 4, 14, theme: :white, overlay: :move_details_overlay)
+    draw_text(_INTL("属性"), 4, 14, theme: :white, overlay: :move_details_overlay)
     type_number = GameData::Type.get(move_data.type).icon_position
     draw_image(@bitmaps[:types], 106, 10,
                0, type_number * GameData::Type::ICON_SIZE[1], *GameData::Type::ICON_SIZE,
                overlay: :move_details_overlay)
     # Category
-    draw_text(_INTL("Category"), 4, 46, theme: :white, overlay: :move_details_overlay)
+    draw_text(_INTL("分类"), 4, 46, theme: :white, overlay: :move_details_overlay)
     draw_image(@bitmaps[:categories], 106, 42,
                0, move_data.category * GameData::Move::CATEGORY_ICON_SIZE[1], *GameData::Move::CATEGORY_ICON_SIZE,
                overlay: :move_details_overlay)
     # Power
-    draw_text(_INTL("Power"), 4, 78, theme: :white, overlay: :move_details_overlay)
+    draw_text(_INTL("威力"), 4, 78, theme: :white, overlay: :move_details_overlay)
     power_text = move_data.power
     power_text = "---" if power_text == 0   # Status move
     power_text = "???" if power_text == 1   # Variable power move
     draw_text(power_text, 156, 78, align: :right, theme: :white, overlay: :move_details_overlay)
     # Accuracy
-    draw_text(_INTL("Accuracy"), 4, 110, theme: :white, overlay: :move_details_overlay)
+    draw_text(_INTL("命中率"), 4, 110, theme: :white, overlay: :move_details_overlay)
     accuracy = move_data.accuracy
     if accuracy == 0
       draw_text("---", 156, 110, align: :right, theme: :white, overlay: :move_details_overlay)
@@ -785,12 +785,12 @@ class UI::Bag < UI::BaseScreen
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:screen_menu, {
     :menu         => :bag_screen_menu,
-    :menu_message => proc { |screen| _INTL("Choose an option.") }
+    :menu_message => proc { |screen| _INTL("请选择一个选项。") }
   })
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:interact_menu, {
     :menu         => :bag_screen_interact,
-    :menu_message => proc { |screen| _INTL("{1} is selected.", screen.item.name) }
+    :menu_message => proc { |screen| _INTL("{1}被选中了。", screen.item.name) }
   })
 
   #-----------------------------------------------------------------------------
@@ -897,9 +897,9 @@ class UI::Bag < UI::BaseScreen
   ACTIONS.add(:give, {
     :effect => proc { |screen|
       if $player.pokemon_count == 0
-        screen.show_message(_INTL("There is no Pokémon."))
+        screen.show_message(_INTL("没有宝可梦。"))
       elsif screen.item.is_important?
-        screen.show_message(_INTL("The {1} can't be held.", screen.item.portion_name))
+        screen.show_message(_INTL("无法携带{1}。", screen.item.portion_name))
       else
         pbFadeOutInWithUpdate(screen.sprites) do
           party_screen = UI::Party.new($player.party, mode: :choose_pokemon)
@@ -916,15 +916,15 @@ class UI::Bag < UI::BaseScreen
     :effect => proc { |screen|
       qty = screen.bag.quantity(screen.item.id)
       if qty > 1
-        help_text = _INTL("Toss out how many {1}?", screen.item.portion_name_plural)
+        help_text = _INTL("要丢弃多少个{1}？", screen.item.portion_name_plural)
         qty = screen.choose_number(help_text, qty)
       end
       if qty > 0
         item_name = (qty > 1) ? screen.item.portion_name_plural : screen.item.portion_name
-        if screen.show_confirm_message(_INTL("Is it OK to throw away {1} {2}?", qty, item_name))
+        if screen.show_confirm_message(_INTL("要丢弃{1}个{2}吗？", qty, item_name))
           qty.times { screen.bag.remove(screen.item.id) }
           screen.refresh
-          screen.show_message(_INTL("Threw away {1} {2}.", qty, item_name))
+          screen.show_message(_INTL("丢弃了{1}个{2}。", qty, item_name))
         end
       end
     }
@@ -948,8 +948,8 @@ class UI::Bag < UI::BaseScreen
       command = 0
       loop do
         command = screen.show_menu(
-          _INTL("Do what with {1}?", screen.item.name),
-          [_INTL("Change quantity"), _INTL("Make Mystery Gift"), _INTL("Cancel")], command)
+          _INTL("要对{1}做什么？", screen.item.name),
+          [_INTL("更改数量"), _INTL("制作为神秘礼物"), _INTL("取消")], command)
         case command
         when 0   # Change quantity
           qty = screen.bag.quantity(screen.item.id)
@@ -958,7 +958,7 @@ class UI::Bag < UI::BaseScreen
           params.setRange(0, PokemonBag::MAX_PER_SLOT)
           params.setDefaultValue(qty)
           new_qty = screen.choose_number(
-            _INTL("Choose new quantity of {1} (max. {2}).", item_name_plural, PokemonBag::MAX_PER_SLOT), params
+            _INTL("请选择{1}的新数量（最大{2}）。", item_name_plural, PokemonBag::MAX_PER_SLOT), params
           )
           if new_qty > qty
             screen.bag.add(screen.item.id, new_qty - qty)
@@ -1008,29 +1008,29 @@ end
 # Menu options for choice menus that exist in the party screen.
 #===============================================================================
 MenuHandlers.add(:bag_screen_menu, :rearrange_items_mode, {
-  "name"  => _INTL("Mode: Rearrange items"),
+  "name"  => _INTL("模式：重排道具"),
   "order" => 10
 })
 
 MenuHandlers.add(:bag_screen_menu, :sort_by_definition, {
-  "name"  => _INTL("Sort by type"),
+  "name"  => _INTL("按类型排列"),
   "order" => 20
 })
 
 MenuHandlers.add(:bag_screen_menu, :sort_alphabetically, {
-  "name"  => _INTL("Sort alphabetically"),
+  "name"  => _INTL("按名称排列"),
   "order" => 30
 })
 
 MenuHandlers.add(:bag_screen_menu, :cancel, {
-  "name"  => _INTL("Cancel"),
+  "name"  => _INTL("取消"),
   "order" => 9999
 })
 
 #-------------------------------------------------------------------------------
 
 MenuHandlers.add(:bag_screen_interact, :read_mail, {
-  "name"      => _INTL("Read"),
+  "name"      => _INTL("阅读"),
   "order"     => 10,
   "condition" => proc { |screen| next screen.item.is_mail? }
 })
@@ -1038,7 +1038,7 @@ MenuHandlers.add(:bag_screen_interact, :read_mail, {
 MenuHandlers.add(:bag_screen_interact, :use, {
   "name"      => proc { |screen|
     next ItemHandlers.getUseText(screen.item.id) if ItemHandlers.hasUseText(screen.item.id)
-    next _INTL("Use")
+    next _INTL("使用")
   },
   "order"     => 20,
   "condition" => proc { |screen|
@@ -1047,34 +1047,34 @@ MenuHandlers.add(:bag_screen_interact, :use, {
 })
 
 MenuHandlers.add(:bag_screen_interact, :give, {
-  "name"      => _INTL("Give"),
+  "name"      => _INTL("给予"),
   "order"     => 30,
   "condition" => proc { |screen| next $player.pokemon_party.length > 0 && screen.item.can_hold? }
 })
 
 MenuHandlers.add(:bag_screen_interact, :toss, {
-  "name"      => _INTL("Toss"),
+  "name"      => _INTL("丢弃"),
   "order"     => 40,
   "condition" => proc { |screen| next !screen.item.is_important? || $DEBUG }
 })
 
 MenuHandlers.add(:bag_screen_interact, :register, {
   "name"      => proc { |screen|
-    next _INTL("Deselect") if $bag.registered?(screen.item.id)
-    next _INTL("Select")
+    next _INTL("取消登录") if $bag.registered?(screen.item.id)
+    next _INTL("登录")
   },
   "order"     => 50,
   "condition" => proc { |screen| next pbCanRegisterItem?(screen.item.id) }
 })
 
 MenuHandlers.add(:bag_screen_interact, :debug, {
-  "name"      => _INTL("Debug"),
+  "name"      => _INTL("调试"),
   "order"     => 60,
   "condition" => proc { |screen| next $DEBUG }
 })
 
 MenuHandlers.add(:bag_screen_interact, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 

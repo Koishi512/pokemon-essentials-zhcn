@@ -13,12 +13,12 @@ ItemHandlers::CanUseInBattle.add(:GUARDSPEC, proc { |item, pokemon, battler, mov
 ItemHandlers::CanUseInBattle.add(:POKEDOLL, proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
   if !battle.wildBattle?
     if showMessages
-      scene.pbDisplay(_INTL("Oak's words echoed... There's a time and place for everything! But not now."))
+      scene.pbDisplay(_INTL("博士说过……这种东西是要看场合来用的啊！"))
     end
     next false
   end
   if battle.rules[:cannot_run]
-    scene.pbDisplay(_INTL("You can't escape!")) if showMessages
+    scene.pbDisplay(_INTL("无法逃走！")) if showMessages
     next false
   end
   next true
@@ -30,26 +30,26 @@ ItemHandlers::CanUseInBattle.addIf(:poke_balls,
   proc { |item| GameData::Item.get(item).is_poke_ball? },
   proc { |item, pokemon, battler, move, firstAction, battle, scene, showMessages|
     if battle.pbPlayer.party_full? && $PokemonStorage.full?
-      scene.pbDisplay(_INTL("There is no room left in the PC!")) if showMessages
+      scene.pbDisplay(_INTL("电脑里没有空间了！")) if showMessages
       next false
     end
     if battle.rules[:disable_poke_balls]
-      scene.pbDisplay(_INTL("You can't throw a Poké Ball!")) if showMessages
+      scene.pbDisplay(_INTL("无法使用精灵球！")) if showMessages
       next false
     end
     # NOTE: Using a Poké Ball consumes all your actions for the round. The code
     #       below is one half of making this happen; the other half is in def
     #       pbItemUsesAllActions?.
     if !firstAction
-      scene.pbDisplay(_INTL("It's impossible to aim without being focused!")) if showMessages
+      scene.pbDisplay(_INTL("不集中精神的话，就无法很好地投球！")) if showMessages
       next false
     end
     if battler.semiInvulnerable? || battler.effects[PBEffects::Commanding] >= 0
-      scene.pbDisplay(_INTL("It's no good! It's impossible to aim at a Pokémon that's not in sight!")) if showMessages
+      scene.pbDisplay(_INTL("不行！看不见宝可梦，无法瞄准……！")) if showMessages
       next false
     end
     if battler.effects[PBEffects::CommandedBy] >= 0
-      scene.pbDisplay(_INTL("It's no good! It's impossible to aim unless there is only one Pokémon!")) if showMessages
+      scene.pbDisplay(_INTL("不行！除非是1只，不然无法瞄准……！")) if showMessages
       next false
     end
     # NOTE: The code below stops you from throwing a Poké Ball if there is more
@@ -58,7 +58,7 @@ ItemHandlers::CanUseInBattle.addIf(:poke_balls,
     #       them if they are trying to catch a non-Shadow Pokémon.)
     if battle.pbOpposingBattlerCount(0, true) > 1 &&
        !(GameData::Item.get(item).is_snag_ball? && battle.trainerBattle?)
-      scene.pbDisplay(_INTL("It's no good! It's impossible to aim unless there is only one Pokémon!")) if showMessages
+      scene.pbDisplay(_INTL("不行！除非是1只，不然无法瞄准……！")) if showMessages
       next false
     end
     next true
@@ -304,13 +304,13 @@ ItemHandlers::CanUseInBattle.add(:POKEFLUTE, proc { |item, pokemon, battler, mov
 
 ItemHandlers::UseInBattle.add(:GUARDSPEC, proc { |item, battler, battle|
   battler.pbOwnSide.effects[PBEffects::Mist] = 5
-  battle.pbDisplay(_INTL("{1} became shrouded in mist!", battler.pbTeam))
+  battle.pbDisplay(_INTL("{1}被白雾包围了！", battler.pbTeam))
   battler.pokemon.changeHappiness("battleitem")
 })
 
 ItemHandlers::UseInBattle.add(:POKEDOLL, proc { |item, battler, battle|
   battle.decision = Battle::Outcome::FLEE
-  battle.pbDisplayPaused(_INTL("You got away safely!"))
+  battle.pbDisplayPaused(_INTL("顺利逃走了！"))
 })
 
 ItemHandlers::UseInBattle.copy(:POKEDOLL, :FLUFFYTAIL, :POKETOY)
@@ -319,7 +319,7 @@ ItemHandlers::UseInBattle.add(:POKEFLUTE, proc { |item, battler, battle|
   battle.allBattlers.each do |b|
     b.pbCureStatus(false) if b.status == :SLEEP && !b.hasActiveAbility?(:SOUNDPROOF)
   end
-  battle.pbDisplay(_INTL("All Pokémon were roused by the tune!"))
+  battle.pbDisplay(_INTL("所有的宝可梦都被旋律唤醒了！"))
 })
 
 ItemHandlers::UseInBattle.addIf(:poke_balls,
@@ -382,7 +382,7 @@ ItemHandlers::BattleUseOnPokemon.add(:AWAKENING, proc { |item, pokemon, battler,
   battler&.pbCureStatus(false)
   name = (battler) ? battler.pbThis : pokemon.name
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} woke up.", name))
+  scene.pbDisplay(_INTL("{1}醒过来了！", name))
 })
 
 ItemHandlers::BattleUseOnPokemon.copy(:AWAKENING, :CHESTOBERRY, :BLUEFLUTE)
@@ -392,7 +392,7 @@ ItemHandlers::BattleUseOnPokemon.add(:ANTIDOTE, proc { |item, pokemon, battler, 
   battler&.pbCureStatus(false)
   name = (battler) ? battler.pbThis : pokemon.name
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} was cured of its poisoning.", name))
+  scene.pbDisplay(_INTL("{1}中的毒彻底清除了！", name))
 })
 
 ItemHandlers::BattleUseOnPokemon.copy(:ANTIDOTE, :PECHABERRY)
@@ -402,7 +402,7 @@ ItemHandlers::BattleUseOnPokemon.add(:BURNHEAL, proc { |item, pokemon, battler, 
   battler&.pbCureStatus(false)
   name = (battler) ? battler.pbThis : pokemon.name
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1}'s burn was healed.", name))
+  scene.pbDisplay(_INTL("{1}的灼伤治愈了！", name))
 })
 
 ItemHandlers::BattleUseOnPokemon.copy(:BURNHEAL, :RAWSTBERRY)
@@ -412,7 +412,7 @@ ItemHandlers::BattleUseOnPokemon.add(:PARALYZEHEAL, proc { |item, pokemon, battl
   battler&.pbCureStatus(false)
   name = (battler) ? battler.pbThis : pokemon.name
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} was cured of paralysis.", name))
+  scene.pbDisplay(_INTL("{1}的麻痹被解除了！", name))
 })
 
 ItemHandlers::BattleUseOnPokemon.copy(:PARALYZEHEAL, :PARLYZHEAL, :CHERIBERRY)
@@ -422,7 +422,7 @@ ItemHandlers::BattleUseOnPokemon.add(:ICEHEAL, proc { |item, pokemon, battler, c
   battler&.pbCureStatus(false)
   name = (battler) ? battler.pbThis : pokemon.name
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} was thawed out.", name))
+  scene.pbDisplay(_INTL("{1}的冰冻被融化了！", name))
 })
 
 ItemHandlers::BattleUseOnPokemon.copy(:ICEHEAL, :ASPEARBERRY)
@@ -433,7 +433,7 @@ ItemHandlers::BattleUseOnPokemon.add(:FULLHEAL, proc { |item, pokemon, battler, 
   battler&.pbCureConfusion
   name = (battler) ? battler.pbThis : pokemon.name
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} became healthy.", name))
+  scene.pbDisplay(_INTL("{1}变得健康了！", name))
 })
 
 ItemHandlers::BattleUseOnPokemon.copy(:FULLHEAL,
@@ -451,7 +451,7 @@ ItemHandlers::BattleUseOnPokemon.add(:FULLRESTORE, proc { |item, pokemon, battle
     pbBattleHPItem(pokemon, battler, pokemon.totalhp, scene)
   else
     scene.pbRefresh
-    scene.pbDisplay(_INTL("{1} became healthy.", name))
+    scene.pbDisplay(_INTL("{1}变得健康了！", name))
   end
 })
 
@@ -460,14 +460,14 @@ ItemHandlers::BattleUseOnPokemon.add(:REVIVE, proc { |item, pokemon, battler, ch
   pokemon.hp = 1 if pokemon.hp <= 0
   pokemon.heal_status
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} recovered from fainting!", pokemon.name))
+  scene.pbDisplay(_INTL("{1}恢复了活力！", pokemon.name))
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:MAXREVIVE, proc { |item, pokemon, battler, choices, scene|
   pokemon.heal_HP
   pokemon.heal_status
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} recovered from fainting!", pokemon.name))
+  scene.pbDisplay(_INTL("{1}恢复了活力！", pokemon.name))
 })
 
 ItemHandlers::BattleUseOnPokemon.copy(:MAXREVIVE, :MAXHONEY)
@@ -491,7 +491,7 @@ ItemHandlers::BattleUseOnPokemon.add(:HEALPOWDER, proc { |item, pokemon, battler
   pokemon.changeHappiness("powder")
   name = (battler) ? battler.pbThis : pokemon.name
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} became healthy.", name))
+  scene.pbDisplay(_INTL("{1}变得健康了！", name))
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:REVIVALHERB, proc { |item, pokemon, battler, choices, scene|
@@ -499,7 +499,7 @@ ItemHandlers::BattleUseOnPokemon.add(:REVIVALHERB, proc { |item, pokemon, battle
   pokemon.heal_status
   pokemon.changeHappiness("revivalherb")
   scene.pbRefresh
-  scene.pbDisplay(_INTL("{1} recovered from fainting!", pokemon.name))
+  scene.pbDisplay(_INTL("{1}恢复了活力！", pokemon.name))
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:ETHER, proc { |item, pokemon, battler, choices, scene|
@@ -508,15 +508,15 @@ ItemHandlers::BattleUseOnPokemon.add(:ETHER, proc { |item, pokemon, battler, cho
   pbSEPlay("Use item in party")
   if battler
     if battler.battle.pbOwnedByPlayer?(battler.index)
-      scene.pbDisplay(_INTL("The PP of {1}'s {2} was restored!",
+      scene.pbDisplay(_INTL("{1}回复了{2}的PP！",
                             battler.name, pokemon.moves[idxMove].name))
     else
-      scene.pbDisplay(_INTL("{1}'s {2} had its {3} PP restored!",
+      scene.pbDisplay(_INTL("{1}的{2}回复了{3}的PP！",
                             battler.battle.pbGetOwnerName(battler.index),
                             battler.name, pokemon.moves[idxMove].name))
     end
   else
-    scene.pbDisplay(_INTL("The PP of {1}'s {2} was restored!", pokemon.name, pokemon.moves[idxMove].name))
+    scene.pbDisplay(_INTL("{1}的{2}回复了PP！", pokemon.name, pokemon.moves[idxMove].name))
   end
 })
 
@@ -528,15 +528,15 @@ ItemHandlers::BattleUseOnPokemon.add(:MAXETHER, proc { |item, pokemon, battler, 
   pbSEPlay("Use item in party")
   if battler
     if battler.battle.pbOwnedByPlayer?(battler.index)
-      scene.pbDisplay(_INTL("The PP of {1}'s {2} was restored!",
+      scene.pbDisplay(_INTL("{1}回复了{2}的PP！",
                             battler.name, pokemon.moves[idxMove].name))
     else
-      scene.pbDisplay(_INTL("{1}'s {2} had its {3} PP restored!",
+      scene.pbDisplay(_INTL("{1}的{2}回复了{3}的PP！",
                             battler.battle.pbGetOwnerName(battler.index),
                             battler.name, pokemon.moves[idxMove].name))
     end
   else
-    scene.pbDisplay(_INTL("The PP of {1}'s {2} was restored!", pokemon.name, pokemon.moves[idxMove].name))
+    scene.pbDisplay(_INTL("{1}的{2}回复了PP！", pokemon.name, pokemon.moves[idxMove].name))
   end
 })
 
@@ -547,13 +547,13 @@ ItemHandlers::BattleUseOnPokemon.add(:ELIXIR, proc { |item, pokemon, battler, ch
   pbSEPlay("Use item in party")
   if battler
     if battler.battle.pbOwnedByPlayer?(battler.index)
-      scene.pbDisplay(_INTL("All of {1}'s moves had their PP restored!", battler.name))
+      scene.pbDisplay(_INTL("{1}回复了所有招式的PP！", battler.name))
     else
-      scene.pbDisplay(_INTL("{1}'s {2} had PP restored to all of its moves!",
+      scene.pbDisplay(_INTL("{1}的{2}回复了所有招式的PP！",
                             battler.battle.pbGetOwnerName(battler.index), battler.name))
     end
   else
-    scene.pbDisplay(_INTL("All of {1}'s moves had their PP restored!", pokemon.name))
+    scene.pbDisplay(_INTL("{1}回复了所有招式的PP！", pokemon.name))
   end
 })
 
@@ -564,13 +564,13 @@ ItemHandlers::BattleUseOnPokemon.add(:MAXELIXIR, proc { |item, pokemon, battler,
   pbSEPlay("Use item in party")
   if battler
     if battler.battle.pbOwnedByPlayer?(battler.index)
-      scene.pbDisplay(_INTL("All of {1}'s moves had their PP restored!", battler.name))
+      scene.pbDisplay(_INTL("{1}回复了所有招式的PP！", battler.name))
     else
-      scene.pbDisplay(_INTL("{1}'s {2} had PP restored to all of its moves!",
+      scene.pbDisplay(_INTL("{1}的{2}回复了所有招式的PP！",
                             battler.battle.pbGetOwnerName(battler.index), battler.name))
     end
   else
-    scene.pbDisplay(_INTL("All of {1}'s moves had their PP restored!", pokemon.name))
+    scene.pbDisplay(_INTL("{1}回复了所有招式的PP！", pokemon.name))
   end
 })
 
@@ -584,7 +584,7 @@ ItemHandlers::BattleUsableOnBattler.add(:REDFLUTE, proc { |item, battler|
 })
 ItemHandlers::BattleUseOnBattler.add(:REDFLUTE, proc { |item, battler, scene|
   battler.pbCureAttract
-  scene.pbDisplay(_INTL("{1} got over its infatuation.", battler.pbThis))
+  scene.pbDisplay(_INTL("{1}的着迷状态治愈了！", battler.pbThis))
 })
 
 ItemHandlers::BattleUsableOnBattler.add(:YELLOWFLUTE, proc { |item, battler|
@@ -592,7 +592,7 @@ ItemHandlers::BattleUsableOnBattler.add(:YELLOWFLUTE, proc { |item, battler|
 })
 ItemHandlers::BattleUseOnBattler.add(:YELLOWFLUTE, proc { |item, battler, scene|
   battler.pbCureConfusion
-  scene.pbDisplay(_INTL("{1} snapped out of its confusion.", battler.pbThis))
+  scene.pbDisplay(_INTL("{1}的混乱解除了！", battler.pbThis))
 })
 
 ItemHandlers::BattleUsableOnBattler.copy(:YELLOWFLUTE, :PERSIMBERRY)
@@ -784,7 +784,7 @@ ItemHandlers::BattleUsableOnBattler.add(:DIREHIT, proc { |item, battler|
 ItemHandlers::BattleUseOnBattler.add(:DIREHIT, proc { |item, battler, scene|
   battler.setCriticalHitRate(2)
   scene.pbCommonAnimation("CriticalHitRateUp", battler)
-  scene.pbDisplay(_INTL("{1} is getting pumped!", battler.pbThis))
+  scene.pbDisplay(_INTL("{1}现在干劲十足！", battler.pbThis))
   battler.pokemon.changeHappiness("battleitem")
 })
 
@@ -794,7 +794,7 @@ ItemHandlers::BattleUsableOnBattler.add(:DIREHIT2, proc { |item, battler|
 ItemHandlers::BattleUseOnBattler.add(:DIREHIT2, proc { |item, battler, scene|
   battler.setCriticalHitRate(2)
   scene.pbCommonAnimation("CriticalHitRateUp", battler)
-  scene.pbDisplay(_INTL("{1} is getting pumped!", battler.pbThis))
+  scene.pbDisplay(_INTL("{1}现在干劲十足！", battler.pbThis))
   battler.pokemon.changeHappiness("battleitem")
 })
 
@@ -804,6 +804,6 @@ ItemHandlers::BattleUsableOnBattler.add(:DIREHIT3, proc { |item, battler|
 ItemHandlers::BattleUseOnBattler.add(:DIREHIT3, proc { |item, battler, scene|
   battler.setCriticalHitRate(3)
   scene.pbCommonAnimation("CriticalHitRateUp", battler)
-  scene.pbDisplay(_INTL("{1} is getting pumped!", battler.pbThis))
+  scene.pbDisplay(_INTL("{1}现在干劲十足！", battler.pbThis))
   battler.pokemon.changeHappiness("battleitem")
 })

@@ -10,20 +10,20 @@ module Battle::CatchAndStoreMixin
     # Nickname the Pokémon (unless it's a Shadow Pokémon)
     if !pkmn.shadowPokemon?
       if $PokemonSystem.givenicknames == 0 &&
-         pbDisplayConfirm(_INTL("Would you like to give a nickname to {1}?", pkmn.name))
-        nickname = @scene.pbNameEntry(_INTL("{1}'s nickname?", pkmn.speciesName), pkmn)
+         pbDisplayConfirm(_INTL("要给{1}起昵称吗？", pkmn.name))
+        nickname = @scene.pbNameEntry(_INTL("{1}的名字是？", pkmn.speciesName), pkmn)
         pkmn.name = nickname
       end
     end
     # Store the Pokémon
     if pbPlayer.party_full? && (@sendToBoxes == 0 || @sendToBoxes == 2)   # Ask/must add to party
-      cmds = [_INTL("Add to your party"),
-              _INTL("Send to a Box"),
-              _INTL("See {1}'s summary", pkmn.name),
-              _INTL("Check party")]
+      cmds = [_INTL("加入到同行的宝可梦里"),
+              _INTL("发送到盒子里"),
+              _INTL("查看{1}的能力", pkmn.name),
+              _INTL("查看同行的宝可梦")]
       cmds.delete_at(1) if @sendToBoxes == 2   # Remove "Send to a Box" option
       loop do
-        cmd = pbShowCommands(_INTL("Where do you want to send {1} to?", pkmn.name), cmds, 99)
+        cmd = pbShowCommands(_INTL("要将{1}发送到哪里？", pkmn.name), cmds, 99)
         next if cmd == 99 && @sendToBoxes == 2   # Can't cancel if must add to party
         break if cmd == 99   # Cancelling = send to a Box
         cmd += 1 if cmd >= 1 && @sendToBoxes == 2
@@ -35,10 +35,10 @@ module Battle::CatchAndStoreMixin
             break if can_store
           end
           if !can_store
-            pbDisplay(_INTL("You can't make room in your party for {1}!", pkmn.name))
+            pbDisplay(_INTL("你无法为{1}腾出空间！", pkmn.name))
             break
           end
-          pbDisplay(_INTL("Choose a Pokémon in your party to send to your Boxes."))
+          pbDisplay(_INTL("请从同行的宝可梦里选择要交换的宝可梦。"))
           party_index = -1
           @scene.pbPartyScreen(0, (@sendToBoxes != 2), 1) do |idxParty, _party_screen|
             party_index = idxParty
@@ -56,7 +56,7 @@ module Battle::CatchAndStoreMixin
           stored_box = @peer.pbStorePokemon(pbPlayer, send_pkmn)
           pbPlayer.party.delete_at(party_index)
           box_name = @peer.pbBoxName(stored_box)
-          pbDisplayPaused(_INTL("{1} has been sent to Box \"{2}\".", send_pkmn.name, box_name))
+          pbDisplayPaused(_INTL("已将{1}传送到盒子\"{2}\"。", send_pkmn.name, box_name))
           # Rearrange all remembered properties of party Pokémon
           (party_index...party_size).each do |idx|
             if idx < party_size - 1
@@ -82,11 +82,11 @@ module Battle::CatchAndStoreMixin
     # Store as normal (add to party if there's space, or send to a Box if not)
     stored_box = @peer.pbStorePokemon(pbPlayer, pkmn)
     if stored_box < 0
-      pbDisplayPaused(_INTL("{1} has been added to your party.", pkmn.name))
+      pbDisplayPaused(_INTL("已将{1}加入到同行的宝可梦里！", pkmn.name))
     else
       # Messages saying the Pokémon was stored in a PC box
       box_name = @peer.pbBoxName(stored_box)
-      pbDisplayPaused(_INTL("{1} has been sent to Box \"{2}\"!", pkmn.name, box_name))
+      pbDisplayPaused(_INTL("已将{1}传送到盒子\"{2}\"！", pkmn.name, box_name))
     end
   end
 
@@ -99,7 +99,7 @@ module Battle::CatchAndStoreMixin
       if !pbPlayer.owned?(pkmn.species)
         pbPlayer.pokedex.set_owned(pkmn.species)
         if $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(pkmn.species)
-          pbDisplayPaused(_INTL("{1}'s data was added to the Pokédex.", pkmn.name))
+          pbDisplayPaused(_INTL("{1}的资料被新添加到宝可梦图鉴里了！", pkmn.name))
           pbPlayer.pokedex.register_last_seen(pkmn)
           @scene.pbShowPokedex(pkmn.species)
         end
@@ -144,9 +144,9 @@ module Battle::CatchAndStoreMixin
     return if battler.fainted?   # Messages are shown in def pbThrowPokeBallNegated? for this
     item_name = GameData::Item.get(ball).name
     if item_name.starts_with_vowel?
-      pbDisplayBrief(_INTL("{1} threw an {2}!", pbPlayer.name, item_name))
+      pbDisplayBrief(_INTL("{1}扔出了{2}！", pbPlayer.name, item_name))
     else
-      pbDisplayBrief(_INTL("{1} threw a {2}!", pbPlayer.name, item_name))
+      pbDisplayBrief(_INTL("{1}扔出了{2}！", pbPlayer.name, item_name))
     end
   end
 
@@ -155,18 +155,18 @@ module Battle::CatchAndStoreMixin
       item_name = GameData::Item.get(ball).name
       PBDebug.log("[Threw Poké Ball] #{item_name}, failed due to no target")
       if item_name.starts_with_vowel?
-        pbDisplay(_INTL("{1} threw an {2}!", pbPlayer.name, item_name))
+        pbDisplay(_INTL("{1}扔出了{2}！", pbPlayer.name, item_name))
       else
-        pbDisplay(_INTL("{1} threw a {2}!", pbPlayer.name, item_name))
+        pbDisplay(_INTL("{1}扔出了{2}！", pbPlayer.name, item_name))
       end
-      pbDisplay(_INTL("But there was no target..."))
+      pbDisplay(_INTL("但是没有目标……"))
       return true
     end
     if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?)
       item_name = GameData::Item.get(ball).name
       PBDebug.log("[Threw Poké Ball] #{item_name}, failed due to opposing trainer blocking")
       @scene.pbThrowAndDeflect(ball, 1)   # Animation
-      pbDisplay(_INTL("The Trainer blocked your {1}! Don't be a thief!", item_name))
+      pbDisplay(_INTL("{1}被训练家击飞了！拿别人东西的是小偷！", item_name))
       return true
     end
     return false
@@ -271,16 +271,16 @@ module Battle::CatchAndStoreMixin
     # Failed
     PBDebug.log("[Threw Poké Ball] #{GameData::Item.get(ball).name}, #{num_shakes} shakes (failed)")
     case num_shakes
-    when 0 then pbDisplay(_INTL("Oh no! The Pokémon broke free!"))
-    when 1 then pbDisplay(_INTL("Aww! It appeared to be caught!"))
-    when 2 then pbDisplay(_INTL("Aargh! Almost had it!"))
-    when 3 then pbDisplay(_INTL("Gah! It was so close, too!"))
+    when 0 then pbDisplay(_INTL("不行！宝可梦从球里挣脱出来了！"))
+    when 1 then pbDisplay(_INTL("啊啊！还以为捉到了！"))
+    when 2 then pbDisplay(_INTL("真遗憾！差一点就捉到了！"))
+    when 3 then pbDisplay(_INTL("可惜啊！就还差一点点了！"))
     end
     Battle::PokeBallEffects.onFailCatch(ball, self, battler)
   end
 
   def pbThrowPokeBallSuccess(battler, pkmn, ball)
-    pbDisplayBrief(_INTL("Gotcha! {1} was caught!", pkmn.name))
+    pbDisplayBrief(_INTL("太好了！捉到{1}了！", pkmn.name))
     @scene.pbThrowSuccess   # Play capture success jingle
     pbRemoveFromParty(battler.index, battler.pokemonIndex)
     # Gain Exp

@@ -210,7 +210,7 @@ class Pokemon
   # @param value [Integer] new level (between 1 and the maximum level)
   def level=(value)
     if value < 1 || value > GameData::GrowthRate.max_level
-      raise ArgumentError.new(_INTL("The level number ({1}) is invalid.", value))
+      raise ArgumentError.new(_INTL("等级数值无效：{1}", value))
     end
     @exp = growth_rate.minimum_exp_for_level(value)
     @level = value
@@ -269,7 +269,7 @@ class Pokemon
     return if !able?
     new_status = GameData::Status.try_get(value)
     if !new_status
-      raise ArgumentError, _INTL("Attempted to set {1} as Pokémon status", value.class.name)
+      raise ArgumentError, _INTL("试图将{1}设置为宝可梦的异常状态", value.class.name)
     end
     @status = new_status.id
   end
@@ -611,7 +611,7 @@ class Pokemon
   # @param mail [Mail, nil] mail to be held by this Pokémon
   def mail=(mail)
     if !mail.nil? && !mail.is_a?(Mail)
-      raise ArgumentError, _INTL("Invalid value {1} given", mail.inspect)
+      raise ArgumentError, _INTL("无效的值{1}被给予", mail.inspect)
     end
     @mail = mail
     @item = mail&.item
@@ -990,7 +990,7 @@ class Pokemon
     when "revivalherb"
       gain = [-15, -15, -20][happiness_range]
     else
-      raise _INTL("Unknown happiness-changing method: {1}", method.to_s)
+      raise _INTL("未知的亲密度改变方法：{1}", method.to_s)
     end
     if gain > 0
       if !["groom", "massage1", "massage2", "massage3"].include?(method)

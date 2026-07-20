@@ -14,7 +14,7 @@ class PokemonJukebox_Scene
     @sprites["background"] = IconSprite.new(0, 0, @viewport)
     @sprites["background"].setBitmap(_INTL("Graphics/UI/jukebox_bg"))
     @sprites["header"] = Window_UnformattedTextPokemon.newWithSize(
-      _INTL("Jukebox"), 2, -18, 128, 64, @viewport
+      _INTL("音乐盒"), 2, -18, 128, 64, @viewport
     )
     @sprites["header"].baseColor   = Color.new(248, 248, 248)
     @sprites["header"].shadowColor = Color.black
@@ -73,12 +73,12 @@ class PokemonJukeboxScreen
     cmdOak     = -1
     cmdCustom  = -1
     cmdTurnOff = -1
-    commands[cmdMarch = commands.length]   = _INTL("Play: Pokémon March")
-    commands[cmdLullaby = commands.length] = _INTL("Play: Pokémon Lullaby")
-    commands[cmdOak = commands.length]     = _INTL("Play: Oak")
-    commands[cmdCustom = commands.length]  = _INTL("Play: Custom...")
-    commands[cmdTurnOff = commands.length] = _INTL("Stop")
-    commands[commands.length]              = _INTL("Exit")
+    commands[cmdMarch = commands.length]   = _INTL("播放: 宝可梦进行曲")
+    commands[cmdLullaby = commands.length] = _INTL("播放: 宝可梦催眠曲")
+    commands[cmdOak = commands.length]     = _INTL("播放: 大木博士")
+    commands[cmdCustom = commands.length]  = _INTL("播放: 自定义...")
+    commands[cmdTurnOff = commands.length] = _INTL("停止")
+    commands[commands.length]              = _INTL("退出")
     @scene.pbStartScene(commands)
     loop do
       cmd = @scene.pbScene

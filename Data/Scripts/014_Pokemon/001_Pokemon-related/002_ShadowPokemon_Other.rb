@@ -20,13 +20,13 @@ def pbPurify(pkmn, screen)
   pkmn.shadow = false
   pkmn.hyper_mode = false
   pkmn.giveRibbon(:NATIONAL)
-  screen.show_message(_INTL("{1} opened the door to its heart!", pkmn.name))
+  screen.show_message(_INTL("{1}敞开了心扉！", pkmn.name))
   old_moves = []
   pkmn.moves.each { |m| old_moves.push(m.id) }
   pkmn.update_shadow_moves
   pkmn.moves.each_with_index do |m, i|
     next if m.id == old_moves[i]
-    screen.show_message(_INTL("{1} regained the move {2}!", pkmn.name, m.name))
+    screen.show_message(_INTL("{1}重新学会了{2}！", pkmn.name, m.name))
   end
   pkmn.record_first_moves
   if pkmn.saved_ev
@@ -39,7 +39,7 @@ def pbPurify(pkmn, screen)
     newlevel = pkmn.growth_rate.level_from_exp(newexp)
     curlevel = pkmn.level
     if newexp != pkmn.exp
-      screen.show_message(_INTL("{1} regained {2} Exp. Points!", pkmn.name, newexp - pkmn.exp))
+      screen.show_message(_INTL("{1}重获了{2}经验值！", pkmn.name, newexp - pkmn.exp))
     end
     if newlevel == curlevel
       pkmn.exp = newexp
@@ -50,8 +50,8 @@ def pbPurify(pkmn, screen)
     end
   end
   if $PokemonSystem.givenicknames == 0 &&
-     screen.show_confirm_message(_INTL("Would you like to give a nickname to {1}?", pkmn.speciesName))
-    newname = pbEnterPokemonName(_INTL("{1}'s nickname?", pkmn.speciesName),
+     screen.show_confirm_message(_INTL("要给{1}起昵称吗？", pkmn.speciesName))
+    newname = pbEnterPokemonName(_INTL("{1}的名字是？", pkmn.speciesName),
                                  0, Pokemon::MAX_NAME_SIZE, "", pkmn)
     pkmn.name = newname
   end
@@ -150,10 +150,10 @@ end
 #===============================================================================
 def pbRelicStone
   if $player.party.none? { |pkmn| pkmn.purifiable? }
-    pbMessage(_INTL("You have no Pokémon that can be purified."))
+    pbMessage(_INTL("你没有可以净化的宝可梦了。"))
     return
   end
-  pbMessage(_INTL("There's a Pokémon that may open the door to its heart!"))
+  pbMessage(_INTL("有可以敞开心扉的宝可梦了！"))
   # Choose a purifiable Pokemon
   pbChoosePokemon(1, 2, proc { |pkmn|
     pkmn.able? && pkmn.shadowPokemon? && pkmn.heart_gauge == 0
@@ -174,7 +174,7 @@ class Battle
   def pbCanUseItemOnPokemon?(item, pkmn, battler, scene, showMessages = true)
     ret = __shadow__pbCanUseItemOnPokemon?(item, pkmn, battler, scene, showMessages)
     if ret && pkmn.hyper_mode && ![:JOYSCENT, :EXCITESCENT, :VIVIDSCENT].include?(item)
-      scene.pbDisplay(_INTL("This item can't be used on that Pokémon."))
+      scene.pbDisplay(_INTL("无法对那只宝可梦使用这个道具。"))
       return false
     end
     return ret
@@ -213,7 +213,7 @@ class Battle::Battler
     p = self.pokemon
     if @battle.pbRandom(p.heart_gauge) <= p.max_gauge_size / 4
       p.hyper_mode = true
-      @battle.pbDisplay(_INTL("{1}'s emotions rose to a fever pitch!\nIt entered Hyper Mode!", pbThis))
+      @battle.pbDisplay(_INTL("{1}的情绪变得狂躁了！\n它进入了兴奋状态！", pbThis))
     end
   end
 
@@ -237,12 +237,12 @@ def pbRaiseHappinessAndReduceHeart(pkmn, screen, multiplier, show_fail_message =
   pkmn.changeHappiness("vitamin")
   pkmn.change_heart_gauge("scent", multiplier)
   if pkmn.heart_gauge == old_gauge
-    screen.pbDisplay(_INTL("{1} turned friendly.", pkmn.name))
+    screen.pbDisplay(_INTL("{1}变得友好了。", pkmn.name))
   elsif pkmn.happiness == old_happiness
-    screen.pbDisplay(_INTL("{1} adores you!\nThe door to its heart opened a little.", pkmn.name))
+    screen.pbDisplay(_INTL("{1}喜欢你！\n它的心扉稍稍敞开了。", pkmn.name))
     pkmn.check_ready_to_purify
   else
-    screen.pbDisplay(_INTL("{1} turned friendly.\nThe door to its heart opened a little.", pkmn.name))
+    screen.pbDisplay(_INTL("{1}变得友好了。\n它的心扉稍稍敞开了。", pkmn.name))
     pkmn.check_ready_to_purify
   end
   return true
@@ -251,7 +251,7 @@ end
 ItemHandlers::UseOnPokemon.add(:JOYSCENT, proc { |item, qty, pkmn, screen|
   ret = false
   if pkmn.hyper_mode
-    screen.show_message(_INTL("{1} came to its senses from the {2}.", pkmn.name, GameData::Item.get(item).name))
+    screen.show_message(_INTL("{1}用{2}清醒过来了。", pkmn.name, GameData::Item.get(item).name))
     pkmn.hyper_mode = false
     ret = true
   end
@@ -261,7 +261,7 @@ ItemHandlers::UseOnPokemon.add(:JOYSCENT, proc { |item, qty, pkmn, screen|
 ItemHandlers::UseOnPokemon.add(:EXCITESCENT, proc { |item, qty, pkmn, screen|
   ret = false
   if pkmn.hyper_mode
-    screen.show_message(_INTL("{1} came to its senses from the {2}.", pkmn.name, GameData::Item.get(item).name))
+    screen.show_message(_INTL("{1}用{2}清醒过来了。", pkmn.name, GameData::Item.get(item).name))
     pkmn.hyper_mode = false
     ret = true
   end
@@ -271,7 +271,7 @@ ItemHandlers::UseOnPokemon.add(:EXCITESCENT, proc { |item, qty, pkmn, screen|
 ItemHandlers::UseOnPokemon.add(:VIVIDSCENT, proc { |item, qty, pkmn, screen|
   ret = false
   if pkmn.hyper_mode
-    screen.show_message(_INTL("{1} came to its senses from the {2}.", pkmn.name, GameData::Item.get(item).name))
+    screen.show_message(_INTL("{1}用{2}清醒过来了。", pkmn.name, GameData::Item.get(item).name))
     pkmn.hyper_mode = false
     ret = true
   end
@@ -300,7 +300,7 @@ ItemHandlers::CanUseInBattle.copy(:JOYSCENT, :EXCITESCENT, :VIVIDSCENT)
 ItemHandlers::BattleUseOnPokemon.add(:JOYSCENT, proc { |item, pokemon, battler, choices, scene|
   if pokemon.hyper_mode
     pokemon.hyper_mode = false
-    scene.pbDisplay(_INTL("{1} came to its senses from the {2}!",
+    scene.pbDisplay(_INTL("{1}用{2}清醒过来了！",
                           battler&.pbThis || pokemon.name, GameData::Item.get(item).name))
   end
   pbRaiseHappinessAndReduceHeart(pokemon, scene, 1, false)
@@ -310,7 +310,7 @@ ItemHandlers::BattleUseOnPokemon.add(:JOYSCENT, proc { |item, pokemon, battler, 
 ItemHandlers::BattleUseOnPokemon.add(:EXCITESCENT, proc { |item, pokemon, battler, choices, scene|
   if pokemon.hyper_mode
     pokemon.hyper_mode = false
-    scene.pbDisplay(_INTL("{1} came to its senses from the {2}!",
+    scene.pbDisplay(_INTL("{1}用{2}清醒过来了！",
                           battler&.pbThis || pokemon.name, GameData::Item.get(item).name))
   end
   pbRaiseHappinessAndReduceHeart(pokemon, scene, 2, false)
@@ -320,7 +320,7 @@ ItemHandlers::BattleUseOnPokemon.add(:EXCITESCENT, proc { |item, pokemon, battle
 ItemHandlers::BattleUseOnPokemon.add(:VIVIDSCENT, proc { |item, pokemon, battler, choices, scene|
   if pokemon.hyper_mode
     pokemon.hyper_mode = false
-    scene.pbDisplay(_INTL("{1} came to its senses from the {2}!",
+    scene.pbDisplay(_INTL("{1}用{2}清醒过来了！",
                           battler&.pbThis || pokemon.name, GameData::Item.get(item).name))
   end
   pbRaiseHappinessAndReduceHeart(pokemon, scene, 3, false)
@@ -344,7 +344,7 @@ class Battle::Move::AllBattlersLoseHalfHPUserSkipsNextTurn < Battle::Move
     @battle.allBattlers.each do |b|
       b.pbReduceHP(b.hp / 2, false) if b.hp > 1
     end
-    @battle.pbDisplay(_INTL("Each Pokémon's HP was halved!"))
+    @battle.pbDisplay(_INTL("所有宝可梦的HP减半了！"))
     @battle.allBattlers.each { |b| b.pbItemHPHealCheck }
     user.effects[PBEffects::HyperBeam] = 2
     user.currentMove = @id
@@ -368,7 +368,7 @@ class Battle::Move::UserLosesHalfHP < Battle::Move::RecoilMove
       user.pokemon.evolution_counter += amt
     end
     user.pbReduceHP(amt, false)
-    @battle.pbDisplay(_INTL("{1} is damaged by recoil!", user.pbThis))
+    @battle.pbDisplay(_INTL("{1}受到了反作用力造成的伤害！", user.pbThis))
     user.pbItemHPHealCheck
   end
 end
@@ -410,7 +410,7 @@ class Battle::Move::RemoveAllScreensAndSafeguard < Battle::Move
       i.effects[PBEffects::Reflect]     = 0
       i.effects[PBEffects::Safeguard]   = 0
     end
-    @battle.pbDisplay(_INTL("It broke all barriers!"))
+    @battle.pbDisplay(_INTL("它打破了所有的屏障！"))
   end
 end
 

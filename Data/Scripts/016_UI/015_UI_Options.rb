@@ -193,14 +193,14 @@ class UI::OptionsVisualsList < Window_DrawableCommand
       when Array
         return option[:parameters][0] if option[:parameters][0]   # Parameter is [lowest, highest, interval]
       end
-      raise _INTL("Option {1} has invalid parameters.", option[:name])
+      raise _INTL("选项{1}有无效参数", option[:name])
     when :number_slider
       if option[:parameters].is_a?(Array) && option[:parameters][0]
         return option[:parameters][0]   # Parameter is [lowest, highest, interval]
       end
-      raise _INTL("Option {1} has invalid parameters.", option[:name])
+      raise _INTL("选项{1}有无效参数", option[:name])
     end
-    raise _INTL("Option {1} has an undefined lowest value.", option[:name])
+    raise _INTL("选项{1}有未定义的最低值", option[:name])
   end
 
   def highest_value(option)
@@ -212,14 +212,14 @@ class UI::OptionsVisualsList < Window_DrawableCommand
       when Array
         return option[:parameters][1] if option[:parameters][1]   # Parameter is [lowest, highest, interval]
       end
-      raise _INTL("Option {1} has invalid parameters.", option[:name])
+      raise _INTL("选项{1}有无效参数", option[:name])
     when :number_slider
       if option[:parameters].is_a?(Array) && option[:parameters][1]
         return option[:parameters][1]   # Parameter is [lowest, highest, interval]
       end
-      raise _INTL("Option {1} has invalid parameters.", option[:name])
+      raise _INTL("选项{1}有无效参数", option[:name])
     end
-    raise _INTL("Option {1} has an undefined highest value.", option[:name])
+    raise _INTL("选项{1}有未定义的最高值", option[:name])
   end
 
   def previous_value(this_index)
@@ -311,7 +311,7 @@ class UI::OptionsVisualsList < Window_DrawableCommand
   def draw_option_name(this_index, rect, option_start_x)
     if this_index >= @options.length
       pbDrawShadowText(self.contents, rect.x, rect.y, option_start_x, rect.height,
-                       _INTL("Back"), self.baseColor, self.shadowColor)
+                       _INTL("返回"), self.baseColor, self.shadowColor)
       return
     end
     option = @options[this_index]
@@ -359,7 +359,7 @@ class UI::OptionsVisualsList < Window_DrawableCommand
     when :number_type
       lowest = lowest_value(option)
       highest = highest_value(option)
-      value = _INTL("Type {1}/{2}", lowest + @values[this_index], highest - lowest + 1)
+      value = _INTL("类型 {1}/{2}", lowest + @values[this_index], highest - lowest + 1)
       pbDrawShadowText(self.contents, option_start_x, rect.y, option_width, rect.height,
                        value, self.baseColor, self.shadowColor)
     when :number_slider
@@ -463,24 +463,24 @@ class UI::OptionsVisuals < UI::BaseVisuals
 
   PAGE_HANDLERS = HandlerHash.new
   PAGE_HANDLERS.add(:gameplay, {
-    :name  => proc { next _INTL("Gameplay") },
+    :name  => proc { next _INTL("游玩") },
     :order => 10,
-    :description => proc { next _INTL("Change how the game behaves.") }
+    :description => proc { next _INTL("更改游戏的表现。") }
   })
   PAGE_HANDLERS.add(:audio, {
-    :name  => proc { next _INTL("Audio") },
+    :name  => proc { next _INTL("音频") },
     :order => 20,
-    :description => proc { next _INTL("Change the game's volume.") }
+    :description => proc { next _INTL("更改游戏的音量。") }
   })
   PAGE_HANDLERS.add(:graphics, {
-    :name  => proc { next _INTL("Graphics") },
+    :name  => proc { next _INTL("图形") },
     :order => 30,
-    :description => proc { next _INTL("Change how the game appears.") }
+    :description => proc { next _INTL("更改游戏的外观。") }
   })
   PAGE_HANDLERS.add(:controls, {
-    :name  => proc { next _INTL("Controls") },
+    :name  => proc { next _INTL("控制") },
     :order => 40,
-    :description => proc { next _INTL("Edit the keyboard controls.") }
+    :description => proc { next _INTL("编辑键盘控制。") }
   })
 
   #-----------------------------------------------------------------------------
@@ -650,7 +650,7 @@ class UI::OptionsVisuals < UI::BaseVisuals
         description = _INTL(option[:description])
       end
     else   # Back
-      description = _INTL("Go back.")
+      description = _INTL("返回。")
     end
     @sprites[:speech_box].text = description
   end
@@ -699,7 +699,7 @@ class UI::OptionsVisuals < UI::BaseVisuals
 
   def change_key_or_button
     this_input = selected_option[:parameters]
-    @sprites[:speech_box].text = _INTL("Press a key or Esc to cancel.")
+    @sprites[:speech_box].text = _INTL("按任意键或Esc取消。")
     pressed_key = nil
     pressed_button = nil
     # Detect key/button press
@@ -804,22 +804,22 @@ end
 
 MenuHandlers.add(:options_menu, :battle_style, {
   "page"        => :gameplay,
-  "name"        => _INTL("Battle Style"),
+  "name"        => _INTL("比赛规则"),
   "order"       => 10,
   "type"        => :array,
-  "parameters"  => [_INTL("Switch"), _INTL("Set")],
-  "description" => _INTL("Choose whether you can switch Pokémon when an opponent's Pokémon faints."),
+  "parameters"  => [_INTL("替换"), _INTL("连战")],
+  "description" => _INTL("选择对方宝可梦倒下时是否可以替换宝可梦。"),
   "get_proc"    => proc { next $PokemonSystem.battlestyle },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.battlestyle = value }
 })
 
 MenuHandlers.add(:options_menu, :movement_style, {
   "page"        => :gameplay,
-  "name"        => _INTL("Default Movement"),
+  "name"        => _INTL("默认行动"),
   "order"       => 20,
   "type"        => :array,
-  "parameters"  => [_INTL("Walking"), _INTL("Running")],
-  "description" => _INTL("Choose your movement speed. Hold Back while moving to move at the other speed."),
+  "parameters"  => [_INTL("步行"), _INTL("跑步")],
+  "description" => _INTL("选择你的移动速度。按住Back键移动时以另一种速度移动。"),
   "condition"   => proc { next $player&.has_running_shoes },
   "get_proc"    => proc { next $PokemonSystem.runstyle },
   "set_proc"    => proc { |value, _sceme| $PokemonSystem.runstyle = value }
@@ -827,11 +827,11 @@ MenuHandlers.add(:options_menu, :movement_style, {
 
 MenuHandlers.add(:options_menu, :send_to_boxes, {
   "page"        => :gameplay,
-  "name"        => _INTL("Send to Boxes"),
+  "name"        => _INTL("发送到盒子里"),
   "order"       => 30,
   "type"        => :array,
-  "parameters"  => [_INTL("Manual"), _INTL("Automatic")],
-  "description" => _INTL("Choose whether caught Pokémon are sent to your Boxes when your party is full."),
+  "parameters"  => [_INTL("手动"), _INTL("自动")],
+  "description" => _INTL("选择队伍满时收服的宝可梦是否被传送到盒子里。"),
   "condition"   => proc { next Settings::NEW_CAPTURE_CAN_REPLACE_PARTY_MEMBER },
   "get_proc"    => proc { next $PokemonSystem.sendtoboxes },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.sendtoboxes = value }
@@ -839,22 +839,22 @@ MenuHandlers.add(:options_menu, :send_to_boxes, {
 
 MenuHandlers.add(:options_menu, :give_nicknames, {
   "page"        => :gameplay,
-  "name"        => _INTL("Give Nicknames"),
+  "name"        => _INTL("起昵称"),
   "order"       => 40,
   "type"        => :array,
-  "parameters"  => [_INTL("Give"), _INTL("Don't give")],
-  "description" => _INTL("Choose whether you can give a nickname to a Pokémon when you obtain it."),
+  "parameters"  => [_INTL("起"), _INTL("不起")],
+  "description" => _INTL("选择获得宝可梦后是否能起昵称。"),
   "get_proc"    => proc { next $PokemonSystem.givenicknames },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.givenicknames = value }
 })
 
 MenuHandlers.add(:options_menu, :skip_move_learning, {
   "page"        => :gameplay,
-  "name"        => _INTL("Skip Move Learning"),
+  "name"        => _INTL("跳过招式学习"),
   "order"       => 50,
   "type"        => :array,
-  "parameters"  => [_INTL("Off"), _INTL("On")],
-  "description" => _INTL("Choose whether to prevent Pokémon learning new moves when they level up."),
+  "parameters"  => [_INTL("关闭"), _INTL("开启")],
+  "description" => _INTL("选择是否在宝可梦升级时阻止学习新招式。"),
   "condition"   => proc { next Settings::ALLOW_CHANGING_MOVES_IN_SUMMARY_SCREEN },
   "get_proc"    => proc { next $PokemonSystem.skip_move_learning },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.skip_move_learning = value }
@@ -862,22 +862,22 @@ MenuHandlers.add(:options_menu, :skip_move_learning, {
 
 MenuHandlers.add(:options_menu, :text_input_style, {
   "page"        => :gameplay,
-  "name"        => _INTL("Text Entry"),
+  "name"        => _INTL("文本输入"),
   "order"       => 60,
   "type"        => :array,
-  "parameters"  => [_INTL("Cursor"), _INTL("Free type")],
-  "description" => _INTL("Choose how you want to enter text."),
+  "parameters"  => [_INTL("光标"), _INTL("自由输入")],
+  "description" => _INTL("选择怎样输入文本。"),
   "get_proc"    => proc { next $PokemonSystem.textinput },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.textinput = value }
 })
 
 MenuHandlers.add(:options_menu, :language, {
   "page"        => :gameplay,
-  "name"        => _INTL("Language"),
+  "name"        => _INTL("语言"),
   "order"       => 70,
   "type"        => (Settings::LANGUAGES.length == 2) ? :array : :array_one,
   "parameters"  => Settings::LANGUAGES.map { |lang| lang[0] },
-  "description" => _INTL("Choose the game's language."),
+  "description" => _INTL("选择游戏的语言。"),
   "condition"   => proc { next Settings::LANGUAGES.length >= 2 },
   "get_proc"    => proc { next $PokemonSystem.language },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.language = value }
@@ -887,7 +887,7 @@ MenuHandlers.add(:options_menu, :language, {
 
 MenuHandlers.add(:options_menu, :main_volume, {
   "page"        => :audio,
-  "name"        => _INTL("Main Volume"),
+  "name"        => _INTL("主音量"),
   "order"       => 10,
   "type"        => :number_slider,
   "parameters"  => [0, 100, 5],   # [minimum_value, maximum_value, interval]

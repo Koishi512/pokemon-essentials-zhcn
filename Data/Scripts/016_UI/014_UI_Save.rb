@@ -48,7 +48,7 @@ class UI::SavePanel < UI::SpriteContainer
     filename = pbGetPlayerCharset(meta.walk_charset, @save_data[:player], true)
     @sprites[:player] = TrainerWalkingCharSprite.new(filename, @viewport)
     if !@sprites[:player].bitmap
-      raise _INTL("Player character {1}'s walking charset was not found (filename: \"{2}\").",
+      raise _INTL("未找到玩家角色{1}的行走图（文件名：\"{2}\"）。",
                   @save_data[:player].character_ID, filename)
     end
     @sprites[:player].x = 44 - (@sprites[:player].bitmap.width / 8)
@@ -130,7 +130,7 @@ class UI::SavePanel < UI::SpriteContainer
     filename = pbGetPlayerCharset(meta.walk_charset, @save_data[:player], true)
     @sprites[:player].charset = filename
     if !@sprites[:player].bitmap
-      raise _INTL("Player character {1}'s walking charset was not found (filename: \"{2}\").",
+      raise _INTL("未找到玩家角色{1}的行走图（文件名：\"{2}\"）。",
                   @save_data[:player].character_ID, filename)
     end
   end
@@ -156,7 +156,7 @@ class UI::SavePanel < UI::SpriteContainer
 
   def draw_save_file_text
     if !@save_data
-      draw_text(_INTL("Create a new save file"), width / 2, (height / 2) - 10, align: :center, theme: :gray)
+      draw_text(_INTL("创建新的存档文件"), width / 2, (height / 2) - 10, align: :center, theme: :gray)
       return
     end
     gender_theme = :default
@@ -174,17 +174,17 @@ class UI::SavePanel < UI::SpriteContainer
     map_name = map_name.gsub(/\\v\[(\d+)\]/) { |num| @save_data[:variables][$~[1].to_i].to_s }
     draw_text(map_name, 14, 78, theme: :gray)
     # Gym Badges
-    draw_text(_INTL("Badges:"), 14, 110, theme: :white)
+    draw_text(_INTL("徽章："), 14, 110, theme: :white)
     draw_text(@save_data[:player].badge_count.to_s, 222, 110, align: :right, theme: :gray)
     # Pokédex owned count
-    draw_text(_INTL("Pokédex:"), 14, 142, theme: :white)
+    draw_text(_INTL("图鉴："), 14, 142, theme: :white)
     draw_text(@save_data[:player].pokedex.seen_count.to_s, 222, 142, align: :right, theme: :gray)
     # Time played
-    draw_text(_INTL("Play time:"), 14, 174, theme: :white)
+    draw_text(_INTL("游戏时间："), 14, 174, theme: :white)
     play_time = @save_data[:stats]&.real_play_time.to_i || 0
     hour = (play_time / 60) / 60
     min  = (play_time / 60) % 60
-    play_time_text = (hour > 0) ? _INTL("{1}h {2}m", hour, min) : _INTL("{1}m", min)
+    play_time_text = (hour > 0) ? _INTL("{1}时{2}分", hour, min) : _INTL("{1}分", min)
     draw_text(play_time_text, 222, 174, align: :right, theme: :gray)
     save_time = @save_data[:stats]&.real_time_saved
     if save_time && save_time != 0
@@ -323,15 +323,15 @@ class UI::SaveVisuals < UI::BaseVisuals
             hour = (delta_time / 60) / 60
             min  = (delta_time / 60) % 60
             if hour > 0
-              draw_text(_INTL("Play time since save: {1}h {2}m", hour, min), 8, 4, theme: :gray)
+              draw_text(_INTL("存档以来游玩时间：{1}时{2}分", hour, min), 8, 4, theme: :gray)
             else
-              draw_text(_INTL("Play time since save: {1}m", min), 8, 4, theme: :gray)
+              draw_text(_INTL("存档以来游玩时间：{1}分", min), 8, 4, theme: :gray)
             end
           else
-            draw_text(_INTL("Alternate version of your adventure!"), 8, 4, theme: :gray)
+            draw_text(_INTL("你冒险的另一版本！"), 8, 4, theme: :gray)
           end
         else
-          draw_text(_INTL("Different adventure!"), 8, 4, theme: :gray)
+          draw_text(_INTL("不同的冒险！"), 8, 4, theme: :gray)
         end
       end
       if @save_data[@index]
@@ -345,7 +345,7 @@ class UI::SaveVisuals < UI::BaseVisuals
         date_text = save_time.strftime("%-d/%-m/%Y")
       end
       time_text = save_time.strftime("%H:%M")
-      draw_text(_INTL("Last saved on {1} at {2}", date_text, time_text), 8, 4, theme: :gray)
+      draw_text(_INTL("最后保存于{1} {2}", date_text, time_text), 8, 4, theme: :gray)
     end
   end
 
@@ -387,7 +387,7 @@ class UI::SaveVisuals < UI::BaseVisuals
   #-----------------------------------------------------------------------------
 
   def navigate
-    help_text = _INTL("Choose a file to save in.")
+    help_text = _INTL("请选择要保存的文件。")
     help_window = Window_AdvancedTextPokemon.newWithSize(
       help_text, 0, 0, Graphics.width, 96, @viewport
     )
@@ -460,10 +460,10 @@ class UI::Save < UI::BaseScreen
 
   def prompt_overwrite_save_file(slot_index)
     if different_adventure?(slot_index)
-      show_message(_INTL("WARNING!") + "\1")
-      show_message(_INTL("There is a different game file that is already saved.") + "\1")
-      show_message(_INTL("If you save now, the other file's adventure, including items and Pokémon, will be entirely lost.") + "\1")
-      if !show_confirm_serious_message(_INTL("Are you sure you want to save now and overwrite the other save file?"))
+      show_message(_INTL("警告！") + "\1")
+      show_message(_INTL("已经有另一个已保存的游戏文件了。") + "\1")
+      show_message(_INTL("如果你现在保存，另一个文件的冒险，包括道具和宝可梦，都会完全丢失。") + "\1")
+      if !show_confirm_serious_message(_INTL("你确定要保存游戏并覆盖另一个文件吗？"))
         return false
       end
     end
@@ -483,7 +483,7 @@ class UI::Save < UI::BaseScreen
       @save_data[slot_index] = [file, this_save_data]
       @visuals.set_index(slot_index, true)
       # Announce the save success
-      show_message(_INTL("{1} saved the game.", $player.name)) {
+      show_message(_INTL("{1}完好地写下了记录。", $player.name)) {
         pbSEStop
         pbMEPlay("GUI save game")
         wait(1)
@@ -491,7 +491,7 @@ class UI::Save < UI::BaseScreen
       @result = true
     else
       pbSEPlay("GUI save choice")
-      show_message(_INTL("Save failed."))
+      show_message(_INTL("保存失败。"))
       @result = false
     end
   end
@@ -509,7 +509,7 @@ class UI::Save < UI::BaseScreen
   def main
     start_screen
     # If the player doesn't want to save, just exit the screen
-    if !show_confirm_message(_INTL("Would you like to save the game?"))
+    if !show_confirm_message(_INTL("要将至今为止的进度写入记录中吗？"))
       end_screen
       return false
     end
@@ -529,15 +529,15 @@ class UI::Save < UI::BaseScreen
         command = @visuals.navigate
         break if command == :quit
         if !@save_data[index] ||
-           show_confirm_message(_INTL("Do you want to overwrite this save file?"))
+           show_confirm_message(_INTL("你要覆盖这个存档吗？"))
           if different_adventure?(index)
-            show_message(_INTL("WARNING!") + "\1")
+            show_message(_INTL("警告！") + "\1")
             pbPlayDecisionSE
-            show_message(_INTL("This save file is a different adventure.") + "\1")
+            show_message(_INTL("这个存档属于不同的冒险。") + "\1")
             pbPlayDecisionSE
-            show_message(_INTL("If you save now, that adventure, including items and Pokémon, will be entirely lost.") + "\1")
+            show_message(_INTL("如果你现在保存，该冒险中的所有物品和宝可梦都将丢失。") + "\1")
             pbPlayDecisionSE
-            next if !show_confirm_serious_message(_INTL("Are you sure you want to overwrite it?"))
+            next if !show_confirm_serious_message(_INTL("你确定要覆盖它吗？"))
           end
           file_number = get_save_file_number(index)
           save_game(file_number)
@@ -571,7 +571,7 @@ end
 def pbEmergencySave
   oldscene = $scene
   $scene = nil
-  pbMessage(_INTL("The script is taking too long. The game will restart."))
+  pbMessage(_INTL("脚本运行时间过长。游戏将重新启动。"))
   return if !$player
   filename_number = $stats.save_filename_number || -1
   filename = SaveData.filename_from_index(filename_number)
@@ -587,10 +587,10 @@ def pbEmergencySave
     end
   end
   if Game.save(filename_number)
-    pbMessage("\\se[]" + _INTL("The game was saved.") + "\\me[GUI save game]\\wtnp[20]")
-    pbMessage("\\se[]" + _INTL("The previous save file has been backed up.") + "\\wtnp[20]")
+    pbMessage("\\se[]" + _INTL("游戏已保存。") + "\\me[GUI save game]\\wtnp[20]")
+    pbMessage("\\se[]" + _INTL("之前的存档文件已被备份。") + "\\wtnp[20]")
   else
-    pbMessage("\\se[]" + _INTL("Save failed.") + "\\wtnp[30]")
+    pbMessage("\\se[]" + _INTL("保存失败。") + "\\wtnp[30]")
   end
   $scene = oldscene
 end

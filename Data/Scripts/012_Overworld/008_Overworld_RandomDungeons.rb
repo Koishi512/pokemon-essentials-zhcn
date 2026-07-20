@@ -1150,7 +1150,7 @@ EventHandlers.add(:on_game_map_setup, :random_dungeon,
       break
     end
     if failed
-      raise _INTL("Couldn't place all events and the player in rooms.")
+      raise _INTL("无法将所有事件和玩家放置在房间内。")
     end
   }
 )

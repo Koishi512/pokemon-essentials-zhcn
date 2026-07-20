@@ -101,7 +101,7 @@ class PokemonEncounters
   # chance. Called when taking a step and by Rock Smash.
   def encounter_triggered?(enc_type, repel_active = false, triggered_by_step = true)
     if !enc_type || !GameData::EncounterType.exists?(enc_type)
-      raise ArgumentError.new(_INTL("Encounter type {1} does not exist", enc_type))
+      raise ArgumentError.new(_INTL("遭遇种类{1}不存在", enc_type))
     end
     return false if $game_system.encounter_disabled
     return false if !$player
@@ -269,7 +269,7 @@ class PokemonEncounters
   # A higher chance_rolls makes this method prefer rarer encounter slots.
   def choose_wild_pokemon(enc_type, chance_rolls = 1)
     if !enc_type || !GameData::EncounterType.exists?(enc_type)
-      raise ArgumentError.new(_INTL("Encounter type {1} does not exist", enc_type))
+      raise ArgumentError.new(_INTL("遭遇种类{1}不存在", enc_type))
     end
     enc_list = @encounter_tables[enc_type]
     return nil if !enc_list || enc_list.length == 0
@@ -348,7 +348,7 @@ class PokemonEncounters
   # caught.
   def choose_wild_pokemon_for_map(map_ID, enc_type)
     if !enc_type || !GameData::EncounterType.exists?(enc_type)
-      raise ArgumentError.new(_INTL("Encounter type {1} does not exist", enc_type))
+      raise ArgumentError.new(_INTL("遭遇种类{1}不存在", enc_type))
     end
     # Get the encounter table
     encounter_data = GameData::Encounter.get(map_ID, $PokemonGlobal.encounter_version)

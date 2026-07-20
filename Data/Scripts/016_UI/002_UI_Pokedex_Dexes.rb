@@ -93,8 +93,8 @@ class UI::PokedexDexesVisuals < UI::BaseVisuals
   end
 
   def draw_headers
-    draw_text(_INTL("SEEN"), 318, 158, align: :center, theme: :header)
-    draw_text(_INTL("OWNED"), 418, 158, align: :center, theme: :header)
+    draw_text(_INTL("已发现"), 318, 158, align: :center, theme: :header)
+    draw_text(_INTL("已拥有"), 418, 158, align: :center, theme: :header)
   end
 
   #-----------------------------------------------------------------------------
@@ -135,7 +135,7 @@ class UI::PokedexDexes < UI::BaseScreen
   def initialize(dex = -2)
     if dex >= -1
       if !$player&.pokedex.accessible_dexes.include?(dex)
-        raise _INTL("Wanted to open the Pokédex using Regional Dex {1} but it isn't unlocked.", dex)
+        raise _INTL("想使用地区图鉴{1}打开图鉴，但是未解锁", dex)
       end
       @dex_number = dex
       @skip_ui = true
@@ -159,7 +159,7 @@ class UI::PokedexDexes < UI::BaseScreen
     ret = []
     dex_names = Settings.pokedex_names
     $player&.pokedex.accessible_dexes.each do |dex|
-      name = _INTL("Pokédex")
+      name = _INTL("图鉴")
       if dex_names[dex]
         name = ((dex_names[dex].is_a?(Array)) ? dex_names[dex][0] : dex_names[dex])
       end
@@ -168,7 +168,7 @@ class UI::PokedexDexes < UI::BaseScreen
                 $player.pokedex.owned_count(dex),
                 pbGetRegionalDexLength(dex)])
     end
-    ret.push(_INTL("Exit"))
+    ret.push(_INTL("退出"))
     return ret
   end
 

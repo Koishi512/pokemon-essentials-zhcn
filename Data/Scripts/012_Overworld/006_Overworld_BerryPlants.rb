@@ -325,46 +325,46 @@ def pbBerryPlant
     when 1   # X planted
       this_event.turn_down   # Stop the event turning towards the player
       if berry_name.starts_with_vowel?
-        pbMessage(_INTL("An {1} was planted here.", berry_name))
+        pbMessage(_INTL("种有{1}的地方。", berry_name))
       else
-        pbMessage(_INTL("A {1} was planted here.", berry_name))
+        pbMessage(_INTL("种有{1}的地方。", berry_name))
       end
     when 2   # X sprouted
       this_event.turn_down   # Stop the event turning towards the player
-      pbMessage(_INTL("The {1} has sprouted.", berry_name))
+      pbMessage(_INTL("{1}发芽了！", berry_name))
     when 3   # X taller
       this_event.turn_left   # Stop the event turning towards the player
-      pbMessage(_INTL("The {1} plant is growing bigger.", berry_name))
+      pbMessage(_INTL("{1}的枝干变大了！", berry_name))
     else     # X flowering
       this_event.turn_right   # Stop the event turning towards the player
       if Settings::NEW_BERRY_PLANT_MECHANICS
-        pbMessage(_INTL("This {1} plant is in bloom!", berry_name))
+        pbMessage(_INTL("{1}开花了！", berry_name))
       else
         case berry_plant.watering_count
         when 4
-          pbMessage(_INTL("This {1} plant is in fabulous bloom!", berry_name))
+          pbMessage(_INTL("{1}的花开得很旺！", berry_name))
         when 3
-          pbMessage(_INTL("This {1} plant is blooming very beautifully!", berry_name))
+          pbMessage(_INTL("{1}的花开得非常美丽！", berry_name))
         when 2
-          pbMessage(_INTL("This {1} plant is blooming prettily!", berry_name))
+          pbMessage(_INTL("{1}的花开得很漂亮！", berry_name))
         when 1
-          pbMessage(_INTL("This {1} plant is blooming cutely!", berry_name))
+          pbMessage(_INTL("{1}的花开得很美丽！", berry_name))
         else
-          pbMessage(_INTL("This {1} plant is in bloom!", berry_name))
+          pbMessage(_INTL("{1}开花了！", berry_name))
         end
       end
     end
     # Water the growing plant
     GameData::BerryPlant::WATERING_CANS.each do |item|
       next if !$bag.has?(item)
-      break if !pbConfirmMessage(_INTL("Want to sprinkle some water with the {1}?",
+      break if !pbConfirmMessage(_INTL("要拿{1}浇水吗？",
                                        GameData::Item.get(item).name))
       berry_plant.water
-      pbMessage("\\se[Water berry plant]" + _INTL("{1} watered the plant.", $player.name) + "\\wtnp[40]")
+      pbMessage("\\se[Water berry plant]" + _INTL("{1}给植物浇了水。", $player.name) + "\\wtnp[40]")
       if Settings::NEW_BERRY_PLANT_MECHANICS
-        pbMessage(_INTL("There! All happy!"))
+        pbMessage(_INTL("它好像挺开心的！"))
       else
-        pbMessage(_INTL("The plant seemed to be delighted."))
+        pbMessage(_INTL("它好像挺开心的。"))
       end
       break
     end
@@ -375,10 +375,10 @@ def pbBerryPlant
   if Settings::NEW_BERRY_PLANT_MECHANICS
     # New mechanics
     if berry_plant.mulch_id
-      pbMessage(_INTL("{1} has been laid down.", GameData::Item.get(berry_plant.mulch_id).name))
+      pbMessage(_INTL("{1}已经种下去了。", GameData::Item.get(berry_plant.mulch_id).name))
     else
-      case pbMessage(_INTL("It's soft, earthy soil."),
-                     [_INTL("Fertilize"), _INTL("Plant Berry"), _INTL("Exit")], -1)
+      case pbMessage(_INTL("是松软的土地。"),
+                     [_INTL("施肥"), _INTL("种植树果"), _INTL("退出")], -1)
       when 0   # Fertilize
         mulch = nil
         pbFadeOutIn do
@@ -396,9 +396,9 @@ def pbBerryPlant
         if mulch_data.is_mulch?
           berry_plant.mulch_id = mulch
           $bag.remove(mulch)
-          pbMessage(_INTL("The {1} was scattered on the soil.", mulch_data.name))
+          pbMessage(_INTL("{1}撒满了土地。", mulch_data.name))
         else
-          pbMessage(_INTL("That won't fertilize the soil!"))
+          pbMessage(_INTL("无法施肥！"))
           return
         end
       when 1   # Plant Berry
@@ -409,10 +409,10 @@ def pbBerryPlant
     end
   else
     # Old mechanics
-    return if !pbConfirmMessage(_INTL("It's soft, loamy soil. Want to plant a berry?"))
+    return if !pbConfirmMessage(_INTL("是松软的土地。要种植树果吗？"))
     ask_to_plant = false
   end
-  if !ask_to_plant || pbConfirmMessage(_INTL("Want to plant a Berry?"))
+  if !ask_to_plant || pbConfirmMessage(_INTL("要种植树果吗？"))
     pbFadeOutIn do
       old_last_pocket       = $bag.last_viewed_pocket
       old_pocket_selections = $bag.last_pocket_selections.clone
@@ -428,13 +428,13 @@ def pbBerryPlant
       berry_plant.plant(berry)
       $bag.remove(berry)
       if Settings::NEW_BERRY_PLANT_MECHANICS
-        pbMessage(_INTL("The {1} was planted in the soft, earthy soil.",
+        pbMessage(_INTL("{1}被种在松软的土地里了。",
                         GameData::Item.get(berry).name))
       elsif GameData::Item.get(berry).name.starts_with_vowel?
-        pbMessage(_INTL("{1} planted an {2} in the soft loamy soil.",
+        pbMessage(_INTL("{1}把{2}种在松软的土地里了。",
                         $player.name, GameData::Item.get(berry).name))
       else
-        pbMessage(_INTL("{1} planted a {2} in the soft loamy soil.",
+        pbMessage(_INTL("{1}把{2}种在松软的土地里了。",
                         $player.name, GameData::Item.get(berry).name))
       end
     end
@@ -448,13 +448,13 @@ def pbPickBerry(berry, qty = 1)
   berry = GameData::Item.get(berry)
   berry_name = (qty > 1) ? berry.portion_name_plural : berry.portion_name
   if qty > 1
-    message = _INTL("There are {1} \\c[1]{2}\\c[0]!\nWant to pick them?", qty, berry_name)
+    message = _INTL("\\c[1]{2}\\c[0]熟了{1}个！\n要摘下树果吗？", qty, berry_name)
   else
-    message = _INTL("There is 1 \\c[1]{1}\\c[0]!\nWant to pick it?", berry_name)
+    message = _INTL("\\c[1]{1}\\c[0]熟了1个！\n要摘下树果吗？", berry_name)
   end
   return false if !pbConfirmMessage(message)
   if !$bag.can_add?(berry, qty)
-    pbMessage(_INTL("Too bad...\nThe Bag is full..."))
+    pbMessage(_INTL("太糟了……\n包包满了……"))
     return false
   end
   $stats.berry_plants_picked += 1
@@ -463,17 +463,17 @@ def pbPickBerry(berry, qty = 1)
   end
   $bag.add(berry, qty)
   if qty > 1
-    pbMessage("\\me[Berry get]" + _INTL("You picked the {1} \\c[1]{2}\\c[0].", qty, berry_name) + "\\wtnp[30]")
+    pbMessage("\\me[Berry get]" + _INTL("摘下了{1}个\c[1]{2}\c[0]！", qty, berry_name) + "\\wtnp[30]")
   else
-    pbMessage("\\me[Berry get]" + _INTL("You picked the \\c[1]{1}\\c[0].", berry_name) + "\\wtnp[30]")
+    pbMessage("\\me[Berry get]" + _INTL("摘下了\c[1]{1}\c[0]！", berry_name) + "\\wtnp[30]")
   end
   pocket = berry.bag_pocket
-  pbMessage(_INTL("You put the {1} in\nyour Bag's <icon=bagPocket{2}>\\c[1]{3}\\c[0] pocket.",
+  pbMessage(_INTL("将{1}放入了\n<icon=bagPocket{2}>\\c[1]{3}\\c[0]口袋。",
                   berry_name, pocket, GameData::BagPocket.get(pocket).name) + "\1")
   if Settings::NEW_BERRY_PLANT_MECHANICS
-    pbMessage(_INTL("The soil returned to its soft and earthy state."))
+    pbMessage(_INTL("这里变回了松软的土地。"))
   else
-    pbMessage(_INTL("The soil returned to its soft and loamy state."))
+    pbMessage(_INTL("这里变回了松软的土地。"))
   end
   this_event = pbMapInterpreter.get_self
   pbSetSelfSwitch(this_event.id, "A", true)

@@ -215,7 +215,7 @@ def pbUseItem(bag, item, bag_screen = nil)
   useType = item_data.field_use
   if useType == 1   # Item is usable on a Pokémon
     if $player.pokemon_count == 0
-      pbMessage(_INTL("There is no Pokémon."))
+      pbMessage(_INTL("没有宝可梦。"))
       return 0
     end
     ret = false
@@ -225,8 +225,8 @@ def pbUseItem(bag, item, bag_screen = nil)
         use_proc = proc { |pkmn| next (pkmn.check_evolution_on_use_item(item)) ? :can_use : :cannot_use }
         valid_values = [:can_use]
         use_annotations = {
-          :can_use    => _INTL("Can Use"),
-          :cannot_use => _INTL("Cannot Use")
+          :can_use    => _INTL("能使用！"),
+          :cannot_use => _INTL("不能使用")
         }
         party_screen.set_able_annotation_proc(use_proc, valid_values, use_annotations)
       end
@@ -239,7 +239,7 @@ def pbUseItem(bag, item, bag_screen = nil)
         if max_at_once > 1
           pbPlayDecisionSE
           qty = party_screen.choose_number(
-            _INTL("How many {1} do you want to use?", GameData::Item.get(item).portion_name_plural), max_at_once
+            _INTL("要使用多少个{1}？", GameData::Item.get(item).portion_name_plural), max_at_once
           )
           party_screen.set_help_text("")
         end
@@ -248,7 +248,7 @@ def pbUseItem(bag, item, bag_screen = nil)
         if ret && item_data.consumed_after_use?
           bag.remove(item, qty)
           if !bag.has?(item)
-            party_screen.show_message(_INTL("You used your last {1}.", item_data.portion_name))
+            party_screen.show_message(_INTL("你使用了最后一个{1}。", item_data.portion_name))
             next true
           end
         end
@@ -264,10 +264,10 @@ def pbUseItem(bag, item, bag_screen = nil)
       bag_screen&.refresh
       return intret
     end
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     return 0
   end
-  pbMessage(_INTL("Can't use that here."))
+  pbMessage(_INTL("无法在这里使用！"))
   return 0
 end
 
@@ -283,13 +283,13 @@ def pbUseItemOnPokemon(item, pkmn, screen)
     return false if !move
     move_name = GameData::Move.get(move).name
     if pkmn.shadowPokemon?
-      screen.show_message(_INTL("Shadow Pokémon can't be taught any moves."))
+      screen.show_message(_INTL("不能给黑暗宝可梦教授任何招式。"))
     elsif !pkmn.compatible_with_move?(move)
-      screen.show_message(_INTL("{1} can't learn {2}.", pkmn.name, move_name))
+      screen.show_message(_INTL("{1}不能学会{2}。", pkmn.name, move_name))
     else
       pbSEPlay("PC access")
-      screen.show_message(_INTL("You booted up the {1}.", item_data.portion_name) + "\1")
-      if screen.show_confirm_message(_INTL("Do you want to teach {1} to {2}?", move_name, pkmn.name))
+      screen.show_message(_INTL("启动了{1}！", item_data.portion_name) + "\1")
+      if screen.show_confirm_message(_INTL("你想把{1}教给{2}吗？", move_name, pkmn.name))
         if pbLearnMove(pkmn, move, false, true) { screen.update }
           $stats.moves_taught_by_item += 1
           pkmn.add_first_move(move) if item_data.is_TR?
@@ -306,7 +306,7 @@ def pbUseItemOnPokemon(item, pkmn, screen)
   max_at_once = [max_at_once, $bag.quantity(item)].min
   if max_at_once > 1
     qty = screen.choose_number(
-      _INTL("How many {1} do you want to use?", item_data.portion_name_plural), max_at_once
+      _INTL("要使用多少个{1}？", item_data.portion_name_plural), max_at_once
     )
     screen.set_help_text("")
   end
@@ -319,7 +319,7 @@ def pbUseItemOnPokemon(item, pkmn, screen)
   if ret && item_data.consumed_after_use?
     $bag.remove(item, qty)
     if !$bag.has?(item) && screen.is_a?(UI::Party)
-      screen.show_message(_INTL("You used your last {1}.", item_data.portion_name))
+      screen.show_message(_INTL("你使用了最后一个{1}。", item_data.portion_name))
     end
   end
   return ret
@@ -328,7 +328,7 @@ end
 def pbUseKeyItemInField(item)
   ret = ItemHandlers.triggerUseInField(item)
   if ret == -1   # Item effect not found
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
   elsif ret > 0 && GameData::Item.get(item).consumed_after_use?
     $bag.remove(item)
   end
@@ -338,9 +338,9 @@ end
 def pbUseItemMessage(item)
   itemname = GameData::Item.get(item).portion_name
   if itemname.starts_with_vowel?
-    pbMessage(_INTL("You used an {1}.", itemname))
+    pbMessage(_INTL("你使用了{1}。", itemname))
   else
-    pbMessage(_INTL("You used a {1}.", itemname))
+    pbMessage(_INTL("你使用了{1}。", itemname))
   end
 end
 
@@ -353,10 +353,10 @@ def pbGiveItemToPokemon(item, pkmn, screen, pkmnid = 0)
   # Check if the Pokémon can hold the item, or have its item removed if it's
   # already holding one
   if pkmn.egg?
-    screen.show_message(_INTL("Eggs can't hold items."))
+    screen.show_message(_INTL("蛋不能携带道具。"))
     return false
   elsif pkmn.mail
-    screen.show_message(_INTL("{1}'s mail must be removed before giving it an item.", pkmn.name))
+    screen.show_message(_INTL("在给{1}携带道具前，必须把邮件取走。", pkmn.name))
     return false if !pbTakeItemFromPokemon(pkmn, screen)
   end
   new_item_name = GameData::Item.get(item).portion_name
@@ -364,26 +364,26 @@ def pbGiveItemToPokemon(item, pkmn, screen, pkmnid = 0)
     # Swap existing held item with the new item
     old_item_name = pkmn.item.portion_name
     if old_item_name.starts_with_vowel?
-      screen.show_message(_INTL("{1} is already holding an {2}.", pkmn.name, old_item_name) + "\1")
+      screen.show_message(_INTL("{1}已经携带了{2}。", pkmn.name, old_item_name) + "\1")
     else
-      screen.show_message(_INTL("{1} is already holding a {2}.", pkmn.name, old_item_name) + "\1")
+      screen.show_message(_INTL("{1}已经携带了{2}。", pkmn.name, old_item_name) + "\1")
     end
-    if screen.show_confirm_message(_INTL("Would you like to switch the two items?"))
+    if screen.show_confirm_message(_INTL("你想交换这两个道具吗？"))
       $bag.remove(item)
       if !$bag.add(pkmn.item)
-        raise _INTL("Couldn't re-store deleted item in Bag somehow") if !$bag.add(item)
-        screen.show_message(_INTL("The Bag is full. The Pokémon's item could not be removed."))
+        raise _INTL("包包里无法存储已删除的道具") if !$bag.add(item)
+        screen.show_message(_INTL("包包满了。无法取走这只宝可梦的道具。"))
       elsif GameData::Item.get(item).is_mail?
         if pbWriteMail(item, pkmn, pkmnid, screen)
           pkmn.item = item
-          screen.show_message(_INTL("Took the {1} from {2} and gave it the {3}.", old_item_name, pkmn.name, new_item_name))
+          screen.show_message(_INTL("从{2}收回了{1}，让宝可梦携带了{3}。", old_item_name, pkmn.name, new_item_name))
           return true
         elsif !$bag.add(item)
-          raise _INTL("Couldn't re-store deleted item in Bag somehow")
+          raise _INTL("包包里无法存储已删除的道具") if !$bag.add(item)
         end
       else
         pkmn.item = item
-        screen.show_message(_INTL("Took the {1} from {2} and gave it the {3}.", old_item_name, pkmn.name, new_item_name))
+        screen.show_message(_INTL("从{2}收回了{1}，让宝可梦携带了{3}。", old_item_name, pkmn.name, new_item_name))
         return true
       end
     end
@@ -391,7 +391,7 @@ def pbGiveItemToPokemon(item, pkmn, screen, pkmnid = 0)
     # Give the new item
     $bag.remove(item)
     pkmn.item = item
-    screen.show_message(_INTL("{1} is now holding the {2}.", pkmn.name, new_item_name))
+    screen.show_message(_INTL("让{1}携带了{2}。", pkmn.name, new_item_name))
     return true
   end
   return false
@@ -403,27 +403,27 @@ def pbTakeItemFromPokemon(pkmn, screen)
   # Check if the Pokémon has an item to remove, and whether the item can be put
   # in the Bag
   if !pkmn.hasItem?
-    screen.show_message(_INTL("{1} isn't holding anything.", pkmn.name))
+    screen.show_message(_INTL("{1}没有携带任何道具！", pkmn.name))
     return false
   elsif !$bag.can_add?(pkmn.item)
-    screen.show_message(_INTL("The Bag is full. The Pokémon's item could not be removed."))
+    screen.show_message(_INTL("包包满了。无法取走这只宝可梦的道具。"))
     return false
   end
   if pkmn.mail
     # Remove a mail item
-    if screen.show_confirm_message(_INTL("Save the removed mail in your PC?"))
+    if screen.show_confirm_message(_INTL("要把取下来的邮箱存入电脑里吗？"))
       if pbMoveToMailbox(pkmn)
         pkmn.item = nil
-        screen.show_message(_INTL("The mail was saved in your PC."))
+        screen.show_message(_INTL("邮件已存入电脑。"))
         ret = true
       else
-        screen.show_message(_INTL("Your PC's Mailbox is full."))
+        screen.show_message(_INTL("电脑的邮箱满了。"))
       end
-    elsif screen.show_confirm_message(_INTL("If the mail is removed, its message will be lost. OK?"))
+    elsif screen.show_confirm_message(_INTL("如果删除邮件，消息就会丢失。确定吗？"))
       item_name = pkmn.item.portion_name
       $bag.add(pkmn.item)
       pkmn.item = nil
-      screen.show_message(_INTL("Received the {1} from {2}.", item_name, pkmn.name))
+      screen.show_message(_INTL("从{2}那里得到了{1}！", item_name, pkmn.name))
       ret = true
     end
   else
@@ -431,7 +431,7 @@ def pbTakeItemFromPokemon(pkmn, screen)
     item_name = pkmn.item.portion_name
     $bag.add(pkmn.item)
     pkmn.item = nil
-    screen.show_message(_INTL("Received the {1} from {2}.", item_name, pkmn.name))
+    screen.show_message(_INTL("从{2}那里得到了{1}！", item_name, pkmn.name))
     ret = true
   end
   return ret
@@ -453,7 +453,7 @@ def pbChooseItemFromList(message, variable, *args)
     $game_variables[variable] = :NONE
     return nil
   end
-  commands[:NONE] = _INTL("Cancel")
+  commands[:NONE] = _INTL("取消")
   ret = pbMessage(message, commands.values, -1)
   if ret < 0 || ret >= commands.length - 1
     $game_variables[variable] = :NONE
@@ -470,9 +470,9 @@ def pbChangeLevel(pkmn, new_level, screen)
   new_level = new_level.clamp(1, GameData::GrowthRate.max_level)
   if pkmn.level == new_level
     if screen
-      screen.show_message(_INTL("{1}'s level remained unchanged.", pkmn.name))
+      screen.show_message(_INTL("{1}的等级没有变化。", pkmn.name))
     else
-      pbMessage(_INTL("{1}'s level remained unchanged.", pkmn.name))
+      pbMessage(_INTL("{1}的等级没有变化。", pkmn.name))
     end
     return
   end
@@ -489,9 +489,9 @@ def pbChangeLevel(pkmn, new_level, screen)
   screen&.refresh
   if old_level > new_level
     if screen
-      screen.show_message(_INTL("{1} dropped to Lv. {2}!", pkmn.name, pkmn.level))
+      screen.show_message(_INTL("{1}下降到了等级{2}！", pkmn.name, pkmn.level))
     else
-      pbMessage(_INTL("{1} dropped to Lv. {2}!", pkmn.name, pkmn.level))
+      pbMessage(_INTL("{1}下降到了等级{2}！", pkmn.name, pkmn.level))
     end
     total_hp_diff        = pkmn.totalhp - old_total_hp
     attack_diff          = pkmn.attack - old_attack
@@ -499,16 +499,16 @@ def pbChangeLevel(pkmn, new_level, screen)
     special_attack_diff  = pkmn.spatk - old_special_attack
     special_defense_diff = pkmn.spdef - old_special_defense
     speed_diff           = pkmn.speed - old_speed
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\nAttack<r>{2}\nDefense<r>{3}\nSp. Atk<r>{4}\nSp. Def<r>{5}\nSpeed<r>{6}",
+    pbTopRightWindow(_INTL("最大HP<r>{1}\n攻击<r>{2}\n防御<r>{3}\n特攻<r>{4}\n特防<r>{5}\n速度<r>{6}",
                            total_hp_diff, attack_diff, defense_diff, special_attack_diff, special_defense_diff, speed_diff), screen)
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\nAttack<r>{2}\nDefense<r>{3}\nSp. Atk<r>{4}\nSp. Def<r>{5}\nSpeed<r>{6}",
+    pbTopRightWindow(_INTL("最大HP<r>{1}\n攻击<r>{2}\n防御<r>{3}\n特攻<r>{4}\n特防<r>{5}\n速度<r>{6}",
                            pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), screen)
   else
     pkmn.changeHappiness("vitamin")
     if screen
-      screen.show_message(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level))
+      screen.show_message(_INTL("{1}上升到了等级{2}！", pkmn.name, pkmn.level))
     else
-      pbMessage(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level))
+      pbMessage(_INTL("{1}上升到了等级{2}！", pkmn.name, pkmn.level))
     end
     total_hp_diff        = pkmn.totalhp - old_total_hp
     attack_diff          = pkmn.attack - old_attack
@@ -516,9 +516,9 @@ def pbChangeLevel(pkmn, new_level, screen)
     special_attack_diff  = pkmn.spatk - old_special_attack
     special_defense_diff = pkmn.spdef - old_special_defense
     speed_diff           = pkmn.speed - old_speed
-    pbTopRightWindow(_INTL("Max. HP<r>+{1}\nAttack<r>+{2}\nDefense<r>+{3}\nSp. Atk<r>+{4}\nSp. Def<r>+{5}\nSpeed<r>+{6}",
+    pbTopRightWindow(_INTL("最大HP<r>+{1}\n攻击<r>+{2}\n防御<r>+{3}\n特攻<r>+{4}\n特防<r>+{5}\n速度<r>+{6}",
                            total_hp_diff, attack_diff, defense_diff, special_attack_diff, special_defense_diff, speed_diff), screen)
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\nAttack<r>{2}\nDefense<r>{3}\nSp. Atk<r>{4}\nSp. Def<r>{5}\nSpeed<r>{6}",
+    pbTopRightWindow(_INTL("最大HP<r>{1}\n攻击<r>{2}\n防御<r>{3}\n特攻<r>{4}\n特防<r>{5}\n速度<r>{6}",
                            pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), screen)
     # Learn new moves upon level up
     if $PokemonSystem.skip_move_learning == 0
@@ -549,9 +549,9 @@ def pbChangeExp(pkmn, new_exp, screen)
   new_exp = new_exp.clamp(0, pkmn.growth_rate.maximum_exp)
   if pkmn.exp == new_exp
     if screen
-      screen.show_message(_INTL("{1}'s Exp. Points remained unchanged.", pkmn.name))
+      screen.show_message(_INTL("{1}的经验值没有变化。", pkmn.name))
     else
-      pbMessage(_INTL("{1}'s Exp. Points remained unchanged.", pkmn.name))
+      pbMessage(_INTL("{1}的经验值没有变化。", pkmn.name))
     end
     return
   end
@@ -565,9 +565,9 @@ def pbChangeExp(pkmn, new_exp, screen)
   if pkmn.exp > new_exp   # Loses Exp
     difference = pkmn.exp - new_exp
     if screen
-      screen.show_message(_INTL("{1} lost {2} Exp. Points!", pkmn.name, difference))
+      screen.show_message(_INTL("{1}失去了{2}经验值！", pkmn.name, difference))
     else
-      pbMessage(_INTL("{1} lost {2} Exp. Points!", pkmn.name, difference))
+      pbMessage(_INTL("{1}失去了{2}经验值！", pkmn.name, difference))
     end
     pkmn.exp = new_exp
     pkmn.calc_stats
@@ -575,9 +575,9 @@ def pbChangeExp(pkmn, new_exp, screen)
     return if pkmn.level == old_level
     # Level changed
     if screen
-      screen.show_message(_INTL("{1} dropped to Lv. {2}!", pkmn.name, pkmn.level))
+      screen.show_message(_INTL("{1}下降到了等级{2}！", pkmn.name, pkmn.level))
     else
-      pbMessage(_INTL("{1} dropped to Lv. {2}!", pkmn.name, pkmn.level))
+      pbMessage(_INTL("{1}下降到了等级{2}！", pkmn.name, pkmn.level))
     end
     total_hp_diff        = pkmn.totalhp - old_total_hp
     attack_diff          = pkmn.attack - old_attack
@@ -585,16 +585,16 @@ def pbChangeExp(pkmn, new_exp, screen)
     special_attack_diff  = pkmn.spatk - old_special_attack
     special_defense_diff = pkmn.spdef - old_special_defense
     speed_diff           = pkmn.speed - old_speed
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\nAttack<r>{2}\nDefense<r>{3}\nSp. Atk<r>{4}\nSp. Def<r>{5}\nSpeed<r>{6}",
+    pbTopRightWindow(_INTL("最大HP<r>{1}\n攻击<r>{2}\n防御<r>{3}\n特攻<r>{4}\n特防<r>{5}\n速度<r>{6}",
                            total_hp_diff, attack_diff, defense_diff, special_attack_diff, special_defense_diff, speed_diff), screen)
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\nAttack<r>{2}\nDefense<r>{3}\nSp. Atk<r>{4}\nSp. Def<r>{5}\nSpeed<r>{6}",
+    pbTopRightWindow(_INTL("最大HP<r>{1}\n攻击<r>{2}\n防御<r>{3}\n特攻<r>{4}\n特防<r>{5}\n速度<r>{6}",
                            pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), screen)
   else   # Gains Exp
     difference = new_exp - pkmn.exp
     if screen
-      screen.show_message(_INTL("{1} gained {2} Exp. Points!", pkmn.name, difference))
+      screen.show_message(_INTL("{1}获得了{2}经验值！", pkmn.name, difference))
     else
-      pbMessage(_INTL("{1} gained {2} Exp. Points!", pkmn.name, difference))
+      pbMessage(_INTL("{1}获得了{2}经验值！", pkmn.name, difference))
     end
     pkmn.exp = new_exp
     pkmn.changeHappiness("vitamin")
@@ -603,9 +603,9 @@ def pbChangeExp(pkmn, new_exp, screen)
     return if pkmn.level == old_level
     # Level changed
     if screen
-      screen.show_message(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level))
+      screen.show_message(_INTL("{1}上升到了等级{2}！", pkmn.name, pkmn.level))
     else
-      pbMessage(_INTL("{1} grew to Lv. {2}!", pkmn.name, pkmn.level))
+      pbMessage(_INTL("{1}上升到了等级{2}！", pkmn.name, pkmn.level))
     end
     total_hp_diff        = pkmn.totalhp - old_total_hp
     attack_diff          = pkmn.attack - old_attack
@@ -613,9 +613,9 @@ def pbChangeExp(pkmn, new_exp, screen)
     special_attack_diff  = pkmn.spatk - old_special_attack
     special_defense_diff = pkmn.spdef - old_special_defense
     speed_diff           = pkmn.speed - old_speed
-    pbTopRightWindow(_INTL("Max. HP<r>+{1}\nAttack<r>+{2}\nDefense<r>+{3}\nSp. Atk<r>+{4}\nSp. Def<r>+{5}\nSpeed<r>+{6}",
+    pbTopRightWindow(_INTL("最大HP<r>+{1}\n攻击<r>+{2}\n防御<r>+{3}\n特攻<r>+{4}\n特防<r>+{5}\n速度<r>+{6}",
                            total_hp_diff, attack_diff, defense_diff, special_attack_diff, special_defense_diff, speed_diff), screen)
-    pbTopRightWindow(_INTL("Max. HP<r>{1}\nAttack<r>{2}\nDefense<r>{3}\nSp. Atk<r>{4}\nSp. Def<r>{5}\nSpeed<r>{6}",
+    pbTopRightWindow(_INTL("最大HP<r>{1}\n攻击<r>{2}\n防御<r>{3}\n特攻<r>{4}\n特防<r>{5}\n速度<r>{6}",
                            pkmn.totalhp, pkmn.attack, pkmn.defense, pkmn.spatk, pkmn.spdef, pkmn.speed), screen)
     # Learn new moves upon level up
     if $PokemonSystem.skip_move_learning == 0
@@ -674,17 +674,17 @@ def pbHPItem(pkmn, restoreHP, screen)
   pbSEPlay("Use item in party")
   hpGain = pbItemRestoreHP(pkmn, restoreHP)
   screen.refresh
-  screen.show_message(_INTL("{1}'s HP was restored by {2} points.", pkmn.name, hpGain))
+  screen.show_message(_INTL("{1}的体力回复了{2}！", pkmn.name, hpGain))
   return true
 end
 
 def pbBattleHPItem(pkmn, battler, restoreHP, screen)
   if battler
     if battler.pbRecoverHP(restoreHP) > 0
-      screen.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      screen.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     end
   elsif pbItemRestoreHP(pkmn, restoreHP) > 0
-    screen.pbDisplay(_INTL("{1}'s HP was restored.", pkmn.name))
+    screen.pbDisplay(_INTL("{1}的体力回复了！", pkmn.name))
   end
   return true
 end
@@ -766,7 +766,7 @@ def pbUseEVRaisingItem(stat, amt_per_use, qty, pkmn, happiness_type, screen, no_
   end
   pbSEPlay("Use item in party")
   screen.refresh
-  screen.show_message(_INTL("{1}'s {2} increased.", pkmn.name, GameData::Stat.get(stat).name))
+  screen.show_message(_INTL("{1}的{2}增加了！", pkmn.name, GameData::Stat.get(stat).name))
   return true
 end
 
@@ -856,23 +856,23 @@ def pbBikeCheck
   if $PokemonGlobal.surfing || $PokemonGlobal.diving ||
      (!$PokemonGlobal.bicycle &&
      ($game_player.pbTerrainTag.must_walk || $game_player.pbTerrainTag.must_walk_or_run))
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     return false
   end
   if !$game_player.can_ride_vehicle_with_follower?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
+    pbMessage(_INTL("无法在有人与你同行时使用。"))
     return false
   end
   map_metadata = $game_map.metadata
   if $PokemonGlobal.bicycle
     if map_metadata&.always_bicycle
-      pbMessage(_INTL("You can't dismount your Bike here."))
+      pbMessage(_INTL("这里无法下车！"))
       return false
     end
     return true
   end
   if !map_metadata || (!map_metadata.can_bicycle && !map_metadata.outdoor_map)
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     return false
   end
   return true
@@ -914,27 +914,27 @@ def pbLearnMove(pkmn, move, ignore_if_known = false, by_machine = false, screen 
   move_name = GameData::Move.get(move).name
   # Check if Pokémon is unable to learn any moves
   if pkmn.egg? && !$DEBUG
-    pbMessage(_INTL("Eggs can't be taught any moves."), &block)
+    pbMessage(_INTL("不能给蛋教授任何招式。"), &block)
     return false
   elsif pkmn.shadowPokemon?
-    pbMessage(_INTL("Shadow Pokémon can't be taught any moves."), &block)
+    pbMessage(_INTL("不能给黑暗宝可梦教授任何招式。"), &block)
     return false
   end
   # Check if Pokémon can learn this move
   if pkmn.hasMove?(move)
     if !ignore_if_known
-      pbMessage(_INTL("{1} already knows {2}.", pkmn_name, move_name), &block)
+      pbMessage(_INTL("{1}已经学会了{2}。", pkmn_name, move_name), &block)
     end
     return false
   elsif pkmn.numMoves < Pokemon::MAX_MOVES
     pkmn.learn_move(move)
-    pbMessage("\\se[]" + _INTL("{1} learned {2}!", pkmn_name, move_name) + "\\se[Pkmn move learnt]\\wtnp[30]", &block)
+    pbMessage("\\se[]" + _INTL("{1}学会了{2}！", pkmn_name, move_name) + "\\se[Pkmn move learnt]\\wtnp[30]", &block)
     return true
   end
   # Pokémon needs to forget a move to learn this one
-  pbMessage(_INTL("{1} wants to learn {2}, but it already knows {3} moves.",
+  pbMessage(_INTL("{1}想要学习{2}，但它已经学会了{3}个招式。",
                   pkmn_name, move_name, pkmn.numMoves.to_word) + "\1", &block)
-  if pbConfirmMessage(_INTL("Should {1} forget a move to learn {2}?", pkmn_name, move_name), &block)
+  if pbConfirmMessage(_INTL("为了学习{2}，{1}要忘记其他的招式吗？", pkmn_name, move_name), &block)
     loop do
       move_index = pbForgetMove(pkmn, move, screen)
       if move_index >= 0 && pkmn.moves[move_index]
@@ -944,18 +944,18 @@ def pbLearnMove(pkmn, move, ignore_if_known = false, by_machine = false, screen 
         if by_machine && Settings::TAUGHT_MACHINES_KEEP_OLD_PP
           pkmn.moves[move_index].pp = [old_move_pp, pkmn.moves[move_index].total_pp].min
         end
-        pbMessage(_INTL("1, 2, and...\\wt[16] ...\\wt[16] ...\\wt[16] Ta-da!") + "\\se[Battle ball drop]\\wtnp[10]\1", &block)
-        pbMessage(_INTL("{1} forgot how to use {2}.\nAnd...", pkmn_name, old_move_name) + "\1", &block)
-        pbMessage("\\se[]" + _INTL("{1} learned {2}!", pkmn_name, move_name) + "\\se[Pkmn move learnt]\\wtnp[30]", &block)
+        pbMessage(_INTL("1，2，\\wt[16]……\\wt[16]……\\wt[16]空！") + "\\se[Battle ball drop]\\wtnp[10]\1", &block)
+        pbMessage(_INTL("{1}把{2}的使用方法忘得干干净净了！\n于是……", pkmn_name, old_move_name) + "\1", &block)
+        pbMessage("\\se[]" + _INTL("{1}学会了{2}！", pkmn_name, move_name) + "\\se[Pkmn move learnt]\\wtnp[30]", &block)
         pkmn.changeHappiness("machine") if by_machine
         return true
-      elsif pbConfirmMessage(_INTL("Give up on learning {1}?", move_name), &block)
-        pbMessage(_INTL("{1} did not learn {2}.", pkmn_name, move_name), &block)
+      elsif pbConfirmMessage(_INTL("要放弃学习{1}吗？", move_name), &block)
+        pbMessage(_INTL("{1}没有学习{2}就结束了！", pkmn_name, move_name), &block)
         return false
       end
     end
   else
-    pbMessage(_INTL("{1} did not learn {2}.", pkmn_name, move_name), &block)
+    pbMessage(_INTL("{1}没有学习{2}就结束了！", pkmn_name, move_name), &block)
   end
   return false
 end

@@ -46,7 +46,7 @@ class Pokemon
 
   def megaName
     formName = species_data.form_name
-    return (formName && !formName.empty?) ? formName : _INTL("Mega {1}", species_data.name)
+    return (formName && !formName.empty?) ? formName : _INTL("超级{1}", species_data.name)
   end
 
   # 0=default message, 1=Rayquaza message.

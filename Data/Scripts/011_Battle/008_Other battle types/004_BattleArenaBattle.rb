@@ -51,7 +51,7 @@ class BattleArenaBattle < Battle
   end
 
   def pbCanSwitchIn?(idxBattler, _idxParty, party_screen = nil)
-    party_screen&.show_message(_INTL("{1} can't be switched out!", @battlers[idxBattler].pbThis))
+    party_screen&.show_message(_INTL("无法让{1}回来！", @battlers[idxBattler].pbThis))
     return false
   end
 
@@ -176,7 +176,7 @@ class BattleArenaBattle < Battle
     ratings2.each { |val| points[1] += val }
     # Make judgment
     if points[0] == points[1]
-      pbDisplay(_INTL("{1} tied the opponent {2} in a referee's decision!",
+      pbDisplay(_INTL("根据裁判的判定，{1}与对手{2}打平！",
                       @battlers[0].name, @battlers[1].name))
       # NOTE: Pokémon doesn't really lose HP, but the effect is mostly the
       #       same.
@@ -185,12 +185,12 @@ class BattleArenaBattle < Battle
       @battlers[1].hp = 0
       @battlers[1].pbFaint(false)
     elsif points[0] > points[1]
-      pbDisplay(_INTL("{1} defeated the opponent {2} in a referee's decision!",
+      pbDisplay(_INTL("根据裁判的判定，{1}战胜了对手{2}！",
                       @battlers[0].name, @battlers[1].name))
       @battlers[1].hp = 0
       @battlers[1].pbFaint(false)
     else
-      pbDisplay(_INTL("{1} lost to the opponent {2} in a referee's decision!",
+      pbDisplay(_INTL("根据裁判的判定，{1}输给了对手{2}！",
                       @battlers[0].name, @battlers[1].name))
       @battlers[0].hp = 0
       @battlers[0].pbFaint(false)
@@ -238,11 +238,11 @@ class Battle::Scene
       [battler1.name, 64, 6, :center, Color.new(248, 0, 0), Color.new(208, 208, 200)],
       [_INTL("VS"), 144, 6, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
       [battler2.name, 224, 6, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
-      [_INTL("Mind"), 144, 54, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
-      [_INTL("Skill"), 144, 86, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
-      [_INTL("Body"), 144, 118, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
+      [_INTL("心"), 144, 54, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
+      [_INTL("技"), 144, 86, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
+      [_INTL("体"), 144, 118, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
       [total1.to_s, 64, 166, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
-      [_INTL("Judgment"), 144, 166, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
+      [_INTL("判定"), 144, 166, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)],
       [total2.to_s, 224, 166, :center, Color.new(72, 72, 72), Color.new(208, 208, 200)]
     ]
     pbDrawTextPositions(window.contents, textpos)
@@ -259,7 +259,7 @@ class Battle::Scene
   end
 
   def pbBattleArenaBattlers(battler1, battler2)
-    pbMessage(_INTL("REFEREE: {1} VS {2}!\nCommence battling!",
+    pbMessage(_INTL("裁判：{1}对{2}！\n战斗开始！",
                     battler1.name, battler2.name) + "\\wtnp[10]") { pbBattleArenaUpdate }
   end
 
@@ -271,7 +271,7 @@ class Battle::Scene
       msgwindow = pbCreateMessageWindow
       dimmingvp = Viewport.new(0, 0, Graphics.width, Graphics.height - msgwindow.height)
       pbMessageDisplay(msgwindow,
-                       _INTL("REFEREE: That's it! We will now go to judging to determine the winner!") + "\\wtnp[10]") do
+                       _INTL("裁判：就是这样！现在我们将进入评审环节，决出获胜者！") + "\\wtnp[10]") do
         pbBattleArenaUpdate
         dimmingvp.update
       end
@@ -303,21 +303,21 @@ class Battle::Scene
       end
       updateJudgment(infowindow, 1, battler1, battler2, ratings1, ratings2)
       pbMessageDisplay(msgwindow,
-                       _INTL("REFEREE: Judging category 1, Mind!\nThe Pokémon showing the most guts!") + "\\wtnp[20]") do
+                       _INTL("裁判：判定1，心！\n最显胆量的宝可梦！") + "\\wtnp[20]") do
         pbBattleArenaUpdate
         dimmingvp.update
         infowindow.update
       end
       updateJudgment(infowindow, 2, battler1, battler2, ratings1, ratings2)
       pbMessageDisplay(msgwindow,
-                       _INTL("REFEREE: Judging category 2, Skill!\nThe Pokémon using moves the best!") + "\\wtnp[20]") do
+                       _INTL("裁判：判定2，技！\n最善于使用招式的宝可梦！") + "\\wtnp[20]") do
         pbBattleArenaUpdate
         dimmingvp.update
         infowindow.update
       end
       updateJudgment(infowindow, 3, battler1, battler2, ratings1, ratings2)
       pbMessageDisplay(msgwindow,
-                       _INTL("REFEREE: Judging category 3, Body!\nThe Pokémon with the most vitality!") + "\\wtnp[20]") do
+                       _INTL("裁判：判定3，体！\n最有活力的宝可梦！") + "\\wtnp[20]") do
         pbBattleArenaUpdate
         dimmingvp.update
         infowindow.update
@@ -330,14 +330,14 @@ class Battle::Scene
       end
       if total1 == total2
         pbMessageDisplay(msgwindow,
-                         _INTL("REFEREE: Judgment: {1} to {2}!\nWe have a draw!", total1, total2) + "\\wtnp[20]") do
+                         _INTL("裁判：判定：{1}比{2}！\n平局！", total1, total2) + "\\wtnp[20]") do
           pbBattleArenaUpdate
           dimmingvp.update
           infowindow.update
         end
       elsif total1 > total2
         pbMessageDisplay(msgwindow,
-                         _INTL("REFEREE: Judgment: {1} to {2}!\nThe winner is {3}'s {4}!",
+                         _INTL("裁判：判定：{1}比{2}！\n获胜者是{3}的{4}！",
                                total1, total2, @battle.pbGetOwnerName(battler1.index), battler1.name) + "\\wtnp[20]") do
           pbBattleArenaUpdate
           dimmingvp.update
@@ -345,7 +345,7 @@ class Battle::Scene
         end
       else
         pbMessageDisplay(msgwindow,
-                         _INTL("REFEREE: Judgment: {1} to {2}!\nThe winner is {3}!",
+                         _INTL("裁判：判定：{1}比{2}！\n获胜者是{3}！",
                                total1, total2, battler2.name) + "\\wtnp[20]") do
           pbBattleArenaUpdate
           dimmingvp.update

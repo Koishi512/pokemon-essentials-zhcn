@@ -3,7 +3,7 @@
 #===============================================================================
 def pbLoadTrainer(tr_type, tr_name, tr_version = 0)
   tr_type_data = GameData::TrainerType.try_get(tr_type)
-  raise _INTL("Trainer type {1} does not exist.", tr_type) if !tr_type_data
+  raise _INTL("训练家类型{1}不存在。", tr_type) if !tr_type_data
   tr_type = tr_type_data.id
   trainer_data = GameData::Trainer.try_get(tr_type, tr_name, tr_version)
   return (trainer_data) ? trainer_data.to_trainer : nil
@@ -13,8 +13,8 @@ def pbNewTrainer(tr_type, tr_name, tr_version, save_changes = true)
   party = []
   Settings::MAX_PARTY_SIZE.times do |i|
     if i == 0
-      pbMessage(_INTL("Please enter the first Pokémon.", i))
-    elsif !pbConfirmMessage(_INTL("Add another Pokémon?"))
+      pbMessage(_INTL("请录入第一只宝可梦。", i))
+    elsif !pbConfirmMessage(_INTL("添加另一只宝可梦？"))
       break
     end
     loop do
@@ -23,13 +23,13 @@ def pbNewTrainer(tr_type, tr_name, tr_version, save_changes = true)
         params = ChooseNumberParams.new
         params.setRange(1, GameData::GrowthRate.max_level)
         params.setDefaultValue(10)
-        level = pbMessageChooseNumber(_INTL("Set the level for {1} (max. {2}).",
+        level = pbMessageChooseNumber(_INTL("设置{1}的等级 (最高{2})",
                                             GameData::Species.get(species).name, params.maxNumber), params)
         party.push([species, level])
         break
       else
         break if i > 0
-        pbMessage(_INTL("This trainer must have at least 1 Pokémon!"))
+        pbMessage(_INTL("这个训练家必须至少拥有1只宝可梦！"))
       end
     end
   end
@@ -54,7 +54,7 @@ def pbNewTrainer(tr_type, tr_name, tr_version, save_changes = true)
     GameData::Trainer.register(trainer_hash)
     GameData::Trainer.save
     pbConvertTrainerData
-    pbMessage(_INTL("The Trainer's data was added to the list of battles and in PBS/trainers.txt."))
+    pbMessage(_INTL("训练家的数据已添加到战斗列表和PBS/trainers.txt中。"))
   end
   return trainer
 end
@@ -70,7 +70,7 @@ end
 def pbTrainerTypeCheck(trainer_type)
   return true if !$DEBUG
   return true if GameData::TrainerType.exists?(trainer_type)
-  if pbConfirmMessage(_INTL("Add new trainer type {1}?", trainer_type.to_s))
+  if pbConfirmMessage(_INTL("添加新的训练家类型 {1}？", trainer_type.to_s))
     pbTrainerTypeEditorNew(trainer_type.to_s)
   end
   pbMapInterpreter&.command_end
@@ -88,7 +88,7 @@ def pbTrainerCheck(tr_type, tr_name, max_battles, tr_version = 0)
   # Check for existence of trainer with given ID number
   return true if GameData::Trainer.exists?(tr_type, tr_name, tr_version)
   # Add new trainer
-  if pbConfirmMessage(_INTL("Add new trainer variant {1} (of {2}) for {3} {4}?",
+  if pbConfirmMessage(_INTL("添加新的训练家变体{1}(共{2}个)用于{3}{4}？",
                             tr_version, max_battles, tr_type.to_s, tr_name))
     pbNewTrainer(tr_type, tr_name, tr_version)
   end
@@ -97,7 +97,7 @@ end
 
 def pbGetFreeTrainerParty(tr_type, tr_name)
   tr_type_data = GameData::TrainerType.try_get(tr_type)
-  raise _INTL("Trainer type {1} does not exist.", tr_type) if !tr_type_data
+  raise _INTL("训练家类型{1}不存在。", tr_type) if !tr_type_data
   tr_type = tr_type_data.id
   256.times do |i|
     return i if !GameData::Trainer.try_get(tr_type, tr_name, i)
@@ -107,18 +107,18 @@ end
 
 def pbMissingTrainer(tr_type, tr_name, tr_version)
   tr_type_data = GameData::TrainerType.try_get(tr_type)
-  raise _INTL("Trainer type {1} does not exist.", tr_type) if !tr_type_data
+  raise _INTL("训练家类型{1}不存在。", tr_type) if !tr_type_data
   tr_type = tr_type_data.id
   if !$DEBUG
-    raise _INTL("Can't find trainer ({1}, {2}, ID {3})", tr_type.to_s, tr_name, tr_version)
+    raise _INTL("找不到训练家({1}, {2}, ID {3})", tr_type.to_s, tr_name, tr_version)
   end
   message = ""
   if tr_version == 0
-    message = _INTL("Add new trainer ({1}, {2})?", tr_type.to_s, tr_name)
+    message = _INTL("添加新的训练家({1}, {2})？", tr_type.to_s, tr_name)
   else
-    message = _INTL("Add new trainer ({1}, {2}, ID {3})?", tr_type.to_s, tr_name, tr_version)
+    message = _INTL("添加新的训练家({1}, {2}, ID {3})？", tr_type.to_s, tr_name, tr_version)
   end
-  cmd = pbMessage(message, [_INTL("Yes"), _INTL("No")], 2)
+  cmd = pbMessage(message, [_INTL("是"), _INTL("否")], 2)
   pbNewTrainer(tr_type, tr_name, tr_version) if cmd == 0
   return cmd
 end

@@ -88,7 +88,7 @@ end
 #===============================================================================
 class UI::PauseMenu < UI::BaseScreen
   def initialize
-    raise _INTL("Tried to open the pause menu when $player was not defined.") if !$player
+    raise _INTL("试图在未定义$player时打开暂停菜单。") if !$player
     initialize_commands
     super
   end
@@ -156,7 +156,7 @@ end
 #===============================================================================
 
 MenuHandlers.add(:pause_menu, :pokedex, {
-  "name"      => _INTL("Pokédex"),
+  "name"      => _INTL("图鉴"),
   "order"     => 10,
   "condition" => proc { next $player.has_pokedex && $player.pokedex.accessible_dexes.length > 0 },
   "effect"    => proc { |menu|
@@ -170,7 +170,7 @@ MenuHandlers.add(:pause_menu, :pokedex, {
 })
 
 MenuHandlers.add(:pause_menu, :party, {
-  "name"      => _INTL("Pokémon"),
+  "name"      => _INTL("宝可梦"),
   "order"     => 20,
   "condition" => proc { next $player.party_count > 0 },
   "effect"    => proc { |menu|
@@ -189,7 +189,7 @@ MenuHandlers.add(:pause_menu, :party, {
 })
 
 MenuHandlers.add(:pause_menu, :bag, {
-  "name"      => _INTL("Bag"),
+  "name"      => _INTL("包包"),
   "order"     => 30,
   "condition" => proc { next !pbInBugContest? },
   "effect"    => proc { |menu|
@@ -209,7 +209,7 @@ MenuHandlers.add(:pause_menu, :bag, {
 })
 
 MenuHandlers.add(:pause_menu, :pokegear, {
-  "name"      => _INTL("Pokégear"),
+  "name"      => _INTL("宝可装置"),
   "order"     => 40,
   "condition" => proc { next $player.has_pokegear },
   "effect"    => proc { |menu|
@@ -225,7 +225,7 @@ MenuHandlers.add(:pause_menu, :pokegear, {
 })
 
 MenuHandlers.add(:pause_menu, :town_map, {
-  "name"      => _INTL("Town Map"),
+  "name"      => _INTL("城镇地图"),
   "order"     => 40,
   "condition" => proc { next Settings::SHOW_TOWN_MAP_IN_PAUSE_MENU && !$player.has_pokegear && $bag.has?(:TOWNMAP) },
   "effect"    => proc { |menu|
@@ -255,7 +255,7 @@ MenuHandlers.add(:pause_menu, :trainer_card, {
 })
 
 MenuHandlers.add(:pause_menu, :save, {
-  "name"      => _INTL("Save"),
+  "name"      => _INTL("保存"),
   "order"     => 60,
   "condition" => proc {
     next $game_system && !$game_system.save_disabled && !pbInSafari? && !pbInBugContest?
@@ -276,7 +276,7 @@ MenuHandlers.add(:pause_menu, :save, {
 })
 
 MenuHandlers.add(:pause_menu, :options, {
-  "name"      => _INTL("Options"),
+  "name"      => _INTL("设置"),
   "order"     => 70,
   "effect"    => proc { |menu|
     pbPlayDecisionSE
@@ -290,7 +290,7 @@ MenuHandlers.add(:pause_menu, :options, {
 })
 
 MenuHandlers.add(:pause_menu, :debug, {
-  "name"      => _INTL("Debug"),
+  "name"      => _INTL("调试"),
   "order"     => 80,
   "condition" => proc { next $DEBUG },
   "effect"    => proc { |menu|
@@ -304,11 +304,11 @@ MenuHandlers.add(:pause_menu, :debug, {
 })
 
 MenuHandlers.add(:pause_menu, :quit_game, {
-  "name"      => _INTL("Quit Game"),
+  "name"      => _INTL("退出游戏"),
   "order"     => 90,
   "effect"    => proc { |menu|
     menu.hide_menu
-    if pbConfirmMessage(_INTL("Are you sure you want to quit the game?"))
+    if pbConfirmMessage(_INTL("你确定要退出游戏吗？"))
       pbPlayCloseMenuSE
       pbBGMFade(1.0)
       pbBGSFade(1.0)

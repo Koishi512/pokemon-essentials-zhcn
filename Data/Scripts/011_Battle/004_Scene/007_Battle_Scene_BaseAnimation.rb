@@ -101,7 +101,7 @@ module Battle::Scene::Animation::BallAnimationMixin
   end
 
   def ballTracksHand(ball, traSprite, safariThrow = false)
-    raise _INTL("Trainer back sprite doesn't exist.") if !traSprite || !traSprite.bitmap
+    raise _INTL("训练家的背面图像不存在。") if !traSprite || !traSprite.bitmap
     # Back sprite isn't animated, no hand-tracking needed
     if traSprite.bitmap.width < traSprite.bitmap.height * 2
       ball.setVisible(7, true)

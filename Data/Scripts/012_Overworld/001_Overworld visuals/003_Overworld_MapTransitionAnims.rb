@@ -87,13 +87,13 @@ def pbStartOver(game_over = false)
   if $PokemonGlobal.pokecenterMapId && $PokemonGlobal.pokecenterMapId >= 0
     if game_over
       pbMessage("\\w[]\\wm\\c[8]\\l[3]" +
-                _INTL("After the unfortunate defeat, you hurry to the Pokémon Center."))
+                _INTL("不幸的战败后，你匆匆跑到一家宝可梦中心。"))
     elsif $player.all_fainted?
       pbMessage("\\w[]\\wm\\c[8]\\l[3]" +
-                _INTL("You hurry to the Pokémon Center, shielding your exhausted Pokémon from any further harm..."))
+                _INTL("你一边保护着精疲力尽动弹不得的宝可梦，一边急匆匆地赶往宝可梦中心……"))
     else   # Forfeited a trainer battle
       pbMessage("\\w[]\\wm\\c[8]\\l[3]" +
-                _INTL("You went running to the Pokémon Center to regroup and reconsider your battle strategy..."))
+                _INTL("你为了重新制定战略而逃进了宝可梦中心……"))
     end
     pbCancelVehicles
     Followers.clear
@@ -110,20 +110,20 @@ def pbStartOver(game_over = false)
     homedata = GameData::Metadata.get.home if !homedata
     if homedata && !pbRgssExists?(sprintf("Data/Map%03d.rxdata", homedata[0]))
       if $DEBUG
-        pbMessage(_ISPRINTF("Can't find the map 'Map{1:03d}' in the Data folder. The game will resume at the player's position.", homedata[0]))
+        pbMessage(_ISPRINTF("在数据文件夹中找不到地图“Map{1:03d}”。游戏将在玩家所在的位置重新开始。", homedata[0]))
       end
       $player.heal_party
       return
     end
     if game_over
       pbMessage("\\w[]\\wm\\c[8]\\l[3]" +
-                _INTL("After the unfortunate defeat, you hurry back home."))
+                _INTL("不幸的战败后，你匆匆跑回了家。"))
     elsif $player.all_fainted?
       pbMessage("\\w[]\\wm\\c[8]\\l[3]" +
-                _INTL("You hurry back home, shielding your exhausted Pokémon from any further harm..."))
+                _INTL("你匆匆跑回了家，保护着精疲力竭的宝可梦免受进一步的伤害……"))
     else   # Forfeited a trainer battle
       pbMessage("\\w[]\\wm\\c[8]\\l[3]" +
-                _INTL("You went running back home to regroup and reconsider your battle strategy..."))
+                _INTL("你为了重新制定战略而逃回了家……"))
     end
     if homedata
       pbCancelVehicles

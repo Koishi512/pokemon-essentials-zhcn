@@ -458,7 +458,7 @@ Battle::AbilityEffects::OnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
       battle.pbShowAbilitySplash(battler, true)
       battle.pbHideAbilitySplash(battler)
       pbSEPlay("Battle flee")
-      battle.pbDisplay(_INTL("{1} fled from battle!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}脱离了战斗！", battler.pbThis))
       battle.decision = Battle::Outcome::FLEE
       next true
     end
@@ -468,10 +468,10 @@ Battle::AbilityEffects::OnHPDroppedBelowHalf.add(:EMERGENCYEXIT,
     next false if !battle.pbCanChooseNonActive?(battler.index)   # No Pokémon can switch in
     battle.pbShowAbilitySplash(battler, true)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
+      battle.pbDisplay(_INTL("{1}{2}发动了！", battler.pbOfThis, battler.abilityName))
     end
     battle.pbHideAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} went back to {2}!",
+    battle.pbDisplay(_INTL("{1}要回到{2}的身边了！",
                            battler.pbThis, battle.pbGetOwnerName(battler.index)))
     if battle.endOfRound   # Just switch out
       battle.scene.pbRecall(battler.index) if !battler.fainted?
@@ -610,7 +610,7 @@ Battle::AbilityEffects::OnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !Battle::Scene::USE_ABILITY_SPLASH
-          msg = _INTL("{1} {2} poisoned {3}!", battler.pbOfThis, battler.abilityName, user.pbThis(true))
+          msg = _INTL("{1}{2}让{3}中毒了！", battler.pbOfThis, battler.abilityName, user.pbThis(true))
         end
         user.pbPoison(nil, msg, (battler.statusCount > 0))
         battler.battle.pbHideAbilitySplash(battler)
@@ -620,7 +620,7 @@ Battle::AbilityEffects::OnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !Battle::Scene::USE_ABILITY_SPLASH
-          msg = _INTL("{1} {2} burned {3}!", battler.pbOfThis, battler.abilityName, user.pbThis(true))
+          msg = _INTL("{1}{2}让{3}灼伤了！", battler.pbOfThis, battler.abilityName, user.pbThis(true))
         end
         user.pbBurn(nil, msg)
         battler.battle.pbHideAbilitySplash(battler)
@@ -630,7 +630,7 @@ Battle::AbilityEffects::OnStatusInflicted.add(:SYNCHRONIZE,
         battler.battle.pbShowAbilitySplash(battler)
         msg = nil
         if !Battle::Scene::USE_ABILITY_SPLASH
-          msg = _INTL("{1} {2} paralyzed {3}! It may be unable to move!",
+          msg = _INTL("{1}{2}让{3}麻痹了！很难使出招式！",
                       battler.pbOfThis, battler.abilityName, user.pbThis(true))
         end
         user.pbParalyze(nil, msg)
@@ -652,7 +652,7 @@ Battle::AbilityEffects::OnDealingStatus.add(:POISONPUPPETEER,
     user.battle.pbShowAbilitySplash(user)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} became confused due to {2} {3}!", target.pbThis, user.pbOfThis(true), user.abilityName)
+      msg = _INTL("由于{2}{3}，{1}混乱了！", target.pbThis, user.pbOfThis(true), user.abilityName)
     end
     target.pbConfuse(msg)
     user.battle.pbHideAbilitySplash(user)
@@ -669,7 +669,7 @@ Battle::AbilityEffects::StatusCure.add(:IMMUNITY,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(Battle::Scene::USE_ABILITY_SPLASH)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1} {2} cured its poisoning!", battler.pbOfThis, battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{1}{2}治愈了中毒！", battler.pbOfThis, battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -683,7 +683,7 @@ Battle::AbilityEffects::StatusCure.add(:INSOMNIA,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(Battle::Scene::USE_ABILITY_SPLASH)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1} {2} woke it up!", battler.pbOfThis, battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{1}{2}让自己醒过来了！", battler.pbOfThis, battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -697,7 +697,7 @@ Battle::AbilityEffects::StatusCure.add(:LIMBER,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(Battle::Scene::USE_ABILITY_SPLASH)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1} {2} cured its paralysis!", battler.pbOfThis, battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{1}{2}治愈了麻痹！", battler.pbOfThis, battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -709,7 +709,7 @@ Battle::AbilityEffects::StatusCure.add(:MAGMAARMOR,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(Battle::Scene::USE_ABILITY_SPLASH)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1} {2} defrosted it!", battler.pbOfThis, battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{1}{2}治愈了冰冻状态！", battler.pbOfThis, battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -723,18 +723,18 @@ Battle::AbilityEffects::StatusCure.add(:OBLIVIOUS,
     if battler.effects[PBEffects::Attract] >= 0
       battler.pbCureAttract
       if Battle::Scene::USE_ABILITY_SPLASH
-        battler.battle.pbDisplay(_INTL("{1} got over its infatuation.", battler.pbThis))
+        battler.battle.pbDisplay(_INTL("{1}的着迷状态治愈了！", battler.pbThis))
       else
-        battler.battle.pbDisplay(_INTL("{1} {2} cured its infatuation status!",
+        battler.battle.pbDisplay(_INTL("{1}{2}治愈了着迷状态！",
                                        battler.pbOfThis, battler.abilityName))
       end
     end
     if battler.effects[PBEffects::Taunt] > 0 && Settings::MECHANICS_GENERATION >= 6
       battler.effects[PBEffects::Taunt] = 0
       if Battle::Scene::USE_ABILITY_SPLASH
-        battler.battle.pbDisplay(_INTL("{1}'s Taunt wore off!", battler.pbThis))
+        battler.battle.pbDisplay(_INTL("{1}的挑衅效果解除了！", battler.pbThis))
       else
-        battler.battle.pbDisplay(_INTL("{1} {2} made its taunt wear off!",
+        battler.battle.pbDisplay(_INTL("{1}{2}解除了挑衅效果！",
                                        battler.pbOfThis, battler.abilityName))
       end
     end
@@ -748,9 +748,9 @@ Battle::AbilityEffects::StatusCure.add(:OWNTEMPO,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureConfusion
     if Battle::Scene::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1} snapped out of its confusion.", battler.pbThis))
+      battler.battle.pbDisplay(_INTL("{1}的混乱解除了！", battler.pbThis))
     else
-      battler.battle.pbDisplay(_INTL("{1} {2} snapped it out of its confusion!",
+      battler.battle.pbDisplay(_INTL("{1}{2}治愈了混乱！",
                                      battler.pbOfThis, battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
@@ -763,7 +763,7 @@ Battle::AbilityEffects::StatusCure.add(:WATERVEIL,
     battler.battle.pbShowAbilitySplash(battler)
     battler.pbCureStatus(Battle::Scene::USE_ABILITY_SPLASH)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battler.battle.pbDisplay(_INTL("{1} {2} healed its burn!", battler.pbOfThis, battler.abilityName))
+      battler.battle.pbDisplay(_INTL("{1}{2}治愈了灼伤！", battler.pbOfThis, battler.abilityName))
     end
     battler.battle.pbHideAbilitySplash(battler)
   }
@@ -781,9 +781,9 @@ Battle::AbilityEffects::StatLossImmunity.add(:BIGPECKS,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} {2} cannot be lowered!", battler.pbOfThis, GameData::Stat.get(stat).name))
+        battle.pbDisplay(_INTL("{1}{2}不会降低！", battler.pbOfThis, GameData::Stat.get(stat).name))
       else
-        battle.pbDisplay(_INTL("{1} {2} prevents {3} loss!", battler.pbOfThis,
+        battle.pbDisplay(_INTL("{1}{2}阻止了{3}降低！", battler.pbOfThis,
                                battler.abilityName, GameData::Stat.get(stat).name))
       end
       battle.pbHideAbilitySplash(battler)
@@ -797,9 +797,9 @@ Battle::AbilityEffects::StatLossImmunity.add(:CLEARBODY,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} stats cannot be lowered!", battler.pbOfThis))
+        battle.pbDisplay(_INTL("{1}能力不会降低！", battler.pbOfThis))
       else
-        battle.pbDisplay(_INTL("{1} {2} prevents stat loss!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}阻止了能力降低！", battler.pbOfThis, battler.abilityName))
       end
       battle.pbHideAbilitySplash(battler)
     end
@@ -815,9 +815,9 @@ Battle::AbilityEffects::StatLossImmunity.add(:FLOWERVEIL,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} stats cannot be lowered!", battler.pbOfThis))
+        battle.pbDisplay(_INTL("{1}能力不会降低！", battler.pbOfThis))
       else
-        battle.pbDisplay(_INTL("{1} {2} prevents stat loss!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}阻止了能力降低！", battler.pbOfThis, battler.abilityName))
       end
       battle.pbHideAbilitySplash(battler)
     end
@@ -831,9 +831,9 @@ Battle::AbilityEffects::StatLossImmunity.add(:HYPERCUTTER,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} {2} cannot be lowered!", battler.pbOfThis, GameData::Stat.get(stat).name))
+        battle.pbDisplay(_INTL("{1}{2}不会降低！", battler.pbOfThis, GameData::Stat.get(stat).name))
       else
-        battle.pbDisplay(_INTL("{1} {2} prevents {3} loss!", battler.pbOfThis,
+        battle.pbDisplay(_INTL("{1}{2}阻止了{3}降低！", battler.pbOfThis,
                                battler.abilityName, GameData::Stat.get(stat).name))
       end
       battle.pbHideAbilitySplash(battler)
@@ -848,9 +848,9 @@ Battle::AbilityEffects::StatLossImmunity.add(:KEENEYE,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} {2} cannot be lowered!", battler.pbOfThis, GameData::Stat.get(stat).name))
+        battle.pbDisplay(_INTL("{1}{2}不会降低！", battler.pbOfThis, GameData::Stat.get(stat).name))
       else
-        battle.pbDisplay(_INTL("{1} {2} prevents {3} loss!", battler.pbOfThis,
+        battle.pbDisplay(_INTL("{1}{2}阻止了{3}降低！", battler.pbOfThis,
                                battler.abilityName, GameData::Stat.get(stat).name))
       end
       battle.pbHideAbilitySplash(battler)
@@ -874,9 +874,9 @@ Battle::AbilityEffects::StatLossImmunityNonIgnorable.add(:FULLMETALBODY,
     if showMessages
       battle.pbShowAbilitySplash(battler)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} stats cannot be lowered!", battler.pbOfThis))
+        battle.pbDisplay(_INTL("{1}能力不会降低！", battler.pbOfThis))
       else
-        battle.pbDisplay(_INTL("{1} {2} prevents stat loss!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}阻止了能力降低！", battler.pbOfThis, battler.abilityName))
       end
       battle.pbHideAbilitySplash(battler)
     end
@@ -894,10 +894,9 @@ Battle::AbilityEffects::StatLossImmunityFromAlly.add(:FLOWERVEIL,
     if showMessages
       battle.pbShowAbilitySplash(bearer)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} stats cannot be lowered!", battler.pbOfThis))
+        battle.pbDisplay(_INTL("{1}能力不会降低！", battler.pbOfThis))
       else
-        battle.pbDisplay(_INTL("{1} {2} prevents {3} stat loss!",
-           bearer.pbOfThis, bearer.abilityName, battler.pbOfThis(true)))
+        battle.pbDisplay(_INTL("{1}{2}阻止了{3}能力降低！", bearer.pbOfThis, bearer.abilityName, battler.pbOfThis(true)))
       end
       battle.pbHideAbilitySplash(bearer)
     end
@@ -948,7 +947,7 @@ Battle::AbilityEffects::CopyStatChanges.add(:OPPORTUNIST,
       if stat == :CRITICAL_HIT
         battler.setCriticalHitRate(increment)
         battle.pbCommonAnimation("CriticalHitRateUp", battler)
-        battle.pbDisplay(_INTL("{1} is getting pumped!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}现在干劲十足！", battler.pbThis))
       else
         if Battle::Scene::USE_ABILITY_SPLASH
           battler.pbRaiseStatStage(stat, increment, battler)
@@ -1016,7 +1015,7 @@ Battle::AbilityEffects::PriorityBracketChange.add(:MYCELIUMMIGHT,
 Battle::AbilityEffects::PriorityBracketUse.add(:QUICKDRAW,
   proc { |ability, battler, battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} made {2} move faster!", battler.abilityName, battler.pbThis(true)))
+    battle.pbDisplay(_INTL("{1}使{2}行动变快了！", battler.abilityName, battler.pbThis(true)))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -1059,8 +1058,7 @@ Battle::AbilityEffects::MoveImmunity.add(:BULLETPROOF,
       if Battle::Scene::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!",
-                               target.pbOfThis, target.abilityName, move.name))
+        battle.pbDisplay(_INTL("{1}{2}使{3}无效！", target.pbOfThis, target.abilityName, move.name))
       end
       battle.pbHideAbilitySplash(target)
     end
@@ -1083,16 +1081,15 @@ Battle::AbilityEffects::MoveImmunity.add(:FLASHFIRE,
       if !target.effects[PBEffects::FlashFire]
         target.effects[PBEffects::FlashFire] = true
         if Battle::Scene::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("The power of {1} Fire-type moves rose!", target.pbOfThis(true)))
+          battle.pbDisplay(_INTL("{1}火焰威力提高了！", target.pbOfThis(true)))
         else
-          battle.pbDisplay(_INTL("The power of {1} Fire-type moves rose because of its {2}!",
+          battle.pbDisplay(_INTL("因为{2}，{1}的火焰威力提高了！",
                                  target.pbOfThis(true), target.abilityName))
         end
       elsif Battle::Scene::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!",
-                               target.pbOfThis, target.abilityName, move.name))
+        battle.pbDisplay(_INTL("{1}{2}使{3}无效！", target.pbOfThis, target.abilityName, move.name))
       end
       battle.pbHideAbilitySplash(target)
     end
@@ -1136,7 +1133,7 @@ Battle::AbilityEffects::MoveImmunity.add(:SOUNDPROOF,
       if Battle::Scene::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1} {2} blocks {3}!", target.pbOfThis, target.abilityName, move.name))
+        battle.pbDisplay(_INTL("{1}{2}抵挡了{3}！", target.pbOfThis, target.abilityName, move.name))
       end
       battle.pbHideAbilitySplash(target)
     end
@@ -1158,9 +1155,9 @@ Battle::AbilityEffects::MoveImmunity.add(:TELEPATHY,
     if show_message
       battle.pbShowAbilitySplash(target)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} avoids attacks by its ally Pokémon!", target.pbThis(true)))
+        battle.pbDisplay(_INTL("{1}避免了来自我方宝可梦的攻击！", target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1} avoids attacks by its ally Pokémon with {2}!",
+        battle.pbDisplay(_INTL("{1}的{2}避免了来自我方宝可梦的攻击！",
                                target.pbThis, target.abilityName))
       end
       battle.pbHideAbilitySplash(target)
@@ -1205,7 +1202,7 @@ Battle::AbilityEffects::MoveImmunity.add(:WINDRIDER,
       elsif Battle::Scene::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!", target.pbOfThis, target.abilityName, move.name))
+        battle.pbDisplay(_INTL("{1}{2}使{3}无效！", target.pbOfThis, target.abilityName, move.name))
       end
       battle.pbHideAbilitySplash(target)
     end
@@ -1222,7 +1219,7 @@ Battle::AbilityEffects::MoveImmunity.add(:WONDERGUARD,
       if Battle::Scene::USE_ABILITY_SPLASH
         battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1} avoided damage with {2}!", target.pbThis, target.abilityName))
+        battle.pbDisplay(_INTL("{1}的{2}避免了伤害！", target.pbThis, target.abilityName))
       end
       battle.pbHideAbilitySplash(target)
     end
@@ -1970,7 +1967,7 @@ Battle::AbilityEffects::OnTargetedForHit.add(:TERASHELL,
     next if Effectiveness.not_very_effective?(target.damageState.typeMod) ||
             Effectiveness.ineffective?(target.damageState.typeMod)
     target.damageState.typeMod = Effectiveness::NOT_VERY_EFFECTIVE_MULTIPLIER
-    battle.pbDisplay(_INTL("{1} made its shell gleam! It's distorting type matchups!", target.pbThis))
+    battle.pbDisplay(_INTL("{1}让甲壳发出光辉，使属性相克发生扭曲！！", target.pbThis))
   }
 )
 
@@ -1987,7 +1984,7 @@ Battle::AbilityEffects::OnBeingHit.add(:AFTERMATH,
     battle.pbShowAbilitySplash(target)
     battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(user.totalhp / 4, false)
-    battle.pbDisplay(_INTL("{1} was caught in the aftermath!", user.pbThis))
+    battle.pbDisplay(_INTL("{1}被引爆伤害了！", user.pbThis))
     battle.pbHideAbilitySplash(target)
   }
 )
@@ -2003,9 +2000,9 @@ Battle::AbilityEffects::OnBeingHit.add(:ANGERPOINT,
     target.stages[:ATTACK] = Battle::Battler::STAT_STAGE_MAXIMUM
     battle.pbCommonAnimation("StatUp", target)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} maxed its {2}!", target.pbThis, GameData::Stat.get(:ATTACK).name))
+      battle.pbDisplay(_INTL("{1}的{2}被提高到了最大！", target.pbThis, GameData::Stat.get(:ATTACK).name))
     else
-      battle.pbDisplay(_INTL("{1}'s {2} maxed its {3}!",
+      battle.pbDisplay(_INTL("{1}的{2}使{3}被提高到了最大！",
                              target.pbThis, target.abilityName, GameData::Stat.get(:ATTACK).name))
     end
     battle.pbHideAbilitySplash(target)
@@ -2040,9 +2037,9 @@ Battle::AbilityEffects::OnBeingHit.add(:CURSEDBODY,
     user.effects[PBEffects::Disable]     = 3
     user.effects[PBEffects::DisableMove] = regularMove.id
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} {2} was disabled!", user.pbOfThis, regularMove.name))
+      battle.pbDisplay(_INTL("封住了{1}{2}！", user.pbOfThis, regularMove.name))
     else
-      battle.pbDisplay(_INTL("{1} {2} was disabled by {3} {4}!",
+      battle.pbDisplay(_INTL("{3}{4}封住了{1}{2}！",
                              user.pbOfThis, regularMove.name, target.pbOfThis(true), target.abilityName))
     end
     battle.pbHideAbilitySplash(target)
@@ -2059,7 +2056,7 @@ Battle::AbilityEffects::OnBeingHit.add(:CUTECHARM,
     battle.pbShowAbilitySplash(target)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} {2} made {3} fall in love!",
+      msg = _INTL("{1}{2}让{3}着迷了！",
                   target.pbOfThis, target.abilityName, user.pbThis(true))
     end
     user.pbAttract(target, msg)
@@ -2084,19 +2081,19 @@ Battle::AbilityEffects::OnBeingHit.add(:EFFECTSPORE,
     case r
     when 0
       if !Battle::Scene::USE_ABILITY_SPLASH
-        msg = _INTL("{1} {2} made {3} fall asleep!",
+        msg = _INTL("{1}{2}让{3}睡着了！",
                     target.pbOfThis, target.abilityName, user.pbThis(true))
       end
       user.pbSleep(target, msg)
     when 1
       if !Battle::Scene::USE_ABILITY_SPLASH
-        msg = _INTL("{1} {2} poisoned {3}!",
+        msg = _INTL("{1}{2}让{3}中毒了！",
                     target.pbOfThis, target.abilityName, user.pbThis(true))
       end
       user.pbPoison(target, msg)
     when 2
       if !Battle::Scene::USE_ABILITY_SPLASH
-        msg = _INTL("{1} {2} paralyzed {3}! It may be unable to move!",
+        msg = _INTL("{1}{2}使{3}麻痹了！它可能无法行动！",
                     target.pbOfThis, target.abilityName, user.pbThis(true))
       end
       user.pbParalyze(target, msg)
@@ -2110,7 +2107,7 @@ Battle::AbilityEffects::OnBeingHit.add(:ELECTROMORPHOSIS,
     next if target.effects[PBEffects::Charge] > 0
     battle.pbShowAbilitySplash(target)
     target.effects[PBEffects::Charge] = 2
-    battle.pbDisplay(_INTL("Being hit by {1} charged {2} with power!", move.name, target.pbThis(true)))
+    battle.pbDisplay(_INTL("{2}受到{1}而充电了！", move.name, target.pbThis(true)))
     battle.pbHideAbilitySplash(target)
   }
 )
@@ -2123,7 +2120,7 @@ Battle::AbilityEffects::OnBeingHit.add(:FLAMEBODY,
     battle.pbShowAbilitySplash(target)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} {2} burned {3}!", target.pbOfThis, target.abilityName, user.pbThis(true))
+      msg = _INTL("{1}{2}让{3}灼伤了！", target.pbOfThis, target.abilityName, user.pbThis(true))
     end
     user.pbBurn(target, msg)
     battle.pbHideAbilitySplash(target)
@@ -2145,7 +2142,7 @@ Battle::AbilityEffects::OnBeingHit.add(:ILLUSION,
     next if !target.effects[PBEffects::Illusion]
     target.effects[PBEffects::Illusion] = nil
     battle.scene.pbChangePokemon(target, target.pokemon)
-    battle.pbDisplay(_INTL("{1} illusion wore off!", target.pbOfThis))
+    battle.pbDisplay(_INTL("{1}造成的幻觉被解除了！", target.pbOfThis))
     battle.pbSetSeen(target)
   }
 )
@@ -2158,9 +2155,9 @@ Battle::AbilityEffects::OnBeingHit.add(:INNARDSOUT,
     battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(target.damageState.hpLost, false)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
+      battle.pbDisplay(_INTL("{1}受伤了！", user.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} is hurt by {2} {3}!",
+      battle.pbDisplay(_INTL("{1}受到了{2}{3}伤害！",
                              user.pbThis, target.pbOfThis(true), target.abilityName))
     end
     battle.pbHideAbilitySplash(target)
@@ -2175,9 +2172,9 @@ Battle::AbilityEffects::OnBeingHit.add(:IRONBARBS,
     battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(user.totalhp / 8, false)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} is hurt!", user.pbThis))
+      battle.pbDisplay(_INTL("{1}受伤了！", user.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} is hurt by {2} {3}!",
+      battle.pbDisplay(_INTL("{1}受到了{2}{3}伤害！",
                              user.pbThis, target.pbOfThis(true), target.abilityName))
     end
     battle.pbHideAbilitySplash(target)
@@ -2205,9 +2202,9 @@ Battle::AbilityEffects::OnBeingHit.add(:MUMMY,
     user.ability = ability
     battle.pbReplaceAbilitySplash(user) if user.opposes?(target)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} Ability became {2}!", user.pbOfThis, user.abilityName))
+      battle.pbDisplay(_INTL("{1}的特性变成了{2}！", user.pbOfThis, user.abilityName))
     else
-      battle.pbDisplay(_INTL("{1} Ability became {2} because of {3}!",
+      battle.pbDisplay(_INTL("由于{3}，{1}的特性变成了{2}！",
                              user.pbOfThis, user.abilityName, target.pbThis(true)))
     end
     battle.pbHideAbilitySplash(user) if user.opposes?(target)
@@ -2230,9 +2227,9 @@ Battle::AbilityEffects::OnBeingHit.add(:PERISHBODY,
       battler.effects[PBEffects::PerishSongUser] = target.index
     end
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("Both Pokémon will faint in three turns!"))
+      battle.pbDisplay(_INTL("双方将在3回合后灭亡！"))
     else
-      battle.pbDisplay(_INTL("Both Pokémon will faint in three turns because of {1} {2}!",
+      battle.pbDisplay(_INTL("由于{1}的{2}，双方将在3回合后灭亡！",
                              target.pbOfThis(true), target.abilityName))
     end
     battle.pbHideAbilitySplash(target)
@@ -2247,7 +2244,7 @@ Battle::AbilityEffects::OnBeingHit.add(:POISONPOINT,
     battle.pbShowAbilitySplash(target)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} {2} poisoned {3}!", target.pbOfThis, target.abilityName, user.pbThis(true))
+      msg = _INTL("{1}{2}让{3}中毒了！", target.pbOfThis, target.abilityName, user.pbThis(true))
     end
     user.pbPoison(target, msg)
     battle.pbHideAbilitySplash(target)
@@ -2285,7 +2282,7 @@ Battle::AbilityEffects::OnBeingHit.add(:SPICYSPRAY,
     battle.pbShowAbilitySplash(target)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} {2} burned {3}!", target.pbOfThis, target.abilityName, user.pbThis(true))
+      msg = _INTL("{1}{2}让{3}灼伤了！", target.pbOfThis, target.abilityName, user.pbThis(true))
     end
     user.pbBurn(target, msg)
     battle.pbHideAbilitySplash(target)
@@ -2300,7 +2297,7 @@ Battle::AbilityEffects::OnBeingHit.add(:STATIC,
     battle.pbShowAbilitySplash(target)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} {2} paralyzed {3}! It may be unable to move!",
+      msg = _INTL("{1}{2}让{3}麻痹了！很难使出招式！",
                   target.pbOfThis, target.abilityName, user.pbThis(true))
     end
     user.pbParalyze(target, msg)
@@ -2322,10 +2319,10 @@ Battle::AbilityEffects::OnBeingHit.add(:TOXICDEBRIS,
     battle.pbShowAbilitySplash(target)
     target.pbOpposingSide.effects[PBEffects::ToxicSpikes] += 1
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("Poison spikes were scattered all around {1} feet!",
+      battle.pbDisplay(_INTL("{1}脚下散落着毒菱！",
                              target.pbOfOpposingTeam(true)))
     else
-      battle.pbDisplay(_INTL("{1} {2} scattered poison spikes all around {3} feet!",
+      battle.pbDisplay(_INTL("{1}{2}在{3}脚下散落毒菱！",
                              target.pbOfThis, target.abilityName, target.pbOfOpposingTeam(true)))
     end
     battle.pbHideAbilitySplash(target)
@@ -2349,9 +2346,9 @@ Battle::AbilityEffects::OnBeingHit.add(:WANDERINGSPIRIT,
     battle.pbReplaceAbilitySplash(target)
     battle.pbReplaceAbilitySplash(user) if user.opposes?(target)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} swapped Abilities with {2}!", target.pbThis, user.pbThis(true)))
+      battle.pbDisplay(_INTL("{1}与{2}互换了各自的特性！", target.pbThis, user.pbThis(true)))
     else
-      battle.pbDisplay(_INTL("{1} swapped its {2} Ability with {3} {4} Ability!",
+      battle.pbDisplay(_INTL("{1}的{2}与{3}{4}特性互换了！",
                              target.pbThis, user.abilityName, user.pbOfThis(true), target.abilityName))
     end
     battle.pbHideAbilitySplash(target)
@@ -2400,7 +2397,7 @@ Battle::AbilityEffects::OnBeingHit.add(:WINDPOWER,
     next if target.effects[PBEffects::Charge] > 0
     battle.pbShowAbilitySplash(target)
     target.effects[PBEffects::Charge] = 2
-    battle.pbDisplay(_INTL("Being hit by {1} charged {2} with power!", move.name, target.pbThis(true)))
+    battle.pbDisplay(_INTL("{2}受到{1}而充电了！", move.name, target.pbThis(true)))
     battle.pbHideAbilitySplash(target)
   }
 )
@@ -2419,7 +2416,7 @@ Battle::AbilityEffects::OnDealingHit.add(:POISONTOUCH,
     battle.pbShowAbilitySplash(user)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} {2} poisoned {3}!", user.pbOfThis, user.abilityName, target.pbThis(true))
+      msg = _INTL("{1}{2}让{3}中毒了！", user.pbOfThis, user.abilityName, target.pbThis(true))
     end
     target.pbPoison(user, msg)
     battle.pbHideAbilitySplash(user)
@@ -2435,7 +2432,7 @@ Battle::AbilityEffects::OnDealingHit.add(:TOXICCHAIN,
     battle.pbShowAbilitySplash(user)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
-      msg = _INTL("{1} {2} badly poisoned {3}!", user.pbOfThis, user.abilityName, target.pbThis(true))
+      msg = _INTL("{1}{2}让{3}中剧毒了！", user.pbOfThis, user.abilityName, target.pbThis(true))
     end
     target.pbPoison(user, msg, true)
     battle.pbHideAbilitySplash(user)
@@ -2533,9 +2530,9 @@ Battle::AbilityEffects::OnEndOfUsingMove.add(:MAGICIAN,
     battler = valid_targets.first
     battle.swapHeldItems(user, battler)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} stole {2}'s {3}!", user.pbThis, battler.pbThis(true), user.itemName))
+      battle.pbDisplay(_INTL("{1}顺手牵羊走了{2}的{3}！", user.pbThis, battler.pbThis(true), user.itemName))
     else
-      battle.pbDisplay(_INTL("{1} stole {2}'s {3} with {4}!",
+      battle.pbDisplay(_INTL("{1}的{4}偷走了{2}的{3}！",
                              user.pbThis, battler.pbThis(true), user.itemName, user.abilityName))
     end
     battle.pbHideAbilitySplash(user)
@@ -2574,7 +2571,7 @@ Battle::AbilityEffects::AfterMoveUseFromTarget.add(:COLORCHANGE,
     typeName = GameData::Type.get(move.calcType).name
     battle.pbShowAbilitySplash(target)
     target.pbChangeTypes(move.calcType)
-    battle.pbDisplay(_INTL("{1}'s type changed to {2} because of its {3}!",
+    battle.pbDisplay(_INTL("由于{3}，{1}的属性变成了{2}！",
                            target.pbThis, typeName, target.abilityName))
     battle.pbHideAbilitySplash(target)
   }
@@ -2596,14 +2593,14 @@ Battle::AbilityEffects::AfterMoveUseFromTarget.add(:PICKPOCKET,
     if user.hasActiveAbility?(:STICKYHOLD)
       battle.pbShowAbilitySplash(user) if target.opposes?(user)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} item cannot be stolen!", user.pbOfThis))
+        battle.pbDisplay(_INTL("无法夺取{1}道具！", user.pbOfThis))
       end
       battle.pbHideAbilitySplash(user) if target.opposes?(user)
       battle.pbHideAbilitySplash(target)
       next
     end
     battle.swapHeldItems(user, target)
-    battle.pbDisplay(_INTL("{1} pickpocketed {2} {3}!", target.pbThis, user.pbOfThis(true), target.itemName))
+    battle.pbDisplay(_INTL("{1}顺手牵羊走了{2}{3}！", target.pbThis, user.pbOfThis(true), target.itemName))
     battle.pbHideAbilitySplash(target)
     target.pbHeldItemTriggerCheck
   }
@@ -2621,7 +2618,7 @@ Battle::AbilityEffects::EndOfRoundWeather.add(:DRYSKIN,
         battle.pbShowAbilitySplash(battler)
         battle.scene.pbDamageAnimation(battler)
         battler.pbReduceHP(battler.totalhp / 8, false)
-        battle.pbDisplay(_INTL("{1} was hurt by the sunlight!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}因日光受伤了！", battler.pbThis))
         battle.pbHideAbilitySplash(battler)
         battler.pbItemHPHealCheck
       end
@@ -2630,9 +2627,9 @@ Battle::AbilityEffects::EndOfRoundWeather.add(:DRYSKIN,
       battle.pbShowAbilitySplash(battler)
       battler.pbRecoverHP(battler.totalhp / 8)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
       else
-        battle.pbDisplay(_INTL("{1} {2} restored its HP.", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, battler.abilityName))
       end
       battle.pbHideAbilitySplash(battler)
     end
@@ -2646,9 +2643,9 @@ Battle::AbilityEffects::EndOfRoundWeather.add(:ICEBODY,
     battle.pbShowAbilitySplash(battler)
     battler.pbRecoverHP(battler.totalhp / 16)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} {2} restored its HP.", battler.pbOfThis, battler.abilityName))
+      battle.pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, battler.abilityName))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -2661,7 +2658,7 @@ Battle::AbilityEffects::EndOfRoundWeather.add(:ICEFACE,
     next if !battler.canRestoreIceFace
     battle.pbShowAbilitySplash(battler)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
+      battle.pbDisplay(_INTL("{1}{2}发动了！", battler.pbOfThis, battler.abilityName))
     end
     battler.pbChangeForm(0, _INTL("{1}变成其他样子了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
@@ -2675,9 +2672,9 @@ Battle::AbilityEffects::EndOfRoundWeather.add(:RAINDISH,
     battle.pbShowAbilitySplash(battler)
     battler.pbRecoverHP(battler.totalhp / 16)
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} {2} restored its HP.", battler.pbOfThis, battler.abilityName))
+      battle.pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, battler.abilityName))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -2690,7 +2687,7 @@ Battle::AbilityEffects::EndOfRoundWeather.add(:SOLARPOWER,
     battle.pbShowAbilitySplash(battler)
     battle.scene.pbDamageAnimation(battler)
     battler.pbReduceHP(battler.totalhp / 8, false)
-    battle.pbDisplay(_INTL("{1} was hurt by the sunlight!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}因日光受伤了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
     battler.pbItemHPHealCheck
   }
@@ -2713,15 +2710,15 @@ Battle::AbilityEffects::EndOfRoundHealing.add(:HEALER,
       if !Battle::Scene::USE_ABILITY_SPLASH
         case old_status
         when :SLEEP
-          battle.pbDisplay(_INTL("{1} {2} woke its partner up!", battler.pbOfThis, battler.abilityName))
+          battle.pbDisplay(_INTL("{1}{2}让队友醒过来了！", battler.pbOfThis, battler.abilityName))
         when :POISON
-          battle.pbDisplay(_INTL("{1} {2} cured its partner's poison!", battler.pbOfThis, battler.abilityName))
+          battle.pbDisplay(_INTL("{1}{2}治愈了队友的中毒！", battler.pbOfThis, battler.abilityName))
         when :BURN
-          battle.pbDisplay(_INTL("{1} {2} healed its partner's burn!", battler.pbOfThis, battler.abilityName))
+          battle.pbDisplay(_INTL("{1}{2}治愈了队友的灼伤！", battler.pbOfThis, battler.abilityName))
         when :PARALYSIS
-          battle.pbDisplay(_INTL("{1} {2} cured its partner's paralysis!", battler.pbOfThis, battler.abilityName))
+          battle.pbDisplay(_INTL("{1}{2}治愈了队友的麻痹！", battler.pbOfThis, battler.abilityName))
         when :FROZEN
-          battle.pbDisplay(_INTL("{1} {2} defrosted its partner!", battler.pbOfThis, battler.abilityName))
+          battle.pbDisplay(_INTL("{1}{2}治愈了队友的冰冻！", battler.pbOfThis, battler.abilityName))
         end
       end
     end
@@ -2739,15 +2736,15 @@ Battle::AbilityEffects::EndOfRoundHealing.add(:HYDRATION,
     if !Battle::Scene::USE_ABILITY_SPLASH
       case oldStatus
       when :SLEEP
-        battle.pbDisplay(_INTL("{1} {2} woke it up!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}让自己醒过来了！", battler.pbOfThis, battler.abilityName))
       when :POISON
-        battle.pbDisplay(_INTL("{1} {2} cured its poison!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了中毒！", battler.pbOfThis, battler.abilityName))
       when :BURN
-        battle.pbDisplay(_INTL("{1} {2} healed its burn!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了灼伤！", battler.pbOfThis, battler.abilityName))
       when :PARALYSIS
-        battle.pbDisplay(_INTL("{1} {2} cured its paralysis!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了麻痹！", battler.pbOfThis, battler.abilityName))
       when :FROZEN
-        battle.pbDisplay(_INTL("{1} {2} defrosted it!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了冰冻！", battler.pbOfThis, battler.abilityName))
       end
     end
     battle.pbHideAbilitySplash(battler)
@@ -2764,15 +2761,15 @@ Battle::AbilityEffects::EndOfRoundHealing.add(:SHEDSKIN,
     if !Battle::Scene::USE_ABILITY_SPLASH
       case oldStatus
       when :SLEEP
-        battle.pbDisplay(_INTL("{1} {2} woke it up!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}让自己醒过来了！", battler.pbOfThis, battler.abilityName))
       when :POISON
-        battle.pbDisplay(_INTL("{1} {2} cured its poison!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了中毒！", battler.pbOfThis, battler.abilityName))
       when :BURN
-        battle.pbDisplay(_INTL("{1} {2} healed its burn!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了灼伤！", battler.pbOfThis, battler.abilityName))
       when :PARALYSIS
-        battle.pbDisplay(_INTL("{1} {2} cured its paralysis!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了麻痹！", battler.pbOfThis, battler.abilityName))
       when :FROZEN
-        battle.pbDisplay(_INTL("{1} {2} defrosted it!", battler.pbOfThis, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了冰冻！", battler.pbOfThis, battler.abilityName))
       end
     end
     battle.pbHideAbilitySplash(battler)
@@ -2793,9 +2790,9 @@ Battle::AbilityEffects::EndOfRoundEffect.add(:BADDREAMS,
       showing_splash = true
       b.pbTakeEffectDamage(b.totalhp / 8) do |hp_lost|
         if Battle::Scene::USE_ABILITY_SPLASH
-          battle.pbDisplay(_INTL("{1} is tormented!", b.pbThis))
+          battle.pbDisplay(_INTL("{1}正被恶梦缠身！", b.pbThis))
         else
-          battle.pbDisplay(_INTL("{1} is tormented by {2} {3}!", b.pbThis, battler.pbOfThis(true), battler.abilityName))
+          battle.pbDisplay(_INTL("{1}正被{2}{3}缠身！", b.pbThis, battler.pbOfThis(true), battler.abilityName))
         end
       end
     end
@@ -2857,7 +2854,7 @@ Battle::AbilityEffects::EndOfRoundGainItem.add(:BALLFETCH,
     battle.pbShowAbilitySplash(battler)
     battler.item = battle.first_poke_ball
     battle.first_poke_ball = nil
-    battle.pbDisplay(_INTL("{1} retrieved the thrown {2}!", battler.pbThis, battler.itemName))
+    battle.pbDisplay(_INTL("{1}捡回了{2}！", battler.pbThis, battler.itemName))
     battle.pbHideAbilitySplash(battler)
     battler.pbHeldItemTriggerCheck
   }
@@ -2873,7 +2870,7 @@ Battle::AbilityEffects::EndOfRoundGainItem.add(:HARVEST,
     battle.pbShowAbilitySplash(battler)
     battler.item = battler.recycleItem
     battler.setRecycleItem(nil)
-    battle.pbDisplay(_INTL("{1} harvested one {2}!", battler.pbThis, battler.itemName))
+    battle.pbDisplay(_INTL("{1}收获了{2}！", battler.pbThis, battler.itemName))
     battle.pbHideAbilitySplash(battler)
     battler.pbHeldItemTriggerCheck
   }
@@ -2898,7 +2895,7 @@ Battle::AbilityEffects::EndOfRoundGainItem.add(:PICKUP,
     fromBattler.effects[PBEffects::PickupItem] = nil
     fromBattler.effects[PBEffects::PickupUse]  = 0
     fromBattler.setRecycleItem(nil) if fromBattler.recycleItem == foundItem
-    battle.pbDisplay(_INTL("{1} found one {2}!", battler.pbThis, battler.itemName))
+    battle.pbDisplay(_INTL("{1}捡到了{2}！", battler.pbThis, battler.itemName))
     battle.pbHideAbilitySplash(battler)
     battler.pbHeldItemTriggerCheck
   }
@@ -2940,9 +2937,9 @@ Battle::AbilityEffects::OnSwitchIn.add(:AIRLOCK,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} has {2}!", battler.pbThis, battler.abilityName))
+      battle.pbDisplay(_INTL("{1}有{2}！", battler.pbThis, battler.abilityName))
     end
-    battle.pbDisplay(_INTL("The effects of the weather disappeared."))
+    battle.pbDisplay(_INTL("天气的影响消失了！"))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -2977,7 +2974,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:ANTICIPATION,
     end
     next if !found
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} shuddered with anticipation!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}发抖了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -2985,11 +2982,11 @@ Battle::AbilityEffects::OnSwitchIn.add(:ANTICIPATION,
 Battle::AbilityEffects::OnSwitchIn.add(:ASONECHILLINGNEIGH,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} has two Abilities!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}同时拥有了两种特性！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
     battler.ability_id = :UNNERVE
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!", battler.pbOpposingTeam))
+    battle.pbDisplay(_INTL("{1}因太紧张而无法食用树果！", battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
     battler.ability_id = ability
   }
@@ -3000,7 +2997,7 @@ Battle::AbilityEffects::OnSwitchIn.copy(:ASONECHILLINGNEIGH, :ASONEGRIMNEIGH)
 Battle::AbilityEffects::OnSwitchIn.add(:AURABREAK,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} reversed all other Pokémon's auras!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}压制了所有气场！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3008,7 +3005,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:AURABREAK,
 Battle::AbilityEffects::OnSwitchIn.add(:COMATOSE,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is drowsing!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}处于半梦半醒状态！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3042,7 +3039,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:COSTAR,
     battle.pbShowAbilitySplash(battler)
     GameData::Stat.each_battle { |s| battler.stages[s.id] = target.stages[s.id] }
     battler.setCriticalHitRate(target.criticalHitRate)
-    battle.pbDisplay(_INTL("{1} copied {2} stat changes!", battler.pbThis, target.pbOfThis(true)))
+    battle.pbDisplay(_INTL("{1}复制了{2}的能力变化！", battler.pbThis, target.pbOfThis(true)))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3055,9 +3052,9 @@ Battle::AbilityEffects::OnSwitchIn.add(:CURIOUSMEDICINE,
       next if !b.hasAlteredStatStages?
       b.pbResetStatStages
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} stat changes were removed!", b.pbOfThis))
+        battle.pbDisplay(_INTL("{1}能力变化消失了！", b.pbOfThis))
       else
-        battle.pbDisplay(_INTL("{1} stat changes were removed by {2} {3}!",
+        battle.pbDisplay(_INTL("由于{2}{3}，{1}能力变化消失了！",
                                b.pbOfThis, battler.pbOfThis(true), battler.abilityName))
       end
     end
@@ -3068,7 +3065,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:CURIOUSMEDICINE,
 Battle::AbilityEffects::OnSwitchIn.add(:DARKAURA,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is radiating a dark aura!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}正在释放暗黑气场！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3127,7 +3124,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:EMBODYASPECTATTACK,
   proc { |ability, battler, battle, switch_in|
     next if battler.abilityUsedOnce?
     next if !battler.isSpecies?(:OGERPON) || battler.effects[PBEffects::Transform]
-    battle.pbDisplay(_INTL("The {1} worn by {2} shone brilliantly!", battler.itemName, battler.pbThis(true)))
+    battle.pbDisplay(_INTL("{2}让{1}发出光辉！", battler.itemName, battler.pbThis(true)))
     battler.pbRaiseStatStageByAbility(:ATTACK, 1, battler)
     battler.markAbilityUsedOnce if Settings::MECHANICS_GENERATION >= 9
   }
@@ -3137,7 +3134,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:EMBODYASPECTDEFENSE,
   proc { |ability, battler, battle, switch_in|
     next if battler.abilityUsedOnce?
     next if !battler.isSpecies?(:OGERPON) || battler.effects[PBEffects::Transform]
-    battle.pbDisplay(_INTL("The {1} worn by {2} shone brilliantly!", battler.itemName, battler.pbThis(true)))
+    battle.pbDisplay(_INTL("{2}让{1}发出光辉！", battler.itemName, battler.pbThis(true)))
     battler.pbRaiseStatStageByAbility(:DEFENSE, 1, battler)
     battler.markAbilityUsedOnce if Settings::MECHANICS_GENERATION >= 9
   }
@@ -3147,7 +3144,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:EMBODYASPECTSPDEF,
   proc { |ability, battler, battle, switch_in|
     next if battler.abilityUsedOnce?
     next if !battler.isSpecies?(:OGERPON) || battler.effects[PBEffects::Transform]
-    battle.pbDisplay(_INTL("The {1} worn by {2} shone brilliantly!", battler.itemName, battler.pbThis(true)))
+    battle.pbDisplay(_INTL("{2}让{1}发出光辉！", battler.itemName, battler.pbThis(true)))
     battler.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE, 1, battler)
     battler.markAbilityUsedOnce if Settings::MECHANICS_GENERATION >= 9
   }
@@ -3157,7 +3154,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:EMBODYASPECTSPEED,
   proc { |ability, battler, battle, switch_in|
     next if battler.abilityUsedOnce?
     next if !battler.isSpecies?(:OGERPON) || battler.effects[PBEffects::Transform]
-    battle.pbDisplay(_INTL("The {1} worn by {2} shone brilliantly!", battler.itemName, battler.pbThis(true)))
+    battle.pbDisplay(_INTL("{2}让{1}发出光辉！", battler.itemName, battler.pbThis(true)))
     battler.pbRaiseStatStageByAbility(:SPEED, 1, battler)
     battler.markAbilityUsedOnce if Settings::MECHANICS_GENERATION >= 9
   }
@@ -3166,7 +3163,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:EMBODYASPECTSPEED,
 Battle::AbilityEffects::OnSwitchIn.add(:FAIRYAURA,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is radiating a fairy aura!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}正在释放妖精气场！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3212,9 +3209,9 @@ Battle::AbilityEffects::OnSwitchIn.add(:FOREWARN,
     battle.pbShowAbilitySplash(battler)
     forewarnMoveName = forewarnMoves[battle.pbRandom(forewarnMoves.length)]
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} was alerted to {2}!", battler.pbThis, forewarnMoveName))
+      battle.pbDisplay(_INTL("{1}读取了{2}！", battler.pbThis, forewarnMoveName))
     else
-      battle.pbDisplay(_INTL("{1} Forewarn alerted it to {2}!", battler.pbOfThis, forewarnMoveName))
+      battle.pbDisplay(_INTL("{1}预知梦读取了{2}！", battler.pbOfThis, forewarnMoveName))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3228,11 +3225,11 @@ Battle::AbilityEffects::OnSwitchIn.add(:FRISK,
     battle.pbShowAbilitySplash(battler)
     if Settings::MECHANICS_GENERATION >= 6
       foes.each do |b|
-        battle.pbDisplay(_INTL("{1} frisked {2} and found its {3}!", battler.pbThis, b.pbThis(true), b.itemName))
+        battle.pbDisplay(_INTL("{1}察觉到了{2}的{3}！", battler.pbThis, b.pbThis(true), b.itemName))
       end
     else
       foe = foes[battle.pbRandom(foes.length)]
-      battle.pbDisplay(_INTL("{1} frisked the foe and found one {2}!", battler.pbThis, foe.itemName))
+      battle.pbDisplay(_INTL("{1}察觉到了对方的{2}！", battler.pbThis, foe.itemName))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3248,11 +3245,11 @@ Battle::AbilityEffects::OnSwitchIn.add(:HADRONENGINE,
   proc { |ability, battler, battle, switch_in|
     if battle.field.terrain == :Electric
       battle.pbShowAbilitySplash(battler)
-      battle.pbDisplay(_INTL("{1} used the Electric Terrain to energize its futuristic engine!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}用电气场地使未来的机关跃动起来！！", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
     elsif battle.pbCanStartTerrain?(:Electric)
       battle.pbStartTerrainAbility(:Electric, battler,
-         _INTL("{1} turned the ground into Electric Terrain, energizing its futuristic engine!", battler.pbThis))
+         _INTL("{1}布下电气场地使未来的机关跃动起来！！", battler.pbThis))
     end
   }
 )
@@ -3265,7 +3262,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:HOSPITALITY,
     battle.pbShowAbilitySplash(battler)
     allies.each do |ally|
       next if ally.pbRecoverHP(ally.totalhp / 4) == 0
-      battle.pbDisplay(_INTL("{1} drank down all the matcha that {2} made!", ally.pbThis, battler.pbThis(true)))
+      battle.pbDisplay(_INTL("{1}喝光了{2}泡的茶！", ally.pbThis, battler.pbThis(true)))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3277,7 +3274,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:ICEFACE,
     next if ![:Hail, :Snowstorm].include?(battler.effectiveWeather)
     battle.pbShowAbilitySplash(battler)
     if !Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
+      battle.pbDisplay(_INTL("{1}{2}发动了！", battler.pbOfThis, battler.abilityName))
     end
     battler.pbChangeForm(0, _INTL("{1}变成其他样子了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
@@ -3345,7 +3342,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:MISTYSURGE,
 Battle::AbilityEffects::OnSwitchIn.add(:MOLDBREAKER,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} breaks the mold!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}打破了常规！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3354,7 +3351,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:NEUTRALIZINGGAS,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler, true)
     battle.pbHideAbilitySplash(battler)
-    battle.pbDisplay(_INTL("Neutralizing gas filled the area!"))
+    battle.pbDisplay(_INTL("周围充满了化学变化气体！"))
     battle.allBattlers(true).each do |b|
       # Slow Start - end all turn counts
       b.effects[PBEffects::SlowStart] = 0
@@ -3369,7 +3366,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:NEUTRALIZINGGAS,
         b.effects[PBEffects::Illusion] = nil
         if !b.effects[PBEffects::Transform]
           battle.scene.pbChangePokemon(b, b.pokemon)
-          battle.pbDisplay(_INTL("{1} {2} wore off!", b.pbOfThis, b.abilityName))
+          battle.pbDisplay(_INTL("{1}{2}被解除了！", b.pbOfThis, b.abilityName))
           battle.pbSetSeen(b)
         end
       end
@@ -3388,11 +3385,11 @@ Battle::AbilityEffects::OnSwitchIn.add(:ORICHALCUMPULSE,
   proc { |ability, battler, battle, switch_in|
     if [:Sun, :HarshSun].include?(battle.field.weather)
       battle.pbShowAbilitySplash(battler)
-      battle.pbDisplay(_INTL("{1} basked in the sunlight, sending its ancient pulse into a frenzy!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}受到日照而激起了古代的脉动！！", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
     elsif battle.pbCanStartWeather?(:Sun)
       battle.pbStartWeatherAbility(:Sun, battler, false,
-         _INTL("{1} turned the sunlight harsh, sending its ancient pulse into a frenzy!", battler.pbThis))
+         _INTL("{1}令日照变强，激起了古代的脉动！", battler.pbThis))
     end
   }
 )
@@ -3405,7 +3402,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:PASTELVEIL,
       next if ally.status != :POISON
       ally.pbCureStatus(Battle::Scene::USE_ABILITY_SPLASH)
       if !Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} {2} cured {3} poisoning!",
+        battle.pbDisplay(_INTL("{1}{2}治愈了{3}中毒！",
                                battler.pbOfThis, battler.abilityName, ally.pbOfThis(true)))
       end
     end
@@ -3416,7 +3413,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:PASTELVEIL,
 Battle::AbilityEffects::OnSwitchIn.add(:PRESSURE,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is exerting its pressure!", battler.pbThis))
+    battle.pbDisplay(_INTL("从{1}的身上感到了一种压迫感！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3464,27 +3461,27 @@ Battle::AbilityEffects::OnSwitchIn.add(:SCREENCLEANER,
     battle.pbShowAbilitySplash(battler)
     if battler.pbOpposingSide.effects[PBEffects::AuroraVeil] > 0
       battler.pbOpposingSide.effects[PBEffects::AuroraVeil] = 0
-      battle.pbDisplay(_INTL("{1} Aurora Veil wore off!", battler.pbOfOpposingTeam))
+      battle.pbDisplay(_INTL("{1}极光幕消失了！", battler.pbOfOpposingTeam))
     end
     if battler.pbOpposingSide.effects[PBEffects::LightScreen] > 0
       battler.pbOpposingSide.effects[PBEffects::LightScreen] = 0
-      battle.pbDisplay(_INTL("{1} Light Screen wore off!", battler.pbOfOpposingTeam))
+      battle.pbDisplay(_INTL("{1}光墙消失了！", battler.pbOfOpposingTeam))
     end
     if battler.pbOpposingSide.effects[PBEffects::Reflect] > 0
       battler.pbOpposingSide.effects[PBEffects::Reflect] = 0
-      battle.pbDisplay(_INTL("{1} Reflect wore off!", battler.pbOfOpposingTeam))
+      battle.pbDisplay(_INTL("{1}反射壁消失了！", battler.pbOfOpposingTeam))
     end
     if battler.pbOwnSide.effects[PBEffects::AuroraVeil] > 0
       battler.pbOwnSide.effects[PBEffects::AuroraVeil] = 0
-      battle.pbDisplay(_INTL("{1} Aurora Veil wore off!", battler.pbOfTeam))
+      battle.pbDisplay(_INTL("{1}极光幕消失了！", battler.pbOfTeam))
     end
     if battler.pbOwnSide.effects[PBEffects::LightScreen] > 0
       battler.pbOwnSide.effects[PBEffects::LightScreen] = 0
-      battle.pbDisplay(_INTL("{1} Light Screen wore off!", battler.pbOfTeam))
+      battle.pbDisplay(_INTL("{1}光墙消失了！", battler.pbOfTeam))
     end
     if battler.pbOwnSide.effects[PBEffects::Reflect] > 0
       battler.pbOwnSide.effects[PBEffects::Reflect] = 0
-      battle.pbDisplay(_INTL("{1} Reflect wore off!", battler.pbOfTeam))
+      battle.pbDisplay(_INTL("{1}反射壁消失了！", battler.pbOfTeam))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3495,9 +3492,9 @@ Battle::AbilityEffects::OnSwitchIn.add(:SLOWSTART,
     battle.pbShowAbilitySplash(battler)
     battler.effects[PBEffects::SlowStart] = 5
     if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} can't get it going!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}无法拿出平时的水平！", battler.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} can't get it going because of its {2}!", battler.pbThis, battler.abilityName))
+      battle.pbDisplay(_INTL("由于{2}，{1}无法拿出平时的水平！", battler.pbThis, battler.abilityName))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3514,7 +3511,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:SUPERSWEETSYRUP,
     next if battler.abilityUsedOnce?
     battler.markAbilityUsedOnce
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("A supersweet aroma is wafting from the syrup covering {1}!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}的蜜散发出了甜甜香气！", battler.pbThis))
     battle.allOtherSideBattlers(battler.index).each do |b|
       next if !b.near?(battler)
       b.pbLowerEvasionStatStageSupersweetSyrup(battler)
@@ -3528,7 +3525,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:SUPREMEOVERLORD,
     battler.effects[PBEffects::SupremeOverlord] = [battle.sideFaintCounts[battler.idxOwnSide], 5].min
     if battler.effects[PBEffects::SupremeOverlord] > 0
       battle.pbShowAbilitySplash(battler)
-      battle.pbDisplay(_INTL("{1} gained strength from the fallen!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}从被打倒的同伴身上得到力量了！", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
     end
   }
@@ -3553,7 +3550,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:TERAFORMZERO,
 Battle::AbilityEffects::OnSwitchIn.add(:TERAVOLT,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is radiating a bursting aura!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}正在释放溅射气场！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3561,7 +3558,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:TERAVOLT,
 Battle::AbilityEffects::OnSwitchIn.add(:TURBOBLAZE,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is radiating a blazing aura!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}正在释放炽焰气场！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3569,7 +3566,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:TURBOBLAZE,
 Battle::AbilityEffects::OnSwitchIn.add(:UNNERVE,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!", battler.pbOpposingTeam))
+    battle.pbDisplay(_INTL("{1}因太紧张而无法食用树果！", battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3656,7 +3653,7 @@ Battle::AbilityEffects::ChangeOnBattlerFainting.add(:POWEROFALCHEMY,
     battle.pbShowAbilitySplash(battler, true)
     battler.ability = fainted.ability
     battle.pbReplaceAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} {2} was taken over!", fainted.pbOfThis, fainted.abilityName))
+    battle.pbDisplay(_INTL("继承了{1}{2}！", fainted.pbOfThis, fainted.abilityName))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3700,17 +3697,16 @@ Battle::AbilityEffects::OnWeatherChange.add(:PROTOSYNTHESIS,
       battler.effects[PBEffects::ProtosynthesisStat] = best[0]
       battle.pbShowAbilitySplash(battler)
       if consume_item
-        battle.pbDisplay(_INTL("{1} used its {2} to activate {3}!",
-                               battler.pbThis, battler.itemName, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}通过{2}发动了{3}！", battler.pbThis(true), battler.itemName, battler.abilityName))
       else
-        battle.pbDisplay(_INTL("The harsh sunlight activated {1} {2}!", battler.pbOfThis(true), battler.abilityName))
+        battle.pbDisplay(_INTL("{1}通过大晴天发动了{2}！", battler.pbThis(true), battler.abilityName))
       end
-      battle.pbDisplay(_INTL("{1} {2} was heightened!", battler.pbOfThis, GameData::Stat.get(best[0]).name))
+      battle.pbDisplay(_INTL("{1}{2}升高了！", battler.pbOfThis, GameData::Stat.get(best[0]).name))
       battle.pbHideAbilitySplash(battler)
-      battler.pbHeldItemTriggered if consume_item
+      battler.pbHeldItemTriggered(battler.item) if consume_item
     elsif battler.effects[PBEffects::ProtosynthesisStat]
       battler.effects[PBEffects::ProtosynthesisStat] = nil
-      battle.pbDisplay(_INTL("The effects of {1} have worn off...", battler.abilityName))
+      battle.pbDisplay(_INTL("{1}的效果消失了……", battler.abilityName))
     end
   }
 )
@@ -3725,7 +3721,7 @@ Battle::AbilityEffects::OnTerrainChange.add(:MIMICRY,
     if battle.field.terrain == :None
       battle.pbShowAbilitySplash(battler)
       battler.pbResetTypes
-      battle.pbDisplay(_INTL("{1} changed back to its regular type!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}变回了原来的属性！", battler.pbThis))
       battle.pbHideAbilitySplash(battler)
       next
     end
@@ -3746,7 +3742,7 @@ Battle::AbilityEffects::OnTerrainChange.add(:MIMICRY,
     next if !new_type
     battle.pbShowAbilitySplash(battler)
     battler.pbChangeTypes(new_type)
-    battle.pbDisplay(_INTL("{1}'s type changed to {2}!", battler.pbThis, new_type_name))
+    battle.pbDisplay(_INTL("{1}变成了{2}属性！", battler.pbThis, new_type_name))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3775,17 +3771,16 @@ Battle::AbilityEffects::OnTerrainChange.add(:QUARKDRIVE,
       battler.effects[PBEffects::BoosterEnergy] = true if consume_item
       battle.pbShowAbilitySplash(battler)
       if consume_item
-        battle.pbDisplay(_INTL("{1} used its {2} to activate {3}!",
-                               battler.pbThis, battler.itemName, battler.abilityName))
+        battle.pbDisplay(_INTL("{1}通过{2}发动了{3}！", battler.pbThis(true), battler.itemName, battler.abilityName))
       else
-        battle.pbDisplay(_INTL("The Electric Terrain activated {1} {2}!", battler.pbOfThis(true), battler.abilityName))
+        battle.pbDisplay(_INTL("{1}通过电气场地发动了{2}！", battler.pbThis(true), battler.abilityName))
       end
-      battle.pbDisplay(_INTL("{1} {2} was heightened!", battler.pbOfThis, GameData::Stat.get(best[0]).name))
+      battle.pbDisplay(_INTL("{1}{2}升高了！", battler.pbOfThis, GameData::Stat.get(best[0]).name))
       battle.pbHideAbilitySplash(battler)
-      battler.pbHeldItemTriggered if consume_item
+      battler.pbHeldItemTriggered(battler.item) if consume_item
     elsif battler.effects[PBEffects::ProtosynthesisStat]
       battler.effects[PBEffects::ProtosynthesisStat] = nil
-      battle.pbDisplay(_INTL("The effects of {1} have worn off...", battler.abilityName))
+      battle.pbDisplay(_INTL("{1}的效果消失了……", battler.abilityName))
     end
   }
 )

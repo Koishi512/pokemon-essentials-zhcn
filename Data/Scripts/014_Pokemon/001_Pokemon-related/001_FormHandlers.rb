@@ -246,7 +246,7 @@ MultipleForms.register(:ROTOM, {
     if new_move_id.nil? && old_move_index >= 0 && pkmn.numMoves == 1
       new_move_id = :THUNDERSHOCK
       new_move_id = nil if !GameData::Move.exists?(new_move_id)
-      raise _INTL("Rotom is trying to forget its last move, but there isn't another move to replace it with.") if new_move_id.nil?
+      raise _INTL("洛托姆想忘记它最后一个招式，但是没有可替代的招式了。") if new_move_id.nil?
     end
     new_move_id = nil if pkmn.hasMove?(new_move_id)
     # Forget a known move (if relevant) and learn a new move (if relevant)
@@ -255,13 +255,13 @@ MultipleForms.register(:ROTOM, {
       if new_move_id.nil?
         # Just forget the old move
         pkmn.forget_move_at_index(old_move_index)
-        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, old_move_name))
+        pbMessage(_INTL("{1}忘记了{2}……", pkmn.name, old_move_name))
       else
         # Replace the old move with the new move (keeps the same index)
         pkmn.moves[old_move_index].id = new_move_id
         new_move_name = pkmn.moves[old_move_index].name
-        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, old_move_name) + "\1")
-        pbMessage("\\se[]" + _INTL("{1} learned {2}!", pkmn.name, new_move_name) + "\\se[Pkmn move learnt]\\wtnp[30]")
+        pbMessage(_INTL("{1}忘记了{2}……", pkmn.name, old_move_name) + "\1")
+        pbMessage("\\se[]" + _INTL("{1}学会了{2}！", pkmn.name, new_move_name) + "\\se[Pkmn move learnt]\\wtnp[30]")
       end
     elsif !new_move_id.nil?
       # Just learn the new move
@@ -650,7 +650,7 @@ MultipleForms.register(:NECROZMA, {
       form_moves.each do |move|
         next if !pkmn.hasMove?(move)
         pkmn.forget_move(move)
-        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, GameData::Move.get(move).name))
+        pbMessage(_INTL("{1}忘记了{2}……", pkmn.name, GameData::Move.get(move).name))
       end
       pbLearnMove(pkmn, :CONFUSION) if pkmn.numMoves == 0
     else   # Dusk Mane, Dawn Wings
@@ -782,7 +782,7 @@ MultipleForms.register(:CALYREX, {
       form_moves.each do |move|
         next if !pkmn.hasMove?(move)
         pkmn.forget_move(move)
-        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, GameData::Move.get(move).name))
+        pbMessage(_INTL("{1}忘记了{2}……", pkmn.name, GameData::Move.get(move).name))
       end
       # Forget all other moves not accessible to the base form
       sp_data = pkmn.species_data
@@ -790,7 +790,7 @@ MultipleForms.register(:CALYREX, {
         next if sp_data.moves.any? { |learn_move| learn_move[1] == move.id }
         next if sp_data.tutor_moves.include?(move.id)
         next if sp_data.egg_moves.include?(move.id)
-        pbMessage(_INTL("{1} forgot {2}...", pkmn.name, move.name))
+        pbMessage(_INTL("{1}忘记了{2}……", pkmn.name, move.name))
         pkmn.moves[i] = nil
       end
       pkmn.moves.compact!

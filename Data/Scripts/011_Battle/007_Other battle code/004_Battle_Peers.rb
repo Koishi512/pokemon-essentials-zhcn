@@ -17,7 +17,7 @@ class Battle::Peer
     if storedBox < 0
       # NOTE: Poké Balls can't be used if storage is full, so you shouldn't ever
       #       see this message.
-      pbDisplayPaused(_INTL("Can't catch any more..."))
+      pbDisplayPaused(_INTL("不能再捕捉了……"))
       return oldCurBox
     end
     return storedBox

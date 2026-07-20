@@ -385,7 +385,7 @@ class UI::PokedexEntryVisuals < UI::BaseVisuals
             next if !$player.pokedex.seen_form?(@species, real_gender, sp.form, real_shiny) && !Settings::POKEDEX_SHOWS_ALL_FORMS
             found_for_gender = true
             record_shiny = (Settings::SHOW_SHINY_SPRITES_IN_POKEDEX) ? real_shiny : false
-            @viewable_forms.push([sp.form_name || _INTL("One Form"), 0, sp.form, record_shiny])
+            @viewable_forms.push([sp.form_name || _INTL("一种样子"), 0, sp.form, record_shiny])
           end
           break if found_for_gender
         end
@@ -408,10 +408,10 @@ class UI::PokedexEntryVisuals < UI::BaseVisuals
     @viewable_forms.each_with_index do |entry, i|
       if !entry[0]   # Doesn't have a form name (male/female/genderless form 0 only)
         case entry[1]
-        when 0 then entry[0] = _INTL("Male")
-        when 1 then entry[0] = _INTL("Female")
+        when 0 then entry[0] = _INTL("雄性")
+        when 1 then entry[0] = _INTL("雌性")
         else
-          entry[0] = (has_multiple_forms) ? _INTL("One Form") : _INTL("Genderless")
+          entry[0] = (has_multiple_forms) ? _INTL("一种样子") : _INTL("无性别")
         end
       end
       entry[1] = 0 if entry[1] == 2   # Genderless entries are treated as male
@@ -601,7 +601,7 @@ class UI::PokedexEntryVisuals < UI::BaseVisuals
 
   def draw_category_text
     category_text = (owned_species?) ? @species_data.category : "?????"
-    draw_text(_INTL("{1} Pokémon", category_text), 246, 80)
+    draw_text(_INTL("{1}宝可梦", category_text), 246, 80)
   end
 
   def draw_footprint
@@ -625,7 +625,7 @@ class UI::PokedexEntryVisuals < UI::BaseVisuals
   end
 
   def draw_height
-    draw_text(_INTL("Height"), 314, 164)
+    draw_text(_INTL("身高"), 314, 164)
     value_x = (Translation.imperial_measurements?) ? 464 : 470
     value_y = 164
     if owned_species?
@@ -648,7 +648,7 @@ class UI::PokedexEntryVisuals < UI::BaseVisuals
   end
 
   def draw_weight
-    draw_text(_INTL("Weight"), 314, 196)
+    draw_text(_INTL("体重"), 314, 196)
     value_x = (Translation.imperial_measurements?) ? 494 : 482
     value_y = 196
     if owned_species?
@@ -688,7 +688,7 @@ class UI::PokedexEntryVisuals < UI::BaseVisuals
   def draw_area_unknown
     return if @encounter_maps[@region] && !@encounter_maps[@region].empty?
     draw_image(@bitmaps[:area_unknown], (Graphics.width - @bitmaps[:area_unknown].width) / 2, 188)
-    draw_text(_INTL("Area unknown"), Graphics.width / 2, (Graphics.height / 2) + 6, align: :center)
+    draw_text(_INTL("栖息地不明"), Graphics.width / 2, (Graphics.height / 2) + 6, align: :center)
   end
 
   def draw_area_highlights
@@ -856,9 +856,9 @@ class UI::PokedexEntryVisuals < UI::BaseVisuals
   def choose_region
     options = {}
     @unlocked_regions.each { |id| options[id] = GameData::TownMap.get(id).name }
-    options[-1] = _INTL("Cancel")
+    options[-1] = _INTL("取消")
     index = options.keys.index(@region) || 0
-    new_region = show_choice_message(_INTL("Which region's map do you want to view?"), options, index)
+    new_region = show_choice_message(_INTL("你想查看哪个地区的地图？"), options, index)
     return if !new_region || new_region < 0 || new_region == @region
     @region = new_region
     @town_map_data = GameData::TownMap.get(@region)

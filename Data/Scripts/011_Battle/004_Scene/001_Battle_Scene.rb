@@ -237,7 +237,7 @@ class Battle::Scene
   end
 
   def pbDisplayConfirmMessage(msg)
-    return pbShowCommands(msg, [_INTL("Yes"), _INTL("No")], 1) == 0
+    return pbShowCommands(msg, [_INTL("是"), _INTL("否")], 1) == 0
   end
 
   def pbShowCommands(msg, commands, defaultValue)

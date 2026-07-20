@@ -286,7 +286,7 @@ Battle::ItemEffects::WeightCalc.add(:FLOATSTONE,
 Battle::ItemEffects::HPHeal.add(:AGUAVBERRY,
   proc { |item, battler, battle, forced|
     next battler.pbConfusionBerry(item, forced, :SPECIAL_DEFENSE,
-       _INTL("For {1}, the {2} was too bitter!", battler.pbThis(true), GameData::Item.get(item).name)
+       _INTL("对{1}来说，{2}太苦了！", battler.pbThis(true), GameData::Item.get(item).name)
     )
   }
 )
@@ -306,12 +306,12 @@ Battle::ItemEffects::HPHeal.add(:BERRYJUICE,
     battle.pbCommonAnimation("UseItem", battler) if !forced
     battler.pbRecoverHP(20)
     if forced
-      battle.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     else
       if Translation.more_possessive_messages?
-        battle.pbDisplay(_INTL("{1} {2} restored its health!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, itemName))
       else
-        battle.pbDisplay(_INTL("{1} restored its health using its {2}!", battler.pbThis, itemName))
+        battle.pbDisplay(_INTL("{1}用{2}回复了体力！", battler.pbThis, itemName))
       end
     end
     next true
@@ -321,7 +321,7 @@ Battle::ItemEffects::HPHeal.add(:BERRYJUICE,
 Battle::ItemEffects::HPHeal.add(:FIGYBERRY,
   proc { |item, battler, battle, forced|
     next battler.pbConfusionBerry(item, forced, :ATTACK,
-       _INTL("For {1}, the {2} was too spicy!", battler.pbThis(true), GameData::Item.get(item).name)
+       _INTL("对{1}来说，{2}太辣了！", battler.pbThis(true), GameData::Item.get(item).name)
     )
   }
 )
@@ -335,7 +335,7 @@ Battle::ItemEffects::HPHeal.add(:GANLONBERRY,
 Battle::ItemEffects::HPHeal.add(:IAPAPABERRY,
   proc { |item, battler, battle, forced|
     next battler.pbConfusionBerry(item, forced, :DEFENSE,
-       _INTL("For {1}, the {2} was too sour!", battler.pbThis(true), GameData::Item.get(item).name)
+       _INTL("对{1}来说，{2}太酸了！", battler.pbThis(true), GameData::Item.get(item).name)
     )
   }
 )
@@ -349,9 +349,9 @@ Battle::ItemEffects::HPHeal.add(:LANSATBERRY,
     battle.pbCommonAnimation("CriticalHitRateUp", battler)
     itemName = GameData::Item.get(item).name
     if forced
-      battle.pbDisplay(_INTL("{1} got pumped from the {2}!", battler.pbThis, itemName))
+      battle.pbDisplay(_INTL("{1}因为{2}现在干劲十足！", battler.pbThis, itemName))
     else
-      battle.pbDisplay(_INTL("{1} used its {2} to get pumped!", battler.pbThis, itemName))
+      battle.pbDisplay(_INTL("{1}使用了{2}，拿出了干劲！", battler.pbThis, itemName))
     end
     next true
   }
@@ -366,7 +366,7 @@ Battle::ItemEffects::HPHeal.add(:LIECHIBERRY,
 Battle::ItemEffects::HPHeal.add(:MAGOBERRY,
   proc { |item, battler, battle, forced|
     next battler.pbConfusionBerry(item, forced, :SPEED,
-       _INTL("For {1}, the {2} was too sweet!", battler.pbThis(true), GameData::Item.get(item).name)
+       _INTL("对{1}来说，{2}太甜了！", battler.pbThis(true), GameData::Item.get(item).name)
     )
   }
 )
@@ -380,9 +380,9 @@ Battle::ItemEffects::HPHeal.add(:MICLEBERRY,
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1} boosted the accuracy of its next move!", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}下次使出的招式更容易击中对手了！", battler.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} boosted the accuracy of its next move using its {2}!",
+      battle.pbDisplay(_INTL("{1}用了{2}后，下次使出的招式更容易击中对手了！",
          battler.pbThis, itemName))
     end
     next true
@@ -406,12 +406,12 @@ Battle::ItemEffects::HPHeal.add(:ORANBERRY,
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}的体力回复了。", battler.pbThis))
     else
       if Translation.more_possessive_messages?
-        battle.pbDisplay(_INTL("{1} {2} restored its health!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", battler.pbOfThis, itemName))
       else
-        battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!", battler.pbThis, itemName))
+        battle.pbDisplay(_INTL("{1}用{2}回复了少许HP。", battler.pbThis, itemName))
       end
     end
     next true
@@ -447,12 +447,12 @@ Battle::ItemEffects::HPHeal.add(:SITRUSBERRY,
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
-      battle.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     else
       if Translation.more_possessive_messages?
-        battle.pbDisplay(_INTL("{1} {2} restored its health!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, itemName))
       else
-        battle.pbDisplay(_INTL("{1} restored its health using its {2}!", battler.pbThis, itemName))
+        battle.pbDisplay(_INTL("{1}用{2}回复了体力！", battler.pbThis, itemName))
       end
     end
     next true
@@ -472,7 +472,7 @@ Battle::ItemEffects::HPHeal.add(:STARFBERRY,
 Battle::ItemEffects::HPHeal.add(:WIKIBERRY,
   proc { |item, battler, battle, forced|
     next battler.pbConfusionBerry(item, forced, :SPECIAL_ATTACK,
-       _INTL("For {1}, the {2} was too dry!", battler.pbThis(true), GameData::Item.get(item).name)
+       _INTL("对{1}来说，{2}太干了！", battler.pbThis(true), GameData::Item.get(item).name)
     )
   }
 )
@@ -489,7 +489,7 @@ Battle::ItemEffects::StatusCure.add(:ASPEARBERRY,
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battler.pbCureStatus(forced)
-    battle.pbDisplay(_INTL("{1} {2} defrosted it!", battler.pbOfThis, itemName)) if !forced
+    battle.pbDisplay(_INTL("{1}{2}治愈了冰冻状态！", battler.pbOfThis, itemName)) if !forced
     next true
   }
 )
@@ -502,7 +502,7 @@ Battle::ItemEffects::StatusCure.add(:CHERIBERRY,
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battler.pbCureStatus(forced)
-    battle.pbDisplay(_INTL("{1} {2} cured its paralysis!", battler.pbOfThis, itemName)) if !forced
+    battle.pbDisplay(_INTL("{1}{2}治愈了麻痹状态！", battler.pbOfThis, itemName)) if !forced
     next true
   }
 )
@@ -515,7 +515,7 @@ Battle::ItemEffects::StatusCure.add(:CHESTOBERRY,
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battler.pbCureStatus(forced)
-    battle.pbDisplay(_INTL("{1} {2} woke it up!", battler.pbOfThis, itemName)) if !forced
+    battle.pbDisplay(_INTL("{1}{2}让自己醒过来了！", battler.pbOfThis, itemName)) if !forced
     next true
   }
 )
@@ -533,22 +533,22 @@ Battle::ItemEffects::StatusCure.add(:LUMBERRY,
     battler.pbCureStatus(forced)
     battler.pbCureConfusion
     if forced
-      battle.pbDisplay(_INTL("{1} snapped out of its confusion.", battler.pbThis)) if oldConfusion
+      battle.pbDisplay(_INTL("{1}的混乱解除了！", battler.pbThis)) if oldConfusion
     else
       case oldStatus
       when :SLEEP
-        battle.pbDisplay(_INTL("{1} {2} woke it up!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}让自己醒过来了！", battler.pbOfThis, itemName))
       when :POISON
-        battle.pbDisplay(_INTL("{1} {2} cured its poisoning!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了中毒状态！", battler.pbOfThis, itemName))
       when :BURN
-        battle.pbDisplay(_INTL("{1} {2} healed its burn!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了烧伤状态！", battler.pbOfThis, itemName))
       when :PARALYSIS
-        battle.pbDisplay(_INTL("{1} {2} cured its paralysis!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了麻痹状态！", battler.pbOfThis, itemName))
       when :FROZEN
-        battle.pbDisplay(_INTL("{1} {2} defrosted it!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}治愈了冰冻状态！", battler.pbOfThis, itemName))
       end
       if oldConfusion
-        battle.pbDisplay(_INTL("{1} {2} snapped it out of its confusion!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}摆脱了混乱状态！", battler.pbOfThis, itemName))
       end
     end
     next true
@@ -568,27 +568,27 @@ Battle::ItemEffects::StatusCure.add(:MENTALHERB,
     battle.pbCommonAnimation("UseItem", battler) if !forced
     if battler.effects[PBEffects::Attract] >= 0
       if forced
-        battle.pbDisplay(_INTL("{1} got over its infatuation.", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}的着迷状态治愈了！", battler.pbThis))
       else
         if Translation.more_possessive_messages?
-          battle.pbDisplay(_INTL("{1} {2} cured its infatuation status!", battler.pbOfThis, itemName))
+          battle.pbDisplay(_INTL("{1}{2}治愈了着迷状态！", battler.pbOfThis, itemName))
         else
-          battle.pbDisplay(_INTL("{1} cured its infatuation status using its {2}!",
+          battle.pbDisplay(_INTL("{1}用{2}治愈了着迷状态！",
                                  battler.pbThis, itemName))
         end
       end
       battler.pbCureAttract
     end
-    battle.pbDisplay(_INTL("{1}'s taunt wore off!", battler.pbThis)) if battler.effects[PBEffects::Taunt] > 0
+    battle.pbDisplay(_INTL("{1}的挑衅效果解除了！", battler.pbThis)) if battler.effects[PBEffects::Taunt] > 0
     battler.effects[PBEffects::Taunt] = 0
-    battle.pbDisplay(_INTL("{1}'s encore ended!", battler.pbThis)) if battler.effects[PBEffects::Encore] > 0
+    battle.pbDisplay(_INTL("{1}的再来一次状态解除了！", battler.pbThis)) if battler.effects[PBEffects::Encore] > 0
     battler.effects[PBEffects::Encore]     = 0
     battler.effects[PBEffects::EncoreMove] = nil
-    battle.pbDisplay(_INTL("{1}'s torment wore off!", battler.pbThis)) if battler.effects[PBEffects::Torment]
+    battle.pbDisplay(_INTL("{1}的无理取闹的效果消失了！", battler.pbThis)) if battler.effects[PBEffects::Torment]
     battler.effects[PBEffects::Torment] = false
-    battle.pbDisplay(_INTL("{1} is no longer disabled!", battler.pbThis)) if battler.effects[PBEffects::Disable] > 0
+    battle.pbDisplay(_INTL("{1}的定身法解除了！", battler.pbThis)) if battler.effects[PBEffects::Disable] > 0
     battler.effects[PBEffects::Disable] = 0
-    battle.pbDisplay(_INTL("{1}'s Heal Block wore off!", battler.pbThis)) if battler.effects[PBEffects::HealBlock] > 0
+    battle.pbDisplay(_INTL("{1}的回复封锁的效果消失了！", battler.pbThis)) if battler.effects[PBEffects::HealBlock] > 0
     battler.effects[PBEffects::HealBlock] = 0
     next true
   }
@@ -602,7 +602,7 @@ Battle::ItemEffects::StatusCure.add(:PECHABERRY,
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battler.pbCureStatus(forced)
-    battle.pbDisplay(_INTL("{1} {2} cured its poisoning!", battler.pbOfThis, itemName)) if !forced
+    battle.pbDisplay(_INTL("{1}{2}治愈了中毒状态！", battler.pbOfThis, itemName)) if !forced
     next true
   }
 )
@@ -616,9 +616,9 @@ Battle::ItemEffects::StatusCure.add(:PERSIMBERRY,
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battler.pbCureConfusion
     if forced
-      battle.pbDisplay(_INTL("{1} snapped out of its confusion.", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}的混乱解除了！", battler.pbThis))
     else
-      battle.pbDisplay(_INTL("{1} {2} snapped it out of its confusion!", battler.pbOfThis, itemName))
+      battle.pbDisplay(_INTL("{1}{2}摆脱了混乱状态！", battler.pbOfThis, itemName))
     end
     next true
   }
@@ -632,7 +632,7 @@ Battle::ItemEffects::StatusCure.add(:RAWSTBERRY,
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}") if forced
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battler.pbCureStatus(forced)
-    battle.pbDisplay(_INTL("{1} {2} healed its burn!", battler.pbOfThis, itemName)) if !forced
+    battle.pbDisplay(_INTL("{1}{2}治愈了灼伤状态！", battler.pbOfThis, itemName)) if !forced
     next true
   }
 )
@@ -643,8 +643,8 @@ Battle::ItemEffects::StatusCure.add(:RAWSTBERRY,
 
 Battle::ItemEffects::StatLossImmunity.add(:CLEARAMULET,
   proc { |item, battler, stat, battle, showMessages|
-    battle.pbDisplay(_INTL("The effects of {1} {2} prevent its stats from being lowered!",
-                           battler.pbOfThis, GameData::Item.get(item).name)) if showMessages
+    battle.pbDisplay(_INTL("{1}受到{2}的效果令能力不会下降！",
+                           battler.pbThis, GameData::Item.get(item).name)) if showMessages
     next true
   }
 )
@@ -662,7 +662,7 @@ Battle::ItemEffects::OnStatLoss.add(:EJECTPACK,
     next false if !battle.pbCanSwitchOut?(battler.index)   # Battler can't switch out
     next false if !battle.pbCanChooseNonActive?(battler.index)   # No Pokémon can switch in
     battle.pbCommonAnimation("UseItem", battler)
-    battle.pbDisplay(_INTL("{1} is switched out by the {2}!", battler.pbThis, battler.itemName))
+    battle.pbDisplay(_INTL("{1}要用{2}回去了！", battler.pbThis, battler.itemName))
     battler.pbConsumeItem(true, false)
     if battle.endOfRound   # Just switch out
       battle.scene.pbRecall(battler.index) if !battler.fainted?
@@ -693,19 +693,19 @@ Battle::ItemEffects::CopyStatChanges.add(:MIRRORHERB,
     end
     next if raises.none? { |stat, increment| increment > 0 }
     battle.pbCommonAnimation("UseItem", battler)
-    battle.pbDisplay(_INTL("{1} used its {2} to mirror its opponent's stat changes!",
+    battle.pbDisplay(_INTL("{1}使用{2}模仿了对手的能力变化！",
                             battler.pbThis, battler.itemName))
     raises.each_pair do |stat, increment|
       next if increment <= 0
       if stat == :CRITICAL_HIT
         battler.setCriticalHitRate(increment)
         battle.pbCommonAnimation("CriticalHitRateUp", battler)
-        battle.pbDisplay(_INTL("{1} is getting pumped!", battler.pbThis))
+        battle.pbDisplay(_INTL("{1}现在干劲十足！", battler.pbThis))
       else
         battler.pbRaiseStatStage(stat, increment, battler)
       end
     end
-    battle.pbDisplay(_INTL("The {1} was used up...", battler.itemName))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", battler.itemName))
     battler.pbHeldItemTriggered(item)
   }
 )
@@ -747,7 +747,7 @@ Battle::ItemEffects::PriorityBracketChange.add(:QUICKCLAW,
 Battle::ItemEffects::PriorityBracketUse.add(:CUSTAPBERRY,
   proc { |item, battler, battle|
     battle.pbCommonAnimation("EatBerry", battler)
-    battle.pbDisplay(_INTL("{1} {2} let it move first!", battler.pbOfThis, battler.itemName))
+    battle.pbDisplay(_INTL("{1}{2}让它率先行动！", battler.pbOfThis, battler.itemName))
     battler.pbConsumeItem
   }
 )
@@ -755,7 +755,7 @@ Battle::ItemEffects::PriorityBracketUse.add(:CUSTAPBERRY,
 Battle::ItemEffects::PriorityBracketUse.add(:QUICKCLAW,
   proc { |item, battler, battle|
     battle.pbCommonAnimation("UseItem", battler)
-    battle.pbDisplay(_INTL("{1} {2} let it move first!", battler.pbOfThis, battler.itemName))
+    battle.pbDisplay(_INTL("{1}{2}让它率先行动！", battler.pbOfThis, battler.itemName))
   }
 )
 
@@ -770,7 +770,7 @@ Battle::ItemEffects::OnMissingTarget.add(:BLUNDERPOLICY,
     next if !user.pbCanRaiseStatStage?(:SPEED, user)
     battle.pbCommonAnimation("UseItem", user)
     user.pbRaiseStatStageByCause(:SPEED, 2, user, user.itemName)
-    battle.pbDisplay(_INTL("The {1} was used up...", user.itemName))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", user.itemName))
     user.pbHeldItemTriggered(item)
   }
 )
@@ -1384,14 +1384,14 @@ Battle::ItemEffects::OnBeingHit.add(:ABSORBBULB,
     next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, target)
     battle.pbCommonAnimation("UseItem", target)
     target.pbRaiseStatStageByCause(:SPECIAL_ATTACK, 1, target, target.itemName)
-    battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
   }
 )
 
 Battle::ItemEffects::OnBeingHit.add(:AIRBALLOON,
   proc { |item, user, target, move, battle|
-    battle.pbDisplay(_INTL("{1} {2} popped!", target.pbOfThis, target.itemName))
+    battle.pbDisplay(_INTL("{1}{2}破了！", target.pbOfThis, target.itemName))
     target.pbConsumeItem(false)
   }
 )
@@ -1402,7 +1402,7 @@ Battle::ItemEffects::OnBeingHit.add(:CELLBATTERY,
     next if !target.pbCanRaiseStatStage?(:ATTACK, target)
     battle.pbCommonAnimation("UseItem", target)
     target.pbRaiseStatStageByCause(:ATTACK, 1, target, target.itemName)
-    battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
   }
 )
@@ -1413,7 +1413,7 @@ Battle::ItemEffects::OnBeingHit.add(:ENIGMABERRY,
             target.damageState.disguise || target.damageState.iceFace
     next if !Effectiveness.super_effective?(target.damageState.typeMod)
     if Battle::ItemEffects.triggerOnBeingHitPositiveBerry(item, target, battle, false)
-      battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+      battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
       target.pbHeldItemTriggered(item)
     end
   }
@@ -1435,7 +1435,7 @@ Battle::ItemEffects::OnBeingHit.add(:JABOCABERRY,
     battle.pbHideAbilitySplash(target) if ripening
     battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(amt, false)
-    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",
+    battle.pbDisplay(_INTL("{1}消耗了{2}并伤害了{3}！",
                            target.pbThis, target.itemName, user.pbThis(true)))
     target.pbHeldItemTriggered(item)
   }
@@ -1450,7 +1450,7 @@ Battle::ItemEffects::OnBeingHit.add(:KEEBERRY,
   proc { |item, user, target, move, battle|
     next if !move.physicalMove?
     if Battle::ItemEffects.triggerOnBeingHitPositiveBerry(item, target, battle, false)
-      battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+      battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
       target.pbHeldItemTriggered(item)
     end
   }
@@ -1462,7 +1462,7 @@ Battle::ItemEffects::OnBeingHit.add(:LUMINOUSMOSS,
     next if !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, target)
     battle.pbCommonAnimation("UseItem", target)
     target.pbRaiseStatStageByCause(:SPECIAL_DEFENSE, 1, target, target.itemName)
-    battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
   }
 )
@@ -1476,7 +1476,7 @@ Battle::ItemEffects::OnBeingHit.add(:MARANGABERRY,
   proc { |item, user, target, move, battle|
     next if !move.specialMove?
     if Battle::ItemEffects.triggerOnBeingHitPositiveBerry(item, target, battle, false)
-      battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+      battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
       target.pbHeldItemTriggered(item)
     end
   }
@@ -1488,7 +1488,7 @@ Battle::ItemEffects::OnBeingHit.add(:ROCKYHELMET,
     next if !user.takesIndirectDamage?
     battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(user.totalhp / 6, false)
-    battle.pbDisplay(_INTL("{1} was hurt by the {2}!", user.pbThis, target.itemName))
+    battle.pbDisplay(_INTL("{1}因{2}受到了伤害！", user.pbThis, target.itemName))
   }
 )
 
@@ -1508,7 +1508,7 @@ Battle::ItemEffects::OnBeingHit.add(:ROWAPBERRY,
     battle.pbHideAbilitySplash(target) if ripening
     battle.scene.pbDamageAnimation(user)
     user.pbReduceHP(amt, false)
-    battle.pbDisplay(_INTL("{1} consumed its {2} and hurt {3}!",
+    battle.pbDisplay(_INTL("{1}消耗了{2}并伤害了{3}！",
                            target.pbThis, target.itemName, user.pbThis(true)))
     target.pbHeldItemTriggered(item)
   }
@@ -1520,7 +1520,7 @@ Battle::ItemEffects::OnBeingHit.add(:SNOWBALL,
     next if !target.pbCanRaiseStatStage?(:ATTACK, target)
     battle.pbCommonAnimation("UseItem", target)
     target.pbRaiseStatStageByCause(:ATTACK, 1, target, target.itemName)
-    battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
   }
 )
@@ -1532,7 +1532,7 @@ Battle::ItemEffects::OnBeingHit.add(:STICKYBARB,
     user.item = target.item
     target.item = nil
     target.effects[PBEffects::Unburden] = true if target.hasActiveAbility?(:UNBURDEN)
-    battle.pbDisplay(_INTL("{1} {2} was transferred to {3}!",
+    battle.pbDisplay(_INTL("{1}{2}转移给了{3}！",
                            target.pbOfThis, user.itemName, user.pbThis(true)))
   }
 )
@@ -1552,7 +1552,7 @@ Battle::ItemEffects::OnBeingHit.add(:WEAKNESSPOLICY,
     if target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, target)
       target.pbRaiseStatStageByCause(:SPECIAL_ATTACK, 2, target, target.itemName, showAnim)
     end
-    battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
   }
 )
@@ -1580,12 +1580,12 @@ Battle::ItemEffects::OnBeingHitPositiveBerry.add(:ENIGMABERRY,
     battle.pbHideAbilitySplash(battler) if ripening
     battler.pbRecoverHP(amt)
     if forced
-      battle.pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+      battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     else
       if Translation.more_possessive_messages?
-        battle.pbDisplay(_INTL("{1} {2} restored its health!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, itemName))
       else
-        battle.pbDisplay(_INTL("{1} restored its health using its {2}!", battler.pbThis, itemName))
+        battle.pbDisplay(_INTL("{1}用{2}回复了体力！", battler.pbThis, itemName))
       end
     end
     next true
@@ -1644,7 +1644,7 @@ Battle::ItemEffects::AfterMoveUseFromTarget.add(:EJECTBUTTON,
     next if battler.effects[PBEffects::Commanding] >= 0 ||
             battler.effects[PBEffects::CommandedBy] >= 0
     battle.pbCommonAnimation("UseItem", battler)
-    battle.pbDisplay(_INTL("{1} is switched out with the {2}!", battler.pbThis, battler.itemName))
+    battle.pbDisplay(_INTL("{1}要用{2}回去了！", battler.pbThis, battler.itemName))
     battler.pbConsumeItem(true, false)
     newPkmn = battle.pbGetReplacementPokemonIndex(battler.index)   # Owner chooses
     next if newPkmn < 0
@@ -1662,12 +1662,12 @@ Battle::ItemEffects::AfterMoveUseFromTarget.add(:REDCARD,
     newPkmn = battle.pbGetReplacementPokemonIndex(user.index, true)   # Random
     next if newPkmn < 0
     battle.pbCommonAnimation("UseItem", battler)
-    battle.pbDisplay(_INTL("{1} held up its {2} against {3}!",
+    battle.pbDisplay(_INTL("{1}猛地向{3}出示了{2}！",
                            battler.pbThis, battler.itemName, user.pbThis(true)))
     battler.pbConsumeItem
     next if !user.canBeForcedOutOfBattle?
     battle.pbRecallAndReplace(user.index, newPkmn, true)
-    battle.pbDisplay(_INTL("{1} was dragged out!", user.pbThis))
+    battle.pbDisplay(_INTL("{1}被拖进了战斗！", user.pbThis))
     battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
     switched_battlers.push(user.index)
     battle.moldBreaker = false
@@ -1691,7 +1691,7 @@ Battle::ItemEffects::AfterMoveUseFromUser.add(:LIFEORB,
     next if !hitBattler
     PBDebug.log("[Item triggered] #{user.pbOfThis} #{user.itemName} (recoil)")
     user.pbReduceHP(user.totalhp / 10)
-    battle.pbDisplay(_INTL("{1} lost some of its HP!", user.pbThis))
+    battle.pbDisplay(_INTL("{1}的生命被少量削减了！", user.pbThis))
     user.pbItemHPHealCheck
     user.pbFaint if user.fainted?
   }
@@ -1708,9 +1708,9 @@ Battle::ItemEffects::AfterMoveUseFromUser.add(:SHELLBELL,
     next if totalDamage <= 0
     user.pbRecoverHP(totalDamage / 8)
     if Translation.more_possessive_messages?
-      battle.pbDisplay(_INTL("{1} {2} restored a little HP!", user.pbOfThis, user.itemName))
+      battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", user.pbOfThis, user.itemName))
     else
-      battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!", user.pbThis, user.itemName))
+      battle.pbDisplay(_INTL("{1}用{2}回复了少许HP。", user.pbThis, user.itemName))
     end
   }
 )
@@ -1760,9 +1760,9 @@ Battle::ItemEffects::OnEndOfUsingMove.add(:LEPPABERRY,
     battler.moves[choice].pp = pkmnMove.pp
     moveName = pkmnMove.name
     if forced
-      battle.pbDisplay(_INTL("{1} restored PP to its move {2}.", battler.pbThis, moveName))
+      battle.pbDisplay(_INTL("{1}回复了{2}的PP。", battler.pbThis, moveName))
     else
-      battle.pbDisplay(_INTL("{1} restored PP to its move {2} using its {3}!", battler.pbThis, moveName, itemName))
+      battle.pbDisplay(_INTL("{1}用{3}回复了{2}的PP。", battler.pbThis, moveName, itemName))
     end
     next true
   }
@@ -1788,12 +1788,12 @@ Battle::ItemEffects::OnEndOfUsingMoveStatRestore.add(:WHITEHERB,
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}") if forced
     battle.pbCommonAnimation("UseItem", battler) if !forced
     if forced
-      battle.pbDisplay(_INTL("{1} status returned to normal!", battler.pbOfThis))
+      battle.pbDisplay(_INTL("{1}能力复原了！", battler.pbOfThis))
     else
       if Translation.more_possessive_messages?
-        battle.pbDisplay(_INTL("{1} {2} returned its status to normal!", battler.pbOfThis, itemName))
+        battle.pbDisplay(_INTL("{1}{2}复原了能力！", battler.pbOfThis, itemName))
       else
-        battle.pbDisplay(_INTL("{1} returned its status to normal using its {2}!", battler.pbThis, itemName))
+        battle.pbDisplay(_INTL("{1}用{2}复原了能力！", battler.pbThis, itemName))
       end
     end
     next true
@@ -1913,11 +1913,11 @@ Battle::ItemEffects::OnWeatherChange.add(:BOOSTERENERGY,
     battler.effects[PBEffects::ProtosynthesisStat] = best[0]
     battler.effects[PBEffects::BoosterEnergy] = true
     battle.pbCommonAnimation("UseItem", battler)
-    battle.pbDisplay(_INTL("The {1} was used up...", GameData::Item.get(item).name))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", GameData::Item.get(item).name))
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} used its {2} to activate {3}!",
+    battle.pbDisplay(_INTL("{1}通过{2}发动了{3}！",
                            battler.pbThis, GameData::Item.get(item).name, battler.abilityName))
-    battle.pbDisplay(_INTL("{1} {2} was heightened!", battler.pbOfThis, GameData::Stat.get(best[0]).name))
+    battle.pbDisplay(_INTL("{1}{2}升高了！", battler.pbOfThis, GameData::Stat.get(best[0]).name))
     battle.pbHideAbilitySplash(battler)
     battler.pbHeldItemTriggered(item)
     next true
@@ -1943,11 +1943,11 @@ Battle::ItemEffects::OnTerrainChange.add(:BOOSTERENERGY,
     battler.effects[PBEffects::ProtosynthesisStat] = best[0]
     battler.effects[PBEffects::BoosterEnergy] = true
     battle.pbCommonAnimation("UseItem", battler)
-    battle.pbDisplay(_INTL("The {1} was used up...", GameData::Item.get(item).name))
+    battle.pbDisplay(_INTL("{1}已完成使命，消失了……", GameData::Item.get(item).name))
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} used its {2} to activate {3}!",
+    battle.pbDisplay(_INTL("{1}通过{2}发动了{3}！",
                            battler.pbThis, GameData::Item.get(item).name, battler.abilityName))
-    battle.pbDisplay(_INTL("{1} {2} was heightened!", battler.pbOfThis, GameData::Stat.get(best[0]).name))
+    battle.pbDisplay(_INTL("{1}{2}升高了！", battler.pbOfThis, GameData::Stat.get(best[0]).name))
     battle.pbHideAbilitySplash(battler)
     battler.pbHeldItemTriggered(item)
     next true
@@ -2005,14 +2005,14 @@ Battle::ItemEffects::EndOfRoundHealing.add(:BLACKSLUDGE,
       battle.pbCommonAnimation("UseItem", battler)
       battler.pbRecoverHP(battler.totalhp / 16)
       if Translation.more_possessive_messages?
-        battle.pbDisplay(_INTL("{1} {2} restored a little HP!", battler.pbOfThis, battler.itemName))
+        battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", battler.pbOfThis, battler.itemName))
       else
-        battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!", battler.pbThis, battler.itemName))
+        battle.pbDisplay(_INTL("{1}用{2}回复了少许HP。", battler.pbThis, battler.itemName))
       end
     elsif battler.takesIndirectDamage?
       battle.pbCommonAnimation("UseItem", battler)
       battler.pbTakeEffectDamage(battler.totalhp / 8) do |hp_lost|
-        battle.pbDisplay(_INTL("{1} is hurt by its {2}!", battler.pbThis, battler.itemName))
+        battle.pbDisplay(_INTL("{1}因{2}而受到了伤害！", battler.pbThis, battler.itemName))
       end
     end
   }
@@ -2024,9 +2024,9 @@ Battle::ItemEffects::EndOfRoundHealing.add(:LEFTOVERS,
     battle.pbCommonAnimation("UseItem", battler)
     battler.pbRecoverHP(battler.totalhp / 16)
     if Translation.more_possessive_messages?
-      battle.pbDisplay(_INTL("{1} {2} restored a little HP!", battler.pbOfThis, battler.itemName))
+      battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", battler.pbOfThis, battler.itemName))
     else
-      battle.pbDisplay(_INTL("{1} restored a little HP using its {2}!", battler.pbThis, battler.itemName))
+      battle.pbDisplay(_INTL("{1}用{2}回复了少许HP。", battler.pbThis, battler.itemName))
     end
   }
 )
@@ -2038,7 +2038,7 @@ Battle::ItemEffects::EndOfRoundHealing.add(:LEFTOVERS,
 Battle::ItemEffects::EndOfRoundEffect.add(:FLAMEORB,
   proc { |item, battler, battle|
     next if !battler.pbCanBurn?(battler, false)
-    battler.pbBurn(nil, _INTL("{1} was burned by the {2}!", battler.pbThis, battler.itemName))
+    battler.pbBurn(nil, _INTL("{1}因{2}被灼伤了！", battler.pbThis, battler.itemName))
   }
 )
 
@@ -2047,7 +2047,7 @@ Battle::ItemEffects::EndOfRoundEffect.add(:STICKYBARB,
     next if !battler.takesIndirectDamage?
     battle.scene.pbDamageAnimation(battler)
     battler.pbTakeEffectDamage(battler.totalhp / 8, false) do |hp_lost|
-      battle.pbDisplay(_INTL("{1} is hurt by its {2}!", battler.pbThis, battler.itemName))
+      battle.pbDisplay(_INTL("{1}因{2}而受到了伤害！", battler.pbThis, battler.itemName))
     end
   }
 )
@@ -2055,7 +2055,7 @@ Battle::ItemEffects::EndOfRoundEffect.add(:STICKYBARB,
 Battle::ItemEffects::EndOfRoundEffect.add(:TOXICORB,
   proc { |item, battler, battle|
     next if !battler.pbCanPoison?(battler, false)
-    battler.pbPoison(nil, _INTL("{1} was badly poisoned by the {2}!",
+    battler.pbPoison(nil, _INTL("{1}因{2}中剧毒了！",
        battler.pbThis, battler.itemName), true)
   }
 )
@@ -2082,7 +2082,7 @@ Battle::ItemEffects::CertainSwitching.add(:SHEDSHELL,
 
 Battle::ItemEffects::OnSwitchIn.add(:AIRBALLOON,
   proc { |item, battler, battle|
-    battle.pbDisplay(_INTL("{1} floats in the air with its {2}!",
+    battle.pbDisplay(_INTL("{1}靠着{2}浮在了空中！",
                            battler.pbThis, battler.itemName))
   }
 )

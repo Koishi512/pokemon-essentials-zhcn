@@ -77,7 +77,7 @@ class Game_Temp
   }
 
   def add_battle_rule(rule, var = nil)
-    raise _INTL("Battle rule \"{1}\" does not exist.", rule) if !BATTLE_RULES.keys.include?(rule.to_s.downcase)
+    raise _INTL("战斗规则\"{1}\"不存在。", rule) if !BATTLE_RULES.keys.include?(rule.to_s.downcase)
     BATTLE_RULES[rule.to_s.downcase][1].call(self.battle_rules, var)
   end
 end
@@ -101,7 +101,7 @@ def setBattleRule(*args)
       $game_temp.add_battle_rule(arg)
     end
   end
-  raise _INTL("Argument {1} expected a variable after it but didn't have one.", r) if r
+  raise _INTL("参数{1}需要在后面指定一个变量，但没有提供。", r) if r
 end
 
 # Used to determine the environment in battle, and also the form of Burmy/
@@ -160,9 +160,9 @@ module BattleCreationHelperMethods
   end
 
   def skip_battle(outcome_variable, trainer_battle = false)
-    pbMessage(_INTL("SKIPPING BATTLE...")) if !trainer_battle && $player.pokemon_count > 0
-    pbMessage(_INTL("SKIPPING BATTLE...")) if trainer_battle && $DEBUG
-    pbMessage(_INTL("AFTER WINNING...")) if trainer_battle && $player.able_pokemon_count > 0
+    pbMessage(_INTL("跳过战斗...")) if !trainer_battle && $player.pokemon_count > 0
+    pbMessage(_INTL("跳过战斗...")) if trainer_battle && $DEBUG
+    pbMessage(_INTL("战斗胜利后...")) if trainer_battle && $player.able_pokemon_count > 0
     $game_temp.clear_battle_rules
     if $game_temp.memorized_bgm && $game_system.is_a?(Game_System)
       $game_system.bgm_pause
@@ -420,29 +420,29 @@ class WildBattle
     args.each do |arg|
       case arg
       when Pokemon
-        raise _INTL("Species {1} was given but not a level.", species_id) if species_id
+        raise _INTL("已给出物种{1}但没有等级。", species_id) if species_id
         ret.push(arg)
       when Array
-        raise _INTL("Species {1} was given but not a level.", species_id) if species_id
+        raise _INTL("已给出物种{1}但没有等级。", species_id) if species_id
         species = GameData::Species.get(arg[0]).id
         pkmn = pbGenerateWildPokemon(species, arg[1])
         ret.push(pkmn)
       else
         if species_id   # Expecting level
           if !arg.is_a?(Integer) || !(1..GameData::GrowthRate.max_level).include?(arg)
-            raise _INTL("Expected a level (1..{1}) but {2} is not a number or not a valid level.", GameData::GrowthRate.max_level, arg)
+            raise _INTL("期望一个等级(1..{1})但{2}不是数字或不是有效的等级。", GameData::GrowthRate.max_level, arg)
           end
           ret.push(pbGenerateWildPokemon(species_id, arg))
           species_id = nil
         else   # Expecting species ID
           if !GameData::Species.exists?(arg)
-            raise _INTL("Species {1} does not exist.", arg)
+            raise _INTL("物种{1}不存在。", arg)
           end
           species_id = arg
         end
       end
     end
-    raise _INTL("Species {1} was given but not a level.", species_id) if species_id
+    raise _INTL("已给出物种{1}但没有等级。", species_id) if species_id
     return ret
   end
 end
@@ -544,17 +544,17 @@ class TrainerBattle
     args.each_with_index do |arg, i|
       case arg
       when NPCTrainer
-        raise _INTL("Trainer type {1} was given but not a trainer name.", trainer_type) if trainer_type
+        raise _INTL("已给出训练家类型{1}但没有训练家名称。", trainer_type) if trainer_type
         trainer_array.push(arg)
         foe_items.push(arg.items)
         party_starts.push(pokemon_array.length)
         arg.party.each { |pkmn| pokemon_array.push(pkmn) }
       when Array   # [trainer type, trainer name, version number, speech (optional)]
-        raise _INTL("Trainer type {1} was given but not a trainer name.", trainer_type) if trainer_type
+        raise _INTL("训练家类型{1}已给出但没有训练家名称。", trainer_type) if trainer_type
         trainer = pbLoadTrainer(arg[0], arg[1], arg[2])
         pbMissingTrainer(arg[0], arg[1], arg[2]) if !trainer
         trainer = pbLoadTrainer(arg[0], arg[1], arg[2]) if !trainer   # Try again
-        raise _INTL("Trainer for data '{1}' is not defined.", arg) if !trainer
+        raise _INTL("数据'{1}'的训练家未定义。", arg) if !trainer
         EventHandlers.trigger(:on_trainer_load, trainer)
         trainer.lose_text = arg[3] if arg[3] && !arg[3].empty?
         trainer_array.push(trainer)
@@ -564,12 +564,12 @@ class TrainerBattle
       else
         if trainer_name   # Expecting version number
           if !arg.is_a?(Integer) || arg < 0
-            raise _INTL("Expected a trainer version number (0 or higher) but {1} is not a number or not a valid value.", arg)
+            raise _INTL("期望一个训练家版本号(0或更高)但{1}不是数字或不是有效的值。", arg)
           end
           trainer = pbLoadTrainer(trainer_type, trainer_name, arg)
           pbMissingTrainer(trainer_type, trainer_name, arg) if !trainer
           trainer = pbLoadTrainer(trainer_type, trainer_name, arg) if !trainer   # Try again
-          raise _INTL("Trainer for data '{1}, {2}, {3}' is not defined.", trainer_type, trainer_name, arg) if !trainer
+          raise _INTL("数据'{1}, {2}, {3}'的训练家未定义。", trainer_type, trainer_name, arg) if !trainer
           EventHandlers.trigger(:on_trainer_load, trainer)
           trainer_array.push(trainer)
           foe_items.push(trainer.items)
@@ -579,7 +579,7 @@ class TrainerBattle
           trainer_name = nil
         elsif trainer_type   # Expecting trainer name
           if !arg.is_a?(String) || arg.strip.empty?
-            raise _INTL("Expected a trainer name but '{1}' is not a valid name.", arg)
+            raise _INTL("期望一个训练家名称但'{1}'不是有效的名称。", arg)
           end
           if args[i + 1].is_a?(Integer)   # Version number is next
             trainer_name = arg.strip
@@ -587,7 +587,7 @@ class TrainerBattle
             trainer = pbLoadTrainer(trainer_type, arg)
             pbMissingTrainer(trainer_type, arg, 0) if !trainer
             trainer = pbLoadTrainer(trainer_type, arg) if !trainer   # Try again
-            raise _INTL("Trainer for data '{1}, {2}' is not defined.", trainer_type, arg) if !trainer
+            raise _INTL("数据'{1}, {2}'的训练家未定义。", trainer_type, arg) if !trainer
             EventHandlers.trigger(:on_trainer_load, trainer)
             trainer_array.push(trainer)
             foe_items.push(trainer.items)
@@ -597,13 +597,13 @@ class TrainerBattle
           end
         else   # Expecting trainer type
           if !GameData::TrainerType.exists?(arg)
-            raise _INTL("Trainer type {1} does not exist.", arg)
+            raise _INTL("训练家类型{1}不存在。", arg)
           end
           trainer_type = arg
         end
       end
     end
-    raise _INTL("Trainer type {1} was given but not a trainer name.", trainer_type) if trainer_type
+    raise _INTL("训练家类型{1}已给出但没有训练家名称。", trainer_type) if trainer_type
     return trainer_array, foe_items, pokemon_array, party_starts
   end
 end

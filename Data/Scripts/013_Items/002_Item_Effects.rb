@@ -25,7 +25,7 @@
 
 def pbRepel(item, steps)
   if $PokemonGlobal.repel > 0
-    pbMessage(_INTL("But a repellent's effect still lingers from earlier."))
+    pbMessage(_INTL("之前使用的喷雾效果还留着！"))
     return false
   end
   pbSEPlay("Repel")
@@ -56,16 +56,16 @@ EventHandlers.add(:on_player_step_taken, :repel_counter,
     repels = []
     GameData::Item.each { |itm| repels.push(itm.id) if itm.has_flag?("Repel") }
     if repels.none? { |item| $bag.has?(item) }
-      pbMessage(_INTL("The repellent's effect wore off!"))
+      pbMessage(_INTL("喷雾的效果消失了！"))
       next
     end
     commands = {}
     if $PokemonGlobal.repel_item && $bag.has?($PokemonGlobal.repel_item)
-      commands[:repeat] = _INTL("Use {1}", GameData::Item.get($PokemonGlobal.repel_item).name)
+      commands[:repeat] = _INTL("使用{1}", GameData::Item.get($PokemonGlobal.repel_item).name)
     end
-    commands[:choose_another] = _INTL("Use another repellent")
-    commands[:cancel] = _INTL("Cancel")
-    cmd = pbMessage(_INTL("The repellent's effect wore off! Would you like to use another one?"), commands.values, -1)
+    commands[:choose_another] = _INTL("使用另一种喷雾")
+    commands[:cancel] = _INTL("取消")
+    cmd = pbMessage(_INTL("喷雾的效果消失了！要继续使用吗？"), commands.values, -1)
     next if cmd < 0
     new_item = nil
     case commands.keys[cmd]
@@ -92,11 +92,11 @@ EventHandlers.add(:on_player_step_taken, :repel_counter,
 ItemHandlers::UseInField.add(:BLACKFLUTE, proc { |item|
   pbUseItemMessage(item)
   if Settings::FLUTES_CHANGE_WILD_ENCOUNTER_LEVELS
-    pbMessage(_INTL("Now you're more likely to encounter high-level Pokémon!"))
+    pbMessage(_INTL("遇到高等级宝可梦的可能性上升了！"))
     $PokemonMap.higher_level_wild_pokemon = true
     $PokemonMap.lower_level_wild_pokemon = false
   else
-    pbMessage(_INTL("The likelihood of encountering Pokémon decreased!"))
+    pbMessage(_INTL("遇到宝可梦的可能性下降了！"))
     $PokemonMap.lower_encounter_rate = true
     $PokemonMap.higher_encounter_rate = false
   end
@@ -106,11 +106,11 @@ ItemHandlers::UseInField.add(:BLACKFLUTE, proc { |item|
 ItemHandlers::UseInField.add(:WHITEFLUTE, proc { |item|
   pbUseItemMessage(item)
   if Settings::FLUTES_CHANGE_WILD_ENCOUNTER_LEVELS
-    pbMessage(_INTL("Now you're more likely to encounter low-level Pokémon!"))
+    pbMessage(_INTL("遇到低等级宝可梦的可能性上升了！"))
     $PokemonMap.lower_level_wild_pokemon = true
     $PokemonMap.higher_level_wild_pokemon = false
   else
-    pbMessage(_INTL("The likelihood of encountering Pokémon increased!"))
+    pbMessage(_INTL("遇到宝可梦的可能性上升了！"))
     $PokemonMap.higher_encounter_rate = true
     $PokemonMap.lower_encounter_rate = false
   end
@@ -132,35 +132,35 @@ ItemHandlers::UseInField.add(:HONEY, proc { |item|
 
 ItemHandlers::UseFromBag.add(:ESCAPEROPE, proc { |item, bag_screen|
   if !$game_player.can_map_transfer_with_follower?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
+    pbMessage(_INTL("无法在有人与你同行时使用。"))
     next 0
   end
   if ($PokemonGlobal.escapePoint rescue false) && $PokemonGlobal.escapePoint.length > 0
     next 2   # End screen and use item
   end
-  pbMessage(_INTL("Can't use that here."))
+  pbMessage(_INTL("无法在这里使用！"))
   next 0
 })
 ItemHandlers::ConfirmUseInField.add(:ESCAPEROPE, proc { |item|   # Called from Ready Menu
   escape = ($PokemonGlobal.escapePoint rescue nil)
   if !escape || escape == []
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     next false
   end
   if !$game_player.can_map_transfer_with_follower?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
+    pbMessage(_INTL("无法在有人与你同行时使用。"))
     next false
   end
   mapname = pbGetMapNameFromId(escape[0])
-  next pbConfirmMessage(_INTL("Want to escape from here and return to {1}?", mapname))
+  next pbConfirmMessage(_INTL("想逃离这里然后回到{1}吗？", mapname))
 })
 ItemHandlers::UseInField.add(:ESCAPEROPE, proc { |item|
   escape = ($PokemonGlobal.escapePoint rescue nil)
   if !escape || escape == []
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     next false
   elsif !$game_player.can_map_transfer_with_follower?
-    pbMessage(_INTL("It can't be used when you have someone with you."))
+    pbMessage(_INTL("无法在有人与你同行时使用。"))
     next false
   end
   pbUseItemMessage(item)
@@ -182,7 +182,7 @@ ItemHandlers::UseInField.add(:ESCAPEROPE, proc { |item|
 
 ItemHandlers::UseInField.add(:SACREDASH, proc { |item|
   if $player.pokemon_count == 0
-    pbMessage(_INTL("There is no Pokémon."))
+    pbMessage(_INTL("没有宝可梦。"))
     next false
   elsif $player.pokemon_party.none? { |pkmn| pkmn.fainted? }
     pbMessage(_INTL("即便使用也无效果哦。"))
@@ -191,7 +191,7 @@ ItemHandlers::UseInField.add(:SACREDASH, proc { |item|
   revived = 0
   pbFadeOutIn do
     screen = UI::Party.new($player.party, mode: :choose_pokemon)
-    screen.set_help_text(_INTL("Using item..."))
+    screen.set_help_text(_INTL("正在使用道具……"))
     screen.show_and_hide do
       $player.party.each_with_index do |pkmn, i|
         next if !pkmn.fainted?
@@ -199,7 +199,7 @@ ItemHandlers::UseInField.add(:SACREDASH, proc { |item|
         pkmn.heal
         screen.refresh
         pbSEPlay("Use item in party")
-        screen.show_message(_INTL("{1}'s HP was restored.", pkmn.name))
+        screen.show_message(_INTL("{1}的体力回复了！", pkmn.name))
       end
       screen.show_message(_INTL("即便使用也无效果哦。")) if revived == 0
     end
@@ -210,7 +210,7 @@ ItemHandlers::UseInField.add(:SACREDASH, proc { |item|
 #-------------------------------------------------------------------------------
 
 ItemHandlers::UseText.add(:BICYCLE, proc { |item|
-  next ($PokemonGlobal.bicycle) ? _INTL("Walk") : _INTL("Use")
+  next ($PokemonGlobal.bicycle) ? _INTL("步行") : _INTL("使用")
 })
 ItemHandlers::UseFromBag.add(:BICYCLE, proc { |item, bag_screen|
   next (pbBikeCheck) ? 2 : 0
@@ -232,13 +232,13 @@ ItemHandlers::UseInField.copy(:BICYCLE, :MACHBIKE, :ACROBIKE)
 ItemHandlers::UseFromBag.add(:OLDROD, proc { |item, bag_screen|
   notCliff = $game_map.passable?($game_player.x, $game_player.y, $game_player.direction, $game_player)
   next 2 if $game_player.pbFacingTerrainTag.can_fish && ($PokemonGlobal.surfing || notCliff)
-  pbMessage(_INTL("Can't use that here."))
+  pbMessage(_INTL("无法在这里使用！"))
   next 0
 })
 ItemHandlers::UseInField.add(:OLDROD, proc { |item|
   notCliff = $game_map.passable?($game_player.x, $game_player.y, $game_player.direction, $game_player)
   if !$game_player.pbFacingTerrainTag.can_fish || (!$PokemonGlobal.surfing && !notCliff)
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     next false
   end
   encounter = $PokemonEncounters.has_encounter_type?(:OldRod)
@@ -253,7 +253,7 @@ ItemHandlers::UseFromBag.copy(:OLDROD, :GOODROD)
 ItemHandlers::UseInField.add(:GOODROD, proc { |item|
   notCliff = $game_map.passable?($game_player.x, $game_player.y, $game_player.direction, $game_player)
   if !$game_player.pbFacingTerrainTag.can_fish || (!$PokemonGlobal.surfing && !notCliff)
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     next false
   end
   encounter = $PokemonEncounters.has_encounter_type?(:GoodRod)
@@ -268,7 +268,7 @@ ItemHandlers::UseFromBag.copy(:OLDROD, :SUPERROD)
 ItemHandlers::UseInField.add(:SUPERROD, proc { |item|
   notCliff = $game_map.passable?($game_player.x, $game_player.y, $game_player.direction, $game_player)
   if !$game_player.pbFacingTerrainTag.can_fish || (!$PokemonGlobal.surfing && !notCliff)
-    pbMessage(_INTL("Can't use that here."))
+    pbMessage(_INTL("无法在这里使用！"))
     next false
   end
   encounter = $PokemonEncounters.has_encounter_type?(:SuperRod)
@@ -289,7 +289,7 @@ ItemHandlers::UseInField.add(:ITEMFINDER, proc { |item|
   pbSEPlay("Itemfinder")
   event = pbClosestHiddenItem
   if !event
-    pbMessage(_INTL("... \\wt[10]... \\wt[10]... \\wt[10]... \\wt[10]Nope! There's no response."))
+    pbMessage(_INTL("... \\wt[10]... \\wt[10]... \\wt[10]... \\wt[10]不！没有反应。"))
     next true
   end
   offsetX = event.x - $game_player.x
@@ -300,7 +300,7 @@ ItemHandlers::UseInField.add(:ITEMFINDER, proc { |item|
       $game_player.turn_right_90
     end
     pbWait(0.3)
-    pbMessage(_INTL("The {1}'s indicating something right underfoot!", GameData::Item.get(item).name))
+    pbMessage(_INTL("{1}显示有东西正在脚下！", GameData::Item.get(item).name))
   else   # Item is nearby, face towards it
     direction = $game_player.direction
     if offsetX.abs > offsetY.abs
@@ -315,8 +315,8 @@ ItemHandlers::UseInField.add(:ITEMFINDER, proc { |item|
     when 8 then $game_player.turn_up
     end
     pbWait(0.3)
-    pbMessage(_INTL("Huh? The {1}'s responding!", GameData::Item.get(item).name) + "\1")
-    pbMessage(_INTL("There's an item buried around here!"))
+    pbMessage(_INTL("嗯？{1}有反应！", GameData::Item.get(item).name) + "\1")
+    pbMessage(_INTL("附近有道具！"))
   end
   next true
 })
@@ -346,27 +346,27 @@ ItemHandlers::UseInField.add(:TOWNMAP, proc { |item|
 #-------------------------------------------------------------------------------
 
 ItemHandlers::UseInField.add(:COINCASE, proc { |item|
-  pbMessage(_INTL("Coins: {1}", $player.coins.to_s_formatted))
+  pbMessage(_INTL("代币：{1}", $player.coins.to_s_formatted))
   next true
 })
 
 #-------------------------------------------------------------------------------
 
 ItemHandlers::UseText.add(:EXPALLOFF, proc { |item|
-  next _INTL("Turn on")
+  next _INTL("开启")
 })
 ItemHandlers::UseInField.add(:EXPALLOFF, proc { |item|
   $bag.replace_item(:EXPALLOFF, :EXPALL)
-  pbMessage(_INTL("The Exp Share was turned on."))
+  pbMessage(_INTL("学习装置设为开启状态。"))
   next true
 })
 
 ItemHandlers::UseText.add(:EXPALL, proc { |item|
-  next _INTL("Turn off")
+  next _INTL("关闭")
 })
 ItemHandlers::UseInField.add(:EXPALL, proc { |item|
   $bag.replace_item(:EXPALL, :EXPALLOFF)
-  pbMessage(_INTL("The Exp Share was turned off."))
+  pbMessage(_INTL("学习装置设为关闭状态。"))
   next true
 })
 
@@ -376,15 +376,15 @@ ItemHandlers::UseFromBag.addIf(:move_machines,
   proc { |item| GameData::Item.get(item).is_machine? },
   proc { |item, bag_screen|
     if $player.pokemon_count == 0
-      pbMessage(_INTL("There is no Pokémon."))
+      pbMessage(_INTL("没有宝可梦。"))
       next 0
     end
     item_data = GameData::Item.get(item)
     move = item_data.move
     next 0 if !move
     pbSEPlay("PC access")
-    pbMessage(_INTL("You booted up the {1}.", item_data.portion_name) + "\1")
-    next 0 if !pbConfirmMessage(_INTL("Do you want to teach {1} to a Pokémon?",
+    pbMessage(_INTL("启动了{1}！", item_data.portion_name) + "\1")
+    next 0 if !pbConfirmMessage(_INTL("要学习{1}吗？",
                                       GameData::Move.get(move).name))
     next 1 if pbMoveTutorChoose(move, nil, true, item_data.is_TR?, bag_screen)
     next 0
@@ -433,8 +433,8 @@ ItemHandlers::UseOnPokemon.addIf(:evolution_stones,
           use_proc = proc { |pk| next (pk.check_evolution_on_use_item(item)) ? :can_use : :cannot_use }
           valid_values = [:can_use]
           use_annotations = {
-            :can_use    => _INTL("Can Use"),
-            :cannot_use => _INTL("Cannot Use")
+            :can_use    => _INTL("能使用！"),
+            :cannot_use => _INTL("不能使用")
           }
           screen.set_able_annotation_proc(use_proc, valid_values, use_annotations)
           screen.refresh
@@ -472,8 +472,8 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS, proc { |item, qty, pkmn, screen|
         use_proc = proc { |pk| next (pk.check_evolution_on_use_item(item)) ? :can_use : :cannot_use }
         valid_values = [:can_use]
         use_annotations = {
-          :can_use    => _INTL("Can Use"),
-          :cannot_use => _INTL("Cannot Use")
+          :can_use    => _INTL("能使用！"),
+          :cannot_use => _INTL("不能使用")
         }
         screen.set_able_annotation_proc(use_proc, valid_values, use_annotations)
         screen.refresh
@@ -505,8 +505,8 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFDARKNESS, proc { |item, qty, pkmn, scree
         use_proc = proc { |pk| next (pk.check_evolution_on_use_item(item)) ? :can_use : :cannot_use }
         valid_values = [:can_use]
         use_annotations = {
-          :can_use    => _INTL("Can Use"),
-          :cannot_use => _INTL("Cannot Use")
+          :can_use    => _INTL("能使用！"),
+          :cannot_use => _INTL("不能使用")
         }
         screen.set_able_annotation_proc(use_proc, valid_values, use_annotations)
         screen.refresh
@@ -594,7 +594,7 @@ ItemHandlers::UseOnPokemon.add(:AWAKENING, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1} woke up.", pkmn.name))
+  screen.show_message(_INTL("{1}醒过来了！", pkmn.name))
   next true
 })
 
@@ -612,7 +612,7 @@ ItemHandlers::UseOnPokemon.add(:ANTIDOTE, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1} was cured of its poisoning.", pkmn.name))
+  screen.show_message(_INTL("{1}中的毒彻底清除了！", pkmn.name))
   next true
 })
 
@@ -630,7 +630,7 @@ ItemHandlers::UseOnPokemon.add(:BURNHEAL, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1}'s burn was healed.", pkmn.name))
+  screen.show_message(_INTL("{1}的灼伤治愈了！", pkmn.name))
   next true
 })
 
@@ -648,7 +648,7 @@ ItemHandlers::UseOnPokemon.add(:PARALYZEHEAL, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1} was cured of paralysis.", pkmn.name))
+  screen.show_message(_INTL("{1}的麻痹被解除了！", pkmn.name))
   next true
 })
 
@@ -666,7 +666,7 @@ ItemHandlers::UseOnPokemon.add(:ICEHEAL, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1} was thawed out.", pkmn.name))
+  screen.show_message(_INTL("{1}的冰冻被融化了！", pkmn.name))
   next true
 })
 
@@ -684,7 +684,7 @@ ItemHandlers::UseOnPokemon.add(:FULLHEAL, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1} became healthy.", pkmn.name))
+  screen.show_message(_INTL("{1}变得健康了！", pkmn.name))
   next true
 })
 
@@ -717,9 +717,9 @@ ItemHandlers::UseOnPokemon.add(:FULLRESTORE, proc { |item, qty, pkmn, screen|
   pkmn.heal_status
   screen.refresh
   if hpgain > 0
-    screen.show_message(_INTL("{1}'s HP was restored by {2} points.", pkmn.name, hpgain))
+    screen.show_message(_INTL("{1}的体力回复了{2}！", pkmn.name, hpgain))
   else
-    screen.show_message(_INTL("{1} became healthy.", pkmn.name))
+    screen.show_message(_INTL("{1}变得健康了！", pkmn.name))
   end
   next true
 })
@@ -739,7 +739,7 @@ ItemHandlers::UseOnPokemon.add(:REVIVE, proc { |item, qty, pkmn, screen|
   pkmn.hp = 1 if pkmn.hp <= 0
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1}'s HP was restored.", pkmn.name))
+  screen.show_message(_INTL("{1}的体力回复了！", pkmn.name))
   next true
 })
 
@@ -753,7 +753,7 @@ ItemHandlers::UseOnPokemon.add(:MAXREVIVE, proc { |item, qty, pkmn, screen|
   pkmn.heal_HP
   pkmn.heal_status
   screen.refresh
-  screen.show_message(_INTL("{1}'s HP was restored.", pkmn.name))
+  screen.show_message(_INTL("{1}的体力回复了！", pkmn.name))
   next true
 })
 
@@ -792,7 +792,7 @@ ItemHandlers::UseOnPokemon.add(:HEALPOWDER, proc { |item, qty, pkmn, screen|
   pkmn.heal_status
   pkmn.changeHappiness("powder")
   screen.refresh
-  screen.show_message(_INTL("{1} became healthy.", pkmn.name))
+  screen.show_message(_INTL("{1}变得健康了！", pkmn.name))
   next true
 })
 
@@ -807,7 +807,7 @@ ItemHandlers::UseOnPokemon.add(:REVIVALHERB, proc { |item, qty, pkmn, screen|
   pkmn.heal_status
   pkmn.changeHappiness("revivalherb")
   screen.refresh
-  screen.show_message(_INTL("{1}'s HP was restored.", pkmn.name))
+  screen.show_message(_INTL("{1}的体力回复了！", pkmn.name))
   next true
 })
 
@@ -818,14 +818,14 @@ ItemHandlers::UsableOnPokemon.add(:ETHER, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:ETHER, proc { |item, qty, pkmn, screen|
   pbPlayDecisionSE
-  move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to restore?"))
+  move = screen.choose_move(pkmn, _INTL("要回复哪个招式？"))
   next false if move < 0
   if pbRestorePP(pkmn, move, 10) == 0
     screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
-  screen.show_message(_INTL("PP was restored!"))
+  screen.show_message(_INTL("PP回复了。"))
   next true
 })
 
@@ -835,14 +835,14 @@ ItemHandlers::UseOnPokemon.copy(:ETHER, :LEPPABERRY)
 ItemHandlers::UsableOnPokemon.copy(:ETHER, :MAXETHER)
 ItemHandlers::UseOnPokemon.add(:MAXETHER, proc { |item, qty, pkmn, screen|
   pbPlayDecisionSE
-  move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to restore?"))
+  move = screen.choose_move(pkmn, _INTL("要回复哪个招式？"))
   next false if move < 0
   if pbRestorePP(pkmn, move, pkmn.moves[move].total_pp - pkmn.moves[move].pp) == 0
     screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   end
   pbSEPlay("Use item in party")
-  screen.show_message(_INTL("PP was restored!"))
+  screen.show_message(_INTL("PP回复了。"))
   next true
 })
 
@@ -857,7 +857,7 @@ ItemHandlers::UseOnPokemon.add(:ELIXIR, proc { |item, qty, pkmn, screen|
     next false
   end
   pbSEPlay("Use item in party")
-  screen.show_message(_INTL("PP was restored!"))
+  screen.show_message(_INTL("PP回复了。"))
   next true
 })
 
@@ -872,7 +872,7 @@ ItemHandlers::UseOnPokemon.add(:MAXELIXIR, proc { |item, qty, pkmn, screen|
     next false
   end
   pbSEPlay("Use item in party")
-  screen.show_message(_INTL("PP was restored!"))
+  screen.show_message(_INTL("PP回复了。"))
   next true
 })
 
@@ -883,7 +883,7 @@ ItemHandlers::UsableOnPokemon.add(:PPUP, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:PPUP, proc { |item, qty, pkmn, screen|
   pbPlayDecisionSE
-  move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to increase?"))
+  move = screen.choose_move(pkmn, _INTL("要增加哪个招式的PP？"))
   next false if move < 0
   if pkmn.moves[move].total_pp <= 1 || pkmn.moves[move].ppup >= 3
     screen.show_message(_INTL("即便使用也无效果哦。"))
@@ -892,14 +892,14 @@ ItemHandlers::UseOnPokemon.add(:PPUP, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.moves[move].ppup += 1
   movename = pkmn.moves[move].name
-  screen.show_message(_INTL("{1}'s PP increased.", movename))
+  screen.show_message(_INTL("{1}的PP增加了！", movename))
   next true
 })
 
 ItemHandlers::UsableOnPokemon.copy(:PPUP, :PPMAX)
 ItemHandlers::UseOnPokemon.add(:PPMAX, proc { |item, qty, pkmn, screen|
   pbPlayDecisionSE
-  move = screen.choose_move(pkmn, _INTL("Which move's PP do you want to increase?"))
+  move = screen.choose_move(pkmn, _INTL("要增加哪个招式的PP？"))
   next false if move < 0
   if pkmn.moves[move].total_pp <= 1 || pkmn.moves[move].ppup >= 3
     screen.show_message(_INTL("即便使用也无效果哦。"))
@@ -908,7 +908,7 @@ ItemHandlers::UseOnPokemon.add(:PPMAX, proc { |item, qty, pkmn, screen|
   pbSEPlay("Use item in party")
   pkmn.moves[move].ppup = 3
   movename = pkmn.moves[move].name
-  screen.show_message(_INTL("{1}'s PP increased.", movename))
+  screen.show_message(_INTL("{1}的PP增加了！", movename))
   next true
 })
 
@@ -1101,7 +1101,7 @@ ItemHandlers::UseOnPokemon.add(:FRESHSTARTMOCHI, proc { |item, qty, pkmn, screen
     next false
   end
   GameData::Stat.each_main { |s| pkmn.ev[s.id] = 0 }
-  screen.show_message(_INTL("{1}'s base points were all reset to zero!", pkmn.name))
+  screen.show_message(_INTL("{1}的基础点数消失得干干净净了！", pkmn.name))
   next true
 })
 
@@ -1347,9 +1347,9 @@ ItemHandlers::UseOnPokemonMaximum.add(:POMEGBERRY, proc { |item, pkmn|
 ItemHandlers::UseOnPokemon.add(:POMEGBERRY, proc { |item, qty, pkmn, screen|
   next pbRaiseHappinessAndLowerEV(
     pkmn, screen, :HP, qty, [
-      _INTL("{1} adores you! Its base HP fell!", pkmn.name),
-      _INTL("{1} became more friendly. Its base HP can't go lower.", pkmn.name),
-      _INTL("{1} became more friendly. However, its base HP fell!", pkmn.name)
+      _INTL("{1}和你的亲密度已经最高了！HP的基础点数降低了！", pkmn.name),
+      _INTL("{1}和你有点亲密了！HP的基础点数不再降低！", pkmn.name),
+      _INTL("{1}和你有点亲密了！HP的基础点数降低了！", pkmn.name)
     ]
   )
 })
@@ -1363,9 +1363,9 @@ ItemHandlers::UseOnPokemonMaximum.add(:KELPSYBERRY, proc { |item, pkmn|
 ItemHandlers::UseOnPokemon.add(:KELPSYBERRY, proc { |item, qty, pkmn, screen|
   next pbRaiseHappinessAndLowerEV(
     pkmn, screen, :ATTACK, qty, [
-      _INTL("{1} adores you! Its base Attack fell!", pkmn.name),
-      _INTL("{1} became more friendly. Its base Attack can't go lower.", pkmn.name),
-      _INTL("{1} became more friendly. However, its base Attack fell!", pkmn.name)
+      _INTL("{1}和你的亲密度已经最高了！攻击的基础点数降低了！", pkmn.name),
+      _INTL("{1}和你有点亲密了！攻击的基础点数不再降低！", pkmn.name),
+      _INTL("{1}和你有点亲密了！攻击的基础点数降低了！", pkmn.name)
     ]
   )
 })
@@ -1379,9 +1379,9 @@ ItemHandlers::UseOnPokemonMaximum.add(:QUALOTBERRY, proc { |item, pkmn|
 ItemHandlers::UseOnPokemon.add(:QUALOTBERRY, proc { |item, qty, pkmn, screen|
   next pbRaiseHappinessAndLowerEV(
     pkmn, screen, :DEFENSE, qty, [
-      _INTL("{1} adores you! Its base Defense fell!", pkmn.name),
-      _INTL("{1} became more friendly. Its base Defense can't go lower.", pkmn.name),
-      _INTL("{1} became more friendly. However, its base Defense fell!", pkmn.name)
+      _INTL("{1}和你的亲密度已经最高了！防御的基础点数降低了！", pkmn.name),
+      _INTL("{1}和你有点亲密了！防御的基础点数不再降低！", pkmn.name),
+      _INTL("{1}和你有点亲密了！防御的基础点数降低了！", pkmn.name)
     ]
   )
 })
@@ -1395,9 +1395,9 @@ ItemHandlers::UseOnPokemonMaximum.add(:HONDEWBERRY, proc { |item, pkmn|
 ItemHandlers::UseOnPokemon.add(:HONDEWBERRY, proc { |item, qty, pkmn, screen|
   next pbRaiseHappinessAndLowerEV(
     pkmn, screen, :SPECIAL_ATTACK, qty, [
-      _INTL("{1} adores you! Its base Special Attack fell!", pkmn.name),
-      _INTL("{1} became more friendly. Its base Special Attack can't go lower.", pkmn.name),
-      _INTL("{1} became more friendly. However, its base Special Attack fell!", pkmn.name)
+      _INTL("{1}和你的亲密度已经最高了！特攻的基础点数降低了！", pkmn.name),
+      _INTL("{1}和你有点亲密了！特攻的基础点数不再降低！", pkmn.name),
+      _INTL("{1}和你有点亲密了！特攻的基础点数降低了！", pkmn.name)
     ]
   )
 })
@@ -1411,9 +1411,9 @@ ItemHandlers::UseOnPokemonMaximum.add(:GREPABERRY, proc { |item, pkmn|
 ItemHandlers::UseOnPokemon.add(:GREPABERRY, proc { |item, qty, pkmn, screen|
   next pbRaiseHappinessAndLowerEV(
     pkmn, screen, :SPECIAL_DEFENSE, qty, [
-      _INTL("{1} adores you! Its base Special Defense fell!", pkmn.name),
-      _INTL("{1} became more friendly. Its base Special Defense can't go lower.", pkmn.name),
-      _INTL("{1} became more friendly. However, its base Special Defense fell!", pkmn.name)
+      _INTL("{1}和你的亲密度已经最高了！特防的基础点数降低了！", pkmn.name),
+      _INTL("{1}和你有点亲密了！特防的基础点数不再降低！", pkmn.name),
+      _INTL("{1}和你有点亲密了！特防的基础点数降低了！", pkmn.name)
     ]
   )
 })
@@ -1427,9 +1427,9 @@ ItemHandlers::UseOnPokemonMaximum.add(:TAMATOBERRY, proc { |item, pkmn|
 ItemHandlers::UseOnPokemon.add(:TAMATOBERRY, proc { |item, qty, pkmn, screen|
   next pbRaiseHappinessAndLowerEV(
     pkmn, screen, :SPEED, qty, [
-      _INTL("{1} adores you! Its base Speed fell!", pkmn.name),
-      _INTL("{1} became more friendly. Its base Speed can't go lower.", pkmn.name),
-      _INTL("{1} became more friendly. However, its base Speed fell!", pkmn.name)
+      _INTL("{1}和你的亲密度已经最高了！速度的基础点数降低了！", pkmn.name),
+      _INTL("{1}和你有点亲密了！速度的基础点数不再降低！", pkmn.name),
+      _INTL("{1}和你有点亲密了！速度的基础点数降低了！", pkmn.name)
     ]
   )
 })
@@ -1447,7 +1447,7 @@ ItemHandlers::UsableOnPokemon.add(:ABILITYCAPSULE, proc { |item, pkmn|
   next !abil1.nil? && !abil2.nil? && !pkmn.hasHiddenAbility? && !pkmn.isSpecies?(:ZYGARDE)
 })
 ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, qty, pkmn, screen|
-  if screen.show_confirm_message(_INTL("Do you want to change {1}'s Ability?", pkmn.name))
+  if screen.show_confirm_message(_INTL("要改变{1}的特性吗？", pkmn.name))
     abils = pkmn.getAbilityList
     abil1 = nil
     abil2 = nil
@@ -1464,7 +1464,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYCAPSULE, proc { |item, qty, pkmn, screen|
     pkmn.ability_index = newabil
     pkmn.ability = nil
     screen.refresh
-    screen.show_message(_INTL("{1}'s Ability changed! Its Ability is now {2}!", pkmn.name, newabilname))
+    screen.show_message(_INTL("{1}的特性变成了{2}！", pkmn.name, newabilname))
     next true
   end
   next false
@@ -1481,7 +1481,7 @@ ItemHandlers::UsableOnPokemon.add(:ABILITYPATCH, proc { |item, pkmn|
   next !new_ability_id.nil? && !pkmn.isSpecies?(:ZYGARDE)
 })
 ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, qty, pkmn, screen|
-  if screen.show_confirm_message(_INTL("Do you want to change {1}'s Ability?", pkmn.name))
+  if screen.show_confirm_message(_INTL("要改变{1}的特性吗？", pkmn.name))
     abils = pkmn.getAbilityList
     new_ability_id = nil
     if pkmn.hasHiddenAbility?
@@ -1496,7 +1496,7 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH, proc { |item, qty, pkmn, screen|
     pkmn.ability_index = 2
     pkmn.ability = nil
     screen.refresh
-    screen.show_message(_INTL("{1}'s Ability changed! Its Ability is now {2}!", pkmn.name, pkmn.ability.name))
+    screen.show_message(_INTL("{1}的特性变成了{2}！", pkmn.name, pkmn.ability.name))
     next true
   end
   next false
@@ -1509,10 +1509,10 @@ ItemHandlers::UsableOnPokemon.add(:METEORITE, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:METEORITE, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:DEOXYS)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   new_form = (pkmn.form + 1) % 4   # Normal, Attack, Defense, Speed
@@ -1529,15 +1529,15 @@ ItemHandlers::UsableOnPokemon.add(:GRACIDEA, proc { |item, pkmn|
 ItemHandlers::UseOnPokemon.add(:GRACIDEA, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:SHAYMIN) || pkmn.form != 0 ||
      pkmn.status == :FROZEN || PBDayNight.isNight?
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   pkmn.setForm(1) do
     screen.refresh
-    screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+    screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
   end
   next true
 })
@@ -1547,15 +1547,15 @@ ItemHandlers::UsableOnPokemon.add(:REDNECTAR, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:REDNECTAR, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:ORICORIO) || pkmn.form == 0
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   pkmn.setForm(0) do
     screen.refresh
-    screen.show_message(_INTL("{1} changed form!", pkmn.name))
+    screen.show_message(_INTL("{1}的样子改变了！", pkmn.name))
   end
   next true
 })
@@ -1565,15 +1565,15 @@ ItemHandlers::UsableOnPokemon.add(:YELLOWNECTAR, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:YELLOWNECTAR, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:ORICORIO) || pkmn.form == 1
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   pkmn.setForm(1) do
     screen.refresh
-    screen.show_message(_INTL("{1} changed form!", pkmn.name))
+    screen.show_message(_INTL("{1}的样子改变了！", pkmn.name))
   end
   next true
 })
@@ -1583,15 +1583,15 @@ ItemHandlers::UsableOnPokemon.add(:PINKNECTAR, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:PINKNECTAR, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:ORICORIO) || pkmn.form == 2
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   pkmn.setForm(2) do
     screen.refresh
-    screen.show_message(_INTL("{1} changed form!", pkmn.name))
+    screen.show_message(_INTL("{1}的样子改变了！", pkmn.name))
   end
   next true
 })
@@ -1601,15 +1601,15 @@ ItemHandlers::UsableOnPokemon.add(:PURPLENECTAR, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:PURPLENECTAR, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:ORICORIO) || pkmn.form == 3
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   pkmn.setForm(3) do
     screen.refresh
-    screen.show_message(_INTL("{1} changed form!", pkmn.name))
+    screen.show_message(_INTL("{1}的样子改变了！", pkmn.name))
   end
   next true
 })
@@ -1626,16 +1626,16 @@ ItemHandlers::UseOnPokemon.add(:REVEALGLASS, proc { |item, qty, pkmn, screen|
      !pkmn.isSpecies?(:THUNDURUS) &&
      !pkmn.isSpecies?(:LANDORUS) &&
      !pkmn.isSpecies?(:ENAMORUS)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   newForm = (pkmn.form == 0) ? 1 : 0
   pkmn.setForm(newForm) do
     screen.refresh
-    screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+    screen.show_message(_INTL("{1}的样子改变了！", pkmn.name))
   end
   next true
 })
@@ -1645,16 +1645,16 @@ ItemHandlers::UsableOnPokemon.add(:PRISONBOTTLE, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:PRISONBOTTLE, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:HOOPA)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   newForm = (pkmn.form == 0) ? 1 : 0
   pkmn.setForm(newForm) do
     screen.refresh
-    screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+    screen.show_message(_INTL("{1}的样子改变了！", pkmn.name))
   end
   next true
 })
@@ -1664,22 +1664,22 @@ ItemHandlers::UsableOnPokemon.add(:ROTOMCATALOG, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:ROTOMCATALOG, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:ROTOM)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   choices = [
-    _INTL("Light bulb"),
-    _INTL("Microwave oven"),
-    _INTL("Washing machine"),
-    _INTL("Refrigerator"),
-    _INTL("Electric fan"),
-    _INTL("Lawn mower"),
-    _INTL("Cancel")
+    _INTL("灯泡"),
+    _INTL("微波炉"),
+    _INTL("洗衣机"),
+    _INTL("冰箱"),
+    _INTL("电风扇"),
+    _INTL("割草机"),
+    _INTL("取消")
   ]
-  new_form = screen.show_choice_message(_INTL("Which appliance would you like to order?"), choices, pkmn.form)
+  new_form = screen.show_choice_message(_INTL("要购买哪种电器呢？"), choices, pkmn.form)
   if new_form == pkmn.form
     screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
@@ -1698,14 +1698,14 @@ ItemHandlers::UsableOnPokemon.add(:ZYGARDECUBE, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:ZYGARDECUBE, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:ZYGARDE)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
-  case screen.show_choice_message(_INTL("What will you do with {1}?", pkmn.name),
-                                  [_INTL("Change form"), _INTL("Change Ability"), _INTL("Cancel")])
+  case screen.show_choice_message(_INTL("要对{1}做什么？", pkmn.name),
+                                  [_INTL("改变样子"), _INTL("改变特性"), _INTL("取消")])
   when 0   # Change form
     newForm = (pkmn.form == 0) ? 1 : 0
     pkmn.setForm(newForm) do
@@ -1718,7 +1718,7 @@ ItemHandlers::UseOnPokemon.add(:ZYGARDECUBE, proc { |item, qty, pkmn, screen|
     pkmn.ability_index = new_abil
     pkmn.ability = nil
     screen.refresh
-    screen.show_message(_INTL("{1}'s Ability changed! Its Ability is now {2}!", pkmn.name, pkmn.ability.name))
+    screen.show_message(_INTL("{1}的特性变成了{2}！", pkmn.name, pkmn.ability.name))
     next true
   end
   next false
@@ -1731,16 +1731,16 @@ ItemHandlers::UsableOnPokemon.add(:DNASPLICERS, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:DNASPLICERS, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:KYUREM)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   if pkmn.fused
     # Unfusing
     if $player.party_full?
-      screen.show_message(_INTL("You have no room to separate the Pokémon."))
+      screen.show_message(_INTL("同行的宝可梦已满，无法分离。"))
       next false
     end
     pkmn.setForm(0) do
@@ -1748,26 +1748,26 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS, proc { |item, qty, pkmn, screen|
       pkmn.fused = nil
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:DNASPLICERSUSED, :DNASPLICERS)
   else
     # Fusing
-    screen.set_help_text(_INTL("Fuse with which Pokémon?"))
+    screen.set_help_text(_INTL("要和哪只宝可梦合体呢？"))
     chosen = screen.choose_pokemon_core
     next false if chosen < 0
     other_pkmn = $player.party[chosen]
     if pkmn == other_pkmn
-      screen.show_message(_INTL("It cannot be fused with itself."))
+      screen.show_message(_INTL("无法与自己合体。"))
       next false
     elsif other_pkmn.egg?
-      screen.show_message(_INTL("It cannot be fused with an Egg."))
+      screen.show_message(_INTL("无法与蛋合体。"))
       next false
     elsif other_pkmn.fainted?
-      screen.show_message(_INTL("It cannot be fused with that fainted Pokémon."))
+      screen.show_message(_INTL("无法与昏厥的宝可梦合体。"))
       next false
     elsif !other_pkmn.isSpecies?(:RESHIRAM) && !other_pkmn.isSpecies?(:ZEKROM)
-      screen.show_message(_INTL("It cannot be fused with that Pokémon."))
+      screen.show_message(_INTL("无法与那只宝可梦合体。"))
       next false
     end
     newForm = 0
@@ -1778,7 +1778,7 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS, proc { |item, qty, pkmn, screen|
       $player.remove_pokemon_at_index(chosen)
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:DNASPLICERS, :DNASPLICERSUSED)
   end
@@ -1793,16 +1793,16 @@ ItemHandlers::UsableOnPokemon.add(:NSOLARIZER, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:NSOLARIZER, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:NECROZMA)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   if pkmn.fused
     # Unfusing
     if $player.party_full?
-      screen.show_message(_INTL("You have no room to separate the Pokémon."))
+      screen.show_message(_INTL("同行的宝可梦已满，无法分离。"))
       next false
     end
     pkmn.setForm(0) do
@@ -1810,26 +1810,26 @@ ItemHandlers::UseOnPokemon.add(:NSOLARIZER, proc { |item, qty, pkmn, screen|
       pkmn.fused = nil
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:NSOLARIZERUSED, :NSOLARIZER)
   else
     # Fusing
-    screen.set_help_text(_INTL("Fuse with which Pokémon?"))
+    screen.set_help_text(_INTL("要和哪只宝可梦合体呢？"))
     chosen = screen.choose_pokemon_core
     next false if chosen < 0
     other_pkmn = $player.party[chosen]
     if pkmn == other_pkmn
-      screen.show_message(_INTL("It cannot be fused with itself."))
+      screen.show_message(_INTL("无法与自己合体。"))
       next false
     elsif other_pkmn.egg?
-      screen.show_message(_INTL("It cannot be fused with an Egg."))
+      screen.show_message(_INTL("无法与蛋合体。"))
       next false
     elsif other_pkmn.fainted?
-      screen.show_message(_INTL("It cannot be fused with that fainted Pokémon."))
+      screen.show_message(_INTL("无法与昏厥的宝可梦合体。"))
       next false
     elsif !other_pkmn.isSpecies?(:SOLGALEO)
-      screen.show_message(_INTL("It cannot be fused with that Pokémon."))
+      screen.show_message(_INTL("无法与那只宝可梦合体。"))
       next false
     end
     pkmn.setForm(1) do
@@ -1837,7 +1837,7 @@ ItemHandlers::UseOnPokemon.add(:NSOLARIZER, proc { |item, qty, pkmn, screen|
       $player.remove_pokemon_at_index(chosen)
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:NSOLARIZER, :NSOLARIZERUSED)
   end
@@ -1852,16 +1852,16 @@ ItemHandlers::UsableOnPokemon.add(:NLUNARIZER, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:NLUNARIZER, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:NECROZMA)
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   if pkmn.fused
     # Unfusing
     if $player.party_full?
-      screen.show_message(_INTL("You have no room to separate the Pokémon."))
+      screen.show_message(_INTL("同行的宝可梦已满，无法分离。"))
       next false
     end
     pkmn.setForm(0) do
@@ -1869,26 +1869,26 @@ ItemHandlers::UseOnPokemon.add(:NLUNARIZER, proc { |item, qty, pkmn, screen|
       pkmn.fused = nil
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:NLUNARIZERUSED, :NLUNARIZER)
   else
     # Fusing
-    screen.set_help_text(_INTL("Fuse with which Pokémon?"))
+    screen.set_help_text(_INTL("要和哪只宝可梦合体呢？"))
     chosen = screen.choose_pokemon_core
     next false if chosen < 0
     other_pkmn = $player.party[chosen]
     if pkmn == other_pkmn
-      screen.show_message(_INTL("It cannot be fused with itself."))
+      screen.show_message(_INTL("无法与自己合体。"))
       next false
     elsif other_pkmn.egg?
-      screen.show_message(_INTL("It cannot be fused with an Egg."))
+      screen.show_message(_INTL("无法与蛋合体。"))
       next false
     elsif other_pkmn.fainted?
-      screen.show_message(_INTL("It cannot be fused with that fainted Pokémon."))
+      screen.show_message(_INTL("无法与昏厥的宝可梦合体。"))
       next false
     elsif !other_pkmn.isSpecies?(:LUNALA)
-      screen.show_message(_INTL("It cannot be fused with that Pokémon."))
+      screen.show_message(_INTL("无法与那只宝可梦合体。"))
       next false
     end
     pkmn.setForm(2) do
@@ -1896,7 +1896,7 @@ ItemHandlers::UseOnPokemon.add(:NLUNARIZER, proc { |item, qty, pkmn, screen|
       $player.remove_pokemon_at_index(chosen)
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:NLUNARIZER, :NLUNARIZERUSED)
   end
@@ -1911,16 +1911,16 @@ ItemHandlers::UsableOnPokemon.add(:REINSOFUNITY, proc { |item, pkmn|
 })
 ItemHandlers::UseOnPokemon.add(:REINSOFUNITY, proc { |item, qty, pkmn, screen|
   if !pkmn.isSpecies?(:CALYREX) || !pkmn.fused.nil?
-    screen.show_message(_INTL("It had no effect."))
+    screen.show_message(_INTL("即便使用也无效果哦。"))
     next false
   elsif pkmn.fainted?
-    screen.show_message(_INTL("This can't be used on the fainted Pokémon."))
+    screen.show_message(_INTL("不能用于昏厥的宝可梦。"))
     next false
   end
   if pkmn.fused
     # Unfusing
     if $player.party_full?
-      screen.show_message(_INTL("You have no room to separate the Pokémon."))
+      screen.show_message(_INTL("同行的宝可梦已满，无法分离。"))
       next false
     end
     pkmn.setForm(0) do
@@ -1928,27 +1928,27 @@ ItemHandlers::UseOnPokemon.add(:REINSOFUNITY, proc { |item, qty, pkmn, screen|
       pkmn.fused = nil
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:REINSOFUNITYUSED, :REINSOFUNITY)
   else
     # Fusing
-    screen.set_help_text(_INTL("Fuse with which Pokémon?"))
+    screen.set_help_text(_INTL("要和哪只宝可梦合体呢？"))
     chosen = screen.choose_pokemon_core
     next false if chosen < 0
     other_pkmn = $player.party[chosen]
     if pkmn == other_pkmn
-      screen.show_message(_INTL("It cannot be fused with itself."))
+      screen.show_message(_INTL("无法与自己合体。"))
       next false
     elsif other_pkmn.egg?
-      screen.show_message(_INTL("It cannot be fused with an Egg."))
+      screen.show_message(_INTL("无法与蛋合体。"))
       next false
     elsif other_pkmn.fainted?
-      screen.show_message(_INTL("It cannot be fused with that fainted Pokémon."))
+      screen.show_message(_INTL("无法与昏厥的宝可梦合体。"))
       next false
     elsif !other_pkmn.isSpecies?(:GLASTRIER) &&
           !other_pkmn.isSpecies?(:SPECTRIER)
-      screen.show_message(_INTL("It cannot be fused with that Pokémon."))
+      screen.show_message(_INTL("无法与那只宝可梦合体。"))
       next false
     end
     newForm = 0
@@ -1959,7 +1959,7 @@ ItemHandlers::UseOnPokemon.add(:REINSOFUNITY, proc { |item, qty, pkmn, screen|
       $player.remove_pokemon_at_index(chosen)
       screen.refresh_party
       screen.refresh
-      screen.show_message(_INTL("{1} changed Forme!", pkmn.name))
+      screen.show_message(_INTL("{1}的形态改变了！", pkmn.name))
     end
     $bag.replace_item(:REINSOFUNITY, :REINSOFUNITYUSED)
   end

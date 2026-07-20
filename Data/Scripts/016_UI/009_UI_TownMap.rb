@@ -196,7 +196,7 @@ class UI::TownMapVisuals < UI::BaseVisuals
 
   def load_region_data
     if !GameData::TownMap.exists?(@region)
-      raise _INTL("No Town Map data is defined for region {1}.", @region)
+      raise _INTL("未定义地区{1}的城镇地图数据。", @region)
     end
     @map_data = GameData::TownMap.get(@region)
   end
@@ -570,24 +570,24 @@ class UI::TownMapVisuals < UI::BaseVisuals
       input_x += input_spacing
     end
     if @mode == :fly || @sub_mode == :fly
-      draw_input.call(Input::USE, _INTL("Fly"))
-      draw_input.call(Input::BACK, _INTL("Cancel")) if @sub_mode == :fly
+      draw_input.call(Input::USE, _INTL("飞翔"))
+      draw_input.call(Input::BACK, _INTL("取消")) if @sub_mode == :fly
       return
     end
     if can_mark?
-      draw_input.call(Input::USE, _INTL("Mark"))
+      draw_input.call(Input::USE, _INTL("标记"))
     end
     if can_zoom?
-      draw_input.call(Input::USE, _INTL("Zoom"))
+      draw_input.call(Input::USE, _INTL("缩放"))
     elsif zoomed?
-      draw_input.call(Input::BACK, _INTL("Zoom"))
+      draw_input.call(Input::BACK, _INTL("缩放"))
     end
     if can_access_screen_menu?
       options = screen_menu_options
       if options.length == 2 && options.include?(:fly_mode)   # Also contains :cancel
-        draw_input.call(Input::ACTION, _INTL("Fly"))
+        draw_input.call(Input::ACTION, _INTL("飞翔"))
       else
-        draw_input.call(Input::ACTION, _INTL("Menu"))
+        draw_input.call(Input::ACTION, _INTL("菜单"))
       end
     end
   end
@@ -963,7 +963,7 @@ class UI::TownMap < UI::BaseScreen
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:screen_menu, {
     :menu         => :town_map_menu,
-    :menu_message => proc { |screen| _INTL("Choose an option.") }
+    :menu_message => proc { |screen| _INTL("请选择一个选项。") }
   })
 
   #-----------------------------------------------------------------------------
@@ -977,8 +977,8 @@ class UI::TownMap < UI::BaseScreen
         index = commands.length if region_data.id == screen.region
         commands[region] = region_data.name
       end
-      commands[:cancel] = _INTL("Cancel")
-      region = screen.show_choice_message(_INTL("Which region's map do you want to view?"), commands, screen.region)
+      commands[:cancel] = _INTL("取消")
+      region = screen.show_choice_message(_INTL("你要查看哪个地区的地图呢？"), commands, screen.region)
       screen.set_region(region) if region && region != :cancel
     }
   })
@@ -1020,11 +1020,11 @@ class UI::TownMap < UI::BaseScreen
   def set_fly_destination
     point_data = @visuals.get_point_data
     if !point_data || !point_data[:fly_spot]
-      raise _INTL("No data for this point defined in town_map.txt somehow.")
+      raise _INTL("未定义此点在town_map.txt中的数据。")
     end
     if @mode != :fly
       map_name = pbGetMapNameFromId(point_data[:fly_spot][0])
-      return false if !show_confirm_message(_INTL("Would you like to use Fly to go to {1}?", map_name))
+      return false if !show_confirm_message(_INTL("要使用飞翔移动到{1}吗？", map_name))
     end
     @result = point_data[:fly_spot]
     return true
@@ -1044,7 +1044,7 @@ end
 # Menu options for choice menus that exist in the party screen.
 #===============================================================================
 MenuHandlers.add(:town_map_menu, :fly_mode, {
-  "name"      => _INTL("Fly"),
+  "name"      => _INTL("飞翔"),
   "order"     => 10,
   "condition" => proc { |screen|
     this_map_data = $game_map.metadata&.town_map_position
@@ -1055,7 +1055,7 @@ MenuHandlers.add(:town_map_menu, :fly_mode, {
 })
 
 MenuHandlers.add(:town_map_menu, :change_region, {
-  "name"      => _INTL("Change region"),
+  "name"      => _INTL("更换地区"),
   "order"     => 20,
   "condition" => proc { |screen|
     next screen.mode == :normal && screen.visited_regions.length >= 2
@@ -1063,7 +1063,7 @@ MenuHandlers.add(:town_map_menu, :change_region, {
 })
 
 MenuHandlers.add(:town_map_menu, :cancel, {
-  "name"  => _INTL("Cancel"),
+  "name"  => _INTL("取消"),
   "order" => 9999
 })
 

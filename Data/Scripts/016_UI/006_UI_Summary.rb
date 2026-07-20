@@ -115,7 +115,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
 
   PAGE_HANDLERS = HandlerHash.new
   PAGE_HANDLERS.add(:info, {
-    :name       => proc { next _INTL("INFO") },
+    :name       => proc { next _INTL("宝可梦信息") },
     :order      => 10,
     :icon_index => 0,
     :draw       => [
@@ -130,7 +130,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     ]
   })
   PAGE_HANDLERS.add(:skills, {
-    :name       => proc { next _INTL("SKILLS") },
+    :name       => proc { next _INTL("宝可梦能力") },
     :order      => 20,
     :icon_index => 1,
     :draw       => [
@@ -141,7 +141,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     ]
   })
   PAGE_HANDLERS.add(:moves, {
-    :name       => proc { next _INTL("MOVES") },
+    :name       => proc { next _INTL("战斗招式") },
     :order      => 30,
     :icon_index => 2,
     :draw       => [
@@ -151,7 +151,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     ]
   })
   PAGE_HANDLERS.add(:ribbons, {
-    :name       => proc { next _INTL("RIBBONS") },
+    :name       => proc { next _INTL("奖章") },
     :order      => 40,
     :icon_index => 3,
     :should_show => proc { |pokemon| next pokemon.numRibbons > 0 },
@@ -164,7 +164,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     ]
   })
   PAGE_HANDLERS.add(:memo, {
-    :name       => proc { next _INTL("TRAINER MEMO") },
+    :name       => proc { next _INTL("训练家笔记") },
     :order      => 50,
     :icon_index => 4,
     :draw       => [
@@ -174,7 +174,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     ]
   })
   PAGE_HANDLERS.add(:egg_memo, {
-    :name       => proc { next _INTL("TRAINER MEMO") },
+    :name       => proc { next _INTL("训练家笔记") },
     :egg_page   => true,
     :icon_index => 5,
     :draw       => [
@@ -620,12 +620,12 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
       helper_x = Graphics.width - 4
       helper_y = Graphics.height - @bitmaps[:input_icons].height
       if @move_index   # Viewing move details
-        text = _INTL("Rearrange") if ![:in_battle, :choose_move].include?(@mode)
+        text = _INTL("重排") if ![:in_battle, :choose_move].include?(@mode)
       else   # Viewing page generally
-        text = _INTL("Details")
+        text = _INTL("详情")
         if Settings::ALLOW_CHANGING_MOVES_IN_SUMMARY_SCREEN && @mode != :in_battle &&
            (@pokemon.numMoves > 1 || @pokemon.can_relearn_move?)
-          text2 = _INTL("Change")
+          text2 = _INTL("更换招式")
         end
       end
       if text
@@ -643,11 +643,11 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     when :ribbons
       text = nil
       if @ribbon_index
-        text = _INTL("Rearrange") if @mode != :in_battle
+        text = _INTL("重排") if @mode != :in_battle
         helper_x = Graphics.width - 10
         helper_y = Graphics.height - 100
       else
-        text = _INTL("Details")
+        text = _INTL("详情")
         helper_x = Graphics.width - 4
         helper_y = Graphics.height - 88
       end
@@ -660,7 +660,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
   #-----------------------------------------------------------------------------
 
   def draw_pokedex_number
-    draw_text(_INTL("Dex No."), 238, 86, theme: :white)
+    draw_text(_INTL("图鉴编号"), 238, 86, theme: :white)
     # Figure out what the Dex number is
     dex_num = 0
     dex_num_shift = false
@@ -690,16 +690,16 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
   end
 
   def draw_species
-    draw_text(_INTL("Species"), 238, 118, theme: :white)
+    draw_text(_INTL("种类"), 238, 118, theme: :white)
     species_name = @pokemon.speciesName
     species_name = crop_text(species_name, 144)
     draw_text(species_name, 428, 118, align: :center, theme: :black)
   end
 
   def draw_original_trainer_details
-    draw_text(_INTL("OT"), 238, 150, theme: :white)
+    draw_text(_INTL("初训家"), 238, 150, theme: :white)
     draw_text(_INTL("ID No."), 238, 182, theme: :white)
-    owner_name = (@pokemon.owner.name.empty?) ? _INTL("RENTAL") : @pokemon.owner.name
+    owner_name = (@pokemon.owner.name.empty?) ? _INTL("租借") : @pokemon.owner.name
     owner_name = crop_text(owner_name, 144)
     owner_theme = [:male, :female][@pokemon.owner.gender || 99] || :black
     draw_text(owner_name, 428, 150, align: :center, theme: owner_theme)
@@ -710,9 +710,9 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
   def draw_held_item
     @sprites[:held_item_icon].visible = true
     @sprites[:held_item_icon].item = @pokemon.item_id
-    draw_text(_INTL("Held Item"), 302, 230, theme: :white)
+    draw_text(_INTL("持有物"), 302, 230, theme: :white)
     # Write the held item's name
-    item_name = (@pokemon.hasItem?) ? @pokemon.item.name : _INTL("None")
+    item_name = (@pokemon.hasItem?) ? @pokemon.item.name : _INTL("无")
     item_name = crop_text(item_name, 192)
     draw_text(item_name, 302, 262, theme: :black)
   end
@@ -720,9 +720,9 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
   def draw_exp
     return if @pokemon.shadowPokemon?
     # Draw text
-    draw_text(_INTL("Exp. Points"), 238, 310, theme: :white)
+    draw_text(_INTL("当前经验值"), 238, 310, theme: :white)
     draw_text(@pokemon.exp.to_s_formatted, 490, 310, align: :right, theme: :black)
-    draw_text(_INTL("To Next Lv."), 238, 342, theme: :white)
+    draw_text(_INTL("距离下一级"), 238, 342, theme: :white)
     end_exp = @pokemon.growth_rate.minimum_exp_for_level(@pokemon.level + 1)
     draw_text((end_exp - @pokemon.exp).to_s_formatted, 490, 342, align: :right, theme: :black)
     # Draw Exp bar background
@@ -745,12 +745,12 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     draw_image(graphics_folder + "shadow_bar_fill", 242, 372,
                0, 0, (shadow_fract * 248).floor, -1)
     # Draw heart gauge text
-    heart_message = [_INTL("The door to its heart is open! Undo the final lock!"),
-                     _INTL("The door to its heart is almost fully open."),
-                     _INTL("The door to its heart is nearly open."),
-                     _INTL("The door to its heart is opening wider."),
-                     _INTL("The door to its heart is opening up."),
-                     _INTL("The door to its heart is tightly shut.")][@pokemon.heartStage]
+    heart_message = [_INTL("心扉眼看就要敞开了，将最后的心扉敞开吧！"),
+                     _INTL("心扉就要敞开了。"),
+                     _INTL("离敞开心扉不远了。"),
+                     _INTL("心扉敞开了不少。"),
+                     _INTL("心扉敞开了一些。"),
+                     _INTL("心扉被紧紧封闭了。")][@pokemon.heartStage]
     draw_paragraph_text(heart_message, 232, 310, 268, 2, theme: :black)
   end
 
@@ -775,7 +775,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
   end
 
   def draw_ability
-    draw_text(_INTL("Ability"), 224, 262, theme: :white)
+    draw_text(_INTL("特性"), 224, 262, theme: :white)
     ability = @pokemon.ability
     return if !ability
     ability_name = ability.name
@@ -837,13 +837,13 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
   def draw_move_properties
     selected_move = ((@move_index || 0) == Pokemon::MAX_MOVES) ? @new_move : @pokemon.moves[@move_index || 0]
     # Power
-    draw_text(_INTL("POWER"), 20, 128, theme: :white)
+    draw_text(_INTL("威力"), 20, 128, theme: :white)
     power_text = selected_move.display_power(@pokemon)
     power_text = "---" if power_text == 0   # Status move
     power_text = "???" if power_text == 1   # Variable power move
     draw_text(power_text, 222, 128, align: :right, theme: :black)
     # Accuracy
-    draw_text(_INTL("ACCURACY"), 20, 160, theme: :white)
+    draw_text(_INTL("命中率"), 20, 160, theme: :white)
     accuracy = selected_move.display_accuracy(@pokemon)
     if accuracy == 0
       draw_text("---", 222, 160, align: :right, theme: :black)
@@ -856,7 +856,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
   end
 
   def draw_ribbon_count
-    draw_text(_INTL("No. of Ribbons:"), 234, 338, theme: :black)
+    draw_text(_INTL("缎带数："), 234, 338, theme: :black)
     draw_text(@pokemon.numRibbons, 450, 338, align: :right, theme: :black)
   end
 
@@ -898,7 +898,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     # Add nature to memo
     if show_nature
       nature_name = red_text_tag + @pokemon.nature.name + black_text_tag
-      memo += _INTL("{1} nature.", nature_name) + "\n"
+      memo += _INTL("{1}的性格。", nature_name) + "\n"
     end
     # Add characteristic to memo
     if show_nature
@@ -914,36 +914,36 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
         end
       end
       characteristics = {
-        :HP              => [_INTL("Loves to eat."),
-                             _INTL("Takes plenty of siestas."),
-                             _INTL("Nods off a lot."),
-                             _INTL("Scatters things often."),
-                             _INTL("Likes to relax.")],
-        :ATTACK          => [_INTL("Proud of its power."),
-                             _INTL("Likes to thrash about."),
-                             _INTL("A little quick tempered."),
-                             _INTL("Likes to fight."),
-                             _INTL("Quick tempered.")],
-        :DEFENSE         => [_INTL("Sturdy body."),
-                             _INTL("Capable of taking hits."),
-                             _INTL("Highly persistent."),
-                             _INTL("Good endurance."),
-                             _INTL("Good perseverance.")],
-        :SPECIAL_ATTACK  => [_INTL("Highly curious."),
-                             _INTL("Mischievous."),
-                             _INTL("Thoroughly cunning."),
-                             _INTL("Often lost in thought."),
-                             _INTL("Very finicky.")],
-        :SPECIAL_DEFENSE => [_INTL("Strong willed."),
-                             _INTL("Somewhat vain."),
-                             _INTL("Strongly defiant."),
-                             _INTL("Hates to lose."),
-                             _INTL("Somewhat stubborn.")],
-        :SPEED           => [_INTL("Likes to run."),
-                             _INTL("Alert to sounds."),
-                             _INTL("Impetuous and silly."),
-                             _INTL("Somewhat of a clown."),
-                             _INTL("Quick to flee.")]
+        :HP              => [_INTL("非常喜欢吃东西。"),
+                             _INTL("经常睡午觉。"),
+                             _INTL("常常打瞌睡。"),
+                             _INTL("经常乱扔东西。"),
+                             _INTL("喜欢悠然自在。")],
+        :ATTACK          => [_INTL("以力气大为傲。"),
+                             _INTL("喜欢胡闹。"),
+                             _INTL("有点容易生气。"),
+                             _INTL("喜欢打架。"),
+                             _INTL("血气方刚。")],
+        :DEFENSE         => [_INTL("身体强壮。"),
+                             _INTL("抗打能力强。"),
+                             _INTL("顽强不屈。"),
+                             _INTL("能吃苦耐劳。"),
+                             _INTL("善于忍耐。")],
+        :SPECIAL_ATTACK  => [_INTL("好奇心强。"),
+                             _INTL("喜欢恶作剧。"),
+                             _INTL("做事万无一失。"),
+                             _INTL("经常思考。"),
+                             _INTL("一丝不苟。")],
+        :SPECIAL_DEFENSE => [_INTL("性格强势。"),
+                             _INTL("有一点点爱慕虚荣。"),
+                             _INTL("争强好胜。"),
+                             _INTL("不服输。"),
+                             _INTL("有一点点固执。")],
+        :SPEED           => [_INTL("喜欢比谁跑得快。"),
+                             _INTL("对声音敏感。"),
+                             _INTL("冒冒失失。"),
+                             _INTL("有点容易得意忘形。"),
+                             _INTL("逃得快。")]
       }
       memo += black_text_tag + characteristics[best_stat][best_iv % 5] + "\n"
     end
@@ -951,11 +951,11 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     memo += "\n" if show_nature
     # Write how Pokémon was obtained
     met_text = [
-      _INTL("Met at Lv. {1}.", @pokemon.obtain_level),
-      _INTL("Egg received."),
-      _INTL("Traded at Lv. {1}.", @pokemon.obtain_level),
+      _INTL("Lv. {1}时相遇。", @pokemon.obtain_level),
+      _INTL("得到了蛋。"),
+      _INTL("Lv. {1}时交换。", @pokemon.obtain_level),
       "",
-      _INTL("Had a fateful encounter at Lv. {1}.", @pokemon.obtain_level)
+      _INTL("Lv. {1}时命中注定般地相遇。", @pokemon.obtain_level)
     ][@pokemon.obtain_method]
     memo += black_text_tag + met_text + "\n" if met_text && met_text != ""
     # Add date received to memo
@@ -964,31 +964,31 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
       month = pbGetMonthName(@pokemon.timeReceived.mon)
       year  = @pokemon.timeReceived.year
       if Translation.month_day_date_format?
-        memo += black_text_tag + _INTL("{1} {2}, {3}", month, date, year) + "\n"
+        memo += black_text_tag + _INTL("{3}年{1}{2}日", month, date, year) + "\n"
       else
-        memo += black_text_tag + _INTL("{1} {2}, {3}", date, month, year) + "\n"
+        memo += black_text_tag + _INTL("{3}年{2}{1}日", date, month, year) + "\n"
       end
     end
     # Add map name Pokémon was received on to memo
     map_name = pbGetMapNameFromId(@pokemon.obtain_map)
     map_name = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
-    map_name = _INTL("Faraway place") if nil_or_empty?(map_name)
+    map_name = _INTL("遥远的地方") if nil_or_empty?(map_name)
     memo += red_text_tag + map_name + "\n"
     # If Pokémon was hatched, add when and where it hatched to memo
     if @pokemon.obtain_method == 1
-      memo += black_text_tag + _INTL("Egg hatched.") + "\n"
+      memo += black_text_tag + _INTL("蛋孵化了。") + "\n"
       if @pokemon.timeEggHatched
         date  = @pokemon.timeEggHatched.day
         month = pbGetMonthName(@pokemon.timeEggHatched.mon)
         year  = @pokemon.timeEggHatched.year
         if Translation.month_day_date_format?
-          memo += black_text_tag + _INTL("{1} {2}, {3}", month, date, year) + "\n"
+          memo += black_text_tag + _INTL("{3}年{1}{2}日", month, date, year) + "\n"
         else
-          memo += black_text_tag + _INTL("{1} {2}, {3}", date, month, year) + "\n"
+          memo += black_text_tag + _INTL("{3}年{2}{1}日", date, month, year) + "\n"
         end
       end
       map_name = pbGetMapNameFromId(@pokemon.hatched_map)
-      map_name = _INTL("Faraway place") if nil_or_empty?(map_name)
+      map_name = _INTL("遥远的地方") if nil_or_empty?(map_name)
       memo += red_text_tag + map_name + "\n"
     end
     # Write memo
@@ -1016,18 +1016,18 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
     map_name = @pokemon.obtain_text if @pokemon.obtain_text && !@pokemon.obtain_text.empty?
     if map_name && map_name != ""
       map_name = red_text_tag + map_name + black_text_tag
-      memo += black_text_tag + _INTL("A mysterious Pokémon Egg received from {1}.", map_name) + "\n"
+      memo += black_text_tag + _INTL("从{1}得到了神奇的宝可梦蛋。", map_name) + "\n"
     else
-      memo += black_text_tag + _INTL("A mysterious Pokémon Egg.") + "\n"
+      memo += black_text_tag + _INTL("神奇的宝可梦蛋。") + "\n"
     end
     # Draw obtain text
     draw_formatted_text(memo, 232, 86, 268)
     # Add Egg Watch blurb to memo
-    draw_text(_INTL("The Egg Watch"), 238, 246, theme: :white)
-    egg_state = _INTL("It looks like this Egg will take a long time to hatch.")
-    egg_state = _INTL("What will hatch from this? It doesn't seem close to hatching.") if @pokemon.steps_to_hatch < 10_200
-    egg_state = _INTL("It appears to move occasionally. It may be close to hatching.") if @pokemon.steps_to_hatch < 2550
-    egg_state = _INTL("Sounds can be heard coming from inside! It will hatch soon!") if @pokemon.steps_to_hatch < 1275
+    draw_text(_INTL("蛋的状况"), 238, 246, theme: :white)
+    egg_state = _INTL("这只蛋孵出来好像需要很长一段时间。")
+    egg_state = _INTL("会孵出来什么呢？好像还要过段时间才会孵出来。")     if @pokemon.steps_to_hatch < 10_200
+    egg_state = _INTL("好像偶尔在动。再过一点时间才会孵出来吧？")         if @pokemon.steps_to_hatch < 2550
+    egg_state = _INTL("能听到从里面传来的声音！好像快要孵出来了！")       if @pokemon.steps_to_hatch < 1275
     memo = black_text_tag + egg_state
     # Draw all text
     draw_formatted_text(memo, 232, 278, 268)
@@ -1099,9 +1099,9 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
                  overlay: :marking_overlay)
     end
     # Draw text
-    draw_text(_INTL("Mark {1}", @pokemon.name), 368, 102, align: :center, theme: :white, overlay: :marking_overlay)
-    draw_text(_INTL("OK"), 368, 254, align: :center, theme: :white, overlay: :marking_overlay)
-    draw_text(_INTL("Cancel"), 368, 304, align: :center, theme: :white, overlay: :marking_overlay)
+    draw_text(_INTL("标记{1}", @pokemon.name), 368, 102, align: :center, theme: :white, overlay: :marking_overlay)
+    draw_text(_INTL("好了"), 368, 254, align: :center, theme: :white, overlay: :marking_overlay)
+    draw_text(_INTL("取消"), 368, 304, align: :center, theme: :white, overlay: :marking_overlay)
   end
 
   #-----------------------------------------------------------------------------
@@ -1582,7 +1582,7 @@ class UI::PokemonSummary < UI::BaseScreen
   ACTIONS.add(:change_nickname, {
     :effect => proc { |screen|
       screen.visuals.fade_out
-      nickname = pbEnterText(_INTL("{1}'s nickname?", screen.pokemon.name),
+      nickname = pbEnterText(_INTL("{1}的名字是？", screen.pokemon.name),
                              0, Pokemon::MAX_NAME_SIZE, screen.pokemon.name, 2, screen.pokemon)
       screen.pokemon.name = nickname
       screen.refresh
@@ -1615,7 +1615,7 @@ class UI::PokemonSummary < UI::BaseScreen
       loop do
         move_index = screen.visuals.navigate_moves(move_index)
         break if move_index < 0
-        next if !screen.show_confirm_message(_INTL("Are you sure {1} should forget {2}?",
+        next if !screen.show_confirm_message(_INTL("你确定要让{1}忘记{2}吗？",
                                                    screen.pokemon.name, screen.pokemon.moves[move_index].name))
         # Delete the move
         move_name = screen.pokemon.moves[move_index].name
@@ -1623,7 +1623,7 @@ class UI::PokemonSummary < UI::BaseScreen
         screen.mode = old_mode
         screen.visuals.clean_up_navigate_moves
         screen.refresh
-        screen.show_message(_INTL("{1} has forgotten {2}.", screen.pokemon.name, move_name))
+        screen.show_message(_INTL("{1}已经忘记了{2}。", screen.pokemon.name, move_name))
         break
       end
       if move_index < 0   # Cancelled forgetting a move
@@ -1664,36 +1664,36 @@ end
 # Menu options for choice menus that exist in the Pokémon summary screen.
 #===============================================================================
 MenuHandlers.add(:summary_screen_interact, :give_item, {
-  "name"      => _INTL("Give item"),
+  "name"      => _INTL("给予道具"),
   "order"     => 10,
   "condition" => proc { |screen| next !screen.pokemon.egg? }
 })
 
 MenuHandlers.add(:summary_screen_interact, :take_item, {
-  "name"      => _INTL("Take item"),
+  "name"      => _INTL("取走道具"),
   "order"     => 20,
   "condition" => proc { |screen| next !screen.pokemon.egg? && screen.pokemon.hasItem? }
 })
 
 MenuHandlers.add(:summary_screen_interact, :change_nickname, {
-  "name"      => _INTL("Change nickname"),
+  "name"      => _INTL("更改昵称"),
   "order"     => 30,
   "condition" => proc { |screen| next Settings::ALLOW_RENAMING_POKEMON_IN_SUMMARY_SCREEN && screen.pokemon.can_change_nickname? }
 })
 
 MenuHandlers.add(:summary_screen_interact, :pokedex, {
-  "name"      => _INTL("View Pokédex"),
+  "name"      => _INTL("查看图鉴"),
   "order"     => 40,
   "condition" => proc { |screen| next !screen.pokemon.egg? && $player.has_pokedex }
 })
 
 MenuHandlers.add(:summary_screen_interact, :marking, {
-  "name"      => _INTL("Mark"),
+  "name"      => _INTL("标记"),
   "order"     => 50
 })
 
 MenuHandlers.add(:summary_screen_interact, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 
@@ -1701,19 +1701,19 @@ MenuHandlers.add(:summary_screen_interact, :cancel, {
 #
 #===============================================================================
 MenuHandlers.add(:summary_screen_moves_interact, :forget_move, {
-  "name"      => _INTL("Forget move"),
+  "name"      => _INTL("遗忘招式"),
   "order"     => 10,
   "condition" => proc { |screen| next screen.pokemon.numMoves > 1 }
 })
 
 MenuHandlers.add(:summary_screen_moves_interact, :remember_move, {
-  "name"      => _INTL("Remember move"),
+  "name"      => _INTL("回忆招式"),
   "order"     => 20,
   "condition" => proc { |screen| next screen.pokemon.can_relearn_move? }
 })
 
 MenuHandlers.add(:summary_screen_moves_interact, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 
