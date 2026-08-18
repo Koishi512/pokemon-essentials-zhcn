@@ -3,7 +3,8 @@
 #===============================================================================
 class AnimationPlayer::Emitter
   attr_accessor :slowdown
-  attr_accessor :emitter_polar_coordinates
+  attr_accessor :emitter_position_polar_coordinates, :emitter_spawn_polar_coordinates
+  attr_reader   :particle_sprites
 
   # These properties are used by individual ParticleSprites spawned by this
   # emitter, and aren't used by the emitter itself so don't need updating here.
@@ -45,6 +46,10 @@ class AnimationPlayer::Emitter
   end
 
   #-----------------------------------------------------------------------------
+
+  def name
+    return @particle[:name]
+  end
 
   # If the particle's focus is :user_and_target, this will return the user's
   # index.
@@ -163,7 +168,7 @@ class AnimationPlayer::Emitter
 
   # @next_emission is the time the sprite is being emitted.
   def create_particle_sprite(target_idx = -1)
-    particle_sprite = AnimationPlayer::ParticleSprite.new
+    particle_sprite = AnimationPlayer::ParticleSprite.new(self.name)
     particle_sprite.slowdown = @slowdown
     particle_sprite.emitter_params[:type] = @particle[:emitter_type]
     particle_sprite.emitter_params[:start_time] = @next_emission
@@ -219,31 +224,42 @@ class AnimationPlayer::Emitter
   # Calculate x/y/z focus values and additional x/y modifier and pass them all
   # to particle_sprite.
   def create_particle_sprite_set_coordinates(particle_sprite, target_idx = -1)
-    focus_xy = AnimationPlayer::Helper.get_xy_focus(
+    particle_sprite.focus_xy = AnimationPlayer::Helper.get_xy_focus(
       @particle, @user&.index, target_idx, @user_coords, @target_coords[target_idx], @side_sizes
     )
-    offset_xy = AnimationPlayer::Helper.get_xy_offset(@particle, (particle_sprite.sprite) ? particle_sprite.sprite[0] : nil)
-    focus_z = AnimationPlayer::Helper.get_z_focus(@particle, @user&.index, target_idx)
-    particle_sprite.focus_xy = focus_xy
-    particle_sprite.offset_xy = offset_xy
-    particle_sprite.focus_z = focus_z
+    particle_sprite.offset_xy = AnimationPlayer::Helper.get_xy_offset(@particle, (particle_sprite.sprite) ? particle_sprite.sprite[0] : nil)
+    particle_sprite.focus_z = AnimationPlayer::Helper.get_z_focus(@particle, @user&.index, target_idx)
+    if @emitter_position_polar_coordinates
+      particle_sprite.set_base_property_offset(:emitter_x, (@values[:emitter_r] * Math.cos(@values[:emitter_theta] * Math::PI / 180)).round)
+      particle_sprite.set_base_property_offset(:emitter_y, (-@values[:emitter_r] * Math.sin(@values[:emitter_theta] * Math::PI / 180)).round)
+    else
+      particle_sprite.set_base_property_offset(:emitter_x, @values[:emitter_x])
+      particle_sprite.set_base_property_offset(:emitter_y, @values[:emitter_y])
+    end
   end
 
-  # Set whether properties should be modified if the particle's target is on the
-  # opposing side.
+  # Set whether properties should be inverted/flipped, including if the
+  # particle's target is on the opposing side.
   def create_particle_sprite_set_flips(particle_sprite, target_idx = -1)
+    # Random inverts/flips
+    particle_sprite.random_invert_angle = true if @particle[:random_invert_angle] && rand(2) == 0
+    particle_sprite.random_invert_flip = true if @particle[:random_invert_flip] && rand(2) == 0
+    # Inverts/flips if the focus is on the opposing side
     relative_to_index = index_of_particle_focus(target_idx)
-    return if relative_to_index < 0 || relative_to_index.even?   # No focus/focus on player's side
-    return if GameData::Animation::FOCUS_TYPES_WITH_USER_AND_TARGET.include?(@particle[:focus])
-    particle_sprite.foe_invert_x = @particle[:foe_invert_x]
-    particle_sprite.foe_invert_y = @particle[:foe_invert_y]
-    particle_sprite.foe_flip     = @particle[:foe_flip]
+    if relative_to_index && relative_to_index >= 0 && relative_to_index.odd?
+      particle_sprite.foe_invert_z = @particle[:foe_invert_z]
+      if !GameData::Animation::FOCUS_TYPES_WITH_USER_AND_TARGET.include?(@particle[:focus])
+        particle_sprite.foe_invert_x = @particle[:foe_invert_x]
+        particle_sprite.foe_invert_y = @particle[:foe_invert_y]
+        particle_sprite.foe_flip     = @particle[:foe_flip]
+      end
+    end
   end
 
   def create_particle_sprite_set_movement_values(particle_sprite, target_idx = -1)
     [
       [:emit_speed, :speed],
-      [:emit_direction, :angle],
+      [:emit_direction, :direction],
       [:emit_gravity, :gravity],
       [:emit_period_x, :period_x],
       [:emit_period_y, :period_y],
@@ -258,7 +274,7 @@ class AnimationPlayer::Emitter
     particle_sprite.emitter_params[:period_x] /= 100.0
     particle_sprite.emitter_params[:period_y] /= 100.0
     particle_sprite.emitter_params[:period_z] /= 100.0
-    # Radius multipliers
+    # Radius/zoom random percentage modifiers (they're turned into multipliers)
     [
       [:emit_radius_x_range, :radius_x_mult],
       [:emit_radius_y_range, :radius_y_mult],
@@ -274,11 +290,13 @@ class AnimationPlayer::Emitter
     # Clockwise
     particle_sprite.emitter_params[:clockwise] = @values[:emit_clockwise]
     # Multipliers
+    particle_sprite.emitter_params[:x_multiplier] = @values[:emit_x_multiplier] / 100.0
+    particle_sprite.emitter_params[:y_multiplier] = @values[:emit_y_multiplier] / 100.0
     particle_sprite.emitter_params[:zoom_multiplier] = @values[:emit_zoom_multiplier] / 100.0
     particle_sprite.emitter_params[:opacity_multiplier] = @values[:emit_opacity_multiplier] / 100.0
     # X/Y speed
     speed = particle_sprite.emitter_params[:speed]
-    angle = particle_sprite.emitter_params[:angle]
+    angle = particle_sprite.emitter_params[:direction]
     speed_x = speed * Math.cos(angle * Math::PI / 180)
     speed_y = -speed * Math.sin(angle * Math::PI / 180)
     particle_sprite.emitter_params[:speed_x] = speed_x
@@ -286,50 +304,78 @@ class AnimationPlayer::Emitter
   end
 
   def create_particle_sprite_set_base_property_offsets(particle_sprite, target_idx = -1)
-    # X, Y
-    if @emitter_polar_coordinates
-      start_r = @values[:emit_r]
-      start_r_range = @values[:emit_r_range]
+    # Spawn X, spawn Y
+    if @emitter_spawn_polar_coordinates
+      start_r = @values[:spawn_r]
+      start_r_range = @values[:spawn_r_range]
       start_r += rand(-start_r_range, start_r_range) if start_r_range > 0
-      start_theta = @values[:emit_theta]
-      start_theta_range = @values[:emit_theta_range]
+      start_theta = @values[:spawn_theta]
+      start_theta_range = @values[:spawn_theta_range]
       start_theta += rand(-start_theta_range, start_theta_range) if start_theta_range > 0
       start_x = (start_r * Math.cos(start_theta * Math::PI / 180)).round
       start_y = (-start_r * Math.sin(start_theta * Math::PI / 180)).round
+      particle_sprite.set_base_property_offset(:spawn_r, start_r)
+      particle_sprite.set_base_property_offset(:spawn_theta, start_theta)
     else
-      start_x = @values[:emit_x]
-      start_x_range = @values[:emit_x_range]
+      start_x = @values[:spawn_x]
+      start_x_range = @values[:spawn_x_range]
       start_x += rand(-start_x_range, start_x_range) if start_x_range > 0
-      start_y = @values[:emit_y]
-      start_y_range = @values[:emit_y_range]
+      start_y = @values[:spawn_y]
+      start_y_range = @values[:spawn_y_range]
       start_y += rand(-start_y_range, start_y_range) if start_y_range > 0
     end
-    particle_sprite.set_base_property_offset(:x, start_x)
-    particle_sprite.set_base_property_offset(:y, start_y)
+    particle_sprite.set_base_property_offset(:spawn_x, start_x)
+    particle_sprite.set_base_property_offset(:spawn_y, start_y)
     # Angle
+    particle_sprite.initial_angle = @particle[:initial_angle] || :none
     relative_to_index = index_of_particle_focus(target_idx)
     if relative_to_index >= 0
-      case @particle[:angle_override] || :none
-      when :initial_angle_to_focus
-        particle_sprite.property_offsets[:angle] = AnimationPlayer::Helper.initial_angle_between(
-          [particle_sprite.property_offsets[:x], particle_sprite.property_offsets[:y]],
-          particle_sprite.focus_xy, particle_sprite.offset_xy
+      case @particle[:initial_angle] || :none
+      when :particle_to_focus
+        x_from_focus = particle_sprite.emitter_params[:emitter_x] + start_x
+        y_from_focus = particle_sprite.emitter_params[:emitter_y] + start_y
+        val = AnimationPlayer::Helper.initial_angle_between(
+          [x_from_focus, y_from_focus], particle_sprite.focus_xy, particle_sprite.offset_xy
         )
-      when :initial_emitter_angle_to_focus
-        particle_sprite.property_offsets[:angle] = AnimationPlayer::Helper.initial_angle_between(
+        particle_sprite.set_base_property_offset(:angle, val)
+      when :emitter_to_focus
+        val = AnimationPlayer::Helper.initial_angle_between(
           @particle, particle_sprite.focus_xy, particle_sprite.offset_xy
         )
-      else
-        particle_sprite.set_base_property_offset(:angle, @particle[:angle_override])
+        particle_sprite.set_base_property_offset(:angle, val)
       end
     end
-    # Randomization of properties
+    # Angle depends on the movement direction, or if that isn't set, where the
+    # particle is spawned relative to the emitter (pointing away from the
+    # emitter)
+    case @particle[:initial_angle] || :none
+    when :emitted_direction
+      ang = particle_sprite.emitter_params[:direction]   # Auto-movement direction
+      if ang.nil?   # Direction away from emitter
+        if start_x == 0
+          ang = (start_y > 0) ? 270 : 90
+        else
+          ang = Math.atan(start_y / start_x) * 180 / Math::PI
+        end
+      end
+      ang *= -1 if particle_sprite.random_invert_angle
+      if @values[:emit_x_multiplier] != 100 || @values[:emit_y_multiplier] != 100
+        start_x = Math.cos(ang * Math::PI / 180) * @values[:emit_x_multiplier] / 100.0
+        start_y = Math.sin(ang * Math::PI / 180) * @values[:emit_y_multiplier] / 100.0
+        if start_x == 0
+          ang = (start_y > 0) ? 270 : 90
+        else
+          ang = Math.atan(start_y / start_x) * 180 / Math::PI
+        end
+        ang += 180 if start_x < 0
+      end
+      particle_sprite.set_base_property_offset(:angle, ang)
+    end
+    # Randomization of angle
     if @particle[:random_angle_range] && @particle[:random_angle_range] != GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[:random_angle_range]
       ang = rand(-@particle[:random_angle_range], @particle[:random_angle_range])
-      particle_sprite.property_offsets[:angle] = ang
+      particle_sprite.set_base_property_offset(:angle, (particle_sprite.property_offsets[:angle] || 0) + ang)
     end
-    particle_sprite.random_invert_angle = true if @particle[:random_invert_angle] && rand(2) == 0
-    particle_sprite.random_invert_flip = true if @particle[:random_invert_flip] && rand(2) == 0
   end
 
   # NOTE: @processes assume the first keyframe is 0.

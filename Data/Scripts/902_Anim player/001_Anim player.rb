@@ -4,6 +4,7 @@
 class AnimationPlayer
   attr_accessor :looping
   attr_reader   :slowdown   # 1 = normal speed, 2 = half speed, 3 = one third speed, etc.
+  attr_reader   :sprites, :particle_sprites, :emitters
 
   # animation is either a GameData::Animation or a hash made from one.
   # user is a Battler, or nil.
@@ -131,6 +132,10 @@ class AnimationPlayer
   def finish
     @timer_start = nil
     @finished = true
+    ((@animation.is_a?(GameData::Animation)) ? @animation.scripts : @animation[:scripts]).each do |script|
+      next if !AnimationPlayer::END_ANIMATION_SCRIPTS[script]
+      AnimationPlayer::END_ANIMATION_SCRIPTS.trigger(script, self)
+    end
   end
 
   def finished?
@@ -178,7 +183,7 @@ class AnimationPlayer
   #-----------------------------------------------------------------------------
 
   def create_particle_sprite(particle, target_idx = -1)
-    particle_sprite = AnimationPlayer::ParticleSprite.new
+    particle_sprite = AnimationPlayer::ParticleSprite.new(particle[:name])
     @particle_sprites.push(particle_sprite)
     create_particle_sprite_assign_sprite(particle_sprite, particle, target_idx)
     create_particle_sprite_set_coordinates(particle_sprite, particle, target_idx)
@@ -264,6 +269,7 @@ class AnimationPlayer
   def create_particle_sprite_set_flips(particle_sprite, particle, target_idx = -1)
     relative_to_index = index_of_particle_focus(particle, target_idx)
     return if relative_to_index < 0 || relative_to_index.even?   # No focus/focus on player's side
+    particle_sprite.foe_invert_z = particle[:foe_invert_z]
     return if GameData::Animation::FOCUS_TYPES_WITH_USER_AND_TARGET.include?(particle[:focus])
     particle_sprite.foe_invert_x = particle[:foe_invert_x]
     particle_sprite.foe_invert_y = particle[:foe_invert_y]
@@ -271,20 +277,20 @@ class AnimationPlayer
   end
 
   def create_particle_sprite_set_base_property_offsets(particle_sprite, particle, target_idx = -1)
+    particle_sprite.initial_angle = particle[:initial_angle] || :none
     relative_to_index = index_of_particle_focus(particle, target_idx)
     if relative_to_index >= 0
-      case particle[:angle_override] || :none
-      when :initial_angle_to_focus, :initial_emitter_angle_to_focus
-        particle_sprite.property_offsets[:angle] = AnimationPlayer::Helper.initial_angle_between(
+      case particle[:initial_angle] || :none
+      when :particle_to_focus
+        val = AnimationPlayer::Helper.initial_angle_between(
           particle, particle_sprite.focus_xy, particle_sprite.offset_xy
         )
-      else
-        particle_sprite.set_base_property_offset(:angle, particle[:angle_override])
+        particle_sprite.set_base_property_offset(:angle, val)
       end
     end
     if particle[:random_angle_range] && particle[:random_angle_range] != GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[:random_angle_range]
       ang = rand(-particle[:random_angle_range], particle[:random_angle_range])
-      particle_sprite.property_offsets[:angle] = ang
+      particle_sprite.set_base_property_offset(:angle, ang)
     end
     particle_sprite.random_invert_angle = particle[:random_invert_angle]
     particle_sprite.random_invert_flip = particle[:random_invert_flip]
@@ -348,7 +354,8 @@ class AnimationPlayer
   end
 
   def set_up_emitter_parameters(emitter, particle)
-    emitter.emitter_polar_coordinates = particle[:emitter_polar_coordinates]
+    emitter.emitter_position_polar_coordinates = particle[:emitter_position_polar_coordinates]
+    emitter.emitter_spawn_polar_coordinates = particle[:emitter_spawn_polar_coordinates]
   end
 
   def add_emitter_commands(emitter, particle)
@@ -394,6 +401,11 @@ class AnimationPlayer
     # Update all particles/sprites
     @particle_sprites.each { |particle| particle.update(elapsed_time) }
     @emitters.each { |emitter| emitter.update(elapsed_time) }
+    # Run update scripts
+    ((@animation.is_a?(GameData::Animation)) ? @animation.scripts : @animation[:scripts]).each do |script|
+      next if !AnimationPlayer::UPDATE_ANIMATION_SCRIPTS[script]
+      AnimationPlayer::UPDATE_ANIMATION_SCRIPTS.trigger(script, self, elapsed_time / @slowdown)
+    end
     # Finish or loop the animation
     if elapsed_time >= @duration
       if looping
