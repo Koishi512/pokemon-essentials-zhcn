@@ -257,7 +257,7 @@ class PurifyChamber
       flow = self.chamberFlow(set)
       @sets[set].shadow.adjustHeart(-flow)
       next if !isPurifiable?(set)
-      pbMessage(_INTL("Your {1} in the Purify Chamber is ready for purification!",
+      pbMessage(_INTL("净化室里的{1}已经准备好净化了！",
                       @sets[set].shadow.name))
     end
   end
@@ -361,7 +361,7 @@ class PurifyChamberScreen
   def pbPlace(pkmn, position)
     return false if !pkmn
     if pkmn.egg?
-      @scene.pbDisplay(_INTL("Can't place an egg there."))
+      @scene.pbDisplay(_INTL("不能把蛋放置在那里。"))
       return false
     end
     if position == 0
@@ -376,12 +376,12 @@ class PurifyChamberScreen
         PurifyChamberHelper.pbSetPokemon(@chamber, position, pkmn)
         @scene.pbRefresh
       else
-        @scene.pbDisplay(_INTL("Only a Shadow Pokémon can go there."))
+        @scene.pbDisplay(_INTL("那里只能放置黑暗宝可梦。"))
         return false
       end
     elsif position >= 1
       if pkmn.shadowPokemon?
-        @scene.pbDisplay(_INTL("Can't place a Shadow Pokémon there."))
+        @scene.pbDisplay(_INTL("那里不能放置黑暗宝可梦。"))
         return false
       else
         oldpkmn = PurifyChamberHelper.pbGetPokemon(@chamber, position)
@@ -412,7 +412,7 @@ class PurifyChamberScreen
     if @chamber.setCount(set) == 0 && @chamber.isPurifiableIgnoreRegular?(set)
       pkmn = @chamber.getShadow(set)
       @scene.pbDisplay(
-        _INTL("This {1} is ready to open its heart. However, there must be at least one regular Pokémon in the set to perform a purification ceremony.",
+        _INTL("{1}已经准备敞开心扉了。 但是，净化组里还需要至少一只正常宝可梦才能进行净化仪式。",
               pkmn.name)
       )
     end
@@ -432,24 +432,24 @@ class PurifyChamberScreen
       when 0   # Place Pokemon in the set
         curpkmn = PurifyChamberHelper.pbGetPokemon(@chamber, cmd[1])
         if curpkmn || heldpkmn
-          commands = [_INTL("MOVE"), _INTL("SUMMARY"), _INTL("WITHDRAW")]
+          commands = [_INTL("移动"), _INTL("查看能力"), _INTL("收回")]
           if curpkmn && heldpkmn
-            commands[0] = _INTL("EXCHANGE")
+            commands[0] = _INTL("交换")
           elsif heldpkmn
-            commands[0] = _INTL("PLACE")
+            commands[0] = _INTL("放置")
           end
           cmdReplace = -1
           cmdRotate = -1
           if !heldpkmn && curpkmn && cmd[1] == 0 &&
              @chamber[@chamber.currentSet].length > 0
-            commands[cmdRotate = commands.length] = _INTL("ROTATE")
+            commands[cmdRotate = commands.length] = _INTL("旋转")
           end
           if !heldpkmn && curpkmn
-            commands[cmdReplace = commands.length] = _INTL("REPLACE")
+            commands[cmdReplace = commands.length] = _INTL("替换")
           end
-          commands.push(_INTL("CANCEL"))
+          commands.push(_INTL("取消"))
           choice = @scene.pbShowCommands(
-            _INTL("What shall I do with this {1}?", heldpkmn ? heldpkmn.name : curpkmn.name),
+            _INTL("要对{1}做什么？", heldpkmn ? heldpkmn.name : curpkmn.name),
             commands
           )
           if choice == 0
@@ -473,7 +473,7 @@ class PurifyChamberScreen
             @scene.pbSummary(cmd[1], heldpkmn)
           elsif choice == 2
             if pbBoxesFull?
-              @scene.pbDisplay(_INTL("All boxes are full."))
+              @scene.pbDisplay(_INTL("所有盒子都满了。"))
             elsif heldpkmn
               @scene.pbWithdraw(cmd[1], heldpkmn)
               $PokemonStorage.pbStoreCaught(heldpkmn)
@@ -506,7 +506,7 @@ class PurifyChamberScreen
                   @scene.pbRefresh
                   pbOnPlace(curpkmn)
                 else
-                  @scene.pbDisplay(_INTL("That Pokémon can't be placed there."))
+                  @scene.pbDisplay(_INTL("那里不能放置宝可梦。"))
                 end
               end
             end
@@ -528,14 +528,14 @@ class PurifyChamberScreen
         heldpkmn = pkmn if pkmn
       else   # cancel
         if heldpkmn
-          @scene.pbDisplay(_INTL("You're holding a Pokémon!"))
+          @scene.pbDisplay(_INTL("你正在拿着一个宝可梦！"))
         else
-          break if !@scene.pbConfirm(_INTL("Continue editing sets?"))
+          break if !@scene.pbConfirm(_INTL("继续编辑集合？"))
         end
       end
     end
     if pbCheckPurify
-      @scene.pbDisplay(_INTL("There is a Pokémon that is ready to open its heart!") + "\1")
+      @scene.pbDisplay(_INTL("有准备敞开心扉的宝可梦了！") + "\1")
       @scene.pbCloseSetDetail
       pbDoPurify
       return false
@@ -591,8 +591,8 @@ class PurifyChamberScreen
       pbStorePokemon(@chamber[set].shadow)
       @chamber.setShadow(set, nil) # Remove shadow Pokemon from set
       if (i + 1) != purifiables.length
-        @scene.pbDisplay(_INTL("There is another Pokémon that is ready to open its heart!") + "\1")
-        if !@scene.pbConfirm(_INTL("Would you like to switch sets?"))
+        @scene.pbDisplay(_INTL("有另一个宝可梦准备敞开心扉了！") + "\1")
+        if !@scene.pbConfirm(_INTL("你想切换集合吗？"))
           @scene.pbCloseSet
           break
         end
@@ -613,11 +613,11 @@ class PurifyChamberScreen
     loop do
       set = @scene.pbChooseSet
       if set < 0
-        break if !@scene.pbConfirm(_INTL("Continue viewing holograms?"))
+        break if !@scene.pbConfirm(_INTL("要继续查看全息图吗？"))
       else
         chamber.currentSet = set
-        cmd = @scene.pbShowCommands(_INTL("What do you want to do?"),
-                                    [_INTL("EDIT"), _INTL("SWITCH"), _INTL("CANCEL")])
+        cmd = @scene.pbShowCommands(_INTL("你想要做什么？"),
+                                    [_INTL("编辑"), _INTL("切换"), _INTL("取消")])
         case cmd
         when 0   # edit
           break if !pbOpenSetDetail
@@ -951,7 +951,7 @@ class PurifyChamberSetView < Sprite
       end
       textpos.push([_INTL("{1}  Lv.{2}  {3}", pkmn.name, pkmn.level, type_string),
                     2, 6, :left, Color.new(248, 248, 248), Color.new(128, 128, 128)])
-      textpos.push([_INTL("FLOW"), 2 + (@info.bitmap.width / 2), 30, :left,
+      textpos.push([_INTL("流量"), 2 + (@info.bitmap.width / 2), 30, :left,
                     Color.new(248, 248, 248), Color.new(128, 128, 128)])
       # draw heart gauge
       pbDrawGauge(@info.bitmap, Rect.new(@info.bitmap.width * 3 / 4, 8, @info.bitmap.width * 1 / 4, 8),
@@ -961,7 +961,7 @@ class PurifyChamberSetView < Sprite
                   Color.new(0, 0, 248), @chamber.chamberFlow(@set), 7)
     end
     if @chamber.setCount(@set) > 0
-      textpos.push([_INTL("TEMPO"), 2, 30, :left, Color.new(248, 248, 248), Color.new(128, 128, 128)])
+      textpos.push([_INTL("节奏"), 2, 30, :left, Color.new(248, 248, 248), Color.new(128, 128, 128)])
       # draw tempo gauge
       pbDrawGauge(@info.bitmap, Rect.new(@info.bitmap.width * 1 / 4, 32, @info.bitmap.width * 1 / 4, 8),
                   Color.new(0, 0, 248), @chamber[@set].tempo, PurifyChamber.maximumTempo)
@@ -1304,11 +1304,11 @@ end
 #===============================================================================
 
 MenuHandlers.add(:pc_menu, :purify_chamber, {
-  "name"      => _INTL("Purify Chamber"),
+  "name"      => _INTL("净化室"),
   "order"     => 30,
   "condition" => proc { next $player.seen_purify_chamber },
   "effect"    => proc { |menu|
-    pbMessage("\\se[PC access]" + _INTL("Accessed the Purify Chamber."))
+    pbMessage("\\se[PC access]" + _INTL("连接到净化室。"))
     pbPurifyChamber
     next false
   }

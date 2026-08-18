@@ -292,9 +292,9 @@ class Battle::Move
     if Settings::MORE_TYPE_EFFECTIVENESS_MESSAGES &&
        Effectiveness.extremely_effective?(target.damageState.typeMod)
       if numTargets > 1
-        @battle.pbDisplay(_INTL("It's extremely effective on {1}!", target.pbThis(true)))
+        @battle.pbDisplay(_INTL("对{1}效果无比绝佳！", target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("It's extremely effective!"))
+        @battle.pbDisplay(_INTL("效果无比绝佳！"))
       end
     elsif Effectiveness.super_effective?(target.damageState.typeMod)
       if numTargets > 1
@@ -305,9 +305,9 @@ class Battle::Move
     elsif Settings::MORE_TYPE_EFFECTIVENESS_MESSAGES &&
           Effectiveness.mostly_ineffective?(target.damageState.typeMod)
       if numTargets > 1
-        @battle.pbDisplay(_INTL("It's mostly ineffective on {1}...", target.pbThis(true)))
+        @battle.pbDisplay(_INTL("对{1}效果相当不好。", target.pbThis(true)))
       else
-        @battle.pbDisplay(_INTL("It's mostly ineffective..."))
+        @battle.pbDisplay(_INTL("效果相当不好……"))
       end
     elsif Effectiveness.not_very_effective?(target.damageState.typeMod)
       if numTargets > 1

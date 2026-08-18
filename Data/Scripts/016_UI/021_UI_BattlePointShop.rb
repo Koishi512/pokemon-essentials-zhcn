@@ -130,37 +130,37 @@ class UI::BPShop < UI::Mart
       max_quantity = screen.stock.maximum_affordable_quantity(item_data.id)
       # Check affordability
       if max_quantity == 0
-        screen.show_message(_INTL("I'm sorry, you don't have enough BP."))
+        screen.show_message(_INTL("对战点数不够哦。"))
         next
       end
       # Choose how many of the item to buy
       quantity = 1
       if item_data.is_important?
         next if !screen.show_confirm_message(
-          _INTL("You would like the {1}?\nThat will be {2} BP.",
+          _INTL("是{1}啊。\n一共{2}BP。",
                 item_data.portion_name, item_price.to_s_formatted)
         )
       else
         quantity = screen.choose_number_as_money_multiplier(
-          _INTL("How many {1} would you like?", item_data.portion_name_plural), item_price, max_quantity
+          _INTL("您要几个{1}？", item_data.portion_name_plural), item_price, max_quantity
         )
         next if quantity == 0
         item_price *= quantity
         if quantity > 1
           next if !screen.show_confirm_message(
-            _INTL("So you want {1} {2}?\nThey'll be {3} BP. All right?",
+            _INTL("是{2}啊。\n{1}个一共{3}BP。",
                   quantity, item_data.portion_name_plural, item_price.to_s_formatted)
           )
         elsif quantity > 0
           next if !screen.show_confirm_message(
-            _INTL("So you want {1} {2}?\nIt'll be {3} BP. All right?",
+            _INTL("是{2}啊。\n{1}个一共{3}BP。",
                   quantity, item_data.portion_name, item_price.to_s_formatted)
           )
         end
       end
       # Check the item can be put in the Bag
       if !screen.bag.can_add?(item_data.id, quantity)
-        screen.show_message(_INTL("You have no room in your Bag."))
+        screen.show_message(_INTL("不好意思，您好像已经拿不下了呢……"))
         next
       end
       # Add the bought item(s)
@@ -171,7 +171,7 @@ class UI::BPShop < UI::Mart
       screen.stock.remove_from_stock(item_data.id, quantity)
       screen.stock.refresh   # Removes bought important items
       screen.refresh
-      screen.show_message(_INTL("Here you are! Thank you!")) { pbSEPlay("Mart buy item") }
+      screen.show_message(_INTL("请拿好。谢谢惠顾。")) { pbSEPlay("Mart buy item") }
     }
   })
 end
@@ -181,13 +181,13 @@ end
 #===============================================================================
 def pbBattlePointShop(stock, speech = nil)
   if speech.nil?
-    pbMessage(_INTL("Welcome to the Exchange Service Corner!"))
-    pbMessage(_INTL("We can exchange your BP for fabulous items."))
+    pbMessage(_INTL("欢迎来到兑换角！"))
+    pbMessage(_INTL("我们可以用BP兑换礼品。"))
   else
     pbMessage(speech)
   end
   UI::BPShop.new(stock, $bag).main
-  pbMessage(_INTL("Thank you for visiting."))
-  pbMessage(_INTL("Please visit us again when you have saved up more BP."))
+  pbMessage(_INTL("感谢您的光临！"))
+  pbMessage(_INTL("等BP存够了再来吧。"))
   $game_temp.clear_mart_prices
 end

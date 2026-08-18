@@ -20,18 +20,18 @@ class ButtonEventScene < EventScene
 
     addImageForScreen(1, 16, 96, "Graphics/UI/Controls help/help_arrows")
     addImageForScreen(1, 48, 258, "Graphics/UI/Controls help/help_use")
-    addLabelForScreen(1, 128, 68, 352, _INTL("Use the direction keys to move the main character. You can also use them to select entries and navigate menus."))
-    addLabelForScreen(1, 128, 228, 352, _INTL("Used to confirm a choice, interact with people and things, and move through text. (Default: Space)"))
+    addLabelForScreen(1, 128, 68, 352, _INTL("按方向键移动主角。你也可以用它们来选择条目和导航菜单。"))
+    addLabelForScreen(1, 128, 228, 352, _INTL("用于确认选择、与人物和物品互动以及在文本中移动。（默认: 空格键）"))
 
     addImageForScreen(2, 48, 114, "Graphics/UI/Controls help/help_back")
     addImageForScreen(2, 48, 258, "Graphics/UI/Controls help/help_action")
-    addLabelForScreen(2, 128, 68, 352, _INTL("Used to exit, cancel a choice, and cancel a mode. While moving around, hold to move at a different speed. (Default: Esc)"))
-    addLabelForScreen(2, 128, 228, 352, _INTL("Used to open the Pause Menu. Also has various functions depending on context. (Default: Backspace)"))
+    addLabelForScreen(2, 128, 68, 352, _INTL("用于退出、取消选择和取消模式。在移动时，按住不放可以以不同速度移动。（默认: Esc）"))
+    addLabelForScreen(2, 128, 228, 352, _INTL("用于打开暂停菜单。根据上下文，它还有各种其他功能。（默认: Backspace）"))
 
     addImageForScreen(3, 48, 96, "Graphics/UI/Controls help/help_quick")
     addImageForScreen(3, 42, 252, "Graphics/UI/Controls help/help_f8")
-    addLabelForScreen(3, 128, 68, 352, _INTL("Used to open the Ready Menu. Also used to move up and down quickly in some menus, or between tabs in some cases. (Default: PgUp/PgDn)"))
-    addLabelForScreen(3, 128, 228, 352, _INTL("Use to take a screenshot. It goes into the \"Screenshots\" folder in the game's folder."))
+    addLabelForScreen(3, 128, 68, 352, _INTL("用于打开就绪菜单。在某些菜单中，它还用于快速上下移动，或在某些情况下在标签页之间切换。（默认: PgUp/PgDn）"))
+    addLabelForScreen(3, 128, 228, 352, _INTL("用于拍摄截图。它会保存到游戏文件夹中的\"Screenshots\"文件夹里。（默认: F8）"))
 
     set_up_screen(@current_screen, true)
     # NOTE: I don't know why the fade duration needs to be halved for this.

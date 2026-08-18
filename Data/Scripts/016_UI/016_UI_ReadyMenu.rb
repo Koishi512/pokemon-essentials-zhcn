@@ -319,7 +319,7 @@ def pbUseKeyItem
     real_items.push(itm) if $bag.has?(itm)
   end
   if real_items.length == 0 && real_moves.length == 0
-    pbMessage(_INTL("An item in the Bag can be registered to this key for instant use."))
+    pbMessage(_INTL("放在包包里的道具能够登陆成快捷键方便使用。"))
   else
     $game_temp.in_menu = true
     $game_map.update

@@ -103,7 +103,7 @@ class PokemonEggHatch_Scene
     pbBGMStop
     pbMEPlay("Evolution success")
     @pokemon.name = nil
-    pbMessage("\\se[]" + _INTL("{1} hatched from the Egg!", @pokemon.name) + "\\wt[80]") { update }
+    pbMessage("\\se[]" + _INTL("蛋孵化成{1}了！", @pokemon.name) + "\\wt[80]") { update }
     # Record the Pokémon's species as owned in the Pokédex
     was_owned = $player.owned?(@pokemon.species)
     $player.pokedex.register(@pokemon)
@@ -112,16 +112,16 @@ class PokemonEggHatch_Scene
     # Show Pokédex entry for new species if it hasn't been owned before
     if Settings::SHOW_NEW_SPECIES_POKEDEX_ENTRY_MORE_OFTEN && !was_owned &&
        $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(@pokemon.species)
-      pbMessage(_INTL("{1}'s data was added to the Pokédex.", @pokemon.name)) { update }
+      pbMessage(_INTL("{1}的资料被新添加到宝可梦图鉴里了！", @pokemon.name)) { update }
       $player.pokedex.register_last_seen(@pokemon)
       pbShowPokedexEntry(@pokemon.species)
     end
     # Nickname the Pokémon
     if $PokemonSystem.givenicknames == 0 &&
        pbConfirmMessage(
-         _INTL("Would you like to nickname the newly hatched {1}?", @pokemon.name)
+         _INTL("要给孵出来的{1}起昵称吗？", @pokemon.name)
        ) { update }
-      nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", @pokemon.name),
+      nickname = pbEnterPokemonName(_INTL("{1}的名字是？", @pokemon.name),
                                     0, Pokemon::MAX_NAME_SIZE, "", @pokemon, true)
       @pokemon.name = nickname
       @nicknamed = true
@@ -198,7 +198,7 @@ end
 #
 #===============================================================================
 def pbHatchAnimation(pokemon)
-  pbMessage(_INTL("Huh?") + "\1")
+  pbMessage(_INTL("嗯？") + "\1")
   pbFadeOutInWithMusic do
     scene = PokemonEggHatch_Scene.new
     screen = PokemonEggHatchScreen.new(scene)
@@ -219,10 +219,10 @@ def pbHatch(pokemon)
   pokemon.hatched_map    = $game_map.map_id
   pokemon.record_first_moves
   if !pbHatchAnimation(pokemon)
-    pbMessage(_INTL("Huh?") + "\1")
+    pbMessage(_INTL("嗯？") + "\1")
     pbMessage(_INTL("...") + "\1")
     pbMessage(_INTL("... .... .....") + "\1")
-    pbMessage(_INTL("{1} hatched from the Egg!", speciesname))
+    pbMessage(_INTL("{1}从蛋里孵化出来了！", speciesname))
     was_owned = $player.owned?(pokemon.species)
     $player.pokedex.register(pokemon)
     $player.pokedex.set_owned(pokemon.species)
@@ -230,14 +230,14 @@ def pbHatch(pokemon)
     # Show Pokédex entry for new species if it hasn't been owned before
     if Settings::SHOW_NEW_SPECIES_POKEDEX_ENTRY_MORE_OFTEN && !was_owned &&
        $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(pokemon.species)
-      pbMessage(_INTL("{1}'s data was added to the Pokédex.", speciesname))
+      pbMessage(_INTL("{1}的资料被新添加到宝可梦图鉴里了！", speciesname))
       $player.pokedex.register_last_seen(pokemon)
       pbShowPokedexEntry(pokemon.species)
     end
     # Nickname the Pokémon
     if $PokemonSystem.givenicknames == 0 &&
-       pbConfirmMessage(_INTL("Would you like to nickname the newly hatched {1}?", speciesname))
-      nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", speciesname),
+       pbConfirmMessage(_INTL("要给孵出来的{1}起昵称吗？", speciesname))
+      nickname = pbEnterPokemonName(_INTL("{1}的名字是？", speciesname),
                                     0, Pokemon::MAX_NAME_SIZE, "", pokemon)
       pokemon.name = nickname
     end

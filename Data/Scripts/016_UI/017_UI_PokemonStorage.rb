@@ -150,7 +150,7 @@ class UI::PokemonStorageVisualsSidePane < UI::SpriteContainer
       item_name = crop_text(item_name, 166)
       draw_text(item_name, 86, 316, align: :center, theme: :gray)
     else
-      draw_text(_INTL("No item"), 86, 316, align: :center, theme: :no_item)
+      draw_text(_INTL("无道具"), 86, 316, align: :center, theme: :no_item)
     end
   end
 end
@@ -535,7 +535,7 @@ class UI::PokemonStorageVisualsPartyPanel < UI::SpriteContainer
   end
 
   def draw_button_text
-    text = (@mode == :deposit) ? _INTL("Exit") : _INTL("Back")
+    text = (@mode == :deposit) ? _INTL("退出") : _INTL("返回")
     draw_text(text, 86, 248, align: :center, outline: :outline, theme: :white)
   end
 
@@ -1267,10 +1267,10 @@ class UI::PokemonStorageVisuals < UI::BaseVisuals
 
   def refresh_buttons
     if [:organize, :choose_pokemon].include?(@mode)
-      draw_text(_INTL("Party: {1}", @storage.party.length), 270, 334, align: :center, outline: :outline, theme: :white)
+      draw_text(_INTL("队伍：{1}", @storage.party.length), 270, 334, align: :center, outline: :outline, theme: :white)
     end
     if @mode != :deposit
-      draw_text(_INTL("Exit"), 446, 334, align: :center, outline: :outline, theme: :white)
+      draw_text(_INTL("退出"), 446, 334, align: :center, outline: :outline, theme: :white)
     end
   end
 
@@ -1346,8 +1346,8 @@ class UI::PokemonStorageVisuals < UI::BaseVisuals
                  overlay: :marking_overlay)
     end
     # Draw text
-    draw_text(_INTL("OK"), 400, 216, align: :center, outline: :outline, theme: :white, overlay: :marking_overlay)
-    draw_text(_INTL("Cancel"), 400, 280, align: :center, outline: :outline, theme: :white, overlay: :marking_overlay)
+    draw_text(_INTL("好了"), 400, 216, align: :center, outline: :outline, theme: :white, overlay: :marking_overlay)
+    draw_text(_INTL("取消"), 400, 280, align: :center, outline: :outline, theme: :white, overlay: :marking_overlay)
   end
 
   #-----------------------------------------------------------------------------
@@ -1579,7 +1579,7 @@ class UI::PokemonStorageVisuals < UI::BaseVisuals
   end
 
   def navigate_markings
-    help_text = _INTL("Mark your Pokémon.")
+    help_text = _INTL("标记你的宝可梦。")
     help_window = Window_AdvancedTextPokemon.newWithSize(
       help_text, 180, 0, Graphics.width - 180, 32, @viewport
     )
@@ -1657,26 +1657,26 @@ class UI::PokemonStorage < UI::BaseScreen
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:screen_menu, {
     :menu         => :storage_screen_menu,
-    :menu_message => proc { |screen| _INTL("What do you want to do?") }
+    :menu_message => proc { |screen| _INTL("你想做什么？") }
   })
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:interact_menu, {
     :menu         => :storage_pokemon_interact,
-    :menu_message => proc { |screen| _INTL("Do what with {1}?", screen.pokemon.name) }
+    :menu_message => proc { |screen| _INTL("对{1}做什么？", screen.pokemon.name) }
   })
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:interact_box_name_menu, {
     :menu         => :storage_box_interact,
-    :menu_message => proc { |screen| _INTL("Choose an option.") }
+    :menu_message => proc { |screen| _INTL("选择一个选项。") }
   })
   ACTIONS.add(:clear_sub_mode, {
     :effect => proc { |screen|
       if screen.holding_pokemon?
-        screen.show_message(_INTL("You're holding a Pokémon!"))
+        screen.show_message(_INTL("你现在拿着宝可梦！"))
         next
       elsif screen.holding_item?
         item_name = GameData::Item.get(screen.item).name
-        if screen.show_confirm_message(_INTL("Put the {1} in your Bag?", item_name))
+        if screen.show_confirm_message(_INTL("要将{1}放入包包吗？", item_name))
           $bag.add(screen.item)
           screen.visuals.sprites[:cursor].held_item = nil
         end
@@ -1691,7 +1691,7 @@ class UI::PokemonStorage < UI::BaseScreen
   ACTIONS.add(:rearrange_pokemon_mode, {
     :effect => proc { |screen|
       if screen.holding_item?
-        screen.show_message(_INTL("You're holding an item!"))
+        screen.show_message(_INTL("你现在拿着道具！"))
         next
       end
       screen.set_sub_mode(:rearrange_pokemon)
@@ -1722,11 +1722,11 @@ class UI::PokemonStorage < UI::BaseScreen
   })
   ACTIONS.add(:pick_up_pokemon, {
     :effect => proc { |screen|
-      raise _INTL("Tried picking up a Pokémon when holding one.") if screen.holding_pokemon?
-      raise _INTL("Position {1},{2} is empty...", screen.box, screen.index) if !screen.slot_pokemon
+      raise _INTL("试图在拿着宝可梦时捡起宝可梦。") if screen.holding_pokemon?
+      raise _INTL("位置 {1},{2} 为空...", screen.box, screen.index) if !screen.slot_pokemon
       if screen.box < 0 && screen.slot_pokemon.able? && screen.party_able_count <= 1
         pbPlayBuzzerSE
-        screen.show_message(_INTL("That's your last Pokémon!"))
+        screen.show_message(_INTL("那是你最后一只宝可梦！"))
         next
       end
       screen.visuals.pick_up_pokemon
@@ -1736,24 +1736,24 @@ class UI::PokemonStorage < UI::BaseScreen
   })
   ACTIONS.add(:swap_pokemon, {
     :effect => proc { |screen|
-      raise _INTL("Tried swapping a Pokémon when not holding one.") if !screen.holding_pokemon?
-      raise _INTL("Position {1},{2} is empty...", screen.box, screen.index) if !screen.slot_pokemon
+      raise _INTL("试图在没有拿着宝可梦时交换宝可梦。") if !screen.holding_pokemon?
+      raise _INTL("位置 {1},{2} 为空...", screen.box, screen.index) if !screen.slot_pokemon
       held_pkmn = screen.pokemon
       slot_pkmn = screen.slot_pokemon
       if screen.box >= 0
         if screen.index >= screen.storage.maxPokemon(screen.box)
-          screen.show_message("Can't place that there.")
+          screen.show_message(_INTL("不能放在那里。"))
           next
         elsif held_pkmn.mail
-          screen.show_message("Please remove the mail.")
+          screen.show_message(_INTL("请先取下邮件。"))
           next
         elsif held_pkmn.cannot_store
-          screen.show_message(_INTL("{1} refuses to go into storage!", held_pkmn.name))
+          screen.show_message(_INTL("{1}不愿意被存进去！", held_pkmn.name))
           next
         end
       elsif screen.box < 0 && slot_pkmn.able? && screen.party_able_count <= 1 && !held_pkmn.able?
         pbPlayBuzzerSE
-        screen.show_message(_INTL("That's your last Pokémon!"))
+        screen.show_message(_INTL("那是你最后一只宝可梦！"))
         next
       end
       screen.visuals.swap_pokemon
@@ -1769,18 +1769,18 @@ class UI::PokemonStorage < UI::BaseScreen
   })
   ACTIONS.add(:put_down_pokemon, {
     :effect => proc { |screen|
-      raise _INTL("Tried placing a Pokémon when not holding one.") if !screen.holding_pokemon?
-      raise _INTL("Position {1},{2} is not empty...", screen.box, screen.index) if screen.slot_pokemon
+      raise _INTL("试图在没有拿着宝可梦时放下宝可梦。") if !screen.holding_pokemon?
+      raise _INTL("位置 {1},{2} 不为空...", screen.box, screen.index) if screen.slot_pokemon
       pkmn = screen.pokemon   # The held Pokémon
       if screen.box >= 0
         if screen.index >= screen.storage.maxPokemon(screen.box)
-          screen.show_message("Can't place that there.")
+          screen.show_message(_INTL("不能放在那里。"))
           next
         elsif pkmn.mail
-          screen.show_message("Please remove the mail.")
+          screen.show_message(_INTL("请先取下邮件。"))
           next
         elsif pkmn.cannot_store
-          screen.show_message(_INTL("{1} refuses to go into storage!", pkmn.name))
+          screen.show_message(_INTL("{1}不愿意被存进去！", pkmn.name))
           next
         end
       end
@@ -1797,9 +1797,9 @@ class UI::PokemonStorage < UI::BaseScreen
   })
   ACTIONS.add(:withdraw_pokemon, {
     :effect => proc { |screen|
-      raise _INTL("Can't withdraw from party...") if screen.box < 0
+      raise _INTL("无法从队伍中取出……") if screen.box < 0
       if screen.storage.party_full?
-        screen.show_message(_INTL("Your party's full!"))
+        screen.show_message(_INTL("你的队伍满了！"))
         next
       end
       was_holding = screen.holding_pokemon?
@@ -1816,28 +1816,28 @@ class UI::PokemonStorage < UI::BaseScreen
   })
   ACTIONS.add(:store_pokemon, {
     :effect => proc { |screen|
-      raise _INTL("Can't deposit from box...") if screen.box >= 0
+      raise _INTL("无法从盒子中存入宝可梦...") if screen.box >= 0
       was_holding = screen.holding_pokemon?
       pkmn = screen.pokemon
       if pkmn.able? && screen.party_able_count <= 1 && !screen.holding_pokemon?
         pbPlayBuzzerSE
-        screen.show_message(_INTL("That's your last Pokémon!"))
+        screen.show_message(_INTL("这是你最后一只宝可梦了！"))
         next
       elsif pkmn.mail
-        screen.show_message("Please remove the mail.")
+        screen.show_message(_INTL("请先取下邮件。"))
         next
       elsif pkmn.cannot_store
-        screen.show_message(_INTL("{1} refuses to go into storage!", pkmn.name))
+        screen.show_message(_INTL("{1}不愿意被存进去！", pkmn.name))
         next
       end
       old_box = screen.box
       old_index = screen.index
       loop do
-        new_box = screen.choose_box(_INTL("Deposit in which Box?"), old_box)
+        new_box = screen.choose_box(_INTL("要存进哪个盒子？"), old_box)
         break if !new_box
         new_index = screen.storage.pbFirstFreePos(new_box)
         if new_index < 0
-          screen.show_message(_INTL("The Box is full."))
+          screen.show_message(_INTL("这个盒子满了。"))
           next
         end
         screen.visuals.store_pokemon(new_box, new_index) {
@@ -1855,38 +1855,38 @@ class UI::PokemonStorage < UI::BaseScreen
   })
   ACTIONS.add(:release_pokemon, {
     :effect => proc { |screen|
-      raise _INTL("Tried releasing a Pokémon when not selecting or holding one.", screen.box, screen.index) if !screen.pokemon
+      raise _INTL("试图放生未选中或未持有的宝可梦。", screen.box, screen.index) if !screen.pokemon
       pkmn = screen.pokemon
       if pkmn.egg?
-        screen.show_message(_INTL("You can't release an Egg!"))
+        screen.show_message(_INTL("无法将蛋放生！"))
         next
       elsif pkmn.fused
         if pkmn.isSpecies?(:CALYREX)
-          screen.show_message(_INTL("You can’t release {1} when it's united with another Pokémon!", pkmn.name))
+          screen.show_message(_INTL("合体后的{1}不能放生。", pkmn.name))
         else   # Kyurem, Necrozma
-          screen.show_message(_INTL("You can’t release {1} when it's fused with another Pokémon!", pkmn.name))
+          screen.show_message(_INTL("合体后的{1}不能放生。", pkmn.name))
         end
         next
       elsif pkmn.mail
-        screen.show_message(_INTL("Please remove the mail."))
+        screen.show_message(_INTL("请先取下邮件。"))
         next
       elsif pkmn.cannot_release
-        screen.show_message(_INTL("{1} refuses to leave you!", pkmn.name))
+        screen.show_message(_INTL("{1}不愿意离开你！", pkmn.name))
         next
       elsif screen.box < 0 && pkmn.able? && screen.party_able_count <= 1 && !screen.holding_pokemon?
         pbPlayBuzzerSE
-        screen.show_message(_INTL("You'll be left without any Pokémon that can battle if you do that!"))
+        screen.show_message(_INTL("这样就没有可战斗的宝可梦了！"))
         next
       end
-      if screen.show_confirm_serious_message(_INTL("Do you really want to release this Pokémon?"))
+      if screen.show_confirm_serious_message(_INTL("真的要放生吗？"))
         $bag.add(pkmn.item_id) if pkmn.hasItem?
         pkmn_name = pkmn.name
         pkmn_being_held = screen.holding_pokemon?
         screen.visuals.release_pokemon   # Also deletes the Pokémon if it's held
         screen.storage.pbDelete(screen.box, screen.index) if !pkmn_being_held
         screen.refresh
-        screen.show_message(_INTL("{1} was released.", pkmn_name))
-        screen.show_message(_INTL("Bye-bye, {1}!", pkmn_name))
+        screen.show_message(_INTL("已将{1}放生了。", pkmn_name))
+        screen.show_message(_INTL("再见，{1}！", pkmn_name))
         $stats.pokemon_release_count += 1
       end
     }
@@ -1912,7 +1912,7 @@ class UI::PokemonStorage < UI::BaseScreen
   ACTIONS.add(:rearrange_items_mode, {
     :effect => proc { |screen|
       if screen.holding_pokemon?
-        screen.show_message(_INTL("You're holding a Pokémon!"))
+        screen.show_message(_INTL("你现在拿着宝可梦！"))
         next
       end
       screen.set_sub_mode(:rearrange_items)
@@ -1936,7 +1936,7 @@ class UI::PokemonStorage < UI::BaseScreen
     :effect => proc { |screen|
       next if screen.holding_item? || !screen.slot_pokemon || !screen.slot_pokemon.hasItem?
       if screen.slot_pokemon.mail
-        screen.show_message("You can't move mail.")
+        screen.show_message(_INTL("你不能移动邮件。"))
         next
       end
       screen.visuals.pick_up_item
@@ -1948,7 +1948,7 @@ class UI::PokemonStorage < UI::BaseScreen
       held_item = screen.item
       slot_pkmn = screen.slot_pokemon
       if slot_pkmn.mail
-        screen.show_message("You can't move mail.")
+        screen.show_message(_INTL("你不能移动邮件。"))
         next
       end
       screen.visuals.swap_items
@@ -1967,22 +1967,22 @@ class UI::PokemonStorage < UI::BaseScreen
     :effect => proc { |screen|
       pkmn = screen.pokemon
       if pkmn.egg?
-        screen.show_message(_INTL("Eggs can't hold items."))
+        screen.show_message(_INTL("蛋无法携带道具。"))
         next
       elsif pkmn.mail
-        screen.show_message(_INTL("Please remove the mail."))
+        screen.show_message(_INTL("请先取下邮件。"))
         next
       end
       # Take an item
       if pkmn.hasItem?
         item_name = pkmn.item.portion_name
-        if screen.show_confirm_message(_INTL("Take the {1}?", item_name))
+        if screen.show_confirm_message(_INTL("要取走{1}吗？", item_name))
           if $bag.add(pkmn.item)
             pkmn.item = nil
             screen.refresh
-            screen.show_message(_INTL("Took the {1}.", item_name))
+            screen.show_message(_INTL("取走了{1}。", item_name))
           else
-            screen.show_message(_INTL("Can't store the {1}.", item_name))
+            screen.show_message(_INTL("无法存放{1}。", item_name))
           end
         end
         screen.deselect_pokemon
@@ -2007,7 +2007,7 @@ class UI::PokemonStorage < UI::BaseScreen
       end
       screen.visuals.fade_in
       if new_item
-        screen.show_message(_INTL("{1} is now being held.", item_name))
+        screen.show_message(_INTL("{1}正被拿着。", item_name))
         screen.deselect_pokemon
       end
     }
@@ -2025,7 +2025,7 @@ class UI::PokemonStorage < UI::BaseScreen
 
   ACTIONS.add(:jump_to_box, {
     :effect => proc { |screen|
-      new_box = screen.choose_box(_INTL("Jump to which Box?"))
+      new_box = screen.choose_box(_INTL("要跳转到哪个盒子？"), screen.box)
       next if !new_box || new_box == screen.box
       (new_box > screen.box) ? screen.visuals.go_to_next_box(new_box) : screen.visuals.go_to_previous_box(new_box)
     }
@@ -2033,7 +2033,7 @@ class UI::PokemonStorage < UI::BaseScreen
   ACTIONS.add(:rename_box, {
     :effect => proc { |screen|
       screen.visuals.fade_out
-      ret = pbEnterBoxName(_INTL("Box name?"), 0, 16, screen.storage[screen.storage.currentBox].name)
+      ret = pbEnterBoxName(_INTL("盒子的名字是？"), 0, 16, screen.storage[screen.storage.currentBox].name)
       if ret.length > 0
         screen.storage[screen.storage.currentBox].name = ret
         screen.refresh_box
@@ -2046,7 +2046,7 @@ class UI::PokemonStorage < UI::BaseScreen
       papers = screen.storage.availableWallpapers
       old_paper = screen.storage[screen.storage.currentBox].background
       index = papers.keys.index(old_paper) || 0
-      new_paper = screen.visuals.choose_box_wallpaper(_INTL("Pick the wallpaper."), papers, index)
+      new_paper = screen.visuals.choose_box_wallpaper(_INTL("选择背景壁纸。"), papers, index)
       if new_paper && new_paper != old_paper
         screen.storage[screen.storage.currentBox].background = new_paper
         screen.refresh_box
@@ -2105,13 +2105,13 @@ class UI::PokemonStorage < UI::BaseScreen
     :returns_value => true,
     :effect        => proc { |screen|
       if screen.holding_pokemon?
-        screen.show_message(_INTL("You're holding a Pokémon!"))
+        screen.show_message(_INTL("你现在拿着宝可梦！"))
         next nil
       elsif screen.holding_item?
-        screen.show_message(_INTL("You're holding an item!"))
+        screen.show_message(_INTL("你现在拿着道具！"))
         next nil
       end
-      next :quit if screen.show_confirm_message(_INTL("Exit from the Box?"))
+      next :quit if screen.show_confirm_message(_INTL("要退出盒子吗？"))
       next nil
     }
   })
@@ -2149,17 +2149,17 @@ end
 # Menu options for choice menus that exist in the Pokémon storage screen.
 #===============================================================================
 MenuHandlers.add(:storage_screen_menu, :rearrange_pokemon_mode, {
-  "name"      => _INTL("Mode: Switch Pokémon"),
+  "name"      => _INTL("模式：交换宝可梦"),
   "order"     => 10
 })
 
 MenuHandlers.add(:storage_screen_menu, :rearrange_items_mode, {
-  "name"      => _INTL("Mode: Switch items"),
+  "name"      => _INTL("模式：交换道具"),
   "order"     => 20
 })
 
 MenuHandlers.add(:storage_screen_menu, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 
@@ -2167,7 +2167,7 @@ MenuHandlers.add(:storage_screen_menu, :cancel, {
 
 # NOTE: This option is first in withdraw mode.
 MenuHandlers.add(:storage_pokemon_interact, :withdraw, {
-  "name"      => _INTL("Withdraw"),
+  "name"      => _INTL("取出"),
   "order"     => 10,
   "condition" => proc { |screen| next screen.mode == :withdraw && screen.box >= 0 },
   "action"    => :withdraw_pokemon
@@ -2175,7 +2175,7 @@ MenuHandlers.add(:storage_pokemon_interact, :withdraw, {
 
 # NOTE: This option is first in store mode.
 MenuHandlers.add(:storage_pokemon_interact, :store, {
-  "name"      => _INTL("Store"),
+  "name"      => _INTL("放入"),
   "order"     => 10,
   "condition" => proc { |screen| next screen.mode == :deposit && screen.box < 0 },
   "action"    => :store_pokemon
@@ -2183,92 +2183,92 @@ MenuHandlers.add(:storage_pokemon_interact, :store, {
 
 # NOTE: This option is for when in "choose a Pokémon" mode.
 MenuHandlers.add(:storage_pokemon_interact, :select_pokemon, {
-  "name"      => _INTL("Select"),
+  "name"      => _INTL("选择"),
   "order"     => 10,
   "condition" => proc { |screen| next screen.mode == :choose_pokemon }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :pick_up_pokemon, {
-  "name"      => _INTL("Move"),
+  "name"      => _INTL("移动"),
   "order"     => 20,
   "condition" => proc { |screen| next screen.mode == :organize && !screen.holding_pokemon? }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :swap_pokemon, {
-  "name"      => _INTL("Shift"),
+  "name"      => _INTL("交换"),
   "order"     => 20,
   "condition" => proc { |screen| next screen.mode == :organize && screen.holding_pokemon? && screen.slot_pokemon }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :put_down_pokemon, {
-  "name"      => _INTL("Place"),
+  "name"      => _INTL("放置"),
   "order"     => 20,
   "condition" => proc { |screen| next screen.mode == :organize && screen.holding_pokemon? && !screen.slot_pokemon }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :summary, {
-  "name"      => _INTL("Summary"),
+  "name"      => _INTL("查看能力"),
   "order"     => 30
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :withdraw_pokemon, {
-  "name"      => _INTL("Withdraw"),
+  "name"      => _INTL("取出"),
   "order"     => 40,
   "condition" => proc { |screen| next screen.mode == :organize && screen.box >= 0 }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :store_pokemon, {
-  "name"      => _INTL("Store"),
+  "name"      => _INTL("储存"),
   "order"     => 40,
   "condition" => proc { |screen| next screen.mode == :organize && screen.box < 0 }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :give_or_take_item, {
-  "name"      => _INTL("Item"),
+  "name"      => _INTL("道具"),
   "order"     => 50,
   "condition" => proc { |screen| next screen.mode == :organize }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :mark_pokemon, {
-  "name"      => _INTL("Mark"),
+  "name"      => _INTL("标记"),
   "order"     => 60
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :release_pokemon, {
-  "name"      => _INTL("Release"),
+  "name"      => _INTL("放生"),
   "order"     => 70,
   "condition" => proc { |screen| next screen.mode != :choose_pokemon }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :debug, {
-  "name"      => _INTL("Debug"),
+  "name"      => _INTL("调试"),
   "order"     => 80,
   "condition" => proc { |screen| next $DEBUG }
 })
 
 MenuHandlers.add(:storage_pokemon_interact, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })
 
 #-------------------------------------------------------------------------------
 
 MenuHandlers.add(:storage_box_interact, :jump_to_box, {
-  "name"      => _INTL("Jump to box"),
+  "name"      => _INTL("跳转到盒子"),
   "order"     => 10
 })
 
 MenuHandlers.add(:storage_box_interact, :rename_box, {
-  "name"      => _INTL("Rename box"),
+  "name"      => _INTL("重命名盒子"),
   "order"     => 20
 })
 
 MenuHandlers.add(:storage_box_interact, :change_box_wallpaper, {
-  "name"      => _INTL("Change wallpaper"),
+  "name"      => _INTL("更换壁纸"),
   "order"     => 30
 })
 
 MenuHandlers.add(:storage_box_interact, :cancel, {
-  "name"      => _INTL("Cancel"),
+  "name"      => _INTL("取消"),
   "order"     => 9999
 })

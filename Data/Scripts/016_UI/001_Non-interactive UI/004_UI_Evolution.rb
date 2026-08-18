@@ -85,10 +85,10 @@ class PokemonEvolutionScene
   # Opens the evolution screen
   def pbEvolution(cancancel = true)
     pbBGMStop
-    pbMessageDisplay(@sprites["msgwindow"], "\\se[]" + _INTL("What?") + "\1") { pbUpdate }
+    pbMessageDisplay(@sprites["msgwindow"], "\\se[]" + _INTL("……哦！？") + "\1") { pbUpdate }
     pbPlayDecisionSE
     @pokemon.play_cry
-    @sprites["msgwindow"].text = _INTL("{1} is evolving!", @pokemon.name)
+    @sprites["msgwindow"].text = _INTL("{1}的样子……！", @pokemon.name)
     timer_start = System.uptime
     loop do
       Graphics.update
@@ -129,7 +129,7 @@ class PokemonEvolutionScene
     if canceled
       $stats.evolutions_cancelled += 1
       pbMessageDisplay(@sprites["msgwindow"],
-                       _INTL("Huh? {1} stopped evolving!", @pokemon.name)) { pbUpdate }
+                       _INTL("什么……？{1}的变化停止了！", @pokemon.name)) { pbUpdate }
     else
       pbEvolutionSuccess
     end
@@ -210,7 +210,7 @@ class PokemonEvolutionScene
     pbMEPlay("Evolution success")
     newspeciesname = GameData::Species.get(@newspecies).name
     pbMessageDisplay(@sprites["msgwindow"],
-                     "\\se[]" + _INTL("Congratulations! Your {1} evolved into {2}!",
+                     "\\se[]" + _INTL("恭喜！{1}进化为{2}了！",
                                       @pokemon.name, newspeciesname) + "\\wt[80]") { pbUpdate }
     @sprites["msgwindow"].text = ""
     # Check for consumed item and check if Pokémon should be duplicated
@@ -235,7 +235,7 @@ class PokemonEvolutionScene
     if Settings::SHOW_NEW_SPECIES_POKEDEX_ENTRY_MORE_OFTEN && !was_owned &&
        $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(@pokemon.species)
       pbMessageDisplay(@sprites["msgwindow"],
-                       _INTL("{1}'s data was added to the Pokédex.", newspeciesname)) { pbUpdate }
+                       _INTL("{1}的资料被新添加到宝可梦图鉴里了！", newspeciesname)) { pbUpdate }
       $player.pokedex.register_last_seen(@pokemon)
       pbFadeOutIn do
         pbShowPokedexEntry(@pokemon.species, true, true)

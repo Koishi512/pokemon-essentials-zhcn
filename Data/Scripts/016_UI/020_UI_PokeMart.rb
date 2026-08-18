@@ -118,7 +118,7 @@ class UI::MartVisualsList < Window_DrawableCommand
     this_item = @stock[index]
     if !this_item
       pbDrawShadowText(self.contents, rect.x, rect.y + 2, rect.width, rect.height,
-                       _INTL("CANCEL"), self.baseColor, self.shadowColor)
+                       _INTL("取消"), self.baseColor, self.shadowColor)
       return
     end
     # Draw item name
@@ -193,7 +193,7 @@ class UI::MartVisuals < UI::BaseVisuals
 
   def initialize_bag_quantity_window
     @sprites[:bag_quantity_window] = Window_AdvancedTextPokemon.newWithSize(
-      _INTL("In Bag:<r>{1}", @bag.quantity(item)), 0, 0, 162, 64, @viewport
+      _INTL("包包里有：<r>{1}", @bag.quantity(item)), 0, 0, 162, 64, @viewport
     )
     @sprites[:bag_quantity_window].setSkin("Graphics/Windowskins/goldskin")
     @sprites[:bag_quantity_window].baseColor      = get_text_color_theme(:gray)[0]
@@ -254,18 +254,18 @@ class UI::MartVisuals < UI::BaseVisuals
     if selected_item
       @sprites[:item_description].text = GameData::Item.get(selected_item).description
     else
-      @sprites[:item_description].text = _INTL("Quit shopping.")
+      @sprites[:item_description].text = _INTL("退出购物。")
     end
     refresh_bag_quantity_window
   end
 
   def refresh_bag_quantity_window
-    @sprites[:bag_quantity_window].text = _INTL("In Bag:<r>{1}", @bag.quantity(item))
+    @sprites[:bag_quantity_window].text = _INTL("包包里有：<r>{1}", @bag.quantity(item))
     (item) ? show_bag_quantity_window : hide_bag_quantity_window
   end
 
   def refresh_money_window
-    @sprites[:money_window].text = _INTL("Money:\n<r>${1}", $player.money.to_s_formatted)
+    @sprites[:money_window].text = _INTL("零花钱：\n<r>${1}", $player.money.to_s_formatted)
   end
 
   def refresh_on_index_changed(old_index)
@@ -358,37 +358,37 @@ class UI::Mart < UI::BaseScreen
       max_quantity = screen.stock.maximum_affordable_quantity(item_data.id)
       # Check affordability
       if max_quantity == 0
-        screen.show_message(_INTL("You don't have enough money."))
+        screen.show_message(_INTL("您的钱不够呢！"))
         next
       end
       # Choose how many of the item to buy
       quantity = 1
       if item_data.is_important?
         next if !screen.show_confirm_message(
-          _INTL("So you want the {1}?\nIt'll be ${2}. All right?",
+          _INTL("是{1}啊。\n一共${2}可以吗？",
                 item_data.portion_name, item_price.to_s_formatted)
         )
       else
         quantity = screen.choose_number_as_money_multiplier(
-          _INTL("How many {1} would you like?", item_data.portion_name_plural), item_price, max_quantity
+          _INTL("您要买几个{1}？", item_data.portion_name_plural), item_price, max_quantity
         )
         next if quantity == 0
         item_price *= quantity
         if quantity > 1
           next if !screen.show_confirm_message(
-            _INTL("So you want {1} {2}?\nThey'll be ${3}. All right?",
+            _INTL("是{2}啊。\n{1}个一共${3}可以吗？",
                   quantity, item_data.portion_name_plural, item_price.to_s_formatted)
           )
         elsif quantity > 0
           next if !screen.show_confirm_message(
-            _INTL("So you want {1} {2}?\nIt'll be ${3}. All right?",
+            _INTL("是{2}啊。\n{1}个一共${3}可以吗？",
                   quantity, item_data.portion_name, item_price.to_s_formatted)
           )
         end
       end
       # Check the item can be put in the Bag
       if !screen.bag.can_add?(item_data.id, quantity)
-        screen.show_message(_INTL("You have no room in your Bag."))
+        screen.show_message(_INTL("不好意思，您好像已经拿不下了呢……"))
         next
       end
       # Add the bought item(s)
@@ -399,7 +399,7 @@ class UI::Mart < UI::BaseScreen
       screen.stock.remove_from_stock(item_data.id, quantity)
       screen.stock.refresh   # Removes bought important items
       screen.refresh
-      screen.show_message(_INTL("Here you are! Thank you!")) { pbSEPlay("Mart buy item") }
+      screen.show_message(_INTL("请拿好。谢谢惠顾。")) { pbSEPlay("Mart buy item") }
       # Give bonus Premier Ball(s)
       if quantity >= 10 && item_data.is_poke_ball? && GameData::Item.exists?(:PREMIERBALL)
         if Settings::MORE_BONUS_PREMIER_BALLS || item_data.id == :POKEBALL
@@ -416,7 +416,7 @@ class UI::Mart < UI::BaseScreen
             else
               ball_name = GameData::Item.get(:PREMIERBALL).portion_name
             end
-            screen.show_message(_INTL("And have {1} {2} on the house!", premier_balls_added, ball_name))
+            screen.show_message(_INTL("还要多送{1}个{2}给您哦！", premier_balls_added, ball_name))
           end
         end
       end
@@ -453,7 +453,7 @@ class UI::BagSellVisuals < UI::BagVisuals
 
   def refresh
     super
-    @sprites[:money_window].text = _INTL("Money:\n<r>${1}", $player.money.to_s_formatted)
+    @sprites[:money_window].text = _INTL("零花钱：\n<r>${1}", $player.money.to_s_formatted)
     refresh_unit_price_window
   end
 
@@ -464,9 +464,9 @@ class UI::BagSellVisuals < UI::BagVisuals
     return if item.nil?
     price = @stock.sell_price(item)
     if GameData::Item.get(item).is_important? || price == 0
-      @sprites[:unit_price_window].text = _INTL("You can't sell this item.")
+      @sprites[:unit_price_window].text = _INTL("无法出售该道具。")
     else
-      @sprites[:unit_price_window].text = _INTL("Price each:\n<r>${1}", price.to_s_formatted)
+      @sprites[:unit_price_window].text = _INTL("单价：\n<r>${1}", price.to_s_formatted)
     end
   end
 
@@ -497,27 +497,27 @@ class UI::BagSell < UI::Bag
       price = @stock.sell_price(item)
       # Ensure item can be sold
       if item_data.is_important? || price == 0
-        show_message(_INTL("Oh, no. I can't buy {1}.", item_name_plural))
+        show_message(_INTL("不，我买不了{1}。", item_name_plural))
         next
       end
       # Choose a quantity of the item to sell
       quantity = @bag.quantity(item)
       if quantity > 1
         quantity = choose_number_as_money_multiplier(
-          _INTL("How many {1} would you like to sell?", item_name_plural), price, quantity
+          _INTL("您要卖几个{1}？", item_name_plural), price, quantity
         )
       end
       next if quantity == 0
       # Sell the item(s)
       price *= quantity
-      if show_confirm_message(_INTL("I can pay ${1}.\nWould that be OK?", price.to_s_formatted))
+      if show_confirm_message(_INTL("我可以出${1}。\n可以吗？", price.to_s_formatted))
         @bag.remove(item, quantity)
         old_money = $player.money
         $player.money += price
         $stats.money_earned_at_marts += $player.money - old_money
         refresh
         sold_item_name = (quantity > 1) ? item_name_plural : item_name
-        show_message(_INTL("You turned over the {1} and got ${2}.",
+          show_message(_INTL("你卖出了{1}，赚了${2}。",
                            sold_item_name, price.to_s_formatted)) { pbSEPlay("Mart buy item") }
       end
       next false
@@ -530,10 +530,10 @@ end
 #===============================================================================
 def pbPokemonMart(stock, speech = nil, cannot_sell = false)
   commands = {}
-  commands[:buy]    = _INTL("I'm here to buy")
-  commands[:sell]   = _INTL("I'm here to sell") if !cannot_sell
-  commands[:cancel] = _INTL("No, thanks")
-  cmd = pbMessage(speech || _INTL("Welcome! How may I help you?"), commands.values, commands.length)
+  commands[:buy]    = _INTL("购买")
+  commands[:sell]   = _INTL("出售") if !cannot_sell
+  commands[:cancel] = _INTL("什么也不需要")
+  cmd = pbMessage(speech || _INTL("欢迎光临！请问您有什么需要？"), commands.values, commands.length)
   loop do
     case commands.keys[cmd]
     when :buy
@@ -541,10 +541,10 @@ def pbPokemonMart(stock, speech = nil, cannot_sell = false)
     when :sell
       pbFadeOutIn { UI::BagSell.new($bag).sell_items }
     else
-      pbMessage(_INTL("Do come again!"))
+      pbMessage(_INTL("欢迎再次光临！"))
       break
     end
-    cmd = pbMessage(_INTL("Is there anything else I can do for you?"), commands.values, commands.length, nil, cmd)
+    cmd = pbMessage(_INTL("还有什么其他需要吗？"), commands.values, commands.length, nil, cmd)
   end
   $game_temp.clear_mart_prices
 end

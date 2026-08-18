@@ -105,7 +105,7 @@ class UI::MoveReminderVisuals < UI::BaseVisuals
   end
 
   def draw_header
-    draw_text(_INTL("Teach which move?"), 16, 14, theme: :gray)
+    draw_text(_INTL("要教授哪个招式？"), 16, 14, theme: :gray)
   end
 
   # x and y are the top left corner of the type icon if there is only one type.
@@ -152,13 +152,13 @@ class UI::MoveReminderVisuals < UI::BaseVisuals
     move = @moves[@index]
     move_data = GameData::Move.get(move)
     # Power
-    draw_text(_INTL("POWER"), 278, 120, theme: :white)
+    draw_text(_INTL("威力"), 278, 120, theme: :white)
     power_text = move_data.display_power(@pokemon)
     power_text = "---" if power_text == 0   # Status move
     power_text = "???" if power_text == 1   # Variable power move
     draw_text(power_text, 480, 120, align: :right, theme: :black)
     # Accuracy
-    draw_text(_INTL("ACCURACY"), 278, 152, theme: :white)
+    draw_text(_INTL("命中率"), 278, 152, theme: :white)
     accuracy = move_data.display_accuracy(@pokemon)
     if accuracy == 0
       draw_text("---", 480, 152, align: :right, theme: :black)
@@ -308,7 +308,7 @@ class UI::MoveReminder < UI::BaseScreen
 
   ACTIONS.add(:learn, {
     :effect => proc { |screen|
-      next if !screen.show_confirm_message(_INTL("Teach {1}?", GameData::Move.get(screen.move).name))
+      next if !screen.show_confirm_message(_INTL("要教授{1}吗？", GameData::Move.get(screen.move).name))
       next if !pbLearnMove(screen.pokemon, screen.move, false, false, screen)
       $stats.moves_taught_by_reminder += 1
       if screen.mode == :normal
@@ -328,10 +328,10 @@ class UI::MoveReminder < UI::BaseScreen
       on_start_main_loop
       command = @visuals.navigate
       break if command == :quit && (@mode == :normal ||
-               show_confirm_message(_INTL("Give up trying to teach a new move to {1}?", @pokemon.name)))
+               show_confirm_message(_INTL("要放弃给{1}教授新招式吗？", @pokemon.name)))
       perform_action(command)
       if @moves.empty?
-        show_message(_INTL("There are no more moves for {1} to learn.", @pokemon.name))
+        show_message(_INTL("没有可供{1}学习的招式了。", @pokemon.name))
         break
       end
       if @disposed

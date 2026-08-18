@@ -891,29 +891,29 @@ MenuHandlers.add(:options_menu, :main_volume, {
   "order"       => 10,
   "type"        => :number_slider,
   "parameters"  => [0, 100, 5],   # [minimum_value, maximum_value, interval]
-  "description" => _INTL("Adjust the volume of all audio in the game."),
+  "description" => _INTL("调节游戏内所有音频的音量。"),
   "get_proc"    => proc { next $PokemonSystem.main_volume },
   "set_proc"    => proc { |value, screen| $PokemonSystem.main_volume = value }
 })
 
 MenuHandlers.add(:options_menu, :bgm_volume, {
   "page"        => :audio,
-  "name"        => _INTL("Background Music"),
+  "name"        => _INTL("背景音乐"),
   "order"       => 20,
   "type"        => :number_slider,
   "parameters"  => [0, 100, 5],   # [minimum_value, maximum_value, interval]
-  "description" => _INTL("Adjust the volume of the background music."),
+  "description" => _INTL("调节背景音乐的音量。"),
   "get_proc"    => proc { next $PokemonSystem.bgmvolume },
   "set_proc"    => proc { |value, screen| $PokemonSystem.bgmvolume = value }
 })
 
 MenuHandlers.add(:options_menu, :se_volume, {
   "page"        => :audio,
-  "name"        => _INTL("Sound Effects"),
+  "name"        => _INTL("音效"),
   "order"       => 30,
   "type"        => :number_slider,
   "parameters"  => [0, 100, 5],   # [minimum_value, maximum_value, interval]
-  "description" => _INTL("Adjust the volume of sound effects."),
+  "description" => _INTL("调节音效的音量。"),
   "get_proc"    => proc { next $PokemonSystem.sevolume },
   "set_proc"    => proc { |value, _screen|
     next if $PokemonSystem.sevolume == value
@@ -924,11 +924,11 @@ MenuHandlers.add(:options_menu, :se_volume, {
 
 MenuHandlers.add(:options_menu, :pokemon_cry_volume, {
   "page"        => :audio,
-  "name"        => _INTL("Pokémon Cries"),
+  "name"        => _INTL("宝可梦叫声"),
   "order"       => 40,
   "type"        => :number_slider,
   "parameters"  => [0, 100, 5],   # [minimum_value, maximum_value, interval]
-  "description" => _INTL("Adjust the volume of Pokémon cries."),
+  "description" => _INTL("调节宝可梦叫声的音量。"),
   "get_proc"    => proc { next $PokemonSystem.pokemon_cry_volume },
   "set_proc"    => proc { |value, _screen|
     next if $PokemonSystem.pokemon_cry_volume == value
@@ -941,11 +941,11 @@ MenuHandlers.add(:options_menu, :pokemon_cry_volume, {
 
 MenuHandlers.add(:options_menu, :text_speed, {
   "page"        => :graphics,
-  "name"        => _INTL("Text Speed"),
+  "name"        => _INTL("语速"),
   "order"       => 10,
   "type"        => :array,
-  "parameters"  => [_INTL("Slow"), _INTL("Mid"), _INTL("Fast"), _INTL("Inst")],
-  "description" => _INTL("Choose the speed at which text appears."),
+  "parameters"  => [_INTL("慢"), _INTL("中等"), _INTL("快"), _INTL("迅速")],
+  "description" => _INTL("选择文本出现的速度。"),
   "on_select"   => proc { |screen| screen.sprites[:speech_box].letterbyletter = true },
   "get_proc"    => proc { next $PokemonSystem.textspeed },
   "set_proc"    => proc { |value, screen|
@@ -960,22 +960,22 @@ MenuHandlers.add(:options_menu, :text_speed, {
 
 MenuHandlers.add(:options_menu, :battle_animations, {
   "page"        => :graphics,
-  "name"        => _INTL("Battle Effects"),
+  "name"        => _INTL("对战动画"),
   "order"       => 20,
   "type"        => :array,
-  "parameters"  => [_INTL("On"), _INTL("Off")],
-  "description" => _INTL("Choose whether you wish to see move animations in battle."),
+  "parameters"  => [_INTL("开启"), _INTL("关闭")],
+  "description" => _INTL("选择要不要看对战时的所有动画。"),
   "get_proc"    => proc { next $PokemonSystem.battlescene },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.battlescene = value }
 })
 
 MenuHandlers.add(:options_menu, :speech_frame, {
   "page"        => :graphics,
-  "name"        => _INTL("Speech Frame"),
+  "name"        => _INTL("对话框"),
   "order"       => 30,
   "type"        => :number_type,
   "parameters"  => 1..Settings::SPEECH_WINDOWSKINS.length,
-  "description" => _INTL("Choose the appearance of dialogue boxes."),
+  "description" => _INTL("选择对话框的外观。"),
   "condition"   => proc { next Settings::SPEECH_WINDOWSKINS.length > 1 },
   "get_proc"    => proc { next $PokemonSystem.textskin },
   "set_proc"    => proc { |value, screen|
@@ -987,11 +987,11 @@ MenuHandlers.add(:options_menu, :speech_frame, {
 
 MenuHandlers.add(:options_menu, :menu_frame, {
   "page"        => :graphics,
-  "name"        => _INTL("Menu Frame"),
+  "name"        => _INTL("菜单框"),
   "order"       => 40,
   "type"        => :number_type,
   "parameters"  => 1..Settings::MENU_WINDOWSKINS.length,
-  "description" => _INTL("Choose the appearance of menu boxes."),
+  "description" => _INTL("选择菜单框的外观。"),
   "condition"   => proc { next Settings::MENU_WINDOWSKINS.length > 1 },
   "get_proc"    => proc { next $PokemonSystem.frame },
   "set_proc"    => proc { |value, screen|
@@ -1003,10 +1003,10 @@ MenuHandlers.add(:options_menu, :menu_frame, {
 
 MenuHandlers.add(:options_menu, :screen_size, {
   "page"        => :graphics,
-  "name"        => _INTL("Screen Size"),
+  "name"        => _INTL("界面大小"),
   "order"       => 50,
   "type"        => :array,
-  "parameters"  => [_INTL("S"), _INTL("M"), _INTL("L"), _INTL("XL"), _INTL("Full")],
+  "parameters"  => [_INTL("S"), _INTL("M"), _INTL("L"), _INTL("XL"), _INTL("全屏")],
   "description" => _INTL("Choose the size of the game window."),
   "get_proc"    => proc { next [$PokemonSystem.screensize, 4].min },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.screensize = value }
@@ -1016,11 +1016,11 @@ MenuHandlers.add(:options_menu, :screen_size, {
 
 MenuHandlers.add(:options_menu, :control_up, {
   "page"        => :controls,
-  "name"        => _INTL("Up"),
+  "name"        => _INTL("上"),
   "order"       => 10,
   "type"        => :control,
   "parameters"  => Input::UP,
-  "description" => _INTL("Moves around in the field. Navigates menus and moves cursors. [Also: Up]"),
+  "description" => _INTL("在场地上移动。用于浏览菜单和移动光标。【另：上】"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::UP] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::UP] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1028,11 +1028,11 @@ MenuHandlers.add(:options_menu, :control_up, {
 
 MenuHandlers.add(:options_menu, :control_left, {
   "page"        => :controls,
-  "name"        => _INTL("Left"),
+  "name"        => _INTL("左"),
   "order"       => 20,
   "type"        => :control,
   "parameters"  => Input::LEFT,
-  "description" => _INTL("Moves around in the field. Navigates menus and moves cursors. [Also: Left]"),
+  "description" => _INTL("在场地上移动。用于浏览菜单和移动光标。【另：左】"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::LEFT] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::LEFT] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1040,11 +1040,11 @@ MenuHandlers.add(:options_menu, :control_left, {
 
 MenuHandlers.add(:options_menu, :control_down, {
   "page"        => :controls,
-  "name"        => _INTL("Down"),
+  "name"        => _INTL("下"),
   "order"       => 30,
   "type"        => :control,
   "parameters"  => Input::DOWN,
-  "description" => _INTL("Moves around in the field. Navigates menus and moves cursors. [Also: Down]"),
+  "description" => _INTL("在场地上移动。用于浏览菜单和移动光标。【另：下】"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::DOWN] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::DOWN] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1052,11 +1052,11 @@ MenuHandlers.add(:options_menu, :control_down, {
 
 MenuHandlers.add(:options_menu, :control_right, {
   "page"        => :controls,
-  "name"        => _INTL("Right"),
+  "name"        => _INTL("右"),
   "order"       => 40,
   "type"        => :control,
   "parameters"  => Input::RIGHT,
-  "description" => _INTL("Moves around in the field. Navigates menus and moves cursors. [Also: Right]"),
+  "description" => _INTL("在场地上移动。用于浏览菜单和移动光标。【另：右】"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::RIGHT] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::RIGHT] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1064,11 +1064,11 @@ MenuHandlers.add(:options_menu, :control_right, {
 
 MenuHandlers.add(:options_menu, :control_use, {
   "page"        => :controls,
-  "name"        => _INTL("Use"),
+  "name"        => _INTL("使用"),
   "order"       => 50,
   "type"        => :control,
   "parameters"  => Input::USE,
-  "description" => _INTL("Interacts with a thing or person. Makes a choice. [Also: Return, Space]"),
+  "description" => _INTL("与物体或人互动。做出选择。【另：返回，空格】"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::USE] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::USE] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1076,11 +1076,11 @@ MenuHandlers.add(:options_menu, :control_use, {
 
 MenuHandlers.add(:options_menu, :control_back, {
   "page"        => :controls,
-  "name"        => _INTL("Back"),
+  "name"        => _INTL("返回"),
   "order"       => 60,
   "type"        => :control,
   "parameters"  => Input::BACK,
-  "description" => _INTL("Exits menus and cancels choices. Changes field movement speed if held. [Also: Esc]"),
+  "description" => _INTL("退出菜单，取消选择。按住时能更改在场地上移动的速度。【另：Esc】"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::BACK] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::BACK] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1088,11 +1088,11 @@ MenuHandlers.add(:options_menu, :control_back, {
 
 MenuHandlers.add(:options_menu, :control_action, {
   "page"        => :controls,
-  "name"        => _INTL("Action"),
+  "name"        => _INTL("行动"),
   "order"       => 70,
   "type"        => :control,
   "parameters"  => Input::ACTION,
-  "description" => _INTL("Opens the Pause Menu in the field. Extra actions in some menus. [Also: Backspace]"),
+  "description" => _INTL("在场地上打开暂停菜单。在部分菜单里有额外功能。【另：退格】"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::ACTION] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::ACTION] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1100,11 +1100,11 @@ MenuHandlers.add(:options_menu, :control_action, {
 
 MenuHandlers.add(:options_menu, :control_jump_up, {
   "page"        => :controls,
-  "name"        => _INTL("Quick Up"),
+  "name"        => _INTL("快速向上"),
   "order"       => 80,
   "type"        => :control,
   "parameters"  => Input::QUICK_UP,
-  "description" => _INTL("Opens the Ready Menu in the field. Quickly navigates left or up in some menus."),
+  "description" => _INTL("在场地上打开准备菜单。在某些菜单中快速向左或向上导航。"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::QUICK_UP] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::QUICK_UP] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1112,11 +1112,11 @@ MenuHandlers.add(:options_menu, :control_jump_up, {
 
 MenuHandlers.add(:options_menu, :control_jump_down, {
   "page"        => :controls,
-  "name"        => _INTL("Quick Down"),
+  "name"        => _INTL("快速向下"),
   "order"       => 90,
   "type"        => :control,
   "parameters"  => Input::QUICK_DOWN,
-  "description" => _INTL("Opens the Ready Menu in the field. Quickly navigates right or down in some menus."),
+  "description" => _INTL("在场地上打开准备菜单。在某些菜单中快速向右或向下导航。"),
   "get_proc"    => proc { next $PokemonSystem.controls[Input::QUICK_DOWN] },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.controls[Input::QUICK_DOWN] = value },
   "use_proc"    => proc { |screen| screen.visuals.change_key_or_button }
@@ -1124,10 +1124,10 @@ MenuHandlers.add(:options_menu, :control_jump_down, {
 
 MenuHandlers.add(:options_menu, :reset_controls, {
   "page"        => :controls,
-  "name"        => _INTL("Reset Controls"),
+  "name"        => _INTL("重置控制"),
   "order"       => 900,
   "type"        => :use,
-  "description" => _INTL("Reset all key bindings to their default values."),
+  "description" => _INTL("将所有键绑定恢复为默认值。"),
   "use_proc"    => proc { |screen|
     $PokemonSystem.reset_controls
     screen.sprites[:options_list].get_values

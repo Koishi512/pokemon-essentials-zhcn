@@ -53,7 +53,7 @@ class Window_CharacterEntry < Window_DrawableCommand
       pbDrawShadowText(self.contents, rect.x, rect.y, rect.width, rect.height, @othercharset,
                        self.baseColor, self.shadowColor)
     elsif index == @charset.length + 2 # -3
-      pbDrawShadowText(self.contents, rect.x, rect.y, rect.width, rect.height, _INTL("OK"),
+      pbDrawShadowText(self.contents, rect.x, rect.y, rect.width, rect.height, _INTL("好了"),
                        self.baseColor, self.shadowColor)
     else
       pbDrawShadowText(self.contents, rect.x, rect.y, rect.width, rect.height, @charset[index],
@@ -100,12 +100,12 @@ class PokemonEntryScene
     end
     if minlength == 0
       @sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize(
-        _INTL("Enter text using the keyboard. Press\nEnter to confirm, or Esc to cancel."),
+        _INTL("用键盘输入文字。\n按回车键确认，按Esc键取消。"),
         32, Graphics.height - 96, Graphics.width - 64, 96, @viewport
       )
     else
       @sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize(
-        _INTL("Enter text using the keyboard.\nPress Enter to confirm."),
+        _INTL("用键盘输入文字。\n按回车键确认。"),
         32, Graphics.height - 96, Graphics.width - 64, 96, @viewport
       )
     end
@@ -257,10 +257,10 @@ end
 #===============================================================================
 class PokemonEntryScene2
   @@Characters = [
-    [("ABCDEFGHIJ ,." + "KLMNOPQRST '-" + "UVWXYZ     ♂♀" + "             " + "0123456789   ").scan(/./), _INTL("UPPER")],
-    [("abcdefghij ,." + "klmnopqrst '-" + "uvwxyz     ♂♀" + "             " + "0123456789   ").scan(/./), _INTL("lower")],
-    [("ÀÁÂÄÃàáâäã Ææ" + "ÈÉÊË èéêë  Çç" + "ÌÍÎÏ ìíîï  Œœ" + "ÒÓÔÖÕòóôöõ Ññ" + "ÙÚÛÜ ùúûü  Ýý").scan(/./), _INTL("accents")],
-    [(",.:;…•!?¡¿ ♂♀" + "“”‘’﴾﴿*~_^ ΡΚ" + "@\#&%+-×÷/= ΠΜ" + "◎○□△♠♥♦♣★✨  $" + "♈♌♒♐♩♪♫☽☾    ").scan(/./), _INTL("other")]
+    [("ABCDEFGHIJ ,." + "KLMNOPQRST '-" + "UVWXYZ     ♂♀" + "             " + "0123456789   ").scan(/./), _INTL("大写")],
+    [("abcdefghij ,." + "klmnopqrst '-" + "uvwxyz     ♂♀" + "             " + "0123456789   ").scan(/./), _INTL("小写")],
+    [("ÀÁÂÄÃàáâäã Ææ" + "ÈÉÊË èéêë  Çç" + "ÌÍÎÏ ìíîï  Œœ" + "ÒÓÔÖÕòóôöõ Ññ" + "ÙÚÛÜ ùúûü  Ýý").scan(/./), _INTL("重音")],
+    [(",.:;…•!?¡¿ ♂♀" + "“”‘’﴾﴿*~_^ ΡΚ" + "@\#&%+-×÷/= ΠΜ" + "◎○□△♠♥♦♣★✨  $" + "♈♌♒♐♩♪♫☽☾    ").scan(/./), _INTL("其他")]
   ]
   ROWS    = 13
   COLUMNS = 5

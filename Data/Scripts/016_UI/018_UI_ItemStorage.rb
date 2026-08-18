@@ -31,7 +31,7 @@ class Window_PokemonItemStorage < Window_DrawableCommand
     rect = drawCursor(index, rect)
     textpos = []
     if index == @bag.length
-      textpos.push([_INTL("CANCEL"), rect.x, rect.y, :left, self.baseColor, self.shadowColor])
+      textpos.push([_INTL("取消"), rect.x, rect.y, :left, self.baseColor, self.shadowColor])
     else
       item     = @bag[index][0]
       itemname = GameData::Item.get(item).display_name
@@ -139,7 +139,7 @@ class ItemStorage_Scene
     if itemwindow.item
       @sprites["itemtextwindow"].text = GameData::Item.get(itemwindow.item).description
     else
-      @sprites["itemtextwindow"].text = _INTL("Close storage.")
+      @sprites["itemtextwindow"].text = _INTL("退出寄放系统。")
     end
     itemwindow.refresh
   end
@@ -176,7 +176,7 @@ end
 #===============================================================================
 class WithdrawItemScene < ItemStorage_Scene
   def initialize
-    super(_INTL("Withdraw\nItem"))
+    super(_INTL("取出\n道具"))
   end
 end
 
@@ -185,7 +185,7 @@ end
 #===============================================================================
 class TossItemScene < ItemStorage_Scene
   def initialize
-    super(_INTL("Toss\nItem"))
+    super(_INTL("丢弃\n道具"))
   end
 end
 
@@ -219,7 +219,7 @@ class ItemStorageScreen
       itm = GameData::Item.get(item)
       qty = storage.quantity(item)
       if qty > 1 && !itm.is_important?
-        qty = @scene.pbChooseNumber(_INTL("How many do you want to withdraw?"), qty)
+        qty = @scene.pbChooseNumber(_INTL("要取出多少个？"), qty)
       end
       next if qty <= 0
       if @bag.can_add?(item, qty)
@@ -232,9 +232,9 @@ class ItemStorageScreen
         @scene.pbRefresh
         dispqty = (itm.is_important?) ? 1 : qty
         itemname = (dispqty > 1) ? itm.portion_name_plural : itm.portion_name
-        pbDisplay(_INTL("Withdrew {1} {2}.", dispqty, itemname))
+        pbDisplay(_INTL("取出了{1}个{2}。", dispqty, itemname))
       else
-        pbDisplay(_INTL("There's no more room in the Bag."))
+        pbDisplay(_INTL("包包已经没有空间了。"))
       end
     end
     @scene.pbEndScene
@@ -252,23 +252,23 @@ class ItemStorageScreen
       break if !item
       itm = GameData::Item.get(item)
       if itm.is_important?
-        @scene.pbDisplay(_INTL("That's too important to toss out!"))
+        @scene.pbDisplay(_INTL("这是重要道具，不能丢弃！"))
         next
       end
       qty = storage.quantity(item)
       itemname       = itm.portion_name
       itemnameplural = itm.portion_name_plural
       if qty > 1
-        qty = @scene.pbChooseNumber(_INTL("Toss out how many {1}?", itemnameplural), qty)
+        qty = @scene.pbChooseNumber(_INTL("丢弃多少个{1}？", itemnameplural), qty)
       end
       next if qty <= 0
       itemname = itemnameplural if qty > 1
-      next if !pbConfirm(_INTL("Is it OK to throw away {1} {2}?", qty, itemname))
+      next if !pbConfirm(_INTL("确定要丢弃{1}个{2}吗？", qty, itemname))
       if !storage.remove(item, qty)
         raise "Can't delete items from storage"
       end
       @scene.pbRefresh
-      pbDisplay(_INTL("Threw away {1} {2}.", qty, itemname))
+      pbDisplay(_INTL("丢弃了{1}个{2}。", qty, itemname))
     end
     @scene.pbEndScene
   end
@@ -332,7 +332,7 @@ module UIHelper
     dw.text           = msg
     dw.visible        = true
     pbBottomLeftLines(dw, 2)
-    commands = [_INTL("Yes"), _INTL("No")]
+    commands = [_INTL("是"), _INTL("否")]
     cw = Window_CommandPokemon.new(commands)
     cw.index = 0
     cw.viewport = helpwindow.viewport
