@@ -186,9 +186,9 @@ class PokemonTrade_Scene
     pbBGMPlay(TRADE_BGM)
     pbScene1
     pbMessageDisplay(@sprites["msgwindow"],
-                     _INTL("For {1}'s {2},\n{3} sends {4}.", @trader1, speciesname1, @trader2, speciesname2) + "\1") { pbUpdate }
+                     _INTL("对{1}的{2}，\n{3}送过来了{4}。", @trader1, speciesname1, @trader2, speciesname2) + "\1") { pbUpdate }
     pbMessageDisplay(@sprites["msgwindow"],
-                     _INTL("{1} bids farewell to {2}.", @trader2, speciesname2)) { pbUpdate }
+                     _INTL("{1}向{2}告别。", @trader2, speciesname2)) { pbUpdate }
     pbScene2
     pbBGMStop
     pbMEPlay("Battle capture success")
@@ -196,12 +196,12 @@ class PokemonTrade_Scene
                      _ISPRINTF("{1:s}\nID: {2:05d}   OT: {3:s}",
                                @pokemon2.name, @pokemon2.owner.public_id, @pokemon2.owner.name) + "\1") { pbUpdate }
     pbMessageDisplay(@sprites["msgwindow"],
-                     _INTL("Take good care of {1}.", speciesname2)) { pbUpdate }
+                     _INTL("要好好爱护{1}哦！", speciesname2)) { pbUpdate }
     # Show Pokédex entry for new species if it hasn't been owned before
     if Settings::SHOW_NEW_SPECIES_POKEDEX_ENTRY_MORE_OFTEN && !was_owned &&
        $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(@pokemon2.species)
       pbMessageDisplay(@sprites["msgwindow"],
-                       _INTL("{1}'s data was added to the Pokédex.", speciesname2)) { pbUpdate }
+                       _INTL("{1}的资料被新添加到宝可梦图鉴里了！", speciesname2)) { pbUpdate }
       $player.pokedex.register_last_seen(@pokemon2)
       pbFadeOutIn do
         pbShowPokedexEntry(@pokemon2.species, true, true)
@@ -225,7 +225,7 @@ def pbStartTrade(pokemonIndex, newpoke, nickname, trainerName, trainerGender = 0
     resetmoves = false
   else
     species_data = GameData::Species.try_get(newpoke)
-    raise _INTL("Species {1} does not exist.", newpoke) if !species_data
+    raise _INTL("物种{1}不存在。", newpoke) if !species_data
     yourPokemon = Pokemon.new(species_data.id, myPokemon.level)
     yourPokemon.owner = Pokemon::Owner.new_foreign(trainerName, trainerGender)
   end

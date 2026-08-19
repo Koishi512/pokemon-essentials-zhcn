@@ -28,7 +28,7 @@ def pbSafeCopyFile(x, y, z = nil)
         different = true
       end
       if different
-        safetocopy = pbConfirmMessage(_INTL("A different file named '{1}' already exists. Overwrite it?", y))
+        safetocopy = pbConfirmMessage(_INTL("已经有另一个名为'{1}'的文件了。要覆盖它吗？", y))
       else
         # No need to copy
         return
@@ -115,7 +115,7 @@ end
 #===============================================================================
 def pbChooseFromGameDataList(game_data, default = nil)
   if !GameData.const_defined?(game_data.to_sym)
-    raise _INTL("Couldn't find class {1} in module GameData.", game_data.to_s)
+    raise _INTL("无法在GameData模块内找到类{1}。", game_data.to_s)
   end
   game_data_module = GameData.const_get(game_data.to_sym)
   commands = []

@@ -135,7 +135,7 @@ class NicknameClause
   end
 
   def errorMessage
-    return _INTL("No identical nicknames.")
+    return _INTL("不允许使用相同的昵称。")
   end
 end
 
@@ -244,7 +244,7 @@ class SameSpeciesClause
   end
 
   def errorMessage
-    return _INTL("Pokémon must be the same species.")
+    return _INTL("必须使用同种类的宝可梦。")
   end
 end
 
@@ -263,7 +263,7 @@ class SpeciesClause
   end
 
   def errorMessage
-    return _INTL("Pokémon can't be the same species.")
+    return _INTL("不允许使用同种类的宝可梦。")
   end
 end
 
@@ -314,7 +314,7 @@ class TotalLevelRestriction
   end
 
   def errorMessage
-    return _INTL("The combined levels exceed {1}.", @level)
+    return _INTL("宝可梦的等级总和超过了{1}。", @level)
   end
 end
 
@@ -368,7 +368,7 @@ class ItemClause
   end
 
   def errorMessage
-    return _INTL("No identical hold items.")
+    return _INTL("不允许携带相同的道具。")
   end
 end
 

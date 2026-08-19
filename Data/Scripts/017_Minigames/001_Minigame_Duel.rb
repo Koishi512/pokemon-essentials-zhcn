@@ -128,12 +128,12 @@ class PokemonDuel
       @special[1] = true if action == 3
       pbMessage(_INTL("{1}: {2}", opponent.name, speeches[(action * 3) + rand(3)]))
       list = [
-        _INTL("DEFEND"),
-        _INTL("PRECISE ATTACK"),
-        _INTL("FIERCE ATTACK")
+        _INTL("防守"),
+        _INTL("准确攻击"),
+        _INTL("猛烈攻击")
       ]
-      list.push(_INTL("SPECIAL ATTACK")) if !@special[0]
-      command = pbMessage(_INTL("Choose a command."), list, 0)
+      list.push(_INTL("特殊攻击")) if !@special[0]
+      command = pbMessage(_INTL("请选择命令。"), list, 0)
       @special[0] = true if command == 3
       if action == 0 && command == 0
         pbMoveRoute($game_player,
@@ -147,7 +147,7 @@ class PokemonDuel
                      PBMoveRoute::SCRIPT_ASYNC, "moveRight90",
                      PBMoveRoute::SCRIPT_ASYNC, "moveLeft90"])
         pbWait(0.5)
-        pbMessage(_INTL("You study each other's movements..."))
+        pbMessage(_INTL("你在研究彼此的动作……"))
       elsif action == 0 && command == 1
         pbMoveRoute($game_player,
                     [PBMoveRoute::CHANGE_SPEED, 4,
@@ -159,7 +159,7 @@ class PokemonDuel
                     [PBMoveRoute::CHANGE_SPEED, 2,
                      PBMoveRoute::BACKWARD])
         @hp[1] -= 1
-        pbMessage(_INTL("Your attack was not blocked!"))
+        pbMessage(_INTL("你的攻击未被阻挡！"))
       elsif action == 0 && command == 2
         pbMoveRoute($game_player,
                     [PBMoveRoute::CHANGE_SPEED, 4,
@@ -174,7 +174,7 @@ class PokemonDuel
         pbMoveRoute(event,
                     [PBMoveRoute::CHANGE_SPEED, 2,
                      PBMoveRoute::FORWARD])
-        pbMessage(_INTL("Your attack was evaded!"))
+        pbMessage(_INTL("你的攻击被回避了！"))
       elsif [0, 1, 2].include?(action) && command == 3
         pbMoveRoute($game_player,
                     [PBMoveRoute::CHANGE_SPEED, 4,
@@ -194,7 +194,7 @@ class PokemonDuel
                     [PBMoveRoute::CHANGE_SPEED, 2,
                      PBMoveRoute::FORWARD])
         @hp[1] -= 3
-        pbMessage(_INTL("You pierce through the opponent's defenses!"))
+        pbMessage(_INTL("你突破了对手的防御！"))
       elsif action == 1 && command == 0
         pbMoveRoute(event,
                     [PBMoveRoute::CHANGE_SPEED, 4,
@@ -206,7 +206,7 @@ class PokemonDuel
                     [PBMoveRoute::CHANGE_SPEED, 2,
                      PBMoveRoute::BACKWARD])
         @hp[0] -= 1
-        pbMessage(_INTL("You fail to block the opponent's attack!"))
+        pbMessage(_INTL("你未能阻挡对手的攻击！"))
       elsif action == 1 && command == 1
         pbMoveRoute($game_player,
                     [PBMoveRoute::CHANGE_SPEED, 4,
@@ -223,7 +223,7 @@ class PokemonDuel
         pbMoveRoute($game_player, [PBMoveRoute::FORWARD])
         pbWait(0.6)
         pbMoveRoute($game_player, [PBMoveRoute::BACKWARD])
-        pbMessage(_INTL("You cross blades with the opponent!"))
+        pbMessage(_INTL("你与对手剑锋相交！"))
       elsif (action == 1 && command == 2) ||
             (action == 2 && command == 1) ||
             (action == 2 && command == 2)
@@ -250,7 +250,7 @@ class PokemonDuel
         pbMoveRoute($game_player, [PBMoveRoute::FORWARD])
         @hp[0] -= action    # Enemy action
         @hp[1] -= command   # Player command
-        pbMessage(_INTL("You hit each other!"))
+        pbMessage(_INTL("你们击中了彼此！"))
       elsif action == 2 && command == 0
         pbMoveRoute(event,
                     [PBMoveRoute::CHANGE_SPEED, 4,
@@ -265,7 +265,7 @@ class PokemonDuel
         pbMoveRoute(event,
                     [PBMoveRoute::CHANGE_SPEED, 2,
                      PBMoveRoute::BACKWARD])
-        pbMessage(_INTL("You evade the opponent's attack!"))
+        pbMessage(_INTL("你回避了对手的攻击！"))
       elsif action == 3 && [0, 1, 2].include?(command)
         pbMoveRoute(event,
                     [PBMoveRoute::CHANGE_SPEED, 4,
@@ -285,7 +285,7 @@ class PokemonDuel
                     [PBMoveRoute::CHANGE_SPEED, 2,
                      PBMoveRoute::BACKWARD])
         @hp[0] -= 3
-        pbMessage(_INTL("The opponent pierces through your defenses!"))
+        pbMessage(_INTL("对手突破了你的防御！"))
       elsif action == 3 && command == 3
         pbMoveRoute($game_player, [PBMoveRoute::BACKWARD])
         pbMoveRoute($game_player,
@@ -310,7 +310,7 @@ class PokemonDuel
         pbMoveRoute($game_player, [PBMoveRoute::FORWARD])
         @hp[0] -= 4
         @hp[1] -= 4
-        pbMessage(_INTL("Your special attacks collide!"))
+        pbMessage(_INTL("你们的特殊攻击相撞了！"))
       end
     end
     pbEndDuel

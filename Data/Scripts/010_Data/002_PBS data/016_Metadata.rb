@@ -80,5 +80,6 @@ module GameData
     def storage_creator
       ret = pbGetMessageFromHash(MessageTypes::STORAGE_CREATOR_NAME, @real_storage_creator)
       return nil_or_empty?(ret) ? _INTL("正辉") : ret
+    end
   end
 end

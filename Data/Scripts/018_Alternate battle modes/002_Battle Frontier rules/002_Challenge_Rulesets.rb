@@ -193,19 +193,19 @@ class PokemonRuleSet
   # Pokemon in the team must be valid.
   def isValid?(team, error = nil)
     if team.length < self.minLength
-      error.push(_INTL("Choose a Pokémon.")) if error && self.minLength == 1
-      error.push(_INTL("{1} Pokémon are needed.", self.minLength)) if error && self.minLength > 1
+      error.push(_INTL("请选择宝可梦。")) if error && self.minLength == 1
+      error.push(_INTL("需要{1}只宝可梦。", self.minLength)) if error && self.minLength > 1
       return false
     elsif team.length > self.maxLength
-      error&.push(_INTL("No more than {1} Pokémon may enter.", self.maxLength))
+      error&.push(_INTL("最多只能有{1}只宝可梦进入。", self.maxLength))
       return false
     end
     team.each do |pkmn|
       next if isPokemonValid?(pkmn)
       if pkmn
-        error&.push(_INTL("{1} is not allowed.", pkmn.name))
+        error&.push(_INTL("{1}不允许参赛。", pkmn.name))
       elsif error
-        error.push(_INTL("This team is not allowed."))
+        error.push(_INTL("不允许使用此队伍。"))
       end
       return false
     end
@@ -247,7 +247,7 @@ class StandardCup < StandardRules
   end
 
   def name
-    return _INTL("Standard Cup")
+    return _INTL("普通杯")
   end
 end
 
@@ -260,7 +260,7 @@ class DoubleCup < StandardRules
   end
 
   def name
-    return _INTL("Double Cup")
+    return _INTL("双打杯")
   end
 end
 
@@ -281,7 +281,7 @@ class FancyCup < PokemonRuleSet
   end
 
   def name
-    return _INTL("Fancy Cup")
+    return _INTL("技巧杯")
   end
 end
 
@@ -299,7 +299,7 @@ class LittleCup < PokemonRuleSet
   end
 
   def name
-    return _INTL("Little Cup")
+    return _INTL("宝宝杯")
   end
 end
 
@@ -318,6 +318,6 @@ class LightCup < PokemonRuleSet
   end
 
   def name
-    return _INTL("Light Cup")
+    return _INTL("轻型杯")
   end
 end

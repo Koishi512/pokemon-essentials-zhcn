@@ -265,7 +265,7 @@ class TriadScene
       commands.push(_INTL("{1} x{2}", GameData::Species.get(item[0]).name, item[1]))
     end
     command = Window_CommandPokemonEx.newWithSize(commands, 0, 0, Graphics.width / 2, Graphics.height - 64, @viewport)
-    @sprites["helpwindow"].text = _INTL("Choose {1} cards to use for this duel.", @battle.maxCards)
+    @sprites["helpwindow"].text = _INTL("请选择{1}张卡片用于本次决斗。", @battle.maxCards)
     preview = Sprite.new(@viewport)
     preview.x = (Graphics.width / 2) + 20
     preview.y = 60
@@ -330,12 +330,12 @@ class TriadScene
           @sprites["player#{i}"].visible = (i < chosenCards.length)
         end
         if chosenCards.length == @battle.maxCards
-          @sprites["helpwindow"].text = _INTL("{1} cards have been chosen.", @battle.maxCards)
+          @sprites["helpwindow"].text = _INTL("已选中{1}张卡片。", @battle.maxCards)
           command.visible = false
           command.active  = false
           preview.visible = false
         else
-          @sprites["helpwindow"].text = _INTL("Choose {1} cards to use for this duel.", @battle.maxCards)
+          @sprites["helpwindow"].text = _INTL("请选择{1}张卡片用于本次决斗。", @battle.maxCards)
           command.visible = true
           command.active  = true
           preview.visible = true
@@ -372,7 +372,7 @@ class TriadScene
   end
 
   def pbViewOpponentCards(numCards)
-    @sprites["helpwindow"].text = _INTL("Check opponent's cards.")
+    @sprites["helpwindow"].text = _INTL("查看对手的卡片。")
     choice     = 0
     lastChoice = -1
     loop do
@@ -409,9 +409,9 @@ class TriadScene
 
   def pbPlayerChooseCard(numCards)
     if @battle.openHand
-      @sprites["helpwindow"].text = _INTL("Choose a card, or check opponent with Z.")
+      @sprites["helpwindow"].text = _INTL("请选择一张卡片，或按Z键查看对手的卡片。")
     else
-      @sprites["helpwindow"].text = _INTL("Choose a card.")
+      @sprites["helpwindow"].text = _INTL("请选择一张卡片。")
     end
     choice     = 0
     lastChoice = -1
@@ -444,7 +444,7 @@ class TriadScene
       elsif Input.trigger?(Input::ACTION) && @battle.openHand
         pbPlayDecisionSE
         pbViewOpponentCards(numCards)
-        @sprites["helpwindow"].text = _INTL("Choose a card, or check opponent with Z.")
+        @sprites["helpwindow"].text = _INTL("请选择一张卡片，或按Z键查看对手的卡片。")
         choice     = 0
         lastChoice = -1
       end
@@ -453,7 +453,7 @@ class TriadScene
   end
 
   def pbPlayerPlaceCard(cardIndex)
-    @sprites["helpwindow"].text = _INTL("Place the card.")
+    @sprites["helpwindow"].text = _INTL("请放置卡片。")
     boardX = 0
     boardY = 0
     doRefresh = true
@@ -701,9 +701,9 @@ class TriadScreen
   # If pbStartScreen includes parameters, it should
   # pass the parameters to pbStartScene.
   def pbStartScreen(opponentName, minLevel, maxLevel, rules = nil, oppdeck = nil, prize = nil)
-    raise _INTL("Minimum level must be 0 through 9.") if minLevel < 0 || minLevel > 9
-    raise _INTL("Maximum level must be 0 through 9.") if maxLevel < 0 || maxLevel > 9
-    raise _INTL("Maximum level shouldn't be less than the minimum level.") if maxLevel < minLevel
+    raise _INTL("最低等级必须在0到9之间。") if minLevel < 0 || minLevel > 9
+    raise _INTL("最高等级必须在0到9之间。") if maxLevel < 0 || maxLevel > 9
+    raise _INTL("最高等级不能低于最低等级。") if maxLevel < minLevel
     if rules.is_a?(Array) && rules.length > 0
       rules.each do |rule|
         @sameWins           = true if rule == "samewins"
@@ -745,7 +745,7 @@ class TriadScreen
     @scene.pbStartScene(self)   # (param1, param2)
     # Check whether there are enough cards.
     if count < self.maxCards
-      @scene.pbDisplayPaused(_INTL("You don't have enough cards."))
+      @scene.pbDisplayPaused(_INTL("你的卡不够哦。"))
       @scene.pbEndScene
       return 0
     end
@@ -767,7 +767,7 @@ class TriadScreen
       oppdeck.each do |species|
         species_data = GameData::Species.try_get(species)
         if !species_data
-          @scene.pbDisplayPaused(_INTL("Opponent has an illegal card, \"{1}\".", species))
+          @scene.pbDisplayPaused(_INTL("对手有一张非法卡片，\"{1}\"。", species))
           @scene.pbEndScene
           return 0
         end
@@ -802,10 +802,10 @@ class TriadScreen
     originalOpponentCards = opponentCards.clone
     @scene.pbNotifyCards(cards.clone, opponentCards.clone)
     @scene.pbShowOpponentCards(opponentCards)
-    @scene.pbDisplay(_INTL("Choosing the starting player..."))
+    @scene.pbDisplay(_INTL("正在选择谁先开始……"))
     @scene.pbUpdateScore
     playerTurn = (rand(2) == 0)
-    @scene.pbDisplay(_INTL("{1} will go first.", (playerTurn) ? @playerName : @opponentName))
+    @scene.pbDisplay(_INTL("{1}会先出手。", (playerTurn) ? @playerName : @opponentName))
     (@width * @height).times do |i|
       position = nil
       triadCard = nil
@@ -819,7 +819,7 @@ class TriadScreen
         end
       else
         # Opponent's turn
-        @scene.pbDisplay(_INTL("{1} is making a move...", @opponentName))
+        @scene.pbDisplay(_INTL("{1}正在思考……", @opponentName))
         scores = []
         opponentCards.length.times do |cardIdx|
           square = TriadSquare.new
@@ -837,7 +837,7 @@ class TriadScreen
         scores.sort! { |a, b| (b[3] == a[3]) ? rand(-1..1) : b[3] <=> a[3] }
         scores = scores[0, opponentCards.length]   # Get the best results
         if scores.length == 0
-          @scene.pbDisplay(_INTL("{1} can't move somehow...", @opponentName))
+          @scene.pbDisplay(_INTL("{1}无法移动……", @opponentName))
           playerTurn = !playerTurn
           continue
         end
@@ -873,7 +873,7 @@ class TriadScreen
     end
     result = 0
     if playerCount == opponentCount
-      @scene.pbDisplayPaused(_INTL("The game is a draw."))
+      @scene.pbDisplayPaused(_INTL("游戏平局。"))
       result = 3
       if @trade == 1
         # Keep only cards of your color
@@ -885,15 +885,15 @@ class TriadScreen
             $PokemonGlobal.triads.add(crd)
           end
         end
-        @scene.pbDisplayPaused(_INTL("Kept all cards of your color."))
+        @scene.pbDisplayPaused(_INTL("保留了所有同色的卡牌。"))
       end
     elsif playerCount > opponentCount
-      @scene.pbDisplayPaused(_INTL("{1} won against {2}.", @playerName, @opponentName))
+      @scene.pbDisplayPaused(_INTL("{1}战胜了{2}。", @playerName, @opponentName))
       result = 1
       if prize
         species_data = GameData::Species.try_get(prize)
         if species_data && $PokemonGlobal.triads.add(species_data.id)
-          @scene.pbDisplayPaused(_INTL("Got opponent's {1} card.", species_data.name))
+          @scene.pbDisplayPaused(_INTL("得到了对手的{1}卡。", species_data.name))
         end
       else
         case @trade
@@ -901,7 +901,7 @@ class TriadScreen
           card = originalOpponentCards[rand(originalOpponentCards.length)]
           if $PokemonGlobal.triads.add(card)
             cardname = GameData::Species.get(card).name
-            @scene.pbDisplayPaused(_INTL("Got opponent's {1} card.", cardname))
+            @scene.pbDisplayPaused(_INTL("得到了对手的{1}卡。", cardname))
           end
         when 1   # Keep only cards of your color
           originalCards.each { |crd| $PokemonGlobal.triads.remove(crd) }
@@ -912,21 +912,21 @@ class TriadScreen
               $PokemonGlobal.triads.add(card)
             end
           end
-          @scene.pbDisplayPaused(_INTL("Kept all cards of your color."))
+          @scene.pbDisplayPaused(_INTL("保留了所有同色的卡牌。"))
         when 2   # Gain all opponent's cards
           originalOpponentCards.each { |crd| $PokemonGlobal.triads.add(crd) }
-          @scene.pbDisplayPaused(_INTL("Got all opponent's cards."))
+          @scene.pbDisplayPaused(_INTL("得到了对手的所有卡牌。"))
         end
       end
     else
-      @scene.pbDisplayPaused(_INTL("{1} lost against {2}.", @playerName, @opponentName))
+      @scene.pbDisplayPaused(_INTL("{1}败给了{2}。", @playerName, @opponentName))
       result = 2
       case @trade
       when 0   # Lose 1 random card from your deck
         card = originalCards[rand(originalCards.length)]
         $PokemonGlobal.triads.remove(card)
         cardname = GameData::Species.get(card).name
-        @scene.pbDisplayPaused(_INTL("Opponent won your {1} card.", cardname))
+        @scene.pbDisplayPaused(_INTL("对手得到了你的{1}卡。", cardname))
       when 1   # Keep only cards of your color
         originalCards.each { |crd| $PokemonGlobal.triads.remove(card) }
         cards.each { |crd| $PokemonGlobal.triads.add(crd) }
@@ -936,10 +936,10 @@ class TriadScreen
             $PokemonGlobal.triads.add(card)
           end
         end
-        @scene.pbDisplayPaused(_INTL("Kept all cards of your color.", cardname))
+        @scene.pbDisplayPaused(_INTL("保留了所有同色的卡牌。", cardname))
       when 2   # Lose all your cards
         originalCards.each { |crd| $PokemonGlobal.triads.remove(crd) }
-        @scene.pbDisplayPaused(_INTL("Opponent won all your cards."))
+        @scene.pbDisplayPaused(_INTL("对手得到了你的所有卡牌。"))
       end
     end
     @scene.pbEndScene
@@ -1057,7 +1057,7 @@ def pbBuyTriads
     commands.push([price, s.name, _INTL("{1} - ${2}", s.name, price.to_s_formatted), s.id])
   end
   if commands.length == 0
-    pbMessage(_INTL("There are no cards that you can buy."))
+    pbMessage(_INTL("没有你可以购买的卡片。"))
     return
   end
   commands.sort! { |a, b| a[1] <=> b[1] }   # Sort alphabetically
@@ -1069,7 +1069,7 @@ def pbBuyTriads
   cmdwindow = Window_CommandPokemonEx.newWithSize(realcommands, 0, 0, Graphics.width / 2, Graphics.height)
   cmdwindow.z = 99999
   goldwindow = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Money:\n{1}", pbGetGoldString), 0, 0, 32, 32
+    _INTL("零花钱：\n{1}", pbGetGoldString), 0, 0, 32, 32
   )
   goldwindow.resizeToFit(goldwindow.text, Graphics.width)
   goldwindow.x = Graphics.width - goldwindow.width
@@ -1102,7 +1102,7 @@ def pbBuyTriads
       cmdwindow.active = false
       cmdwindow.update
       if $player.money < price
-        pbMessage(_INTL("You don't have enough money."))
+        pbMessage(_INTL("您的钱不够呢！"))
         next
       end
       maxafford = (price <= 0) ? 99 : $player.money / price
@@ -1112,23 +1112,23 @@ def pbBuyTriads
       params.setInitialValue(1)
       params.setCancelValue(0)
       quantity = pbMessageChooseNumber(
-        _INTL("The {1} card? Certainly. How many would you like?", itemname), params
+        _INTL("是{1}卡牌啊。您要买几个呢？", itemname), params
       )
       next if quantity <= 0
       price *= quantity
-      next if !pbConfirmMessage(_INTL("{1}, and you want {2}. That will be ${3}. OK?", itemname, quantity, price.to_s_formatted))
+      next if !pbConfirmMessage(_INTL("{2}个{1}，一共${3}可以吗？", itemname, quantity, price.to_s_formatted))
       if $player.money < price
-        pbMessage(_INTL("You don't have enough money."))
+        pbMessage(_INTL("您的钱不够呢！"))
         next
       end
       if !$PokemonGlobal.triads.can_add?(item, quantity)
-        pbMessage(_INTL("You have no room for more cards."))
+        pbMessage(_INTL("您的卡牌栏已满。"))
         next
       end
       $PokemonGlobal.triads.add(item, quantity)
       $player.money -= price
-      goldwindow.text = _INTL("Money:\n{1}", pbGetGoldString)
-      pbMessage(_INTL("Here you are! Thank you!") + "\\se[Mart buy item]\\wtnp[20]")
+      goldwindow.text = _INTL("零花钱：\n{1}", pbGetGoldString)
+      pbMessage(_INTL("请拿好。谢谢惠顾。") + "\\se[Mart buy item]\\wtnp[20]")
     end
   end
   cmdwindow.dispose
@@ -1149,9 +1149,9 @@ def pbSellTriads
     commands.push(_INTL("{1} x{2}", speciesname, item[1]))
     total_cards += item[1]
   end
-  commands.push(_INTL("CANCEL"))
+  commands.push(_INTL("取消"))
   if total_cards == 0
-    pbMessage(_INTL("You have no cards."))
+    pbMessage(_INTL("您没有卡牌哦。"))
     return
   end
   # Scroll right before showing screen
@@ -1159,7 +1159,7 @@ def pbSellTriads
   cmdwindow = Window_CommandPokemonEx.newWithSize(commands, 0, 0, Graphics.width / 2, Graphics.height)
   cmdwindow.z = 99999
   goldwindow = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Money:\n{1}", pbGetGoldString), 0, 0, 32, 32
+    _INTL("零花钱：\n{1}", pbGetGoldString), 0, 0, 32, 32
   )
   goldwindow.resizeToFit(goldwindow.text, Graphics.width)
   goldwindow.x = Graphics.width - goldwindow.width
@@ -1201,7 +1201,7 @@ def pbSellTriads
         quantity = $PokemonGlobal.triads.quantity(item)
         price = TriadCard.new(item).price
         if price == 0
-          pbDisplayPaused(_INTL("The {1} card? Oh, no. I can't buy that.", itemname))
+          pbDisplayPaused(_INTL("不，我买不了{1}卡牌。", itemname))
           break
         end
         cmdwindow.active = false
@@ -1212,24 +1212,24 @@ def pbSellTriads
           params.setInitialValue(1)
           params.setCancelValue(0)
           quantity = pbMessageChooseNumber(
-            _INTL("The {1} card? How many would you like to sell?", itemname), params
+            _INTL("您要卖几个{1}？", itemname), params
           )
         end
         if quantity > 0
           price /= 4
           price *= quantity
-          if pbConfirmMessage(_INTL("I can pay ${1}. Would that be OK?", price.to_s_formatted))
+          if pbConfirmMessage(_INTL("我可以出${1}。可以吗？", price.to_s_formatted))
             $player.money += price
-            goldwindow.text = _INTL("Money:\n{1}", pbGetGoldString)
+            goldwindow.text = _INTL("零花钱：\n{1}", pbGetGoldString)
             $PokemonGlobal.triads.remove(item, quantity)
-            pbMessage(_INTL("Turned over the {1} card and received ${2}.", itemname, price.to_s_formatted) + "\\se[Mart buy item]\\wtnp[20]")
+            pbMessage(_INTL("你卖出了{1}，赚了${2}。", itemname, price.to_s_formatted) + "\\se[Mart buy item]\\wtnp[20]")
             commands = []
             $PokemonGlobal.triads.length.times do |i|
               item = $PokemonGlobal.triads[i]
               speciesname = GameData::Species.get(item[0]).name
               commands.push(_INTL("{1} x{2}", speciesname, item[1]))
             end
-            commands.push(_INTL("CANCEL"))
+            commands.push(_INTL("取消"))
             cmdwindow.commands = commands
             break
           end
@@ -1255,9 +1255,9 @@ def pbTriadList
     commands.push(_INTL("{1} x{2}", speciesname, item[1]))
     total_cards += item[1]
   end
-  commands.push(_INTL("CANCEL"))
+  commands.push(_INTL("取消"))
   if total_cards == 0
-    pbMessage(_INTL("You have no cards."))
+    pbMessage(_INTL("您没有卡牌哦。"))
     return
   end
   cmdwindow = Window_CommandPokemonEx.newWithSize(commands, 0, 0, Graphics.width / 2, Graphics.height)

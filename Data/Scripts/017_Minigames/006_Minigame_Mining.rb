@@ -528,7 +528,7 @@ class MiningGameScene
 
   def pbMain
     pbSEPlay("Mining ping")
-    pbMessage(_INTL("Something pinged in the wall!\n{1} confirmed!", @items.length))
+    pbMessage(_INTL("确认到墙壁中有{1}个大型反应！", @items.length))
     loop do
       update
       Graphics.update
@@ -547,7 +547,7 @@ class MiningGameScene
           Graphics.update
           break if collapse_height == Graphics.height
         end
-        pbMessage(_INTL("The wall collapsed!"))
+        pbMessage(_INTL("墙壁崩塌了！"))
         break
       end
       foundall = true
@@ -559,7 +559,7 @@ class MiningGameScene
         @sprites["cursor"].visible = false
         pbWait(0.75)
         pbSEPlay("Mining found all")
-        pbMessage(_INTL("Everything was dug up!"))
+        pbMessage(_INTL("挖出了所有物品！"))
         break
       end
       # Input
@@ -592,7 +592,7 @@ class MiningGameScene
       elsif Input.trigger?(Input::USE)   # Hit
         pbHit
       elsif Input.trigger?(Input::BACK)   # Quit
-        break if pbConfirmMessage(_INTL("Are you sure you want to give up?"))
+        break if pbConfirmMessage(_INTL("你确定要放弃吗？"))
       end
     end
     pbGiveItems
@@ -602,9 +602,9 @@ class MiningGameScene
     if @itemswon.length > 0
       @itemswon.each do |i|
         if $bag.add(i)
-          pbMessage(_INTL("One {1} was obtained.", GameData::Item.get(i).name) + "\\se[Mining item get]\\wtnp[30]")
+          pbMessage(_INTL("得到了一个{1}！", GameData::Item.get(i).name) + "\\se[Mining item get]\\wtnp[30]")
         else
-          pbMessage(_INTL("One {1} was found, but you have no room for it.",
+          pbMessage(_INTL("找到了一个{1}，但你放不下了。",
                           GameData::Item.get(i).name))
         end
       end

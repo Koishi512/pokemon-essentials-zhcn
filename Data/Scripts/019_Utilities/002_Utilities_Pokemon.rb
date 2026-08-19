@@ -8,23 +8,23 @@ end
 def pbNickname(pkmn)
   return if $PokemonSystem.givenicknames != 0
   species_name = pkmn.speciesName
-  if pbConfirmMessage(_INTL("Would you like to give a nickname to {1}?", species_name))
-    pkmn.name = pbEnterPokemonName(_INTL("{1}'s nickname?", species_name),
+  if pbConfirmMessage(_INTL("要给{1}起昵称吗？", species_name))
+    pkmn.name = pbEnterPokemonName(_INTL("{1}的名字是？", species_name),
                                    0, Pokemon::MAX_NAME_SIZE, "", pkmn)
   end
 end
 
 def pbStorePokemon(pkmn)
   if pbBoxesFull?
-    pbMessage(_INTL("There's no more room for Pokémon!") + "\1")
-    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    pbMessage(_INTL("宝可梦没有空间了！") + "\1")
+    pbMessage(_INTL("宝可梦盒子已经满了，装不下更多宝可梦了！"))
     return
   end
   pkmn.record_first_moves
   if $player.party_full?
     stored_box = $PokemonStorage.pbStoreCaught(pkmn)
     box_name   = $PokemonStorage[stored_box].name
-    pbMessage(_INTL("{1} has been sent to Box \"{2}\"!", pkmn.name, box_name))
+    pbMessage(_INTL("已将{1}传送到盒子\"{2}\"！", pkmn.name, box_name))
   else
     $player.party[$player.party.length] = pkmn
   end
@@ -32,8 +32,8 @@ end
 
 def pbNicknameAndStore(pkmn)
   if pbBoxesFull?
-    pbMessage(_INTL("There's no more room for Pokémon!") + "\1")
-    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    pbMessage(_INTL("宝可梦没有空间了！") + "\1")
+    pbMessage(_INTL("宝可梦盒子已经满了，装不下更多宝可梦了！"))
     return
   end
   $player.pokedex.set_seen(pkmn.species)
@@ -48,13 +48,13 @@ end
 def pbAddPokemon(pkmn, level = 1, see_form = true)
   return false if !pkmn
   if pbBoxesFull?
-    pbMessage(_INTL("There's no more room for Pokémon!") + "\1")
-    pbMessage(_INTL("The Pokémon Boxes are full and can't accept any more!"))
+    pbMessage(_INTL("宝可梦没有空间了！") + "\1")
+    pbMessage(_INTL("宝可梦盒子已经满了，装不下更多宝可梦了！"))
     return false
   end
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
   species_name = pkmn.speciesName
-  pbMessage(_INTL("{1} obtained {2}!", $player.name, species_name) + "\\me[Pkmn get]\\wtnp[80]")
+  pbMessage(_INTL("{1}得到了{2}！", $player.name, species_name) + "\\me[Pkmn get]\\wtnp[80]")
   was_owned = $player.owned?(pkmn.species)
   $player.pokedex.set_seen(pkmn.species)
   $player.pokedex.set_owned(pkmn.species)
@@ -62,7 +62,7 @@ def pbAddPokemon(pkmn, level = 1, see_form = true)
   # Show Pokédex entry for new species if it hasn't been owned before
   if Settings::SHOW_NEW_SPECIES_POKEDEX_ENTRY_MORE_OFTEN && see_form && !was_owned &&
      $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(pkmn.species)
-    pbMessage(_INTL("{1}'s data was added to the Pokédex.", species_name))
+    pbMessage(_INTL("{1}的资料被新添加到宝可梦图鉴里了！", species_name))
     $player.pokedex.register_last_seen(pkmn)
     pbShowPokedexEntry(pkmn.species)
   end
@@ -93,7 +93,7 @@ def pbAddToParty(pkmn, level = 1, see_form = true)
   return false if !pkmn || $player.party_full?
   pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
   species_name = pkmn.speciesName
-  pbMessage(_INTL("{1} obtained {2}!", $player.name, species_name) + "\\me[Pkmn get]\\wtnp[80]")
+  pbMessage(_INTL("{1}得到了{2}！", $player.name, species_name) + "\\me[Pkmn get]\\wtnp[80]")
   was_owned = $player.owned?(pkmn.species)
   $player.pokedex.set_seen(pkmn.species)
   $player.pokedex.set_owned(pkmn.species)
@@ -101,7 +101,7 @@ def pbAddToParty(pkmn, level = 1, see_form = true)
   # Show Pokédex entry for new species if it hasn't been owned before
   if Settings::SHOW_NEW_SPECIES_POKEDEX_ENTRY_MORE_OFTEN && see_form && !was_owned &&
      $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(pkmn.species)
-    pbMessage(_INTL("{1}'s data was added to the Pokédex.", species_name))
+    pbMessage(_INTL("{1}的资料被新添加到宝可梦图鉴里了！", species_name))
     $player.pokedex.register_last_seen(pkmn)
     pbShowPokedexEntry(pkmn.species)
   end
@@ -127,9 +127,9 @@ def pbAddForeignPokemon(pkmn, level = 1, owner_name = nil, nickname = nil, owner
   pkmn.name = nickname[0, Pokemon::MAX_NAME_SIZE] if !nil_or_empty?(nickname)
   pkmn.calc_stats
   if owner_name
-    pbMessage(_INTL("{1} received a Pokémon from {2}.", $player.name, owner_name) + "\\me[Pkmn get]\\wtnp[80]")
+    pbMessage(_INTL("{1}从{2}那儿得到了宝可梦！", $player.name, owner_name) + "\\me[Pkmn get]\\wtnp[80]")
   else
-    pbMessage(_INTL("{1} received a Pokémon.", $player.name) + "\\me[Pkmn get]\\wtnp[80]")
+    pbMessage(_INTL("{1}得到了宝可梦！", $player.name) + "\\me[Pkmn get]\\wtnp[80]")
   end
   was_owned = $player.owned?(pkmn.species)
   $player.pokedex.set_seen(pkmn.species)
@@ -138,7 +138,7 @@ def pbAddForeignPokemon(pkmn, level = 1, owner_name = nil, nickname = nil, owner
   # Show Pokédex entry for new species if it hasn't been owned before
   if Settings::SHOW_NEW_SPECIES_POKEDEX_ENTRY_MORE_OFTEN && see_form && !was_owned &&
      $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(pkmn.species)
-    pbMessage(_INTL("The Pokémon's data was added to the Pokédex."))
+    pbMessage(_INTL("宝可梦的资料被新添加到宝可梦图鉴里了！"))
     $player.pokedex.register_last_seen(pkmn)
     pbShowPokedexEntry(pkmn.species)
   end
@@ -151,7 +151,7 @@ def pbGenerateEgg(pkmn, text = "")
   return false if !pkmn || $player.party_full?
   pkmn = Pokemon.new(pkmn, Settings::EGG_LEVEL) if !pkmn.is_a?(Pokemon)
   # Set egg's details
-  pkmn.name           = _INTL("Egg")
+  pkmn.name           = _INTL("蛋")
   pkmn.steps_to_hatch = pkmn.species_data.hatch_steps
   pkmn.obtain_text    = text
   pkmn.calc_stats

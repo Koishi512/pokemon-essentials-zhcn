@@ -170,7 +170,7 @@ end
 #===============================================================================
 def pbGenerateChallenge(rule, tag)
   oldrule = rule
-  yield(_INTL("Preparing to generate teams"))
+  yield(_INTL("正在准备生成队伍"))
   rule = rule.copy.setNumber(2)
   yield(nil)
   party = load_data(tag + ".rxdata") rescue []
@@ -194,7 +194,7 @@ def pbGenerateChallenge(rule, tag)
   iterations = 11
   iterations.times do |iter|
     save_data(party, tag + ".rxdata")
-    yield(_INTL("Generating teams ({1} of {2})", iter + 1, iterations))
+    yield(_INTL("正在生成队伍 ({1} / {2})", iter + 1, iterations))
     i = 0
     while i < teams.length
       yield(nil) if i % 10 == 0
@@ -225,7 +225,7 @@ def pbGenerateChallenge(rule, tag)
     end
     save_data(party, tag + ".rxdata")
     teams = teams.sort { |a, b| b.rating <=> a.rating }
-    yield(_INTL("Simulating battles ({1} of {2})", iter + 1, iterations))
+    yield(_INTL("正在模拟战斗 ({1} / {2})", iter + 1, iterations))
     i = 0
     loop do
       changed = false
@@ -263,7 +263,7 @@ def pbGenerateChallenge(rule, tag)
   rule = oldrule
   yield(nil)
   party = pbRemoveDuplicates(party)
-  yield(_INTL("Writing results"))
+  yield(_INTL("正在写入结果"))
   party = pbArrangeByTier(party, rule)
   yield(nil)
   pbTrainerInfo(party, tag, rule) { yield(nil) }
@@ -287,8 +287,8 @@ def pbWriteCup(id, rules)
   end
   cmd = 0
   if trlists.length == 0
-    cmd = pbMessage(_INTL("Generate Pokémon teams for this challenge?"),
-                    [_INTL("YES"), _INTL("NO")], 2)
+    cmd = pbMessage(_INTL("要为本次挑战生成宝可梦队伍吗？"),
+                    [_INTL("是"), _INTL("否")], 2)
     case cmd
     when 0
       cmd = 2
@@ -296,15 +296,15 @@ def pbWriteCup(id, rules)
       cmd = 0
     end
   else
-    cmd = pbMessage(_INTL("Generate Pokémon teams for this challenge?"),
-                    [_INTL("NO"), _INTL("YES, USE EXISTING"), _INTL("YES, USE NEW")], 1)
+    cmd = pbMessage(_INTL("要为本次挑战生成宝可梦队伍吗？"),
+                    [_INTL("否"), _INTL("是, 使用现有队伍"), _INTL("是, 使用新队伍")], 1)
   end
   return if cmd == 0   # No
   case cmd
   when 1   # Yes, use existing
-    cmd = pbMessage(_INTL("Choose a challenge."), list, -1)
+    cmd = pbMessage(_INTL("请选择挑战。"), list, -1)
     if cmd >= 0
-      pbMessage(_INTL("This challenge will use the Pokémon list from {1}.", list[cmd]))
+      pbMessage(_INTL("本次挑战将使用{1}中的宝可梦列表。", list[cmd]))
       trlists.length.times do |i|
         tr = trlists[i]
         while !tr[5] && tr[2].include?(id)
@@ -318,7 +318,7 @@ def pbWriteCup(id, rules)
     end
     return
   when 2   # Yes, use new
-    return if !pbConfirmMessage(_INTL("This may take a long time. Are you sure?"))
+    return if !pbConfirmMessage(_INTL("这可能需要很长时间。你确定吗？"))
     mw = pbCreateMessageWindow
     t = System.uptime
     pbGenerateChallenge(rules, id) do |message|
@@ -333,6 +333,6 @@ def pbWriteCup(id, rules)
       end
     end
     pbDisposeMessageWindow(mw)
-    pbMessage(_INTL("Team generation complete."))
+    pbMessage(_INTL("队伍生成完成。"))
   end
 end

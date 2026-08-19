@@ -257,8 +257,8 @@ class Battle::Battler
     if opposes?
       return lowerCase ? _INTL("对手") : _INTL("对手")
     end
-      return lowerCase ? _INTL("我方") : _INTL("我方")
-    end
+    return lowerCase ? _INTL("我方") : _INTL("我方")
+  end
 
   def pbOfTeam(lowerCase = false)
     if opposes?

@@ -318,10 +318,10 @@ class SlotMachineScene
       @sprites["window1"].bitmap&.clear
       @sprites["window2"].bitmap&.clear
       if @sprites["credit"].score == Settings::MAX_COINS
-        pbMessage(_INTL("You've got {1} Coins.", Settings::MAX_COINS.to_s_formatted))
+        pbMessage(_INTL("你已经有{1}枚代币了。", Settings::MAX_COINS.to_s_formatted))
         break
       elsif $player.coins == 0
-        pbMessage(_INTL("You've run out of Coins.\nGame over!"))
+        pbMessage(_INTL("你已经没有代币了。\n游戏结束！"))
         break
       elsif @gameRunning   # Reels are spinning
         @sprites["window1"].setBitmap(_INTL("Graphics/UI/Slot Machine/stop"))
@@ -441,11 +441,11 @@ end
 #===============================================================================
 def pbSlotMachine(difficulty = 1)
   if !$bag.has?(:COINCASE)
-    pbMessage(_INTL("It's a Slot Machine."))
+    pbMessage(_INTL("是老虎机！"))
   elsif $player.coins == 0
-    pbMessage(_INTL("You don't have any Coins to play!"))
+    pbMessage(_INTL("你没有代币可以玩！"))
   elsif $player.coins == Settings::MAX_COINS
-    pbMessage(_INTL("Your Coin Case is full!"))
+    pbMessage(_INTL("你的代币盒已经满了！"))
   else
     pbFadeOutIn do
       scene = SlotMachineScene.new

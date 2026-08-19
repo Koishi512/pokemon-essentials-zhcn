@@ -71,7 +71,7 @@ module GameData
         ["MapPosition",       RegionMapCoordsProperty, _INTL("标识此地图在区域地图上的位置。")],
         ["MapSize",           MapSizeProperty,         _INTL("地图在城镇地图方块中的宽度，以及指示哪些方块属于此地图的字符串。")],
         ["Outdoor",           BooleanProperty,         _INTL("如果为真，此地图是户外地图，并且会根据一天中的时间着色。")],
-        ["ShowArea",          BooleanProperty,         _INTL("如果为真，进入此地图时游戏将显示地图名称。")]
+        ["ShowArea",          BooleanProperty,         _INTL("如果为真，进入此地图时游戏将显示地图名称。")],
         ["LocationSign",      StringProperty,          _INTL("'Graphics/UI/Location/'中用于地点标识的文件名。")],
         ["Bicycle",           BooleanProperty,         _INTL("如果为真，此地图上可以使用自行车。")],
         ["BicycleAlways",     BooleanProperty,         _INTL("如果为真，此地图上自行车将自动骑乘且无法下车。")],

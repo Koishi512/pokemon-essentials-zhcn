@@ -246,21 +246,21 @@ class HallOfFame_Scene
     hour = totalsec / 60 / 60
     min = totalsec / 60 % 60
     pubid = sprintf("%05d", $player.public_ID)
-    lefttext = _INTL("Name<r>{1}", $player.name) + "<br>"
+    lefttext = _INTL("名字<r>{1}", $player.name) + "<br>"
     lefttext += _INTL("ID No.<r>{1}", pubid) + "<br>"
     if hour > 0
-      lefttext += _INTL("Time<r>{1}h {2}m", hour, min) + "<br>"
+      lefttext += _INTL("时间<r>{1}时{2}分", hour, min) + "<br>"
     else
-      lefttext += _INTL("Time<r>{1}m", min) + "<br>"
+      lefttext += _INTL("时间<r>{1}分", min) + "<br>"
     end
-    lefttext += _INTL("Pokédex<r>{1}/{2}",
+    lefttext += _INTL("宝可梦图鉴<r>{1}/{2}",
                       $player.pokedex.owned_count, $player.pokedex.seen_count) + "<br>"
     @sprites["messagebox"] = Window_AdvancedTextPokemon.new(lefttext)
     @sprites["messagebox"].viewport = @viewport
     @sprites["messagebox"].width = 192 if @sprites["messagebox"].width < 192
     @sprites["msgwindow"] = pbCreateMessageWindow(@viewport)
     pbMessageDisplay(@sprites["msgwindow"],
-                     _INTL("League champion!\nCongratulations!") + "\\^")
+                     _INTL("联盟冠军！\n恭喜！") + "\\^")
   end
 
   def writePokemonData(pokemon, hallNumber = -1)
@@ -274,7 +274,7 @@ class HallOfFame_Scene
       speciesname += "♀"
     end
     pokename += "/" + speciesname
-    pokename = _INTL("Egg") + "/" + _INTL("Egg") if pokemon.egg?
+    pokename = _INTL("蛋") + "/" + _INTL("蛋") if pokemon.egg?
     idno = (pokemon.owner.name.empty? || pokemon.egg?) ? "?????" : sprintf("%05d", pokemon.owner.public_id)
     dexnumber = _INTL("No. ???")
     if !pokemon.egg?
@@ -290,7 +290,7 @@ class HallOfFame_Scene
        Graphics.width - 192, Graphics.height - 42, :center, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR]
     ]
     if hallNumber > -1
-      textPositions.push([_INTL("Hall of Fame No."), (Graphics.width / 2) - 104, 6, :left, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR])
+      textPositions.push([_INTL("名人堂No."), (Graphics.width / 2) - 104, 6, :left, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR])
       textPositions.push([hallNumber.to_s, (Graphics.width / 2) + 104, 6, :right, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR])
     end
     pbDrawTextPositions(overlay, textPositions)
@@ -299,7 +299,7 @@ class HallOfFame_Scene
   def writeWelcome
     overlay = @sprites["overlay"].bitmap
     overlay.clear
-    pbDrawTextPositions(overlay, [[_INTL("Welcome to the Hall of Fame!"),
+    pbDrawTextPositions(overlay, [[_INTL("欢迎进入名人堂！"),
                                    Graphics.width / 2, Graphics.height - 68, :center, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR]])
   end
 
@@ -476,11 +476,11 @@ def pbHallOfFamePC
 end
 
 MenuHandlers.add(:pc_menu, :hall_of_fame, {
-  "name"      => _INTL("Hall of Fame"),
+  "name"      => _INTL("名人堂"),
   "order"     => 40,
   "condition" => proc { next $PokemonGlobal.hallOfFameLastNumber > 0 },
   "effect"    => proc { |menu|
-    pbMessage("\\se[PC access]" + _INTL("Accessed the Hall of Fame."))
+    pbMessage("\\se[PC access]" + _INTL("连接到名人堂。"))
     pbHallOfFamePC
     next false
   }

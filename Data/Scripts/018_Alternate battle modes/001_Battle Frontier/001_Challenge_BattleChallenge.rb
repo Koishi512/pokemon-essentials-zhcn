@@ -210,7 +210,7 @@ class BattleChallengeData
     @wins         = t.currentWins
     @battleNumber = 1
     @trainers     = []
-    raise _INTL("Number of rounds is 0 or less.") if numRounds <= 0
+    raise _INTL("回合数为0或更少。") if numRounds <= 0
     @numRounds = numRounds
     # Get all the trainers for the next set of battles
     btTrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)

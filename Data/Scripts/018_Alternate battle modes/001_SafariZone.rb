@@ -94,8 +94,8 @@ EventHandlers.add(:on_player_step_taken_can_transfer, :safari_game_counter,
     next if Settings::SAFARI_STEPS == 0 || !pbInSafari? || pbSafariState.decision != 0
     pbSafariState.steps -= 1
     next if pbSafariState.steps > 0
-    pbMessage("\\se[Safari Zone end]" + _INTL("PA: Ding-dong!") + "\\wtnp[20]\1")
-    pbMessage(_INTL("PA: Your safari game is over!"))
+    pbMessage("\\se[Safari Zone end]" + _INTL("广播：叮——咚——！") + "\\wtnp[20]\1")
+    pbMessage(_INTL("广播：你的狩猎游戏结束了！"))
     pbSafariState.decision = 1
     pbSafariState.pbGoToStart
     handled[0] = true
@@ -139,7 +139,7 @@ def pbSafariBattle(pkmn, level = 1)
   pbSafariState.ballcount = battle.ballCount
   if pbSafariState.ballcount <= 0
     if outcome != Battle::Outcome::LOSE   # Last Safari Ball was used to catch the wild Pokémon
-      pbMessage(_INTL("Announcer: You're out of Safari Balls! Game over!"))
+      pbMessage(_INTL("广播：你的狩猎球用完了！游戏结束！"))
     end
     pbSafariState.decision = 1
     pbSafariState.pbGoToStart
@@ -171,9 +171,9 @@ class UI::PauseMenu < UI::BaseScreen
     __safari_show_info
     return if !pbInSafari?
     if Settings::SAFARI_STEPS <= 0
-      @visuals.show_info(_INTL("Balls: {1}", pbSafariState.ballcount))
+      @visuals.show_info(_INTL("狩猎球：{1}", pbSafariState.ballcount))
     else
-      @visuals.show_info(_INTL("Steps: {1}/{2}\nBalls: {3}",
+      @visuals.show_info(_INTL("步数：{1}/{2}\n狩猎球：{3}",
                                pbSafariState.steps, Settings::SAFARI_STEPS, pbSafariState.ballcount))
     end
   end
@@ -199,12 +199,12 @@ end
 #===============================================================================
 
 MenuHandlers.add(:pause_menu, :quit_safari_game, {
-  "name"      => _INTL("Quit"),
+  "name"      => _INTL("退出"),
   "order"     => 60,
   "condition" => proc { next pbInSafari? },
   "effect"    => proc { |menu|
     menu.hide_menu
-    if pbConfirmMessage(_INTL("Would you like to leave the Safari Game right now?"))
+    if pbConfirmMessage(_INTL("你现在要离开狩猎地带吗？"))
       menu.silent_end_screen
       pbSafariState.decision = 1
       pbSafariState.pbGoToStart

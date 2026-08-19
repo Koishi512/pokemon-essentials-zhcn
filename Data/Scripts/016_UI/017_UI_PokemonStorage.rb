@@ -1662,7 +1662,7 @@ class UI::PokemonStorage < UI::BaseScreen
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:interact_menu, {
     :menu         => :storage_pokemon_interact,
-    :menu_message => proc { |screen| _INTL("对{1}做什么？", screen.pokemon.name) }
+    :menu_message => proc { |screen| _INTL("要对{1}做什么？", screen.pokemon.name) }
   })
   # Shows a choice menu using the MenuHandlers options below.
   ACTIONS.add(:interact_box_name_menu, {

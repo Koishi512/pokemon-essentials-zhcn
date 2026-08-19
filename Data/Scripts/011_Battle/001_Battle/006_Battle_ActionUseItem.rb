@@ -81,7 +81,7 @@ class Battle
 
   def pbUseItemMessage(item, trainer_name, battler = nil)
     item_data = GameData::Item.get(item)
-    one_target_of_many =
+    #one_target_of_many =
     item_name = item_data.portion_name
     if battler && !battler.allAllies.empty?
       # Specify which Pokémon the item was used on (only for Pokémon in battle,

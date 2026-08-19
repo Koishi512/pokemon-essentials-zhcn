@@ -189,12 +189,12 @@ class VoltorbFlip
     NUM_ROWS.times { |i| pbUpdateRowNumbers(0, 0, i) }
     NUM_COLUMNS.times { |i| pbUpdateColumnNumbers(0, 0, i) }
     pbDrawShadowText(@sprites["text"].bitmap, 8, 22, 118, 26,
-                     _INTL("Your coins"), Color.new(60, 60, 60), Color.new(150, 190, 170), 1)
+                     _INTL("你的代币"), Color.new(60, 60, 60), Color.new(150, 190, 170), 1)
     pbDrawShadowText(@sprites["text"].bitmap, 8, 88, 118, 26,
-                     _INTL("Prize coins"), Color.new(60, 60, 60), Color.new(150, 190, 170), 1)
+                     _INTL("奖励代币"), Color.new(60, 60, 60), Color.new(150, 190, 170), 1)
     # Draw current level
     pbDrawShadowText(@sprites["level"].bitmap, 8, 154, 118, 28,
-                     _INTL("Level {1}", @level.to_s), Color.new(60, 60, 60), Color.new(150, 190, 170), 1)
+                     _INTL("等级{1}", @level.to_s), Color.new(60, 60, 60), Color.new(150, 190, 170), 1)
     # Displays total and current coins
     pbUpdateCoins
     # Draw curtain effect
@@ -214,12 +214,12 @@ class VoltorbFlip
     @sprites["curtainR"].visible = false
     @sprites["curtain"].opacity = 100
     if $player.coins >= Settings::MAX_COINS
-      pbMessage(_INTL("You've gathered {1} Coins. You cannot gather any more.", Settings::MAX_COINS.to_s_formatted))
+      pbMessage(_INTL("你已得到{1}枚代币，无法继续获得了。", Settings::MAX_COINS.to_s_formatted))
       $player.coins = Settings::MAX_COINS   # As a precaution
       @quit = true
     else
       loop do
-        case pbMessage(_INTL("Play Voltorb Flip Lv. {1}?", @level), [_INTL("Play"), _INTL("Game Info"), _INTL("Quit")], 3)
+        case pbMessage(_INTL("要玩{1}级翻霹雳电球卡牌吗？", @level), [_INTL("游玩"), _INTL("游戏信息"), _INTL("退出")], 3)
         when 0 # Play
           break
         when 1 # Game Info
@@ -265,31 +265,31 @@ class VoltorbFlip
 
   def display_game_info
     loop do
-      case pbMessage(_INTL("Which set of info?"), [_INTL("How to Play"), _INTL("Hint!"),_INTL("About Memos"),_INTL("Return")], 4)
+      case pbMessage(_INTL("要查看哪组信息？"), [_INTL("游戏说明"), _INTL("提示!"),_INTL("关于备忘录"),_INTL("返回")], 4)
       when 0
-        pbMessage(_INTL("Voltorb Flip is a game in which you flip over cards to find numbers hidden beneath them."))
-        pbMessage(_INTL("The cards are hiding the numbers 1 through 3... and Voltorb as well."))
-        pbMessage(_INTL("The first number you flip over will give you that many Coins."))
-        pbMessage(_INTL("From then on, the next number you find will multiply the total amount of Coins you've collected by that number."))
-        pbMessage(_INTL("If it's a 2, your total will be multiplied by \"×2\"."))
-        pbMessage(_INTL("If it's a 3, your total will be multiplied by \"×3\"."))
-        pbMessage(_INTL("But if you flip over a Voltorb, it's game over."))
-        pbMessage(_INTL("When that happens, you'll lose all the Coins you've collected in the current game."))
-        pbMessage(_INTL("If you select \"Quit\", you'll withdraw from the game."))
-        pbMessage(_INTL("If you get to a difficult spot, you might want to end the game early."))
-        pbMessage(_INTL("Once you've found all the hidden 2 and 3 cards, you've cleared the game."))
-        pbMessage(_INTL("Once you've flipped over all these cards, then you'll advance to the next level."))
-        pbMessage(_INTL("As you move up in levels, you will be able to receive more Coins."))
-        pbMessage(_INTL("Do your best!"))
+        pbMessage(_INTL("翻霹雳电球卡牌是一款翻开卡片来找到隐藏在下面的数字的游戏。"))
+        pbMessage(_INTL("这些卡片隐藏着数字1到3...以及霹雳电球。"))
+        pbMessage(_INTL("你翻开的第一张卡片会给你相应数量的代币。"))
+        pbMessage(_INTL("从那以后，你找到的下一个数字会将你已收集的代币总数乘以该数字。"))
+        pbMessage(_INTL("如果是2，你的总数将乘以\"×2\"。"))
+        pbMessage(_INTL("如果是3，你的总数将乘以\"×3\"。"))
+        pbMessage(_INTL("但如果翻开的是霹雳电球，游戏就结束了。"))
+        pbMessage(_INTL("当这种情况发生时，你会失去在当前游戏中收集的所有代币。"))
+        pbMessage(_INTL("如果你选择\"退出\"，你将退出游戏。"))
+        pbMessage(_INTL("如果你到了一个困难的地方，你可能想要提前结束游戏。"))
+        pbMessage(_INTL("一旦你找到了所有隐藏的2和3卡片，你就清除了游戏。"))
+        pbMessage(_INTL("一旦你翻开了所有这些卡片，你就会进入下一个等级。"))
+        pbMessage(_INTL("随着你在等级上的提升，你将能够获得更多的代币。"))
+        pbMessage(_INTL("尽你最大的努力！"))
       when 1
-        pbMessage(_INTL("The numbers at the side of the board give you a clue about the numbers hidden on the backs of the panels."))
-        pbMessage(_INTL("The larger the number, the more likely it is that there are many large numbers hidden in that row or column."))
-        pbMessage(_INTL("In the same way, you can tell how many Voltorb are hidden in the row or column."))
-        pbMessage(_INTL("Consider the hidden number totals and the Voltorb totals carefully as you flip over panels."))
+        pbMessage(_INTL("棋盘侧面的数字能为你提供关于面板背面隐藏数字的线索。"))
+        pbMessage(_INTL("数字越大，该行或该列中隐藏着许多大数字的可能性就越大。"))
+        pbMessage(_INTL("同样地，你也可以判断出行或列中隐藏的霹雳电球数量。"))
+        pbMessage(_INTL("在翻开面板时，要仔细考虑隐藏数字的总数和霹雳电球的总数。"))
       when 2
-        pbMessage(_INTL("Use the Action button to mark the cards with a Voltorb symbol."))
-        pbMessage(_INTL("When you have an idea of whether a Voltorb is hidden on the back of a card, mark the card."))
-        pbMessage(_INTL("If you want to remove a mark, mark the card again and it will disappear."))
+        pbMessage(_INTL("使用行动按钮在卡片上标记霹雳电球符号。"))
+        pbMessage(_INTL("当你对卡片背面是否隐藏着霹雳电球有想法时，就标记这张卡片。"))
+        pbMessage(_INTL("如果想要移除标记，再次标记该卡片，它就会消失。"))
       else
         return
       end
@@ -444,7 +444,7 @@ class VoltorbFlip
                 @sprites["animation"].bitmap.clear
               end
               # Unskippable text block, parameter 2 = wait time (corresponds to ME length)
-              pbMessage("\\me[Voltorb Flip game over]" + _INTL("Oh no! You get 0 Coins!") + "\\wtnp[80]")
+              pbMessage("\\me[Voltorb Flip game over]" + _INTL("不！你一枚代币都没得到！") + "\\wtnp[80]")
               pbShowAndDispose
               @sprites["mark"].bitmap.clear
               if @level > 1
@@ -453,7 +453,7 @@ class VoltorbFlip
                 newLevel = newLevel.clamp(1, @level)
                 if newLevel < @level
                   @level = newLevel
-                  pbMessage("\\se[Voltorb Flip level down]" + _INTL("Dropped to Game Lv. {1}!", @level.to_s) + "\\wtnp[20]")
+                  pbMessage("\\se[Voltorb Flip level down]" + _INTL("游戏下降到{1}级！", @level.to_s) + "\\wtnp[20]")
                 end
               end
               # Update level text
@@ -499,13 +499,13 @@ class VoltorbFlip
       # Game cleared
       if count == 0
         @sprites["curtain"].opacity = 100
-        pbMessage("\\me[Voltorb Flip win]" + _INTL("Game clear!") + "\\wtnp[40]")
-#        pbMessage(_INTL("You've found all of the hidden x2 and x3 cards."))
-#        pbMessage(_INTL("This means you've found all the Coins in this game, so the game is now over."))
-        pbMessage("\\se[Voltorb Flip gain coins]" + _INTL("{1} received {2} Coins!", $player.name, @points.to_s_formatted) + "\\wtnp[10]")
+        pbMessage("\\me[Voltorb Flip win]" + _INTL("游戏胜利！") + "\\wtnp[40]")
+#        pbMessage(_INTL("你已经找到所有的x2和x3卡牌了。"))
+#        pbMessage(_INTL("也就是说你已经找到游戏里的所有代币了，所以游戏结束。"))
+        pbMessage("\\se[Voltorb Flip gain coins]" + _INTL("{1}得到了{2}枚代币！", $player.name, @points.to_s_formatted) + "\\wtnp[10]")
         # Update level text
         @sprites["level"].bitmap.clear
-        pbDrawShadowText(@sprites["level"].bitmap, 8, 154, 118, 28, _INTL("Level {1}", @level.to_s),
+        pbDrawShadowText(@sprites["level"].bitmap, 8, 154, 118, 28, _INTL("等级{1}", @level.to_s),
                          Color.new(60, 60, 60), Color.new(150, 190, 170), 1)
         old_coins = $player.coins
         $player.coins += @points
@@ -521,10 +521,10 @@ class VoltorbFlip
         @sprites["curtain"].opacity = 100
         if @level < 8
           @level += 1
-          pbMessage("\\se[Voltorb Flip level up]" + _INTL("Advanced to Game Lv. {1}!", @level.to_s) + "\\wtnp[10]")
+          pbMessage("\\se[Voltorb Flip level up]" + _INTL("游戏上升到了{1}级！", @level.to_s) + "\\wtnp[10]")
           if @firstRound
-#            pbMessage(_INTL("Congratulations!"))
-#            pbMessage(_INTL("You can receive even more Coins in the next game!"))
+#            pbMessage(_INTL("恭喜！"))
+#            pbMessage(_INTL("下次游戏你可以得到更多的代币！"))
             @firstRound = false
           end
         end
@@ -544,14 +544,14 @@ class VoltorbFlip
     elsif Input.trigger?(Input::BACK)
       @sprites["curtain"].opacity = 100
       if @points == 0
-        if pbConfirmMessage("You haven't found any Coins! Are you sure you want to quit?")
+        if pbConfirmMessage(_INTL("你还没有找到任何代币！你确定要退出吗？"))
           @sprites["curtain"].opacity = 0
           pbShowAndDispose
           @quit = true
         end
-      elsif pbConfirmMessage(_INTL("If you quit now, you will recieve {1} Coin(s). Will you quit?",
+      elsif pbConfirmMessage(_INTL("如果你现在退出，你可以得到{1}枚代币。你要退出吗？",
                                    @points.to_s_formatted))
-        pbMessage(_INTL("{1} received {2} Coin(s)!", $player.name, @points.to_s_formatted))
+        pbMessage(_INTL("{1}得到了{2}枚代币！", $player.name, @points.to_s_formatted))
         old_coins = $player.coins
         $player.coins += @points
         $stats.coins_won += $player.coins - old_coins if $player.coins > old_coins
@@ -736,9 +736,9 @@ end
 #===============================================================================
 def pbVoltorbFlip
   if !$bag.has?(:COINCASE)
-    pbMessage(_INTL("You can't play unless you have a Coin Case."))
+    pbMessage(_INTL("你没有代币盒，无法游玩！"))
   elsif $player.coins == Settings::MAX_COINS
-    pbMessage(_INTL("Your Coin Case is full!"))
+    pbMessage(_INTL("你的代币盒满了！"))
   else
     scene = VoltorbFlip.new
     screen = VoltorbFlipScreen.new(scene)

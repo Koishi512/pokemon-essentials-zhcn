@@ -40,8 +40,8 @@ end
 def pbOrganizedBattleEx(opponent, challengedata)
   # Skip battle if holding Ctrl in Debug mode
   if Input.press?(Input::CTRL) && $DEBUG
-    pbMessage(_INTL("SKIPPING BATTLE..."))
-    pbMessage(_INTL("AFTER WINNING..."))
+    pbMessage(_INTL("跳过战斗..."))
+    pbMessage(_INTL("获胜后..."))
     pbMessage(opponent.lose_text || "...")
     $game_temp.last_battle_record = nil
     pbMEStop
@@ -135,7 +135,7 @@ def pbDebugPlayBattle
   params.setRange(0, 500)
   params.setInitialValue(0)
   params.setCancelValue(-1)
-  num = pbMessageChooseNumber(_INTL("Choose a battle."), params)
+  num = pbMessageChooseNumber(_INTL("选择一场战斗。"), params)
   pbPlayBattleFromFile(sprintf("Battles/Battle%03d.dat", num)) if num >= 0
 end
 

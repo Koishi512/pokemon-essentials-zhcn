@@ -8,14 +8,14 @@ class BugContestState
   attr_accessor :timer_start
 
   CONTESTANT_NAMES = [
-    _INTL("Bug Catcher Ed"),
-    _INTL("Bug Catcher Benny"),
-    _INTL("Bug Catcher Josh"),
-    _INTL("Camper Barry"),
-    _INTL("Cool Trainer Nick"),
-    _INTL("Lass Abby"),
-    _INTL("Picnicker Cindy"),
-    _INTL("Youngster Samuel")
+    _INTL("捕虫少年志扬"),
+    _INTL("捕虫少年贞夫"),
+    _INTL("捕虫少年友道"),
+    _INTL("露营少年勇一"),
+    _INTL("精英训练家阿健"),
+    _INTL("迷你裙小美"),
+    _INTL("野餐少女辛迪"),
+    _INTL("短裤小子康太")
   ]
   TIME_ALLOWED = Settings::BUG_CONTEST_TIME   # In seconds
 
@@ -115,17 +115,17 @@ class BugContestState
         maps_with_encounters.push([map, enc_type])
       end
     end
-    raise _INTL("There are no Bug Contest/Land encounters for any Bug Contest maps.") if maps_with_encounters.empty?
+    raise _INTL("所有捕虫大会地图都没有捕虫大会/陆地相遇。") if maps_with_encounters.empty?
     @contestants.each do |cont|
       enc_data = maps_with_encounters.sample
       enc = $PokemonEncounters.choose_wild_pokemon_for_map(enc_data[0], enc_data[1])
-      raise _INTL("No encounters for map {1} somehow, so can't judge contest.", enc_data[0]) if !enc
+      raise _INTL("地图{1}没有相遇，所以无法判断结果。", enc_data[0]) if !enc
       pokemon = Pokemon.new(enc[0], enc[1])
       pokemon.hp = rand(1...pokemon.totalhp)
       score = pbBugContestScore(pokemon)
       judgearray.push([cont, pokemon.species, score])
     end
-    raise _INTL("Too few bug-catching contestants") if judgearray.length < 3
+    raise _INTL("捕虫大会参赛者太少。") if judgearray.length < 3
     judgearray.sort! { |a, b| b[2] <=> a[2] }   # sort by score in descending order
     @places.push(judgearray[0])
     @places.push(judgearray[1])
@@ -325,8 +325,8 @@ EventHandlers.add(:on_frame_update, :bug_contest_counter,
     next if !pbBugContestState.expired?
     next if $game_player.move_route_forcing || pbMapInterpreterRunning? ||
             $game_temp.message_window_showing
-    pbMessage(_INTL("ANNOUNCER: BEEEEEP!"))
-    pbMessage(_INTL("Time's up!"))
+    pbMessage(_INTL("哔——！"))
+    pbMessage(_INTL("时间到！"))
     pbBugContestState.pbStartJudging
   }
 )
@@ -394,7 +394,7 @@ def pbBugContestBattle(pkmn, level = 1)
   # Update Bug Contest game data based on result of battle
   pbBugContestState.ballcount = battle.ballCount
   if pbBugContestState.ballcount == 0
-    pbMessage(_INTL("ANNOUNCER: The Bug-Catching Contest is over!"))
+    pbMessage(_INTL("广播：捕虫大会结束了！"))
     pbBugContestState.pbStartJudging
   end
   # Save the result of the battle in Game Variable 1
@@ -415,12 +415,12 @@ class UI::PauseMenu < UI::BaseScreen
     __bug_contest_show_info
     return if !pbInBugContest?
     if pbBugContestState.lastPokemon
-      @visuals.show_info(_INTL("Caught: {1}\nLevel: {2}\nBalls: {3}",
+      @visuals.show_info(_INTL("收服：{1}\n等级：{2}\n竞赛球：{3}",
                                pbBugContestState.lastPokemon.speciesName,
                                pbBugContestState.lastPokemon.level,
                                pbBugContestState.ballcount))
     else
-      @visuals.show_info(_INTL("Caught: None\nBalls: {1}", pbBugContestState.ballcount))
+      @visuals.show_info(_INTL("收服：无\n竞赛球：{1}", pbBugContestState.ballcount))
     end
   end
 end
@@ -430,12 +430,12 @@ end
 #===============================================================================
 
 MenuHandlers.add(:pause_menu, :quit_bug_contest, {
-  "name"      => _INTL("Quit Contest"),
+  "name"      => _INTL("退出大会"),
   "order"     => 60,
   "condition" => proc { next pbInBugContest? },
   "effect"    => proc { |menu|
     menu.hide_menu
-    if pbConfirmMessage(_INTL("Would you like to end the Contest now?"))
+    if pbConfirmMessage(_INTL("你现在要退出捕虫大会吗？"))
       menu.silent_end_screen
       pbBugContestState.pbStartJudging
       next true

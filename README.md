@@ -1,42 +1,42 @@
 ﻿# Pokémon Essentials
 
-Based on Essentials v21.1.
+基于Essentials v21.1。
 
-You can build your fangame on top of a fork of this repository. Doing so will let you update your fangame with improvements made to this repo as soon as they are made.
+你可以基于此仓库的分支来开发你的同人游戏。这样一来，当此仓库进行更新时，你的同人游戏也能立即同步这些改进。
 
-## Usage
+## 使用方式
 
-1. Fork this repo.
-2. Get a copy of Essentials v21.1 (a download link cannot be provided here).
-3. Clone your forked repo into the Essentials v21.1 folder, replacing the existing files with the ones from the repo.
+1. 分叉此仓库。
+2. 获取 Essentials v21.1 的副本（此处无法提供下载链接）。
+3. 将您分叉的仓库克隆到 Essentials v21.1 文件夹中，用仓库中的文件替换现有文件。
 
-From here, you can edit this project to turn it into your fangame/develop mods. When this repo is updated, you can pull the changes to update your fork and get the updates into your fangame/modding environment.
+在此基础上，您可以编辑该项目，将其改造成您的同人游戏或开发模组。当此代码库更新时，您可以拉取更改以更新您的分支，并将更新内容应用到您的同人游戏或模组开发环境中。
 
-## Scripts
+## 脚本
 
-The scripts no longer live in the Scripts.rxdata file. They have been extracted into separate files and placed in the Data/Scripts/ folder (and subfolders within). This makes it easier to work with other people and keep track of changes.
+脚本不再保存在 Scripts.rxdata 文件中。它们已被提取到单独的文件中，并放置在 Data/Scripts/ 文件夹（及其子文件夹）内。这样更便于与他人协作，并跟踪更改。
 
-The scripts are loaded into the game alphanumerically, starting from the top folder (Data/Scripts/) and going depth-first. That is, all scripts in a given folder are loaded, and then each of its subfolder is checked in turn (again in alphanumerical order) for files/folders to load/check.
+脚本按字母数字顺序加载到游戏中，从顶层文件夹（Data/Scripts/）开始，并采用深度优先的遍历方式。也就是说，先加载某个文件夹中的所有脚本，然后依次检查其每个子文件夹（同样按字母数字顺序），以查找需要加载或检查的文件/文件夹。
 
-### Extracting and reintegrating scripts
+### 提取和重新集成脚本
 
-This repo contains two script files in the main folder:
+此仓库的主文件夹中包含两个脚本文件：
 
-* scripts_extract.rb - Run this to extract all scripts from Scripts.rxdata into individual .rb files (any existing individual .rb files are deleted).
-  * Scripts.rxdata is backed up to ScriptsBackup.rxdata, and is then replaced with a version that reads the individual .rb files and does nothing else.
-* scripts_combine.rb - Run this to reintegrate all the individual .rb files back into Scripts.rxdata.
-  * The individual .rb files are left where they are, but they no longer do anything.
+* scripts_extract.rb - 运行此脚本可将 Scripts.rxdata 中的所有脚本提取为单独的 .rb 文件（任何现有的单独 .rb 文件都将被删除）。
+  * Scripts.rxdata 会被备份到 ScriptsBackup.rxdata，随后被替换为一个仅读取单独 .rb 文件且不执行其他操作的版本。
+* scripts_combine.rb - 运行此脚本可将所有单独的 .rb 文件重新合并回 Scripts.rxdata 中。
+  * 单独的 .rb 文件将保留在原位置，但不再执行任何操作。
 
-You will need Ruby installed to run these scripts. The intention is to replace these with something more user-friendly.
+运行这些脚本需要安装 Ruby。我们的计划是用更易于用户使用的工具来替代这些脚本。
 
-## Files not in the repo
+## 仓库里没有的文件
 
-The .gitignore file lists the files that will not be included in this repo. These are:
+.gitignore 文件列出了不会被纳入此仓库的文件。具体包括：
 
-* The Audio/, Graphics/, Plugins/ and Screenshots/ folders and everything in them.
-* Everything in the Data/ folder, except for:
-  * The Data/Scripts/ folder and everything in there.
-  * Scripts.rxdata (a special version that just loads the individual script files).
-  * messages_core.dat, which contains common messages and is useful for translation projects.
-* A few files in the main project folder (two of the Game.xxx files, the RGSS dll file and errorlog.txt).
-* Temporary files.
+* Audio/、Graphics/、Plugins/ 和 Screenshots/ 文件夹及其所有内容。
+* Data/ 文件夹中的所有内容，但以下内容除外：
+  * Data/Scripts/ 文件夹及其所有内容。
+  * Scripts.rxdata（一个仅加载单个脚本文件的特殊版本）。
+  * messages_core.dat，该文件包含通用消息，对翻译项目很有帮助。
+* 主项目文件夹中的几个文件（两个 Game.xxx 文件、RGSS dll 文件以及 errorlog.txt）。
+* 临时文件。

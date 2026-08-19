@@ -64,19 +64,19 @@ class Scene_Credits
       ret.push("", "", "")
       PluginManager.plugins.each do |plugin|
         pcred = PluginManager.credits(plugin)
-        ret.push(_INTL("\"{1}\" v.{2} by:", plugin, PluginManager.version(plugin)))
+        ret.push(_INTL("\"{1}\" v.{2}由：", plugin, PluginManager.version(plugin)))
         add_names_to_credits(ret, pcred)
       end
     end
     # Add Essentials credits
     ret.push("", "", "")
-    ret.push(_INTL("\"Pokémon Essentials\" was created by:"))
+    ret.push(_INTL("\"Pokémon Essentials\"由："))
     add_names_to_credits(ret, [
       "Poccil (Peter O.)",
       "Maruno",
-      _INTL("Inspired by work by Flameguru")
+      _INTL("灵感来自Flameguru的作品")
     ])
-    ret.push(_INTL("With contributions from:"))
+    ret.push(_INTL("与以下人的贡献："))
     add_names_to_credits(ret, [
       "AvatarMonkeyKirby", "Boushy", "Brother1440", "FL.", "Genzai Kawakami",
       "Golisopod User", "help-14", "IceGod64", "Jacob O. Wobbrock", "KitsuneKouta",
@@ -84,25 +84,25 @@ class Scene_Credits
       "PinkMan", "Popper", "Rataime", "Savordez", "SoundSpawn",
       "the__end", "Venom12", "Wachunga"
     ], false)
-    ret.push(_INTL("and everyone else who helped out"))
+    ret.push(_INTL("以及所有帮助过的人"))
     ret.push("")
-    ret.push(_INTL("\"mkxp-z\" by:"))
+    ret.push(_INTL("\"mkxp-z\"由："))
     add_names_to_credits(ret, [
       "Anon",
-      _INTL("Based on \"mkxp\" by Ancurio et al.")
+      _INTL("基于Ancurio等人的\"mkxp\"。")
     ])
-    ret.push(_INTL("\"RPG Maker XP\" by:"))
+    ret.push(_INTL("\"RPG Maker XP\"由："))
     add_names_to_credits(ret, ["Enterbrain"])
-    ret.push(_INTL("Pokémon is owned by:"))
+    ret.push(_INTL("\"宝可梦\"由："))
     add_names_to_credits(ret, [
       "The Pokémon Company",
       "Nintendo",
-      _INTL("Affiliated with Game Freak")
+      _INTL("与Game Freak关联")
     ])
     ret.push("", "")
-    ret.push(_INTL("This is a non-profit fan-made game."),
-             _INTL("No copyright infringements intended."),
-             _INTL("Please support the official games!"))
+    ret.push(_INTL("本游戏是由粉丝制作的同人游戏。"),
+             _INTL("无意侵犯版权。"),
+             _INTL("请支持官方宝可梦游戏！"))
     return ret
   end
 

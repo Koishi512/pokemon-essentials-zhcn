@@ -144,7 +144,7 @@ def getConstantName(mod, value, raise_if_none = true)
   mod.constants.each do |c|
     return c.to_s if mod.const_get(c.to_sym) == value
   end
-  raise _INTL("Value {1} not defined by a constant in {2}", value, mod.name) if raise_if_none
+  raise _INTL("值{1}未被{2}中的常值定义", value, mod.name) if raise_if_none
   return nil
 end
 
@@ -248,7 +248,7 @@ end
 def pbTrainerName(name = nil, outfit = 0)
   pbChangePlayer(1) if $player.character_ID < 1
   if name.nil?
-    name = pbEnterPlayerName(_INTL("Your name?"), 0, Settings::MAX_PLAYER_NAME_SIZE)
+    name = pbEnterPlayerName(_INTL("你的名字是？"), 0, Settings::MAX_PLAYER_NAME_SIZE)
     if name.nil? || name.empty?
       player_metadata = GameData::PlayerMetadata.get($player.character_ID)
       trainer_type = (player_metadata) ? player_metadata.trainer_type : nil
@@ -433,19 +433,19 @@ def pbMoveTutorAnnotations(move, movelist = nil)
   ret = []
   $player.party.each_with_index do |pkmn, i|
     if pkmn.egg?
-      ret[i] = _INTL("Cannot Learn")
+      ret[i] = _INTL("不能学")
     elsif pkmn.hasMove?(move)
-      ret[i] = _INTL("Already Known")
+      ret[i] = _INTL("已学会")
     else
       species = pkmn.species
       if movelist&.any? { |j| j == species }
         # Checked data from movelist given in parameter
-        ret[i] = _INTL("Can Learn")
+        ret[i] = _INTL("能学习！")
       elsif pkmn.compatible_with_move?(move)
         # Checked data from Pokémon's tutor moves in pokemon.txt
-        ret[i] = _INTL("Can Learn")
+        ret[i] = _INTL("能学习！")
       else
-        ret[i] = _INTL("Cannot Learn")
+        ret[i] = _INTL("不能学")
       end
     end
   end
@@ -466,13 +466,13 @@ def pbMoveTutorChoose(move, movelist = nil, by_machine = false, one_use_machine 
     screen.choose_pokemon do |pkmn, party_index|
       next true if party_index < 0
       if pkmn.egg?
-        screen.show_message(_INTL("Eggs can't be taught any moves."))
+        screen.show_message(_INTL("不能给蛋教授任何招式。"))
       elsif pkmn.shadowPokemon?
-        screen.show_message(_INTL("Shadow Pokémon can't be taught any moves."))
+        screen.show_message(_INTL("不能给黑暗宝可梦教授任何招式。"))
       elsif movelist && movelist.none? { |j| j == pkmn.species }
-        screen.show_message(_INTL("{1} can't learn {2}.", pkmn.name, move_name))
+        screen.show_message(_INTL("{1}不能学会{2}。", pkmn.name, move_name))
       elsif !pkmn.compatible_with_move?(move)
-        screen.show_message(_INTL("{1} can't learn {2}.", pkmn.name, move_name))
+        screen.show_message(_INTL("{1}不能学会{2}。", pkmn.name, move_name))
       elsif pbLearnMove(pkmn, move, false, by_machine, screen) { screen.update }
         $stats.moves_taught_by_item += 1 if by_machine
         $stats.moves_taught_by_tutor += 1 if !by_machine
