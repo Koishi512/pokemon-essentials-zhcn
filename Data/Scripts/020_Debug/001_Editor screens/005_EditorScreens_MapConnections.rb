@@ -323,7 +323,7 @@ class MapScreenScene
     @sprites["background"] = ColoredPlane.new(Color.new(160, 208, 240), @viewport)
     @sprites["selsprite"] = SelectionSprite.new(@viewport)
     @sprites["title"] = Window_UnformattedTextPokemon.newWithSize(
-      _INTL("D: Help"), 0, Graphics.height - 64, Graphics.width, 64, @viewport
+      _INTL("D：帮助"), 0, Graphics.height - 64, Graphics.width, 64, @viewport
     )
     @sprites["title"].z = 2
     @mapinfos = pbLoadMapInfos
@@ -350,13 +350,13 @@ class MapScreenScene
   end
 
   def helpWindow
-    helptext = _INTL("A: Add map to canvas") + "\n"
-    helptext += _INTL("DEL: Delete map from canvas") + "\n"
-    helptext += _INTL("S: Go to another map") + "\n"
-    helptext += _INTL("Click to select a map") + "\n"
-    helptext += _INTL("Double-click: Edit map's metadata") + "\n"
-    helptext += _INTL("Drag map to move it") + "\n"
-    helptext += _INTL("Arrow keys/drag canvas: Move around canvas")
+    helptext = _INTL("A：将地图添加到画布") + "\n"
+    helptext += _INTL("DEL：从画布删除地图") + "\n"
+    helptext += _INTL("S：前往另一张地图") + "\n"
+    helptext += _INTL("单击以选择地图") + "\n"
+    helptext += _INTL("双击：编辑地图元数据") + "\n"
+    helptext += _INTL("拖动地图：移动地图") + "\n"
+    helptext += _INTL("箭头键/拖动画布：在画布上移动")
     title = Window_UnformattedTextPokemon.newWithSize(
       helptext, 0, 0, Graphics.width * 8 / 10, Graphics.height, @viewport
     )
@@ -443,12 +443,12 @@ class MapScreenScene
           sprite.x = (@mapspritepos[i][0] + xpos) & ~3
           sprite.y = (@mapspritepos[i][1] + ypos) & ~3
         end
-        @sprites["title"].text = _INTL("D: Help")
+        @sprites["title"].text = _INTL("D：帮助")
       end
     elsif mapid >= 0
       @sprites["title"].text = _ISPRINTF("D: Help [{1:03d}: {2:s}]", mapid, @mapinfos[mapid].name)
     else
-      @sprites["title"].text = _INTL("D: Help")
+      @sprites["title"].text = _INTL("D：帮助")
     end
   end
 
@@ -512,14 +512,14 @@ class MapScreenScene
       end
     end
     if Input.triggerex?(:A)
-      id = chooseMapScreen(_INTL("Add Map"), @currentmap)
+      id = chooseMapScreen(_INTL("添加地图"), @currentmap)
       if id > 0
         addSprite(id)
         setTopSprite(id)
         @mapconns = generateConnectionData
       end
     elsif Input.triggerex?(:S)
-      id = chooseMapScreen(_INTL("Go to Map"), @currentmap)
+      id = chooseMapScreen(_INTL("前往地图"), @currentmap)
       if id > 0
         @mapconns = generateConnectionData
         pbDisposeSpriteHash(@mapsprites)
@@ -549,13 +549,13 @@ class MapScreenScene
       Input.update
       update
       if Input.trigger?(Input::BACK)
-        if pbConfirmMessage(_INTL("Save changes?"))
+        if pbConfirmMessage(_INTL("保存更改吗？"))
           serializeConnectionData
           MapFactoryHelper.clear
         else
           GameData::Encounter.load
         end
-        break if pbConfirmMessage(_INTL("Exit from the editor?"))
+        break if pbConfirmMessage(_INTL("退出编辑器？"))
       end
     end
   end

@@ -65,11 +65,11 @@ class AnimationEditor::MenuBar < UIControls::BaseContainer
 
   def initialize_controls
     add_control_at(:quit, QUIT_BUTTON_X, QUIT_BUTTON_Y,
-                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("Quit")))
+                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("戒烟")))
     add_control_at(:save, SAVE_BUTTON_X, SAVE_BUTTON_Y,
-                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("Save")))
+                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("保存")))
     add_control_at(:help, HELP_BUTTON_X, HELP_BUTTON_Y,
-                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("Help")))
+                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("帮助")))
     add_control_at(:settings, SETTINGS_BUTTON_X, SETTINGS_BUTTON_Y,
                    UIControls::BitmapButton.new(@viewport, @bitmaps[:settings]))
     add_control_at(:name, NAME_BUTTON_X, NAME_BUTTON_Y,

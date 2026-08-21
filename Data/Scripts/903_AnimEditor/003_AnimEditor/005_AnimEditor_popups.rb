@@ -75,7 +75,7 @@ class AnimationEditor
   end
 
   def confirm_message(text)
-    return message(text, [:yes, _INTL("Yes")], [:no, _INTL("No")]) == :yes
+    return message(text, [:yes, _INTL("是的")], [:no, _INTL("否")]) == :yes
   end
 
   #-----------------------------------------------------------------------------

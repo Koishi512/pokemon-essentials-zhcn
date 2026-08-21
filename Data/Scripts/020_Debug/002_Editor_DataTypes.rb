@@ -3,7 +3,7 @@
 #===============================================================================
 module UndefinedProperty
   def self.set(_settingname, oldsetting)
-    pbMessage(_INTL("This property can't be edited here at this time."))
+    pbMessage(_INTL("目前无法在此处编辑此属性。"))
     return oldsetting
   end
 
@@ -17,7 +17,7 @@ end
 #===============================================================================
 module ReadOnlyProperty
   def self.set(_settingname, oldsetting)
-    pbMessage(_INTL("This property cannot be edited."))
+    pbMessage(_INTL("该属性无法编辑。"))
     return oldsetting
   end
 
@@ -38,7 +38,7 @@ class UIntProperty
     params = ChooseNumberParams.new
     params.setMaxDigits(@maxdigits)
     params.setDefaultValue(oldsetting || 0)
-    return pbMessageChooseNumber(_INTL("Set the value for {1}.", settingname), params)
+    return pbMessageChooseNumber(_INTL("设置 {1} 的值。", settingname), params)
   end
 
   def defaultValue
@@ -63,7 +63,7 @@ class LimitProperty
     params = ChooseNumberParams.new
     params.setRange(0, @maxvalue)
     params.setDefaultValue(oldsetting)
-    return pbMessageChooseNumber(_INTL("Set the value for {1} (0-{2}).", settingname, @maxvalue), params)
+    return pbMessageChooseNumber(_INTL("设置 {1} 的值 (0-{2})。", settingname, @maxvalue), params)
   end
 
   def defaultValue
@@ -89,7 +89,7 @@ class LimitProperty2
     params.setRange(0, @maxvalue)
     params.setDefaultValue(oldsetting)
     params.setCancelValue(-1)
-    ret = pbMessageChooseNumber(_INTL("Set the value for {1} (0-{2}).", settingname, @maxvalue), params)
+    ret = pbMessageChooseNumber(_INTL("设置 {1} 的值 (0-{2})。", settingname, @maxvalue), params)
     return (ret >= 0) ? ret : nil
   end
 
@@ -115,7 +115,7 @@ class NonzeroLimitProperty
     params = ChooseNumberParams.new
     params.setRange(1, @maxvalue)
     params.setDefaultValue(oldsetting)
-    return pbMessageChooseNumber(_INTL("Set the value for {1}.", settingname), params)
+    return pbMessageChooseNumber(_INTL("设置 {1} 的值。", settingname), params)
   end
 
   def defaultValue
@@ -132,7 +132,7 @@ end
 #===============================================================================
 module BooleanProperty
   def self.set(settingname, _oldsetting)
-    return pbConfirmMessage(_INTL("Enable the setting {1}?", settingname)) ? true : false
+    return pbConfirmMessage(_INTL("启用设置 {1}？", settingname)) ? true : false
   end
 
   def self.format(value)
@@ -145,7 +145,7 @@ end
 #===============================================================================
 module BooleanProperty2
   def self.set(_settingname, _oldsetting)
-    ret = pbShowCommands(nil, [_INTL("True"), _INTL("False")], -1)
+    ret = pbShowCommands(nil, [_INTL("真实"), _INTL("错误")], -1)
     return (ret >= 0) ? (ret == 0) : nil
   end
 
@@ -154,8 +154,8 @@ module BooleanProperty2
   end
 
   def self.format(value)
-    return _INTL("True") if value
-    return (value.nil?) ? "-" : _INTL("False")
+    return _INTL("真实") if value
+    return (value.nil?) ? "-" : _INTL("错误")
   end
 end
 
@@ -164,7 +164,7 @@ end
 #===============================================================================
 module StringProperty
   def self.set(settingname, oldsetting)
-    return pbMessageFreeText(_INTL("Set the value for {1}.", settingname),
+    return pbMessageFreeText(_INTL("设置 {1} 的值。", settingname),
                              (oldsetting) ? oldsetting : "", false, 250, Graphics.width)
   end
 
@@ -186,7 +186,7 @@ class LimitStringProperty
   end
 
   def set(settingname, oldsetting)
-    return pbMessageFreeText(_INTL("Set the value for {1}.", settingname),
+    return pbMessageFreeText(_INTL("设置 {1} 的值。", settingname),
                              (oldsetting) ? oldsetting : "", false, @limit)
   end
 end
@@ -204,7 +204,7 @@ class EnumProperty
     @values.each do |value|
       commands.push(value)
     end
-    cmd = pbMessage(_INTL("Choose a value for {1}.", settingname), commands, -1)
+    cmd = pbMessage(_INTL("选择 {1} 的值。", settingname), commands, -1)
     return oldsetting if cmd < 0
     return cmd
   end
@@ -231,7 +231,7 @@ class EnumProperty2
     (0..@module.maxValue).each do |i|
       commands.push(getConstantName(@module, i))
     end
-    cmd = pbMessage(_INTL("Choose a value for {1}.", settingname), commands, -1, nil, oldsetting)
+    cmd = pbMessage(_INTL("选择 {1} 的值。", settingname), commands, -1, nil, oldsetting)
     return oldsetting if cmd < 0
     return cmd
   end
@@ -277,7 +277,7 @@ class StringListProperty
       if cmd >= 0   # Chose a value
         entry = real_cmds[cmd]
         if entry[1] == -1   # Add new value
-          new_value = pbMessageFreeText(_INTL("Enter the new value."),
+          new_value = pbMessageFreeText(_INTL("输入新值。"),
                                         "", false, 250, Graphics.width)
           if !nil_or_empty?(new_value)
             if real_cmds.any? { |e| e[0] == new_value }
@@ -288,10 +288,10 @@ class StringListProperty
             do_refresh = true
           end
         else   # Edit value
-          case pbMessage("\\ts[]" + _INTL("Do what with this value?"),
-                         [_INTL("Edit"), _INTL("Delete"), _INTL("Cancel")], 3)
+          case pbMessage("\\ts[]" + _INTL("用这个值做什么？"),
+                         [_INTL("编辑"), _INTL("删除"), _INTL("取消")], 3)
           when 0   # Edit
-            new_value = pbMessageFreeText(_INTL("Enter the new value."),
+            new_value = pbMessageFreeText(_INTL("输入新值。"),
                                           entry[0], false, 250, Graphics.width)
             if !nil_or_empty?(new_value)
               if real_cmds.any? { |e| e[0] == new_value }   # Already have value; delete this one
@@ -310,7 +310,7 @@ class StringListProperty
           end
         end
       else   # Cancel/quit
-        case pbMessage(_INTL("Keep changes?"), [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+        case pbMessage(_INTL("保留更改吗？"), [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
         when 0
           real_cmds.length.times do |i|
             real_cmds[i] = (real_cmds[i][1] == -1) ? nil : real_cmds[i][0]
@@ -341,7 +341,7 @@ end
 #===============================================================================
 class GameDataProperty
   def initialize(value)
-    raise _INTL("Couldn't find class {1} in module GameData.", value.to_s) if !GameData.const_defined?(value.to_sym)
+    raise _INTL("在模块 GameData 中找不到类 {1}。", value.to_s) if !GameData.const_defined?(value.to_sym)
     @module = GameData.const_get(value.to_sym)
   end
 
@@ -499,15 +499,15 @@ module TypesProperty
     index = 0
     loop do
       cmds = []
-      2.times { |i| cmds.push(_INTL("Type {1} : {2}", i, ret[i] || "-")) }
-      index = pbMessage(_INTL("Set the type(s) for this species."), cmds, -1)
+      2.times { |i| cmds.push(_INTL("输入{1}：{2}", i, ret[i] || "-")) }
+      index = pbMessage(_INTL("设置该物种的类型。"), cmds, -1)
       break if index < 0
       new_type = pbChooseTypeList(ret[index])
       ret[index] = new_type if new_type
       ret.uniq!
       ret.compact!
     end
-    return ret if ret != oldsetting.compact && pbConfirmMessage(_INTL("Apply changes?"))
+    return ret if ret != oldsetting.compact && pbConfirmMessage(_INTL("应用更改？"))
     return oldsetting
   end
 
@@ -565,7 +565,7 @@ end
 #===============================================================================
 module GenderProperty
   def self.set(_settingname, _oldsetting)
-    ret = pbShowCommands(nil, [_INTL("Male"), _INTL("Female")], -1)
+    ret = pbShowCommands(nil, [_INTL("男"), _INTL("女")], -1)
     return (ret >= 0) ? ret : nil
   end
 
@@ -575,8 +575,8 @@ module GenderProperty
 
   def self.format(value)
     return "-" if !value
-    return _INTL("Male") if value == 0
-    return _INTL("Female") if value == 1
+    return _INTL("男") if value == 0
+    return _INTL("女") if value == 1
     return "-"
   end
 end
@@ -615,7 +615,7 @@ class IVsProperty
     GameData::Stat.each_main do |s|
       oldsetting[s.pbs_order] = 0 if !oldsetting[s.pbs_order]
       properties[s.pbs_order] = [s.name, LimitProperty2.new(@limit),
-                                 _INTL("Individual values for the Pokémon's {1} stat (0-{2}).", s.name, @limit)]
+                                 _INTL("宝可梦{1}能力值的个体值（0-{2}）。", s.name, @limit)]
       data[s.pbs_order] = oldsetting[s.id]
       stat_ids[s.pbs_order] = s.id
     end
@@ -656,7 +656,7 @@ class EVsProperty
     GameData::Stat.each_main do |s|
       oldsetting[s.pbs_order] = 0 if !oldsetting[s.pbs_order]
       properties[s.pbs_order] = [s.name, LimitProperty2.new(@limit),
-                                 _INTL("Effort values for the Pokémon's {1} stat (0-{2}).", s.name, @limit)]
+                                 _INTL("宝可梦{1}能力值的努力值（0-{2}）。", s.name, @limit)]
       data[s.pbs_order] = oldsetting[s.id]
       stat_ids[s.pbs_order] = s.id
     end
@@ -665,7 +665,7 @@ class EVsProperty
       evtotal = 0
       data.each { |value| evtotal += value if value }
       break if evtotal <= Pokemon::EV_LIMIT
-      pbMessage(_INTL("Total EVs ({1}) are greater than allowed ({2}). Please reduce them.", evtotal, Pokemon::EV_LIMIT))
+      pbMessage(_INTL("努力值总和（{1}）超过上限（{2}）。请降低它们。", evtotal, Pokemon::EV_LIMIT))
     end
     ret = {}
     stat_ids.each_with_index { |s, i| ret[s] = data[i] || 0 }
@@ -725,8 +725,8 @@ module MapSizeProperty
   def self.set(settingname, oldsetting)
     oldsetting = [0, ""] if !oldsetting
     properties = [
-      [_INTL("Width"),         NonzeroLimitProperty.new(30), _INTL("The width of this map in Region Map squares.")],
-      [_INTL("Valid Squares"), StringProperty,               _INTL("A series of 1s and 0s marking which squares are part of this map (1=part, 0=not part).")]
+      [_INTL("宽度"),         NonzeroLimitProperty.new(30), _INTL("该地图的宽度（以区域地图方块表示）。")],
+      [_INTL("有效方格"), StringProperty,               _INTL("一系列 1 和 0 标记哪些方块是该地图的一部分（1=部分，0=不部分）。")]
     ]
     pbPropertyList(settingname, oldsetting, properties, false)
     return oldsetting
@@ -741,7 +741,7 @@ def chooseMapPoint(map, rgnmap = false)
   viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
   viewport.z = 99999
   title = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Click a point on the map."), 0, Graphics.height - 64, Graphics.width, 64, viewport
+    _INTL("单击地图上的一个点。"), 0, Graphics.height - 64, Graphics.width, 64, viewport
   )
   title.z = 2
   if rgnmap
@@ -797,8 +797,8 @@ module MapCoordsFacingProperty
     if chosenmap >= 0
       mappoint = chooseMapPoint(chosenmap)
       if mappoint
-        facing = pbMessage(_INTL("Choose the direction to face in."),
-                           [_INTL("Down"), _INTL("Left"), _INTL("Right"), _INTL("Up")], -1)
+        facing = pbMessage(_INTL("选择面朝的方向。"),
+                           [_INTL("向下"), _INTL("左"), _INTL("右"), _INTL("向上")], -1)
         return (facing >= 0) ? [chosenmap, mappoint[0], mappoint[1], [2, 4, 6, 8][facing]] : oldsetting
       else
         return oldsetting
@@ -822,14 +822,14 @@ module RegionMapCoordsProperty
     selregion = -1
     case regions.length
     when 0
-      pbMessage(_INTL("No region maps are defined."))
+      pbMessage(_INTL("没有定义区域地图。"))
       return oldsetting
     when 1
       selregion = regions[0][0]
     else
       cmds = []
       regions.each { |region| cmds.push(region[1]) }
-      selcmd = pbMessage(_INTL("Choose a region map."), cmds, -1)
+      selcmd = pbMessage(_INTL("选择区域地图。"), cmds, -1)
       return oldsetting if selcmd < 0
       selregion = regions[selcmd][0]
     end
@@ -862,12 +862,12 @@ module WeatherEffectProperty
       options.push(w.real_name)
       ids.push(w.id)
     end
-    cmd = pbMessage(_INTL("Choose a weather effect."), options, -1, nil, default)
+    cmd = pbMessage(_INTL("选择天气效果。"), options, -1, nil, default)
     return nil if cmd < 0 || ids[cmd] == :None
     params = ChooseNumberParams.new
     params.setRange(0, 100)
     params.setDefaultValue(oldsetting[1])
-    number = pbMessageChooseNumber(_INTL("Set the probability of the weather."), params)
+    number = pbMessageChooseNumber(_INTL("设置天气的概率。"), params)
     return [ids[cmd], number]
   end
 
@@ -899,7 +899,7 @@ end
 #===============================================================================
 module ItemNameProperty
   def self.set(settingname, oldsetting)
-    return pbMessageFreeText(_INTL("Set the value for {1}.", settingname),
+    return pbMessageFreeText(_INTL("设置 {1} 的值。", settingname),
                              (oldsetting) ? oldsetting : "", false, 30)
   end
 
@@ -921,7 +921,7 @@ module PocketProperty
     commands = []
     pockets.each { |pckt| commands.push(GameData::BagPocket.get(pckt).name) }
     initial_val = pockets.index(GameData::BagPocket.get(oldsetting || 1).id)
-    cmd = pbMessage(_INTL("Choose a pocket for this item."), commands, -1, nil, initial_val)
+    cmd = pbMessage(_INTL("为该物品选择一个口袋。"), commands, -1, nil, initial_val)
     return (cmd >= 0) ? pockets[cmd] : oldsetting
   end
 
@@ -930,7 +930,7 @@ module PocketProperty
   end
 
   def self.format(value)
-    return _INTL("No Pocket") if value == 0 || value == :None
+    return _INTL("没有口袋") if value == 0 || value == :None
     return (value) ? GameData::BagPocket.get(value).name : value.inspect
   end
 end
@@ -946,8 +946,8 @@ module BaseStatsProperty
     stat_ids = []
     GameData::Stat.each_main do |s|
       next if s.pbs_order < 0
-      properties[s.pbs_order] = [_INTL("Base {1}", s.name), NonzeroLimitProperty.new(255),
-                                 _INTL("Base {1} stat of the Pokémon.", s.name)]
+      properties[s.pbs_order] = [_INTL("基地{1}", s.name), NonzeroLimitProperty.new(255),
+                                 _INTL("宝可梦的基础 {1} 统计数据。", s.name)]
       data[s.pbs_order] = oldsetting[s.pbs_order] || 10
       stat_ids[s.pbs_order] = s.id
     end
@@ -982,7 +982,7 @@ module EffortValuesProperty
     GameData::Stat.each_main do |s|
       next if s.pbs_order < 0
       properties[s.pbs_order] = [_INTL("{1} EVs", s.name), LimitProperty.new(255),
-                                 _INTL("Number of {1} Effort Value points gained from the Pokémon.", s.name)]
+                                 _INTL("从宝可梦获得的 {1} 努力值点数。", s.name)]
       data[s.pbs_order] = 0
       oldsetting.each { |ev| data[s.pbs_order] = ev[1] if ev[0] == s.id }
       stat_ids[s.pbs_order] = s.id
@@ -1037,7 +1037,7 @@ end
 class GameDataPoolProperty
   def initialize(game_data, allow_multiple = true, auto_sort = false)
     if !GameData.const_defined?(game_data.to_sym)
-      raise _INTL("Couldn't find class {1} in module GameData.", game_data.to_s)
+      raise _INTL("在模块 GameData 中找不到类 {1}。", game_data.to_s)
     end
     @game_data = game_data
     @game_data_module = GameData.const_get(game_data.to_sym)
@@ -1096,8 +1096,8 @@ class GameDataPoolProperty
               need_refresh = true
             end
           else   # Edit existing value
-            case pbMessage("\\ts[]" + _INTL("Do what with this value?"),
-                           [_INTL("Change value"), _INTL("Delete"), _INTL("Cancel")], 3)
+            case pbMessage("\\ts[]" + _INTL("用这个值做什么？"),
+                           [_INTL("改变值"), _INTL("删除"), _INTL("取消")], 3)
             when 0   # Change value
               new_value = pbChooseFromGameDataList(@game_data, entry[0])
               if new_value && new_value != entry[0]
@@ -1122,8 +1122,8 @@ class GameDataPoolProperty
             end
           end
         else   # Cancel/quit
-          case pbMessage(_INTL("Apply changes?"),
-                         [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+          case pbMessage(_INTL("应用更改？"),
+                         [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
           when 0
             values.shift   # Remove the "add value" option
             values.length.times do |i|
@@ -1231,7 +1231,7 @@ module LevelUpMovesProperty
             params.setRange(0, GameData::GrowthRate.max_level)
             params.setDefaultValue(1)
             params.setCancelValue(-1)
-            newlevel = pbMessageChooseNumber(_INTL("Choose a level."), params)
+            newlevel = pbMessageChooseNumber(_INTL("选择一个级别。"), params)
             if newlevel >= 0
               newmove = pbChooseMoveList
               if newmove
@@ -1250,13 +1250,13 @@ module LevelUpMovesProperty
               end
             end
           else   # Edit existing move
-            case pbMessage("\\ts[]" + _INTL("Do what with this move?"),
-                           [_INTL("Change level"), _INTL("Change move"), _INTL("Delete"), _INTL("Cancel")], 4)
+            case pbMessage("\\ts[]" + _INTL("这个动作要做什么？"),
+                           [_INTL("改变等级"), _INTL("改变动作"), _INTL("删除"), _INTL("取消")], 4)
             when 0   # Change level
               params = ChooseNumberParams.new
               params.setRange(0, GameData::GrowthRate.max_level)
               params.setDefaultValue(entry[0])
-              newlevel = pbMessageChooseNumber(_INTL("Choose a new level."), params)
+              newlevel = pbMessageChooseNumber(_INTL("选择一个新级别。"), params)
               if newlevel >= 0 && newlevel != entry[0]
                 havemove = -1
                 realcmds.each do |e|
@@ -1296,8 +1296,8 @@ module LevelUpMovesProperty
             end
           end
         else   # Cancel/quit
-          case pbMessage(_INTL("Save changes?"),
-                         [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+          case pbMessage(_INTL("保存更改吗？"),
+                         [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
           when 0
             realcmds.shift
             realcmds.length.times do |i|
@@ -1360,7 +1360,7 @@ class EvolutionsProperty
     when :Ability
       ret = pbChooseAbilityList(value)
     when String
-      ret = pbMessageFreeText(_INTL("Enter a value."), ret || "", false, 250, Graphics.width)
+      ret = pbMessageFreeText(_INTL("输入一个值。"), ret || "", false, 250, Graphics.width)
       ret.strip!
       ret = nil if ret.empty?
     else
@@ -1368,7 +1368,7 @@ class EvolutionsProperty
       params.setRange(0, 65_535)
       params.setDefaultValue(value.to_i) if value
       params.setCancelValue(-1)
-      ret = pbMessageChooseNumber(_INTL("Choose a parameter."), params)
+      ret = pbMessageChooseNumber(_INTL("选择一个参数。"), params)
       ret = nil if ret < 0
     end
     return (ret) ? ret.to_s : nil
@@ -1430,10 +1430,10 @@ class EvolutionsProperty
         if cmd[1] >= 0
           entry = realcmds[cmd[1]]
           if entry[3] == -1   # Add new evolution path
-            pbMessage(_INTL("Choose an evolved form, method and parameter."))
+            pbMessage(_INTL("选择进化的形式、方法和参数。"))
             newspecies = pbChooseSpeciesList
             if newspecies
-              newmethodindex = pbMessage(_INTL("Choose an evolution method."), @methods, -1)
+              newmethodindex = pbMessage(_INTL("选择一种进化方法。"), @methods, -1)
               if newmethodindex >= 0
                 newmethod = @evo_ids[newmethodindex]
                 newparam = edit_parameter(newmethod)
@@ -1457,9 +1457,9 @@ class EvolutionsProperty
               end
             end
           else   # Edit evolution
-            case pbMessage("\\ts[]" + _INTL("Do what with this evolution?"),
-                           [_INTL("Change species"), _INTL("Change method"),
-                            _INTL("Change parameter"), _INTL("Delete"), _INTL("Cancel")], 5)
+            case pbMessage("\\ts[]" + _INTL("用这个进化做什么？"),
+                           [_INTL("改变物种"), _INTL("变更方法"),
+                            _INTL("更改参数"), _INTL("删除"), _INTL("取消")], 5)
             when 0   # Change species
               newspecies = pbChooseSpeciesList(entry[0])
               if newspecies
@@ -1481,7 +1481,7 @@ class EvolutionsProperty
             when 1   # Change method
               default_index = 0
               @evo_ids.each_with_index { |evo, i| default_index = i if evo == entry[1] }
-              newmethodindex = pbMessage(_INTL("Choose an evolution method."), @methods, -1, nil, default_index)
+              newmethodindex = pbMessage(_INTL("选择一种进化方法。"), @methods, -1, nil, default_index)
               if newmethodindex >= 0
                 newmethod = @evo_ids[newmethodindex]
                 existing_evo = -1
@@ -1502,7 +1502,7 @@ class EvolutionsProperty
               end
             when 2   # Change parameter
               if GameData::Evolution.get(entry[1]).parameter.nil?
-                pbMessage(_INTL("This evolution method doesn't use a parameter."))
+                pbMessage(_INTL("该进化方法不使用参数。"))
               else
                 newparam = edit_parameter(entry[1], entry[2])
                 if newparam
@@ -1529,8 +1529,8 @@ class EvolutionsProperty
             end
           end
         else
-          cmd2 = pbMessage(_INTL("Save changes?"),
-                           [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+          cmd2 = pbMessage(_INTL("保存更改吗？"),
+                           [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
           if [0, 1].include?(cmd2)
             if cmd2 == 0
               realcmds.length.times do |i|
@@ -1581,10 +1581,10 @@ module EncounterSlotProperty
     end
     data[3] = data[2] if !data[3]
     properties = [
-      [_INTL("Probability"),   NonzeroLimitProperty.new(999),       _INTL("Relative probability of choosing this slot.")],
-      [_INTL("Species"),       SpeciesFormProperty.new(data[1]),    _INTL("A Pokémon species/form.")],
-      [_INTL("Minimum level"), NonzeroLimitProperty.new(max_level), _INTL("Minimum level of this species (1-{1}).", max_level)],
-      [_INTL("Maximum level"), NonzeroLimitProperty.new(max_level), _INTL("Maximum level of this species (1-{1}).", max_level)]
+      [_INTL("概率"),   NonzeroLimitProperty.new(999),       _INTL("选择该槽位的相对概率。")],
+      [_INTL("物种"),       SpeciesFormProperty.new(data[1]),    _INTL("宝可梦种类/形态。")],
+      [_INTL("最低等级"), NonzeroLimitProperty.new(max_level), _INTL("该物种的最低水平 (1-{1})。", max_level)],
+      [_INTL("最高等级"), NonzeroLimitProperty.new(max_level), _INTL("该物种的最高水平 (1-{1})。", max_level)]
     ]
     pbPropertyList(setting_name, data, properties, false)
     if data[2] > data[3]
@@ -1654,7 +1654,7 @@ def pbPropertyList(title, data, properties, saveprompt = false)
       if Input.trigger?(Input::ACTION)
         propobj = properties[selectedmap][1]
         if propobj != ReadOnlyProperty && !propobj.is_a?(ReadOnlyProperty) &&
-           pbConfirmMessage(_INTL("Reset the setting {1}?", properties[selectedmap][0]))
+           pbConfirmMessage(_INTL("重置设置{1}？", properties[selectedmap][0]))
           if propobj.respond_to?("defaultValue")
             data[selectedmap] = propobj.defaultValue
           else
@@ -1685,8 +1685,8 @@ def pbPropertyList(title, data, properties, saveprompt = false)
       end
     end
     if selectedmap == -1 && saveprompt
-      cmd = pbMessage(_INTL("Save changes?"),
-                      [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+      cmd = pbMessage(_INTL("保存更改吗？"),
+                      [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
       if cmd == 2
         selectedmap = list.index
       else

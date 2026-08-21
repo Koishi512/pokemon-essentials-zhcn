@@ -336,6 +336,6 @@ module AnimationPlayer::Helper
       ret = start_val + (end_val[0] * t) + (end_val[1] * t * t / 2)
       return ret.round
     end
-    raise _INTL("Unknown interpolation method {1}.", interpolation)
+    raise _INTL("未知插值方法 {1}。", interpolation)
   end
 end

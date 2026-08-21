@@ -9,7 +9,7 @@ def pbEncountersEditor
   maps = []
   list = pbListWindow([])
   help_window = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Edit wild encounters"), Graphics.width / 2, 0, Graphics.width / 2, 96
+    _INTL("编辑野生遭遇"), Graphics.width / 2, 0, Graphics.width / 2, 96
   )
   help_window.z = 99999
   ret = 0
@@ -36,12 +36,12 @@ def pbEncountersEditor
     end
     ret = pbCommands2(list, commands, -1, ret)
     if ret == 0   # Add new encounter set
-      new_map_ID = pbListScreen(_INTL("Choose a map"), MapLister.new(pbDefaultMap))
+      new_map_ID = pbListScreen(_INTL("选择地图"), MapLister.new(pbDefaultMap))
       if new_map_ID > 0
-        new_version = LimitProperty2.new(999).set(_INTL("version number"), 0)
+        new_version = LimitProperty2.new(999).set(_INTL("版本号"), 0)
         if new_version && new_version >= 0
           if GameData::Encounter.exists?(new_map_ID, new_version)
-            pbMessage(_INTL("A set of encounters for map {1} version {2} already exists.", new_map_ID, new_version))
+            pbMessage(_INTL("地图 {1} 版本 {2} 的一组遭遇战已存在。", new_map_ID, new_version))
           else
             # Construct encounter hash
             key = sprintf("%s_%d", new_map_ID, new_version).to_sym
@@ -62,17 +62,17 @@ def pbEncountersEditor
       end
     elsif ret > 0   # Edit an encounter set
       this_set = maps[ret - 1]
-      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+      case pbShowCommands(nil, [_INTL("编辑"), _INTL("复制"), _INTL("删除"), _INTL("取消")], 4)
       when 0   # Edit
         pbEncounterMapVersionEditor(GameData::Encounter.get(this_set[0], this_set[1]))
         need_refresh = true
       when 1   # Copy
-        new_map_ID = pbListScreen(_INTL("Copy to which map?"), MapLister.new(this_set[0]))
+        new_map_ID = pbListScreen(_INTL("复制到哪个地图？"), MapLister.new(this_set[0]))
         if new_map_ID > 0
-          new_version = LimitProperty2.new(999).set(_INTL("version number"), 0)
+          new_version = LimitProperty2.new(999).set(_INTL("版本号"), 0)
           if new_version && new_version >= 0
             if GameData::Encounter.exists?(new_map_ID, new_version)
-              pbMessage(_INTL("A set of encounters for map {1} version {2} already exists.", new_map_ID, new_version))
+              pbMessage(_INTL("地图 {1} 版本 {2} 的一组遭遇战已存在。", new_map_ID, new_version))
             else
               # Construct encounter hash
               key = sprintf("%s_%d", new_map_ID, new_version).to_sym
@@ -101,7 +101,7 @@ def pbEncountersEditor
           end
         end
       when 2   # Delete
-        if pbConfirmMessage(_INTL("Delete the encounter set for map {1} version {2}?", this_set[0], this_set[1]))
+        if pbConfirmMessage(_INTL("删除地图 {1} 版本 {2} 的遭遇集吗？", this_set[0], this_set[1]))
           key = sprintf("%s_%d", this_set[0], this_set[1]).to_sym
           GameData::Encounter::DATA.delete(key)
           ret -= 1
@@ -112,7 +112,7 @@ def pbEncountersEditor
       break
     end
   end
-  if pbConfirmMessage(_INTL("Save changes?"))
+  if pbConfirmMessage(_INTL("保存更改吗？"))
     GameData::Encounter.save
     Compiler.write_encounters   # Rewrite PBS file encounters.txt
   else
@@ -131,7 +131,7 @@ def pbEncounterMapVersionEditor(enc_data)
   enc_types = []
   list = pbListWindow([])
   help_window = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Edit map's encounters"), Graphics.width / 2, 0, Graphics.width / 2, 96
+    _INTL("编辑地图的遭遇"), Graphics.width / 2, 0, Graphics.width / 2, 96
   )
   help_window.z = 99999
   ret = 0
@@ -142,11 +142,11 @@ def pbEncounterMapVersionEditor(enc_data)
       enc_types.clear
       map_name = (map_infos[enc_data.map]) ? map_infos[enc_data.map].name : nil
       if map_name
-        commands.push(_INTL("Map ID={1} ({2})", enc_data.map, map_name))
+        commands.push(_INTL("地图 ID={1} ({2})", enc_data.map, map_name))
       else
-        commands.push(_INTL("Map ID={1}", enc_data.map))
+        commands.push(_INTL("地图 ID={1}", enc_data.map))
       end
-      commands.push(_INTL("Version={1}", enc_data.version))
+      commands.push(_INTL("版本={1}", enc_data.version))
       enc_data.types.each do |enc_type, slots|
         next if !enc_type
         commands.push(_INTL("{1} (x{2})", enc_type.to_s, slots.length))
@@ -158,10 +158,10 @@ def pbEncounterMapVersionEditor(enc_data)
     ret = pbCommands2(list, commands, -1, ret)
     if ret == 0   # Edit map ID
       old_map_ID = enc_data.map
-      new_map_ID = pbListScreen(_INTL("Choose a new map"), MapLister.new(old_map_ID))
+      new_map_ID = pbListScreen(_INTL("选择新地图"), MapLister.new(old_map_ID))
       if new_map_ID > 0 && new_map_ID != old_map_ID
         if GameData::Encounter.exists?(new_map_ID, enc_data.version)
-          pbMessage(_INTL("A set of encounters for map {1} version {2} already exists.", new_map_ID, enc_data.version))
+          pbMessage(_INTL("地图 {1} 版本 {2} 的一组遭遇战已存在。", new_map_ID, enc_data.version))
         else
           GameData::Encounter::DATA.delete(enc_data.id)
           enc_data.map = new_map_ID
@@ -172,10 +172,10 @@ def pbEncounterMapVersionEditor(enc_data)
       end
     elsif ret == 1   # Edit version number
       old_version = enc_data.version
-      new_version = LimitProperty2.new(999).set(_INTL("version number"), old_version)
+      new_version = LimitProperty2.new(999).set(_INTL("版本号"), old_version)
       if new_version && new_version != old_version
         if GameData::Encounter.exists?(enc_data.map, new_version)
-          pbMessage(_INTL("A set of encounters for map {1} version {2} already exists.", enc_data.map, new_version))
+          pbMessage(_INTL("地图 {1} 版本 {2} 的一组遭遇战已存在。", enc_data.map, new_version))
         else
           GameData::Encounter::DATA.delete(enc_data.id)
           enc_data.version = new_version
@@ -204,11 +204,11 @@ def pbEncounterMapVersionEditor(enc_data)
           need_refresh = true
         end
       else
-        pbMessage(_INTL("There are no unused encounter types to add."))
+        pbMessage(_INTL("没有未使用的遭遇类型需要添加。"))
       end
     elsif ret > 0   # Edit an encounter type (its step chance and slots)
       this_type = enc_types[ret - 2]
-      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+      case pbShowCommands(nil, [_INTL("编辑"), _INTL("复制"), _INTL("删除"), _INTL("取消")], 4)
       when 0   # Edit
         pbEncounterTypeEditor(enc_data, this_type)
         need_refresh = true
@@ -221,7 +221,7 @@ def pbEncounterMapVersionEditor(enc_data)
           new_types.push(enc.id)
         end
         if new_type_commands.length > 0
-          chosen_type_cmd = pbMessage(_INTL("Choose an encounter type to copy to."),
+          chosen_type_cmd = pbMessage(_INTL("选择要复制到的遭遇类型。"),
                                       new_type_commands, -1)
           if chosen_type_cmd >= 0
             new_type = new_types[chosen_type_cmd]
@@ -233,10 +233,10 @@ def pbEncounterMapVersionEditor(enc_data)
             need_refresh = true
           end
         else
-          pbMessage(_INTL("There are no unused encounter types to copy to."))
+          pbMessage(_INTL("没有未使用的遭遇类型可供复制。"))
         end
       when 2   # Delete
-        if pbConfirmMessage(_INTL("Delete the encounter type {1}?", GameData::EncounterType.get(this_type).real_name))
+        if pbConfirmMessage(_INTL("删除遭遇类型 {1}？", GameData::EncounterType.get(this_type).real_name))
           enc_data.step_chances.delete(this_type)
           enc_data.types.delete(this_type)
           need_refresh = true
@@ -257,7 +257,7 @@ def pbEncounterTypeEditor(enc_data, enc_type)
   commands = []
   list = pbListWindow([])
   help_window = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Edit encounter slots"), Graphics.width / 2, 0, Graphics.width / 2, 96
+    _INTL("编辑遭遇槽"), Graphics.width / 2, 0, Graphics.width / 2, 96
   )
   help_window.z = 99999
   enc_type_name = ""
@@ -267,8 +267,8 @@ def pbEncounterTypeEditor(enc_data, enc_type)
     if need_refresh
       enc_type_name = GameData::EncounterType.get(enc_type).real_name
       commands.clear
-      commands.push(_INTL("Step chance={1}%", enc_data.step_chances[enc_type] || 0))
-      commands.push(_INTL("Encounter type={1}", enc_type_name))
+        commands.push(_INTL("遭遇几率={1}%", enc_data.step_chances[enc_type] || 0))
+      commands.push(_INTL("遭遇类型={1}", enc_type_name))
       if enc_data.types[enc_type] && enc_data.types[enc_type].length > 0
         enc_data.types[enc_type].each do |slot|
           commands.push(EncounterSlotProperty.format(slot))
@@ -280,7 +280,7 @@ def pbEncounterTypeEditor(enc_data, enc_type)
     ret = pbCommands2(list, commands, -1, ret)
     if ret == 0   # Edit step chance
       old_step_chance = enc_data.step_chances[enc_type] || 0
-      new_step_chance = LimitProperty.new(255).set(_INTL("Step chance"), old_step_chance)
+      new_step_chance = LimitProperty.new(255).set(_INTL("遭遇几率"), old_step_chance)
       if new_step_chance != old_step_chance
         enc_data.step_chances[enc_type] = new_step_chance
         need_refresh = true
@@ -312,7 +312,7 @@ def pbEncounterTypeEditor(enc_data, enc_type)
         need_refresh = true
       end
     elsif ret > 0   # Edit a slot
-      case pbShowCommands(nil, [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+      case pbShowCommands(nil, [_INTL("编辑"), _INTL("复制"), _INTL("删除"), _INTL("取消")], 4)
       when 0   # Edit
         old_slot_data = enc_data.types[enc_type][ret - 2]
         new_slot_data = EncounterSlotProperty.set(enc_type_name, old_slot_data.clone)
@@ -325,7 +325,7 @@ def pbEncounterTypeEditor(enc_data, enc_type)
         ret += 1
         need_refresh = true
       when 2   # Delete
-        if pbConfirmMessage(_INTL("Delete this encounter slot?"))
+        if pbConfirmMessage(_INTL("删除这个遭遇槽吗？"))
           enc_data.types[enc_type].delete_at(ret - 2)
           need_refresh = true
         end
@@ -344,15 +344,15 @@ end
 #===============================================================================
 def pbTrainerTypeEditor
   properties = GameData::TrainerType.editor_properties
-  pbListScreenBlock(_INTL("Trainer Types"), TrainerTypeLister.new(0, true)) do |button, tr_type|
+  pbListScreenBlock(_INTL("训练家类型"), TrainerTypeLister.new(0, true)) do |button, tr_type|
     if tr_type
       case button
       when Input::ACTION
-        if tr_type.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("Delete this trainer type?"))
+        if tr_type.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("删除该训练师类型吗？"))
           GameData::TrainerType::DATA.delete(tr_type)
           GameData::TrainerType.save
           pbConvertTrainerData
-          pbMessage(_INTL("The Trainer type was deleted."))
+          pbMessage(_INTL("训练师类型被删除。"))
         end
       when Input::USE
         if tr_type.is_a?(Symbol)
@@ -391,7 +391,7 @@ end
 
 def pbTrainerTypeEditorNew(default_name)
   # Choose a name
-  name = pbMessageFreeText(_INTL("Please enter the trainer type's name."),
+  name = pbMessageFreeText(_INTL("请输入训练家类型的名称。"),
                            (default_name) ? default_name.gsub(/_+/, " ") : "", false, 30)
   if nil_or_empty?(name)
     return nil if !default_name
@@ -415,17 +415,17 @@ def pbTrainerTypeEditorNew(default_name)
     end
   end
   if GameData::TrainerType.exists?(id)
-    pbMessage(_INTL("Failed to create the trainer type. Choose a different name."))
+    pbMessage(_INTL("无法创建训练家类型。请选择其他名称。"))
     return nil
   end
   # Choose a gender
-  gender = pbMessage(_INTL("Is the Trainer male, female or unknown?"),
-                     [_INTL("Male"), _INTL("Female"), _INTL("Unknown")], 0)
+  gender = pbMessage(_INTL("训练师是男是女还是未知？"),
+                     [_INTL("男"), _INTL("女"), _INTL("未知")], 0)
   # Choose a base money value
   params = ChooseNumberParams.new
   params.setRange(0, 255)
   params.setDefaultValue(30)
-  base_money = pbMessageChooseNumber(_INTL("Set the money per level won for defeating the Trainer."), params)
+  base_money = pbMessageChooseNumber(_INTL("设置击败训练师后每升一级所赢得的金钱。"), params)
   # Construct trainer type hash
   tr_type_hash = {
     :id         => id.to_sym,
@@ -437,8 +437,8 @@ def pbTrainerTypeEditorNew(default_name)
   GameData::TrainerType.register(tr_type_hash)
   GameData::TrainerType.save
   pbConvertTrainerData
-  pbMessage(_INTL("The trainer type {1} was created (ID: {2}).", name, id.to_s))
-  pbMessage(_INTL("Put the Trainer's graphic ({1}.png) in Graphics/Trainers, or it will be blank.", id.to_s))
+  pbMessage(_INTL("已创建训练器类型 {1}（ID：{2}）。", name, id.to_s))
+  pbMessage(_INTL("将训练师的图形 ({1}.png) 放入 Graphics/Trainers 中，否则它将是空白的。", id.to_s))
   return id.to_sym
 end
 
@@ -451,16 +451,16 @@ module TrainerBattleProperty
   def self.set(settingname, oldsetting)
     return nil if !oldsetting
     properties = [
-      [_INTL("Trainer Type"), TrainerTypeProperty,     _INTL("Name of the trainer type for this Trainer.")],
-      [_INTL("Trainer Name"), StringProperty,          _INTL("Name of the Trainer.")],
-      [_INTL("Version"),      LimitProperty.new(9999), _INTL("Number used to distinguish Trainers with the same name and trainer type.")],
-      [_INTL("Lose Text"),    StringProperty,          _INTL("Message shown in battle when the Trainer is defeated.")]
+      [_INTL("训练家类型"), TrainerTypeProperty,   _INTL("此训练家的训练家类型名称。")],
+      [_INTL("训练家名称"), StringProperty,        _INTL("此训练家的名称。")],
+      [_INTL("版本"),      LimitProperty.new(9999), _INTL("用于区分具有相同名称和训练师类型的训练师的编号。")],
+      [_INTL("战败文本"),    StringProperty,          _INTL("训练家被击败时在战斗中显示的消息。")]
     ]
     Settings::MAX_PARTY_SIZE.times do |i|
-      properties.push([_INTL("Pokémon {1}", i + 1), TrainerPokemonProperty, _INTL("A Pokémon owned by the Trainer.")])
+      properties.push([_INTL("宝可梦 {1}", i + 1), TrainerPokemonProperty, _INTL("训练家拥有的宝可梦。")])
     end
     NUM_ITEMS.times do |i|
-      properties.push([_INTL("Item {1}", i + 1), ItemProperty, _INTL("An item used by the Trainer during battle.")])
+      properties.push([_INTL("项目{1}", i + 1), ItemProperty, _INTL("训练师在战斗中使用的物品。")])
     end
     return nil if !pbPropertyList(settingname, oldsetting, properties, true)
     oldsetting = nil if !oldsetting[0]
@@ -477,15 +477,15 @@ end
 #===============================================================================
 def pbTrainerBattleEditor
   modified = false
-  pbListScreenBlock(_INTL("Trainer Battles"), TrainerBattleLister.new(0, true)) do |button, trainer_id|
+  pbListScreenBlock(_INTL("训练师对战"), TrainerBattleLister.new(0, true)) do |button, trainer_id|
     if trainer_id
       case button
       when Input::ACTION
-        if trainer_id.is_a?(Array) && pbConfirmMessageSerious(_INTL("Delete this trainer battle?"))
+        if trainer_id.is_a?(Array) && pbConfirmMessageSerious(_INTL("删除这场训练师战斗？"))
           tr_data = GameData::Trainer::DATA[trainer_id]
           GameData::Trainer::DATA.delete(trainer_id)
           modified = true
-          pbMessage(_INTL("The Trainer battle was deleted."))
+          pbMessage(_INTL("训练家战斗被删除。"))
         end
       when Input::USE
         if trainer_id.is_a?(Array)   # Edit existing trainer
@@ -517,11 +517,11 @@ def pbTrainerBattleEditor
               items.push(data[4 + Settings::MAX_PARTY_SIZE + i]) if data[4 + Settings::MAX_PARTY_SIZE + i]
             end
             if !data[0]
-              pbMessage(_INTL("Can't save. No trainer type was chosen."))
+              pbMessage(_INTL("无法保存。未选择训练家类型。"))
             elsif !data[1] || data[1].empty?
-              pbMessage(_INTL("Can't save. No name was entered."))
+              pbMessage(_INTL("无法保存。没有输入名字。"))
             elsif party.length == 0
-              pbMessage(_INTL("Can't save. The Pokémon list is empty."))
+              pbMessage(_INTL("无法保存。宝可梦列表为空。"))
             else
               trainer_hash = {
                 :trainer_type    => data[0],
@@ -544,24 +544,24 @@ def pbTrainerBattleEditor
           end
         else   # New trainer
           tr_type = nil
-          ret = pbMessage(_INTL("First, define the new trainer's type."),
-                          [_INTL("Use existing type"),
-                           _INTL("Create new type"),
-                           _INTL("Cancel")], 3)
+          ret = pbMessage(_INTL("请先定义新训练家的类型。"),
+                          [_INTL("使用现有类型"),
+                           _INTL("创建新类型"),
+                           _INTL("取消")], 3)
           case ret
           when 0
-            tr_type = pbListScreen(_INTL("TRAINER TYPE"), TrainerTypeLister.new(0, false))
+            tr_type = pbListScreen(_INTL("训练家类型"), TrainerTypeLister.new(0, false))
           when 1
             tr_type = pbTrainerTypeEditorNew(nil)
           else
             next
           end
           next if !tr_type
-          tr_name = pbMessageFreeText(_INTL("Now enter the trainer's name."), "", false, 30)
+          tr_name = pbMessageFreeText(_INTL("请输入训练家的名称。"), "", false, 30)
           next if nil_or_empty?(tr_name)
           tr_version = pbGetFreeTrainerParty(tr_type, tr_name)
           if tr_version < 0
-            pbMessage(_INTL("There is no room to create a trainer of that type and name."))
+            pbMessage(_INTL("无法创建具有此类型和名称的训练家。"))
             next
           end
           t = pbNewTrainer(tr_type, tr_name, tr_version, false)
@@ -583,14 +583,14 @@ def pbTrainerBattleEditor
             # Add trainer's data to records
             trainer_hash[:id] = [trainer_hash[:trainer_type], trainer_hash[:real_name], trainer_hash[:version]]
             GameData::Trainer.register(trainer_hash)
-            pbMessage(_INTL("The Trainer battle was added."))
+            pbMessage(_INTL("添加了训练家战斗。"))
             modified = true
           end
         end
       end
     end
   end
-  if modified && pbConfirmMessage(_INTL("Save changes?"))
+  if modified && pbConfirmMessage(_INTL("保存更改吗？"))
     GameData::Trainer.save
     pbConvertTrainerData
   else
@@ -606,23 +606,23 @@ module TrainerPokemonProperty
     max_level = GameData::GrowthRate.max_level
     # NOTE: :species must be listed before :moves.
     return [
-      [:species,         _INTL("Species"),       SpeciesProperty,                         _INTL("Species of the Pokémon.")],
-      [:level,           _INTL("Level"),         NonzeroLimitProperty.new(max_level),     _INTL("Level of the Pokémon (1-{1}).", max_level)],
-      [:real_name,       _INTL("Name"),          StringProperty,                          _INTL("Nickname of the Pokémon.")],
-      [:form,            _INTL("Form"),          LimitProperty2.new(999),                 _INTL("Form of the Pokémon.")],
-      [:gender,          _INTL("Gender"),        GenderProperty,                          _INTL("Gender of the Pokémon.")],
-      [:shininess,       _INTL("Shiny"),         BooleanProperty2,                        _INTL("If set to true, the Pokémon is a different-colored Pokémon.")],
-      [:super_shininess, _INTL("SuperShiny"),    BooleanProperty2,                        _INTL("Whether the Pokémon is super shiny (shiny with a special shininess animation).")],
-      [:shadowness,      _INTL("Shadow"),        BooleanProperty2,                        _INTL("If set to true, the Pokémon is a Shadow Pokémon.")],
-      [:moves,           _INTL("Move"),          MovePropertyForSpecies.new,              _INTL("A move known by the Pokémon. Leave all moves blank (use Z key to delete) for a wild moveset.")],
-      [:ability,         _INTL("Ability"),       AbilityProperty,                         _INTL("Ability of the Pokémon. Overrides the ability index.")],
-      [:ability_index,   _INTL("Ability index"), LimitProperty2.new(99),                  _INTL("Ability index. 0=first ability, 1=second ability, 2+=hidden ability.")],
-      [:item,            _INTL("Held item"),     ItemProperty,                            _INTL("Item held by the Pokémon.")],
-      [:nature,          _INTL("Nature"),        GameDataProperty.new(:Nature),           _INTL("Nature of the Pokémon.")],
-      [:iv,              _INTL("IVs"),           IVsProperty.new(Pokemon::IV_STAT_LIMIT), _INTL("Individual values for each of the Pokémon's stats.")],
-      [:ev,              _INTL("EVs"),           EVsProperty.new(Pokemon::EV_STAT_LIMIT), _INTL("Effort values for each of the Pokémon's stats.")],
-      [:happiness,       _INTL("Happiness"),     LimitProperty2.new(255),                 _INTL("Happiness of the Pokémon (0-255).")],
-      [:poke_ball,       _INTL("Poké Ball"),     BallProperty.new,                        _INTL("The kind of Poké Ball the Pokémon is kept in.")]
+      [:species,         _INTL("物种"),       SpeciesProperty,                         _INTL("宝可梦的种类。")],
+      [:level,           _INTL("等级"),         NonzeroLimitProperty.new(max_level),     _INTL("宝可梦的等级 (1-{1})。", max_level)],
+      [:real_name,       _INTL("名称"),          StringProperty,                          _INTL("宝可梦的昵称。")],
+      [:form,            _INTL("形式"),          LimitProperty2.new(999),                 _INTL("宝可梦的形态。")],
+      [:gender,          _INTL("性别"),        GenderProperty,                          _INTL("宝可梦的性别。")],
+      [:shininess,       _INTL("闪亮的"),         BooleanProperty2,                        _INTL("如果设置为 true，则宝可梦是不同颜色的宝可梦。")],
+      [:super_shininess, _INTL("超级闪亮"),    BooleanProperty2,                        _INTL("宝可梦是否超级闪亮（闪亮并带有特殊的闪亮动画）。")],
+      [:shadowness,      _INTL("影子"),        BooleanProperty2,                        _INTL("如果设置为 true，则宝可梦是暗影宝可梦。")],
+      [:moves,           _INTL("招式"),          MovePropertyForSpecies.new,              _INTL("宝可梦已学会的招式。将所有招式留空（使用 Z 键删除）即可使用野生招式组。")],
+      [:ability,         _INTL("能力"),       AbilityProperty,                         _INTL("宝可梦的能力。覆盖能力指数。")],
+      [:ability_index,   _INTL("能力指数"), LimitProperty2.new(99),                  _INTL("能力指数。 0=第一个能力，1=第二个能力，2+=隐藏能力。")],
+      [:item,            _INTL("持有物品"),     ItemProperty,                            _INTL("宝可梦持有的物品。")],
+      [:nature,          _INTL("性格"),        GameDataProperty.new(:Nature),           _INTL("宝可梦的性格。")],
+      [:iv,              _INTL("个体值"),             IVsProperty.new(Pokemon::IV_STAT_LIMIT), _INTL("宝可梦各项能力值的个体值。")],
+      [:ev,              _INTL("努力值"),             EVsProperty.new(Pokemon::EV_STAT_LIMIT), _INTL("宝可梦各项能力值的努力值。")],
+      [:happiness,       _INTL("亲密度"),   LimitProperty2.new(255),                 _INTL("宝可梦的亲密度（0-255）。")],
+      [:poke_ball,       _INTL("精灵球"),     BallProperty.new,                        _INTL("保存宝可梦的宝可梦球的类型。")]
     ]
   end
 
@@ -683,7 +683,7 @@ end
 def pbMetadataScreen
   sel_player = -1
   loop do
-    sel_player = pbListScreen(_INTL("SET METADATA"), MetadataLister.new(sel_player, true))
+    sel_player = pbListScreen(_INTL("设置元数据"), MetadataLister.new(sel_player, true))
     break if sel_player == -1
     case sel_player
     when -2   # Add new player
@@ -705,7 +705,7 @@ def pbEditMetadata
     val = property[1].defaultValue if val.nil? && property[1].respond_to?(:defaultValue)
     data.push(val)
   end
-  if pbPropertyList(_INTL("Global Metadata"), data, properties, true)
+  if pbPropertyList(_INTL("全球元数据"), data, properties, true)
     # Construct metadata hash
     schema = GameData::Metadata.schema
     metadata_hash = {}
@@ -733,7 +733,7 @@ def pbEditPlayerMetadata(player_id = 1)
     end
     metadata = GameData::PlayerMetadata.new({:id => player_id})
   elsif !GameData::PlayerMetadata.exists?(player_id)
-    pbMessage(_INTL("Metadata for player character {1} was not found.", player_id))
+    pbMessage(_INTL("找不到玩家角色 {1} 的元数据。", player_id))
     return
   end
   data = []
@@ -744,7 +744,7 @@ def pbEditPlayerMetadata(player_id = 1)
     val = property[1].defaultValue if val.nil? && property[1].respond_to?(:defaultValue)
     data.push(val)
   end
-  if pbPropertyList(_INTL("Player {1}", metadata.id), data, properties, true)
+  if pbPropertyList(_INTL("玩家{1}", metadata.id), data, properties, true)
     # Construct player metadata hash
     schema = GameData::PlayerMetadata.schema
     metadata_hash = {}
@@ -769,7 +769,7 @@ end
 #===============================================================================
 def pbMapMetadataScreen(map_id = 0)
   loop do
-    map_id = pbListScreen(_INTL("SET METADATA"), MapLister.new(map_id))
+    map_id = pbListScreen(_INTL("设置元数据"), MapLister.new(map_id))
     break if map_id < 0
     (map_id == 0) ? pbEditMetadata : pbEditMapMetadata(map_id)
   end
@@ -812,15 +812,15 @@ end
 #===============================================================================
 def pbItemEditor
   properties = GameData::Item.editor_properties
-  pbListScreenBlock(_INTL("Items"), ItemLister.new(0, true)) do |button, item|
+  pbListScreenBlock(_INTL("项目"), ItemLister.new(0, true)) do |button, item|
     if item
       case button
       when Input::ACTION
-        if item.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("Delete this item?"))
+        if item.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("删除此项目？"))
           GameData::Item::DATA.delete(item)
           GameData::Item.save
           Compiler.write_items
-          pbMessage(_INTL("The item was deleted."))
+          pbMessage(_INTL("该项目已被删除。"))
         end
       when Input::USE
         if item.is_a?(Symbol)
@@ -859,7 +859,7 @@ end
 
 def pbItemEditorNew(default_name)
   # Choose a name
-  name = pbMessageFreeText(_INTL("Please enter the item's name."),
+  name = pbMessageFreeText(_INTL("请输入商品名称。"),
                            (default_name) ? default_name.gsub(/_+/, " ") : "", false, 30)
   if nil_or_empty?(name)
     return if !default_name
@@ -883,17 +883,17 @@ def pbItemEditorNew(default_name)
     end
   end
   if GameData::Item.exists?(id)
-    pbMessage(_INTL("Failed to create the item. Choose a different name."))
+    pbMessage(_INTL("创建项目失败。选择不同的名称。"))
     return
   end
   # Choose a pocket
   pocket = PocketProperty.set("", :None)
   return if pocket == :None
   # Choose a price
-  price = LimitProperty.new(999_999).set(_INTL("Purchase price"), -1)
+  price = LimitProperty.new(999_999).set(_INTL("购买价格"), -1)
   return if price == -1
   # Choose a description
-  description = StringProperty.set(_INTL("Description"), "")
+  description = StringProperty.set(_INTL("描述"), "")
   # Construct item hash
   item_hash = {
     :id          => id.to_sym,
@@ -907,8 +907,8 @@ def pbItemEditorNew(default_name)
   GameData::Item.register(item_hash)
   GameData::Item.save
   Compiler.write_items
-  pbMessage(_INTL("The item {1} was created (ID: {2}).", name, id.to_s))
-  pbMessage(_INTL("Put the item's graphic ({1}.png) in Graphics/Items, or it will be blank.", id.to_s))
+  pbMessage(_INTL("已创建项目 {1}（ID：{2}）。", name, id.to_s))
+  pbMessage(_INTL("将项目的图形 ({1}.png) 放入 Graphics/Items 中，否则将为空白。", id.to_s))
 end
 
 #===============================================================================
@@ -916,15 +916,15 @@ end
 #===============================================================================
 def pbPokemonEditor
   properties = GameData::Species.editor_properties
-  pbListScreenBlock(_INTL("Pokémon species"), SpeciesLister.new(0, false)) do |button, species|
+  pbListScreenBlock(_INTL("宝可梦种类"), SpeciesLister.new(0, false)) do |button, species|
     if species
       case button
       when Input::ACTION
-        if species.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("Delete this species?"))
+        if species.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("删除这个物种？"))
           GameData::Species::DATA.delete(species)
           GameData::Species.save
           Compiler.write_pokemon
-          pbMessage(_INTL("The species was deleted."))
+          pbMessage(_INTL("该物种已被删除。"))
         end
       when Input::USE
         if species.is_a?(Symbol)
@@ -967,10 +967,10 @@ def pbPokemonEditor
             GameData::Species.register(species_hash)
             GameData::Species.save
             Compiler.write_pokemon
-            pbMessage(_INTL("Data saved."))
+            pbMessage(_INTL("数据已保存。"))
           end
         else
-          pbMessage(_INTL("Can't add a new species."))
+          pbMessage(_INTL("无法添加新物种。"))
         end
       end
     end
@@ -985,7 +985,7 @@ def pbRegionalDexEditor(dex)
   viewport.z = 99999
   cmd_window = pbListWindow([])
   info = Window_AdvancedTextPokemon.newWithSize(
-    _INTL("Z+Up/Down: Rearrange entries\nZ+Right: Insert new entry\nZ+Left: Delete entry"),
+    _INTL("Z+上/下：重新排列条目\nZ+右：插入新条目\nZ+左：删除条目"),
     Graphics.width / 2, 64, Graphics.width / 2, Graphics.height - 64, viewport
   )
   info.z = 2
@@ -1035,10 +1035,10 @@ def pbRegionalDexEditor(dex)
       end
     when 0
       if cmd[1] >= 0   # Edit entry
-        case pbMessage("\\ts[]" + _INTL("Do what with this entry?"),
-                       [_INTL("Change species"), _INTL("Clear"),
-                        _INTL("Insert entry"), _INTL("Delete entry"),
-                        _INTL("Cancel")], 5)
+        case pbMessage("\\ts[]" + _INTL("用这个条目做什么？"),
+                       [_INTL("改变物种"), _INTL("清除"),
+                        _INTL("插入条目"), _INTL("删除条目"),
+                        _INTL("取消")], 5)
         when 0   # Change species
           species = pbChooseSpeciesList(dex[cmd[1]])
           if species
@@ -1063,8 +1063,8 @@ def pbRegionalDexEditor(dex)
           end
         end
       else   # Cancel
-        case pbMessage(_INTL("Save changes?"),
-                       [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+        case pbMessage(_INTL("保存更改吗？"),
+                       [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
         when 0   # Save all changes to Dex
           dex.slice!(-1) until dex[-1]
           ret = dex
@@ -1089,11 +1089,11 @@ def pbRegionalDexEditorMain
   cmd_window.viewport = viewport
   cmd_window.z        = 2
   title = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Regional Dexes Editor"), Graphics.width / 2, 0, Graphics.width / 2, 64, viewport
+    _INTL("区域 Dex 编辑器"), Graphics.width / 2, 0, Graphics.width / 2, 64, viewport
   )
   title.z = 2
   info = Window_AdvancedTextPokemon.newWithSize(
-    _INTL("Z+Up/Down: Rearrange Dexes"), Graphics.width / 2, 64,
+    _INTL("Z+上/下：重新排列图鉴"), Graphics.width / 2, 64,
     Graphics.width / 2, Graphics.height - 64, viewport
   )
   info.z = 2
@@ -1108,7 +1108,7 @@ def pbRegionalDexEditorMain
     if refresh_list
       commands = [_INTL("[ADD DEX]")]
       dex_lists.each_with_index do |list, i|
-        commands.push(_INTL("Dex {1} (size {2})", i + 1, list.length))
+        commands.push(_INTL("图鉴 {1}（数量 {2}）", i + 1, list.length))
       end
       refresh_list = false
     end
@@ -1128,9 +1128,9 @@ def pbRegionalDexEditorMain
       end
     when 0   # Clicked on a command/Dex
       if cmd[1] == 0   # Add new Dex
-        case pbMessage(_INTL("Fill in this new Dex?"),
-                       [_INTL("Leave blank"), _INTL("National Dex"),
-                        _INTL("Nat. Dex grouped families"), _INTL("Cancel")], 4)
+        case pbMessage(_INTL("填写这个新的Dex？"),
+                       [_INTL("留空"), _INTL("国家德克斯"),
+                        _INTL("纳特。 Dex 分组家庭"), _INTL("取消")], 4)
         when 0   # Leave blank
           dex_lists.push([])
           refresh_list = true
@@ -1152,8 +1152,8 @@ def pbRegionalDexEditorMain
           refresh_list = true
         end
       elsif cmd[1] > 0   # Edit a Dex
-        case pbMessage("\\ts[]" + _INTL("Do what with this Dex?"),
-                       [_INTL("Edit"), _INTL("Copy"), _INTL("Delete"), _INTL("Cancel")], 4)
+        case pbMessage("\\ts[]" + _INTL("用这个 Dex 做什么？"),
+                       [_INTL("编辑"), _INTL("复制"), _INTL("删除"), _INTL("取消")], 4)
         when 0   # Edit
           dex_lists[cmd[1] - 1] = pbRegionalDexEditor(dex_lists[cmd[1] - 1])
           refresh_list = true
@@ -1167,13 +1167,13 @@ def pbRegionalDexEditorMain
           refresh_list = true
         end
       else   # Cancel
-        case pbMessage(_INTL("Save changes?"),
-                       [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+        case pbMessage(_INTL("保存更改吗？"),
+                       [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
         when 0   # Save all changes to Dexes
           save_data(dex_lists, "Data/regional_dexes.dat")
           $game_temp.regional_dexes_data = nil
           Compiler.write_regional_dexes
-          pbMessage(_INTL("Data saved."))
+          pbMessage(_INTL("数据已保存。"))
           break
         when 1   # Just quit
           break
@@ -1238,7 +1238,7 @@ end
 def pbAnimationsOrganiser
   list = pbLoadBattleAnimations
   if !list || !list[0]
-    pbMessage(_INTL("No animations exist."))
+    pbMessage(_INTL("不存在动画。"))
     return
   end
   viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
@@ -1247,11 +1247,11 @@ def pbAnimationsOrganiser
   cmdwin.viewport = viewport
   cmdwin.z        = 2
   title = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("Animations Organiser"), Graphics.width / 2, 0, Graphics.width / 2, 64, viewport
+    _INTL("动画组织者"), Graphics.width / 2, 0, Graphics.width / 2, 64, viewport
   )
   title.z = 2
   info = Window_AdvancedTextPokemon.newWithSize(
-    _INTL("Z+Up/Down: Swap\nZ+Left: Delete\nZ+Right: Insert"),
+    _INTL("Z+上/下：交换\nZ+向左：删除\nZ+右：插入"),
     Graphics.width / 2, 64, Graphics.width / 2, Graphics.height - 64, viewport
   )
   info.z = 2
@@ -1290,14 +1290,14 @@ def pbAnimationsOrganiser
       refreshlist = true
       pbWait(0.2)
     when 0
-      cmd2 = pbMessage(_INTL("Save changes?"),
-                       [_INTL("Yes"), _INTL("No"), _INTL("Cancel")], 3)
+      cmd2 = pbMessage(_INTL("保存更改吗？"),
+                       [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
       if [0, 1].include?(cmd2)
         if cmd2 == 0
           # Save animations here
           save_data(list, "Data/PkmnAnimations.rxdata")
           $game_temp.battle_animations_data = nil
-          pbMessage(_INTL("Data saved."))
+          pbMessage(_INTL("数据已保存。"))
         end
         break
       end

@@ -19,7 +19,7 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_width = @width - CONTROL_X
     # Header
     add_control_at(:header, 0, ctrl_y,
-                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("Batch edits")))
+                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("批量编辑")))
     @controls[:header].header = true
     ctrl_y += LINE_SPACING
     # Undo/redo buttons
@@ -30,12 +30,12 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Time shifts header
     add_control_at(:time_shifts_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("Time shifts")))
+                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("时间推移")))
     get_control(:time_shifts_label).underlined = true
     ctrl_y += LINE_SPACING
     # Shift all particles
     add_control_at(:shift_all_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("All particles")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("所有颗粒")))
     add_control_at(:shift_all_left, CONTROL_X, ctrl_y + BUTTON_Y_OFFSET,
                    UIControls::Button.new(LEFT_RIGHT_BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, "<"))
     add_control_at(:shift_all_right, CONTROL_X + LEFT_RIGHT_BUTTON_WIDTH + BUTTON_SPACING, ctrl_y + BUTTON_Y_OFFSET,
@@ -47,7 +47,7 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Shift selected particle
     add_control_at(:shift_one_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("Selected particle")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("选定的粒子")))
     add_control_at(:shift_one_left, CONTROL_X, ctrl_y + BUTTON_Y_OFFSET,
                    UIControls::Button.new(LEFT_RIGHT_BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, "<"))
     add_control_at(:shift_one_right, CONTROL_X + LEFT_RIGHT_BUTTON_WIDTH + BUTTON_SPACING, ctrl_y + BUTTON_Y_OFFSET,
@@ -59,7 +59,7 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Shift selected row
     add_control_at(:shift_row_label, LABEL_X, ctrl_y,
-                  UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("Selected row")))
+                  UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("选定行")))
     add_control_at(:shift_row_left, CONTROL_X, ctrl_y + BUTTON_Y_OFFSET,
                   UIControls::Button.new(LEFT_RIGHT_BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, "<"))
     add_control_at(:shift_row_right, CONTROL_X + LEFT_RIGHT_BUTTON_WIDTH + BUTTON_SPACING, ctrl_y + BUTTON_Y_OFFSET,
@@ -71,12 +71,12 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Command values header
     add_control_at(:command_values_label, LABEL_X, ctrl_y,
-                  UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("Command values")))
+                  UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("命令值")))
     get_control(:command_values_label).underlined = true
     ctrl_y += LINE_SPACING
     # Edit command values button
     add_control_at(:offset_commands, LABEL_X, ctrl_y + BUTTON_Y_OFFSET,
-                   UIControls::Button.new(100, BUTTON_HEIGHT, @viewport, _INTL("Apply offset")))
+                   UIControls::Button.new(100, BUTTON_HEIGHT, @viewport, _INTL("应用偏移")))
     ctrl_y += LINE_SPACING
   end
 end

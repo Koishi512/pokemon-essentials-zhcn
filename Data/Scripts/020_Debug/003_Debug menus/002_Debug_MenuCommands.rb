@@ -3,16 +3,16 @@
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :field_menu, {
-  "name"        => _INTL("Field options..."),
+  "name"        => _INTL("字段选项..."),
   "parent"      => :main,
-  "description" => _INTL("Warp to maps, edit switches/variables, use the PC, edit Day Care, etc."),
+  "description" => _INTL("扭曲到地图、编辑开关/变量、使用 PC、编辑日间护理等。"),
   "always_show" => false
 })
 
 MenuHandlers.add(:debug_menu, :warp, {
-  "name"        => _INTL("Warp to map"),
+  "name"        => _INTL("扭曲到地图"),
   "parent"      => :field_menu,
-  "description" => _INTL("Instantly warp to another map of your choice."),
+  "description" => _INTL("立即扭曲到您选择的另一张地图。"),
   "effect"      => proc { |sprites, viewport|
     map = pbWarpToMap
     next false if !map
@@ -40,42 +40,42 @@ MenuHandlers.add(:debug_menu, :warp, {
 })
 
 MenuHandlers.add(:debug_menu, :use_pc, {
-  "name"        => _INTL("Use PC"),
+  "name"        => _INTL("使用电脑"),
   "parent"      => :field_menu,
-  "description" => _INTL("Use a PC to access Pokémon storage and player's PC."),
+  "description" => _INTL("使用 PC 访问 Pokémon 存储和玩家的 PC。"),
   "effect"      => proc {
     pbPokeCenterPC
   }
 })
 
 MenuHandlers.add(:debug_menu, :switches, {
-  "name"        => _INTL("Switches"),
+  "name"        => _INTL("开关"),
   "parent"      => :field_menu,
-  "description" => _INTL("Edit all Game Switches (except Script Switches)."),
+  "description" => _INTL("编辑所有游戏开关（脚本开关除外）。"),
   "effect"      => proc {
     pbDebugVariables(0)
   }
 })
 
 MenuHandlers.add(:debug_menu, :variables, {
-  "name"        => _INTL("Variables"),
+  "name"        => _INTL("变量"),
   "parent"      => :field_menu,
-  "description" => _INTL("Edit all Game Variables. Can set them to numbers or text."),
+  "description" => _INTL("编辑所有游戏变量。可以将它们设置为数字或文本。"),
   "effect"      => proc {
     pbDebugVariables(1)
   }
 })
 
 MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
-  "name"        => _INTL("Safari Zone and Bug-Catching Contest"),
+  "name"        => _INTL("野生动物区和捉虫大赛"),
   "parent"      => :field_menu,
-  "description" => _INTL("Edit steps/time remaining and number of usable Poké Balls."),
+  "description" => _INTL("编辑步数/剩余时间和可用精灵球的数量。"),
   "effect"      => proc {
     if pbInSafari?
       safari = pbSafariState
       cmd = 0
       loop do
-        cmds = [_INTL("Steps remaining: {1}", (Settings::SAFARI_STEPS > 0) ? safari.steps : _INTL("infinite")),
+        cmds = [_INTL("剩余步骤：{1}", (Settings::SAFARI_STEPS > 0) ? safari.steps : _INTL("无限")),
                 GameData::Item.get(:SAFARIBALL).name_plural + ": " + safari.ballcount.to_s]
         cmd = pbShowCommands(nil, cmds, -1, cmd)
         break if cmd < 0
@@ -85,14 +85,14 @@ MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
             params = ChooseNumberParams.new
             params.setRange(0, 99999)
             params.setDefaultValue(safari.steps)
-            safari.steps = pbMessageChooseNumber(_INTL("Set the steps remaining in this Safari game."), params)
+            safari.steps = pbMessageChooseNumber(_INTL("设置此 Safari 游戏中剩余的步骤。"), params)
           end
         when 1   # Safari Balls
           params = ChooseNumberParams.new
           params.setRange(0, 99999)
           params.setDefaultValue(safari.ballcount)
           safari.ballcount = pbMessageChooseNumber(
-            _INTL("Set the quantity of {1}.", GameData::Item.get(:SAFARIBALL).name_plural), params)
+            _INTL("设置{1}的数量。", GameData::Item.get(:SAFARIBALL).name_plural), params)
         end
       end
     elsif pbInBugContest?
@@ -107,9 +107,9 @@ MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
           sec = time_left % 60
           time_string = _ISPRINTF("{1:02d}m {2:02d}s", min, sec)
         else
-          time_string = _INTL("infinite")
+          time_string = _INTL("无限")
         end
-        cmds.push(_INTL("Time remaining: {1}", time_string))
+        cmds.push(_INTL("剩余时间：{1}", time_string))
         cmds.push(GameData::Item.get(:SPORTBALL).name_plural + ": " + contest.ballcount.to_s)
         cmd = pbShowCommands(nil, cmds, -1, cmd)
         break if cmd < 0
@@ -119,7 +119,7 @@ MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
             params = ChooseNumberParams.new
             params.setRange(0, 99999)
             params.setDefaultValue(min)
-            new_time = pbMessageChooseNumber(_INTL("Set the time remaining (in minutes) in this Bug-Catching Contest."), params)
+            new_time = pbMessageChooseNumber(_INTL("设置本次捉虫大赛的剩余时间（以分钟为单位）。"), params)
             contest.timer_start += (new_time - min) * 60
             $scene.spriteset.usersprites.each do |sprite|
               next if !sprite.is_a?(TimerDisplay)
@@ -132,30 +132,30 @@ MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
           params.setRange(0, 99999)
           params.setDefaultValue(contest.ballcount)
           contest.ballcount = pbMessageChooseNumber(
-            _INTL("Set the quantity of {1}.", GameData::Item.get(:SPORTBALL).name_plural), params)
+            _INTL("设置{1}的数量。", GameData::Item.get(:SPORTBALL).name_plural), params)
         end
       end
     else
-      pbMessage(_INTL("You aren't in the Safari Zone or a Bug-Catching Contest!"))
+      pbMessage(_INTL("您不在 Safari 区或捉虫大赛中！"))
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :edit_field_effects, {
-  "name"        => _INTL("Change field effects"),
+  "name"        => _INTL("改变场效应"),
   "parent"      => :field_menu,
-  "description" => _INTL("Edit Repel steps, Strength and Flash usage, and Black/White Flute effects."),
+  "description" => _INTL("编辑击退步骤、强度和闪光使用以及黑/白长笛效果。"),
   "effect"      => proc {
     cmd = 0
     loop do
       cmds = []
-      cmds.push(_INTL("Repel steps: {1}", $PokemonGlobal.repel))
-      cmds.push(($PokemonMap.strengthUsed ? "[Y]" : "[  ]") + " " + _INTL("Strength used"))
-      cmds.push(($PokemonGlobal.flashUsed ? "[Y]" : "[  ]") + " " + _INTL("Flash used"))
-      cmds.push(($PokemonMap.lower_encounter_rate ? "[Y]" : "[  ]") + " " + _INTL("Lower encounter rate"))
-      cmds.push(($PokemonMap.higher_encounter_rate ? "[Y]" : "[  ]") + " " + _INTL("Higher encounter rate"))
-      cmds.push(($PokemonMap.lower_level_wild_pokemon ? "[Y]" : "[  ]") + " " + _INTL("Lower level wild Pokémon"))
-      cmds.push(($PokemonMap.higher_level_wild_pokemon ? "[Y]" : "[  ]") + " " + _INTL("Higher level wild Pokémon"))
+      cmds.push(_INTL("排斥步骤：{1}", $PokemonGlobal.repel))
+      cmds.push(($PokemonMap.strengthUsed ? "[Y]" : "[  ]") + " " + _INTL("使用的力量"))
+      cmds.push(($PokemonGlobal.flashUsed ? "[Y]" : "[  ]") + " " + _INTL("使用闪光灯"))
+      cmds.push(($PokemonMap.lower_encounter_rate ? "[Y]" : "[  ]") + " " + _INTL("遭遇率较低"))
+      cmds.push(($PokemonMap.higher_encounter_rate ? "[Y]" : "[  ]") + " " + _INTL("遭遇率更高"))
+      cmds.push(($PokemonMap.lower_level_wild_pokemon ? "[Y]" : "[  ]") + " " + _INTL("低等级野生宝可梦"))
+      cmds.push(($PokemonMap.higher_level_wild_pokemon ? "[Y]" : "[  ]") + " " + _INTL("高级野生宝可梦"))
       cmd = pbShowCommands(nil, cmds, -1, cmd)
       break if cmd < 0
       case cmd
@@ -163,7 +163,7 @@ MenuHandlers.add(:debug_menu, :edit_field_effects, {
         params = ChooseNumberParams.new
         params.setRange(0, 99999)
         params.setDefaultValue($PokemonGlobal.repel)
-        $PokemonGlobal.repel = pbMessageChooseNumber(_INTL("Set the number of steps remaining."), params)
+        $PokemonGlobal.repel = pbMessageChooseNumber(_INTL("设置剩余步数。"), params)
       when 1   # Strength used
         $PokemonMap.strengthUsed = !$PokemonMap.strengthUsed
       when 2   # Flash used
@@ -177,7 +177,7 @@ MenuHandlers.add(:debug_menu, :edit_field_effects, {
             $game_temp.darkness_sprite.radius = $game_temp.darkness_sprite.radiusMax
           end
         else
-          pbMessage(_INTL("You're not in a dark map!"))
+          pbMessage(_INTL("你不在黑暗地图中！"))
         end
       when 3   # Lower encounter rate
         $PokemonMap.lower_encounter_rate ||= false
@@ -197,40 +197,40 @@ MenuHandlers.add(:debug_menu, :edit_field_effects, {
 })
 
 MenuHandlers.add(:debug_menu, :refresh_map, {
-  "name"        => _INTL("Refresh map"),
+  "name"        => _INTL("刷新地图"),
   "parent"      => :field_menu,
-  "description" => _INTL("Make all events on this map, and common events, refresh themselves."),
+  "description" => _INTL("让这张地图上的所有事件，以及常见事件，自行刷新。"),
   "effect"      => proc {
     $game_map.need_refresh = true
-    pbMessage(_INTL("The map will refresh."))
+    pbMessage(_INTL("地图将刷新。"))
   }
 })
 
 MenuHandlers.add(:debug_menu, :day_care, {
-  "name"        => _INTL("Day Care"),
+  "name"        => _INTL("日间护理"),
   "parent"      => :field_menu,
-  "description" => _INTL("View Pokémon in the Day Care and edit them."),
+  "description" => _INTL("在日托中心查看宝可梦并对其进行编辑。"),
   "effect"      => proc {
     pbDebugDayCare
   }
 })
 
 MenuHandlers.add(:debug_menu, :storage_wallpapers, {
-  "name"        => _INTL("Toggle storage wallpapers"),
+  "name"        => _INTL("切换存储壁纸"),
   "parent"      => :field_menu,
-  "description" => _INTL("Unlock and lock special wallpapers used in Pokémon storage."),
+  "description" => _INTL("解锁和锁定宝可梦存储中使用的特殊壁纸。"),
   "effect"      => proc {
     w = $PokemonStorage.allWallpapers
     if w.length <= PokemonStorage::BASIC_WALLPAPER_COUNT
-      pbMessage(_INTL("There are no special wallpapers defined."))
+      pbMessage(_INTL("没有定义特殊的壁纸。"))
       next
     end
     paperscmd = 0
     unlockarray = $PokemonStorage.unlockedWallpapers
     loop do
       paperscmds = []
-      paperscmds.push(_INTL("Unlock all"))
-      paperscmds.push(_INTL("Lock all"))
+      paperscmds.push(_INTL("全部解锁"))
+      paperscmds.push(_INTL("全部锁定"))
       (PokemonStorage::BASIC_WALLPAPER_COUNT...w.length).each do |i|
         paperscmds.push((unlockarray[i] ? "[Y]" : "[  ]") + " " + w[i])
       end
@@ -254,13 +254,13 @@ MenuHandlers.add(:debug_menu, :storage_wallpapers, {
 })
 
 MenuHandlers.add(:debug_menu, :skip_credits, {
-  "name"        => _INTL("Skip credits"),
+  "name"        => _INTL("跳过片尾字幕"),
   "parent"      => :field_menu,
-  "description" => _INTL("Toggle whether credits can be ended early by pressing the Use input."),
+  "description" => _INTL("通过按使用输入来切换是否可以提前结束学分。"),
   "effect"      => proc {
     $PokemonGlobal.creditsPlayed = !$PokemonGlobal.creditsPlayed
-    pbMessage(_INTL("Credits can be skipped when played in future.")) if $PokemonGlobal.creditsPlayed
-    pbMessage(_INTL("Credits cannot be skipped when next played.")) if !$PokemonGlobal.creditsPlayed
+    pbMessage(_INTL("以后播放时可以跳过片尾字幕。")) if $PokemonGlobal.creditsPlayed
+    pbMessage(_INTL("下次播放时无法跳过制作人员名单。")) if !$PokemonGlobal.creditsPlayed
   }
 })
 
@@ -269,16 +269,16 @@ MenuHandlers.add(:debug_menu, :skip_credits, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :battle_menu, {
-  "name"        => _INTL("Battle options..."),
+  "name"        => _INTL("战斗选项..."),
   "parent"      => :main,
-  "description" => _INTL("Start battles, reset this map's trainers, ready rematches, edit roamers, etc."),
+  "description" => _INTL("开始战斗、重置地图的训练师、准备复赛、编辑漫游者等。"),
   "always_show" => false
 })
 
 MenuHandlers.add(:debug_menu, :test_wild_battle, {
-  "name"        => _INTL("Test wild battle"),
+  "name"        => _INTL("测试野战"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Start a single battle against a wild Pokémon. You choose the species/level."),
+  "description" => _INTL("与野生宝可梦开始一场战斗。您选择物种/级别。"),
   "effect"      => proc {
     species = pbChooseSpeciesList
     if species
@@ -286,7 +286,7 @@ MenuHandlers.add(:debug_menu, :test_wild_battle, {
       params.setRange(1, GameData::GrowthRate.max_level)
       params.setInitialValue(5)
       params.setCancelValue(0)
-      level = pbMessageChooseNumber(_INTL("Set the wild {1}'s level.",
+      level = pbMessageChooseNumber(_INTL("设置野生{1}的等级。",
                                           GameData::Species.get(species).name), params)
       if level > 0
         $game_temp.encounter_type = nil
@@ -299,9 +299,9 @@ MenuHandlers.add(:debug_menu, :test_wild_battle, {
 })
 
 MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
-  "name"        => _INTL("Test wild battle advanced"),
+  "name"        => _INTL("测试野战进阶"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Start a battle against 1 or more wild Pokémon. Battle size is your choice."),
+  "description" => _INTL("与 1 个或更多野生宝可梦开始战斗。战斗规模由您选择。"),
   "effect"      => proc {
     pkmn = []
     size0 = 1
@@ -316,7 +316,7 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
       break if pkmnCmd < 0
       if pkmnCmd == pkmnCmds.length - 1      # Start battle
         if pkmn.length == 0
-          pbMessage(_INTL("No Pokémon were chosen, cannot start battle."))
+          pbMessage(_INTL("没有选择宝可梦，无法开始战斗。"))
           next
         end
         setBattleRule(sprintf("%dv%d", size0, pkmn.length))
@@ -326,7 +326,7 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
         break
       elsif pkmnCmd == pkmnCmds.length - 2   # Set player side size
         if !pbCanDoubleBattle?
-          pbMessage(_INTL("You only have one Pokémon."))
+          pbMessage(_INTL("你只有一只宝可梦。"))
           next
         end
         maxVal = (pbCanTripleBattle?) ? 3 : 2
@@ -335,7 +335,7 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
         params.setInitialValue(size0)
         params.setCancelValue(0)
         newSize = pbMessageChooseNumber(
-          _INTL("Choose the number of battlers on the player's side (max. {1}).", maxVal), params
+          _INTL("选择玩家一方的战斗人数（最多 {1}）。", maxVal), params
         )
         size0 = newSize if newSize > 0
       elsif pkmnCmd == pkmnCmds.length - 3   # Add Pokémon
@@ -345,7 +345,7 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
           params.setRange(1, GameData::GrowthRate.max_level)
           params.setInitialValue(5)
           params.setCancelValue(0)
-          level = pbMessageChooseNumber(_INTL("Set the wild {1}'s level.",
+          level = pbMessageChooseNumber(_INTL("设置野生{1}的等级。",
                                               GameData::Species.get(species).name), params)
           if level > 0
             pkmn.push(pbGenerateWildPokemon(species, level))
@@ -353,11 +353,11 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
           end
         end
       else                                   # Edit a Pokémon
-        if pbConfirmMessage(_INTL("Change this Pokémon?"))
+        if pbConfirmMessage(_INTL("改变这个宝可梦？"))
           scr = UI::PartyDebug.new
           scr.pokemon_debug_menu(pkmn[pkmnCmd], -1, true)
           scr.silent_end_screen
-        elsif pbConfirmMessage(_INTL("Delete this Pokémon?"))
+        elsif pbConfirmMessage(_INTL("删除这个宝可梦？"))
           pkmn.delete_at(pkmnCmd)
           size0 = [pkmn.length, 1].max
         end
@@ -368,11 +368,11 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
 })
 
 MenuHandlers.add(:debug_menu, :test_trainer_battle, {
-  "name"        => _INTL("Test trainer battle"),
+  "name"        => _INTL("测试训练师之战"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Start a single battle against a trainer of your choice."),
+  "description" => _INTL("与您选择的训练师开始一场战斗。"),
   "effect"      => proc {
-    trainerdata = pbListScreen(_INTL("SINGLE TRAINER"), TrainerBattleLister.new(0, false))
+    trainerdata = pbListScreen(_INTL("单人训练器"), TrainerBattleLister.new(0, false))
     if trainerdata
       setBattleRule("canLose")
       TrainerBattle.start(trainerdata[0], trainerdata[1], trainerdata[2])
@@ -382,9 +382,9 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle, {
 })
 
 MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
-  "name"        => _INTL("Test trainer battle advanced"),
+  "name"        => _INTL("测试训练师战斗进阶"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Start a battle against 1 or more trainers with a battle size of your choice."),
+  "description" => _INTL("开始与 1 名或多名训练师进行战斗，战斗规模由您选择。"),
   "effect"      => proc {
     trainers = []
     size0 = 1
@@ -401,14 +401,14 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
       break if trainerCmd < 0
       if trainerCmd == trainerCmds.length - 1      # Start battle
         if trainers.length == 0
-          pbMessage(_INTL("No trainers were chosen, cannot start battle."))
+          pbMessage(_INTL("没有选择训练师，无法开始战斗。"))
           next
         elsif size1 < trainers.length
-          pbMessage(_INTL("Opposing side size is invalid. It should be at least {1}.", trainers.length))
+          pbMessage(_INTL("对方尺寸无效。它至少应为 {1}。", trainers.length))
           next
         elsif size1 > trainers.length && trainers[0][1].party_count == 1
           pbMessage(
-            _INTL("Opposing side size cannot be {1}, as that requires the first trainer to have 2 or more Pokémon, which they don't.",
+            _INTL("对方的尺寸不能为 {1}，因为这要求第一位训练师拥有 2 个或更多宝可梦，但他们没有。",
                   size1)
           )
           next
@@ -421,7 +421,7 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
         break
       elsif trainerCmd == trainerCmds.length - 2   # Set opponent side size
         if trainers.length == 0 || (trainers.length == 1 && trainers[0][1].party_count == 1)
-          pbMessage(_INTL("No trainers were chosen or trainer only has one Pokémon."))
+          pbMessage(_INTL("未选择训练师或训练师只有一只宝可梦。"))
           next
         end
         maxVal = 2
@@ -433,12 +433,12 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
         params.setInitialValue(size1)
         params.setCancelValue(0)
         newSize = pbMessageChooseNumber(
-          _INTL("Choose the number of battlers on the opponent's side (max. {1}).", maxVal), params
+          _INTL("选择对手方的战斗人数（最多{1}）。", maxVal), params
         )
         size1 = newSize if newSize > 0
       elsif trainerCmd == trainerCmds.length - 3   # Set player side size
         if !pbCanDoubleBattle?
-          pbMessage(_INTL("You only have one Pokémon."))
+          pbMessage(_INTL("你只有一只宝可梦。"))
           next
         end
         maxVal = (pbCanTripleBattle?) ? 3 : 2
@@ -447,11 +447,11 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
         params.setInitialValue(size0)
         params.setCancelValue(0)
         newSize = pbMessageChooseNumber(
-          _INTL("Choose the number of battlers on the player's side (max. {1}).", maxVal), params
+          _INTL("选择玩家一方的战斗人数（最多 {1}）。", maxVal), params
         )
         size0 = newSize if newSize > 0
       elsif trainerCmd == trainerCmds.length - 4   # Add trainer
-        trainerdata = pbListScreen(_INTL("CHOOSE A TRAINER"), TrainerBattleLister.new(0, false))
+        trainerdata = pbListScreen(_INTL("选择训练家"), TrainerBattleLister.new(0, false))
         if trainerdata
           tr = pbLoadTrainer(trainerdata[0], trainerdata[1], trainerdata[2])
           EventHandlers.trigger(:on_trainer_load, tr)
@@ -460,15 +460,15 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
           size1 = trainers.length
         end
       else                                         # Edit a trainer
-        if pbConfirmMessage(_INTL("Change this trainer?"))
-          trainerdata = pbListScreen(_INTL("CHOOSE A TRAINER"),
+        if pbConfirmMessage(_INTL("更换此训练家吗？"))
+          trainerdata = pbListScreen(_INTL("选择训练家"),
                                      TrainerBattleLister.new(trainers[trainerCmd][0], false))
           if trainerdata
             tr = pbLoadTrainer(trainerdata[0], trainerdata[1], trainerdata[2])
             EventHandlers.trigger(:on_trainer_load, tr)
             trainers[trainerCmd] = [0, tr]
           end
-        elsif pbConfirmMessage(_INTL("Delete this trainer?"))
+        elsif pbConfirmMessage(_INTL("删除此训练家吗？"))
           trainers.delete_at(trainerCmd)
           size0 = [trainers.length, 1].max
           size1 = [trainers.length, 1].max
@@ -480,9 +480,9 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
 })
 
 MenuHandlers.add(:debug_menu, :set_battle_rules, {
-  "name"        => _INTL("Set rules for next battle"),
+  "name"        => _INTL("为下一场战斗制定规则"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Set the battle rules that will be applied to the next battle."),
+  "description" => _INTL("设置将应用于下一场战斗的战斗规则。"),
   "effect"      => proc {
     applied_rules = $game_temp.battle_rules
     duplicate_rules = ["battleback", "environ", "outcomevar"]
@@ -497,7 +497,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
         case rule_sym
         when :side_sizes
           next if rules_syms[0].include?(rule_sym)
-          rules.push(_INTL("Side sizes: {1}", applied_rules[rule_sym] || "-"))
+          rules.push(_INTL("边尺寸：{1}", applied_rules[rule_sym] || "-"))
         when :backdrop_name, :base_name, :outcome_variable
           rules.push(_INTL("{1}: {2}", rule.to_s, applied_rules[rule_sym] || "-"))
         when :environment
@@ -533,7 +533,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
           applied_rules[rule_sym] = (size_cmd == 0) ? nil : side_sizes[size_cmd]
         end
       when :backdrop_name, :base_name
-        text = pbMessageFreeText(_INTL("Enter a value for battle rule \"{1}\".", rule),
+        text = pbMessageFreeText(_INTL("输入战斗规则“{1}”的值。", rule),
                                     applied_rules[rule_sym] || "", false, 100, Graphics.width)
         applied_rules[rule_sym] = (text && text != "") ? text : nil
       when :outcome_variable
@@ -541,7 +541,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
         params.setRange(1, 99)
         params.setInitialValue(applied_rules[rule_sym] || 1)
         params.setCancelValue(-1)
-        value = pbMessageChooseNumber(_INTL("Choose the Game Variable to store the battle's outcome in."), params)
+        value = pbMessageChooseNumber(_INTL("选择游戏变量来存储战斗结果。"), params)
         applied_rules[rule_sym] = (value > 0) ? value : nil
       when :environment, :default_weather, :default_terrain
         data_class = {
@@ -581,24 +581,24 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
 })
 
 MenuHandlers.add(:debug_menu, :partner_trainer, {
-  "name"        => _INTL("Set partner trainer"),
+  "name"        => _INTL("设置搭档训练家"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Choose a trainer to fight alongside in battles."),
+  "description" => _INTL("选择一名训练师在战斗中并肩作战。"),
   "effect"      => proc {
     if $PokemonGlobal.partner
       partner_name = sprintf("%s %s",
                              GameData::TrainerType.get($PokemonGlobal.partner[0]).name,
                              $PokemonGlobal.partner[1])
-      if pbConfirmMessage(_INTL("Your partner trainer is {1}. Remove them?", partner_name))
+      if pbConfirmMessage(_INTL("当前搭档训练家是{1}。要删除吗？", partner_name))
         pbDeregisterPartner
-        pbMessage(_INTL("Your partner trainer was removed."))
+        pbMessage(_INTL("已删除搭档训练家。"))
       end
     else
-      if pbConfirmMessage(_INTL("You don't have a partner trainer. Do you want one?"))
-        chosen = pbListScreen(_INTL("Choose a partner trainer"), TrainerBattleLister.new(0, false))
+      if pbConfirmMessage(_INTL("当前没有搭档训练家。要设置一位吗？"))
+        chosen = pbListScreen(_INTL("选择搭档训练家"), TrainerBattleLister.new(0, false))
         if chosen
           pbRegisterPartner(chosen[0], chosen[1], chosen[2])
-          pbMessage(_INTL("You gained a partner trainer."))
+          pbMessage(_INTL("已设置搭档训练家。"))
         end
       end
     end
@@ -606,32 +606,32 @@ MenuHandlers.add(:debug_menu, :partner_trainer, {
 })
 
 MenuHandlers.add(:debug_menu, :encounter_version, {
-  "name"        => _INTL("Set wild encounters version"),
+  "name"        => _INTL("设置野生遭遇版本"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Choose which version of wild encounters should be used."),
+  "description" => _INTL("选择要使用的野生遭遇版本。"),
   "effect"      => proc {
     params = ChooseNumberParams.new
     params.setRange(0, 99)
     params.setInitialValue($PokemonGlobal.encounter_version)
     params.setCancelValue(-1)
-    value = pbMessageChooseNumber(_INTL("Set encounters version to which value?"), params)
+    value = pbMessageChooseNumber(_INTL("将遭遇版本设置为哪个值？"), params)
     $PokemonGlobal.encounter_version = value if value >= 0
   }
 })
 
 MenuHandlers.add(:debug_menu, :roamers, {
-  "name"        => _INTL("Roaming Pokémon"),
+  "name"        => _INTL("漫游宝可梦"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Toggle and edit all roaming Pokémon."),
+  "description" => _INTL("切换和编辑所有漫游宝可梦。"),
   "effect"      => proc {
     pbDebugRoamers
   }
 })
 
 MenuHandlers.add(:debug_menu, :reset_trainers, {
-  "name"        => _INTL("Reset map's trainers"),
+  "name"        => _INTL("重置地图的训练师"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Turn off Self Switches A and B for all events with \"Trainer\" in their name."),
+  "description" => _INTL("对于名称中含有“Trainer”的所有事件，请关闭自我开关 A 和 B。"),
   "effect"      => proc {
     if $game_map
       $game_map.events.each_value do |event|
@@ -641,32 +641,32 @@ MenuHandlers.add(:debug_menu, :reset_trainers, {
         end
       end
       $game_map.need_refresh = true
-      pbMessage(_INTL("All Trainers on this map were reset."))
+      pbMessage(_INTL("该地图上的所有训练师均已重置。"))
     else
-      pbMessage(_INTL("This command can't be used here."))
+      pbMessage(_INTL("此处不能使用该命令。"))
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :toggle_exp_all, {
-  "name"        => _INTL("Toggle Exp. All's effect"),
+  "name"        => _INTL("切换Exp。全部效果"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Toggle Exp. All's effect of giving Exp. to non-participants."),
+  "description" => _INTL("切换Exp。给予Exp的所有效果。给非参与者。"),
   "effect"      => proc {
     $player.has_exp_all = !$player.has_exp_all
-    pbMessage(_INTL("Enabled Exp. All's effect.")) if $player.has_exp_all
-    pbMessage(_INTL("Disabled Exp. All's effect.")) if !$player.has_exp_all
+    pbMessage(_INTL("启用Exp。都有效果了")) if $player.has_exp_all
+    pbMessage(_INTL("残疾经验。都有效果了")) if !$player.has_exp_all
   }
 })
 
 MenuHandlers.add(:debug_menu, :toggle_logging, {
-  "name"        => _INTL("Toggle logging of battle messages"),
+  "name"        => _INTL("切换战斗消息记录"),
   "parent"      => :battle_menu,
-  "description" => _INTL("Record debug logs for battles in Data/debuglog.txt."),
+  "description" => _INTL("在Data/debuglog.txt中记录战斗的调试日志。"),
   "effect"      => proc {
     $INTERNAL = !$INTERNAL
-    pbMessage(_INTL("Debug logs for battles will be made in the Data folder.")) if $INTERNAL
-    pbMessage(_INTL("Debug logs for battles will not be made.")) if !$INTERNAL
+    pbMessage(_INTL("战斗的调试日志将保存在Data文件夹中。")) if $INTERNAL
+    pbMessage(_INTL("不会制作战斗的调试日志。")) if !$INTERNAL
   }
 })
 
@@ -675,26 +675,26 @@ MenuHandlers.add(:debug_menu, :toggle_logging, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :pokemon_menu, {
-  "name"        => _INTL("Pokémon options..."),
+  "name"        => _INTL("宝可梦选项..."),
   "parent"      => :main,
-  "description" => _INTL("Heal the party, give Pokémon, fill/empty PC storage, etc."),
+  "description" => _INTL("治愈队伍、给予宝可梦、填充/清空电脑存储等。"),
   "always_show" => false
 })
 
 MenuHandlers.add(:debug_menu, :heal_party, {
-  "name"        => _INTL("Heal party"),
+  "name"        => _INTL("治愈派对"),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Fully heal the HP/status/PP of all Pokémon in the party."),
+  "description" => _INTL("完全恢复队伍中所有宝可梦的HP/状态/PP。"),
   "effect"      => proc {
     $player.party.each { |pkmn| pkmn.heal }
-    pbMessage(_INTL("Your Pokémon were fully healed."))
+    pbMessage(_INTL("你的宝可梦已经完全痊愈了。"))
   }
 })
 
 MenuHandlers.add(:debug_menu, :add_pokemon, {
-  "name"        => _INTL("Add Pokémon"),
+  "name"        => _INTL("添加宝可梦"),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Give yourself a Pokémon of a chosen species/level. Goes to PC if party is full."),
+  "description" => _INTL("给自己一个选定种类/等级的宝可梦。如果聚会已满，则转到 PC。"),
   "effect"      => proc {
     species = pbChooseSpeciesList
     if species
@@ -702,17 +702,17 @@ MenuHandlers.add(:debug_menu, :add_pokemon, {
       params.setRange(1, GameData::GrowthRate.max_level)
       params.setInitialValue(5)
       params.setCancelValue(0)
-      level = pbMessageChooseNumber(_INTL("Set the Pokémon's level."), params)
+      level = pbMessageChooseNumber(_INTL("设置宝可梦的等级。"), params)
       if level > 0
         goes_to_party = !$player.party_full?
         if pbAddPokemonSilent(species, level)
           if goes_to_party
-            pbMessage(_INTL("Added {1} to party.", GameData::Species.get(species).name))
+            pbMessage(_INTL("已将 {1} 添加到队伍中。", GameData::Species.get(species).name))
           else
-            pbMessage(_INTL("Added {1} to Pokémon storage.", GameData::Species.get(species).name))
+            pbMessage(_INTL("将 {1} 添加到 Pokémon 存储空间中。", GameData::Species.get(species).name))
           end
         else
-          pbMessage(_INTL("Couldn't add Pokémon because party and storage are full."))
+          pbMessage(_INTL("无法添加宝可梦，因为队伍和存储空间已满。"))
         end
       end
     end
@@ -720,9 +720,9 @@ MenuHandlers.add(:debug_menu, :add_pokemon, {
 })
 
 MenuHandlers.add(:debug_menu, :fill_boxes, {
-  "name"        => _INTL("Fill storage boxes"),
+  "name"        => _INTL("填充储物盒"),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Puts one Pokémon of each species (at Level 50) in storage."),
+  "description" => _INTL("将每个物种（等级 50）的一只宝可梦储存起来。"),
   "effect"      => proc {
     added = 0
     box_qty = $PokemonStorage.maxPokemon(0)
@@ -755,32 +755,32 @@ MenuHandlers.add(:debug_menu, :fill_boxes, {
       $PokemonStorage[(added - 1) / box_qty, (added - 1) % box_qty] = Pokemon.new(species, 50)
     end
     $player.pokedex.refresh_accessible_dexes
-    pbMessage(_INTL("Storage boxes were filled with one Pokémon of each species."))
+    pbMessage(_INTL("储物箱里装满了每个种类的一只宝可梦。"))
     if !completed
-      pbMessage(_INTL("Note: The number of storage spaces ({1} boxes of {2}) is less than the number of species.",
+      pbMessage(_INTL("注意：存储空间的数量（{1}盒{2}）小于物种数量。",
                       Settings::NUM_STORAGE_BOXES, box_qty))
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :clear_boxes, {
-  "name"        => _INTL("Clear storage boxes"),
+  "name"        => _INTL("透明储物盒"),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Remove all Pokémon in storage."),
+  "description" => _INTL("移除存储中的所有宝可梦。"),
   "effect"      => proc {
     $PokemonStorage.maxBoxes.times do |i|
       $PokemonStorage.maxPokemon(i).times do |j|
         $PokemonStorage[i, j] = nil
       end
     end
-    pbMessage(_INTL("The storage boxes were cleared."))
+    pbMessage(_INTL("储物箱被清理干净。"))
   }
 })
 
 MenuHandlers.add(:debug_menu, :give_demo_party, {
-  "name"        => _INTL("Give demo party"),
+  "name"        => _INTL("举办演示派对"),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Give yourself 6 preset Pokémon. They overwrite the current party."),
+  "description" => _INTL("给自己 6 个预设宝可梦。他们会覆盖当前的政党。"),
   "effect"      => proc {
     party = []
     species = [:PIKACHU, :PIDGEOTTO, :KADABRA, :GYARADOS, :DIGLETT, :CHANSEY]
@@ -814,24 +814,24 @@ MenuHandlers.add(:debug_menu, :give_demo_party, {
       end
       pkmn.record_first_moves
     end
-    pbMessage(_INTL("Filled party with demo Pokémon."))
+    pbMessage(_INTL("充满演示宝可梦的派对。"))
   }
 })
 
 MenuHandlers.add(:debug_menu, :quick_hatch_party_eggs, {
-  "name"        => _INTL("Quick hatch all party eggs"),
+  "name"        => _INTL("快速孵化所有派对蛋"),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Make all eggs in the party require just one more step to hatch."),
+  "description" => _INTL("使队伍中的所有蛋只需要多一步即可孵化。"),
   "effect"      => proc {
     $player.party.each { |pkmn| pkmn.steps_to_hatch = 1 if pkmn.egg? }
-    pbMessage(_INTL("All eggs in your party now require one step to hatch."))
+    pbMessage(_INTL("现在，你队伍中的所有蛋都需要一步才能孵化。"))
   }
 })
 
 MenuHandlers.add(:debug_menu, :open_storage, {
-  "name"        => _INTL("Access Pokémon storage"),
+  "name"        => _INTL("访问宝可梦存储"),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Opens the Pokémon storage boxes in Organize Boxes mode."),
+  "description" => _INTL("在整理盒子模式下打开宝可梦存储盒。"),
   "effect"      => proc {
     pbFadeOutIn do
       UI::PokemonStorage.new($PokemonStorage, mode: :organize).main
@@ -844,47 +844,47 @@ MenuHandlers.add(:debug_menu, :open_storage, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :shadow_pokemon_menu, {
-  "name"        => _INTL("Shadow Pokémon options..."),
+  "name"        => _INTL("影子宝可梦选项..."),
   "parent"      => :pokemon_menu,
-  "description" => _INTL("Snag Machine and purification."),
+  "description" => _INTL("障碍机和净化。"),
   "always_show" => false
 })
 
 MenuHandlers.add(:debug_menu, :toggle_snag_machine, {
-  "name"        => _INTL("Toggle Snag Machine"),
+  "name"        => _INTL("肘节拉丝机"),
   "parent"      => :shadow_pokemon_menu,
-  "description" => _INTL("Toggle all Poké Balls being able to catch Shadow Pokémon."),
+  "description" => _INTL("切换所有宝可梦球能够捕捉暗影宝可梦。"),
   "effect"      => proc {
     $player.has_snag_machine = !$player.has_snag_machine
-    pbMessage(_INTL("Gave the Snag Machine.")) if $player.has_snag_machine
-    pbMessage(_INTL("Lost the Snag Machine.")) if !$player.has_snag_machine
+    pbMessage(_INTL("给了障碍机。")) if $player.has_snag_machine
+    pbMessage(_INTL("失去了障碍机。")) if !$player.has_snag_machine
   }
 })
 
 MenuHandlers.add(:debug_menu, :toggle_purify_chamber_access, {
-  "name"        => _INTL("Toggle Purify Chamber access"),
+  "name"        => _INTL("切换净化室访问权限"),
   "parent"      => :shadow_pokemon_menu,
-  "description" => _INTL("Toggle access to the Purify Chamber via the PC."),
+  "description" => _INTL("通过 PC 切换对净化室的访问。"),
   "effect"      => proc {
     $player.seen_purify_chamber = !$player.seen_purify_chamber
-    pbMessage(_INTL("The Purify Chamber is accessible.")) if $player.seen_purify_chamber
-    pbMessage(_INTL("The Purify Chamber is not accessible.")) if !$player.seen_purify_chamber
+    pbMessage(_INTL("净化室是可以使用的。")) if $player.seen_purify_chamber
+    pbMessage(_INTL("净化室无法进入。")) if !$player.seen_purify_chamber
   }
 })
 
 MenuHandlers.add(:debug_menu, :purify_chamber, {
-  "name"        => _INTL("Use Purify Chamber"),
+  "name"        => _INTL("使用净化室"),
   "parent"      => :shadow_pokemon_menu,
-  "description" => _INTL("Open the Purify Chamber for Shadow Pokémon purification."),
+  "description" => _INTL("打开净化室进行暗影宝可梦净化。"),
   "effect"      => proc {
     pbPurifyChamber
   }
 })
 
 MenuHandlers.add(:debug_menu, :relic_stone, {
-  "name"        => _INTL("Use Relic Stone"),
+  "name"        => _INTL("使用遗物石"),
   "parent"      => :shadow_pokemon_menu,
-  "description" => _INTL("Choose a Shadow Pokémon to show to the Relic Stone for purification."),
+  "description" => _INTL("选择一只暗影宝可梦向遗物石展示以进行净化。"),
   "effect"      => proc {
     pbRelicStone
   }
@@ -895,28 +895,28 @@ MenuHandlers.add(:debug_menu, :relic_stone, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :items_menu, {
-  "name"        => _INTL("Item options..."),
+  "name"        => _INTL("项目选项..."),
   "parent"      => :main,
-  "description" => _INTL("Give and take items."),
+  "description" => _INTL("给予和拿走物品。"),
   "always_show" => false
 })
 
 MenuHandlers.add(:debug_menu, :add_item, {
-  "name"        => _INTL("Add item"),
+  "name"        => _INTL("添加项目"),
   "parent"      => :items_menu,
-  "description" => _INTL("Choose an item and a quantity of it to add to the Bag."),
+  "description" => _INTL("选择要添加到购物袋中的商品及其数量。"),
   "effect"      => proc {
-    pbListScreenBlock(_INTL("ADD ITEM"), ItemLister.new) do |button, item|
+    pbListScreenBlock(_INTL("添加项目"), ItemLister.new) do |button, item|
       if button == Input::USE && item
         params = ChooseNumberParams.new
         params.setRange(1, PokemonBag::MAX_PER_SLOT)
         params.setInitialValue(1)
         params.setCancelValue(0)
-        qty = pbMessageChooseNumber(_INTL("Add how many {1}?",
+        qty = pbMessageChooseNumber(_INTL("添加多少个{1}？",
                                           GameData::Item.get(item).name_plural), params)
         if qty > 0
           $bag.add(item, qty)
-          pbMessage(_INTL("Gave {1}x {2}.", qty, GameData::Item.get(item).name))
+          pbMessage(_INTL("给了 {1}x {2}。", qty, GameData::Item.get(item).name))
         end
       end
     end
@@ -924,15 +924,15 @@ MenuHandlers.add(:debug_menu, :add_item, {
 })
 
 MenuHandlers.add(:debug_menu, :fill_bag, {
-  "name"        => _INTL("Fill Bag"),
+  "name"        => _INTL("填充袋"),
   "parent"      => :items_menu,
-  "description" => _INTL("Empties the Bag and then fills it with a certain number of every item."),
+  "description" => _INTL("清空袋子，然后将一定数量的每种物品装满袋子。"),
   "effect"      => proc {
     params = ChooseNumberParams.new
     params.setRange(1, PokemonBag::MAX_PER_SLOT)
     params.setInitialValue(1)
     params.setCancelValue(0)
-    qty = pbMessageChooseNumber(_INTL("Choose the number of items."), params)
+    qty = pbMessageChooseNumber(_INTL("选择项目数量。"), params)
     if qty > 0
       $bag.clear
       # NOTE: This doesn't simply use $bag.add for every item in turn, because
@@ -949,18 +949,18 @@ MenuHandlers.add(:debug_menu, :fill_bag, {
       end
       # NOTE: Auto-sorting pockets don't need to be sorted afterwards, because
       #       items are added in the same order they would be sorted into.
-      pbMessage(_INTL("The Bag was filled with {1} of each item.", qty))
+      pbMessage(_INTL("袋子里装满了每种物品的 {1} 个。", qty))
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :empty_bag, {
-  "name"        => _INTL("Empty Bag"),
+  "name"        => _INTL("空袋"),
   "parent"      => :items_menu,
-  "description" => _INTL("Remove all items from the Bag."),
+  "description" => _INTL("从袋子中取出所有物品。"),
   "effect"      => proc {
     $bag.clear
-    pbMessage(_INTL("The Bag was cleared."))
+    pbMessage(_INTL("袋子被清除了。"))
   }
 })
 
@@ -969,22 +969,22 @@ MenuHandlers.add(:debug_menu, :empty_bag, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :player_menu, {
-  "name"        => _INTL("Player options..."),
+  "name"        => _INTL("玩家选项..."),
   "parent"      => :main,
-  "description" => _INTL("Set money, badges, Pokédexes, player's appearance and name, etc."),
+  "description" => _INTL("设置金钱、徽章、图鉴、玩家的外貌和姓名等。"),
   "always_show" => false
 })
 
 MenuHandlers.add(:debug_menu, :set_money, {
-  "name"        => _INTL("Set money"),
+  "name"        => _INTL("定钱"),
   "parent"      => :player_menu,
-  "description" => _INTL("Edit how much money, Game Corner Coins and Battle Points you have."),
+  "description" => _INTL("编辑您拥有的金钱、游戏角硬币和战斗点数。"),
   "effect"      => proc {
     cmd = 0
     loop do
-      cmds = [_INTL("Money: ${1}", $player.money.to_s_formatted),
-              _INTL("Coins: {1}", $player.coins.to_s_formatted),
-              _INTL("Battle Points: {1}", $player.battle_points.to_s_formatted)]
+      cmds = [_INTL("钱：${1}", $player.money.to_s_formatted),
+              _INTL("硬币：{1}", $player.coins.to_s_formatted),
+              _INTL("战斗点数：{1}", $player.battle_points.to_s_formatted)]
       cmd = pbShowCommands(nil, cmds, -1, cmd)
       break if cmd < 0
       case cmd
@@ -992,34 +992,34 @@ MenuHandlers.add(:debug_menu, :set_money, {
         params = ChooseNumberParams.new
         params.setRange(0, Settings::MAX_MONEY)
         params.setDefaultValue($player.money)
-        $player.money = pbMessageChooseNumber("\\ts[]" + _INTL("Set the player's money."), params)
+        $player.money = pbMessageChooseNumber("\\ts[]" + _INTL("设置玩家的金钱。"), params)
       when 1   # Coins
         params = ChooseNumberParams.new
         params.setRange(0, Settings::MAX_COINS)
         params.setDefaultValue($player.coins)
-        $player.coins = pbMessageChooseNumber("\\ts[]" + _INTL("Set the player's Coin amount."), params)
+        $player.coins = pbMessageChooseNumber("\\ts[]" + _INTL("设置玩家的金币数量。"), params)
       when 2   # Battle Points
         params = ChooseNumberParams.new
         params.setRange(0, Settings::MAX_BATTLE_POINTS)
         params.setDefaultValue($player.battle_points)
-        $player.battle_points = pbMessageChooseNumber("\\ts[]" + _INTL("Set the player's BP amount."), params)
+        $player.battle_points = pbMessageChooseNumber("\\ts[]" + _INTL("设置玩家的BP量。"), params)
       end
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_badges, {
-  "name"        => _INTL("Set Gym Badges"),
+  "name"        => _INTL("设置健身房徽章"),
   "parent"      => :player_menu,
-  "description" => _INTL("Toggle possession of each Gym Badge."),
+  "description" => _INTL("切换每个健身房徽章的拥有权。"),
   "effect"      => proc {
     badgecmd = 0
     loop do
       badgecmds = []
-      badgecmds.push(_INTL("Give all"))
-      badgecmds.push(_INTL("Remove all"))
+      badgecmds.push(_INTL("全部给予"))
+      badgecmds.push(_INTL("全部删除"))
       24.times do |i|
-        badgecmds.push(($player.badges[i] ? "[Y]" : "[  ]") + " " + _INTL("Badge {1}", i + 1))
+        badgecmds.push(($player.badges[i] ? "[Y]" : "[  ]") + " " + _INTL("徽章{1}", i + 1))
       end
       badgecmd = pbShowCommands(nil, badgecmds, -1, badgecmd)
       break if badgecmd < 0
@@ -1036,25 +1036,25 @@ MenuHandlers.add(:debug_menu, :set_badges, {
 })
 
 MenuHandlers.add(:debug_menu, :toggle_running_shoes, {
-  "name"        => _INTL("Toggle running shoes"),
+  "name"        => _INTL("切换跑鞋"),
   "parent"      => :player_menu,
-  "description" => _INTL("Toggle possession of running shoes."),
+  "description" => _INTL("切换拥有跑鞋。"),
   "effect"      => proc {
     $player.has_running_shoes = !$player.has_running_shoes
-    pbMessage(_INTL("Gave Running Shoes.")) if $player.has_running_shoes
-    pbMessage(_INTL("Lost Running Shoes.")) if !$player.has_running_shoes
+    pbMessage(_INTL("送了跑鞋。")) if $player.has_running_shoes
+    pbMessage(_INTL("丢失的跑鞋。")) if !$player.has_running_shoes
   }
 })
 
 MenuHandlers.add(:debug_menu, :toggle_pokedex, {
-  "name"        => _INTL("Toggle Pokédex and Regional Dexes"),
+  "name"        => _INTL("切换 Pokédex 和区域 Dexes"),
   "parent"      => :player_menu,
-  "description" => _INTL("Toggle possession of the Pokédex, and edit Regional Dex accessibility."),
+  "description" => _INTL("切换 Pokédex 的拥有权，并编辑区域 Dex 的可访问性。"),
   "effect"      => proc {
     dexescmd = 0
     loop do
       dexescmds = []
-      dexescmds.push(_INTL("Have Pokédex: {1}", $player.has_pokedex ? "[YES]" : "[NO]"))
+      dexescmds.push(_INTL("拥有图鉴：{1}", $player.has_pokedex ? "[YES]" : "[NO]"))
       dex_names = Settings.pokedex_names
       dex_names.length.times do |i|
         name = (dex_names[i].is_a?(Array)) ? dex_names[i][0] : dex_names[i]
@@ -1076,23 +1076,23 @@ MenuHandlers.add(:debug_menu, :toggle_pokedex, {
 })
 
 MenuHandlers.add(:debug_menu, :toggle_pokegear, {
-  "name"        => _INTL("Toggle Pokégear"),
+  "name"        => _INTL("切换 Pokégear"),
   "parent"      => :player_menu,
-  "description" => _INTL("Toggle possession of the Pokégear."),
+  "description" => _INTL("切换 Pokégear 的拥有状态。"),
   "effect"      => proc {
     $player.has_pokegear = !$player.has_pokegear
-    pbMessage(_INTL("Gave Pokégear.")) if $player.has_pokegear
-    pbMessage(_INTL("Lost Pokégear.")) if !$player.has_pokegear
+    pbMessage(_INTL("给了 Pokégear。")) if $player.has_pokegear
+    pbMessage(_INTL("丢失的宝可梦。")) if !$player.has_pokegear
   }
 })
 
 MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
-  "name"        => _INTL("Edit phone and contacts"),
+  "name"        => _INTL("编辑电话和联系人"),
   "parent"      => :player_menu,
-  "description" => _INTL("Edit properties of the phone and of contacts registered in it."),
+  "description" => _INTL("编辑手机及其中注册的联系人的属性。"),
   "effect"      => proc {
     if !$PokemonGlobal.phone
-      pbMessage(_INTL("The phone is not defined."))
+      pbMessage(_INTL("电话未定义。"))
       next
     end
     cmd = 0
@@ -1101,12 +1101,12 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
       time = $PokemonGlobal.phone.time_to_next_call.to_i   # time is in seconds
       min = time / 60
       sec = time % 60
-      cmds.push(_INTL("Time until next call: {1}m {2}s", min, sec))
-      cmds.push((Phone.rematches_enabled ? "[Y]" : "[  ]") + " " + _INTL("Rematches possible"))
-      cmds.push(_INTL("Maximum rematch version : {1}", Phone.rematch_variant))
+      cmds.push(_INTL("距下一次通话的时间：{1}米{2}秒", min, sec))
+      cmds.push((Phone.rematches_enabled ? "[Y]" : "[  ]") + " " + _INTL("可能重赛"))
+      cmds.push(_INTL("最大重赛版本：{1}", Phone.rematch_variant))
       if $PokemonGlobal.phone.contacts.length > 0
-        cmds.push(_INTL("Make all contacts ready for a rematch"))
-        cmds.push(_INTL("Edit individual contacts: {1}", $PokemonGlobal.phone.contacts.length))
+        cmds.push(_INTL("让所有联系人做好重赛准备"))
+        cmds.push(_INTL("编辑个人联系人：{1}", $PokemonGlobal.phone.contacts.length))
       end
       cmd = pbShowCommands(nil, cmds, -1, cmd)
       break if cmd < 0
@@ -1116,7 +1116,7 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
         params.setRange(0, 99999)
         params.setDefaultValue(min)
         params.setCancelValue(-1)
-        new_time = pbMessageChooseNumber(_INTL("Set the time (in minutes) until the next phone call."), params)
+        new_time = pbMessageChooseNumber(_INTL("设置距离下一次电话的时间（以分钟为单位）。"), params)
         $PokemonGlobal.phone.time_to_next_call = new_time * 60 if new_time >= 0
       when 1   # Rematches possible
         Phone.rematches_enabled = !Phone.rematches_enabled
@@ -1124,7 +1124,7 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
         params = ChooseNumberParams.new
         params.setRange(0, 99)
         params.setDefaultValue(Phone.rematch_variant)
-        new_version = pbMessageChooseNumber(_INTL("Set the maximum version number a trainer contact can reach."), params)
+        new_version = pbMessageChooseNumber(_INTL("设置训练家联系人可达到的最高版本号。"), params)
         Phone.rematch_variant = new_version
       when 3   # Make all contacts ready for a rematch
         $PokemonGlobal.phone.contacts.each do |contact|
@@ -1132,7 +1132,7 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
           contact.rematch_flag = 1
           contact.set_trainer_event_ready_for_rematch
         end
-        pbMessage(_INTL("All trainers in the phone are now ready to rebattle."))
+        pbMessage(_INTL("手机里的所有训练师现在已经准备好重新战斗了。"))
       when 4   # Edit individual contacts
         contact_cmd = 0
         loop do
@@ -1152,14 +1152,14 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
           edit_cmd = 0
           loop do
             edit_cmds = []
-            edit_cmds.push((contact.visible? ? "[Y]" : "[  ]") + " " + _INTL("Contact visible"))
+            edit_cmds.push((contact.visible? ? "[Y]" : "[  ]") + " " + _INTL("联系方式可见"))
             if contact.trainer?
-              edit_cmds.push((contact.can_rematch? ? "[Y]" : "[  ]") + " " + _INTL("Can battle"))
+              edit_cmds.push((contact.can_rematch? ? "[Y]" : "[  ]") + " " + _INTL("可以战斗"))
               ready_time = contact.time_to_ready   # time is in seconds
               ready_min = ready_time / 60
               ready_sec = ready_time % 60
-              edit_cmds.push(_INTL("Time until ready to battle: {1}m {2}s", ready_min, ready_sec))
-              edit_cmds.push(_INTL("Last defeated version: {1}", contact.variant))
+              edit_cmds.push(_INTL("准备战斗所需时间：{1}米{2}秒", ready_min, ready_sec))
+              edit_cmds.push(_INTL("最后击败的版本：{1}", contact.variant))
             end
             break if edit_cmds.length == 0
             edit_cmd = pbShowCommands(nil, edit_cmds, -1, edit_cmd)
@@ -1175,13 +1175,13 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
               params.setRange(0, 99999)
               params.setDefaultValue(ready_min)
               params.setCancelValue(-1)
-              new_time = pbMessageChooseNumber(_INTL("Set the time (in minutes) until this trainer is ready to battle."), params)
+              new_time = pbMessageChooseNumber(_INTL("设置该训练师准备好战斗的时间（以分钟为单位）。"), params)
               contact.time_to_ready = new_time * 60 if new_time >= 0
             when 3   # Last defeated version
               params = ChooseNumberParams.new
               params.setRange(0, 99)
               params.setDefaultValue(contact.variant)
-              new_version = pbMessageChooseNumber(_INTL("Set the last defeated version number of this trainer."), params)
+              new_version = pbMessageChooseNumber(_INTL("设置该训练师最后击败的版本号。"), params)
               contact.version = contact.start_version + new_version
             end
           end
@@ -1192,20 +1192,20 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
 })
 
 MenuHandlers.add(:debug_menu, :toggle_box_link, {
-  "name"        => _INTL("Toggle access to storage from party screen"),
+  "name"        => _INTL("从聚会屏幕切换对存储的访问"),
   "parent"      => :player_menu,
-  "description" => _INTL("Toggle Box Link's effect of accessing Pokémon storage via the party screen."),
+  "description" => _INTL("切换 Box Link 通过队伍屏幕访问宝可梦存储的效果。"),
   "effect"      => proc {
     $player.has_box_link = !$player.has_box_link
-    pbMessage(_INTL("Enabled access to storage from the party screen.")) if $player.has_box_link
-    pbMessage(_INTL("Disabled access to storage from the party screen.")) if !$player.has_box_link
+    pbMessage(_INTL("允许从聚会屏幕访问存储。")) if $player.has_box_link
+    pbMessage(_INTL("禁止从聚会屏幕访问存储。")) if !$player.has_box_link
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_player_character, {
-  "name"        => _INTL("Set player character"),
+  "name"        => _INTL("设置玩家角色"),
   "parent"      => :player_menu,
-  "description" => _INTL("Edit the player's character, as defined in \"metadata.txt\"."),
+  "description" => _INTL("编辑玩家的角色，如“metadata.txt”中的定义。"),
   "effect"      => proc {
     index = 0
     cmds = []
@@ -1216,58 +1216,58 @@ MenuHandlers.add(:debug_menu, :set_player_character, {
       ids.push(player.id)
     end
     if cmds.length == 1
-      pbMessage(_INTL("There is only one player character defined."))
+      pbMessage(_INTL("仅定义了一个玩家角色。"))
       break
     end
     cmd = pbShowCommands(nil, cmds, -1, index)
     if cmd >= 0 && cmd != index
       pbChangePlayer(ids[cmd])
-      pbMessage(_INTL("The player character was changed."))
+      pbMessage(_INTL("玩家角色已更改。"))
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :change_outfit, {
-  "name"        => _INTL("Set player outfit"),
+  "name"        => _INTL("设置球员服装"),
   "parent"      => :player_menu,
-  "description" => _INTL("Edit the player's outfit number."),
+  "description" => _INTL("编辑玩家的服装编号。"),
   "effect"      => proc {
     oldoutfit = $player.outfit
     params = ChooseNumberParams.new
     params.setRange(0, 99)
     params.setDefaultValue(oldoutfit)
-    $player.outfit = pbMessageChooseNumber(_INTL("Set the player's outfit."), params)
-    pbMessage(_INTL("Player's outfit was changed.")) if $player.outfit != oldoutfit
+    $player.outfit = pbMessageChooseNumber(_INTL("设置玩家的服装。"), params)
+    pbMessage(_INTL("玩家的服装已更改。")) if $player.outfit != oldoutfit
   }
 })
 
 MenuHandlers.add(:debug_menu, :rename_player, {
-  "name"        => _INTL("Set player name"),
+  "name"        => _INTL("设置玩家名称"),
   "parent"      => :player_menu,
-  "description" => _INTL("Rename the player."),
+  "description" => _INTL("重命名播放器。"),
   "effect"      => proc {
     trname = pbEnterPlayerName("Your name?", 0, Settings::MAX_PLAYER_NAME_SIZE, $player.name)
-    if nil_or_empty?(trname) && pbConfirmMessage(_INTL("Give yourself a default name?"))
+    if nil_or_empty?(trname) && pbConfirmMessage(_INTL("给自己起一个默认的名字？"))
       trainertype = $player.trainer_type
       gender      = pbGetTrainerTypeGender(trainertype)
       trname      = pbSuggestTrainerName(gender)
     end
     if nil_or_empty?(trname)
-      pbMessage(_INTL("The player's name remained {1}.", $player.name))
+      pbMessage(_INTL("玩家的名字仍然是{1}。", $player.name))
     else
       $player.name = trname
-      pbMessage(_INTL("The player's name was changed to {1}.", $player.name))
+      pbMessage(_INTL("该玩家的名字已更改为{1}。", $player.name))
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :random_id, {
-  "name"        => _INTL("Randomize player ID"),
+  "name"        => _INTL("随机化玩家ID"),
   "parent"      => :player_menu,
-  "description" => _INTL("Generate a random new ID for the player."),
+  "description" => _INTL("为玩家生成一个随机的新 ID。"),
   "effect"      => proc {
     $player.id = rand(2**16) | (rand(2**16) << 16)
-    pbMessage(_INTL("The player's ID was changed to {1} (full ID: {2}).", $player.public_ID, $player.id))
+    pbMessage(_INTL("玩家的 ID 已更改为 {1}（完整 ID：{2}）。", $player.public_ID, $player.id))
   }
 })
 
@@ -1276,87 +1276,87 @@ MenuHandlers.add(:debug_menu, :random_id, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :pbs_editors_menu, {
-  "name"        => _INTL("PBS file editors..."),
+  "name"        => _INTL("PBS 文件编辑器……"),
   "parent"      => :main,
-  "description" => _INTL("Edit information in the PBS files.")
+  "description" => _INTL("编辑 PBS 文件中的信息。")
 })
 
 MenuHandlers.add(:debug_menu, :set_map_connections, {
-  "name"        => _INTL("Edit map_connections.txt"),
+  "name"        => _INTL("编辑map_connections.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Connect maps using a visual interface. Can also edit map encounters/metadata."),
+  "description" => _INTL("使用可视化界面连接地图。还可以编辑地图遭遇/元数据。"),
   "effect"      => proc {
     pbFadeOutIn { pbConnectionsEditor }
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_encounters, {
-  "name"        => _INTL("Edit encounters.txt"),
+  "name"        => _INTL("编辑遭遇.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit the wild Pokémon that can be found on maps, and how they are encountered."),
+  "description" => _INTL("编辑可以在地图上找到的野生宝可梦以及它们的遭遇方式。"),
   "effect"      => proc {
     pbFadeOutIn { pbEncountersEditor }
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_trainers, {
-  "name"        => _INTL("Edit trainers.txt"),
+  "name"        => _INTL("编辑trainers.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit individual trainers, their Pokémon and items."),
+  "description" => _INTL("编辑个别训练师、他们的宝可梦和物品。"),
   "effect"      => proc {
     pbFadeOutIn { pbTrainerBattleEditor }
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_trainer_types, {
-  "name"        => _INTL("Edit trainer_types.txt"),
+  "name"        => _INTL("编辑trainer_types.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit the properties of trainer types."),
+  "description" => _INTL("编辑训练器类型的属性。"),
   "effect"      => proc {
     pbFadeOutIn { pbTrainerTypeEditor }
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_map_metadata, {
-  "name"        => _INTL("Edit map_metadata.txt"),
+  "name"        => _INTL("编辑map_metadata.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit map metadata."),
+  "description" => _INTL("编辑地图元数据。"),
   "effect"      => proc {
     pbMapMetadataScreen(pbDefaultMap)
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_metadata, {
-  "name"        => _INTL("Edit metadata.txt"),
+  "name"        => _INTL("编辑元数据.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit global metadata and player character metadata."),
+  "description" => _INTL("编辑全局元数据和玩家角色元数据。"),
   "effect"      => proc {
     pbMetadataScreen
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_items, {
-  "name"        => _INTL("Edit items.txt"),
+  "name"        => _INTL("编辑项目.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit item data."),
+  "description" => _INTL("编辑项目数据。"),
   "effect"      => proc {
     pbFadeOutIn { pbItemEditor }
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_species, {
-  "name"        => _INTL("Edit pokemon.txt"),
+  "name"        => _INTL("编辑pokemon.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit Pokémon species data."),
+  "description" => _INTL("编辑宝可梦物种数据。"),
   "effect"      => proc {
     pbFadeOutIn { pbPokemonEditor }
   }
 })
 
 MenuHandlers.add(:debug_menu, :position_sprites, {
-  "name"        => _INTL("Edit pokemon_metrics.txt"),
+  "name"        => _INTL("编辑pokemon_metrics.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Reposition Pokémon sprites in battle."),
+  "description" => _INTL("在战斗中重新定位宝可梦精灵。"),
   "effect"      => proc {
     pbFadeOutIn do
       sp = SpritePositioner.new
@@ -1367,13 +1367,13 @@ MenuHandlers.add(:debug_menu, :position_sprites, {
 })
 
 MenuHandlers.add(:debug_menu, :auto_position_sprites, {
-  "name"        => _INTL("Auto-set pokemon_metrics.txts"),
+  "name"        => _INTL("自动设置 pokemon_metrics.txts"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Automatically reposition all Pokémon sprites in battle. Don't use lightly."),
+  "description" => _INTL("自动重新调整战斗中所有宝可梦精灵的位置。不要轻易使用。"),
   "effect"      => proc {
-    if pbConfirmMessage(_INTL("Are you sure you want to reposition all sprites?"))
+    if pbConfirmMessage(_INTL("您确定要重新定位所有精灵吗？"))
       msgwindow = pbCreateMessageWindow
-      pbMessageDisplay(msgwindow, _INTL("Repositioning all sprites. Please wait."), false)
+      pbMessageDisplay(msgwindow, _INTL("重新定位所有精灵。请稍等。"), false)
       Graphics.update
       pbAutoPositionAll
       pbDisposeMessageWindow(msgwindow)
@@ -1382,9 +1382,9 @@ MenuHandlers.add(:debug_menu, :auto_position_sprites, {
 })
 
 MenuHandlers.add(:debug_menu, :set_pokedex_lists, {
-  "name"        => _INTL("Edit regional_dexes.txt"),
+  "name"        => _INTL("编辑regional_dexes.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Create, rearrange and delete Regional Pokédex lists."),
+  "description" => _INTL("创建、重新排列和删除地区图鉴列表。"),
   "effect"      => proc {
     pbFadeOutIn { pbRegionalDexEditorMain }
   }
@@ -1395,15 +1395,15 @@ MenuHandlers.add(:debug_menu, :set_pokedex_lists, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :editors_menu, {
-  "name"        => _INTL("Other editors..."),
+  "name"        => _INTL("其他编辑..."),
   "parent"      => :main,
-  "description" => _INTL("Edit battle animations, terrain tags, map data, etc.")
+  "description" => _INTL("编辑战斗动画、地形标签、地图数据等。")
 })
 
 MenuHandlers.add(:debug_menu, :new_animation_editor, {
-  "name"        => _INTL("New battle animation editor"),
+  "name"        => _INTL("新的战斗动画编辑器"),
   "parent"      => :editors_menu,
-  "description" => _INTL("Edit the battle animations."),
+  "description" => _INTL("编辑战斗动画。"),
   "effect"      => proc {
     pbBGMStop
     Graphics.resize_screen(AnimationEditor::WINDOW_WIDTH, AnimationEditor::WINDOW_HEIGHT)
@@ -1417,54 +1417,54 @@ MenuHandlers.add(:debug_menu, :new_animation_editor, {
 })
 
 MenuHandlers.add(:debug_menu, :animation_editor, {
-  "name"        => _INTL("Old battle animation editor"),
+  "name"        => _INTL("老战斗动画编辑器"),
   "parent"      => :editors_menu,
-  "description" => _INTL("Edit the battle animations."),
+  "description" => _INTL("编辑战斗动画。"),
   "effect"      => proc {
     pbFadeOutIn { pbAnimationEditor }
   }
 })
 
 MenuHandlers.add(:debug_menu, :animation_organiser, {
-  "name"        => _INTL("Old battle animation organiser"),
+  "name"        => _INTL("老战斗动画组织者"),
   "parent"      => :editors_menu,
-  "description" => _INTL("Rearrange/add/delete old battle animations."),
+  "description" => _INTL("重新排列/添加/删除旧的战斗动画。"),
   "effect"      => proc {
     pbFadeOutIn { pbAnimationsOrganiser }
   }
 })
 
 MenuHandlers.add(:debug_menu, :import_animations, {
-  "name"        => _INTL("Import all battle animations"),
+  "name"        => _INTL("导入所有战斗动画"),
   "parent"      => :editors_menu,
-  "description" => _INTL("Import all battle animations from the \"Animations\" folder."),
+  "description" => _INTL("从“Animations”文件夹导入所有战斗动画。"),
   "effect"      => proc {
     pbImportAllAnimations
   }
 })
 
 MenuHandlers.add(:debug_menu, :export_animations, {
-  "name"        => _INTL("Export all battle animations"),
+  "name"        => _INTL("导出所有战斗动画"),
   "parent"      => :editors_menu,
-  "description" => _INTL("Export all battle animations individually to the \"Animations\" folder."),
+  "description" => _INTL("将所有战斗动画单独导出到“Animations”文件夹。"),
   "effect"      => proc {
     pbExportAllAnimations
   }
 })
 
 MenuHandlers.add(:debug_menu, :set_terrain_tags, {
-  "name"        => _INTL("Edit terrain tags"),
+  "name"        => _INTL("编辑地形标签"),
   "parent"      => :editors_menu,
-  "description" => _INTL("Edit the terrain tags of tiles in tilesets. Required for tags 8+."),
+  "description" => _INTL("编辑图块集中图块的地形标签。标签 8+ 是必需的。"),
   "effect"      => proc {
     pbFadeOutIn { pbTilesetScreen }
   }
 })
 
 MenuHandlers.add(:debug_menu, :fix_invalid_tiles, {
-  "name"        => _INTL("Fix invalid tiles"),
+  "name"        => _INTL("修复无效的图块"),
   "parent"      => :editors_menu,
-  "description" => _INTL("Scans all maps and erases non-existent tiles."),
+  "description" => _INTL("扫描所有地图并删除不存在的图块。"),
   "effect"      => proc {
     pbDebugFixInvalidTiles
   }
@@ -1475,27 +1475,27 @@ MenuHandlers.add(:debug_menu, :fix_invalid_tiles, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :files_menu, {
-  "name"        => _INTL("Files options..."),
+  "name"        => _INTL("文件选项..."),
   "parent"      => :main,
-  "description" => _INTL("Compile, generate PBS files, translations, Mystery Gifts, etc.")
+  "description" => _INTL("编译、生成PBS文件、翻译、神秘礼物等。")
 })
 
 MenuHandlers.add(:debug_menu, :compile_data, {
-  "name"        => _INTL("Compile data"),
+  "name"        => _INTL("编译数据"),
   "parent"      => :files_menu,
-  "description" => _INTL("Fully compile all data."),
+  "description" => _INTL("全面编译所有数据。"),
   "effect"      => proc {
     msgwindow = pbCreateMessageWindow
     Compiler.compile_all(true)
-    pbMessageDisplay(msgwindow, _INTL("All game data was compiled."))
+    pbMessageDisplay(msgwindow, _INTL("所有游戏数据均已汇总。"))
     pbDisposeMessageWindow(msgwindow)
   }
 })
 
 MenuHandlers.add(:debug_menu, :create_pbs_files, {
-  "name"        => _INTL("Create PBS file(s)"),
+  "name"        => _INTL("创建 PBS 文件"),
   "parent"      => :files_menu,
-  "description" => _INTL("Choose one or all PBS files and create it."),
+  "description" => _INTL("选择一个或所有 PBS 文件并创建它。"),
   "effect"      => proc {
     cmd = 0
     cmds = [
@@ -1551,38 +1551,38 @@ MenuHandlers.add(:debug_menu, :create_pbs_files, {
       when 22 then Compiler.write_types
       else break
       end
-      pbMessage(_INTL("File written."))
+      pbMessage(_INTL("文件已写。"))
     end
   }
 })
 
 MenuHandlers.add(:debug_menu, :extract_text, {
-  "name"        => _INTL("Extract text for translation"),
+  "name"        => _INTL("提取文本进行翻译"),
   "parent"      => :files_menu,
-  "description" => _INTL("Extract all text in the game to text files for translating."),
+  "description" => _INTL("将游戏中的所有文本提取到文本文件中进行翻译。"),
   "effect"      => proc {
     if Settings::LANGUAGES.length == 0
-      pbMessage(_INTL("No languages are defined in the LANGUAGES array in Settings."))
-      pbMessage(_INTL("You need to add at least one language to LANGUAGES first, to choose which one to extract text for."))
+      pbMessage(_INTL("设置中的 LANGUAGES 数组中未定义任何语言。"))
+      pbMessage(_INTL("您需要首先向 LANGUAGES 添加至少一种语言，以选择要提取文本的语言。"))
       next
     end
     # Choose a language from Settings to name the extraction folder after
     cmds = []
     Settings::LANGUAGES.each { |val| cmds.push(val[0]) }
-    cmds.push(_INTL("Cancel"))
-    language_index = pbMessage(_INTL("Choose a language to extract text for."), cmds, cmds.length)
+    cmds.push(_INTL("取消"))
+    language_index = pbMessage(_INTL("选择要提取文本的语言。"), cmds, cmds.length)
     next if language_index == cmds.length - 1
     language_name = Settings::LANGUAGES[language_index][1]
     # Choose whether to extract core text or game text
-    text_type = pbMessage(_INTL("Choose a language to extract text for."),
-                          [_INTL("Game-specific text"), _INTL("Core text"), _INTL("Cancel")], 3)
+    text_type = pbMessage(_INTL("选择要提取文本的语言。"),
+                          [_INTL("游戏特定文本"), _INTL("核心文本"), _INTL("取消")], 3)
     next if text_type == 2
     # If game text, choose whether to extract map texts to map-specific files or
     # to one big file
     map_files = 0
     if text_type == 0
-      map_files = pbMessage(_INTL("How many text files should map event texts be extracted to?"),
-                            [_INTL("One big file"), _INTL("One file per map"), _INTL("Cancel")], 3)
+      map_files = pbMessage(_INTL("地图事件文本应提取到多少个文本文件？"),
+                            [_INTL("一个大文件"), _INTL("每个地图一个文件"), _INTL("取消")], 3)
       next if map_files == 2
     end
     # Extract the chosen set of text for the chosen language
@@ -1591,20 +1591,20 @@ MenuHandlers.add(:debug_menu, :extract_text, {
 })
 
 MenuHandlers.add(:debug_menu, :compile_text, {
-  "name"        => _INTL("Compile translated text"),
+  "name"        => _INTL("编译翻译文本"),
   "parent"      => :files_menu,
-  "description" => _INTL("Import text files and convert them into a language file."),
+  "description" => _INTL("导入文本文件并将其转换为语言文件。"),
   "effect"      => proc {
     # Find all folders with a particular naming convention
     cmds = Dir.glob("Text_*_*")
     if cmds.length == 0
-      pbMessage(_INTL("No language folders found to compile."))
-      pbMessage(_INTL("Language folders must be named \"Text_SOMETHING_core\" or \"Text_SOMETHING_game\" and be in the root folder."))
+      pbMessage(_INTL("找不到可编译的语言文件夹。"))
+      pbMessage(_INTL("语言文件夹必须命名为“Text_SOMETHING_core”或“Text_SOMETHING_game”并且位于根文件夹中。"))
       next
     end
-    cmds.push(_INTL("Cancel"))
+    cmds.push(_INTL("取消"))
     # Ask which folder to compile into a .dat file
-    folder_index = pbMessage(_INTL("Choose a language folder to compile."), cmds, cmds.length)
+    folder_index = pbMessage(_INTL("选择要编译的语言文件夹。"), cmds, cmds.length)
     next if folder_index == cmds.length - 1
     # Compile the text files in the chosen folder
     dat_filename = cmds[folder_index].gsub!(/^Text_/, "")
@@ -1613,20 +1613,20 @@ MenuHandlers.add(:debug_menu, :compile_text, {
 })
 
 MenuHandlers.add(:debug_menu, :mystery_gift, {
-  "name"        => _INTL("Manage Mystery Gifts"),
+  "name"        => _INTL("管理神秘礼物"),
   "parent"      => :files_menu,
-  "description" => _INTL("Edit and enable/disable Mystery Gifts."),
+  "description" => _INTL("编辑并启用/禁用神秘礼物。"),
   "effect"      => proc {
     pbManageMysteryGifts
   }
 })
 
 MenuHandlers.add(:debug_menu, :reload_system_cache, {
-  "name"        => _INTL("Reload system cache"),
+  "name"        => _INTL("重新加载系统缓存"),
   "parent"      => :files_menu,
-  "description" => _INTL("Refreshes the system's file cache. Use if you change a file while playing."),
+  "description" => _INTL("刷新系统的文件缓存。如果您在播放时更改文件，请使用。"),
   "effect"      => proc {
     System.reload_cache
-    pbMessage(_INTL("Done."))
+    pbMessage(_INTL("完毕。"))
   }
 })

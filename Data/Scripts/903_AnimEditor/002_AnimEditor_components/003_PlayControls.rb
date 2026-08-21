@@ -128,7 +128,7 @@ class AnimationEditor::PlayControls < UIControls::BaseContainer
     @controls[:unloop].visible = @looping
     # Slowdown label
     add_control_at(:slowdown_label, SLOWDOWN_LABEL_X, SLOWDOWN_LABEL_Y,
-                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("Slowdown factor")))
+                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("减速因素")))
     @controls[:slowdown_label].x -= (@controls[:slowdown_label].text_width / 2)
     # Slowdown factor buttons
     SLOWDOWN_FACTORS.each_with_index do |value, i|
@@ -141,7 +141,7 @@ class AnimationEditor::PlayControls < UIControls::BaseContainer
     end
     # Duration label
     add_control_at(:duration_label, DURATION_LABEL_X, DURATION_LABEL_Y,
-                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("Duration:")))
+                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("持续时间：")))
     # Duration value
     add_control_at(:duration_value, DURATION_VALUE_X, DURATION_VALUE_Y,
                    UIControls::Label.new(200, LABEL_HEIGHT, self.viewport,

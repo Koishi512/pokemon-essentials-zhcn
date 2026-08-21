@@ -8,7 +8,7 @@ def pbDefaultMap
 end
 
 def pbWarpToMap
-  mapid = pbListScreen(_INTL("WARP TO MAP"), MapLister.new(pbDefaultMap))
+  mapid = pbListScreen(_INTL("扭曲到地图"), MapLister.new(pbDefaultMap))
   if mapid > 0
     map = Game_Map.new
     map.setup(mapid)
@@ -178,12 +178,12 @@ def pbDebugVariableScreen(id)
     params.setDefaultValue(value)
     params.setMaxDigits(8)
     params.setNegativesAllowed(true)
-    value = pbMessageChooseNumber(_INTL("Set variable {1}.", id), params)
+    value = pbMessageChooseNumber(_INTL("设置变量{1}。", id), params)
     $game_variables[id] = [value, 99_999_999].min
     $game_variables[id] = [$game_variables[id], -99_999_999].max
     $game_map.need_refresh = true
   when String
-    value = pbMessageFreeText(_INTL("Set variable {1}.", id),
+    value = pbMessageFreeText(_INTL("设置变量{1}。", id),
                               $game_variables[id], false, 250, Graphics.width)
     $game_variables[id] = value
     $game_map.need_refresh = true
@@ -278,7 +278,7 @@ def pbDebugDayCare
           if slot.level_gain > 0
             msg += ", " + _INTL("Lv.{1} (+{2})", pkmn.level, slot.level_gain)
           else
-            msg += ", " + _INTL("Lv.{1}", pkmn.level)
+            msg += ", " + _INTL("{1}级", pkmn.level)
           end
           commands.push(_INTL("[Slot {1}] {2}", i, msg))
         else
@@ -302,19 +302,19 @@ def pbDebugDayCare
     if cmd == commands.length - 2   # Egg
       compat = $PokemonGlobal.day_care.get_compatibility
       if compat == 0
-        pbMessage(_INTL("Pokémon cannot breed."))
+        pbMessage(_INTL("宝可梦无法繁殖。"))
       else
-        msg = _INTL("Pokémon can breed (compatibility = {1}).", compat)
+        msg = _INTL("宝可梦可以繁殖（兼容性 = {1}）。", compat)
         # Show compatibility
         if day_care.egg_generated
           case pbMessage("\\ts[]" + msg,
-                         [_INTL("Collect egg"), _INTL("Clear egg"), _INTL("Cancel")], 3)
+                         [_INTL("收集蛋"), _INTL("清除蛋"), _INTL("取消")], 3)
           when 0   # Collect egg
             if $player.party_full?
-              pbMessage(_INTL("Party is full, can't collect the egg."))
+              pbMessage(_INTL("队伍已满，无法领取彩蛋。"))
             else
               DayCare.collect_egg
-              pbMessage(_INTL("Collected the {1} egg.", $player.last_party.speciesName))
+              pbMessage(_INTL("收集了{1}颗蛋。", $player.last_party.speciesName))
               need_refresh = true
             end
           when 1   # Clear egg
@@ -322,7 +322,7 @@ def pbDebugDayCare
             need_refresh = true
           end
         else
-          case pbMessage("\\ts[]" + msg, [_INTL("Make egg available"), _INTL("Cancel")], 2)
+          case pbMessage("\\ts[]" + msg, [_INTL("允许使用蛋"), _INTL("取消")], 2)
           when 0   # Make egg available
             day_care.egg_generated = true
             need_refresh = true
@@ -330,8 +330,8 @@ def pbDebugDayCare
         end
       end
     elsif cmd == commands.length - 1   # Steps to next cycle
-      case pbMessage("\\ts[]" + _INTL("Change number of steps to next cycle?"),
-                     [_INTL("Set to 1"), _INTL("Set to 256"), _INTL("Set to other value"), _INTL("Cancel")], 4)
+      case pbMessage("\\ts[]" + _INTL("更改下一个循环的步数？"),
+                     [_INTL("设置为 1"), _INTL("设置为 256"), _INTL("设置为其他值"), _INTL("取消")], 4)
       when 0   # Set to 1
         day_care.step_counter = 255
         need_refresh = true
@@ -342,7 +342,7 @@ def pbDebugDayCare
         params = ChooseNumberParams.new
         params.setDefaultValue(day_care.step_counter)
         params.setRange(1, 256)
-        new_counter = pbMessageChooseNumber(_INTL("Set steps until next cycle (1-256)."), params)
+        new_counter = pbMessageChooseNumber(_INTL("设置直到下一个周期的步骤 (1-256)。"), params)
         if new_counter != 256 - day_care.step_counter
           day_care.step_counter = 256 - new_counter
           need_refresh = true
@@ -352,14 +352,14 @@ def pbDebugDayCare
       slot = day_care[cmd]
       if slot.filled?
         pkmn = slot.pokemon
-        msg = _INTL("Cost: ${1}", slot.cost)
+        msg = _INTL("费用：${1}", slot.cost)
         if pkmn.level < GameData::GrowthRate.max_level
           end_exp = pkmn.growth_rate.minimum_exp_for_level(pkmn.level + 1)
-          msg += "\n" + _INTL("Steps to next level: {1}", end_exp - pkmn.exp)
+          msg += "\n" + _INTL("进入下一级别的步骤：{1}", end_exp - pkmn.exp)
         end
         # Show level change and cost
         case pbMessage("\\ts[]" + msg,
-                       [_INTL("Summary"), _INTL("Withdraw"), _INTL("Cancel")], 3)
+                       [_INTL("总结"), _INTL("撤回"), _INTL("取消")], 3)
         when 0   # Summary
           pbFadeOutIn do
             UI::PokemonSummary.new(pkmn).main
@@ -367,7 +367,7 @@ def pbDebugDayCare
           end
         when 1   # Withdraw
           if $player.party_full?
-            pbMessage(_INTL("Party is full, can't withdraw Pokémon."))
+            pbMessage(_INTL("队伍已满，无法撤回宝可梦。"))
           else
             $player.party.push(pkmn)
             slot.reset
@@ -376,11 +376,11 @@ def pbDebugDayCare
           end
         end
       else
-        case pbMessage("\\ts[]" + _INTL("This slot is empty."),
-                       [_INTL("Deposit"), _INTL("Cancel")], 2)
+        case pbMessage("\\ts[]" + _INTL("该插槽是空的。"),
+                       [_INTL("押金"), _INTL("取消")], 2)
         when 0   # Deposit
           if $player.party.empty?
-            pbMessage(_INTL("Party is empty, can't deposit Pokémon."))
+            pbMessage(_INTL("队伍已空，无法存放宝可梦。"))
           else
             pbChooseNonEggPokemon(1, 3)
             party_index = pbGet(1)
@@ -609,13 +609,13 @@ def pbExportAllAnimations
         end
       end
       pbDisposeMessageWindow(msgwindow)
-      pbMessage(_INTL("All animations were extracted and saved to the Animations folder."))
+      pbMessage(_INTL("所有动画均被提取并保存到“动画”文件夹中。"))
     else
-      pbMessage(_INTL("There are no animations to export."))
+      pbMessage(_INTL("没有可导出的动画。"))
     end
   rescue
     p $!.message, $!.backtrace
-    pbMessage(_INTL("The export failed."))
+    pbMessage(_INTL("导出失败。"))
   end
 end
 
@@ -628,7 +628,7 @@ def pbImportAllAnimations
     end
   end
   if animationFolders.length == 0
-    pbMessage(_INTL("There are no animations to import. Put each animation in a folder within the Animations folder."))
+    pbMessage(_INTL("没有要导入的动画。将每个动画放入“Animations”文件夹内的一个文件夹中。"))
   else
     msgwindow = pbCreateMessageWindow
     animations = pbLoadBattleAnimations
@@ -683,7 +683,7 @@ def pbImportAllAnimations
     save_data(animations, "Data/PkmnAnimations.rxdata")
     $game_temp.battle_animations_data = nil
     pbDisposeMessageWindow(msgwindow)
-    pbMessage(_INTL("All animations were imported."))
+    pbMessage(_INTL("所有动画均已导入。"))
   end
 end
 
@@ -698,7 +698,7 @@ def pbDebugFixInvalidTiles
   t = System.uptime
   Graphics.update
   total_maps = mapData.mapinfos.keys.length
-  Console.echo_h1(_INTL("Checking {1} maps for invalid tiles", total_maps))
+  Console.echo_h1(_INTL("检查 {1} 地图是否存在无效图块", total_maps))
   mapData.mapinfos.keys.sort.each do |id|
     if System.uptime - t >= 5
       t += 5
@@ -737,15 +737,15 @@ def pbDebugFixInvalidTiles
     mapData.saveMap(id)
   end
   if num_error_maps == 0
-    Console.echo_h2(_INTL("Done. No errors found."), text: :green)
-    pbMessage(_INTL("No invalid tiles were found."))
+    Console.echo_h2(_INTL("完成。没有发现错误。"), text: :green)
+    pbMessage(_INTL("没有发现无效的图块。"))
   else
     echoln ""
-    Console.echo_h2(_INTL("Done. {1} errors found and fixed.", total_errors), text: :green)
-    Console.echo_warn(_INTL("RMXP data was altered. Close RMXP now without saving to ensure changes are applied."))
+    Console.echo_h2(_INTL("完成。发现并修复了 {1} 个错误。", total_errors), text: :green)
+    Console.echo_warn(_INTL("RMXP 数据已更改。立即关闭 RMXP，而不保存以确保应用更改。"))
     echoln ""
     pbMessage(_INTL("{1} error(s) were found across {2} map(s) and fixed.", total_errors, num_error_maps))
-    pbMessage(_INTL("Close RPG Maker XP to ensure the changes are applied properly."))
+    pbMessage(_INTL("关闭 RPG Maker XP 以确保正确应用更改。"))
   end
 end
 

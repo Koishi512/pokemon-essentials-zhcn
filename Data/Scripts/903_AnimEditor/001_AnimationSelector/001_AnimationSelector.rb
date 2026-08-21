@@ -126,8 +126,8 @@ class AnimationEditor::AnimationSelector
 
   def initialize_menu_bar_controls
     [
-      [:quit, _INTL("Quit")],
-      [:new, _INTL("New")]
+      [:quit, _INTL("戒烟")],
+      [:new, _INTL("新")]
     ].each_with_index do |button, i|
       btn = UIControls::Button.new(MENU_BAR_BUTTON_WIDTH, MENU_BAR_BUTTON_HEIGHT, @viewport, button[1])
       @components.add_control_at(
@@ -139,7 +139,7 @@ class AnimationEditor::AnimationSelector
     end
     # Color scheme
     label = UIControls::Label.new(COLOR_SCHEME_CONTROL_WIDTH, COLOR_SCHEME_CONTROL_HEIGHT,
-                                  @viewport, _INTL("Color scheme"))
+                                  @viewport, _INTL("配色方案"))
     @components.add_control_at(:color_scheme_label, COLOR_SCHEME_LABEL_X, COLOR_SCHEME_CONTROL_Y, label)
     menu = UIControls::DropdownList.new(COLOR_SCHEME_CONTROL_WIDTH, COLOR_SCHEME_CONTROL_HEIGHT,
                                         @viewport, color_scheme_options, @settings[:color_scheme])
@@ -149,7 +149,7 @@ class AnimationEditor::AnimationSelector
   def initialize_lists_controls
     # Type header
     label = UIControls::Label.new(ANIM_TYPE_BUTTON_WIDTH, HEADER_HEIGHT,
-                                  @viewport, _INTL("Anim types"))
+                                  @viewport, _INTL("动画类型"))
     label.header = true
     @components.add_control_at(:type_label,
                                ANIM_TYPE_BUTTON_X + HEADER_OFFSET_X,
@@ -157,8 +157,8 @@ class AnimationEditor::AnimationSelector
                                label)
     # Animation type toggle buttons
     [
-      [:moves, _INTL("Moves")],
-      [:commons, _INTL("Common")]
+      [:moves, _INTL("动作")],
+      [:commons, _INTL("常见")]
     ].each_with_index do |button, i|
       btn = UIControls::Button.new(ANIM_TYPE_BUTTON_WIDTH, ANIM_TYPE_BUTTON_HEIGHT,
                                    @viewport, button[1])
@@ -171,7 +171,7 @@ class AnimationEditor::AnimationSelector
     end
     # Moves header
     label = UIControls::Label.new(MOVES_LIST_WIDTH, HEADER_HEIGHT,
-                                  @viewport, _INTL("Move names"))
+                                  @viewport, _INTL("招式名称"))
     label.header = true
     @components.add_control_at(:moves_label,
                                MOVES_LIST_X + HEADER_OFFSET_X,
@@ -182,7 +182,7 @@ class AnimationEditor::AnimationSelector
     @components.add_control_at(:moves_list, MOVES_LIST_X, MOVES_LIST_Y, list)
     # Animations header
     label = UIControls::Label.new(ANIMATIONS_LIST_WIDTH, HEADER_HEIGHT,
-                                  @viewport, _INTL("Animations"))
+                                  @viewport, _INTL("动画"))
     label.header = true
     @components.add_control_at(:animations_label,
                                ANIMATIONS_LIST_X + HEADER_OFFSET_X,
@@ -193,9 +193,9 @@ class AnimationEditor::AnimationSelector
     @components.add_control_at(:animations_list, ANIMATIONS_LIST_X, ANIMATIONS_LIST_Y, list)
     # Edit, Copy and Delete buttons
     [
-      [:edit, _INTL("Edit animation")],
-      [:copy, _INTL("Copy animation")],
-      [:delete, _INTL("Delete animation")]
+      [:edit, _INTL("编辑动画")],
+      [:copy, _INTL("复制动画")],
+      [:delete, _INTL("删除动画")]
     ].each_with_index do |button, i|
       btn = UIControls::Button.new(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT, @viewport, button[1])
       @components.add_control_at(
@@ -211,7 +211,7 @@ class AnimationEditor::AnimationSelector
     row_y = FILTER_ROW_Y
     # Header
     label = UIControls::Label.new(FILTERS_WIDTH, HEADER_HEIGHT,
-                                  @viewport, _INTL("Filters"))
+                                  @viewport, _INTL("过滤器"))
     label.header = true
     @components.add_control_at(:filters_label,
                                FILTERS_X + HEADER_OFFSET_X,
@@ -219,50 +219,50 @@ class AnimationEditor::AnimationSelector
                                label)
     # Move name
     label = UIControls::Label.new(FILTER_ROW_LABEL_WIDTH, FILTER_ROW_HEIGHT,
-                                  @viewport, _INTL("Move name contains"))
+                                  @viewport, _INTL("招式名称包含"))
     @components.add_control_at(:move_name_filter_label, FILTER_ROW_LABEL_X, row_y, label)
     text_box = UIControls::TextBox.new(FILTER_ROW_CONTROL_WIDTH, FILTER_ROW_HEIGHT, @viewport, "")
     @components.add_control_at(:move_name_filter, FILTER_ROW_CONTROL_X, row_y, text_box)
     row_y += FILTER_ROW_HEIGHT
     # Animation name
     label = UIControls::Label.new(FILTER_ROW_LABEL_WIDTH, FILTER_ROW_HEIGHT,
-                                  @viewport, _INTL("Animation name contains"))
+                                  @viewport, _INTL("动画名称包含"))
     @components.add_control_at(:anim_name_filter_label, FILTER_ROW_LABEL_X, row_y, label)
     text_box = UIControls::TextBoxDropdownList.new(FILTER_ROW_CONTROL_WIDTH, FILTER_ROW_HEIGHT, @viewport, [], "")
     @components.add_control_at(:anim_name_filter, FILTER_ROW_CONTROL_X, row_y, text_box)
     row_y += FILTER_ROW_HEIGHT
     # Credit name
     label = UIControls::Label.new(FILTER_ROW_LABEL_WIDTH, FILTER_ROW_HEIGHT,
-                                  @viewport, _INTL("Credit text contains"))
+                                  @viewport, _INTL("信用文本包含"))
     @components.add_control_at(:credit_filter_label, FILTER_ROW_LABEL_X, row_y, label)
     text_box = UIControls::TextBoxDropdownList.new(FILTER_ROW_CONTROL_WIDTH, FILTER_ROW_HEIGHT, @viewport, [], "")
     @components.add_control_at(:credit_filter, FILTER_ROW_CONTROL_X, row_y, text_box)
     row_y += FILTER_ROW_HEIGHT
     # Usable in battle
     label = UIControls::Label.new(FILTER_ROW_LABEL_WIDTH, FILTER_ROW_HEIGHT,
-                                  @viewport, _INTL("Usable in battle?"))
+                                  @viewport, _INTL("战斗中可以用吗？"))
     @components.add_control_at(:usable_filter_label, FILTER_ROW_LABEL_X, row_y, label)
     menu = UIControls::DropdownList.new(FILTER_ROW_CONTROL_WIDTH, FILTER_ROW_HEIGHT, @viewport, {
       :none => "---",
-      :yes  => _INTL("Yes"),
-      :no   => _INTL("No")
+      :yes  => _INTL("是的"),
+      :no   => _INTL("否")
     }, :none)
     @components.add_control_at(:usable_filter, FILTER_ROW_CONTROL_X, row_y, menu)
     row_y += FILTER_ROW_HEIGHT
     # Number of animations
     label = UIControls::Label.new(FILTER_ROW_LABEL_WIDTH, FILTER_ROW_HEIGHT,
-                                  @viewport, _INTL("Number of animations"))
+                                  @viewport, _INTL("动画数量"))
     @components.add_control_at(:count_filter_label, FILTER_ROW_LABEL_X, row_y, label)
     menu = UIControls::DropdownList.new(FILTER_ROW_CONTROL_WIDTH, FILTER_ROW_HEIGHT, @viewport, {
       :none => "---",
-      :one  => _INTL("Exactly 1"),
-      :many => _INTL("More than 1")
+      :one  => _INTL("正好 1"),
+      :many => _INTL("超过 1 个")
     }, :none)
     @components.add_control_at(:count_filter, FILTER_ROW_CONTROL_X, row_y, menu)
     row_y += FILTER_ROW_HEIGHT
     # Button to clear all filters
     btn = UIControls::Button.new(FILTER_BUTTON_WIDTH, FILTER_BUTTON_HEIGHT,
-                                 @viewport, _INTL("Clear all filters"))
+                                 @viewport, _INTL("清除所有过滤器"))
     @components.add_control_at(:clear_filters,
                                FILTERS_X + ((FILTERS_WIDTH - FILTER_BUTTON_WIDTH) / 2),
                                row_y + 2,
@@ -380,7 +380,7 @@ class AnimationEditor::AnimationSelector
   end
 
   def confirm_message(text)
-    return message(text, [:yes, _INTL("Yes")], [:no, _INTL("No")]) == :yes
+    return message(text, [:yes, _INTL("是的")], [:no, _INTL("否")]) == :yes
   end
 
   #-----------------------------------------------------------------------------
@@ -509,14 +509,14 @@ class AnimationEditor::AnimationSelector
       @components.get_control(:moves).set_highlighted
       @components.get_control(:commons).set_not_highlighted
       @components.get_control(:moves_list).options = @move_list
-      @components.get_control(:moves_label).text = _INTL("Move names")
-      @components.get_control(:move_name_filter_label).text = _INTL("Move name contains")
+      @components.get_control(:moves_label).text = _INTL("招式名称")
+      @components.get_control(:move_name_filter_label).text = _INTL("招式名称包含")
     when 1
       @components.get_control(:moves).set_not_highlighted
       @components.get_control(:commons).set_highlighted
       @components.get_control(:moves_list).options = @common_list
-      @components.get_control(:moves_label).text = _INTL("Common names")
-      @components.get_control(:move_name_filter_label).text = _INTL("Common name contains")
+      @components.get_control(:moves_label).text = _INTL("常用名称")
+      @components.get_control(:move_name_filter_label).text = _INTL("通用名称包含")
     end
     # Put the correct list into the animations list
     @components.get_control(:animations_list).options = selected_move_display_animations
@@ -583,7 +583,7 @@ class AnimationEditor::AnimationSelector
       end
     when :delete
       anim_id = selected_animation_id
-      if anim_id && confirm_message(_INTL("Are you sure you want to delete this animation?"))
+      if anim_id && confirm_message(_INTL("您确定要删除该动画吗？"))
         pbs_path = GameData::Animation.get(anim_id).pbs_path
         GameData::Animation::DATA.delete(anim_id)
         if GameData::Animation::DATA.any? { |_key, anim| anim.pbs_path == pbs_path }

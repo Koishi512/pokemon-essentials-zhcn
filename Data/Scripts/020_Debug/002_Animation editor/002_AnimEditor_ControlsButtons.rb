@@ -610,7 +610,7 @@ module BattleAnimationEditor
 
     def initialize(canvas)
       @canvas = canvas
-      super(_INTL("Frame:"), 1, canvas.animation.length, 0)
+      super(_INTL("帧数："), 1, canvas.animation.length, 0)
     end
   end
 
@@ -619,7 +619,7 @@ module BattleAnimationEditor
   #=============================================================================
   class FrameCountButton < Button
     def label
-      return _INTL("Total Frames: {1}", @canvas.animation.length)
+      return _INTL("总帧数：{1}", @canvas.animation.length)
     end
 
     def initialize(canvas)

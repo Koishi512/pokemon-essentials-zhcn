@@ -300,7 +300,7 @@ class Battle::DebugSetEffects
     params.setRange(min, max)
     params.setDefaultValue(default)
     params.setNegativesAllowed(true) if min < 0
-    return pbMessageChooseNumber(_INTL("Set value ({1}-{2}).", min, max), params)
+    return pbMessageChooseNumber(_INTL("设置值 ({1}-{2})。", min, max), params)
   end
 
   def choose_battler(default)
@@ -315,7 +315,7 @@ class Battle::DebugSetEffects
       cmds.push(i)
       cmd = cmds.length - 1 if default == i
     end
-    cmd = pbMessage("\\ts[]" + _INTL("Choose a battler/position."), commands, -1, nil, cmd)
+    cmd = pbMessage("\\ts[]" + _INTL("选择一名战士/位置。"), commands, -1, nil, cmd)
     return (cmd >= 0) ? cmds[cmd] : default
   end
 

@@ -94,9 +94,9 @@ end
 # used, but it's here if you want it.
 #===============================================================================
 MenuHandlers.add(:debug_menu, :create_animation_pbs_files, {
-  "name"        => _INTL("Write all animation PBS files"),
+  "name"        => _INTL("写入全部动画 PBS 文件"),
   "parent"      => :files_menu,
-  "description" => _INTL("Write all animation PBS files."),
+  "description" => _INTL("写入全部动画 PBS 文件。"),
   "effect"      => proc {
     Compiler.write_all_battle_animations
   }

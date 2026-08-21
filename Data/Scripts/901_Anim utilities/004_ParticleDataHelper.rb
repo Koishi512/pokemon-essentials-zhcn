@@ -9,7 +9,7 @@ module AnimationEditor::ParticleDataHelper
   # Return value is [value, is_interpolating?].
   def get_keyframe_particle_value(particle, property, frame)
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(property)
-      raise _INTL("Couldn't get default value for property {1} for particle {2}.",
+      raise _INTL("无法获取粒子 {2} 的属性 {1} 的默认值。",
                   property, particle[:name])
     end
     ret = [GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[property], false]
@@ -100,7 +100,7 @@ module AnimationEditor::ParticleDataHelper
   #       invisible automatically after their last command.
   def get_timeline_particle_visibilities(particle, duration, whitelist_properties = nil)
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(:visible)
-      raise _INTL("Couldn't get default value for property {1} for particle {2}.",
+      raise _INTL("无法获取粒子 {2} 的属性 {1} 的默认值。",
                   property, particle[:name])
     end
     value = GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[:visible] ? 1 : 0
@@ -161,7 +161,7 @@ module AnimationEditor::ParticleDataHelper
       return ret
     end
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(property)
-      raise _INTL("No default value for property {1} in PARTICLE_KEYFRAME_DEFAULT_VALUES.", property)
+      raise _INTL("PARTICLE_KEYFRAME_DEFAULT_VALUES 中的属性 {1} 没有默认值。", property)
     end
     val = GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[property]
     commands.each do |cmd|
@@ -444,7 +444,7 @@ module AnimationEditor::ParticleDataHelper
     # Convert points and interps back into particle[property]
     ret = []
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(property)
-      raise _INTL("Couldn't get default value for property {1}.", property)
+      raise _INTL("无法获取属性 {1} 的默认值。", property)
     end
     val = GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[property]
     length = [set_points.length, end_points.length].max
@@ -553,7 +553,7 @@ module AnimationEditor::ParticleDataHelper
   #-----------------------------------------------------------------------------
 
   def get_all_particle_se_at_frame(particle, frame)
-    raise _INTL("Querying SEs for a non-SE particle.") if particle[:name] != "SE"
+    raise _INTL("查询 SE 中的非 SE 粒子。") if particle[:name] != "SE"
     ret = []
     [:user_cry, :target_cry, :se].each do |id|
       next if !particle[id]
@@ -573,7 +573,7 @@ module AnimationEditor::ParticleDataHelper
     when :se
       ret += value[3]
     else
-      raise _INTL("Unhandled property {1} for SE particle found.", property)
+      raise _INTL("发现 SE 粒子的未处理属性 {1}。", property)
     end
     volume = (property == :se) ? value[4] : value[3]
     ret += " " + _INTL("(volume: {1})", volume) if volume && volume != 100
@@ -665,7 +665,7 @@ module AnimationEditor::ParticleDataHelper
   # default focus of :foreground.
   def add_particle(particles, index)
     new_particle = GameData::Animation::PARTICLE_DEFAULT_VALUES.clone
-    new_particle[:name] = _INTL("New particle")
+    new_particle[:name] = _INTL("新粒子")
     if index > 0 && index <= particles.length && particles[index - 1][:name] != "SE"
       new_particle[:focus] = particles[index - 1][:focus]
     end

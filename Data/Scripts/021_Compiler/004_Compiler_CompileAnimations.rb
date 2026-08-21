@@ -4,8 +4,8 @@
 module Compiler
   @@categories[:animations] = {
     :should_compile => proc { |compiling| next should_compile_animations? },
-    :header_text    => proc { next _INTL("Compiling animations") },
-    :skipped_text   => proc { next _INTL("Not compiled") },
+    :header_text    => proc { next _INTL("正在编译动画") },
+    :skipped_text   => proc { next _INTL("未编译") },
     :compile        => proc {
       # Delete old data files in preparation for recompiling
       begin
@@ -66,7 +66,7 @@ module Compiler
     sub_schema = GameData::Animation.sub_schema
     idx = 0
     # Read from PBS file(s)
-    Console.echo_li(_INTL("Compiling animation PBS files..."))
+    Console.echo_li(_INTL("正在编译动画 PBS 文件……"))
     paths.each do |path|
       file_name = path.gsub(/^PBS\/Animations\//, "").gsub(/.txt$/, "")
       data_hash = nil
@@ -106,7 +106,7 @@ module Compiler
         elsif line[/^\s*(\w+)\s*=\s*(.*)$/]
           # XXX=YYY lines
           if !data_hash
-            raise _INTL("Expected a section at the beginning of the file.") + "\n" + FileLineData.linereport
+            raise _INTL("文件开头应为一个段落。") + "\n" + FileLineData.linereport
           end
           key = $~[1]
           if schema[key]   # Property of the animation
@@ -121,7 +121,7 @@ module Compiler
             end
           elsif sub_schema[key]   # Property of a particle
             if !current_particle
-              raise _INTL("Particle hasn't been defined yet!") + "\n" + FileLineData.linereport
+              raise _INTL("尚未定义粒子！") + "\n" + FileLineData.linereport
             end
             value = get_csv_record($~[2], sub_schema[key])
             if sub_schema[key][1][0] == "^"
@@ -156,15 +156,15 @@ module Compiler
     # Ensure there is at most one each of "User", "Target" and "SE" particles
     ["User", "Target", "SE"].each do |type|
       next if hash[:particles].count { |particle| particle[:name] == type } <= 1
-      raise _INTL("Animation has more than 1 \"{1}\" particle, which isn't allowed.", type) + "\n" + FileLineData.linereport
+      raise _INTL("动画包含多个“{1}”粒子，这是不允许的。", type) + "\n" + FileLineData.linereport
     end
     # Ensure there is no "User" particle if "NoUser" is set
     if hash[:particles].any? { |particle| particle[:name] == "User" } && hash[:no_user]
-      raise _INTL("Can't define a \"User\" particle and also set property \"NoUser\" to true.") + "\n" + FileLineData.linereport
+      raise _INTL("不能同时定义“User”粒子，并将属性“NoUser”设为 true。") + "\n" + FileLineData.linereport
     end
     # Ensure there is no "Target" particle if "NoTarget" is set
     if hash[:particles].any? { |particle| particle[:name] == "Target" } && hash[:no_target]
-      raise _INTL("Can't define a \"Target\" particle and also set property \"NoTarget\" to true.") + "\n" + FileLineData.linereport
+      raise _INTL("不能同时定义“Target”粒子，并将属性“NoTarget”设为 true。") + "\n" + FileLineData.linereport
     end
     # Create "User", "Target" and "SE" particles if they don't exist but should
     if hash[:particles].none? { |particle| particle[:name] == "User" } && !hash[:no_user]
@@ -189,7 +189,7 @@ module Compiler
       if !particle[:second_layer]
         particle.keys.each do |property|
           next if !GameData::Animation::SECOND_LAYER_PROPERTIES.include?(property)
-          raise _INTL("Particle \"{1}\" doesn't have a second layer but has a second layer command.",
+          raise _INTL("粒子“{1}”没有第二层，却包含第二层命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       end
@@ -197,30 +197,30 @@ module Compiler
       if !particle[:emitter_type] || particle[:emitter_type] == :none
         particle.keys.each do |property|
           next if !@@emitter_only_properties.include?(property)
-          raise _INTL("Particle \"{1}\" isn't an emitter but has an emitter-only command.",
+          raise _INTL("粒子“{1}”不是发射器，却包含仅限发射器的命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       end
       # Ensure the particle's coordinate system is correct
       if particle[:polar_coordinates]
         if particle[:x] || particle[:y]
-          raise _INTL("Particle \"{1}\" uses polar coordinates but has an X/Y command.",
+          raise _INTL("粒子“{1}”使用极坐标，却包含 X/Y 命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       else
         if particle[:r] || particle[:theta]
-          raise _INTL("Particle \"{1}\" doesn't use polar coordinates but has an R/Theta command.",
+          raise _INTL("粒子“{1}”不使用极坐标，却包含 R/Theta 命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       end
       if particle[:emitter_position_polar_coordinates]
         if particle[:emitter_x] || particle[:emitter_y]
-          raise _INTL("Emitter \"{1}\" uses position polar coordinates but has an EmitterX/EmitterY command.",
+          raise _INTL("发射器“{1}”的位置使用极坐标，却包含 EmitterX/EmitterY 命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       else
         if particle[:emitter_r] || particle[:emitter_theta]
-          raise _INTL("Emitter \"{1}\" doesn't use position polar coordinates but has an EmitterR/EmitterTheta command.",
+          raise _INTL("发射器“{1}”的位置不使用极坐标，却包含 EmitterR/EmitterTheta 命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       end
@@ -229,7 +229,7 @@ module Compiler
            particle[:spawn_y] || particle[:spawn_y_range] ||
            particle[:spawn_x_offset] || particle[:spawn_x_multiplier] ||
            particle[:spawn_y_offset] || particle[:spawn_y_multiplier]
-          raise _INTL("Emitter \"{1}\" uses spawn polar coordinates but has a Spawn X/Y command.",
+          raise _INTL("发射器“{1}”的生成位置使用极坐标，却包含 Spawn X/Y 命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       else
@@ -237,7 +237,7 @@ module Compiler
            particle[:spawn_theta] || particle[:spawn_theta_range] ||
            particle[:spawn_r_offset] || particle[:spawn_r_multiplier] ||
            particle[:spawn_theta_offset]
-          raise _INTL("Emitter \"{1}\" doesn't use spawn polar coordinates but has a Spawn R/Theta command.",
+          raise _INTL("发射器“{1}”的生成位置不使用极坐标，却包含 Spawn R/Theta 命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       end
@@ -246,18 +246,18 @@ module Compiler
       if particle[:name] == "SE"
         particle.keys.each do |property|
           next if [:name, :se, :user_cry, :target_cry].include?(property)
-          raise _INTL("Particle \"{1}\" has a command that isn't a \"Play\"-type command.",
+          raise _INTL("粒子“{1}”包含非“Play”类型命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       else
         if particle[:se]
-          raise _INTL("Particle \"{1}\" has a \"Play\" command but shouldn't.",
+          raise _INTL("粒子“{1}”不应包含“Play”命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         elsif particle[:user_cry]
-          raise _INTL("Particle \"{1}\" has a \"PlayUserCry\" command but shouldn't.",
+          raise _INTL("粒子“{1}”不应包含“PlayUserCry”命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         elsif particle[:target_cry]
-          raise _INTL("Particle \"{1}\" has a \"PlayTargetCry\" command but shouldn't.",
+          raise _INTL("粒子“{1}”不应包含“PlayTargetCry”命令。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       end
@@ -281,15 +281,15 @@ module Compiler
       # doesn't play a user's cry
       if hash[:no_user]
         if GameData::Animation::FOCUS_TYPES_WITH_USER.include?(particle[:focus])
-          raise _INTL("Particle \"{1}\" can't have a \"Focus\" that involves a user if property \"NoUser\" is set to true.",
+          raise _INTL("属性“NoUser”设为 true 时，粒子“{1}”不能使用涉及使用者的“Focus”。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
         if ["USER", "USER_OPP", "USER_FRONT", "USER_BACK"].include?(particle[:graphic])
-          raise _INTL("Particle \"{1}\" can't have a \"Graphic\" that involves a user if property \"NoUser\" is set to true.",
+          raise _INTL("属性“NoUser”设为 true 时，粒子“{1}”不能使用涉及使用者的“Graphic”。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
         if particle[:name] == "SE" && particle[:user_cry] && !particle[:user_cry].empty?
-          raise _INTL("Animation can't play the user's cry if property \"NoUser\" is set to true.") + "\n" + FileLineData.linereport
+          raise _INTL("属性“NoUser”设为 true 时，动画不能播放使用者的叫声。") + "\n" + FileLineData.linereport
         end
       end
       # If the animation doesn't involve a target, ensure that particles don't
@@ -297,15 +297,15 @@ module Compiler
       # doesn't play a target's cry
       if hash[:no_target]
         if GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus])
-          raise _INTL("Particle \"{1}\" can't have a \"Focus\" that involves a target if property \"NoTarget\" is set to true.",
+          raise _INTL("属性“NoTarget”设为 true 时，粒子“{1}”不能使用涉及目标的“Focus”。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
         if ["TARGET", "TARGET_OPP", "TARGET_FRONT", "TARGET_BACK"].include?(particle[:graphic])
-          raise _INTL("Particle \"{1}\" can't have a \"Graphic\" that involves a target if property \"NoTarget\" is set to true.",
+          raise _INTL("属性“NoTarget”设为 true 时，粒子“{1}”不能使用涉及目标的“Graphic”。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
         if particle[:name] == "SE" && particle[:target_cry] && !particle[:target_cry].empty?
-          raise _INTL("Animation can't play the target's cry if property \"NoTarget\" is set to true.") + "\n" + FileLineData.linereport
+          raise _INTL("属性“NoTarget”设为 true 时，动画不能播放目标的叫声。") + "\n" + FileLineData.linereport
         end
       end
       # Ensure that none of the particle's "alter something if focus is a
@@ -313,15 +313,15 @@ module Compiler
       # have such a focus
       if GameData::Animation::FOCUS_TYPES_WITH_USER.include?(particle[:focus]) == GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus])
         if particle[:foe_invert_x]
-          raise _INTL("Particle \"{1}\" can't set \"FoeInvertX\" if its focus isn't exactly 1 thing.",
+          raise _INTL("粒子“{1}”的焦点并非恰好一个对象时，不能设置“FoeInvertX”。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
         if particle[:foe_invert_y]
-          raise _INTL("Particle \"{1}\" can't set \"FoeInvertY\" if its focus isn't exactly 1 thing.",
+          raise _INTL("粒子“{1}”的焦点并非恰好一个对象时，不能设置“FoeInvertY”。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
         if particle[:foe_flip]
-          raise _INTL("Particle \"{1}\" can't set \"FoeFlip\" if its focus isn't exactly 1 thing.",
+          raise _INTL("粒子“{1}”的焦点并非恰好一个对象时，不能设置“FoeFlip”。",
                       particle[:name]) + "\n" + FileLineData.linereport
         end
       end
@@ -330,7 +330,7 @@ module Compiler
       if particle[:tiled_graphic] && ((particle[:emitter_type] || :none) != :none ||
          GameData::Animation::FOCUS_TYPES_WITH_USER.include?(particle[:focus]) ||
          GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus]))
-        raise _INTL("Particle \"{1}\" can't can't set \"TiledGraphic\" if it is an emitter or has a non-screen focus.",
+        raise _INTL("粒子“{1}”是发射器或焦点不在屏幕上时，不能设置“TiledGraphic”。",
                     particle[:name]) + "\n" + FileLineData.linereport
       end
       # Ensure that a particle with a user's/target's graphic doesn't have any
@@ -339,7 +339,7 @@ module Compiler
          ["USER", "USER_OPP", "USER_FRONT", "USER_BACK",
           "TARGET", "TARGET_OPP", "TARGET_FRONT", "TARGET_BACK"].include?(particle[:graphic]) &&
          particle[:frame] && !particle[:frame].empty?
-        raise _INTL("Particle \"{1}\" can't have any \"Frame\" commands if its graphic is a Pokémon's sprite.",
+        raise _INTL("粒子“{1}”的图像为宝可梦精灵图时，不能包含“Frame”命令。",
                     particle[:name]) + "\n" + FileLineData.linereport
       end
       # Ensure that the same SE isn't played twice in the same frame
@@ -352,11 +352,11 @@ module Compiler
             if files_played[play[0]].include?(play[1])
               case property
               when :se
-                raise _INTL("SE \"{1}\" should not play twice in the same frame ({2}).", play[1], play[0]) + "\n" + FileLineData.linereport
+                raise _INTL("音效“{1}”不应在同一帧（{2}）播放两次。", play[1], play[0]) + "\n" + FileLineData.linereport
               when :user_cry
-                raise _INTL("User's cry should not play twice in the same frame ({1}).", play[0]) + "\n" + FileLineData.linereport
+                raise _INTL("使用者的叫声不应在同一帧（{1}）播放两次。", play[0]) + "\n" + FileLineData.linereport
               when :target_cry
-                raise _INTL("Target's cry should not play twice in the same frame ({1}).", play[0]) + "\n" + FileLineData.linereport
+                raise _INTL("目标的叫声不应在同一帧（{1}）播放两次。", play[0]) + "\n" + FileLineData.linereport
               end
             end
             files_played[play[0]].push(play[1])
@@ -384,11 +384,11 @@ module Compiler
         last_set_frame = -1
         particle[key].each do |cmd|
           if last_frame > cmd[0]
-            raise _INTL("Animation has overlapping commands for the {1} property.",
+            raise _INTL("动画的 {1} 属性存在重叠命令。",
                         key.to_s.capitalize) + "\n" + FileLineData.linereport
           end
           if cmd[1] == 0 && last_set_frame >= cmd[0]
-            raise _INTL("Animation has multiple \"Set\" commands in the same keyframe for the {1} property.",
+            raise _INTL("动画在同一关键帧中为 {1} 属性包含多个“Set”命令。",
                         key.to_s.capitalize) + "\n" + FileLineData.linereport
           end
           last_frame = cmd[0] + cmd[1]
@@ -399,7 +399,7 @@ module Compiler
       if particle[:blending]
         particle[:blending].each do |blend|
           next if blend[2] <= 2
-          raise _INTL("Invalid blend value: {1} (must be 0, 1 or 2).\n{2}",
+          raise _INTL("无效的混合值：{1}（必须为 0、1 或 2）。\n{2}",
                       blend[2], FileLineData.linereport)
         end
       end

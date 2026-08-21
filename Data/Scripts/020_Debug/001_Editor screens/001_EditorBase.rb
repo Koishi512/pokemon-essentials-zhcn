@@ -155,7 +155,7 @@ class Debug::EditorBase
     end
     # Color scheme
     label = UIControls::Label.new(COLOR_SCHEME_CONTROL_WIDTH, COLOR_SCHEME_CONTROL_HEIGHT,
-                                  @viewport, _INTL("Color scheme"))
+                                  @viewport, _INTL("配色方案"))
     @components.add_control_at(:color_scheme_label, COLOR_SCHEME_LABEL_X, COLOR_SCHEME_CONTROL_Y, label)
     menu = UIControls::DropdownList.new(COLOR_SCHEME_CONTROL_WIDTH, COLOR_SCHEME_CONTROL_HEIGHT,
                                         @viewport, color_scheme_options, @settings[:color_scheme])
@@ -185,13 +185,13 @@ class Debug::EditorBase
 
   def menu_bar_buttons
     return [
-      [:quit, _INTL("Quit")],
-      [:save, _INTL("Save")]
+      [:quit, _INTL("戒烟")],
+      [:save, _INTL("保存")]
     ]
   end
 
   def editor_name
-    return _INTL("Editor")
+    return _INTL("编辑")
   end
 
   #-----------------------------------------------------------------------------
@@ -295,15 +295,15 @@ class Debug::EditorBase
   end
 
   def message(text)
-    message_with_options(text, [:ok, _INTL("OK")])
+    message_with_options(text, [:ok, _INTL("好的")])
   end
 
   def confirm_message(text)
-    return message_with_options(text, [:yes, _INTL("Yes")], [:no, _INTL("No")]) == :yes
+    return message_with_options(text, [:yes, _INTL("是的")], [:no, _INTL("否")]) == :yes
   end
 
   def confirm_cancel_message(text)
-    return message_with_options(text, [:yes, _INTL("Yes")], [:no, _INTL("No")], [:cancel, _INTL("Cancel")])
+    return message_with_options(text, [:yes, _INTL("是的")], [:no, _INTL("否")], [:cancel, _INTL("取消")])
   end
 
   #-----------------------------------------------------------------------------
@@ -347,7 +347,7 @@ class Debug::EditorBase
     )
     @graphic_chooser_components = control_container
     # Header
-    label = UIControls::Label.new(GRAPHIC_CHOOSER_WINDOW_WIDTH, HEADER_HEIGHT, control_container.viewport, _INTL("Choose a file"))
+    label = UIControls::Label.new(GRAPHIC_CHOOSER_WINDOW_WIDTH, HEADER_HEIGHT, control_container.viewport, _INTL("选择一个文件"))
     label.header = true
     control_container.add_control_at(:header,
                                      control_container.x + HEADER_OFFSET_X,
@@ -365,7 +365,7 @@ class Debug::EditorBase
     control_container.add_control_at(:filter_label,
       control_container.x + GRAPHIC_CHOOSER_FILE_LIST_X,
       filter_y,
-      UIControls::Label.new(GRAPHIC_CHOOSER_FILE_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("Filter:"))
+      UIControls::Label.new(GRAPHIC_CHOOSER_FILE_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("过滤器："))
     )
     control_container.add_control_at(:filter,
       control_container.x + GRAPHIC_CHOOSER_FILE_LIST_X + filter_label_width,
@@ -376,10 +376,10 @@ class Debug::EditorBase
     control_container.add_control_at(:filter_clear,
       control_container.x + GRAPHIC_CHOOSER_FILE_LIST_X + GRAPHIC_CHOOSER_FILE_LIST_WIDTH - INLINE_BUTTON_WIDTH,
       filter_y + 2,
-      UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, control_container.viewport, _INTL("Clear"))
+      UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, control_container.viewport, _INTL("清除"))
     )
     # Buttons
-    [[:ok, _INTL("OK")], [:cancel, _INTL("Cancel")]].each_with_index do |option, i|
+    [[:ok, _INTL("好的")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
       btn = UIControls::Button.new(BIG_BUTTON_WIDTH, BIG_BUTTON_HEIGHT, control_container.viewport, option[1])
       control_container.add_control_at(option[0],
                                       control_container.x + control_container.width - (BIG_BUTTON_WIDTH * 2) - ELEMENT_SPACING - EDGE_BUFFER + ((BIG_BUTTON_WIDTH + ELEMENT_SPACING) * i),
@@ -571,7 +571,7 @@ class Debug::EditorBase
     )
     @location_chooser_components = control_container
     # Header
-    label = UIControls::Label.new(LOCATION_CHOOSER_WINDOW_WIDTH, HEADER_HEIGHT, control_container.viewport, _INTL("Choose a location"))
+    label = UIControls::Label.new(LOCATION_CHOOSER_WINDOW_WIDTH, HEADER_HEIGHT, control_container.viewport, _INTL("选择地点"))
     label.header = true
     control_container.add_control_at(:header,
                                      control_container.x + HEADER_OFFSET_X,
@@ -589,7 +589,7 @@ class Debug::EditorBase
     control_container.add_control_at(:filter_label,
       control_container.x + LOCATION_CHOOSER_MAP_LIST_X,
       filter_y,
-      UIControls::Label.new(LOCATION_CHOOSER_MAP_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("Filter:"))
+      UIControls::Label.new(LOCATION_CHOOSER_MAP_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("过滤器："))
     )
     control_container.add_control_at(:filter,
       control_container.x + LOCATION_CHOOSER_MAP_LIST_X + filter_label_width,
@@ -600,7 +600,7 @@ class Debug::EditorBase
     control_container.add_control_at(:filter_clear,
       control_container.x + LOCATION_CHOOSER_MAP_LIST_X + LOCATION_CHOOSER_MAP_LIST_WIDTH - INLINE_BUTTON_WIDTH,
       filter_y + 2,
-      UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, control_container.viewport, _INTL("Clear"))
+      UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, control_container.viewport, _INTL("清除"))
     )
     # Zoom buttons
     Debug::MAP_ZOOM_FACTORS.each_with_index do |factor, i|
@@ -627,7 +627,7 @@ class Debug::EditorBase
     control_container.add_control_at(:h_scrollbar, preview_area_x, preview_area_y + LOCATION_CHOOSER_VIEWPORT_SIZE[1] + 3,
                                      UIControls::Scrollbar.new(LOCATION_CHOOSER_VIEWPORT_SIZE[0], control_container.viewport, :horizontal))
     # Buttons
-    [[:ok, _INTL("OK")], [:cancel, _INTL("Cancel")]].each_with_index do |option, i|
+    [[:ok, _INTL("好的")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
       btn = UIControls::Button.new(BIG_BUTTON_WIDTH, BIG_BUTTON_HEIGHT, control_container.viewport, option[1])
       control_container.add_control_at(option[0],
                                       control_container.x + control_container.width - (BIG_BUTTON_WIDTH * 2) - ELEMENT_SPACING - EDGE_BUFFER + ((BIG_BUTTON_WIDTH + ELEMENT_SPACING) * i),
@@ -856,7 +856,7 @@ class Debug::EditorBase
   def apply_button_press(button)
     case button
     when :quit
-      case confirm_cancel_message(_INTL("Do you want to save changes?"))
+      case confirm_cancel_message(_INTL("您想保存更改吗？"))
       when :yes
         apply_button_press(:save)
         @quit = true

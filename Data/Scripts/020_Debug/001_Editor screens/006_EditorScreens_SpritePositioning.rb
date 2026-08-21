@@ -89,7 +89,7 @@ class SpritePositioner
   end
 
   def pbClose
-    if @metricsChanged && pbConfirmMessage(_INTL("Some metrics have been edited. Save changes?"))
+    if @metricsChanged && pbConfirmMessage(_INTL("一些指标已被编辑。保存更改吗？"))
       pbSaveMetrics
       @metricsChanged = false
     else
@@ -176,7 +176,7 @@ class SpritePositioner
     end
     oldval = metrics_data.shadow_size
     cmdvals = [0]
-    commands = [_INTL("None")]
+    commands = [_INTL("无")]
     defindex = 0
     i = 0
     loop do
@@ -319,12 +319,12 @@ class SpritePositioner
   def pbMenu
     refresh
     cw = Window_CommandPokemon.new(
-      [_INTL("Set Ally Position"),
-       _INTL("Set Enemy Position"),
-       _INTL("Set Enemy Altitude"),
-       _INTL("Set Shadow Size"),
-       _INTL("Set Shadow Position"),
-       _INTL("Auto-Position Sprites")]
+      [_INTL("设置盟友位置"),
+       _INTL("设置敌人位置"),
+       _INTL("设置敌人高度"),
+       _INTL("设置阴影大小"),
+       _INTL("设置阴影位置"),
+       _INTL("自动定位精灵")]
     )
     cw.x        = Graphics.width - cw.width
     cw.y        = Graphics.height - cw.height

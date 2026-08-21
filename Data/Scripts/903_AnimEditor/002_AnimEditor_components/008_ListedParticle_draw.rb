@@ -180,13 +180,13 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
                                         GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[:tone])
     when :blending, :blending2, :mask_blending
       vals = {
-        0 => _INTL("None"),
-        1 => _INTL("Add"),
-        2 => _INTL("Sub")
+        0 => _INTL("无"),
+        1 => _INTL("添加"),
+        2 => _INTL("子")
       }
       ctrl = UIControls::DropdownList.new(ctrl_width, ctrl_height, @list_viewport, vals, 0)
     else
-      raise _INTL("Couldn't decide what kind of control to make for property {1}.", row)
+      raise _INTL("无法决定对属性 {1} 进行何种类型的控制。", row)
     end
     if ctrl
       ctrl.x = CONTROL_X

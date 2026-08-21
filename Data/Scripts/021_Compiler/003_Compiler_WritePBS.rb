@@ -5,7 +5,7 @@ module Compiler
   module_function
 
   def write_all_pbs_files
-    Console.echo_h1(_INTL("Writing all PBS files"))
+    Console.echo_h1(_INTL("正在写入全部 PBS 文件"))
     write_town_map
     write_connections
     write_types
@@ -29,7 +29,7 @@ module Compiler
     write_dungeon_parameters
     write_phone
     echoln ""
-    Console.echo_h2(_INTL("Successfully rewrote all PBS files"), text: :green)
+    Console.echo_h2(_INTL("已成功重写全部 PBS 文件"), text: :green)
   end
 
   #-----------------------------------------------------------------------------
@@ -37,7 +37,7 @@ module Compiler
   #-----------------------------------------------------------------------------
   def write_pbs_file_message_start(filename)
     # The `` around the file's name turns it cyan
-    Console.echo_li(_INTL("Writing PBS file `{1}`...", filename.split("/").last))
+    Console.echo_li(_INTL("正在写入 PBS 文件 `{1}`……", filename.split("/").last))
   end
 
   def get_all_PBS_file_paths(game_data)
@@ -56,7 +56,7 @@ module Compiler
     file.write(0xEF.chr)
     file.write(0xBB.chr)
     file.write(0xBF.chr)
-    file.write("\# " + _INTL("See the documentation on the wiki to learn how to edit this file.") + "\r\n")
+    file.write("\# " + _INTL("请参阅 Wiki 文档，了解如何编辑此文件。") + "\r\n")
   end
 
   def write_PBS_file_generic(game_data)

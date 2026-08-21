@@ -28,7 +28,7 @@ module BattleAnimationEditor
   end
 
   def pbExportAnim(animations)
-    filename = pbMessageFreeText(_INTL("Enter a filename."), "", false, 32)
+    filename = pbMessageFreeText(_INTL("输入文件名。"), "", false, 32)
     if filename != ""
       begin
         filename += ".anm"
@@ -37,12 +37,12 @@ module BattleAnimationEditor
         end
         failed = false
       rescue
-        pbMessage(_INTL("Couldn't save the animation to {1}.", filename))
+        pbMessage(_INTL("无法将动画保存到 {1}。", filename))
         failed = true
       end
       if !failed
-        pbMessage(_INTL("Animation was saved to {1} in the game folder.", filename))
-        pbMessage(_INTL("It's a text file, so it can be transferred to others easily."))
+        pbMessage(_INTL("动画已保存到游戏文件夹中的 {1}。", filename))
+        pbMessage(_INTL("它是一个文本文件，因此可以轻松地传输给其他人。"))
       end
     end
   end
@@ -66,13 +66,13 @@ module BattleAnimationEditor
           pbConvertAnimToNewFormat(textdata)
           animations[animations.selected] = textdata
         rescue
-          pbMessage(_INTL("The animation is invalid or could not be loaded."))
+          pbMessage(_INTL("动画无效或无法加载。"))
           next
         end
         graphic = animations[animations.selected].graphic
         graphic = "Graphics/Animations/#{graphic}"
         if graphic && graphic != "" && !FileTest.image_exist?(graphic)
-          pbMessage(_INTL("The animation file {1} was not found. The animation will load anyway.", graphic))
+          pbMessage(_INTL("找不到动画文件{1}。无论如何，动画都会加载。", graphic))
         end
         canvas.loadAnimation(animations[animations.selected])
         animwin.animbitmap = canvas.animbitmap
@@ -129,11 +129,11 @@ module BattleAnimationEditor
   end
 
   def pbConvertAnimsToNewFormat
-    pbMessage(_INTL("Will convert animations now."))
+    pbMessage(_INTL("现在将转换动画。"))
     count = 0
     animations = pbLoadBattleAnimations
     if !animations || !animations[0]
-      pbMessage(_INTL("No animations exist."))
+      pbMessage(_INTL("不存在动画。"))
       return
     end
     animations.length.times do |k|

@@ -105,8 +105,8 @@ module UIControls::StyleMixin
 
   def color_scheme_options
     return {
-      :light => _INTL("Light"),
-      :dark  => _INTL("Dark")
+      :light => _INTL("光"),
+      :dark  => _INTL("黑暗")
     }
   end
 

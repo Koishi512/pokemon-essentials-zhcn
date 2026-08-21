@@ -527,12 +527,12 @@ class AnimationEditor::Canvas < Sprite
     case particle[:name]
     when "User"
       spr = @battler_sprites[user_index]
-      raise _INTL("Sprite for particle {1} not found somehow (battler index {2}).",
+      raise _INTL("不知何故未找到粒子 {1} 的精灵（战斗者索引 {2}）。",
                   particle[:name], user_index) if !spr
       frame = @battler_frame_sprites[user_index]
     when "Target"
       spr = @battler_sprites[target_idx]
-      raise _INTL("Sprite for particle {1} not found somehow (battler index {2}).",
+      raise _INTL("不知何故未找到粒子 {1} 的精灵（战斗者索引 {2}）。",
                   particle[:name], target_idx) if !spr
       frame = @battler_frame_sprites[target_idx]
     else
@@ -1348,11 +1348,11 @@ class AnimationEditor::Canvas < Sprite
     case @anim[:particles][@selected_particle][:name]
     when "User"
       target = @battler_sprites[user_index]
-      raise _INTL("Sprite for particle \"{1}\" not found somehow.",
+      raise _INTL("不知何故找不到粒子“{1}”的精灵。",
                   @anim[:particles][@selected_particle][:name]) if !target
     when "Target"
       target = @battler_sprites[target_indices[0]]
-      raise _INTL("Sprite for particle \"{1}\" not found somehow.",
+      raise _INTL("不知何故找不到粒子“{1}”的精灵。",
                   @anim[:particles][@selected_particle][:name]) if !target
     else
       target = @particle_sprites[@selected_particle]

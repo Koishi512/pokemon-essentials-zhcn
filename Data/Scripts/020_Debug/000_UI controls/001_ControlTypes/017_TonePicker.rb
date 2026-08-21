@@ -139,7 +139,7 @@ class UIControls::TonePicker < UIControls::BaseControl
       @picker_controls[id] = ctrl
     end
     # Cancel button
-    ctrl = UIControls::Button.new(PICKER_BOX_PREVIEW_WIDTH + 4, 20, @picker_box_viewport, _INTL("Cancel"))
+    ctrl = UIControls::Button.new(PICKER_BOX_PREVIEW_WIDTH + 4, 20, @picker_box_viewport, _INTL("取消"))
     ctrl.x = PICKER_BOX_PREVIEW_X - 2
     ctrl.y = PICKER_BOX_SLIDER_Y + (4 * PICKER_BOX_ROW_HEIGHT) + ((PICKER_BOX_ROW_HEIGHT - ctrl.height) / 2)
     ctrl.color_scheme = @color_scheme
@@ -214,7 +214,7 @@ class UIControls::TonePicker < UIControls::BaseControl
                                     PICKER_BOX_PREVIEW_WIDTH + 4, PICKER_BOX_PREVIEW_HEIGHT + 4, get_color_of(:line))
     # Tone slider labels
     label_y = PICKER_BOX_SLIDER_Y + TEXT_OFFSET_Y
-    [_INTL("R:"), _INTL("G:"), _INTL("B:"), _INTL("G:")].each do |label|
+    [_INTL("回复："), _INTL("克："), _INTL("乙："), _INTL("克：")].each do |label|
       txt_x = PICKER_BOX_SLIDER_X - PICKER_BOX_LABEL_SPACING
       txt_x -= @picker_box.bitmap.text_size(label).width
       draw_text(@picker_box.bitmap, txt_x, label_y, label)

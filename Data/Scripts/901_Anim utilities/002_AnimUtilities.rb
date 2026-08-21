@@ -86,7 +86,7 @@ class Bitmap
         end
       end
     else
-      raise _INTL("Unknown interpolation type {1}.", type)
+      raise _INTL("未知插值类型 {1}。", type)
     end
   end
 end

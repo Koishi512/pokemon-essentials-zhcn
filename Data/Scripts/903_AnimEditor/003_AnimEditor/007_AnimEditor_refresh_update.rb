@@ -62,14 +62,14 @@ class AnimationEditor
     when :move, :opp_move
       move_list = []
       GameData::Move.each { |m| move_list.push([m.id.to_s, m.name]) }
-      move_list.push(["STRUGGLE", _INTL("Struggle")]) if move_list.none? { |val| val[0] == "STRUGGLE" }
+      move_list.push(["STRUGGLE", _INTL("奋斗")]) if move_list.none? { |val| val[0] == "STRUGGLE" }
       move_list.sort! { |a, b| a[1] <=> b[1] }
-      ctrls.get_control(:move_label).text = _INTL("Move")
+      ctrls.get_control(:move_label).text = _INTL("招式")
       ctrls.get_control(:move).options = move_list.to_h
       ctrls.get_control(:move).value = @anim[:move]
       ctrls.get_control(:type).value = :move
     when :common, :opp_common
-      ctrls.get_control(:move_label).text = _INTL("Common animation")
+      ctrls.get_control(:move_label).text = _INTL("常见动画")
       ctrls.get_control(:move).options = COMMON_ANIMATIONS.sort
       ctrls.get_control(:move).value = @anim[:move]
       ctrls.get_control(:type).value = :common
@@ -120,21 +120,21 @@ class AnimationEditor
       ctrls.get_control(:second_layer).enable
     end
     focus_values = {
-      :foreground                        => _INTL("Foreground"),
-      :midground                         => _INTL("Midground"),
-      :background                        => _INTL("Background"),
-      :user                              => _INTL("User"),
-      :user_position                     => _INTL("User's position"),
-      :target                            => _INTL("Target"),
-      :target_position                   => _INTL("Target's position"),
-      :user_and_target                   => _INTL("User and target"),
-      :user_position_and_target          => _INTL("User pos and target"),
-      :user_and_target_position          => _INTL("User and target pos"),
-      :user_position_and_target_position => _INTL("User pos and target pos"),
-      :user_side_foreground              => _INTL("In front of user's side"),
-      :user_side_background              => _INTL("Behind user's side"),
-      :target_side_foreground            => _INTL("In front of target's side"),
-      :target_side_background            => _INTL("Behind target's side")
+      :foreground                        => _INTL("前景"),
+      :midground                         => _INTL("中景"),
+      :background                        => _INTL("背景"),
+      :user                              => _INTL("用户"),
+      :user_position                     => _INTL("用户位置"),
+      :target                            => _INTL("目标"),
+      :target_position                   => _INTL("目标位置"),
+      :user_and_target                   => _INTL("用户和目标"),
+      :user_position_and_target          => _INTL("用户位置和目标"),
+      :user_and_target_position          => _INTL("用户和目标位置"),
+      :user_position_and_target_position => _INTL("用户 pos 和目标 pos"),
+      :user_side_foreground              => _INTL("在用户面前"),
+      :user_side_background              => _INTL("在用户侧的后面"),
+      :target_side_foreground            => _INTL("在目标侧面前方"),
+      :target_side_background            => _INTL("目标侧面后方")
     }
     if @anim[:no_user]
       GameData::Animation::FOCUS_TYPES_WITH_USER.each { |f| focus_values.delete(f) }
@@ -364,8 +364,8 @@ class AnimationEditor
         play_animation
         @ready_to_play = false
       elsif @captured.nil? && @quit
-        case message(_INTL("Do you want to save changes to the animation?"),
-                     [:yes, _INTL("Yes")], [:no, _INTL("No")], [:cancel, _INTL("Cancel")])
+        case message(_INTL("您想保存对动画的更改吗？"),
+                     [:yes, _INTL("是的")], [:no, _INTL("否")], [:cancel, _INTL("取消")])
         when :yes
           save
         when :cancel

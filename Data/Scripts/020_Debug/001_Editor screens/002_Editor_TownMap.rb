@@ -145,7 +145,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
 
   def initialize_regions_list_controls
     # Regions header
-    label = UIControls::Label.new(REGIONS_LIST_AREA_WIDTH, HEADER_HEIGHT, @viewport, _INTL("Regions"))
+    label = UIControls::Label.new(REGIONS_LIST_AREA_WIDTH, HEADER_HEIGHT, @viewport, _INTL("地区"))
     label.header = true
     @components.add_control_at(:regions_label,
                                REGIONS_LIST_AREA_X + HEADER_OFFSET_X,
@@ -156,8 +156,8 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     @components.add_control_at(:regions_list, REGIONS_LIST_AREA_X + EDGE_BUFFER, REGIONS_LIST_AREA_Y + HEADER_HEIGHT, list)
     # Add and Delete buttons
     [
-      [:add_region, _INTL("Add")],
-      [:delete_region, _INTL("Delete")]
+      [:add_region, _INTL("添加")],
+      [:delete_region, _INTL("删除")]
     ].each_with_index do |button, i|
       btn = UIControls::Button.new(REGIONS_BUTTON_WIDTH, REGIONS_BUTTON_HEIGHT, @viewport, button[1])
       @components.add_control_at(
@@ -171,7 +171,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
 
   def initialize_display_options
     # Game Switches header
-    label = UIControls::Label.new(DISPLAY_CONTROLS_WIDTH, HEADER_HEIGHT, @viewport, _INTL("Game Switches"))
+    label = UIControls::Label.new(DISPLAY_CONTROLS_WIDTH, HEADER_HEIGHT, @viewport, _INTL("游戏开关"))
     label.header = true
     @components.add_control_at(:display_options_label,
                                DISPLAY_CONTROLS_X + HEADER_OFFSET_X,
@@ -185,8 +185,8 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     )
     # All and None buttons
     [
-      [:all_switches, _INTL("Select all")],
-      [:no_switches, _INTL("Select none")]
+      [:all_switches, _INTL("选择全部")],
+      [:no_switches, _INTL("不选择")]
     ].each_with_index do |button, i|
       btn = UIControls::Button.new(GAME_SWITCHES_BUTTON_WIDTH, GAME_SWITCHES_BUTTON_HEIGHT, @viewport, button[1])
       @components.add_control_at(
@@ -215,7 +215,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     label_x = REGION_CONTROLS_X
     row_y = REGION_CONTROLS_Y
     # Region properties header
-    label = UIControls::Label.new(REGION_CONTROLS_WIDTH, HEADER_HEIGHT, @viewport, _INTL("Region properties"))
+    label = UIControls::Label.new(REGION_CONTROLS_WIDTH, HEADER_HEIGHT, @viewport, _INTL("区域属性"))
     label.header = true
     @components.add_control_at(:region_properties_label,
                                REGION_CONTROLS_X + HEADER_OFFSET_X,
@@ -223,30 +223,30 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
                                label)
     row_y += HEADER_HEIGHT
     # Region number
-    label = UIControls::Label.new(REGION_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("ID"))
+    label = UIControls::Label.new(REGION_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("身份证号"))
     @components.add_control_at(:region_id_label, label_x, row_y, label)
     text_box = UIControls::FittedNumberTextBox.new(52, ROW_HEIGHT, @viewport, 0, 999, 0)
     @components.add_control_at(:region_id, label_x + REGION_CONTROLS_LABEL_WIDTH, row_y, text_box)
     row_y += ROW_HEIGHT
     # Region name
-    label = UIControls::Label.new(REGION_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("Name"))
+    label = UIControls::Label.new(REGION_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("名称"))
     @components.add_control_at(:region_name_label, label_x, row_y, label)
     text_box = UIControls::TextBox.new(REGION_CONTROLS_CONTROL_WIDTH, ROW_HEIGHT, @viewport, "")
     @components.add_control_at(:region_name, label_x + REGION_CONTROLS_LABEL_WIDTH, row_y, text_box)
     row_y += ROW_HEIGHT
     # Region filename
-    label = UIControls::Label.new(REGION_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("Filename"))
+    label = UIControls::Label.new(REGION_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("文件名"))
     @components.add_control_at(:filename_label, label_x, row_y, label)
-    button = UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, @viewport, _INTL("Edit"))
+    button = UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, @viewport, _INTL("编辑"))
     @components.add_control_at(:filename_button, label_x + REGION_CONTROLS_LABEL_WIDTH + REGION_CONTROLS_CONTROL_WIDTH - button.width, row_y + 2, button)
     label = UIControls::Label.new(REGION_CONTROLS_CONTROL_WIDTH - button.width, ROW_HEIGHT, @viewport, "")
     @components.add_control_at(:filename, label_x + REGION_CONTROLS_LABEL_WIDTH, row_y, label)
     row_y += ROW_HEIGHT
     # Margins, point size and map size
     [
-      [:margins_x, :margins_y, _INTL("Margins"), _INTL("pixels"), 0, 999],
-      [:point_size_x, :point_size_y, _INTL("Point size"), _INTL("pixels"), 2, 999],
-      [:size_x, :size_y, _INTL("Map size"), _INTL("points"), 2, 999]
+      [:margins_x, :margins_y, _INTL("边距"), _INTL("像素"), 0, 999],
+      [:point_size_x, :point_size_y, _INTL("点大小"), _INTL("像素"), 2, 999],
+      [:size_x, :size_y, _INTL("地图尺寸"), _INTL("点"), 2, 999]
     ].each do |property|
       label = UIControls::Label.new(REGION_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, property[2])
       @components.add_control_at((property[0].to_s + "_label").to_sym, label_x, row_y, label)
@@ -267,7 +267,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     label_x = POINT_CONTROLS_X
     row_y = POINT_CONTROLS_Y
     # Point properties header
-    label = UIControls::Label.new(column_width, HEADER_HEIGHT, @viewport, _INTL("Point properties"))
+    label = UIControls::Label.new(column_width, HEADER_HEIGHT, @viewport, _INTL("点属性"))
     label.header = true
     @components.add_control_at(:point_properties_label,
                                POINT_CONTROLS_X + HEADER_OFFSET_X,
@@ -275,7 +275,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
                                label)
     row_y += HEADER_HEIGHT
     # Position
-    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("Position"))
+    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("职位"))
     @components.add_control_at(:position_label, label_x, row_y, label)
     2.times do |i|
       text_box = UIControls::FittedNumberTextBox.new(52, ROW_HEIGHT, @viewport, 0, 999, 0)
@@ -286,7 +286,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     row_y += ROW_HEIGHT
     # Point name
     label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT,
-                                  @viewport, _INTL("Name"))
+                                  @viewport, _INTL("名称"))
     @components.add_control_at(:point_name_label, label_x, row_y, label)
     text_box = UIControls::TextBox.new(POINT_CONTROLS_CONTROL_WIDTH, ROW_HEIGHT, @viewport, "")
     @components.add_control_at(:point_name, label_x + POINT_CONTROLS_LABEL_WIDTH, row_y, text_box)
@@ -294,52 +294,52 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     # Point description
     # TODO: Make a multiline text box for this.
     label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT,
-                                  @viewport, _INTL("Description"))
+                                  @viewport, _INTL("描述"))
     @components.add_control_at(:point_description_label, label_x, row_y, label)
     text_box = UIControls::TextBox.new(POINT_CONTROLS_CONTROL_WIDTH, ROW_HEIGHT, @viewport, "")
     @components.add_control_at(:point_description, label_x + POINT_CONTROLS_LABEL_WIDTH, row_y, text_box)
     row_y += ROW_HEIGHT
     # Point image filename
     label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT,
-                                  @viewport, _INTL("Image filename"))
+                                  @viewport, _INTL("图片文件名"))
     @components.add_control_at(:point_filename_label, label_x, row_y, label)
-    button = UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, @viewport, _INTL("Edit"))
+    button = UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, @viewport, _INTL("编辑"))
     @components.add_control_at(:point_filename_button, label_x + POINT_CONTROLS_LABEL_WIDTH + POINT_CONTROLS_CONTROL_WIDTH - button.width, row_y + 2, button)
     label = UIControls::Label.new(POINT_CONTROLS_CONTROL_WIDTH - button.width, ROW_HEIGHT, @viewport, "")
     @components.add_control_at(:point_filename, label_x + POINT_CONTROLS_LABEL_WIDTH, row_y, label)
     row_y += ROW_HEIGHT
     # Game Switch
-    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("Game Switch"))
+    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("游戏开关"))
     @components.add_control_at(:point_switch_label, label_x, row_y, label)
     text_box = UIControls::FittedNumberTextBox.new(52, ROW_HEIGHT, @viewport, 0, 999, 0)
     @components.add_control_at(:point_switch, label_x + POINT_CONTROLS_LABEL_WIDTH, row_y, text_box)
     row_y += ROW_HEIGHT
 
     # Fly section label
-    label = UIControls::Label.new(column_width, HEADER_HEIGHT, @viewport, _INTL("Using Fly"))
+    label = UIControls::Label.new(column_width, HEADER_HEIGHT, @viewport, _INTL("使用飞行"))
     label.underlined = true
     @components.add_control_at(:point_fly_section_label, label_x, row_y, label)
     row_y += ROW_HEIGHT
 
     # Fly destination
     label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT,
-                                  @viewport, _INTL("Fly destination"))
+                                  @viewport, _INTL("飞行目的地"))
     @components.add_control_at(:point_fly_destination_label, label_x, row_y, label)
-    button = UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, @viewport, _INTL("Edit"))
+    button = UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, @viewport, _INTL("编辑"))
     @components.add_control_at(:point_fly_destination_button, label_x + POINT_CONTROLS_LABEL_WIDTH + POINT_CONTROLS_CONTROL_WIDTH - button.width, row_y + 2, button)
     label = UIControls::Label.new(POINT_CONTROLS_CONTROL_WIDTH - button.width, ROW_HEIGHT, @viewport, "")
     @components.add_control_at(:point_fly_destination, label_x + POINT_CONTROLS_LABEL_WIDTH, row_y, label)
     row_y += ROW_HEIGHT
     # Hide Fly icon
     label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT,
-                                  @viewport, _INTL("Hide Fly icon?"))
+                                  @viewport, _INTL("隐藏飞行图标？"))
     @components.add_control_at(:point_hide_fly_icon_label, label_x, row_y, label)
     checkbox = UIControls::Checkbox.new(POINT_CONTROLS_CONTROL_WIDTH, ROW_HEIGHT, @viewport)
     @components.add_control_at(:point_hide_fly_icon, label_x + POINT_CONTROLS_LABEL_WIDTH, row_y, checkbox)
     row_y += ROW_HEIGHT
 
     # Fly icon offset
-    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("Fly icon offset"))
+    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("飞行图标偏移"))
     @components.add_control_at(:point_fly_icon_offset_label, label_x, row_y, label)
     2.times do |i|
       text_box = UIControls::FittedNumberTextBox.new(52, ROW_HEIGHT, @viewport, 0, 999, 0)
@@ -347,13 +347,13 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     end
     label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, "×")
     @components.add_control_at(:point_fly_icon_offset_mult_label, label_x + POINT_CONTROLS_LABEL_WIDTH + 56, row_y, label)
-    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("pixels"))
+    label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT, @viewport, _INTL("像素"))
     @components.add_control_at(:point_fly_icon_offset_units_label, label_x + POINT_CONTROLS_LABEL_WIDTH + 133, row_y, label)
     row_y += ROW_HEIGHT
     # Empty row
     row_y += ROW_HEIGHT
     # Delete point button
-    btn = UIControls::Button.new(POINT_CONTROLS_BUTTON_WIDTH, POINT_CONTROLS_BUTTON_HEIGHT, @viewport, _INTL("Delete point"))
+    btn = UIControls::Button.new(POINT_CONTROLS_BUTTON_WIDTH, POINT_CONTROLS_BUTTON_HEIGHT, @viewport, _INTL("删除点"))
     @components.add_control_at(:delete_point, label_x + EDGE_BUFFER, row_y, btn)
   end
 
@@ -369,7 +369,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
   #-----------------------------------------------------------------------------
 
   def editor_name
-    return _INTL("Town Map Editor")
+    return _INTL("城镇地图编辑器")
   end
 
   #-----------------------------------------------------------------------------
@@ -692,13 +692,13 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
       set_region(new_region_id)
     when :delete_region
       if @data.length > 1
-        if confirm_message(_INTL("Are you sure you want to delete this region?"))
+        if confirm_message(_INTL("您确定要删除该区域吗？"))
           region_index = @data.keys.index(@region_id)
           @data.delete(@region_id)
           set_region(@data.keys[region_index] || @data.keys.last)
         end
       else
-        message(_INTL("You can't delete your only region!"))
+        message(_INTL("您无法删除您唯一的区域！"))
       end
     when :map_control
       map_pos = @components.get_control(:map_control).mouse_pos
@@ -893,9 +893,9 @@ end
 #
 #===============================================================================
 MenuHandlers.add(:debug_menu, :set_town_map, {
-  "name"        => _INTL("Edit town_map.txt"),
+  "name"        => _INTL("编辑town_map.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("Edit the contents of the Town Maps."),
+  "description" => _INTL("编辑城镇地图的内容。"),
   "effect"      => proc {
     pbBGMStop
     Graphics.resize_screen(Debug::EditorBase::WINDOW_WIDTH, Debug::EditorBase::WINDOW_HEIGHT)

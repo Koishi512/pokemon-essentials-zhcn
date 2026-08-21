@@ -153,7 +153,7 @@ class GraphicsLister
     @commands.length.times do |i|
       @index = i if @commands[i] == @selection
     end
-    pbMessage(_INTL("There are no files.")) if @commands.length == 0
+    pbMessage(_INTL("没有文件。")) if @commands.length == 0
     return @commands
   end
 
@@ -225,7 +225,7 @@ class MusicFileLister
     @commands.length.times do |i|
       @index = i if @commands[i] == @setting
     end
-    pbMessage(_INTL("There are no files.")) if @commands.length == 0
+    pbMessage(_INTL("没有文件。")) if @commands.length == 0
     return @commands
   end
 
@@ -269,7 +269,7 @@ class MetadataLister
   def commands
     @commands.clear
     @commands.push(_INTL("[GLOBAL METADATA]"))
-    @player_ids.each { |id| @commands.push(_INTL("Player {1}", id)) }
+    @player_ids.each { |id| @commands.push(_INTL("玩家{1}", id)) }
     @commands.push(_INTL("[ADD NEW PLAYER]")) if @new_player
     return @commands
   end

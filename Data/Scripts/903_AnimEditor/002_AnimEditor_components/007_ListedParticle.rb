@@ -258,15 +258,15 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
 
   def group_name(group)
     return {
-      :position_group               => _INTL("Position"),
-      :transformation_group         => _INTL("Transformation"),
-      :appearance_group             => _INTL("Appearance"),
-      :mask_group                   => _INTL("Bitmap mask"),
-      :second_layer_group           => _INTL("Second layer"),
-      :emitter_group                => _INTL("Emitter"),
-      :emitted_spawn_location_group => _INTL("Emitted spawn location"),
-	    :emitted_auto_movement_group  => _INTL("Emitted auto-movement"),
-	    :emitted_modifiers_group      => _INTL("Emitted modifiers"),
+      :position_group               => _INTL("职位"),
+      :transformation_group         => _INTL("转型"),
+      :appearance_group             => _INTL("外观"),
+      :mask_group                   => _INTL("位图蒙版"),
+      :second_layer_group           => _INTL("第二层"),
+      :emitter_group                => _INTL("发射器"),
+      :emitted_spawn_location_group => _INTL("发射的生成位置"),
+	    :emitted_auto_movement_group  => _INTL("发射自动机芯"),
+	    :emitted_modifiers_group      => _INTL("发射修饰符"),
     }[group] || group.to_s.capitalize
   end
 

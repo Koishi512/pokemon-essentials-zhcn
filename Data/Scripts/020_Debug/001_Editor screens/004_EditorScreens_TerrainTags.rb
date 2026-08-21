@@ -19,7 +19,7 @@ class PokemonTilesetScene
     @viewport.z = 99999
     @sprites = {}
     @sprites["title"] = Window_UnformattedTextPokemon.newWithSize(
-      _INTL("Tileset Editor\nA/S: SCROLL\nZ: MENU"),
+      _INTL("图块集编辑器\n售后服务：滚动\nZ：菜单"),
       TILESET_WIDTH, 0, Graphics.width - TILESET_WIDTH, 128, @viewport
     )
     @sprites["background"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -148,7 +148,7 @@ class PokemonTilesetScene
       terrain_tag_name = terrain_tag.to_s
     end
     textpos = [
-      [_INTL("Terrain Tag:"), Graphics.width * 3 / 4, tile_y + (TILE_SIZE * tile_size) + 22,
+      [_INTL("地形标签："), Graphics.width * 3 / 4, tile_y + (TILE_SIZE * tile_size) + 22,
        :center, Color.new(248, 248, 248), Color.new(40, 40, 40)],
       [terrain_tag_name, Graphics.width * 3 / 4, tile_y + (TILE_SIZE * tile_size) + 54,
        :center, Color.new(248, 248, 248), Color.new(40, 40, 40)]
@@ -208,10 +208,10 @@ class PokemonTilesetScene
         update_cursor_position(0, @visible_height / 2)
       elsif Input.trigger?(Input::ACTION)
         commands = [
-          _INTL("Go to bottom"),
-          _INTL("Go to top"),
-          _INTL("Change tileset"),
-          _INTL("Cancel")
+          _INTL("转到底部"),
+          _INTL("转到顶部"),
+          _INTL("更改图块集"),
+          _INTL("取消")
         ]
         case pbShowCommands(nil, commands, -1)
         when 0
@@ -222,12 +222,12 @@ class PokemonTilesetScene
           choose_tileset
         end
       elsif Input.trigger?(Input::BACK)
-        if pbConfirmMessage(_INTL("Save changes?"))
+        if pbConfirmMessage(_INTL("保存更改吗？"))
           save_data(@tilesets_data, "Data/Tilesets.rxdata")
           $data_tilesets = @tilesets_data
-          pbMessage(_INTL("To ensure that the changes remain, close and reopen RPG Maker XP."))
+          pbMessage(_INTL("要确保更改保留，请关闭并重新打开 RPG Maker XP。"))
         end
-        break if pbConfirmMessage(_INTL("Exit from the editor?"))
+        break if pbConfirmMessage(_INTL("退出编辑器？"))
       elsif Input.trigger?(Input::USE)
         selected = tile_ID_from_coordinates(@x, @y)
         old_tag = @tileset.terrain_tags[selected]
@@ -239,7 +239,7 @@ class PokemonTilesetScene
           cmds.push("#{tag.id_number}: #{tag.real_name}")
           ids.push(tag.id_number)
         end
-        val = pbMessage("\\l[1]\\ts[]" + _INTL("Set the terrain tag."), cmds, -1, nil, old_idx)
+        val = pbMessage("\\l[1]\\ts[]" + _INTL("设置地形标签。"), cmds, -1, nil, old_idx)
         if val >= 0 && val != old_tag
           set_terrain_tag_for_tile_ID(selected, ids[val])
           draw_overlay

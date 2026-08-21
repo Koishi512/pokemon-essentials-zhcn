@@ -96,9 +96,9 @@ class UIControls::SEPicker < UIControls::BaseControl
     @picker_controls[:list] = ctrl
     # Buttons
     button_x = PICKER_BOX_LIST_X
-    [[:add, _INTL("Add")],
-     [:edit, _INTL("Edit")],
-     [:delete, _INTL("Delete")]].each do |ct|
+    [[:add, _INTL("添加")],
+     [:edit, _INTL("编辑")],
+     [:delete, _INTL("删除")]].each do |ct|
       ctrl = UIControls::Button.new(PICKER_BOX_BUTTON_WIDTH, PICKER_BOX_BUTTON_HEIGHT, @picker_box_viewport, ct[1])
       ctrl.x = button_x
       ctrl.y = PICKER_BOX_LIST_Y + PICKER_BOX_LIST_HEIGHT + PICKER_BOX_SPACING

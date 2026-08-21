@@ -1770,7 +1770,7 @@ module Compiler
     Graphics.update
     trainerChecker = TrainerChecker.new
     change_record = []
-    Console.echo_li(_INTL("Processing {1} maps...", mapData.mapinfos.keys.length))
+    Console.echo_li(_INTL("正在处理 {1} 张地图……", mapData.mapinfos.keys.length))
     idx = 0
     mapData.mapinfos.keys.sort.each do |id|
       echo "." if idx % 100 == 0
@@ -1810,7 +1810,7 @@ module Compiler
       if changed
         mapData.saveMap(id)
         mapData.saveTilesets
-        change_record.push(_INTL("Map {1}: '{2}' was modified and saved.", id, mapData.mapinfos[id].name))
+        change_record.push(_INTL("地图 {1}：“{2}”已修改并保存。", id, mapData.mapinfos[id].name))
       end
     end
     Console.echo_done(true)
@@ -1818,7 +1818,7 @@ module Compiler
     changed = false
     Graphics.update
     commonEvents = load_data("Data/CommonEvents.rxdata")
-    Console.echo_li(_INTL("Processing common events..."))
+    Console.echo_li(_INTL("正在处理公共事件……"))
     commonEvents.length.times do |key|
       newevent = fix_event_use(commonEvents[key], 0, mapData)
       if newevent
@@ -1829,7 +1829,7 @@ module Compiler
     save_data(commonEvents, "Data/CommonEvents.rxdata") if changed
     Console.echo_done(true)
     if change_record.length > 0 || changed
-      Console.echo_warn(_INTL("RMXP data was altered. Close RMXP now without saving to ensure changes are applied."))
+      Console.echo_warn(_INTL("RMXP 数据已被修改。请立即关闭 RMXP 且不要保存，以确保更改生效。"))
     end
   end
 end

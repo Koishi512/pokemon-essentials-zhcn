@@ -159,7 +159,7 @@ module PokemonDebugMixin
     # Main loop
     command = 0
     loop do
-      command = show_menu(_INTL("Do what with {1}?", pkmn.name), commands.list, command)
+      command = show_menu(_INTL("用 {1} 做什么？", pkmn.name), commands.list, command)
       if command < 0
         parent = commands.getParent
         break if !parent
@@ -328,21 +328,21 @@ module Battle::DebugMixin
     ret += sprintf("[%d] %s", battler.index, battler.pbThis)
     ret += "\n"
     # Species
-    ret += _INTL("Species: {1}", GameData::Species.get(battler.species).name)
+    ret += _INTL("物种：{1}", GameData::Species.get(battler.species).name)
     ret += "\n"
     # Form number
-    ret += _INTL("Form: {1}", battler.form)
+    ret += _INTL("表格：{1}", battler.form)
     ret += "\n"
     # Level, gender, shininess
-    ret += _INTL("Level {1}, {2}", battler.level,
-                 (battler.pokemon.male?) ? "♂" : (battler.pokemon.female?) ? "♀" : _INTL("genderless"))
-    ret += ", " + _INTL("shiny") if battler.pokemon.shiny?
+    ret += _INTL("级别 {1}、{2}", battler.level,
+                 (battler.pokemon.male?) ? "♂" : (battler.pokemon.female?) ? "♀" : _INTL("无性别的"))
+    ret += ", " + _INTL("闪亮的") if battler.pokemon.shiny?
     ret += "\n"
     # HP
-    ret += _INTL("HP: {1}/{2} ({3}%)", battler.hp, battler.totalhp, (100.0 * battler.hp / battler.totalhp).to_i)
+    ret += _INTL("生命值：{1}/{2} ({3}%)", battler.hp, battler.totalhp, (100.0 * battler.hp / battler.totalhp).to_i)
     ret += "\n"
     # Status
-    ret += _INTL("Status: {1}", GameData::Status.get(battler.status).name)
+    ret += _INTL("状态：{1}", GameData::Status.get(battler.status).name)
     case battler.status
     when :SLEEP
       ret += " " + _INTL("({1} rounds left)", battler.statusCount)
@@ -362,13 +362,13 @@ module Battle::DebugMixin
       stage_text += " " + stat.name_brief
       stages.push(stage_text)
     end
-    ret += _INTL("Stat stages: {1}", (stages.empty?) ? "-" : stages.join(", "))
+    ret += _INTL("统计阶段：{1}", (stages.empty?) ? "-" : stages.join(", "))
     ret += "\n"
     # Ability
-    ret += _INTL("Ability: {1}", (battler.ability) ? battler.abilityName : "-")
+    ret += _INTL("能力：{1}", (battler.ability) ? battler.abilityName : "-")
     ret += "\n"
     # Held item
-    ret += _INTL("Item: {1}", (battler.item) ? battler.itemName : "-")
+    ret += _INTL("项目：{1}", (battler.item) ? battler.itemName : "-")
     return ret
   end
 
@@ -380,18 +380,18 @@ module Battle::DebugMixin
     ret += sprintf("%s (%s)", pkmn.name, sp_data.name)
     ret += "\n"
     # Form number
-    ret += _INTL("Form: {1}", sp_data.form)
+    ret += _INTL("表格：{1}", sp_data.form)
     ret += "\n"
     # Level, gender, shininess
-    ret += _INTL("Level {1}, {2}", pkmn.level,
-                 (pkmn.male?) ? "♂" : (pkmn.female?) ? "♀" : _INTL("genderless"))
-    ret += ", " + _INTL("shiny") if pkmn.shiny?
+    ret += _INTL("级别 {1}、{2}", pkmn.level,
+                 (pkmn.male?) ? "♂" : (pkmn.female?) ? "♀" : _INTL("无性别的"))
+    ret += ", " + _INTL("闪亮的") if pkmn.shiny?
     ret += "\n"
     # HP
-    ret += _INTL("HP: {1}/{2} ({3}%)", pkmn.hp, pkmn.totalhp, (100.0 * pkmn.hp / pkmn.totalhp).to_i)
+    ret += _INTL("生命值：{1}/{2} ({3}%)", pkmn.hp, pkmn.totalhp, (100.0 * pkmn.hp / pkmn.totalhp).to_i)
     ret += "\n"
     # Status
-    ret += _INTL("Status: {1}", GameData::Status.get(pkmn.status).name)
+    ret += _INTL("状态：{1}", GameData::Status.get(pkmn.status).name)
     case pkmn.status
     when :SLEEP
       ret += " " + _INTL("({1} rounds left)", pkmn.statusCount)
@@ -400,10 +400,10 @@ module Battle::DebugMixin
     end
     ret += "\n"
     # Ability
-    ret += _INTL("Ability: {1}", pkmn.ability&.name || "-")
+    ret += _INTL("能力：{1}", pkmn.ability&.name || "-")
     ret += "\n"
     # Held item
-    ret += _INTL("Item: {1}", pkmn.item&.name || "-")
+    ret += _INTL("项目：{1}", pkmn.item&.name || "-")
     return ret
   end
 

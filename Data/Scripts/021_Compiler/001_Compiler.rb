@@ -40,12 +40,12 @@ module FileLineData
   def self.linereport
     if @section
       if @key.nil?
-        return _INTL("File {1}, section {2}\n{3}", @file, @section, @value) + "\n\n"
+        return _INTL("文件 {1}，段落 {2}\n{3}", @file, @section, @value) + "\n\n"
       else
-        return _INTL("File {1}, section {2}, key {3}\n{4}", @file, @section, @key, @value) + "\n\n"
+        return _INTL("文件 {1}，段落 {2}，键 {3}\n{4}", @file, @section, @key, @value) + "\n\n"
       end
     else
-      return _INTL("File {1}, line {2}\n{3}", @file, @lineno, @linedata) + "\n\n"
+      return _INTL("文件 {1}，第 {2} 行\n{3}", @file, @lineno, @linedata) + "\n\n"
     end
   end
 end
@@ -115,11 +115,11 @@ module Compiler
         else
           if sectionname.nil?
             FileLineData.setLine(line, lineno)
-            raise _INTL("Expected a section at the beginning of the file.\nThis error may also occur if the file was not saved in UTF-8.") + "\n" + FileLineData.linereport
+            raise _INTL("文件开头应为一个段落。\n若文件未以 UTF-8 编码保存，也可能出现此错误。") + "\n" + FileLineData.linereport
           end
           if !line[/^\s*(\w+)\s*=\s*(.*)$/]
             FileLineData.setSection(sectionname, nil, line)
-            raise _INTL("Bad line syntax (expected syntax like XXX=YYY).") + "\n" + FileLineData.linereport
+            raise _INTL("行语法错误（应类似于 XXX=YYY）。") + "\n" + FileLineData.linereport
           end
           r1 = $~[1]
           r2 = $~[2]
@@ -170,7 +170,7 @@ module Compiler
           havesection = true
         else
           if sectionname.nil?
-            raise _INTL("Expected a section at the beginning of the file (line {1}). Sections begin with '[name of section]'.", lineno)
+            raise _INTL("文件开头应为一个段落（第 {1} 行）。段落应以“[段落名称]”开头。", lineno)
           end
           lastsection.push(line.strip)
         end
@@ -305,45 +305,45 @@ module Compiler
     case schema.downcase
     when "i"   # Integer
       if !value || !value[/^\-?\d+$/]
-        raise _INTL("Field '{1}' is not an integer.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”不是整数。", value) + "\n" + FileLineData.linereport
       end
       return value.to_i
     when "u"   # Positive integer or zero
       if !value || !value[/^\d+$/]
-        raise _INTL("Field '{1}' is not a positive integer or 0.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”不是正整数或 0。", value) + "\n" + FileLineData.linereport
       end
       return value.to_i
     when "v"   # Positive integer
       if !value || !value[/^\d+$/]
-        raise _INTL("Field '{1}' is not a positive integer.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”不是正整数。", value) + "\n" + FileLineData.linereport
       end
       if value.to_i == 0
-        raise _INTL("Field '{1}' must be greater than 0.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”必须大于 0。", value) + "\n" + FileLineData.linereport
       end
       return value.to_i
     when "x"   # Hexadecimal number
       if !value || !value[/^[A-F0-9]+$/i]
-        raise _INTL("Field '{1}' is not a hexadecimal number.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”不是十六进制数。", value) + "\n" + FileLineData.linereport
       end
       return value.hex
     when "f"   # Floating point number
       if !value || !value[/^\-?^\d*\.?\d*$/]
-        raise _INTL("Field '{1}' is not a number.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”不是数字。", value) + "\n" + FileLineData.linereport
       end
       return value.to_f
     when "b"   # Boolean
       return true if value && value[/^(?:1|TRUE|YES|Y)$/i]
       return false if value && value[/^(?:0|FALSE|NO|N)$/i]
-      raise _INTL("Field '{1}' is not a Boolean value (true, false, 1, 0).", value) + "\n" + FileLineData.linereport
+      raise _INTL("字段“{1}”不是布尔值（true、false、1 或 0）。", value) + "\n" + FileLineData.linereport
     when "n"   # Name
       if !value || !value[/^(?![0-9])\w+$/]
-        raise _INTL("Field '{1}' must contain only letters, digits, and\nunderscores and can't begin with a number.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”只能包含字母、数字和下划线，\n且不能以数字开头。", value) + "\n" + FileLineData.linereport
       end
     when "s"   # String
     when "q"   # Unformatted text
     when "m"   # Symbol
       if !value || !value[/^(?![0-9])\w+$/]
-        raise _INTL("Field '{1}' must contain only letters, digits, and\nunderscores and can't begin with a number.", value) + "\n" + FileLineData.linereport
+        raise _INTL("字段“{1}”只能包含字母、数字和下划线，\n且不能以数字开头。", value) + "\n" + FileLineData.linereport
       end
       return value.to_sym
     when "e"   # Enumerable
@@ -360,10 +360,10 @@ module Compiler
     when Module
       begin
         if nil_or_empty?(ret) || !enumer.const_defined?(ret)
-          raise _INTL("Undefined value {1} in {2}.", ret, enumer.name) + "\n" + FileLineData.linereport
+          raise _INTL("{2} 中存在未定义的值 {1}。", ret, enumer.name) + "\n" + FileLineData.linereport
         end
       rescue NameError
-        raise _INTL("Incorrect value {1} in {2}.", ret, enumer.name) + "\n" + FileLineData.linereport
+        raise _INTL("{2} 中的值 {1} 不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
       end
       return enumer.const_get(ret.to_sym)
     when Symbol, String
@@ -371,36 +371,36 @@ module Compiler
         enumer = GameData.const_get(enumer.to_sym)
         begin
           if nil_or_empty?(ret) || !enumer.exists?(ret.to_sym)
-            raise _INTL("Undefined value {1} in {2}.", ret, enumer.name) + "\n" + FileLineData.linereport
+            raise _INTL("{2} 中存在未定义的值 {1}。", ret, enumer.name) + "\n" + FileLineData.linereport
           end
         rescue NameError
-          raise _INTL("Incorrect value {1} in {2}.", ret, enumer.name) + "\n" + FileLineData.linereport
+          raise _INTL("{2} 中的值 {1} 不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
         end
         return ret.to_sym
       end
       enumer = Object.const_get(enumer.to_sym)
       begin
         if nil_or_empty?(ret) || !enumer.const_defined?(ret)
-          raise _INTL("Undefined value {1} in {2}.", ret, enumer.name) + "\n" + FileLineData.linereport
+          raise _INTL("{2} 中存在未定义的值 {1}。", ret, enumer.name) + "\n" + FileLineData.linereport
         end
       rescue NameError
-        raise _INTL("Incorrect value {1} in {2}.", ret, enumer.name) + "\n" + FileLineData.linereport
+        raise _INTL("{2} 中的值 {1} 不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
       end
       return enumer.const_get(ret.to_sym)
     when Array
       idx = (nil_or_empty?(ret)) ? -1 : findIndex(enumer) { |item| ret == item }
       if idx < 0
-        raise _INTL("Undefined value {1} (expected one of: {2}).", ret, enumer.inspect) + "\n" + FileLineData.linereport
+        raise _INTL("未定义的值 {1}（应为以下之一：{2}）。", ret, enumer.inspect) + "\n" + FileLineData.linereport
       end
       return idx
     when Hash
       value = (nil_or_empty?(ret)) ? nil : enumer[ret]
       if value.nil?
-        raise _INTL("Undefined value {1} (expected one of: {2}).", ret, enumer.keys.inspect) + "\n" + FileLineData.linereport
+        raise _INTL("未定义的值 {1}（应为以下之一：{2}）。", ret, enumer.keys.inspect) + "\n" + FileLineData.linereport
       end
       return value
     end
-    raise _INTL("Enumeration not defined.") + "\n" + FileLineData.linereport
+    raise _INTL("未定义枚举。") + "\n" + FileLineData.linereport
   end
 
   #-----------------------------------------------------------------------------
@@ -572,7 +572,7 @@ module Compiler
     clonitem.sub!(/\s*$/, "")
     itm = GameData::Item.try_get(clonitem)
     if !itm
-      raise _INTL("Undefined item constant name: {1}.\nMake sure the item is defined in PBS/items.txt.", item) + "\n" + FileLineData.linereport
+      raise _INTL("未定义的道具常量名称：{1}。\n请确认该道具已在 PBS/items.txt 中定义。", item) + "\n" + FileLineData.linereport
     end
     return itm.id
   end
@@ -585,7 +585,7 @@ module Compiler
     clonspecies = "NIDORANfE" if clonspecies == "NIDORANFE"
     spec = GameData::Species.try_get(clonspecies)
     if !spec
-      raise _INTL("Undefined species constant name: {1}.\nMake sure the species is defined in PBS/pokemon.txt.", species) + "\n" + FileLineData.linereport
+      raise _INTL("未定义的宝可梦常量名称：{1}。\n请确认该宝可梦已在 PBS/pokemon.txt 中定义。", species) + "\n" + FileLineData.linereport
     end
     return spec.id
   end
@@ -597,7 +597,7 @@ module Compiler
     mov = GameData::Move.try_get(clonmove)
     if !mov
       return nil if skip_unknown
-      raise _INTL("Undefined move constant name: {1}.\nMake sure the move is defined in PBS/moves.txt.", move) + "\n" + FileLineData.linereport
+      raise _INTL("未定义的招式常量名称：{1}。\n请确认该招式已在 PBS/moves.txt 中定义。", move) + "\n" + FileLineData.linereport
     end
     return mov.id
   end
@@ -609,7 +609,7 @@ module Compiler
     clonnature.sub!(/\s*$/, "")
     nat = GameData::Nature.try_get(clonnature)
     if !nat
-      raise _INTL("Undefined nature constant name: {1}.\nMake sure the nature is defined in the scripts.", nature) + "\n" + FileLineData.linereport
+      raise _INTL("未定义的性格常量名称：{1}。\n请确认该性格已在脚本中定义。", nature) + "\n" + FileLineData.linereport
     end
     return nat.id
   end
@@ -621,7 +621,7 @@ module Compiler
     clontype.sub!(/\s*$/, "")
     typ = GameData::TrainerType.try_get(clontype)
     if !typ
-      raise _INTL("Undefined trainer type constant name: {1}.\nMake sure the trainer type is defined in PBS/trainer_types.txt.", type) + "\n" + FileLineData.linereport
+      raise _INTL("未定义的训练家类型常量名称：{1}。\n请确认该训练家类型已在 PBS/trainer_types.txt 中定义。", type) + "\n" + FileLineData.linereport
     end
     return typ.id
   end
@@ -676,11 +676,11 @@ module Compiler
     FileLineData.clear
     to_compile = categories_to_compile(all_categories)
     @@categories.each_pair do |category, procs|
-      Console.echo_h1(procs[:header_text]&.call || _INTL("Compiling {1}", category))
+      Console.echo_h1(procs[:header_text]&.call || _INTL("正在编译 {1}", category))
       if to_compile.include?(category)
         @@categories[category][:compile].call
       else
-        Console.echoln_li(procs[:skipped_text]&.call || _INTL("Not compiled"))
+        Console.echoln_li(procs[:skipped_text]&.call || _INTL("未编译"))
       end
       echoln ""
     end

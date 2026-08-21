@@ -232,12 +232,12 @@ module BattleAnimationEditor
   def pbDefinePath(canvas)
     sliderwin2 = ControlWindow.new(0, 0, 320, 320)
     sliderwin2.viewport = canvas.viewport
-    sliderwin2.addSlider(_INTL("Number of frames:"), 2, 500, 20)
+    sliderwin2.addSlider(_INTL("帧数："), 2, 500, 20)
     sliderwin2.opacity = 200
-    defcurvebutton = sliderwin2.addButton(_INTL("Define Smooth Curve"))
-    defpathbutton = sliderwin2.addButton(_INTL("Define Freehand Path"))
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    defcurvebutton = sliderwin2.addButton(_INTL("定义平滑曲线"))
+    defpathbutton = sliderwin2.addButton(_INTL("定义手绘路径"))
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     points = []
     path = nil
     loop do

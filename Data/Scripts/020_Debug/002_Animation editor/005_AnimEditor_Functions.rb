@@ -40,7 +40,7 @@ module BattleAnimationEditor
     cmdwin.viewport = canvas.viewport
     bmpwin.viewport = canvas.viewport
     ctlwin.viewport = canvas.viewport
-    ctlwin.addSlider(_INTL("Hue:"), 0, 359, 0)
+    ctlwin.addSlider(_INTL("色调："), 0, 359, 0)
     loop do
       bmpwin.bitmapname = cmdwin.commands[cmdwin.index]
       Graphics.update
@@ -71,9 +71,9 @@ module BattleAnimationEditor
   def pbChangeMaximum(canvas)
     sliderwin2 = ControlWindow.new(0, 0, 320, 32 * 4)
     sliderwin2.viewport = canvas.viewport
-    sliderwin2.addSlider(_INTL("Frames:"), 1, 1000, canvas.animation.length)
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    sliderwin2.addSlider(_INTL("帧数："), 1, 1000, canvas.animation.length)
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     sliderwin2.opacity = 200
     loop do
       Graphics.update
@@ -94,10 +94,10 @@ module BattleAnimationEditor
   def pbAnimName(animation, cmdwin)
     window = ControlWindow.new(320, 128, 320, 32 * 4)
     window.z = 99999
-    window.addControl(TextField.new(_INTL("New Name:"), animation.name))
+    window.addControl(TextField.new(_INTL("新名称："), animation.name))
     Input.text_input = true
-    okbutton = window.addButton(_INTL("OK"))
-    cancelbutton = window.addButton(_INTL("Cancel"))
+    okbutton = window.addButton(_INTL("好的"))
+    cancelbutton = window.addButton(_INTL("取消"))
     window.opacity = 224
     loop do
       Graphics.update
@@ -129,12 +129,12 @@ module BattleAnimationEditor
     cmdwin.index = animations.selected
     cmdwin.viewport = canvas.viewport
     helpwindow = Window_UnformattedTextPokemon.newWithSize(
-      _INTL("Enter: Load/rename an animation\nEsc: Cancel"),
+      _INTL("输入：加载/重命名动画\nEsc：取消"),
       320, 0, 320, 128, canvas.viewport
     )
     maxsizewindow = ControlWindow.new(0, 416, 320, 32 * 3)
-    maxsizewindow.addSlider(_INTL("Total Animations:"), 1, 2000, animations.length)
-    maxsizewindow.addButton(_INTL("Resize Animation List"))
+    maxsizewindow.addSlider(_INTL("动画总数："), 1, 2000, animations.length)
+    maxsizewindow.addButton(_INTL("调整动画列表大小"))
     maxsizewindow.opacity = 224
     maxsizewindow.viewport = canvas.viewport
     loop do
@@ -156,9 +156,9 @@ module BattleAnimationEditor
       end
       if Input.trigger?(Input::USE) && animations.length > 0
         cmd2 = pbShowCommands(helpwindow,
-                              [_INTL("Load Animation"),
-                               _INTL("Rename"),
-                               _INTL("Delete")], -1)
+                              [_INTL("加载动画"),
+                               _INTL("重命名"),
+                               _INTL("删除")], -1)
         case cmd2
         when 0   # Load Animation
           canvas.loadAnimation(animations[cmdwin.index])
@@ -169,7 +169,7 @@ module BattleAnimationEditor
           pbAnimName(animations[cmdwin.index], cmdwin)
           cmdwin.refresh
         when 2   # Delete
-          if pbConfirmMessage(_INTL("Are you sure you want to delete this animation?"))
+          if pbConfirmMessage(_INTL("您确定要删除该动画吗？"))
             animations[cmdwin.index] = PBAnimation.new
             cmdwin.commands[cmdwin.index] = _INTL("{1} {2}", cmdwin.index, animations[cmdwin.index].name)
             cmdwin.refresh
@@ -192,10 +192,10 @@ module BattleAnimationEditor
     ret = cel
     sliderwin2 = ControlWindow.new(0, 0, 320, 32 * 5)
     sliderwin2.z = 99999
-    sliderwin2.addLabel(_INTL("Old Number: {1}", cel))
-    sliderwin2.addSlider(_INTL("New Number:"), 2, PBAnimation::MAX_SPRITES, cel)
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    sliderwin2.addLabel(_INTL("旧号码：{1}", cel))
+    sliderwin2.addSlider(_INTL("新号码："), 2, PBAnimation::MAX_SPRITES, cel)
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     loop do
       Graphics.update
       Input.update
@@ -216,12 +216,12 @@ module BattleAnimationEditor
   def pbSetTone(cel, previewsprite)
     sliderwin2 = ControlWindow.new(0, 0, 320, 320)
     sliderwin2.z = 99999
-    sliderwin2.addSlider(_INTL("Red Offset:"), -255, 255, cel[AnimFrame::TONERED])
-    sliderwin2.addSlider(_INTL("Green Offset:"), -255, 255, cel[AnimFrame::TONEGREEN])
-    sliderwin2.addSlider(_INTL("Blue Offset:"), -255, 255, cel[AnimFrame::TONEBLUE])
-    sliderwin2.addSlider(_INTL("Gray Tone:"), 0, 255, cel[AnimFrame::TONEGRAY])
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    sliderwin2.addSlider(_INTL("红色偏移："), -255, 255, cel[AnimFrame::TONERED])
+    sliderwin2.addSlider(_INTL("绿色偏移："), -255, 255, cel[AnimFrame::TONEGREEN])
+    sliderwin2.addSlider(_INTL("蓝色偏移："), -255, 255, cel[AnimFrame::TONEBLUE])
+    sliderwin2.addSlider(_INTL("灰色调："), 0, 255, cel[AnimFrame::TONEGRAY])
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     loop do
       previewsprite.tone.set(sliderwin2.value(0), sliderwin2.value(1),
                              sliderwin2.value(2), sliderwin2.value(3))
@@ -246,12 +246,12 @@ module BattleAnimationEditor
   def pbSetFlash(cel, previewsprite)
     sliderwin2 = ControlWindow.new(0, 0, 320, 320)
     sliderwin2.z = 99999
-    sliderwin2.addSlider(_INTL("Red:"), 0, 255, cel[AnimFrame::COLORRED])
-    sliderwin2.addSlider(_INTL("Green:"), 0, 255, cel[AnimFrame::COLORGREEN])
-    sliderwin2.addSlider(_INTL("Blue:"), 0, 255, cel[AnimFrame::COLORBLUE])
-    sliderwin2.addSlider(_INTL("Alpha:"), 0, 255, cel[AnimFrame::COLORALPHA])
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    sliderwin2.addSlider(_INTL("红色："), 0, 255, cel[AnimFrame::COLORRED])
+    sliderwin2.addSlider(_INTL("绿色："), 0, 255, cel[AnimFrame::COLORGREEN])
+    sliderwin2.addSlider(_INTL("蓝色："), 0, 255, cel[AnimFrame::COLORBLUE])
+    sliderwin2.addSlider(_INTL("阿尔法："), 0, 255, cel[AnimFrame::COLORALPHA])
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     loop do
       previewsprite.tone.set(sliderwin2.value(0), sliderwin2.value(1),
                              sliderwin2.value(2), sliderwin2.value(3))
@@ -284,24 +284,24 @@ module BattleAnimationEditor
     previewsprite.bitmap = canvas.animbitmap
     previewsprite.z = previewwin.z + 1
     sliderwin2.z = previewwin.z + 2
-    set0 = sliderwin2.addSlider(_INTL("Pattern:"), -2, 1000, cel[AnimFrame::PATTERN])
-    set1 = sliderwin2.addSlider(_INTL("X:"), -64, 512 + 64, cel[AnimFrame::X])
-    set2 = sliderwin2.addSlider(_INTL("Y:"), -64, 384 + 64, cel[AnimFrame::Y])
-    set3 = sliderwin2.addSlider(_INTL("Zoom X:"), 5, 1000, cel[AnimFrame::ZOOMX])
-    set4 = sliderwin2.addSlider(_INTL("Zoom Y:"), 5, 1000, cel[AnimFrame::ZOOMY])
-    set5 = sliderwin2.addSlider(_INTL("Angle:"), 0, 359, cel[AnimFrame::ANGLE])
-    set6 = sliderwin2.addSlider(_INTL("Opacity:"), 0, 255, cel[AnimFrame::OPACITY])
-    set7 = sliderwin2.addSlider(_INTL("Blending:"), 0, 2, cel[AnimFrame::BLENDTYPE])
-    set8 = sliderwin2.addTextSlider(_INTL("Flip:"), [_INTL("False"), _INTL("True")], cel[AnimFrame::MIRROR])
-    prio = [_INTL("Back"), _INTL("Front"), _INTL("Behind focus"), _INTL("Above focus")]
-    set9 = sliderwin2.addTextSlider(_INTL("Priority:"), prio, cel[AnimFrame::PRIORITY] || 1)
-    foc = [_INTL("User"), _INTL("Target"), _INTL("User and target"), _INTL("Screen")]
+    set0 = sliderwin2.addSlider(_INTL("图案："), -2, 1000, cel[AnimFrame::PATTERN])
+    set1 = sliderwin2.addSlider(_INTL("X："), -64, 512 + 64, cel[AnimFrame::X])
+    set2 = sliderwin2.addSlider(_INTL("是："), -64, 384 + 64, cel[AnimFrame::Y])
+    set3 = sliderwin2.addSlider(_INTL("缩放倍数："), 5, 1000, cel[AnimFrame::ZOOMX])
+    set4 = sliderwin2.addSlider(_INTL("缩放 Y："), 5, 1000, cel[AnimFrame::ZOOMY])
+    set5 = sliderwin2.addSlider(_INTL("角度："), 0, 359, cel[AnimFrame::ANGLE])
+    set6 = sliderwin2.addSlider(_INTL("不透明度："), 0, 255, cel[AnimFrame::OPACITY])
+    set7 = sliderwin2.addSlider(_INTL("混合："), 0, 2, cel[AnimFrame::BLENDTYPE])
+    set8 = sliderwin2.addTextSlider(_INTL("翻转："), [_INTL("错误"), _INTL("真实")], cel[AnimFrame::MIRROR])
+    prio = [_INTL("返回"), _INTL("正面"), _INTL("焦点背后"), _INTL("焦点上方")]
+    set9 = sliderwin2.addTextSlider(_INTL("优先级："), prio, cel[AnimFrame::PRIORITY] || 1)
+    foc = [_INTL("用户"), _INTL("目标"), _INTL("用户和目标"), _INTL("屏幕")]
     curfoc = [3, 1, 0, 2, 3][cel[AnimFrame::FOCUS] || canvas.animation.position || 4]
-    set10 = sliderwin2.addTextSlider(_INTL("Focus:"), foc, curfoc)
-    flashbutton = sliderwin2.addButton(_INTL("Set Blending Color"))
-    tonebutton = sliderwin2.addButton(_INTL("Set Color Tone"))
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    set10 = sliderwin2.addTextSlider(_INTL("重点："), foc, curfoc)
+    flashbutton = sliderwin2.addButton(_INTL("设置混合颜色"))
+    tonebutton = sliderwin2.addButton(_INTL("设置色调"))
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     # Set X and Y for preview sprite
     cel[AnimFrame::X] = 320 + 96
     cel[AnimFrame::Y] = 96
@@ -384,11 +384,11 @@ module BattleAnimationEditor
     cmdNewFO = -1
     cmdEditFO = -1
     canvas.animation.timing.each { |i| commands.push(i.to_s) }
-    commands[cmdNewSound = commands.length] = _INTL("Add: Play Sound...")
-    commands[cmdNewBG = commands.length] = _INTL("Add: Set Background Graphic...")
-    commands[cmdEditBG = commands.length] = _INTL("Add: Edit Background Color/Location...")
-    commands[cmdNewFO = commands.length] = _INTL("Add: Set Foreground Graphic...")
-    commands[cmdEditFO = commands.length] = _INTL("Add: Edit Foreground Color/Location...")
+    commands[cmdNewSound = commands.length] = _INTL("添加：播放声音...")
+    commands[cmdNewBG = commands.length] = _INTL("新增：设置背景图片...")
+    commands[cmdEditBG = commands.length] = _INTL("添加：编辑背景颜色/位置...")
+    commands[cmdNewFO = commands.length] = _INTL("添加：设置前景图形...")
+    commands[cmdEditFO = commands.length] = _INTL("添加：编辑前景色/位置...")
     cmdwin = pbListWindow(commands, 480)
     cmdwin.x = 0
     cmdwin.y = 0
@@ -397,9 +397,9 @@ module BattleAnimationEditor
     cmdwin.opacity = 200
     cmdwin.viewport = canvas.viewport
     framewindow = ControlWindow.new(0, 384, 640, 32 * 4)
-    framewindow.addSlider(_INTL("Frame:"), 1, canvas.animation.length, canvas.currentframe + 1)
-    framewindow.addButton(_INTL("Set Frame"))
-    framewindow.addButton(_INTL("Delete Timing"))
+    framewindow.addSlider(_INTL("帧数："), 1, canvas.animation.length, canvas.currentframe + 1)
+    framewindow.addButton(_INTL("设置帧"))
+    framewindow.addButton(_INTL("删除时机"))
     framewindow.opacity = 200
     framewindow.viewport = canvas.viewport
     loop do
@@ -488,11 +488,11 @@ module BattleAnimationEditor
           cmdwin.commands[cmdEditFO] = nil if cmdEditFO >= 0
           cmdwin.commands.compact!
           cmdwin.commands.push(canvas.animation.timing[canvas.animation.timing.length - 1].to_s)
-          cmdwin.commands[cmdNewSound = cmdwin.commands.length] = _INTL("Add: Play Sound...")
-          cmdwin.commands[cmdNewBG = cmdwin.commands.length] = _INTL("Add: Set Background Graphic...")
-          cmdwin.commands[cmdEditBG = cmdwin.commands.length] = _INTL("Add: Edit Background Color/Location...")
-          cmdwin.commands[cmdNewFO = cmdwin.commands.length] = _INTL("Add: Set Foreground Graphic...")
-          cmdwin.commands[cmdEditFO = cmdwin.commands.length] = _INTL("Add: Edit Foreground Color/Location...")
+          cmdwin.commands[cmdNewSound = cmdwin.commands.length] = _INTL("添加：播放声音...")
+          cmdwin.commands[cmdNewBG = cmdwin.commands.length] = _INTL("新增：设置背景图片...")
+          cmdwin.commands[cmdEditBG = cmdwin.commands.length] = _INTL("添加：编辑背景颜色/位置...")
+          cmdwin.commands[cmdNewFO = cmdwin.commands.length] = _INTL("添加：设置前景图形...")
+          cmdwin.commands[cmdEditFO = cmdwin.commands.length] = _INTL("添加：编辑前景色/位置...")
           cmdwin.refresh
         end
       elsif Input.trigger?(Input::BACK)
@@ -523,13 +523,13 @@ module BattleAnimationEditor
     cmdwin.opacity = 200
     cmdwin.viewport = canvas.viewport
     maxsizewindow = ControlWindow.new(320, 0, 320, 32 * 8)
-    maxsizewindow.addLabel(_INTL("File: \"{1}\"", displayname))
-    maxsizewindow.addSlider(_INTL("Volume:"), 0, 100, audio.volume)
-    maxsizewindow.addSlider(_INTL("Pitch:"), 20, 250, audio.pitch)
-    maxsizewindow.addButton(_INTL("Play Sound"))
-    maxsizewindow.addButton(_INTL("Stop Sound"))
-    maxsizewindow.addButton(_INTL("OK"))
-    maxsizewindow.addButton(_INTL("Cancel"))
+    maxsizewindow.addLabel(_INTL("文件：“{1}”", displayname))
+    maxsizewindow.addSlider(_INTL("体积："), 0, 100, audio.volume)
+    maxsizewindow.addSlider(_INTL("音高："), 20, 250, audio.pitch)
+    maxsizewindow.addButton(_INTL("播放声音"))
+    maxsizewindow.addButton(_INTL("停止声音"))
+    maxsizewindow.addButton(_INTL("好的"))
+    maxsizewindow.addButton(_INTL("取消"))
     maxsizewindow.opacity = 200
     maxsizewindow.viewport = canvas.viewport
     loop do
@@ -552,7 +552,7 @@ module BattleAnimationEditor
       if Input.trigger?(Input::USE) && animfiles.length > 0
         filename = (cmdwin.index == 0) ? "" : cmdwin.commands[cmdwin.index]
         displayname = (filename != "") ? filename : _INTL("<user's cry>")
-        maxsizewindow.controls[0].text = _INTL("File: \"{1}\"", displayname)
+        maxsizewindow.controls[0].text = _INTL("文件：“{1}”", displayname)
       elsif Input.trigger?(Input::BACK)
         break
       end
@@ -582,16 +582,16 @@ module BattleAnimationEditor
     cmdwin.opacity = 200
     cmdwin.viewport = canvas.viewport
     maxsizewindow = ControlWindow.new(320, 0, 320, 32 * 11)
-    maxsizewindow.addLabel(_INTL("File: \"{1}\"", filename))
-    maxsizewindow.addSlider(_INTL("X:"), -500, 500, timing.bgX || 0)
-    maxsizewindow.addSlider(_INTL("Y:"), -500, 500, timing.bgY || 0)
-    maxsizewindow.addSlider(_INTL("Opacity:"), 0, 255, timing.opacity || 0)
-    maxsizewindow.addSlider(_INTL("Red:"), 0, 255, timing.colorRed || 0)
-    maxsizewindow.addSlider(_INTL("Green:"), 0, 255, timing.colorGreen || 0)
-    maxsizewindow.addSlider(_INTL("Blue:"), 0, 255, timing.colorBlue || 0)
-    maxsizewindow.addSlider(_INTL("Alpha:"), 0, 255, timing.colorAlpha || 0)
-    maxsizewindow.addButton(_INTL("OK"))
-    maxsizewindow.addButton(_INTL("Cancel"))
+    maxsizewindow.addLabel(_INTL("文件：“{1}”", filename))
+    maxsizewindow.addSlider(_INTL("X："), -500, 500, timing.bgX || 0)
+    maxsizewindow.addSlider(_INTL("是："), -500, 500, timing.bgY || 0)
+    maxsizewindow.addSlider(_INTL("不透明度："), 0, 255, timing.opacity || 0)
+    maxsizewindow.addSlider(_INTL("红色："), 0, 255, timing.colorRed || 0)
+    maxsizewindow.addSlider(_INTL("绿色："), 0, 255, timing.colorGreen || 0)
+    maxsizewindow.addSlider(_INTL("蓝色："), 0, 255, timing.colorBlue || 0)
+    maxsizewindow.addSlider(_INTL("阿尔法："), 0, 255, timing.colorAlpha || 0)
+    maxsizewindow.addButton(_INTL("好的"))
+    maxsizewindow.addButton(_INTL("取消"))
     maxsizewindow.opacity = 200
     maxsizewindow.viewport = canvas.viewport
     loop do
@@ -614,7 +614,7 @@ module BattleAnimationEditor
       break if maxsizewindow.changed?(9)   # Cancel
       if Input.trigger?(Input::USE) && animfiles.length > 0
         filename = (cmdwin.index == cmdErase) ? "" : cmdwin.commands[cmdwin.index]
-        maxsizewindow.controls[0].text = _INTL("File: \"{1}\"", filename)
+        maxsizewindow.controls[0].text = _INTL("文件：“{1}”", filename)
       elsif Input.trigger?(Input::BACK)
         break
       end
@@ -627,16 +627,16 @@ module BattleAnimationEditor
   def pbEditBG(canvas, timing)
     ret = false
     maxsizewindow = ControlWindow.new(0, 0, 320, 32 * 11)
-    maxsizewindow.addSlider(_INTL("Duration:"), 0, 50, timing.duration)
-    maxsizewindow.addOptionalSlider(_INTL("X:"), -500, 500, timing.bgX || 0)
-    maxsizewindow.addOptionalSlider(_INTL("Y:"), -500, 500, timing.bgY || 0)
-    maxsizewindow.addOptionalSlider(_INTL("Opacity:"), 0, 255, timing.opacity || 0)
-    maxsizewindow.addOptionalSlider(_INTL("Red:"), 0, 255, timing.colorRed || 0)
-    maxsizewindow.addOptionalSlider(_INTL("Green:"), 0, 255, timing.colorGreen || 0)
-    maxsizewindow.addOptionalSlider(_INTL("Blue:"), 0, 255, timing.colorBlue || 0)
-    maxsizewindow.addOptionalSlider(_INTL("Alpha:"), 0, 255, timing.colorAlpha || 0)
-    maxsizewindow.addButton(_INTL("OK"))
-    maxsizewindow.addButton(_INTL("Cancel"))
+    maxsizewindow.addSlider(_INTL("持续时间："), 0, 50, timing.duration)
+    maxsizewindow.addOptionalSlider(_INTL("X："), -500, 500, timing.bgX || 0)
+    maxsizewindow.addOptionalSlider(_INTL("是："), -500, 500, timing.bgY || 0)
+    maxsizewindow.addOptionalSlider(_INTL("不透明度："), 0, 255, timing.opacity || 0)
+    maxsizewindow.addOptionalSlider(_INTL("红色："), 0, 255, timing.colorRed || 0)
+    maxsizewindow.addOptionalSlider(_INTL("绿色："), 0, 255, timing.colorGreen || 0)
+    maxsizewindow.addOptionalSlider(_INTL("蓝色："), 0, 255, timing.colorBlue || 0)
+    maxsizewindow.addOptionalSlider(_INTL("阿尔法："), 0, 255, timing.colorAlpha || 0)
+    maxsizewindow.addButton(_INTL("好的"))
+    maxsizewindow.addButton(_INTL("取消"))
     maxsizewindow.controls[1].checked = !timing.bgX.nil?
     maxsizewindow.controls[2].checked = !timing.bgY.nil?
     maxsizewindow.controls[3].checked = !timing.opacity.nil?
@@ -682,11 +682,11 @@ module BattleAnimationEditor
   def pbCopyFrames(canvas)
     sliderwin2 = ControlWindow.new(0, 0, 320, 32 * 6)
     sliderwin2.viewport = canvas.viewport
-    sliderwin2.addSlider(_INTL("First Frame:"), 1, canvas.animation.length, 1)
-    sliderwin2.addSlider(_INTL("Last Frame:"), 1, canvas.animation.length, canvas.animation.length)
-    sliderwin2.addSlider(_INTL("Copy to:"), 1, canvas.animation.length, canvas.currentframe + 1)
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    sliderwin2.addSlider(_INTL("第一帧："), 1, canvas.animation.length, 1)
+    sliderwin2.addSlider(_INTL("最后一帧："), 1, canvas.animation.length, canvas.animation.length)
+    sliderwin2.addSlider(_INTL("复制到："), 1, canvas.animation.length, canvas.currentframe + 1)
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     sliderwin2.opacity = 200
     loop do
       Graphics.update
@@ -729,10 +729,10 @@ module BattleAnimationEditor
   def pbClearFrames(canvas)
     sliderwin2 = ControlWindow.new(0, 0, 320, 32 * 5)
     sliderwin2.viewport = canvas.viewport
-    sliderwin2.addSlider(_INTL("First Frame:"), 1, canvas.animation.length, 1)
-    sliderwin2.addSlider(_INTL("Last Frame:"), 1, canvas.animation.length, canvas.animation.length)
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    sliderwin2.addSlider(_INTL("第一帧："), 1, canvas.animation.length, 1)
+    sliderwin2.addSlider(_INTL("最后一帧："), 1, canvas.animation.length, canvas.animation.length)
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     sliderwin2.opacity = 200
     loop do
       Graphics.update
@@ -758,15 +758,15 @@ module BattleAnimationEditor
     sliderwin2 = ControlWindow.new(0, 0, 320, 32 * 10)
     sliderwin2.viewport = canvas.viewport
     sliderwin2.opacity = 200
-    s1set0 = sliderwin2.addSlider(_INTL("Starting Frame:"), 1, canvas.animation.length, 1)
-    s1set1 = sliderwin2.addSlider(_INTL("Ending Frame:"), 1, canvas.animation.length, canvas.animation.length)
-    s1set2 = sliderwin2.addSlider(_INTL("First Cel:"), 0, PBAnimation::MAX_SPRITES - 1, 0)
-    s1set3 = sliderwin2.addSlider(_INTL("Last Cel:"), 0, PBAnimation::MAX_SPRITES - 1, PBAnimation::MAX_SPRITES - 1)
-    set0 = sliderwin2.addCheckbox(_INTL("Pattern"))
-    set1 = sliderwin2.addCheckbox(_INTL("Position/Zoom/Angle"))
-    set2 = sliderwin2.addCheckbox(_INTL("Opacity/Blending"))
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    s1set0 = sliderwin2.addSlider(_INTL("起始帧："), 1, canvas.animation.length, 1)
+    s1set1 = sliderwin2.addSlider(_INTL("结束帧："), 1, canvas.animation.length, canvas.animation.length)
+    s1set2 = sliderwin2.addSlider(_INTL("第一个细胞："), 0, PBAnimation::MAX_SPRITES - 1, 0)
+    s1set3 = sliderwin2.addSlider(_INTL("最后的细胞："), 0, PBAnimation::MAX_SPRITES - 1, PBAnimation::MAX_SPRITES - 1)
+    set0 = sliderwin2.addCheckbox(_INTL("图案"))
+    set1 = sliderwin2.addCheckbox(_INTL("位置/缩放/角度"))
+    set2 = sliderwin2.addCheckbox(_INTL("不透明度/混合"))
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     loop do
       Graphics.update
       Input.update
@@ -835,29 +835,29 @@ module BattleAnimationEditor
     sliderwin1 = ControlWindow.new(0, 0, 300, 32 * 5)
     sliderwin1.viewport = canvas.viewport
     sliderwin1.opacity = 200
-    s1set0 = sliderwin1.addSlider(_INTL("First Frame:"), 1, canvas.animation.length, 1)
-    s1set1 = sliderwin1.addSlider(_INTL("Last Frame:"), 1, canvas.animation.length, canvas.animation.length)
-    s1set2 = sliderwin1.addSlider(_INTL("First Cel:"), 0, PBAnimation::MAX_SPRITES - 1, 0)
-    s1set3 = sliderwin1.addSlider(_INTL("Last Cel:"), 0, PBAnimation::MAX_SPRITES - 1, PBAnimation::MAX_SPRITES - 1)
+    s1set0 = sliderwin1.addSlider(_INTL("第一帧："), 1, canvas.animation.length, 1)
+    s1set1 = sliderwin1.addSlider(_INTL("最后一帧："), 1, canvas.animation.length, canvas.animation.length)
+    s1set2 = sliderwin1.addSlider(_INTL("第一个细胞："), 0, PBAnimation::MAX_SPRITES - 1, 0)
+    s1set3 = sliderwin1.addSlider(_INTL("最后的细胞："), 0, PBAnimation::MAX_SPRITES - 1, PBAnimation::MAX_SPRITES - 1)
     sliderwin2 = ControlWindow.new(300, 0, 340, 32 * 14)
     sliderwin2.viewport = canvas.viewport
     sliderwin2.opacity = 200
-    set0 = sliderwin2.addOptionalSlider(_INTL("Pattern:"), -2, 1000, 0)
-    set1 = sliderwin2.addOptionalSlider(_INTL("X:"), -64, 512 + 64, 0)
-    set2 = sliderwin2.addOptionalSlider(_INTL("Y:"), -64, 384 + 64, 0)
-    set3 = sliderwin2.addOptionalSlider(_INTL("Zoom X:"), 5, 1000, 100)
-    set4 = sliderwin2.addOptionalSlider(_INTL("Zoom Y:"), 5, 1000, 100)
-    set5 = sliderwin2.addOptionalSlider(_INTL("Angle:"), 0, 359, 0)
-    set6 = sliderwin2.addOptionalSlider(_INTL("Opacity:"), 0, 255, 255)
-    set7 = sliderwin2.addOptionalSlider(_INTL("Blending:"), 0, 2, 0)
-    set8 = sliderwin2.addOptionalTextSlider(_INTL("Flip:"), [_INTL("False"), _INTL("True")], 0)
-    prio = [_INTL("Back"), _INTL("Front"), _INTL("Behind focus"), _INTL("Above focus")]
-    set9 = sliderwin2.addOptionalTextSlider(_INTL("Priority:"), prio, 1)
-    foc = [_INTL("User"), _INTL("Target"), _INTL("User and target"), _INTL("Screen")]
+    set0 = sliderwin2.addOptionalSlider(_INTL("图案："), -2, 1000, 0)
+    set1 = sliderwin2.addOptionalSlider(_INTL("X："), -64, 512 + 64, 0)
+    set2 = sliderwin2.addOptionalSlider(_INTL("是："), -64, 384 + 64, 0)
+    set3 = sliderwin2.addOptionalSlider(_INTL("缩放倍数："), 5, 1000, 100)
+    set4 = sliderwin2.addOptionalSlider(_INTL("缩放 Y："), 5, 1000, 100)
+    set5 = sliderwin2.addOptionalSlider(_INTL("角度："), 0, 359, 0)
+    set6 = sliderwin2.addOptionalSlider(_INTL("不透明度："), 0, 255, 255)
+    set7 = sliderwin2.addOptionalSlider(_INTL("混合："), 0, 2, 0)
+    set8 = sliderwin2.addOptionalTextSlider(_INTL("翻转："), [_INTL("错误"), _INTL("真实")], 0)
+    prio = [_INTL("返回"), _INTL("正面"), _INTL("焦点背后"), _INTL("焦点上方")]
+    set9 = sliderwin2.addOptionalTextSlider(_INTL("优先级："), prio, 1)
+    foc = [_INTL("用户"), _INTL("目标"), _INTL("用户和目标"), _INTL("屏幕")]
     curfoc = [3, 1, 0, 2, 3][canvas.animation.position || 4]
-    set10 = sliderwin2.addOptionalTextSlider(_INTL("Focus:"), foc, curfoc)
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    set10 = sliderwin2.addOptionalTextSlider(_INTL("重点："), foc, curfoc)
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     loop do
       Graphics.update
       Input.update
@@ -899,12 +899,12 @@ module BattleAnimationEditor
   def pbEntireSlide(canvas)
     sliderwin2 = ControlWindow.new(0, 0, 320, 32 * 7)
     sliderwin2.viewport = canvas.viewport
-    sliderwin2.addSlider(_INTL("First Frame:"), 1, canvas.animation.length, 1)
-    sliderwin2.addSlider(_INTL("Last Frame:"), 1, canvas.animation.length, canvas.animation.length)
-    sliderwin2.addSlider(_INTL("X-Axis Movement"), -500, 500, 0)
-    sliderwin2.addSlider(_INTL("Y-Axis Movement"), -500, 500, 0)
-    okbutton = sliderwin2.addButton(_INTL("OK"))
-    cancelbutton = sliderwin2.addButton(_INTL("Cancel"))
+    sliderwin2.addSlider(_INTL("第一帧："), 1, canvas.animation.length, 1)
+    sliderwin2.addSlider(_INTL("最后一帧："), 1, canvas.animation.length, canvas.animation.length)
+    sliderwin2.addSlider(_INTL("X轴移动"), -500, 500, 0)
+    sliderwin2.addSlider(_INTL("Y 轴移动"), -500, 500, 0)
+    okbutton = sliderwin2.addButton(_INTL("好的"))
+    cancelbutton = sliderwin2.addButton(_INTL("取消"))
     sliderwin2.opacity = 200
     loop do
       Graphics.update
@@ -958,28 +958,28 @@ module BattleAnimationEditor
     canvas = AnimationCanvas.new(animation[animation.selected] || animation[0], viewport)
     # Right hand menu
     sidewin = ControlWindow.new(512 + 128, 0, 160, 384 + 128)
-    sidewin.addButton(_INTL("SE and BG..."))
-    sidewin.addButton(_INTL("Cel Focus..."))
+    sidewin.addButton(_INTL("音效和背景……"))
+    sidewin.addButton(_INTL("赛尔焦点..."))
     sidewin.addSpace
-    sidewin.addButton(_INTL("Paste Last"))
-    sidewin.addButton(_INTL("Copy Frames..."))
-    sidewin.addButton(_INTL("Clear Frames..."))
-    sidewin.addButton(_INTL("Tweening..."))
-    sidewin.addButton(_INTL("Cel Batch..."))
-    sidewin.addButton(_INTL("Entire Slide..."))
+    sidewin.addButton(_INTL("最后粘贴"))
+    sidewin.addButton(_INTL("复制帧..."))
+    sidewin.addButton(_INTL("清除帧……"))
+    sidewin.addButton(_INTL("补间..."))
+    sidewin.addButton(_INTL("细胞批次..."))
+    sidewin.addButton(_INTL("整个幻灯片..."))
     sidewin.addSpace
-    sidewin.addButton(_INTL("Play Animation"))
-    sidewin.addButton(_INTL("Play Opp Anim"))
-    sidewin.addButton(_INTL("Import Anim..."))
-    sidewin.addButton(_INTL("Export Anim..."))
-    sidewin.addButton(_INTL("Help"))
+    sidewin.addButton(_INTL("播放动画"))
+    sidewin.addButton(_INTL("播放 Opp 动画"))
+    sidewin.addButton(_INTL("导入动画..."))
+    sidewin.addButton(_INTL("导出动画..."))
+    sidewin.addButton(_INTL("帮助"))
     sidewin.viewport = canvas.viewport
     # Bottom left menu
     sliderwin = ControlWindow.new(0, 384 + 128, 240, 160)
     sliderwin.addControl(FrameCountSlider.new(canvas))
     sliderwin.addControl(FrameCountButton.new(canvas))
-    sliderwin.addButton(_INTL("Set Animation Sheet"))
-    sliderwin.addButton(_INTL("List of Animations"))
+    sliderwin.addButton(_INTL("设置动画表"))
+    sliderwin.addButton(_INTL("动画列表"))
     sliderwin.viewport = canvas.viewport
     # Animation sheet window
     animwin = CanvasAnimationWindow.new(canvas, 240, 384 + 128, 512, 96, canvas.viewport)
@@ -995,10 +995,10 @@ module BattleAnimationEditor
       bottomwindow.update
       canvas.pattern = animwin.selected if animwin.changed?
       if Input.trigger?(Input::BACK)
-        if pbConfirmMessage(_INTL("Save changes?"))
+        if pbConfirmMessage(_INTL("保存更改吗？"))
           save_data(animation, "Data/PkmnAnimations.rxdata")
         end
-        if pbConfirmMessage(_INTL("Exit from the editor?"))
+        if pbConfirmMessage(_INTL("退出编辑器？"))
           $game_temp.battle_animations_data = nil
           break
         end
@@ -1008,11 +1008,11 @@ module BattleAnimationEditor
         next
       elsif Input.trigger?(Input::MOUSERIGHT) && sliderwin.hittest?(0)   # Right mouse button
         commands = [
-          _INTL("Copy Frame"),
-          _INTL("Paste Frame"),
-          _INTL("Clear Frame"),
-          _INTL("Insert Frame"),
-          _INTL("Delete Frame")
+          _INTL("复制帧"),
+          _INTL("粘贴框"),
+          _INTL("清除帧"),
+          _INTL("插入帧"),
+          _INTL("删除帧")
         ]
         hit = pbTrackPopupMenu(commands)
         case hit
@@ -1043,13 +1043,13 @@ module BattleAnimationEditor
         mousepos = Mouse.getMousePos
         mousepos = [0, 0] if !mousepos
         commands = [
-          _INTL("Properties..."),
-          _INTL("Cut"),
-          _INTL("Copy"),
-          _INTL("Paste"),
-          _INTL("Delete"),
-          _INTL("Renumber..."),
-          _INTL("Extrapolate Path...")
+          _INTL("属性..."),
+          _INTL("切"),
+          _INTL("复制"),
+          _INTL("粘贴"),
+          _INTL("删除"),
+          _INTL("重新编号..."),
+          _INTL("推断路径...")
         ]
         hit = pbTrackPopupMenu(commands)
         case hit
@@ -1108,7 +1108,7 @@ module BattleAnimationEditor
       end
       pbTimingList(canvas) if sidewin.changed?(0)
       if sidewin.changed?(1)
-        positions = [_INTL("User"), _INTL("Target"), _INTL("User and target"), _INTL("Screen")]
+        positions = [_INTL("用户"), _INTL("目标"), _INTL("用户和目标"), _INTL("屏幕")]
         indexes = [2, 1, 3, 4]   # Keeping backwards compatibility
         positions.length.times do |i|
           selected = "[  ]"

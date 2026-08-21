@@ -479,7 +479,7 @@ class AnimationEditor
       @components[:timeline].particle_index = p_index + 1
       refresh
     when :delete
-      if confirm_message(_INTL("Are you sure you want to delete this particle?"))
+      if confirm_message(_INTL("您确定要删除该粒子吗？"))
         p_index = idx_particle
         AnimationEditor::ParticleDataHelper.delete_particle(@anim[:particles], p_index)
         @components[:timeline].delete_particle(p_index)
