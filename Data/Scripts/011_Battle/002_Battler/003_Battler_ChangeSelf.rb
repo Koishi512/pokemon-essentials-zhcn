@@ -233,7 +233,7 @@ class Battle::Battler
        [:Hail, :Snowstorm].include?(effectiveWeather)
       @battle.pbShowAbilitySplash(self, true)
       @battle.pbHideAbilitySplash(self)
-      pbChangeForm(0, _INTL("{1} transformed!", pbThis))
+      pbChangeForm(0, _INTL("{1}变成其他样子了！", pbThis))
     end
   end
 

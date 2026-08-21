@@ -5,72 +5,63 @@
 #==============================================================================#
 
 module Settings
-  # The version of your game. It has to adhere to the MAJOR.MINOR.PATCH format.
+  # 你的游戏版本。需遵循MAJOR.MINOR.PATCH格式。
   GAME_VERSION = "1.0.0"
 
-  # The generation that the battle system follows. Used throughout the battle
-  # scripts, and also by some other Settings which are used in and out of battle
-  # (you can of course change those Settings to suit your game).
-  # Note that this isn't perfect. Essentials doesn't accurately replicate every
-  # single generation's mechanics. It's considered to be good enough. Only
-  # generations 5 and later are reasonably supported.
+  # 战斗系统遵循的世代。用于整个对战脚本，以及其他一些用于战斗内外的设置
+  # （当然，你可以更改这些设置以适应你的游戏）。
+  # 请注意，这并不完美。Essentials并不能准确地复制每一个世代的机制。
+  # 它被认为是足够好的。只有第5世代及之后的版本才得到合理支持。
   MECHANICS_GENERATION = 9
 
-  # The save slot options available to the player. Is one of:
-  #   * :one       = Classic saving. There is only one save file and it is
-  #                  replaced upon saving..
-  #   * :adventure = Each adventure (i.e. starting a New Game) has its own
-  #                  single save slot. Allows the player to have multiple
-  #                  adventures saved, but each adventure behaves clasically
-  #                  when it comes to saving.
-  #   * :multiple  = An infinite number of save slots are always available. The
-  #                  player can choose to save in an empty save slot at any
-  #                  time, or overwrite an existing save slot.
+  # 玩家可用的保存槽选项。是以下之一：
+  #   * :one       = 经典保存。只有一个保存文件，保存时会被替换。
+  #   * :adventure = 每个冒险（即开始新游戏）都有自己的单个保存槽。
+  #                  允许玩家保存多个冒险，但每个冒险在保存时都表现得像经典一样。
+  #   * :multiple  = 无限数量的保存槽始终可用。玩家可以随时选择保存到空的保存槽，或者覆盖现有的保存槽。
   SAVE_SLOTS = :multiple
 
   #-----------------------------------------------------------------------------
-  # Credits.
+  # 致谢
   #-----------------------------------------------------------------------------
 
-  # Your game's credits, in an array. You can allow certain lines to be
-  # translated by wrapping them in _INTL() as shown. Blank lines are just "".
-  # To split a line into two columns, put "<s>" in it. Plugin credits and
-  # Essentials engine credits are added to the end of these credits
-  # automatically.
-  # Everything in here is just an example! Replace it all with your credits.
+  # 你的游戏的致谢名单，以数组形式呈现。
+  # 你可以通过在 _INTL() 中包装某些行来允许它们被翻译。 空白行只是 ""。
+  # 要将一行分成两列，可以在其中放置 "<s>"。插件致谢和
+  # Essentials 引擎致谢会自动添加到这些致谢的末尾。
+  # 这里的一切都只是示例！用你的致谢替换它们。
   def self.game_credits
     return [
-      _INTL("My Game by:"),
+      _INTL("游戏作者："),
       "Maruno",
       "",
-      _INTL("Also involved were:"),
+      _INTL("也有以下人参与："),
       "A. Lee Uss<s>Anne O'Nymus",
       "Ecksam Pell<s>Jane Doe",
       "Joe Dan<s>Nick Nayme",
       "Sue Donnim<s>",
       "",
-      _INTL("Special thanks to:"),
+      _INTL("特别感谢："),
       "Pizza"
     ]
   end
 
   #-----------------------------------------------------------------------------
-  # The player and NPCs.
+  # 玩家和NPC
   #-----------------------------------------------------------------------------
 
-  # The maximum amount of money the player can have.
+  # 玩家可拥有的零花钱的最大数量。
   MAX_MONEY            = 9_999_999
-  # The maximum number of Game Corner coins the player can have.
+  # 玩家可拥有的游戏厅代币的最大数量。
   MAX_COINS            = 99_999
-  # The maximum number of Battle Points the player can have.
+  # 玩家可拥有的战斗点数的最大数量。
   MAX_BATTLE_POINTS    = 9_999
-  # The maximum amount of soot the player can have.
+  # 玩家可拥有的火山灰的最大数量。
   MAX_SOOT             = 9_999
-  # The maximum length, in characters, that the player's name can be.
+  # 玩家姓名的最大长度（以字符为单位）。
   MAX_PLAYER_NAME_SIZE = 12
-  # A set of arrays each containing a trainer type followed by a Game Variable
-  # number. If the Variable isn't set to 0, then all trainers with the
-  # associated trainer type will be named as whatever is in that Variable.
+  # 包含训练家类型和游戏变量编号的数组集合。如果变量未设置为0，
+  # 则所有该训练家类型的训练家都将被命名为该变量中的内容。
   RIVAL_NAMES = [
     [:RIVAL1,   12],
     [:RIVAL2,   12],
@@ -78,48 +69,41 @@ module Settings
   ]
 
   #-----------------------------------------------------------------------------
-  # Overworld.
+  # 主世界
   #-----------------------------------------------------------------------------
 
-  # Whether outdoor maps should be shaded according to the time of day.
+  # 室外地图是否会根据时间不同改变色调。
   TIME_SHADING               = true
-  # Whether the reflections of the player/events will ripple horizontally.
+  # 玩家和事件的倒影是否会水平波动。
   ANIMATE_REFLECTIONS        = true
-  # Whether planted berries grow according to Gen 4 mechanics (true) or Gen 3
-  # mechanics (false).
+  # 种植的树果按照第四世代及之后的机制生长（true），还是按照第三世代及之前的机制生长（false）。
   NEW_BERRY_PLANT_MECHANICS  = (MECHANICS_GENERATION >= 4)
-  # Whether fishing automatically hooks the Pokémon (true), or whether there is
-  # a reaction test first (false).
+  # 钓鱼会自动钓上宝可梦，还是需要进行反应测试（false）。
   FISHING_AUTO_HOOK          = false
-  # The ID of the common event that runs when the player starts fishing (runs
-  # instead of showing the casting animation).
+  # 玩家开始钓鱼时运行的公共事件的ID（运行而不是显示抛竿动画）。
   FISHING_BEGIN_COMMON_EVENT = -1
-  # The ID of the common event that runs when the player stops fishing (runs
-  # instead of showing the reeling in animation).
+  # 玩家停止钓鱼时运行的公共事件的ID（运行而不是显示收竿动画）。
   FISHING_END_COMMON_EVENT   = -1
-  # The number of steps allowed in a Safari Zone game before it ends (0=infinite).
+  # 在狩猎地带里最多允许行走的步数（0=无穷）。
   SAFARI_STEPS               = 600
-  # The number of seconds a Bug-Catching Contest lasts for (0=infinite).
-  BUG_CONTEST_TIME           = 20 * 60   # 20 minutes
-  # Whether poisoned Pokémon will lose HP while walking around in the field.
+  # 捕虫大会持续的秒数（0=无穷）。
+  BUG_CONTEST_TIME           = 20 * 60   # 20 分钟
+  # 在野外行走时，中毒的宝可梦是否会失去HP。
   POISON_IN_FIELD            = (MECHANICS_GENERATION <= 4)
-  # Whether poisoned Pokémon will faint while walking around in the field
-  # (true), or survive the poisoning with 1 HP (false).
+  # 在野外行走时，中毒的宝可梦会倒下
+  # (true)，还是在中毒后存活并保留1点HP (false)。
   POISON_FAINT_IN_FIELD      = (MECHANICS_GENERATION <= 3)
 
   #-----------------------------------------------------------------------------
-  # Using moves in the overworld.
+  # 在主世界使用招式
   #-----------------------------------------------------------------------------
-  # Whether you need at least a certain number of Gym Badges to use some hidden
-  # moves in the field (true), or whether you need one specific Gym Badge to use
-  # them (false). The amounts/specific Gym Badges are defined below.
+  # 使用秘传招式时，你需要至少一定数量的道馆徽章（true），还是需要特定的道馆徽章（false）。 
+  # 需要的数量/特定的道馆徽章定义如下。
   FIELD_MOVES_COUNT_BADGES = true
-  # Depending on FIELD_MOVES_COUNT_BADGES, either the number of Gym Badges
-  # required to use each hidden move in the field, or the specific Gym Badge
-  # required to use each move. Remember that Gym Badge 0 is the first Gym Badge,
-  # Gym Badge 1 is the second Gym Badge, etc.
-  #   e.g. To specifically require the second Gym Badge, put false and 1.
-  #        To require at least 2 Gym Badges, put true and 2.
+  # 依据FIELD_MOVES_COUNT_BADGES，使用秘传招式需要的道馆徽章数，或需要的特定道馆徽章。
+  # 记住，道馆徽章的编号是从0开始的。道馆徽章1是第二个道馆徽章，依此类推。
+  #   例：需要第2枚道馆徽章时，填写false和1；
+  #       需要至少2枚道馆徽章时，填写true和2。
   BADGE_FOR_CUT       = 1
   BADGE_FOR_FLASH     = 2
   BADGE_FOR_ROCKSMASH = 3
@@ -130,34 +114,29 @@ module Settings
   BADGE_FOR_WATERFALL = 8
 
   #-----------------------------------------------------------------------------
-  # Pokémon.
+  # 宝可梦
   #-----------------------------------------------------------------------------
 
-  # The maximum level Pokémon can reach.
+  # 宝可梦可达到的最大等级。
   MAXIMUM_LEVEL                            = 100
-  # The level of newly hatched Pokémon.
+  # 新孵化的宝可梦的等级。
   EGG_LEVEL                                = 1
-  # The odds of a newly generated Pokémon being shiny (out of 65536).
+  # 新产生的宝可梦为异色的概率（65536分之x）。
   SHINY_POKEMON_CHANCE                     = (MECHANICS_GENERATION >= 6) ? 16 : 8
-  # Whether super shininess is enabled (uses a different shiny animation).
+  # 是否允许超异色（会显示不同的异色动画）。
   SUPER_SHINY                              = (MECHANICS_GENERATION == 8)
-  # Whether Pokémon with the "Legendary", "Mythical" or "Ultra Beast" flags will
-  # have at least 3 perfect IVs.
+  # 拥有"Legendary"，"Mythical"或"Ultra Beast"标签的宝可梦是否至少有3个完美个体值。
   LEGENDARIES_HAVE_SOME_PERFECT_IVS        = (MECHANICS_GENERATION >= 6)
-  # The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
+  # 野生宝可梦/孵化的蛋感染宝可病毒的概率（65536分之x）。
   POKERUS_CHANCE                           = 3
-  # Whether IVs and EVs are treated as 0 when calculating a Pokémon's stats.
-  # IVs and EVs still exist, and are used by Hidden Power and some cosmetic
-  # things as normal.
+  # 计算宝可梦的能力值时，个体值和努力值是否视为0。
+  # 个体值和努力值仍然存在，仍会正常用于觉醒力量和其他装饰性内容。
   DISABLE_IVS_AND_EVS                      = false
-  # Whether the Move Relearner can also teach egg moves that the Pokémon knew
-  # when it hatched and moves that the Pokémon was once taught by a TR. Moves
-  # from the Pokémon's level-up moveset of the same or a lower level than the
-  # Pokémon can always be relearned.
+  # 招式回忆是否会教授宝可梦孵化时掌握的蛋招式和曾通过招式记录掌握的招式。
+  # 宝可梦升级招式中小于等于宝可梦等级的招式也可以回忆。
   MOVE_RELEARNER_CAN_TEACH_MORE_MOVES      = (MECHANICS_GENERATION >= 6)
-  # Whether the Move Relearner can teach all moves in the Pokémon's moveset
-  # (true) or only the moves normally learned at/below the Pokémon's current
-  # level (false).
+  # 招式回忆会教授宝可梦升级时掌握的所有招式（true），还是只教授通常在/低于
+  # 宝可梦当前等级时掌握的招式（false）。
   MOVE_RELEARNER_CAN_TEACH_ANY_LEVEL_MOVES = (MECHANICS_GENERATION == 7)
 
   #-----------------------------------------------------------------------------
@@ -311,9 +290,9 @@ module Settings
   # shown in the Area page when viewing that Pokédex list.
   def self.pokedex_names
     return [
-      [_INTL("Kanto Pokédex"), 0],
-      [_INTL("Johto Pokédex"), 1],
-      _INTL("National Pokédex")
+      [_INTL("关都图鉴"), 0],
+      [_INTL("城都图鉴"), 1],
+      _INTL("全国图鉴")
     ]
   end
   # An array of numbers, where each number is that of a Dex list (in the same

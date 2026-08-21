@@ -698,7 +698,7 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
 
   def draw_original_trainer_details
     draw_text(_INTL("初训家"), 238, 150, theme: :white)
-    draw_text(_INTL("ID No."), 238, 182, theme: :white)
+    draw_text(_INTL("ID编号"), 238, 182, theme: :white)
     owner_name = (@pokemon.owner.name.empty?) ? _INTL("租借") : @pokemon.owner.name
     owner_name = crop_text(owner_name, 144)
     owner_theme = [:male, :female][@pokemon.owner.gender || 99] || :black

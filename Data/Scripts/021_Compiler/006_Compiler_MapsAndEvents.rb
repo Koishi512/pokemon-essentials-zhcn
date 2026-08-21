@@ -42,34 +42,34 @@ module Compiler
 
   @@categories[:import_new_maps] = {
     :should_compile => proc { |compiling| next !new_maps_to_import.nil? },
-    :header_text    => proc { next _INTL("Importing new maps") },
-    :skipped_text   => proc { next _INTL("None found") },
+    :header_text    => proc { next _INTL("正在导入新地图") },
+    :skipped_text   => proc { next _INTL("未找到") },
     :compile        => proc { import_new_maps }
   }
 
   @@categories[:create_missing_map_metadata] = {
     :should_compile => proc { |compiling| next true },
-    :header_text    => proc { next _INTL("Creating map metadata for maps without it") },
-    :skipped_text   => proc { next _INTL("None found") },
+    :header_text    => proc { next _INTL("正在为缺少元数据的地图创建元数据") },
+    :skipped_text   => proc { next _INTL("未找到") },
     :compile        => proc { create_missing_map_metadata }
   }
 
   @@categories[:map_data] = {
     :should_compile => proc { |compiling| next true },
-    :header_text    => proc { next _INTL("Modifying map events") },
-    :skipped_text   => proc { next _INTL("Not modified") },
+    :header_text    => proc { next _INTL("正在修改地图事件") },
+    :skipped_text   => proc { next _INTL("未修改") },
     :compile        => proc { compile_trainer_events }
   }
 
   @@categories[:messages] = {
     :should_compile => proc { |compiling| next compiling.include?(:pbs_files) || compiling.include?(:map_data) },
-    :header_text    => proc { next _INTL("Gathering messages for translations") },
-    :skipped_text   => proc { next _INTL("Not gathered") },
+    :header_text    => proc { next _INTL("正在收集待翻译文本") },
+    :skipped_text   => proc { next _INTL("未收集") },
     :compile        => proc {
-      Console.echo_li(_INTL("Finding messages..."))
+      Console.echo_li(_INTL("正在查找文本……"))
       Translator.gather_script_and_event_texts
       Console.echo_done(true)
-      Console.echo_li(_INTL("Saving messages..."))
+      Console.echo_li(_INTL("正在保存文本……"))
       MessageTypes.save_default_messages
       MessageTypes.load_default_messages if FileTest.exist?("Data/messages_core.dat")
       Console.echo_done(true)
@@ -106,7 +106,7 @@ module Compiler
   def import_new_maps
     mapfiles = new_maps_to_import
     if !mapfiles
-      Console.echoln_li(_INTL("None found"))
+      Console.echoln_li(_INTL("未找到"))
       return false
     end
     # Get maxOrder to add new maps at
@@ -133,11 +133,11 @@ module Compiler
     if imported
       save_data(mapinfos, "Data/MapInfos.rxdata")
       $game_temp.map_infos = nil
-      Console.echoln_li_done(_INTL("{1} map(s) imported", count))
-      Console.echo_warn(_INTL("RMXP data was altered. Close RMXP now without saving to ensure changes are applied."))
+      Console.echoln_li_done(_INTL("已导入 {1} 个地图", count))
+      Console.echo_warn(_INTL("RMXP 数据已被修改。请立即关闭 RMXP 且不要保存，以确保更改生效。"))
     else
-      Console.echoln_li(_INTL("{1} map(s) found, {2} imported", mapfiles.length, count))
-      Console.echo_warn(_INTL("Some maps couldn't be imported for some reason."))
+      Console.echoln_li(_INTL("找到 {1} 个地图，已导入 {2} 个", mapfiles.length, count))
+      Console.echo_warn(_INTL("部分地图因未知原因未能导入。"))
     end
     return imported
   end
@@ -163,7 +163,7 @@ module Compiler
       Console.echoln_li(@@categories[:create_missing_map_metadata][:skipped_text].call)
       return
     end
-    Console.echoln_li(_INTL("Created metadata for {1} map(s).", added_count))
+    Console.echoln_li(_INTL("已为 {1} 个地图创建元数据。", added_count))
     Compiler.write_map_metadata
   end
 
@@ -529,7 +529,7 @@ module Compiler
     def pbTrainerTypeCheck(trainer_type)
       return if !$DEBUG || @dontaskagain
       return if GameData::TrainerType.exists?(trainer_type)
-      if pbConfirmMessage(_INTL("Add new trainer type {1}?", trainer_type.to_s))
+      if pbConfirmMessage(_INTL("要添加新的训练家类型 {1} 吗？", trainer_type.to_s))
         pbTrainerTypeEditorNew(trainer_type.to_s)
       end
     end
@@ -1284,18 +1284,18 @@ module Compiler
               newEvents = []
               if cost == 0
                 push_branch(newEvents, "$bag.can_add?(:#{itemname})", oldIndent)
-                push_text(newEvents, _INTL("Here you go!"), oldIndent + 1)
+                push_text(newEvents, _INTL("给你！"), oldIndent + 1)
                 push_script(newEvents, "pbReceiveItem(:#{itemname})", oldIndent + 1)
                 push_else(newEvents, oldIndent + 1)
-                push_text(newEvents, _INTL("You have no room left in the Bag."), oldIndent + 1)
+                push_text(newEvents, _INTL("背包里没有空间了。"), oldIndent + 1)
               else
                 push_event(newEvents, 111, [7, cost, 0], oldIndent)
                 push_branch(newEvents, "$bag.can_add?(:#{itemname})", oldIndent + 1)
                 push_event(newEvents, 125, [1, 0, cost], oldIndent + 2)
-                push_text(newEvents, _INTL("\\GHere you go!"), oldIndent + 2)
+                push_text(newEvents, _INTL("\\G给你！"), oldIndent + 2)
                 push_script(newEvents, "pbReceiveItem(:#{itemname})", oldIndent + 2)
                 push_else(newEvents, oldIndent + 2)
-                push_text(newEvents, _INTL("\\GYou have no room left in the Bag."), oldIndent + 2)
+                push_text(newEvents, _INTL("\\G背包里没有空间了。"), oldIndent + 2)
                 push_branch_end(newEvents, oldIndent + 2)
                 push_else(newEvents, oldIndent + 1)
                 push_text(newEvents, _INTL("\\GYou don't have enough money."), oldIndent + 1)

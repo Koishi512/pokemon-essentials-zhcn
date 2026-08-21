@@ -819,13 +819,13 @@ def pbNatureChangingMint(new_nature, item, pkmn, screen)
     screen.show_message(_INTL("即便使用也无效果哦。"))
     return false
   end
-  if !screen.show_confirm_message(_INTL("It might affect {1}'s stats. Are you sure you want to use it?", pkmn.name))
+  if !screen.show_confirm_message(_INTL("要改变{1}的能力吗？", pkmn.name))
     return false
   end
   pkmn.nature_for_stats = new_nature
   pkmn.calc_stats
   screen.refresh
-  screen.show_message(_INTL("{1}'s stats may have changed due to the effects of the {2}!",
+  screen.show_message(_INTL("因为{2}的效果，{1}的能力似乎发生了变化！",
                             pkmn.name, GameData::Item.get(item).name))
   return true
 end

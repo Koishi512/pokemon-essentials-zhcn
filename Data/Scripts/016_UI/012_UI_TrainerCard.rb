@@ -39,7 +39,7 @@ class UI::TrainerCardVisuals < UI::BaseVisuals
   def draw_ID
     draw_text(_INTL("姓名"), 34, 70, theme: :gray)
     draw_text($player.name, 302, 70, align: :right, theme: :gray)
-    draw_text(_INTL("ID No."), 332, 70, theme: :gray)
+    draw_text(_INTL("ID编号"), 332, 70, theme: :gray)
     draw_text(sprintf("%05d", $player.public_ID), 468, 70, align: :right, theme: :gray)
   end
 

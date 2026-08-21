@@ -1007,7 +1007,7 @@ MenuHandlers.add(:options_menu, :screen_size, {
   "order"       => 50,
   "type"        => :array,
   "parameters"  => [_INTL("S"), _INTL("M"), _INTL("L"), _INTL("XL"), _INTL("全屏")],
-  "description" => _INTL("Choose the size of the game window."),
+  "description" => _INTL("选择游戏窗口的大小。"),
   "get_proc"    => proc { next [$PokemonSystem.screensize, 4].min },
   "set_proc"    => proc { |value, _screen| $PokemonSystem.screensize = value }
 })

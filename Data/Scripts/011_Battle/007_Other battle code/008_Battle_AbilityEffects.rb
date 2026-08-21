@@ -1103,9 +1103,9 @@ Battle::AbilityEffects::MoveImmunity.add(:GOODASGOLD,
     if show_message
       battle.pbShowAbilitySplash(target)
       if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
+        battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
       else
-        battle.pbDisplay(_INTL("{1} {2} made {3} ineffective!",
+        battle.pbDisplay(_INTL("{1}{2}使{3}无效！",
                                target.pbOfThis, target.abilityName, move.name))
       end
       battle.pbHideAbilitySplash(target)

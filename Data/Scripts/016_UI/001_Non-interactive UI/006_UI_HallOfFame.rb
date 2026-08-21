@@ -247,7 +247,7 @@ class HallOfFame_Scene
     min = totalsec / 60 % 60
     pubid = sprintf("%05d", $player.public_ID)
     lefttext = _INTL("名字<r>{1}", $player.name) + "<br>"
-    lefttext += _INTL("ID No.<r>{1}", pubid) + "<br>"
+    lefttext += _INTL("ID编号<r>{1}", pubid) + "<br>"
     if hour > 0
       lefttext += _INTL("时间<r>{1}时{2}分", hour, min) + "<br>"
     else
@@ -276,17 +276,17 @@ class HallOfFame_Scene
     pokename += "/" + speciesname
     pokename = _INTL("蛋") + "/" + _INTL("蛋") if pokemon.egg?
     idno = (pokemon.owner.name.empty? || pokemon.egg?) ? "?????" : sprintf("%05d", pokemon.owner.public_id)
-    dexnumber = _INTL("No. ???")
+    dexnumber = _INTL("编号 ???")
     if !pokemon.egg?
       number = @nationalDexList.index(pokemon.species) || 0
-      dexnumber = _ISPRINTF("No. {1:03d}", number)
+      dexnumber = _ISPRINTF("编号 {1:03d}", number)
     end
     textPositions = [
       [dexnumber, 32, Graphics.height - 74, :left, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR],
       [pokename, Graphics.width - 192, Graphics.height - 74, :center, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR],
       [_INTL("Lv. {1}", pokemon.egg? ? "?" : pokemon.level),
        64, Graphics.height - 42, :left, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR],
-      [_INTL("ID No. {1}", pokemon.egg? ? "?????" : idno),
+      [_INTL("ID编号 {1}", pokemon.egg? ? "?????" : idno),
        Graphics.width - 192, Graphics.height - 42, :center, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR]
     ]
     if hallNumber > -1

@@ -68,7 +68,7 @@ class Battle::Battler
     if ((@battle.rules["modifiedsleepclause"]) || (!selfsleep && @battle.rules["sleepclause"])) &&
        pbHasStatusPokemon?(:SLEEP)
       if showMessages
-        @battle.pbDisplay(_INTL("But {1} couldn't sleep!", pbThis(true)))
+        @battle.pbDisplay(_INTL("但是{1}无法入睡！", pbThis(true)))
       end
       return false
     end

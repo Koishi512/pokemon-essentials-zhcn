@@ -79,7 +79,7 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :ATTACK,
   :name       => _INTL("攻击"),
-  :name_brief => _INTL("Atk"),
+  :name_brief => _INTL("攻击"),
   :type       => :main_battle,
   :pbs_order  => 1
 })
@@ -87,7 +87,7 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :DEFENSE,
   :name       => _INTL("防御"),
-  :name_brief => _INTL("Def"),
+  :name_brief => _INTL("防御"),
   :type       => :main_battle,
   :pbs_order  => 2
 })
@@ -96,7 +96,7 @@ GameData::Stat.register({
   :id              => :SPECIAL_ATTACK,
   :name            => _INTL("特攻"),
   :name_semi_brief => _INTL("特攻"),
-  :name_brief      => _INTL("SpAtk"),
+  :name_brief      => _INTL("特攻"),
   :type            => :main_battle,
   :pbs_order       => 4
 })
@@ -105,7 +105,7 @@ GameData::Stat.register({
   :id              => :SPECIAL_DEFENSE,
   :name            => _INTL("特防"),
   :name_semi_brief => _INTL("特防"),
-  :name_brief      => _INTL("SpDef"),
+  :name_brief      => _INTL("特防"),
   :type            => :main_battle,
   :pbs_order       => 5
 })
@@ -113,7 +113,7 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :SPEED,
   :name       => _INTL("速度"),
-  :name_brief => _INTL("Spd"),
+  :name_brief => _INTL("速度"),
   :type       => :main_battle,
   :pbs_order  => 3
 })
@@ -121,13 +121,13 @@ GameData::Stat.register({
 GameData::Stat.register({
   :id         => :ACCURACY,
   :name       => _INTL("命中"),
-  :name_brief => _INTL("Acc"),
+  :name_brief => _INTL("命中"),
   :type       => :battle
 })
 
 GameData::Stat.register({
   :id         => :EVASION,
   :name       => _INTL("闪避"),
-  :name_brief => _INTL("Eva"),
+  :name_brief => _INTL("闪避"),
   :type       => :battle
 })

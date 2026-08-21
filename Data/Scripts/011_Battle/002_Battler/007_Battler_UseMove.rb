@@ -259,7 +259,7 @@ class Battle::Battler
       # def pbFindTargets should have found a target(s), but it didn't because
       # they were all fainted
       # All target types except: None, User, UserSide, FoeSide, BothSides
-      @battle.pbDisplay(_INTL("But there was no target..."))
+      @battle.pbDisplay(_INTL("但是没有目标……"))
       user.lastMoveFailed = true
     else   # We have targets, or move doesn't use targets
       # Reset whole damage state, perform various success checks (not accuracy)
@@ -411,7 +411,7 @@ class Battle::Battler
     # Self-thawing due to the move
     if @status == :FROZEN && move.thawsUser?
       pbCureStatus(false)
-      @battle.pbDisplay(_INTL("{1} melted the ice!", pbThis))
+      @battle.pbDisplay(_INTL("{1}的冰冻被融化了！", pbThis))
     end
   end
 
@@ -419,9 +419,9 @@ class Battle::Battler
     # Stance Change
     if isSpecies?(:AEGISLASH) && self.ability == :STANCECHANGE
       if move.damagingMove?
-        pbChangeForm(1, _INTL("{1} changed to Blade Forme!", pbThis))
+        pbChangeForm(1, _INTL("{1}变形成了刀剑形态！", pbThis))
       elsif move.id == :KINGSSHIELD
-        pbChangeForm(0, _INTL("{1} changed to Shield Forme!", pbThis))
+        pbChangeForm(0, _INTL("{1}变形成了盾牌形态！", pbThis))
       end
     end
   end
@@ -431,7 +431,7 @@ class Battle::Battler
     user = pbChangeUser(choice, move, self)   # self is the default user
     if move.snatched
       @lastMoveFailed = true   # Intentionally applies to self, not user
-      @battle.pbDisplay(_INTL("{1} snatched {2} move!", user.pbThis, pbOfThis(true)))
+      @battle.pbDisplay(_INTL("{1}抢夺了{2}招式！", user.pbThis, pbOfThis(true)))
     end
     return user
   end
@@ -459,12 +459,12 @@ class Battle::Battler
       case @battle.pbWeather
       when :HeavyRain
         if move.calcType == :FIRE
-          @battle.pbDisplay(_INTL("The Fire-type attack fizzled out in the heavy rain!"))
+          @battle.pbDisplay(_INTL("受暴雨的影响，火属性的攻击被扑灭了！"))
           return true
         end
       when :HarshSun
         if move.calcType == :WATER
-          @battle.pbDisplay(_INTL("The Water-type attack evaporated in the harsh sunlight!"))
+          @battle.pbDisplay(_INTL("受强日照的影响，水属性的攻击被蒸发了！"))
           return true
         end
       end
@@ -505,7 +505,7 @@ class Battle::Battler
       next if !b || !b.abilityActive?
       if Battle::AbilityEffects.triggerMoveBlocking(b.ability, b, user, targets, move, @battle)
         @battle.pbShowAbilitySplash(b)
-        @battle.pbDisplay(_INTL("{1} cannot use {2}!", user.pbThis, move.name))
+        @battle.pbDisplay(_INTL("{1}无法使出{2}！", user.pbThis, move.name))
         @battle.pbHideAbilitySplash(b)
         return true
       end
@@ -568,9 +568,9 @@ class Battle::Battler
       end
     end
     if actual_hits == 1
-      @battle.pbDisplay(_INTL("Hit 1 time!"))
+      @battle.pbDisplay(_INTL("命中了1次！"))
     elsif actual_hits > 1
-      @battle.pbDisplay(_INTL("Hit {1} times!", actual_hits))
+      @battle.pbDisplay(_INTL("命中了{1}次！", actual_hits))
     end
   end
 
@@ -580,7 +580,7 @@ class Battle::Battler
       next if b.fainted?
       next if !b.damageState.magicCoat && !b.damageState.magicBounce
       @battle.pbShowAbilitySplash(b) if b.damageState.magicBounce
-      @battle.pbDisplay(_INTL("{1} bounced the {2} back!", b.pbThis, move.name))
+      @battle.pbDisplay(_INTL("{1}将{2}反射了回去！", b.pbThis, move.name))
       @battle.pbHideAbilitySplash(b) if b.damageState.magicBounce
       newChoice = choice.clone
       newChoice[3] = user.index
@@ -609,7 +609,7 @@ class Battle::Battler
       if !mc.fainted?
         user.lastMoveFailed = true
         @battle.pbShowAbilitySplash(mc) if move.magicBounceIndex >= 0
-        @battle.pbDisplay(_INTL("{1} bounced the {2} back!", mc.pbThis, move.name))
+        @battle.pbDisplay(_INTL("{1}将{2}反射了回去！", mc.pbThis, move.name))
         @battle.pbHideAbilitySplash(mc) if move.magicBounceIndex >= 0
         success = false
         if !move.pbMoveFailed?(mc, [])
