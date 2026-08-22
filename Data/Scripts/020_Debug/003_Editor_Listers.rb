@@ -268,9 +268,9 @@ class MetadataLister
 
   def commands
     @commands.clear
-    @commands.push(_INTL("[GLOBAL METADATA]"))
+    @commands.push(_INTL("[全局元数据]"))
     @player_ids.each { |id| @commands.push(_INTL("玩家{1}", id)) }
-    @commands.push(_INTL("[ADD NEW PLAYER]")) if @new_player
+    @commands.push(_INTL("[添加新玩家]")) if @new_player
     return @commands
   end
 
@@ -321,7 +321,7 @@ class MapLister
 
   def commands
     @commands.clear
-    @commands.push(_INTL("[GLOBAL]")) if @addGlobalOffset == 1
+    @commands.push(_INTL("[全局]")) if @addGlobalOffset == 1
     @maps.length.times do |i|
       @commands.push(sprintf("%s%03d %s", ("  " * @maps[i][2]), @maps[i][0], @maps[i][1]))
     end
@@ -374,7 +374,7 @@ class SpeciesLister
     end
     cmds.sort! { |a, b| a[2].downcase <=> b[2].downcase }
     if @includeNew
-      @commands.push(_INTL("[NEW SPECIES]"))
+      @commands.push(_INTL("[新宝可梦]"))
       @ids.push(true)
     end
     cmds.each do |i|
@@ -434,7 +434,7 @@ class ItemLister
     end
     cmds.sort! { |a, b| a[2].downcase <=> b[2].downcase }
     if @includeNew
-      @commands.push(_INTL("[NEW ITEM]"))
+      @commands.push(_INTL("[新道具]"))
       @ids.push(true)
     end
     cmds.each do |i|
@@ -495,7 +495,7 @@ class TrainerTypeLister
     end
     cmds.sort! { |a, b| a[2] == b[2] ? a[0] <=> b[0] : a[2].downcase <=> b[2].downcase }
     if @includeNew
-      @commands.push(_INTL("[NEW TRAINER TYPE]"))
+      @commands.push(_INTL("[新训练家类型]"))
       @ids.push(true)
     end
     cmds.each do |t|
@@ -586,7 +586,7 @@ class TrainerBattleLister
       end
     end
     if @includeNew
-      @commands.push(_INTL("[NEW TRAINER BATTLE]"))
+      @commands.push(_INTL("[新训练家对战]"))
       @ids.push(true)
     end
     cmds.each do |t|

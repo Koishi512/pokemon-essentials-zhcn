@@ -3,7 +3,7 @@
 #===============================================================================
 
 MenuHandlers.add(:pokemon_debug_menu, :hp_status_menu, {
-  "name"   => _INTL("生命值/状态..."),
+  "name"   => _INTL("HP/异常状态……"),
   "parent" => :main
 })
 
@@ -38,7 +38,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_status, {
       screen.show_message(_INTL("{1} is fainted, can't change status.", pkmn.name))
       next false
     end
-    commands = {:NONE => _INTL("[Cure]")}
+    commands = {:NONE => _INTL("[治愈]")}
     GameData::Status.each do |s|
       commands[s.id] = _INTL("设置{1}", s.name) if s.id != :NONE
     end
@@ -146,7 +146,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_pokerus, {
 #===============================================================================
 
 MenuHandlers.add(:pokemon_debug_menu, :level_stats, {
-  "name"   => _INTL("等级/统计数据..."),
+  "name"   => _INTL("等级/特性值……"),
   "parent" => :main
 })
 
@@ -313,13 +313,13 @@ MenuHandlers.add(:pokemon_debug_menu, :hidden_values, {
 })
 
 MenuHandlers.add(:pokemon_debug_menu, :set_happiness, {
-  "name"   => _INTL("设定幸福"),
+  "name"   => _INTL("设置亲密度"),
   "parent" => :level_stats,
   "effect" => proc { |pkmn, party_index, setting_up_battle, screen|
     params = ChooseNumberParams.new
     params.setRange(0, 255)
     params.setDefaultValue(pkmn.happiness)
-    new_val = screen.choose_number("\\se[]" + _INTL("设置宝可梦的幸福度（最大{1}）。", params.maxNumber), params)
+    new_val = screen.choose_number("\\se[]" + _INTL("设置宝可梦的亲密度（最大为 {1}）。", params.maxNumber), params)
     if new_val != pkmn.happiness
       pkmn.happiness = new_val
       screen.refresh
@@ -494,7 +494,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_move_pp, {
           commands[i] = _INTL("{1} (PP: {2}/{3})", move.name, move.pp, move.total_pp)
         end
       end
-      commands[:restore_pp] = _INTL("[Restore all PP]")
+      commands[:restore_pp] = _INTL("[恢复全部 PP]")
       cmd ||= commands.keys.first
       cmd = screen.show_menu(_INTL("改变哪个动作的PP？"), commands, commands.keys.index(cmd))
       break if cmd.nil?
@@ -552,16 +552,16 @@ MenuHandlers.add(:pokemon_debug_menu, :set_initial_moves, {
 #===============================================================================
 
 MenuHandlers.add(:pokemon_debug_menu, :set_item, {
-  "name"   => _INTL("设定项目"),
+  "name"   => _INTL("设置道具"),
   "parent" => :main,
   "effect" => proc { |pkmn, party_index, setting_up_battle, screen|
     commands = {
-      :change_item => _INTL("变更项目"),
-      :delete_item => _INTL("删除项目")
+      :change_item => _INTL("更换道具"),
+      :delete_item => _INTL("移除道具")
     }
     cmd = commands.keys.first
     loop do
-      msg = (pkmn.hasItem?) ? _INTL("项目是{1}。", pkmn.item.name) : _INTL("没有项目。")
+      msg = (pkmn.hasItem?) ? _INTL("道具为 {1}。", pkmn.item.name) : _INTL("未携带道具。")
       cmd = screen.show_menu(msg, commands, commands.keys.index(cmd))
       break if cmd.nil?
       case cmd
@@ -587,20 +587,20 @@ MenuHandlers.add(:pokemon_debug_menu, :set_item, {
 })
 
 MenuHandlers.add(:pokemon_debug_menu, :set_ability, {
-  "name"   => _INTL("设置能力"),
+  "name"   => _INTL("设置特性"),
   "parent" => :main,
   "effect" => proc { |pkmn, party_index, setting_up_battle, screen|
     commands = {
-      :set_ability_index => _INTL("设置可能的能力"),
-      :give_any_ability  => _INTL("设置任意能力"),
+      :set_ability_index => _INTL("选择已有特性"),
+      :give_any_ability  => _INTL("设置任意特性"),
       :reset_ability     => _INTL("重置")
     }
     cmd = commands.keys.first
     loop do
       if pkmn.ability
-        msg = _INTL("能力为 {1}（索引 {2}）。", pkmn.ability.name, pkmn.ability_index)
+        msg = _INTL("特性为 {1}（编号 {2}）。", pkmn.ability.name, pkmn.ability_index)
       else
-        msg = _INTL("无能力（索引 {1}）。", pkmn.ability_index)
+        msg = _INTL("无特性（编号 {1}）。", pkmn.ability_index)
       end
       cmd = screen.show_menu(msg, commands, commands.keys.index(cmd))
       break if cmd.nil?
@@ -614,7 +614,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_ability, {
           abil_cmd = abil[1] if pkmn.ability_id == abil[0]
         end
         abil_cmd ||= ability_commands.keys.first
-        abil_cmd = screen.show_menu(_INTL("选择一种能力。"), ability_commands, ability_commands.keys.index(abil_cmd))
+        abil_cmd = screen.show_menu(_INTL("选择一种特性。"), ability_commands, ability_commands.keys.index(abil_cmd))
         next if abil_cmd.nil?
         pkmn.ability_index = abil_cmd
         pkmn.ability = nil
@@ -661,7 +661,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_nature, {
       end
       commands[nature.id] = _INTL("{1} (+{2}, -{3})", nature.real_name, plus_text, minus_text)
     end
-    commands[:reset_nature] = _INTL("[Reset]")
+    commands[:reset_nature] = _INTL("[重置]")
     cmd = (commands.keys.include?(pkmn.nature_id)) ? pkmn.nature_id : commands.keys.first
     loop do
       cmd = screen.show_menu(_INTL("性格为{1}。", pkmn.nature.name), commands, commands.keys.index(cmd))
@@ -1032,24 +1032,24 @@ MenuHandlers.add(:pokemon_debug_menu, :set_egg, {
 })
 
 MenuHandlers.add(:pokemon_debug_menu, :shadow_pkmn, {
-  "name"   => _INTL("暗影宝可梦……"),
+  "name"   => _INTL("黑暗宝可梦……"),
   "parent" => :main,
   "effect" => proc { |pkmn, party_index, setting_up_battle, screen|
     commands = {
-      :make_shadow     => _INTL("变为暗影宝可梦"),
+      :make_shadow     => _INTL("变为黑暗宝可梦"),
       :set_heart_gauge => _INTL("设置心灵计量槽"),
       :purify          => _INTL("净化")
     }
     cmd = commands.keys.first
     loop do
-      msg = [_INTL("不是暗影宝可梦。"),
+      msg = [_INTL("不是黑暗宝可梦。"),
              _INTL("心灵计量槽为 {1}（阶段 {2}）。", pkmn.heart_gauge, pkmn.heartStage)][pkmn.shadowPokemon? ? 1 : 0]
       cmd = screen.show_menu(msg, commands, commands.keys.index(cmd))
       break if cmd.nil?
       case cmd
       when :make_shadow
         if pkmn.shadowPokemon?
-          screen.show_message(_INTL("{1} is already a Shadow Pokémon.", pkmn.name))
+          screen.show_message(_INTL("{1} 已经是黑暗宝可梦。", pkmn.name))
         else
           pkmn.makeShadow
           screen.refresh
@@ -1065,14 +1065,14 @@ MenuHandlers.add(:pokemon_debug_menu, :shadow_pkmn, {
             pkmn.check_ready_to_purify
           end
         else
-          screen.show_message(_INTL("{1} is not a Shadow Pokémon.", pkmn.name))
+          screen.show_message(_INTL("{1} 不是黑暗宝可梦。", pkmn.name))
         end
       when :purify
         if pkmn.shadowPokemon?
           pkmn.adjustHeart(-pkmn.heart_gauge)
           pbPurify(pkmn, screen)
         else
-          screen.show_message(_INTL("{1} is not a Shadow Pokémon.", pkmn.name))
+          screen.show_message(_INTL("{1} 不是黑暗宝可梦。", pkmn.name))
         end
       end
     end

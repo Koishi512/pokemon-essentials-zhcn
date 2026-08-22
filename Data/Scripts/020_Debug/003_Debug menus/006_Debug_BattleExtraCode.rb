@@ -248,10 +248,10 @@ class SpriteWindow_DebugBattleFieldEffects < Window_DrawableCommand
         battler_name = "-" if nil_or_empty?(battler_name)
         variable_text = sprintf("[%d] %s", variable, battler_name)
       else
-        variable_text = _INTL("[None]")
+        variable_text = _INTL("[无]")
       end
     when nil   # Move, item
-      variable_text = _INTL("[None]") if !variable
+      variable_text = _INTL("[无]") if !variable
     end
     # Draw text
     total_width = rect.width
@@ -304,7 +304,7 @@ class Battle::DebugSetEffects
   end
 
   def choose_battler(default)
-    commands = [_INTL("[None]")]
+    commands = [_INTL("[无]")]
     cmds = [-1]
     cmd = 0
     @battle.battlers.each_with_index do |battler, i|

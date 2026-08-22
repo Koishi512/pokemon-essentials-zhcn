@@ -21,7 +21,7 @@ class ButtonEventScene < EventScene
     addImageForScreen(1, 16, 96, "Graphics/UI/Controls help/help_arrows")
     addImageForScreen(1, 48, 258, "Graphics/UI/Controls help/help_use")
     addLabelForScreen(1, 128, 68, 352, _INTL("按方向键移动主角。你也可以用它们来选择条目和导航菜单。"))
-    addLabelForScreen(1, 128, 228, 352, _INTL("用于确认选择、与人物和物品互动以及在文本中移动。（默认: 空格键）"))
+    addLabelForScreen(1, 128, 228, 352, _INTL("用于确认选择、与人物和道具互动以及在文本中移动。（默认: 空格键）"))
 
     addImageForScreen(2, 48, 114, "Graphics/UI/Controls help/help_back")
     addImageForScreen(2, 48, 258, "Graphics/UI/Controls help/help_action")

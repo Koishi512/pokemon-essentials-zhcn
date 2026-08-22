@@ -46,7 +46,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_status, {
       next
     end
     cmd = 0
-    commands = [_INTL("[Cure]")]
+    commands = [_INTL("[治愈]")]
     ids = [:NONE]
     GameData::Status.each do |s|
       next if s.id == :NONE
@@ -159,7 +159,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_stages, {
         commands.push(command_name)
         stat_ids.push(stat.id)
       end
-      commands.push(_INTL("[Reset all]"))
+      commands.push(_INTL("[全部重置]"))
       cmd = pbMessage("\\ts[]" + _INTL("选择要更改的统计阶段。"), commands, -1, nil, cmd)
       break if cmd < 0
       if cmd < stat_ids.length   # Set a stat
@@ -207,7 +207,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_values, {
         command_name = stat.name + ": " + stat_vals[stat_ids.index(stat.id)].to_s
         commands.push(command_name)
       end
-      commands.push(_INTL("[Reset all]"))
+      commands.push(_INTL("[全部重置]"))
       cmd = pbMessage("\\ts[]" + _INTL("选择要更改的统计值。"), commands, -1, nil, cmd)
       break if cmd < 0
       if cmd < stat_ids.length   # Set a stat
@@ -397,14 +397,14 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :hidden_values, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_happiness, {
-  "name"   => _INTL("设定幸福"),
+  "name"   => _INTL("设置亲密度"),
   "parent" => :level_stats,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     params = ChooseNumberParams.new
     params.setRange(0, 255)
     params.setDefaultValue(pkmn.happiness)
-    h = pbMessageChooseNumber("\\ts[]" + _INTL("设置宝可梦的幸福度（最多 255）。"), params)
+    h = pbMessageChooseNumber("\\ts[]" + _INTL("设置宝可梦的亲密度（最多为 255）。"), params)
     pkmn.happiness = h if h != pkmn.happiness
   }
 })
@@ -434,7 +434,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_types, {
       commands.push(_INTL("额外类型：{1}", extra_type_name))
       types.push(extra_type)
       msg = _INTL("有效类型：{1}", battler.pbTypes(true).map { |t| GameData::Type.get(t).name }.join("/"))
-      msg += "\n" + _INTL("(Change a type to itself to remove it.)")
+      msg += "\n" + _INTL("（将属性改为自身即可移除。）")
       cmd = pbMessage("\\ts[]" + msg, commands, -1, nil, cmd)
       break if cmd < 0
       old_type = types[cmd]
@@ -608,17 +608,17 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :reset_moves, {
 #===============================================================================
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_item, {
-  "name"   => _INTL("设定项目"),
+  "name"   => _INTL("设置道具"),
   "parent" => :main,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     cmd = 0
     commands = [
-      _INTL("变更项目"),
-      _INTL("删除项目")
+      _INTL("更换道具"),
+      _INTL("移除道具")
     ]
     loop do
-      msg = (pkmn.hasItem?) ? _INTL("项目是{1}。", pkmn.item.name) : _INTL("没有项目。")
+      msg = (pkmn.hasItem?) ? _INTL("道具为 {1}。", pkmn.item.name) : _INTL("未携带道具。")
       cmd = pbMessage("\\ts[]" + msg, commands, -1, nil, cmd)
       break if cmd < 0
       case cmd
@@ -643,21 +643,21 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_item, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_ability, {
-  "name"   => _INTL("设置能力"),
+  "name"   => _INTL("设置特性"),
   "parent" => :main,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     cmd = 0
     commands = []
-    commands.push(_INTL("设置宝可梦的能力"))
-    commands.push(_INTL("为战士设定能力")) if battler
+    commands.push(_INTL("设置宝可梦的特性"))
+    commands.push(_INTL("为战士设定特性")) if battler
     commands.push(_INTL("重置"))
     loop do
       if battler
-        msg = _INTL("战斗者的能力为{1}。宝可梦的能力是{2}。",
+        msg = _INTL("战斗者的特性为{1}。宝可梦的特性是{2}。",
                     battler.abilityName, pkmn.ability.name)
       else
-        msg = _INTL("宝可梦的能力是{1}。", pkmn.ability.name)
+        msg = _INTL("宝可梦的特性是{1}。", pkmn.ability.name)
       end
       cmd = pbMessage("\\ts[]" + msg, commands, -1, nil, cmd)
       break if cmd < 0
@@ -713,7 +713,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_nature, {
       end
       ids.push(nature.id)
     end
-    commands.push(_INTL("[Reset]"))
+    commands.push(_INTL("[重置]"))
     cmd = ids.index(pkmn.nature_id || ids[0])
     loop do
       msg = _INTL("性格为{1}。", pkmn.nature.name)
@@ -842,16 +842,16 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_shininess, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :shadow_pokemon, {
-  "name"   => _INTL("暗影宝可梦"),
+  "name"   => _INTL("黑暗宝可梦"),
   "parent" => :main,
   "usage"  => :battler,
   "effect" => proc { |pkmn, battler, battle|
     if battler.shadowPokemon?
       loop do
         if battler.inHyperMode?
-          msg = _INTL("影子宝可梦（超级模式）")
+          msg = _INTL("黑暗宝可梦（超级模式）")
         else
-          msg = _INTL("影子宝可梦（不在超级模式下）")
+          msg = _INTL("黑暗宝可梦（未处于超级模式）")
         end
         cmd = pbMessage("\\ts[]" + msg, [_INTL("切换超级模式"), _INTL("取消")], -1, nil, 0)
         break if cmd != 0
@@ -864,7 +864,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :shadow_pokemon, {
         end
       end
     else
-      pbMessage("\\ts[]" + _INTL("宝可梦不是暗影宝可梦。"))
+      pbMessage("\\ts[]" + _INTL("宝可梦不是黑暗宝可梦。"))
     end
   }
 })

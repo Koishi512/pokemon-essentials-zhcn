@@ -144,7 +144,7 @@ MenuHandlers.add(:battle_debug_menu, :trainers, {
 MenuHandlers.add(:battle_debug_menu, :trainer_items, {
   "name"        => _INTL("NPC 训练家道具"),
   "parent"      => :trainers,
-  "description" => _INTL("查看和更改每个 NPC 训练师有权访问的项目。"),
+  "description" => _INTL("查看和修改各个 NPC 训练家可使用的道具。"),
   "effect"      => proc { |battle|
     cmd = 0
     loop do
@@ -170,7 +170,7 @@ MenuHandlers.add(:battle_debug_menu, :trainer_items, {
         end
       end
       if commands.length == 0
-        pbMessage("\\ts[]" + _INTL("这场战斗中没有NPC训练师。"))
+        pbMessage("\\ts[]" + _INTL("这场战斗中没有 NPC 训练家。"))
         break
       end
       # Choose a trainer
@@ -196,7 +196,7 @@ MenuHandlers.add(:battle_debug_menu, :trainer_items, {
 MenuHandlers.add(:battle_debug_menu, :mega_evolution, {
   "name"        => _INTL("超级进化"),
   "parent"      => :trainers,
-  "description" => _INTL("是否允许每个训练师进行超级进化。"),
+  "description" => _INTL("设置各个训练家是否可进行超级进化。"),
   "effect"      => proc { |battle|
     cmd = 0
     loop do
@@ -215,7 +215,7 @@ MenuHandlers.add(:battle_debug_menu, :mega_evolution, {
           cmds.push([side, i])
         end
       end
-      cmd = pbMessage("\\ts[]" + _INTL("选择训练师来切换他们是否可以超级进化。"),
+      cmd = pbMessage("\\ts[]" + _INTL("选择训练家以切换其是否可进行超级进化。"),
                       commands, -1, nil, cmd)
       break if cmd < 0
       real_cmd = cmds[cmd]

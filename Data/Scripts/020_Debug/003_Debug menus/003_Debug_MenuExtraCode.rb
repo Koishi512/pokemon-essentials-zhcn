@@ -287,7 +287,7 @@ def pbDebugDayCare
       end
       compat = $PokemonGlobal.day_care.get_compatibility
       if day_care.egg_generated
-        commands.push(_INTL("[Egg available]"))
+        commands.push(_INTL("[可获得蛋]"))
       elsif compat > 0
         commands.push(_INTL("[Can produce egg]"))
       else
@@ -445,7 +445,7 @@ class SpriteWindow_DebugRoamers < Window_DrawableCommand
       self.shadowtext(_INTL("[All roam to new locations]"), rect.x, rect.y, nameWidth, rect.height)
     elsif index == self.itemCount - 1
       # Advance roaming
-      self.shadowtext(_INTL("[Clear all current roamer locations]"), rect.x, rect.y, nameWidth, rect.height)
+      self.shadowtext(_INTL("[清除所有当前漫游者位置]"), rect.x, rect.y, nameWidth, rect.height)
     else
       pkmn = Settings::ROAMING_SPECIES[index]
       name = GameData::Species.get(pkmn[:species]).name + " (Lv. #{pkmn[:level]})"

@@ -365,10 +365,10 @@ module Battle::DebugMixin
     ret += _INTL("统计阶段：{1}", (stages.empty?) ? "-" : stages.join(", "))
     ret += "\n"
     # Ability
-    ret += _INTL("能力：{1}", (battler.ability) ? battler.abilityName : "-")
+    ret += _INTL("特性：{1}", (battler.ability) ? battler.abilityName : "-")
     ret += "\n"
     # Held item
-    ret += _INTL("项目：{1}", (battler.item) ? battler.itemName : "-")
+    ret += _INTL("道具：{1}", (battler.item) ? battler.itemName : "-")
     return ret
   end
 
@@ -400,10 +400,10 @@ module Battle::DebugMixin
     end
     ret += "\n"
     # Ability
-    ret += _INTL("能力：{1}", pkmn.ability&.name || "-")
+    ret += _INTL("特性：{1}", pkmn.ability&.name || "-")
     ret += "\n"
     # Held item
-    ret += _INTL("项目：{1}", pkmn.item&.name || "-")
+    ret += _INTL("道具：{1}", pkmn.item&.name || "-")
     return ret
   end
 

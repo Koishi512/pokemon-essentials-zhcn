@@ -18,7 +18,7 @@ def pbEncountersEditor
     if need_refresh
       commands.clear
       maps.clear
-      commands.push(_INTL("[Add new encounter set]"))
+      commands.push(_INTL("[添加新遭遇组]"))
       GameData::Encounter.each do |enc_data|
         name = (map_infos[enc_data.map]) ? map_infos[enc_data.map].name : nil
         if enc_data.version > 0 && name
@@ -152,7 +152,7 @@ def pbEncounterMapVersionEditor(enc_data)
         commands.push(_INTL("{1} (x{2})", enc_type.to_s, slots.length))
         enc_types.push(enc_type)
       end
-      commands.push(_INTL("[Add new encounter type]"))
+      commands.push(_INTL("[添加新遭遇类型]"))
       need_refresh = false
     end
     ret = pbCommands2(list, commands, -1, ret)
@@ -274,7 +274,7 @@ def pbEncounterTypeEditor(enc_data, enc_type)
           commands.push(EncounterSlotProperty.format(slot))
         end
       end
-      commands.push(_INTL("[Add new slot]"))
+      commands.push(_INTL("[添加新槽位]"))
       need_refresh = false
     end
     ret = pbCommands2(list, commands, -1, ret)
@@ -348,11 +348,11 @@ def pbTrainerTypeEditor
     if tr_type
       case button
       when Input::ACTION
-        if tr_type.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("删除该训练师类型吗？"))
+        if tr_type.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("删除该训练家类型吗？"))
           GameData::TrainerType::DATA.delete(tr_type)
           GameData::TrainerType.save
           pbConvertTrainerData
-          pbMessage(_INTL("训练师类型被删除。"))
+          pbMessage(_INTL("训练家类型已删除。"))
         end
       when Input::USE
         if tr_type.is_a?(Symbol)
@@ -419,13 +419,13 @@ def pbTrainerTypeEditorNew(default_name)
     return nil
   end
   # Choose a gender
-  gender = pbMessage(_INTL("训练师是男是女还是未知？"),
+  gender = pbMessage(_INTL("训练家是男性、女性还是未知？"),
                      [_INTL("男"), _INTL("女"), _INTL("未知")], 0)
   # Choose a base money value
   params = ChooseNumberParams.new
   params.setRange(0, 255)
   params.setDefaultValue(30)
-  base_money = pbMessageChooseNumber(_INTL("设置击败训练师后每升一级所赢得的金钱。"), params)
+  base_money = pbMessageChooseNumber(_INTL("设置击败训练家时每级可获得的金钱。"), params)
   # Construct trainer type hash
   tr_type_hash = {
     :id         => id.to_sym,
@@ -437,8 +437,8 @@ def pbTrainerTypeEditorNew(default_name)
   GameData::TrainerType.register(tr_type_hash)
   GameData::TrainerType.save
   pbConvertTrainerData
-  pbMessage(_INTL("已创建训练器类型 {1}（ID：{2}）。", name, id.to_s))
-  pbMessage(_INTL("将训练师的图形 ({1}.png) 放入 Graphics/Trainers 中，否则它将是空白的。", id.to_s))
+  pbMessage(_INTL("已创建训练家类型 {1}（ID：{2}）。", name, id.to_s))
+  pbMessage(_INTL("请将训练家图像（{1}.png）放入 Graphics/Trainers，否则将显示为空白。", id.to_s))
   return id.to_sym
 end
 
@@ -453,14 +453,14 @@ module TrainerBattleProperty
     properties = [
       [_INTL("训练家类型"), TrainerTypeProperty,   _INTL("此训练家的训练家类型名称。")],
       [_INTL("训练家名称"), StringProperty,        _INTL("此训练家的名称。")],
-      [_INTL("版本"),      LimitProperty.new(9999), _INTL("用于区分具有相同名称和训练师类型的训练师的编号。")],
+      [_INTL("版本"),      LimitProperty.new(9999), _INTL("用于区分名称和训练家类型相同的训练家的编号。")],
       [_INTL("战败文本"),    StringProperty,          _INTL("训练家被击败时在战斗中显示的消息。")]
     ]
     Settings::MAX_PARTY_SIZE.times do |i|
       properties.push([_INTL("宝可梦 {1}", i + 1), TrainerPokemonProperty, _INTL("训练家拥有的宝可梦。")])
     end
     NUM_ITEMS.times do |i|
-      properties.push([_INTL("项目{1}", i + 1), ItemProperty, _INTL("训练师在战斗中使用的物品。")])
+      properties.push([_INTL("道具 {1}", i + 1), ItemProperty, _INTL("训练家在战斗中使用的道具。")])
     end
     return nil if !pbPropertyList(settingname, oldsetting, properties, true)
     oldsetting = nil if !oldsetting[0]
@@ -477,11 +477,11 @@ end
 #===============================================================================
 def pbTrainerBattleEditor
   modified = false
-  pbListScreenBlock(_INTL("训练师对战"), TrainerBattleLister.new(0, true)) do |button, trainer_id|
+  pbListScreenBlock(_INTL("训练家对战"), TrainerBattleLister.new(0, true)) do |button, trainer_id|
     if trainer_id
       case button
       when Input::ACTION
-        if trainer_id.is_a?(Array) && pbConfirmMessageSerious(_INTL("删除这场训练师战斗？"))
+        if trainer_id.is_a?(Array) && pbConfirmMessageSerious(_INTL("删除这场训练家对战吗？"))
           tr_data = GameData::Trainer::DATA[trainer_id]
           GameData::Trainer::DATA.delete(trainer_id)
           modified = true
@@ -607,22 +607,22 @@ module TrainerPokemonProperty
     # NOTE: :species must be listed before :moves.
     return [
       [:species,         _INTL("物种"),       SpeciesProperty,                         _INTL("宝可梦的种类。")],
-      [:level,           _INTL("等级"),         NonzeroLimitProperty.new(max_level),     _INTL("宝可梦的等级 (1-{1})。", max_level)],
-      [:real_name,       _INTL("名称"),          StringProperty,                          _INTL("宝可梦的昵称。")],
-      [:form,            _INTL("形式"),          LimitProperty2.new(999),                 _INTL("宝可梦的形态。")],
-      [:gender,          _INTL("性别"),        GenderProperty,                          _INTL("宝可梦的性别。")],
-      [:shininess,       _INTL("闪亮的"),         BooleanProperty2,                        _INTL("如果设置为 true，则宝可梦是不同颜色的宝可梦。")],
-      [:super_shininess, _INTL("超级闪亮"),    BooleanProperty2,                        _INTL("宝可梦是否超级闪亮（闪亮并带有特殊的闪亮动画）。")],
-      [:shadowness,      _INTL("影子"),        BooleanProperty2,                        _INTL("如果设置为 true，则宝可梦是暗影宝可梦。")],
-      [:moves,           _INTL("招式"),          MovePropertyForSpecies.new,              _INTL("宝可梦已学会的招式。将所有招式留空（使用 Z 键删除）即可使用野生招式组。")],
-      [:ability,         _INTL("能力"),       AbilityProperty,                         _INTL("宝可梦的能力。覆盖能力指数。")],
-      [:ability_index,   _INTL("能力指数"), LimitProperty2.new(99),                  _INTL("能力指数。 0=第一个能力，1=第二个能力，2+=隐藏能力。")],
-      [:item,            _INTL("持有物品"),     ItemProperty,                            _INTL("宝可梦持有的物品。")],
-      [:nature,          _INTL("性格"),        GameDataProperty.new(:Nature),           _INTL("宝可梦的性格。")],
-      [:iv,              _INTL("个体值"),             IVsProperty.new(Pokemon::IV_STAT_LIMIT), _INTL("宝可梦各项能力值的个体值。")],
-      [:ev,              _INTL("努力值"),             EVsProperty.new(Pokemon::EV_STAT_LIMIT), _INTL("宝可梦各项能力值的努力值。")],
-      [:happiness,       _INTL("亲密度"),   LimitProperty2.new(255),                 _INTL("宝可梦的亲密度（0-255）。")],
-      [:poke_ball,       _INTL("精灵球"),     BallProperty.new,                        _INTL("保存宝可梦的宝可梦球的类型。")]
+      [:level,           _INTL("等级"),       NonzeroLimitProperty.new(max_level),     _INTL("宝可梦的等级 (1-{1})。", max_level)],
+      [:real_name,       _INTL("名称"),       StringProperty,                          _INTL("宝可梦的昵称。")],
+      [:form,            _INTL("形式"),       LimitProperty2.new(999),                 _INTL("宝可梦的形态。")],
+      [:gender,          _INTL("性别"),       GenderProperty,                          _INTL("宝可梦的性别。")],
+      [:shininess,       _INTL("异色"),       BooleanProperty2,                        _INTL("如果设置为 true，则宝可梦是异色宝可梦。")],
+      [:super_shininess, _INTL("超异色"),     BooleanProperty2,                        _INTL("宝可梦是否为超异色（异色并带有特殊的异色动画）。")],
+      [:shadowness,      _INTL("暗影"),       BooleanProperty2,                        _INTL("若设为 true，该宝可梦为黑暗宝可梦。")],
+      [:moves,           _INTL("招式"),       MovePropertyForSpecies.new,              _INTL("宝可梦已学会的招式。将所有招式留空（使用 Z 键删除）即可使用野生招式组。")],
+      [:ability,         _INTL("特性"),       AbilityProperty,                         _INTL("宝可梦的特性。会覆盖特性编号。")],
+      [:ability_index,   _INTL("特性编号"),   LimitProperty2.new(99),                  _INTL("特性编号。0=第一个特性，1=第二个特性，2 及以上=隐藏特性。")],
+      [:item,            _INTL("持有道具"),   ItemProperty,                            _INTL("宝可梦持有的道具。")],
+      [:nature,          _INTL("性格"),       GameDataProperty.new(:Nature),           _INTL("宝可梦的性格。")],
+      [:iv,              _INTL("个体值"),     IVsProperty.new(Pokemon::IV_STAT_LIMIT), _INTL("宝可梦各项特性值的个体值。")],
+      [:ev,              _INTL("努力值"),     EVsProperty.new(Pokemon::EV_STAT_LIMIT), _INTL("宝可梦各项特性值的努力值。")],
+      [:happiness,       _INTL("亲密度"),     LimitProperty2.new(255),                 _INTL("宝可梦的亲密度（0-255）。")],
+      [:poke_ball,       _INTL("精灵球"),     BallProperty.new,                        _INTL("保存宝可梦的精灵球的类型。")]
     ]
   end
 
@@ -812,15 +812,15 @@ end
 #===============================================================================
 def pbItemEditor
   properties = GameData::Item.editor_properties
-  pbListScreenBlock(_INTL("项目"), ItemLister.new(0, true)) do |button, item|
+  pbListScreenBlock(_INTL("道具"), ItemLister.new(0, true)) do |button, item|
     if item
       case button
       when Input::ACTION
-        if item.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("删除此项目？"))
+        if item.is_a?(Symbol) && pbConfirmMessageSerious(_INTL("删除此道具吗？"))
           GameData::Item::DATA.delete(item)
           GameData::Item.save
           Compiler.write_items
-          pbMessage(_INTL("该项目已被删除。"))
+          pbMessage(_INTL("该道具已删除。"))
         end
       when Input::USE
         if item.is_a?(Symbol)
@@ -883,7 +883,7 @@ def pbItemEditorNew(default_name)
     end
   end
   if GameData::Item.exists?(id)
-    pbMessage(_INTL("创建项目失败。选择不同的名称。"))
+    pbMessage(_INTL("创建道具失败。请选择其他名称。"))
     return
   end
   # Choose a pocket
@@ -907,8 +907,8 @@ def pbItemEditorNew(default_name)
   GameData::Item.register(item_hash)
   GameData::Item.save
   Compiler.write_items
-  pbMessage(_INTL("已创建项目 {1}（ID：{2}）。", name, id.to_s))
-  pbMessage(_INTL("将项目的图形 ({1}.png) 放入 Graphics/Items 中，否则将为空白。", id.to_s))
+  pbMessage(_INTL("已创建道具 {1}（ID：{2}）。", name, id.to_s))
+  pbMessage(_INTL("请将道具图像（{1}.png）放入 Graphics/Items，否则将显示为空白。", id.to_s))
 end
 
 #===============================================================================
@@ -1089,7 +1089,7 @@ def pbRegionalDexEditorMain
   cmd_window.viewport = viewport
   cmd_window.z        = 2
   title = Window_UnformattedTextPokemon.newWithSize(
-    _INTL("区域 Dex 编辑器"), Graphics.width / 2, 0, Graphics.width / 2, 64, viewport
+    _INTL("区域图鉴编辑器"), Graphics.width / 2, 0, Graphics.width / 2, 64, viewport
   )
   title.z = 2
   info = Window_AdvancedTextPokemon.newWithSize(
@@ -1106,7 +1106,7 @@ def pbRegionalDexEditorMain
   loop do
     # Populate commands
     if refresh_list
-      commands = [_INTL("[ADD DEX]")]
+      commands = [_INTL("[添加图鉴]")]
       dex_lists.each_with_index do |list, i|
         commands.push(_INTL("图鉴 {1}（数量 {2}）", i + 1, list.length))
       end
@@ -1128,9 +1128,9 @@ def pbRegionalDexEditorMain
       end
     when 0   # Clicked on a command/Dex
       if cmd[1] == 0   # Add new Dex
-        case pbMessage(_INTL("填写这个新的Dex？"),
+        case pbMessage(_INTL("如何填充此新图鉴？"),
                        [_INTL("留空"), _INTL("国家德克斯"),
-                        _INTL("纳特。 Dex 分组家庭"), _INTL("取消")], 4)
+                        _INTL("不填充"), _INTL("按图鉴分组填充"), _INTL("取消")], 4)
         when 0   # Leave blank
           dex_lists.push([])
           refresh_list = true
@@ -1152,7 +1152,7 @@ def pbRegionalDexEditorMain
           refresh_list = true
         end
       elsif cmd[1] > 0   # Edit a Dex
-        case pbMessage("\\ts[]" + _INTL("用这个 Dex 做什么？"),
+        case pbMessage("\\ts[]" + _INTL("如何处理此图鉴？"),
                        [_INTL("编辑"), _INTL("复制"), _INTL("删除"), _INTL("取消")], 4)
         when 0   # Edit
           dex_lists[cmd[1] - 1] = pbRegionalDexEditor(dex_lists[cmd[1] - 1])

@@ -402,7 +402,7 @@ class Debug::EditorBase
     # Get a list of files
     list = controls.get_control(:list)
     all_files = get_all_files_in_folder(sprite_folder, GRAPHICS_FILE_TYPES, blacklist)
-    all_files.prepend(["", _INTL("[[None]]")]) if none_option
+    all_files.prepend(["", _INTL("[[无]]")]) if none_option
     idx = 0
     all_files.each_with_index do |file, i|
       next if file[0] != selected
@@ -649,7 +649,7 @@ class Debug::EditorBase
     # Get a list of files
     list = controls.get_control(:list)
     all_maps = get_all_maps
-    all_maps.prepend([0, _INTL("[[None]]")]) if none_option
+    all_maps.prepend([0, _INTL("[[无]]")]) if none_option
     idx = 0
     all_maps.each_with_index do |file, i|
       next if file[0] != selected_map

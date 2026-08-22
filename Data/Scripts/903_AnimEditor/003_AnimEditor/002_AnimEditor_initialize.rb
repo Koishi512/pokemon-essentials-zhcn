@@ -268,7 +268,7 @@ class AnimationEditor
   def set_particle_properties_contents
     defaults = GameData::Animation::PARTICLE_DEFAULT_VALUES
     part_properties = @components[:particle_properties]
-    part_properties.add_header_label(:header, _INTL("颗粒特性"))
+    part_properties.add_header_label(:header, _INTL("粒子属性"))
     # Misc
     part_properties.add_labelled_text_box(:name, _INTL("名称"), defaults[:name])
     part_properties.get_control(:name).set_blacklist("", "User", "Target", "SE")
@@ -332,7 +332,7 @@ class AnimationEditor
     editor.add_control_at(:particles_label,
       editor.x + BATCH_EDITOR_PARTICLE_LIST_X,
       editor.y + BATCH_EDITOR_PARTICLE_LIST_Y,
-      UIControls::Label.new(BATCH_EDITOR_PARTICLE_LIST_WIDTH, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("颗粒："))
+      UIControls::Label.new(BATCH_EDITOR_PARTICLE_LIST_WIDTH, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("粒子："))
     )
     editor.add_control_at(:particles,
       editor.x + BATCH_EDITOR_PARTICLE_LIST_X,

@@ -252,7 +252,7 @@ class StringListProperty
   def self.set(_setting_name, old_setting)
     old_setting = [] if !old_setting
     real_cmds = []
-    real_cmds.push([_INTL("[ADD VALUE]"), -1])
+    real_cmds.push([_INTL("[添加值]"), -1])
     old_setting.length.times do |i|
       real_cmds.push([old_setting[i], 0])
     end
@@ -921,7 +921,7 @@ module PocketProperty
     commands = []
     pockets.each { |pckt| commands.push(GameData::BagPocket.get(pckt).name) }
     initial_val = pockets.index(GameData::BagPocket.get(oldsetting || 1).id)
-    cmd = pbMessage(_INTL("为该物品选择一个口袋。"), commands, -1, nil, initial_val)
+    cmd = pbMessage(_INTL("为该道具选择一个口袋。"), commands, -1, nil, initial_val)
     return (cmd >= 0) ? pockets[cmd] : oldsetting
   end
 
@@ -946,8 +946,8 @@ module BaseStatsProperty
     stat_ids = []
     GameData::Stat.each_main do |s|
       next if s.pbs_order < 0
-      properties[s.pbs_order] = [_INTL("基地{1}", s.name), NonzeroLimitProperty.new(255),
-                                 _INTL("宝可梦的基础 {1} 统计数据。", s.name)]
+      properties[s.pbs_order] = [_INTL("{1}种族值", s.name), NonzeroLimitProperty.new(255),
+                                 _INTL("宝可梦的基础 {1} 能力值。", s.name)]
       data[s.pbs_order] = oldsetting[s.pbs_order] || 10
       stat_ids[s.pbs_order] = s.id
     end
@@ -981,7 +981,7 @@ module EffortValuesProperty
     stat_ids = []
     GameData::Stat.each_main do |s|
       next if s.pbs_order < 0
-      properties[s.pbs_order] = [_INTL("{1} EVs", s.name), LimitProperty.new(255),
+      properties[s.pbs_order] = [_INTL("{1} 努力值", s.name), LimitProperty.new(255),
                                  _INTL("从宝可梦获得的 {1} 努力值点数。", s.name)]
       data[s.pbs_order] = 0
       oldsetting.each { |ev| data[s.pbs_order] = ev[1] if ev[0] == s.id }
@@ -1051,7 +1051,7 @@ class GameDataPoolProperty
     old_setting.sort! if @auto_sort
     # Get all values already in the pool
     values = []
-    values.push([nil, _INTL("[ADD VALUE]")])   # Value ID, name
+    values.push([nil, _INTL("[添加值]")])   # Value ID, name
     old_setting.each do |value|
       values.push([value, @game_data_module.get(value).real_name])
     end
@@ -1202,7 +1202,7 @@ module LevelUpMovesProperty
         commands = []
         realcmds.each_with_index do |entry, i|
           if entry[0] == -1
-            commands.push(_INTL("[ADD MOVE]"))
+            commands.push(_INTL("[添加招式]"))
           else
             commands.push(_INTL("{1}: {2}", entry[0], entry[3]))
           end
@@ -1392,7 +1392,7 @@ class EvolutionsProperty
         commands = []
         realcmds.length.times do |i|
           if realcmds[i][3] < 0
-            commands.push(_INTL("[ADD EVOLUTION]"))
+            commands.push(_INTL("[添加进化]"))
           else
             level = realcmds[i][2]
             evo_method_data = GameData::Evolution.get(realcmds[i][1])

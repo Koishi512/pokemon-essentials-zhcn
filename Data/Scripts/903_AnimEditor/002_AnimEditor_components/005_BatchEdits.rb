@@ -35,7 +35,7 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Shift all particles
     add_control_at(:shift_all_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("所有颗粒")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("所有粒子")))
     add_control_at(:shift_all_left, CONTROL_X, ctrl_y + BUTTON_Y_OFFSET,
                    UIControls::Button.new(LEFT_RIGHT_BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, "<"))
     add_control_at(:shift_all_right, CONTROL_X + LEFT_RIGHT_BUTTON_WIDTH + BUTTON_SPACING, ctrl_y + BUTTON_Y_OFFSET,

@@ -535,7 +535,7 @@ class UI::Save < UI::BaseScreen
             pbPlayDecisionSE
             show_message(_INTL("这个存档属于不同的冒险。") + "\1")
             pbPlayDecisionSE
-            show_message(_INTL("如果你现在保存，该冒险中的所有物品和宝可梦都将丢失。") + "\1")
+            show_message(_INTL("如果你现在保存，该冒险中的所有道具和宝可梦都将丢失。") + "\1")
             pbPlayDecisionSE
             next if !show_confirm_serious_message(_INTL("你确定要覆盖它吗？"))
           end

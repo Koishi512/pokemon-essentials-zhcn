@@ -42,7 +42,7 @@ MenuHandlers.add(:debug_menu, :warp, {
 MenuHandlers.add(:debug_menu, :use_pc, {
   "name"        => _INTL("使用电脑"),
   "parent"      => :field_menu,
-  "description" => _INTL("使用 PC 访问 Pokémon 存储和玩家的 PC。"),
+  "description" => _INTL("使用 PC 访问宝可梦寄放系统和玩家的 PC。"),
   "effect"      => proc {
     pbPokeCenterPC
   }
@@ -271,7 +271,7 @@ MenuHandlers.add(:debug_menu, :skip_credits, {
 MenuHandlers.add(:debug_menu, :battle_menu, {
   "name"        => _INTL("战斗选项..."),
   "parent"      => :main,
-  "description" => _INTL("开始战斗、重置地图的训练师、准备复赛、编辑漫游者等。"),
+  "description" => _INTL("开始对战、重置地图训练家、准备复赛、编辑漫游者等。"),
   "always_show" => false
 })
 
@@ -309,9 +309,9 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
     loop do
       pkmnCmds = []
       pkmn.each { |p| pkmnCmds.push(sprintf("%s Lv.%d", p.name, p.level)) }
-      pkmnCmds.push(_INTL("[Add Pokémon]"))
-      pkmnCmds.push(_INTL("[Set player side size]"))
-      pkmnCmds.push(_INTL("[Start {1}v{2} battle]", size0, pkmn.length))
+      pkmnCmds.push(_INTL("[添加宝可梦]"))
+      pkmnCmds.push(_INTL("[设置己方人数]"))
+      pkmnCmds.push(_INTL("[开始 {1} 对 {2} 对战]", size0, pkmn.length))
       pkmnCmd = pbShowCommands(nil, pkmnCmds, -1, pkmnCmd)
       break if pkmnCmd < 0
       if pkmnCmd == pkmnCmds.length - 1      # Start battle
@@ -368,11 +368,11 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
 })
 
 MenuHandlers.add(:debug_menu, :test_trainer_battle, {
-  "name"        => _INTL("测试训练师之战"),
+  "name"        => _INTL("测试训练家对战"),
   "parent"      => :battle_menu,
-  "description" => _INTL("与您选择的训练师开始一场战斗。"),
+  "description" => _INTL("与所选训练家开始一场对战。"),
   "effect"      => proc {
-    trainerdata = pbListScreen(_INTL("单人训练器"), TrainerBattleLister.new(0, false))
+    trainerdata = pbListScreen(_INTL("单人训练家"), TrainerBattleLister.new(0, false))
     if trainerdata
       setBattleRule("canLose")
       TrainerBattle.start(trainerdata[0], trainerdata[1], trainerdata[2])
@@ -382,9 +382,9 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle, {
 })
 
 MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
-  "name"        => _INTL("测试训练师战斗进阶"),
+  "name"        => _INTL("高级训练家对战测试"),
   "parent"      => :battle_menu,
-  "description" => _INTL("开始与 1 名或多名训练师进行战斗，战斗规模由您选择。"),
+  "description" => _INTL("与 1 名或多名训练家开始对战，并自行选择对战规模。"),
   "effect"      => proc {
     trainers = []
     size0 = 1
@@ -393,22 +393,22 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
     loop do
       trainerCmds = []
       trainers.each { |t| trainerCmds.push(sprintf("%s x%d", t[1].full_name, t[1].party_count)) }
-      trainerCmds.push(_INTL("[Add trainer]"))
-      trainerCmds.push(_INTL("[Set player side size]"))
-      trainerCmds.push(_INTL("[Set opponent side size]"))
-      trainerCmds.push(_INTL("[Start {1}v{2} battle]", size0, size1))
+      trainerCmds.push(_INTL("[添加训练家]"))
+      trainerCmds.push(_INTL("[设置己方人数]"))
+      trainerCmds.push(_INTL("[设置对方人数]"))
+      trainerCmds.push(_INTL("[开始 {1} 对 {2} 对战]", size0, size1))
       trainerCmd = pbShowCommands(nil, trainerCmds, -1, trainerCmd)
       break if trainerCmd < 0
       if trainerCmd == trainerCmds.length - 1      # Start battle
         if trainers.length == 0
-          pbMessage(_INTL("没有选择训练师，无法开始战斗。"))
+          pbMessage(_INTL("未选择训练家，无法开始对战。"))
           next
         elsif size1 < trainers.length
           pbMessage(_INTL("对方尺寸无效。它至少应为 {1}。", trainers.length))
           next
         elsif size1 > trainers.length && trainers[0][1].party_count == 1
           pbMessage(
-            _INTL("对方的尺寸不能为 {1}，因为这要求第一位训练师拥有 2 个或更多宝可梦，但他们没有。",
+            _INTL("对方人数不能为 {1}，因为这要求第一位训练家拥有 2 只或更多宝可梦，但其不满足条件。",
                   size1)
           )
           next
@@ -421,7 +421,7 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
         break
       elsif trainerCmd == trainerCmds.length - 2   # Set opponent side size
         if trainers.length == 0 || (trainers.length == 1 && trainers[0][1].party_count == 1)
-          pbMessage(_INTL("未选择训练师或训练师只有一只宝可梦。"))
+          pbMessage(_INTL("未选择训练家，或该训练家只有 1 只宝可梦。"))
           next
         end
         maxVal = 2
@@ -489,7 +489,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
     cmd = 0
     loop do
       # Create list of rules to display
-      rules = [_INTL("[Clear all]")]
+      rules = [_INTL("[全部清除]")]
       rules_syms = [[:clear_all], [nil]]
       Game_Temp::BATTLE_RULES.each_key do |rule|
         next if duplicate_rules.include?(rule)
@@ -526,7 +526,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
       when :side_sizes
         side_sizes = Game_Temp::BATTLE_RULES.keys.select { |key| Game_Temp::BATTLE_RULES[key][0] == :side_sizes }
         side_sizes.map! { |val| val.dup }
-        side_sizes.prepend(_INTL("[Not set]"))
+        side_sizes.prepend(_INTL("[未设置]"))
         size_cmd = side_sizes.index(applied_rules[rule_sym]) || 0
         size_cmd = pbShowCommands(nil, side_sizes, -1, size_cmd)
         if size_cmd >= 0
@@ -549,7 +549,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
           :default_weather => GameData::BattleWeather,
           :default_terrain => GameData::BattleTerrain
         }[rule_sym]
-        data_cmds = [_INTL("[Not set]")]
+        data_cmds = [_INTL("[未设置]")]
         data_syms = [nil]
         data_class.each do |entry|
           data_cmds.push(entry.name)
@@ -583,7 +583,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
 MenuHandlers.add(:debug_menu, :partner_trainer, {
   "name"        => _INTL("设置搭档训练家"),
   "parent"      => :battle_menu,
-  "description" => _INTL("选择一名训练师在战斗中并肩作战。"),
+  "description" => _INTL("选择一名训练家并肩作战。"),
   "effect"      => proc {
     if $PokemonGlobal.partner
       partner_name = sprintf("%s %s",
@@ -629,9 +629,9 @@ MenuHandlers.add(:debug_menu, :roamers, {
 })
 
 MenuHandlers.add(:debug_menu, :reset_trainers, {
-  "name"        => _INTL("重置地图的训练师"),
+  "name"        => _INTL("重置地图训练家"),
   "parent"      => :battle_menu,
-  "description" => _INTL("对于名称中含有“Trainer”的所有事件，请关闭自我开关 A 和 B。"),
+  "description" => _INTL("关闭名称含有“Trainer”的所有事件的自我开关 A 和 B。"),
   "effect"      => proc {
     if $game_map
       $game_map.events.each_value do |event|
@@ -641,7 +641,7 @@ MenuHandlers.add(:debug_menu, :reset_trainers, {
         end
       end
       $game_map.need_refresh = true
-      pbMessage(_INTL("该地图上的所有训练师均已重置。"))
+      pbMessage(_INTL("该地图上的所有训练家均已重置。"))
     else
       pbMessage(_INTL("此处不能使用该命令。"))
     end
@@ -649,12 +649,12 @@ MenuHandlers.add(:debug_menu, :reset_trainers, {
 })
 
 MenuHandlers.add(:debug_menu, :toggle_exp_all, {
-  "name"        => _INTL("切换Exp。全部效果"),
+  "name"        => _INTL("切换全体经验值效果"),
   "parent"      => :battle_menu,
-  "description" => _INTL("切换Exp。给予Exp的所有效果。给非参与者。"),
+  "description" => _INTL("切换是否将经验值给予未参战的宝可梦。"),
   "effect"      => proc {
     $player.has_exp_all = !$player.has_exp_all
-    pbMessage(_INTL("启用Exp。都有效果了")) if $player.has_exp_all
+    pbMessage(_INTL("已启用全体经验值效果。")) if $player.has_exp_all
     pbMessage(_INTL("残疾经验。都有效果了")) if !$player.has_exp_all
   }
 })
@@ -709,7 +709,7 @@ MenuHandlers.add(:debug_menu, :add_pokemon, {
           if goes_to_party
             pbMessage(_INTL("已将 {1} 添加到队伍中。", GameData::Species.get(species).name))
           else
-            pbMessage(_INTL("将 {1} 添加到 Pokémon 存储空间中。", GameData::Species.get(species).name))
+            pbMessage(_INTL("已将 {1} 添加到宝可梦寄放系统。", GameData::Species.get(species).name))
           end
         else
           pbMessage(_INTL("无法添加宝可梦，因为队伍和存储空间已满。"))
@@ -844,7 +844,7 @@ MenuHandlers.add(:debug_menu, :open_storage, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :shadow_pokemon_menu, {
-  "name"        => _INTL("影子宝可梦选项..."),
+  "name"        => _INTL("黑暗宝可梦选项……"),
   "parent"      => :pokemon_menu,
   "description" => _INTL("障碍机和净化。"),
   "always_show" => false
@@ -853,7 +853,7 @@ MenuHandlers.add(:debug_menu, :shadow_pokemon_menu, {
 MenuHandlers.add(:debug_menu, :toggle_snag_machine, {
   "name"        => _INTL("肘节拉丝机"),
   "parent"      => :shadow_pokemon_menu,
-  "description" => _INTL("切换所有宝可梦球能够捕捉暗影宝可梦。"),
+  "description" => _INTL("切换所有宝可梦球能够捕捉黑暗宝可梦。"),
   "effect"      => proc {
     $player.has_snag_machine = !$player.has_snag_machine
     pbMessage(_INTL("给了障碍机。")) if $player.has_snag_machine
@@ -875,7 +875,7 @@ MenuHandlers.add(:debug_menu, :toggle_purify_chamber_access, {
 MenuHandlers.add(:debug_menu, :purify_chamber, {
   "name"        => _INTL("使用净化室"),
   "parent"      => :shadow_pokemon_menu,
-  "description" => _INTL("打开净化室进行暗影宝可梦净化。"),
+  "description" => _INTL("打开净化室进行黑暗宝可梦净化。"),
   "effect"      => proc {
     pbPurifyChamber
   }
@@ -884,7 +884,7 @@ MenuHandlers.add(:debug_menu, :purify_chamber, {
 MenuHandlers.add(:debug_menu, :relic_stone, {
   "name"        => _INTL("使用遗物石"),
   "parent"      => :shadow_pokemon_menu,
-  "description" => _INTL("选择一只暗影宝可梦向遗物石展示以进行净化。"),
+  "description" => _INTL("选择一只黑暗宝可梦向遗物石展示以进行净化。"),
   "effect"      => proc {
     pbRelicStone
   }
@@ -895,18 +895,18 @@ MenuHandlers.add(:debug_menu, :relic_stone, {
 #===============================================================================
 
 MenuHandlers.add(:debug_menu, :items_menu, {
-  "name"        => _INTL("项目选项..."),
+  "name"        => _INTL("道具选项……"),
   "parent"      => :main,
-  "description" => _INTL("给予和拿走物品。"),
+  "description" => _INTL("给予和拿走道具。"),
   "always_show" => false
 })
 
 MenuHandlers.add(:debug_menu, :add_item, {
-  "name"        => _INTL("添加项目"),
+  "name"        => _INTL("添加道具"),
   "parent"      => :items_menu,
   "description" => _INTL("选择要添加到购物袋中的商品及其数量。"),
   "effect"      => proc {
-    pbListScreenBlock(_INTL("添加项目"), ItemLister.new) do |button, item|
+    pbListScreenBlock(_INTL("添加道具"), ItemLister.new) do |button, item|
       if button == Input::USE && item
         params = ChooseNumberParams.new
         params.setRange(1, PokemonBag::MAX_PER_SLOT)
@@ -926,13 +926,13 @@ MenuHandlers.add(:debug_menu, :add_item, {
 MenuHandlers.add(:debug_menu, :fill_bag, {
   "name"        => _INTL("填充袋"),
   "parent"      => :items_menu,
-  "description" => _INTL("清空袋子，然后将一定数量的每种物品装满袋子。"),
+  "description" => _INTL("清空袋子，然后将一定数量的每种道具装满袋子。"),
   "effect"      => proc {
     params = ChooseNumberParams.new
     params.setRange(1, PokemonBag::MAX_PER_SLOT)
     params.setInitialValue(1)
     params.setCancelValue(0)
-    qty = pbMessageChooseNumber(_INTL("选择项目数量。"), params)
+    qty = pbMessageChooseNumber(_INTL("选择道具数量。"), params)
     if qty > 0
       $bag.clear
       # NOTE: This doesn't simply use $bag.add for every item in turn, because
@@ -949,7 +949,7 @@ MenuHandlers.add(:debug_menu, :fill_bag, {
       end
       # NOTE: Auto-sorting pockets don't need to be sorted afterwards, because
       #       items are added in the same order they would be sorted into.
-      pbMessage(_INTL("袋子里装满了每种物品的 {1} 个。", qty))
+      pbMessage(_INTL("袋子里装满了每种道具的 {1} 个。", qty))
     end
   }
 })
@@ -957,7 +957,7 @@ MenuHandlers.add(:debug_menu, :fill_bag, {
 MenuHandlers.add(:debug_menu, :empty_bag, {
   "name"        => _INTL("空袋"),
   "parent"      => :items_menu,
-  "description" => _INTL("从袋子中取出所有物品。"),
+  "description" => _INTL("从袋子中取出所有道具。"),
   "effect"      => proc {
     $bag.clear
     pbMessage(_INTL("袋子被清除了。"))
@@ -1047,9 +1047,9 @@ MenuHandlers.add(:debug_menu, :toggle_running_shoes, {
 })
 
 MenuHandlers.add(:debug_menu, :toggle_pokedex, {
-  "name"        => _INTL("切换 Pokédex 和区域 Dexes"),
+  "name"        => _INTL("切换宝可梦图鉴与区域图鉴"),
   "parent"      => :player_menu,
-  "description" => _INTL("切换 Pokédex 的拥有权，并编辑区域 Dex 的可访问性。"),
+  "description" => _INTL("切换宝可梦图鉴拥有状态，并编辑区域图鉴的可访问性。"),
   "effect"      => proc {
     dexescmd = 0
     loop do
@@ -1076,12 +1076,12 @@ MenuHandlers.add(:debug_menu, :toggle_pokedex, {
 })
 
 MenuHandlers.add(:debug_menu, :toggle_pokegear, {
-  "name"        => _INTL("切换 Pokégear"),
+  "name"        => _INTL("切换宝可装置"),
   "parent"      => :player_menu,
-  "description" => _INTL("切换 Pokégear 的拥有状态。"),
+  "description" => _INTL("切换宝可装置的拥有状态。"),
   "effect"      => proc {
     $player.has_pokegear = !$player.has_pokegear
-    pbMessage(_INTL("给了 Pokégear。")) if $player.has_pokegear
+    pbMessage(_INTL("已获得宝可装置。")) if $player.has_pokegear
     pbMessage(_INTL("丢失的宝可梦。")) if !$player.has_pokegear
   }
 })
@@ -1132,7 +1132,7 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
           contact.rematch_flag = 1
           contact.set_trainer_event_ready_for_rematch
         end
-        pbMessage(_INTL("手机里的所有训练师现在已经准备好重新战斗了。"))
+        pbMessage(_INTL("手机中的所有训练家现在都已准备好再次对战。"))
       when 4   # Edit individual contacts
         contact_cmd = 0
         loop do
@@ -1175,13 +1175,13 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
               params.setRange(0, 99999)
               params.setDefaultValue(ready_min)
               params.setCancelValue(-1)
-              new_time = pbMessageChooseNumber(_INTL("设置该训练师准备好战斗的时间（以分钟为单位）。"), params)
+              new_time = pbMessageChooseNumber(_INTL("设置该训练家再次对战的等待时间（分钟）。"), params)
               contact.time_to_ready = new_time * 60 if new_time >= 0
             when 3   # Last defeated version
               params = ChooseNumberParams.new
               params.setRange(0, 99)
               params.setDefaultValue(contact.variant)
-              new_version = pbMessageChooseNumber(_INTL("设置该训练师最后击败的版本号。"), params)
+              new_version = pbMessageChooseNumber(_INTL("设置上次击败该训练家时的版本号。"), params)
               contact.version = contact.start_version + new_version
             end
           end
@@ -1302,7 +1302,7 @@ MenuHandlers.add(:debug_menu, :set_encounters, {
 MenuHandlers.add(:debug_menu, :set_trainers, {
   "name"        => _INTL("编辑trainers.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("编辑个别训练师、他们的宝可梦和物品。"),
+  "description" => _INTL("编辑各个训练家、其宝可梦及道具。"),
   "effect"      => proc {
     pbFadeOutIn { pbTrainerBattleEditor }
   }
@@ -1311,7 +1311,7 @@ MenuHandlers.add(:debug_menu, :set_trainers, {
 MenuHandlers.add(:debug_menu, :set_trainer_types, {
   "name"        => _INTL("编辑trainer_types.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("编辑训练器类型的属性。"),
+  "description" => _INTL("编辑训练家类型的属性。"),
   "effect"      => proc {
     pbFadeOutIn { pbTrainerTypeEditor }
   }
@@ -1336,9 +1336,9 @@ MenuHandlers.add(:debug_menu, :set_metadata, {
 })
 
 MenuHandlers.add(:debug_menu, :set_items, {
-  "name"        => _INTL("编辑项目.txt"),
+  "name"        => _INTL("编辑道具.txt"),
   "parent"      => :pbs_editors_menu,
-  "description" => _INTL("编辑项目数据。"),
+  "description" => _INTL("编辑道具数据。"),
   "effect"      => proc {
     pbFadeOutIn { pbItemEditor }
   }
@@ -1499,7 +1499,7 @@ MenuHandlers.add(:debug_menu, :create_pbs_files, {
   "effect"      => proc {
     cmd = 0
     cmds = [
-      _INTL("[Create all]"),
+      _INTL("[全部创建]"),
       "abilities.txt",
       "battle_facility_lists.txt",
       "berry_plants.txt",
