@@ -311,7 +311,8 @@ module Compiler
       # Ensure that none of the particle's "alter something if focus is a
       # battler on the foe's side" properties are set if the particle doesn't
       # have such a focus
-      if GameData::Animation::FOCUS_TYPES_WITH_USER.include?(particle[:focus]) == GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus])
+      if GameData::Animation::FOCUS_TYPES_WITH_USER_AND_TARGET.include?(particle[:focus]) ||
+         (GameData::Animation::FOCUS_TYPES_OF_SCREEN.include?(particle[:focus]) && hash[:no_user])
         if particle[:foe_invert_x]
           raise _INTL("粒子“{1}”的焦点并非恰好一个对象时，不能设置“FoeInvertX”。",
                       particle[:name]) + "\n" + FileLineData.linereport
@@ -328,9 +329,8 @@ module Compiler
       # Ensure that the particle isn't a tiled graphic if it is an emitter or
       # has a non-screen focus
       if particle[:tiled_graphic] && ((particle[:emitter_type] || :none) != :none ||
-         GameData::Animation::FOCUS_TYPES_WITH_USER.include?(particle[:focus]) ||
-         GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus]))
-        raise _INTL("粒子“{1}”是发射器或焦点不在屏幕上时，不能设置“TiledGraphic”。",
+         !GameData::Animation::FOCUS_TYPES_OF_SCREEN.include?(particle[:focus]))
+        raise _INTL("粒子\"{1}\"是发射器或其焦点不在屏幕上时，则无法为其设置\"TiledGraphic\"。",
                     particle[:name]) + "\n" + FileLineData.linereport
       end
       # Ensure that a particle with a user's/target's graphic doesn't have any

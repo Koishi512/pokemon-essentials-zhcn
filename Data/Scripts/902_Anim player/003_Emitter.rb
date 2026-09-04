@@ -4,6 +4,7 @@
 class AnimationPlayer::Emitter
   attr_accessor :slowdown
   attr_accessor :emitter_position_polar_coordinates, :emitter_spawn_polar_coordinates
+  attr_accessor :no_user, :no_target
   attr_reader   :particle_sprites
 
   # These properties are used by individual ParticleSprites spawned by this
@@ -12,6 +13,8 @@ class AnimationPlayer::Emitter
                          :blending, :blending2,
                          :flip, :flip2,
                          :x, :x2, :y, :y2, :r, :theta, :z, :z2,
+                         :spawn_x_offset, :spawn_x_multiplier, :spawn_y_offset, :spawn_y_multiplier,
+                         :spawn_r_offset, :spawn_r_multiplier, :spawn_theta_offset,
                          :radius_x, :radius_y, :radius_z,
                          :zoom_x, :zoom_x2, :zoom_y, :zoom_y2,
                          :angle, :angle2,
@@ -246,7 +249,8 @@ class AnimationPlayer::Emitter
     particle_sprite.random_invert_flip = true if @particle[:random_invert_flip] && rand(2) == 0
     # Inverts/flips if the focus is on the opposing side
     relative_to_index = index_of_particle_focus(target_idx)
-    if relative_to_index && relative_to_index >= 0 && relative_to_index.odd?
+    if (relative_to_index >= 0 && relative_to_index.odd?) ||
+       (relative_to_index < 0 && !@no_user && @user.index.odd?)
       particle_sprite.foe_invert_z = @particle[:foe_invert_z]
       if !GameData::Animation::FOCUS_TYPES_WITH_USER_AND_TARGET.include?(@particle[:focus])
         particle_sprite.foe_invert_x = @particle[:foe_invert_x]
@@ -332,8 +336,8 @@ class AnimationPlayer::Emitter
     if relative_to_index >= 0
       case @particle[:initial_angle] || :none
       when :particle_to_focus
-        x_from_focus = particle_sprite.emitter_params[:emitter_x] + start_x
-        y_from_focus = particle_sprite.emitter_params[:emitter_y] + start_y
+        x_from_focus = (particle_sprite.emitter_params[:emitter_x] || 0) + start_x
+        y_from_focus = (particle_sprite.emitter_params[:emitter_y] || 0) + start_y
         val = AnimationPlayer::Helper.initial_angle_between(
           [x_from_focus, y_from_focus], particle_sprite.focus_xy, particle_sprite.offset_xy
         )
