@@ -2,1600 +2,1600 @@
 #-------------------------------
 [000]
 EndSpeechLose = "Man, I lost!"
-Name = MATAS
+Name = 马塔斯
 PokemonNos = 36,38,42,43,56,76,78,91,94,105,108,115
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BUGCATCHER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [001]
 EndSpeechLose = "Man, I lost!"
-Name = KUIO
+Name = 库伊奥
 PokemonNos = 14,26,33,34,35,37,41,47,52,71,74,101,107,109,114
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BUGCATCHER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [002]
 EndSpeechLose = "Man, I lost!"
-Name = PAH
+Name = 帕
 PokemonNos = 9,20,26,34,37,43,48,51,62,64,65,70,77,109,111
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [003]
 EndSpeechLose = "Man, I lost!"
-Name = PARIK
+Name = 帕里克
 PokemonNos = 0,1,10,12,21,34,47,70,97,115,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [004]
 EndSpeechLose = "Man, I lost!"
-Name = SKOR
+Name = 斯科尔
 PokemonNos = 9,26,51,59,73,91,113
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [005]
 EndSpeechLose = "Man, I lost!"
-Name = JAST
+Name = 贾斯特
 PokemonNos = 0,19,31,36,53,60,62,63,68,75,77,80,89,93,94,101,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [006]
 EndSpeechLose = "Man, I lost!"
-Name = DOKE
+Name = 多克
 PokemonNos = 2,7,9,17,29,30,54,60,63,77
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [007]
 EndSpeechLose = "Man, I lost!"
-Name = LONKA
+Name = 隆卡
 PokemonNos = 10,18,35,47,49,61,64,73,84,85,89,98,102
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LASS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [008]
 EndSpeechLose = "Man, I lost!"
-Name = YAPSINA
+Name = 亚普西娜
 PokemonNos = 3,5,23,31,34,43,47,51,52,62,73,108,112,116
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LASS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [009]
 EndSpeechLose = "Man, I lost!"
-Name = ELI
+Name = 伊莱
 PokemonNos = 1,10,21,29,40,53,67,78,99,104,106,113,116,118
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LASS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [010]
 EndSpeechLose = "Man, I lost!"
-Name = GRAE
+Name = 格雷
 PokemonNos = 9,11,14,22,41,46,53,66,69,77,84,91,100,111
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [011]
 EndSpeechLose = "Man, I lost!"
-Name = MIUS
+Name = 米乌斯
 PokemonNos = 12,26,30,34,37,41,46,54,59,77,83,106,107
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [012]
 EndSpeechLose = "Man, I lost!"
-Name = ROIUS
+Name = 罗伊乌斯
 PokemonNos = 14,38,48,53,54,55,61,73,75,78,84,86,88,98,110,112,117,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [013]
 EndSpeechLose = "Man, I lost!"
-Name = MAE
+Name = 梅
 PokemonNos = 6,26,31,35,40,46,50,63,65,68,73,76,77,78,81,91,95,96,97,99,104,105,106,116,117,118,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [014]
 EndSpeechLose = "Man, I lost!"
-Name = ZAV
+Name = 扎夫
 PokemonNos = 7,11,12,19,41,47,54,56,78,101,102,103,114,115,116
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [015]
 EndSpeechLose = "Man, I lost!"
-Name = PREEFT
+Name = 普里夫特
 PokemonNos = 9,19,24,25,28,37,55,56,60,66,80,81,101,115
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [016]
 EndSpeechLose = "Man, I lost!"
-Name = CRIB
+Name = 克里布
 PokemonNos = 17,19,37,42,48,73,97,107,117
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [017]
 EndSpeechLose = "Man, I lost!"
-Name = KLILA
+Name = 克利拉
 PokemonNos = 2,4,8,11,24,28,38,43,63,67,80,89,95,96,105,109,111,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TUBER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [018]
 EndSpeechLose = "Man, I lost!"
-Name = GRUN
+Name = 格伦
 PokemonNos = 2,15,29,50,52,58,65,77,83,97,104,110
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TUBER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [019]
 EndSpeechLose = "Man, I lost!"
-Name = ZOKIZ
+Name = 佐基兹
 PokemonNos = 37,50,52,64,77,92,94,106,110,113,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TUBER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [020]
 EndSpeechLose = "Man, I lost!"
-Name = TALA
+Name = 塔拉
 PokemonNos = 11,19,27,64,67,75,78,93,105,107,111,116,120,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PICNICKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [021]
 EndSpeechLose = "Man, I lost!"
-Name = WUCHA
+Name = 乌查
 PokemonNos = 16,18,21,28,41,46,58,66,78,89,95,99,106
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PICNICKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [022]
 EndSpeechLose = "Man, I lost!"
-Name = BLIRA
+Name = 布利拉
 PokemonNos = 8,9,16,25,30,54,75,86,88,98,106
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PICNICKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [023]
 EndSpeechLose = "Man, I lost!"
-Name = UROBBA
+Name = 乌罗巴
 PokemonNos = 2,6,37,38,46,58,74,80,82,87,88,111,118
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PICNICKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [024]
 EndSpeechLose = "Man, I lost!"
-Name = ICHA
+Name = 伊查
 PokemonNos = 20,32,35,54,67,77,81,85,89,91,92,94,100,105,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PICNICKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [025]
 EndSpeechLose = "Man, I lost!"
-Name = ERNICHA
+Name = 埃尔尼查
 PokemonNos = 1,10,37,39,60,62,76,84,90,96
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PICNICKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [026]
 EndSpeechLose = "Man, I lost!"
-Name = SIJUB
+Name = 西朱布
 PokemonNos = 0,1,18,26,35,41,49,57,77,78,83,85,87,110,119,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = FISHERMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [027]
 EndSpeechLose = "Man, I lost!"
-Name = GAFITO
+Name = 加菲托
 PokemonNos = 2,13,23,31,44,60,61,62,64,66,93,98,101,102,108,116
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = FISHERMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [028]
 EndSpeechLose = "Man, I lost!"
-Name = KUITO
+Name = 库伊托
 PokemonNos = 3,7,13,16,26,30,61,69,73,114
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = FISHERMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [029]
 EndSpeechLose = "Man, I lost!"
-Name = DEIUS
+Name = 迪乌斯
 PokemonNos = 14,31,37,52,53,55,63,72,79,90,108,119
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = FISHERMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [030]
 EndSpeechLose = "Man, I lost!"
-Name = ZOMS
+Name = 佐姆斯
 PokemonNos = 1,15,16,29,35,44,52,56,65,95,98,99,104,109
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = FISHERMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [031]
 EndSpeechLose = "Man, I lost!"
-Name = GRUUZEP
+Name = 格鲁泽普
 PokemonNos = 1,9,32,53,70,79,80,81,87,94,105,112
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [032]
 EndSpeechLose = "Man, I lost!"
-Name = LEO
+Name = 利奥
 PokemonNos = 16,19,24,32,35,50,64,79,89,109,111
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [033]
 EndSpeechLose = "Man, I lost!"
-Name = MART
+Name = 马特
 PokemonNos = 0,5,7,10,13,15,19,23,39,46,47,49,70,74,79,90,92,109
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [034]
 EndSpeechLose = "Man, I lost!"
-Name = OCHOFALA
+Name = 奥乔法拉
 PokemonNos = 15,18,27,47,50,60,67,69,70,85,87,108,111
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [035]
 EndSpeechLose = "Man, I lost!"
-Name = GONA
+Name = 戈娜
 PokemonNos = 12,38,41,47,59,62,70,84,89,91,103,115
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [036]
 EndSpeechLose = "Man, I lost!"
-Name = EFTICHA
+Name = 埃夫蒂查
 PokemonNos = 14,15,35,39,53,58,82,90,94,112,118
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [037]
 EndSpeechLose = "Man, I lost!"
-Name = APITA
+Name = 阿皮塔
 PokemonNos = 5,18,19,24,25,28,38,39,43,51,59,64,82,91,93,95,96,101,116,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [038]
 EndSpeechLose = "Man, I lost!"
-Name = ELI
+Name = 伊莱
 PokemonNos = 1,18,22,30,37,59,90,96,98,99,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [039]
 EndSpeechLose = "Man, I lost!"
-Name = UNGULI
+Name = 温古利
 PokemonNos = 46,47,52,62,64,94,97,102,107
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONBREEDER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [040]
 EndSpeechLose = "Man, I lost!"
-Name = ISIRNIKA
+Name = 伊西尔尼卡
 PokemonNos = 3,5,18,26,29,95,99,105,107,112,119,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONBREEDER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [041]
 EndSpeechLose = "Man, I lost!"
-Name = UGGA
+Name = 乌加
 PokemonNos = 0,11,21,28,36,48,51,64,105,114,118,119,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONBREEDER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [042]
 EndSpeechLose = "Man, I lost!"
-Name = ASA
+Name = 阿萨
 PokemonNos = 3,17,28,30,34,44,60,63,65,79,82,106,107,109,113
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONBREEDER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [043]
 EndSpeechLose = "Man, I lost!"
-Name = ARKICHA
+Name = 阿基查
 PokemonNos = 17,34,46,55,57,84,94,112,113,114
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONBREEDER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [044]
 EndSpeechLose = "Man, I lost!"
-Name = TED
+Name = 泰德
 PokemonNos = 13,14,17,19,25,26,41,57,58,62,63,71,72,78,85,87,114
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [045]
 EndSpeechLose = "Man, I lost!"
-Name = MATIFS
+Name = 马蒂夫斯
 PokemonNos = 18,24,26,33,35,49,51,56,63,74,81,85,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [046]
 EndSpeechLose = "Man, I lost!"
-Name = APHUTA
+Name = 阿普塔
 PokemonNos = 18,38,41,48,49,67,73,77,85,102,106,110
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [047]
 EndSpeechLose = "Man, I lost!"
-Name = ACINE
+Name = 阿辛
 PokemonNos = 11,45,54,64,71,74,78,89,110,112,114,117,120,121,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [048]
 EndSpeechLose = "Man, I lost!"
-Name = EZOLI
+Name = 埃佐利
 PokemonNos = 1,3,5,11,20,25,60,76,94,110
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [049]
 EndSpeechLose = "Man, I lost!"
-Name = ROSTA
+Name = 罗斯塔
 PokemonNos = 1,7,14,31,41,45,51,53,61,64,70,86,93,102,104,109,112,120
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [050]
 EndSpeechLose = "Man, I lost!"
-Name = ENDRA
+Name = 恩德拉
 PokemonNos = 9,14,29,34,62,73,81,94,119
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [051]
 EndSpeechLose = "Man, I lost!"
-Name = ASOSTA
+Name = 阿索斯塔
 PokemonNos = 7,28,29,50,60,61,68,83,87,107,109
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PAINTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [052]
 EndSpeechLose = "Man, I lost!"
-Name = IPTECHA
+Name = 伊普特查
 PokemonNos = 9,30,40,46,52,56,82,91,98,103,116,119
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PAINTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [053]
 EndSpeechLose = "Man, I lost!"
-Name = GLEEGITO
+Name = 格利吉托
 PokemonNos = 1,11,18,39,63,78,83,110,112,115,119
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [054]
 EndSpeechLose = "Man, I lost!"
-Name = DATU
+Name = 达图
 PokemonNos = 18,26,28,49,81,85,89,91,97,101,118
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [055]
 EndSpeechLose = "Man, I lost!"
-Name = ZOB
+Name = 佐布
 PokemonNos = 24,27,34,40,42,69,78,87,91,99,100,116,117,118
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [056]
 EndSpeechLose = "Man, I lost!"
-Name = DIRAK
+Name = 迪拉克
 PokemonNos = 20,22,47,52,55,56,60,74,82,93,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [057]
 EndSpeechLose = "Man, I lost!"
-Name = LIG
+Name = 利格
 PokemonNos = 12,20,30,45,47,53,60,80,87,89,90,103,111
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [058]
 EndSpeechLose = "Man, I lost!"
-Name = LAE
+Name = 莱
 PokemonNos = 23,25,28,33,35,36,42,51,55,58,66,77,79,98,105,110,115
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [059]
 EndSpeechLose = "Man, I lost!"
-Name = ENKA
+Name = 恩卡
 PokemonNos = 3,7,9,13,31,53,57,62,118,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = AROMALADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [060]
 EndSpeechLose = "Man, I lost!"
-Name = ENDRA
+Name = 恩德拉
 PokemonNos = 10,25,27,30,37,66,68,70,82,83,103,110,122
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = AROMALADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [061]
 EndSpeechLose = "Man, I lost!"
-Name = THULI
+Name = 图利
 PokemonNos = 27,37,39,54,94,104,110,113
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = AROMALADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [062]
 EndSpeechLose = "Man, I lost!"
-Name = LONA
+Name = 洛娜
 PokemonNos = 0,1,2,3,16,17,20,60,62,73,83,107,117
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PSYCHIC_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [063]
 EndSpeechLose = "Man, I lost!"
-Name = KUSSO
+Name = 库索
 PokemonNos = 2,18,24,27,32,40,43,45,47,53,60,63,83,84,99,104,107,115
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SUPERNERD
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [064]
 EndSpeechLose = "Man, I lost!"
-Name = GLOROB
+Name = 格洛罗布
 PokemonNos = 5,11,19,38,52,59,62,63,67,74,76,81,84,97,99,102,105,106,108
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = CHANNELER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [065]
 EndSpeechLose = "Man, I lost!"
-Name = REG
+Name = 雷格
 PokemonNos = 14,22,32,37,50,66,76,84,115
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = CHANNELER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [066]
 EndSpeechLose = "Man, I lost!"
-Name = GRAVIUS
+Name = 格拉维乌斯
 PokemonNos = 0,3,10,24,30,31,34,35,36,42,48,73,74,78,88,91,96,97,106,114,121
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = CHANNELER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [067]
 EndSpeechLose = "Man, I lost!"
-Name = DAIO
+Name = 达伊奥
 PokemonNos = 129,130,134,141,148,149,155,178,196,197,212,214,232,236,240
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BIRDKEEPER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [068]
 EndSpeechLose = "Man, I lost!"
-Name = SEM
+Name = 塞姆
 PokemonNos = 123,147,149,150,153,172,174,178,189,199,227
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BIRDKEEPER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [069]
 EndSpeechLose = "Man, I lost!"
-Name = SNUFS
+Name = 斯努夫斯
 PokemonNos = 127,139,150,161,165,177,187,204,216,222,236,241
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BIRDKEEPER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [070]
 EndSpeechLose = "Man, I lost!"
-Name = ROLD
+Name = 罗尔德
 PokemonNos = 167,199,212,231,233,242
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BUGCATCHER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [071]
 EndSpeechLose = "Man, I lost!"
-Name = RITAT
+Name = 里塔特
 PokemonNos = 131,133,145,146,149,156,160,177,200,205,206,227
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BUGCATCHER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [072]
 EndSpeechLose = "Man, I lost!"
-Name = LESP
+Name = 莱斯普
 PokemonNos = 134,137,151,156,165,177,188,218,225,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = HIKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [073]
 EndSpeechLose = "Man, I lost!"
-Name = KITU
+Name = 基图
 PokemonNos = 0,141,152,161,164,176
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = HIKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [074]
 EndSpeechLose = "Man, I lost!"
-Name = ARUFILA
+Name = 阿鲁菲拉
 PokemonNos = 0,1,134,185,202,235
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BEAUTY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [075]
 EndSpeechLose = "Man, I lost!"
-Name = OPSESTA
+Name = 奥普塞斯塔
 PokemonNos = 123,125,160,176,180,215,217,232,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BEAUTY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [076]
 EndSpeechLose = "Man, I lost!"
-Name = VITA
+Name = 维塔
 PokemonNos = 136,150,162,169,172,194,198,202,211,213,223,240
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TWINS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [077]
 EndSpeechLose = "Man, I lost!"
-Name = OMECHA
+Name = 奥梅查
 PokemonNos = 141,152,153,154,160,165,167,169,174,193,197,210,214,216,231,241
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TWINS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [078]
 EndSpeechLose = "Man, I lost!"
-Name = UDONDRA
+Name = 乌东德拉
 PokemonNos = 127,138,141,146,148,152,166,183,185,235,239
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TWINS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [079]
 EndSpeechLose = "Man, I lost!"
-Name = ICANKA
+Name = 伊坎卡
 PokemonNos = 124,127,130,153,169,175,187,197,207,227
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TWINS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [080]
 EndSpeechLose = "Man, I lost!"
-Name = ANDRA
+Name = 安德拉
 PokemonNos = 130,133,153,181,186,196,203,205,221,224,228,233,237
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TWINS
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [081]
 EndSpeechLose = "Man, I lost!"
-Name = USENDA
+Name = 乌森达
 PokemonNos = 123,125,135,177,188,192,202,225,227,228,238
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [082]
 EndSpeechLose = "Man, I lost!"
-Name = OKSOSA
+Name = 奥克索萨
 PokemonNos = 131,137,141,148,154,188,190,196,199,203,205,208,213,214,222
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [083]
 EndSpeechLose = "Man, I lost!"
-Name = ITEGSIKA
+Name = 伊特格西卡
 PokemonNos = 125,129,147,158,159,161,171,175,178,182,190,205,213,215,217,233,234,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [084]
 EndSpeechLose = "Man, I lost!"
-Name = INDRA
+Name = 因德拉
 PokemonNos = 138,145,161,182,183,184,189,194,206,211,214,216,220,228,240
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [085]
 EndSpeechLose = "Man, I lost!"
-Name = OTITA
+Name = 奥蒂塔
 PokemonNos = 138,156,157,160,175,180,200,213,216,220,235,237
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [086]
 EndSpeechLose = "Man, I lost!"
-Name = CITA
+Name = 西塔
 PokemonNos = 124,128,137,139,157,166,210,216,222,233,243
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [087]
 EndSpeechLose = "Man, I lost!"
-Name = JILA
+Name = 吉拉
 PokemonNos = 148,170,214,222,223,242
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [088]
 EndSpeechLose = "Man, I lost!"
-Name = RERTIO
+Name = 雷尔蒂奥
 PokemonNos = 132,146,186,188,199,211,229,234,237
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [089]
 EndSpeechLose = "Man, I lost!"
-Name = SEGS
+Name = 塞格斯
 PokemonNos = 128,136,161,168,172,182,187,188,197,207,212,229,233,241,242
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [090]
 EndSpeechLose = "Man, I lost!"
-Name = LERDIH
+Name = 勒迪赫
 PokemonNos = 127,133,141,146,155,162,168,169,179,197,201,221,225,240
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [091]
 EndSpeechLose = "Man, I lost!"
-Name = NYAIUS
+Name = 尼亚乌斯
 PokemonNos = 132,142,155,160,179,230,243
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [092]
 EndSpeechLose = "Man, I lost!"
-Name = SMED
+Name = 斯梅德
 PokemonNos = 138,154,184,189,194,208,213,214,226,243,244
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [093]
 EndSpeechLose = "Man, I lost!"
-Name = PRORTE
+Name = 普罗尔特
 PokemonNos = 134,158,161,170,175,178,180,185,192,207,217,220,225
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [094]
 EndSpeechLose = "Man, I lost!"
-Name = GOS
+Name = 戈斯
 PokemonNos = 128,131,142,144,148,154,159,165,166,171,172,175,211,219,222,230,232
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [095]
 EndSpeechLose = "Man, I lost!"
-Name = GLEEIO
+Name = 格利奥
 PokemonNos = 137,152,154,161,190,192,194,201,212,217,220,236,239,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [096]
 EndSpeechLose = "Man, I lost!"
-Name = ZOCUN
+Name = 佐昆
 PokemonNos = 134,141,142,156,160,166,180,185,187,207,208,229
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [097]
 EndSpeechLose = "Man, I lost!"
-Name = LIV
+Name = 丽芙
 PokemonNos = 133,166,167,196,210,227,240
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [098]
 EndSpeechLose = "Man, I lost!"
-Name = PAUS
+Name = 保斯
 PokemonNos = 137,145,149,160,161,171,190,195,207,208,222,224,238
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGSTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [099]
 EndSpeechLose = "Man, I lost!"
-Name = SWALA
+Name = 斯瓦拉
 PokemonNos = 148,154,164,181,182,201,203,206,213,217
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [100]
 EndSpeechLose = "Man, I lost!"
-Name = INDRA
+Name = 因德拉
 PokemonNos = 129,160,175,177,181,198,205,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [101]
 EndSpeechLose = "Man, I lost!"
-Name = GECHA
+Name = 盖查
 PokemonNos = 123,131,146,149,155,156,162,176,184,211,221,222,230,234,240
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [102]
 EndSpeechLose = "Man, I lost!"
-Name = DIN
+Name = 丁
 PokemonNos = 126,129,147,163,168,187,201,203,233,241,244
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = ENGINEER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [103]
 EndSpeechLose = "Man, I lost!"
-Name = JUBB
+Name = 朱布
 PokemonNos = 124,130,143,147,154,179,183,215,228,235
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [104]
 EndSpeechLose = "Man, I lost!"
-Name = KIV
+Name = 基夫
 PokemonNos = 130,135,139,144,184,202,203,208,226,228,229,236
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [105]
 EndSpeechLose = "Man, I lost!"
-Name = BOB
+Name = 鲍勃
 PokemonNos = 136,144,145,149,165,167,198,220,242
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [106]
 EndSpeechLose = "Man, I lost!"
-Name = ORA
+Name = 奥拉
 PokemonNos = 136,145,152,168,169,170,173,176,180,187,196,202,229,230
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [107]
 EndSpeechLose = "Man, I lost!"
-Name = ANDRA
+Name = 安德拉
 PokemonNos = 124,158,161,165,168,189,212
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [108]
 EndSpeechLose = "Man, I lost!"
-Name = DILA
+Name = 迪拉
 PokemonNos = 131,151,154,159,175,185,189,207,221,230
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [109]
 EndSpeechLose = "Man, I lost!"
-Name = SKEND
+Name = 斯肯德
 PokemonNos = 123,138,146,153,155,160,171,175,183,184,213,228,231,238
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = RUINMANIAC
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [110]
 EndSpeechLose = "Man, I lost!"
-Name = GRUUSEL
+Name = 格鲁塞尔
 PokemonNos = 130,137,144,161,174,175,179,190,197,218,230,239
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = RUINMANIAC
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [111]
 EndSpeechLose = "Man, I lost!"
-Name = LIU
+Name = 刘
 PokemonNos = 123,133,139,140,151,171,186,193,209,229,231,232,241
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = RUINMANIAC
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [112]
 EndSpeechLose = "Man, I lost!"
-Name = MONS
+Name = 蒙斯
 PokemonNos = 170,171,173,174,183,191,194,198,202,210,221,222
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = RUINMANIAC
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [113]
 EndSpeechLose = "Man, I lost!"
-Name = LIBSOLD
+Name = 利布索尔德
 PokemonNos = 133,141,142,146,158,165,185,192,194,195,203,220,221,223,225
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BIKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [114]
 EndSpeechLose = "Man, I lost!"
-Name = SIU
+Name = 休
 PokemonNos = 180,181,201,210,219,223,237
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BIKER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [115]
 EndSpeechLose = "Man, I lost!"
-Name = HAHAY
+Name = 哈哈伊
 PokemonNos = 144,151,170,177,181,186,201,213,215,232,235
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [116]
 EndSpeechLose = "Man, I lost!"
-Name = WIRNA
+Name = 维尔娜
 PokemonNos = 147,148,152,154,162,170,184,197,210,223
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [117]
 EndSpeechLose = "Man, I lost!"
-Name = LOND
+Name = 隆德
 PokemonNos = 124,174,182,189,201,206,219,226,234,237,244,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [118]
 EndSpeechLose = "Man, I lost!"
-Name = OUB
+Name = 奥布
 PokemonNos = 137,142,144,149,179,182,189,191,195,197,209,214,223,227,233,237,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = ENGINEER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [119]
 EndSpeechLose = "Man, I lost!"
-Name = OUBSAM
+Name = 奥布萨姆
 PokemonNos = 146,162,167,180,181,197,204,205,206,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = ENGINEER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [120]
 EndSpeechLose = "Man, I lost!"
-Name = ENE
+Name = 埃内
 PokemonNos = 133,158,175,176,192,201,232,233,241
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = ENGINEER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [121]
 EndSpeechLose = "Man, I lost!"
-Name = AGORTA
+Name = 阿戈塔
 PokemonNos = 156,171,175,200,208,237,239
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [122]
 EndSpeechLose = "Man, I lost!"
-Name = ALA
+Name = 阿拉
 PokemonNos = 124,136,143,146,152,168,170,180,197,198,200,213,215,223,244,245
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [123]
 EndSpeechLose = "Man, I lost!"
-Name = INUPA
+Name = 伊努帕
 PokemonNos = 127,136,147,154,168,172,189,194,203,219,226,236,237
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [124]
 EndSpeechLose = "Man, I lost!"
-Name = ECONDRA
+Name = 埃孔德拉
 PokemonNos = 131,147,152,153,155,159,164,168,200,241,243
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [125]
 EndSpeechLose = "Man, I lost!"
-Name = AKTILI
+Name = 阿克提利
 PokemonNos = 126,134,148,150,151,153,157,161,168,180,192,206,216,222,236,242
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [126]
 EndSpeechLose = "Man, I lost!"
-Name = ICHA
+Name = 伊查
 PokemonNos = 142,144,147,158,160,161,164,165,171,176,179,188,213,219,231,234
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [127]
 EndSpeechLose = "Man, I lost!"
-Name = CHONG
+Name = 冲
 PokemonNos = 165,184,188,191,215,221,232
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [128]
 EndSpeechLose = "Man, I lost!"
-Name = PROBACS
+Name = 普罗巴克斯
 PokemonNos = 150,158,173,182,183,186,192,216,217,221,232,234,235,238
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [129]
 EndSpeechLose = "Man, I lost!"
-Name = MOU
+Name = 莫
 PokemonNos = 143,150,172,185,195,199,211,216,224,225,226,241
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMONRANGER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [130]
 EndSpeechLose = "Man, I lost!"
-Name = NESSIKA
+Name = 内西卡
 PokemonNos = 126,133,157,168,192,210,211,221,222,241
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PAINTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [131]
 EndSpeechLose = "Man, I lost!"
-Name = ARESTA
+Name = 阿雷斯塔
 PokemonNos = 126,140,142,150,175,189,192,235,240
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PAINTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [132]
 EndSpeechLose = "Man, I lost!"
-Name = OLILI
+Name = 奥莉莉
 PokemonNos = 124,132,137,147,156,165,188,190,208,220,221
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PAINTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [133]
 EndSpeechLose = "Man, I lost!"
-Name = RESTA
+Name = 雷斯塔
 PokemonNos = 123,125,139,174,178,182,189,195,198,216,233,238
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PAINTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [134]
 EndSpeechLose = "Man, I lost!"
-Name = ONDRA
+Name = 翁德拉
 PokemonNos = 251,267,271,295,308,309,318,321,327,333,335,351,364,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = PAINTER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [135]
 EndSpeechLose = "Man, I lost!"
-Name = BEMIR
+Name = 贝米尔
 PokemonNos = 248,261,272,280,288,297,320,321,325,332,334,345
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [136]
 EndSpeechLose = "Man, I lost!"
-Name = PROSAND
+Name = 普罗桑德
 PokemonNos = 254,259,266,270,292,295,298,301,303,320,326,338,339,343,349
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [137]
 EndSpeechLose = "Man, I lost!"
-Name = BAFTEN
+Name = 巴夫滕
 PokemonNos = 247,248,260,261,265,269,273,280,284,295,299,309,337,342,352
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [138]
 EndSpeechLose = "Man, I lost!"
-Name = KAREB
+Name = 卡雷布
 PokemonNos = 258,260,267,278,279,287,289,296,312,313,315,317,333,346,349,360
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [139]
 EndSpeechLose = "Man, I lost!"
-Name = DRONA
+Name = 德罗娜
 PokemonNos = 299,308,311,314,323,335,348,356
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [140]
 EndSpeechLose = "Man, I lost!"
-Name = UZHENDA
+Name = 乌真达
 PokemonNos = 250,255,269,294,299,310,315,333,336,351,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [141]
 EndSpeechLose = "Man, I lost!"
-Name = AFIKA
+Name = 阿菲卡
 PokemonNos = 247,254,257,260,270,275,281,283,286,291,292,295,301,308,325,334,340,342,361
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SWIMMER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [142]
 EndSpeechLose = "Man, I lost!"
-Name = LEZUS
+Name = 莱祖斯
 PokemonNos = 246,250,252,253,267,269,287,291,292,294,295,300,302,303,310,325,330,349,354,355,363,368
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SAILOR
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [143]
 EndSpeechLose = "Man, I lost!"
-Name = MIJECS
+Name = 米杰克斯
 PokemonNos = 270,300,301,302,308,309,316,326,340,345,356,364,366,367
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SAILOR
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [144]
 EndSpeechLose = "Man, I lost!"
-Name = NYAVUL
+Name = 尼亚维尔
 PokemonNos = 248,249,266,277,300,309,321,324,325,327,329,340,342,347
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SAILOR
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [145]
 EndSpeechLose = "Man, I lost!"
-Name = KINGIUS
+Name = 金吉乌斯
 PokemonNos = 253,275,284,292,294,295,299,304,314,339,343,354
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SAILOR
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [146]
 EndSpeechLose = "Man, I lost!"
-Name = GRALSIUS
+Name = 格拉尔西乌斯
 PokemonNos = 253,270,272,284,295,306,312,314,321,335,341,344,360
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SAILOR
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [147]
 EndSpeechLose = "Man, I lost!"
-Name = RAO
+Name = 拉奥
 PokemonNos = 276,278,279,288,306,320,330,343,347,360
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SUPERNERD
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [148]
 EndSpeechLose = "Man, I lost!"
-Name = BOH
+Name = 博
 PokemonNos = 249,268,269,272,280,287,288,293,305,309,322,335,349,355,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SUPERNERD
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [149]
 EndSpeechLose = "Man, I lost!"
-Name = JOP
+Name = 乔普
 PokemonNos = 254,264,282,286,289,334,357,362,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [150]
 EndSpeechLose = "Man, I lost!"
-Name = RIVOD
+Name = 里沃德
 PokemonNos = 252,264,274,276,278,292,312,317,327,330,341,346,353,360,363
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [151]
 EndSpeechLose = "Man, I lost!"
-Name = PREETIUS
+Name = 普里提乌斯
 PokemonNos = 280,282,294,307,320,341,356,360
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [152]
 EndSpeechLose = "Man, I lost!"
-Name = ZEK
+Name = 泽克
 PokemonNos = 248,251,253,255,256,315,329,340,344,349
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [153]
 EndSpeechLose = "Man, I lost!"
-Name = NYANG
+Name = 尼扬
 PokemonNos = 252,255,260,271,287,294,318,328,330,351
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [154]
 EndSpeechLose = "Man, I lost!"
-Name = DAU
+Name = 道
 PokemonNos = 247,248,263,265,279,280,281,289,294,302,309,312,318,337,340,349,351,357
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [155]
 EndSpeechLose = "Man, I lost!"
-Name = INGOCHIE
+Name = 因戈奇
 PokemonNos = 246,265,279,281,298,299,314,320,344
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [156]
 EndSpeechLose = "Man, I lost!"
-Name = ONDRA
+Name = 翁德拉
 PokemonNos = 250,259,267,268,269,303,332,337,353
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [157]
 EndSpeechLose = "Man, I lost!"
-Name = GOO
+Name = 古
 PokemonNos = 246,253,258,269,286,295,306,313,335,343,347,355,362
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = POKEMANIAC
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [158]
 EndSpeechLose = "Man, I lost!"
-Name = GAMED
+Name = 加梅德
 PokemonNos = 248,258,262,264,270,281,282,293,319,329,347,351,353,356,359,366
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [159]
 EndSpeechLose = "Man, I lost!"
-Name = GLOUS
+Name = 格劳斯
 PokemonNos = 273,274,280,294,310,312,338,347,350,355,361
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [160]
 EndSpeechLose = "Man, I lost!"
-Name = RAUS
+Name = 劳斯
 PokemonNos = 250,262,275,278,282,287,294,305,313,338,350,351,365,368
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [161]
 EndSpeechLose = "Man, I lost!"
-Name = BENGIO
+Name = 本吉奥
 PokemonNos = 248,250,268,294,328,341,349,352
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [162]
 EndSpeechLose = "Man, I lost!"
-Name = PASUJ
+Name = 帕苏杰
 PokemonNos = 254,256,266,267,269,272,283,288,300,304,315,321,352,363
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [163]
 EndSpeechLose = "Man, I lost!"
-Name = GLOKIO
+Name = 格洛基奥
 PokemonNos = 249,276,283,295,306,327,332,361,364,366
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [164]
 EndSpeechLose = "Man, I lost!"
-Name = REFITO
+Name = 雷菲托
 PokemonNos = 246,251,262,268,278,286,301,323,338,343,350,355
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [165]
 EndSpeechLose = "Man, I lost!"
-Name = BOF
+Name = 博夫
 PokemonNos = 247,268,279,280,284,305,308,314,315,316,340,346,360
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [166]
 EndSpeechLose = "Man, I lost!"
-Name = BLEM
+Name = 布莱姆
 PokemonNos = 250,254,260,283,286,300,303,306,307,313,320,322,338,356,361,368
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = BLACKBELT
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [167]
 EndSpeechLose = "Man, I lost!"
-Name = OPTUCHA
+Name = 奥普图查
 PokemonNos = 290,298,301,321,322,326,337,351,361
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = CRUSHGIRL
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [168]
 EndSpeechLose = "Man, I lost!"
-Name = PHEN
+Name = 芬
 PokemonNos = 268,271,272,298,300,313,320,321,325,328,338,341
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [169]
 EndSpeechLose = "Man, I lost!"
-Name = BAIUS
+Name = 拜乌斯
 PokemonNos = 252,256,263,266,275,287,301,317,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [170]
 EndSpeechLose = "Man, I lost!"
-Name = LIPHUS
+Name = 利普斯
 PokemonNos = 252,253,254,285,286,289,311,335,343,349,350,352,359,368
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [171]
 EndSpeechLose = "Man, I lost!"
-Name = DASHILA
+Name = 达希拉
 PokemonNos = 247,248,254,264,273,297,314,315,321,322,325,336,344
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [172]
 EndSpeechLose = "Man, I lost!"
-Name = EMSA
+Name = 埃姆萨
 PokemonNos = 249,269,277,278,303,305,311,312,334,345,358,363,368
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TEAMROCKET_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [173]
 EndSpeechLose = "Man, I lost!"
-Name = RAKT
+Name = 拉克特
 PokemonNos = 252,255,258,259,262,266,270,279,301,306,309,315,323,328,329,332,342,354
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TAMER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [174]
 EndSpeechLose = "Man, I lost!"
-Name = MAH
+Name = 马
 PokemonNos = 260,275,308,310,317,329,331,333,336,350,356,362,363
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = TAMER
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [175]
 EndSpeechLose = "Man, I lost!"
-Name = PHOKTANA
+Name = 福克塔娜
 PokemonNos = 246,252,257,259,277,279,307,322,330,348,358
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [176]
 EndSpeechLose = "Man, I lost!"
-Name = LACHIE
+Name = 拉奇
 PokemonNos = 249,255,260,263,284,330,338,344,351,356,360
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [177]
 EndSpeechLose = "Man, I lost!"
-Name = UVA
+Name = 乌瓦
 PokemonNos = 249,262,267,272,281,309,325,335,340,346,348,350,362,364,368
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [178]
 EndSpeechLose = "Man, I lost!"
-Name = OSIFILA
+Name = 奥西菲拉
 PokemonNos = 255,261,267,273,277,281,285,291,299,311,313,316,325,335,341,350,357,361,368
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [179]
 EndSpeechLose = "Man, I lost!"
-Name = ISTOLITA
+Name = 伊斯托利塔
 PokemonNos = 250,253,272,284,318,344,357,361
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = LADY
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [180]
 EndSpeechLose = "Man, I lost!"
-Name = RAMIL
+Name = 拉米尔
 PokemonNos = 252,253,259,262,265,271,273,281,283,295,304,306,308,315,322,328,342,354
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = SUPERNERD
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [181]
 EndSpeechLose = "Man, I lost!"
-Name = ARAY
+Name = 阿雷
 PokemonNos = 246,254,256,257,261,270,286,294,302,304,305,310,315,321,325,330,342,359,362,367
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGCOUPLE
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [182]
 EndSpeechLose = "Man, I lost!"
-Name = ANGIFS
+Name = 安吉夫斯
 PokemonNos = 260,263,264,276,281,298,306,309,311,325,329
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = YOUNGCOUPLE
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [183]
 EndSpeechLose = "Man, I lost!"
-Name = LIS
+Name = 利斯
 PokemonNos = 251,267,296,309,313,346,351,357,360,366
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [184]
 EndSpeechLose = "Man, I lost!"
-Name = GRUURKILS
+Name = 格鲁尔基尔斯
 PokemonNos = 253,259,265,271,272,290,301,319,326,334,351,363
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [185]
 EndSpeechLose = "Man, I lost!"
-Name = PAGSIUS
+Name = 帕格西乌斯
 PokemonNos = 250,256,272,274,305,310,322,330,333,336,338,344,346,349,358,360,367
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [186]
 EndSpeechLose = "Man, I lost!"
-Name = GAMEZ
+Name = 加梅斯
 PokemonNos = 253,259,260,265,270,274,279,281,304,319,335,348,360,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [187]
 EndSpeechLose = "Man, I lost!"
-Name = BACHID
+Name = 巴奇德
 PokemonNos = 257,264,269,295,303,304,305,315,319,321,366
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_M
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [188]
 EndSpeechLose = "Man, I lost!"
-Name = IBA
+Name = 伊巴
 PokemonNos = 253,257,266,270,273,280,284,288,292,299,314,319,321,326,329,330,341,346
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [189]
 EndSpeechLose = "Man, I lost!"
-Name = ROCHIE
+Name = 罗奇
 PokemonNos = 249,259,270,297,300,303,308,343,363
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [190]
 EndSpeechLose = "Man, I lost!"
-Name = MINA
+Name = 米娜
 PokemonNos = 251,256,259,263,274,283,288,297,304,337,357,362
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [191]
 EndSpeechLose = "Man, I lost!"
-Name = OKTUVINA
+Name = 奥克图维娜
 PokemonNos = 258,261,264,279,296,297,303,311,320,325,333,337,342,353,355,356,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [192]
 EndSpeechLose = "Man, I lost!"
 Name = SECHIE
 PokemonNos = 251,252,266,282,295,307,315,327,329,345,347,352,354,357,360,363
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [193]
 EndSpeechLose = "Man, I lost!"
-Name = STUNKA
+Name = 斯通卡
 PokemonNos = 252,261,269,286,289,322,325,338,346,348,362
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [194]
 EndSpeechLose = "Man, I lost!"
-Name = ULITELLE
+Name = 乌利泰勒
 PokemonNos = 246,248,252,272,291,294,305,309,339,350,351,358,367
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [195]
 EndSpeechLose = "Man, I lost!"
-Name = IGA
+Name = 伊加
 PokemonNos = 265,276,289,297,326,332,341
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [196]
 EndSpeechLose = "Man, I lost!"
-Name = ZUNA
+Name = 祖娜
 PokemonNos = 249,255,266,269,271,277,281,284,292,296,302,305,312,317,318,335,345,348,350
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = COOLTRAINER_F
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [197]
 EndSpeechLose = "Man, I lost!"
-Name = NAME
+Name = 内姆
 PokemonNos = 256,258,274,279,283,287,290,306,315,321,338,355,361,365
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = GENTLEMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [198]
 EndSpeechLose = "Man, I lost!"
-Name = TWON
+Name = 特温
 PokemonNos = 250,255,257,266,278,298,301,303,323,343,344,350,354,359
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = GENTLEMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”
 #-------------------------------
 [199]
 EndSpeechLose = "Man, I lost!"
-Name = TUJOGS
+Name = 图乔格斯
 PokemonNos = 249,255,258,267,279,294,318,320,326,330,352,365,367
-BeginSpeech = Here I come!
+BeginSpeech = 我来了！
 Type = GENTLEMAN
-EndSpeechWin = "Yes, I won!"
+EndSpeechWin = “我赢了！”

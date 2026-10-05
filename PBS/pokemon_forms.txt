@@ -1,7 +1,7 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [VENUSAUR,1]
-FormName = Mega Venusaur
+FormName = 超级妙蛙花
 MegaStone = VENUSAURITE
 BaseStats = 80,100,123,80,122,120
 BaseExp = 313
@@ -9,11 +9,11 @@ Abilities = THICKFAT
 HiddenAbilities = THICKFAT
 Height = 2.4
 Weight = 155.5
-Pokedex = In order to support its flower, which has grown larger due to Mega Evolution, its back and legs have become stronger.
+Pokedex = 为了支撑因超级进化而变大的花朵，它的背部和腿部变得更加结实。
 Generation = 6
 #-------------------------------
 [CHARIZARD,1]
-FormName = Mega Charizard X
+FormName = 超级喷火龙X
 MegaStone = CHARIZARDITEX
 Types = FIRE,DRAGON
 BaseStats = 78,130,111,100,130,85
@@ -22,33 +22,33 @@ Abilities = TOUGHCLAWS
 HiddenAbilities = TOUGHCLAWS
 Weight = 110.5
 Color = Black
-Pokedex = The overwhelming power that fills its entire body causes it to turn black and create intense blue flames.
+Pokedex = 充满全身的压倒性力量使它变黑，并产生强烈的蓝色火焰。
 Generation = 6
 #-------------------------------
 [CHARIZARD,2]
-FormName = Mega Charizard Y
+FormName = 超级喷火龙Y
 MegaStone = CHARIZARDITEY
 BaseStats = 78,104,78,100,159,115
 BaseExp = 317
 Abilities = DROUGHT
 HiddenAbilities = DROUGHT
 Weight = 100.5
-Pokedex = Its bond with its Trainer is the source of its power. It boasts speed and maneuverability greater than that of a jet fighter.
+Pokedex = 与训练家的牵绊是它的力量之源。它拥有超越喷气式战斗机的速度和机动性。
 Generation = 6
 #-------------------------------
 [BLASTOISE,1]
-FormName = Mega Blastoise
+FormName = 超级水箭龟
 MegaStone = BLASTOISINITE
 BaseStats = 79,103,120,78,135,115
 BaseExp = 315
 Abilities = MEGALAUNCHER
 HiddenAbilities = MEGALAUNCHER
 Weight = 101.1
-Pokedex = The cannon on its back is as powerful as a tank gun. Its tough legs and back enable it to withstand the recoil from firing the cannon.
+Pokedex = 它背上的大炮威力堪比坦克炮。结实的腿和背部使它能够承受开炮时的后坐力。
 Generation = 6
 #-------------------------------
 [BEEDRILL,1]
-FormName = Mega Beedrill
+FormName = 超级大针蜂
 MegaStone = BEEDRILLITE
 BaseStats = 65,150,40,145,15,80
 BaseExp = 284
@@ -56,11 +56,11 @@ Abilities = ADAPTABILITY
 HiddenAbilities = ADAPTABILITY
 Height = 1.4
 Weight = 40.5
-Pokedex = Its legs have become poison stingers. It stabs its prey repeatedly with the stingers on its limbs, dealing the final blow with the stinger on its rear.
+Pokedex = 它的腿变成了毒刺。它用四肢的毒刺反复刺向猎物，最后用尾部的毒刺给予致命一击。
 Generation = 6
 #-------------------------------
 [PIDGEOT,1]
-FormName = Mega Pidgeot
+FormName = 超级大比鸟
 MegaStone = PIDGEOTITE
 BaseStats = 83,80,80,121,135,80
 BaseExp = 290
@@ -68,11 +68,11 @@ Abilities = NOGUARD
 HiddenAbilities = NOGUARD
 Height = 2.2
 Weight = 50.5
-Pokedex = With its muscular strength now greatly increased, it can fly continuously for two weeks without resting.
+Pokedex = 由于肌肉力量大幅增强，它能连续飞行两周不休息。
 Generation = 6
 #-------------------------------
 [RATTATA,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = DARK,NORMAL
 Abilities = GLUTTONY,HUSTLE
 HiddenAbilities = THICKFAT
@@ -80,14 +80,14 @@ TutorMoves = ATTRACT,BLIZZARD,BODYSLAM,CAPTIVATE,CONFIDE,COUNTER,COVET,CUT,DARKP
 EggMoves = COUNTER,FINALGAMBIT,FURYSWIPES,MEFIRST,REVENGE,REVERSAL,SNATCH,STOCKPILE,SWALLOW,SWITCHEROO,UPROAR
 Weight = 3.8
 Color = Black
-Pokedex = With its incisors, it gnaws through doors and infiltrates people's homes. Then, with a twitch of its whiskers, it steals whatever food it finds.
+Pokedex = 它用门牙咬穿门，潜入人类的家中。然后胡须一抖，偷走找到的食物。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 WildItemUncommon = PECHABERRY
 Evolution = RATICATE,LevelNight,20
 #-------------------------------
 [RATICATE,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = DARK,NORMAL
 BaseStats = 75,71,70,77,40,80
 Abilities = GLUTTONY,HUSTLE
@@ -95,13 +95,13 @@ HiddenAbilities = THICKFAT
 TutorMoves = ATTRACT,BLIZZARD,BODYSLAM,BULKUP,CAPTIVATE,CONFIDE,COUNTER,COVET,CUT,DARKPULSE,DEFENSECURL,DIG,DOUBLEEDGE,DOUBLETEAM,EMBARGO,ENDEAVOR,ENDURE,FACADE,FRUSTRATION,GIGAIMPACT,GRASSKNOT,HEADBUTT,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IRONTAIL,KNOCKOFF,LASTRESORT,MIMIC,MUDSLAP,NATURALGIFT,PLUCK,PROTECT,QUASH,RAINDANCE,REST,RETALIATE,RETURN,ROAR,ROCKSMASH,ROUND,SECRETPOWER,SHADOWBALL,SHADOWCLAW,SHOCKWAVE,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNARL,SNATCH,SNORE,STOMPINGTANTRUM,STRENGTH,SUBSTITUTE,SUCKERPUNCH,SUNNYDAY,SUPERFANG,SWAGGER,SWIFT,SWORDSDANCE,TAUNT,THIEF,THROATCHOP,TORMENT,UPROAR,UTURN,VENOSHOCK,ZENHEADBUTT
 Weight = 25.5
 Color = Black
-Pokedex = It forms a group of Rattata, which it assumes command of. Each group has its own territory, and disputes over food happen often.
+Pokedex = 它会组建一群小拉达并担任首领。每个群体都有自己的地盘，常为食物发生争斗。
 Generation = 7
 Flags = InheritFormWithEverstone
 WildItemUncommon = PECHABERRY
 #-------------------------------
 [RAICHU,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ELECTRIC,PSYCHIC
 BaseStats = 60,85,50,110,95,85
 Abilities = SURGESURFER
@@ -111,11 +111,11 @@ TutorMoves = AGILITY,ALLURINGVOICE,ALLYSWITCH,ATTRACT,BODYSLAM,BRICKBREAK,CALMMI
 Height = 0.7
 Weight = 21.0
 Color = Brown
-Pokedex = It uses psychokinesis to control electricity. It hops aboard its own tail, using psychic power to lift the tail and move about while riding it.
+Pokedex = 它用念力控制电力。它跳上自己的尾巴，用超能力抬起尾巴，骑在上面移动。
 Generation = 7
 #-------------------------------
 [RAICHU,2]
-FormName = Mega Raichu X
+FormName = 超级雷丘X
 MegaStone = RAICHUNITEX
 BaseStats = 60,135,95,110,90,95
 Abilities = ELECTRICSURGE
@@ -123,11 +123,11 @@ HiddenAbilities = ELECTRICSURGE
 BaseExp = 293
 Height = 1.2
 Weight = 38.0
-Pokedex = It resembles an X as it flies through the air with 50 million volts of electricity sparking from its ears and forked tail.
+Pokedex = 它飞行时形似字母X，耳朵和分叉的尾巴迸发出5000万伏特的电流。
 Generation = 9
 #-------------------------------
 [RAICHU,3]
-FormName = Mega Raichu Y
+FormName = 超级雷丘Y
 MegaStone = RAICHUNITEY
 BaseStats = 60,100,55,130,160,80
 Abilities = NOGUARD
@@ -135,11 +135,11 @@ HiddenAbilities = NOGUARD
 BaseExp = 293
 Height = 1.0
 Weight = 26.0
-Pokedex = It fires bolts of electricity from the tip of its tail and from the spiky tufts of fur growing out of its temples. This electricity forms the letter Y.
+Pokedex = 它从尾巴尖端和太阳穴处长出的尖毛丛中发射电流。这些电流形成字母Y的形状。
 Generation = 9
 #-------------------------------
 [SANDSHREW,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ICE,STEEL
 BaseStats = 50,75,90,40,10,35
 Abilities = SNOWCLOAK
@@ -150,13 +150,13 @@ EggMoves = AMNESIA,CHIPAWAY,COUNTER,CRUSHCLAW,CURSE,ENDURE,FLAIL,HONECLAWS,ICESH
 Height = 0.7
 Weight = 40.0
 Color = White
-Pokedex = The skin on its back is as hard as steel. Predators go after its soft belly, so it clings to the ground desperately.
+Pokedex = 它背部的皮肤硬如钢铁。捕食者会攻击它柔软的腹部，所以它会拼命贴住地面。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 Evolution = SANDSLASH,Item,ICESTONE
 #-------------------------------
 [SANDSLASH,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ICE,STEEL
 BaseStats = 75,100,120,65,25,65
 Abilities = SNOWCLOAK
@@ -166,12 +166,12 @@ TutorMoves = AERIALACE,AGILITY,AMNESIA,AQUATAIL,ATTRACT,AURORAVEIL,AVALANCHE,BLI
 Height = 1.2
 Weight = 55.0
 Color = Blue
-Pokedex = It runs across snow-covered plains at high speeds. It developed thick, sharp claws to plow through the snow.
+Pokedex = 它在积雪的平原上高速奔跑。它长出了又厚又锋利的爪子，用来破开积雪。
 Generation = 7
 Flags = InheritFormWithEverstone
 #-------------------------------
 [CLEFABLE,1]
-FormName = Mega Clefable
+FormName = 超级皮可西
 MegaStone = CLEFABLITE
 Types = FAIRY,FLYING
 BaseStats = 95,80,93,70,135,110
@@ -180,11 +180,11 @@ Abilities = MAGICBOUNCE
 HiddenAbilities = MAGICBOUNCE
 Height = 1.7
 Weight = 42.3
-Pokedex = It flies by using the power of moonlight to control gravity within a radius of over 32 feet around it.
+Pokedex = 它借助月光的力量操控自身周围超过32英尺范围内的重力来飞行。
 Generation = 9
 #-------------------------------
 [VULPIX,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ICE
 Abilities = SNOWCLOAK
 HiddenAbilities = SNOWWARNING
@@ -192,14 +192,14 @@ Moves = 1,POWDERSNOW,1,TAILWHIP,4,DISABLE,8,ICESHARD,12,SPITE,16,ICYWIND,20,CONF
 TutorMoves = AGILITY,AQUATAIL,ATTRACT,AURORAVEIL,BATONPASS,BLIZZARD,BODYSLAM,CAPTIVATE,CHARM,CHILLINGWATER,CONFIDE,CONFUSERAY,COVET,DARKPULSE,DAZZLINGGLEAM,DIG,DISARMINGVOICE,DOUBLEEDGE,DOUBLETEAM,DRAININGKISS,ENCORE,ENDURE,FACADE,FAKETEARS,FOULPLAY,FROSTBREATH,FRUSTRATION,HAIL,HEADBUTT,HEALBELL,HELPINGHAND,HEX,HIDDENPOWER,ICEBEAM,ICICLESPEAR,ICYWIND,IMPRISON,IRONTAIL,MIMIC,MISTYTERRAIN,NASTYPLOT,NATURALGIFT,PAINSPLIT,PAYBACK,PLAYROUGH,POWERSWAP,PROTECT,PSYCHUP,RAINDANCE,REST,RETURN,ROAR,ROLEPLAY,ROUND,SAFEGUARD,SECRETPOWER,SLEEPTALK,SNORE,SNOWSCAPE,SPITE,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAILSLAP,TAKEDOWN,TERABLAST,WEATHERBALL,ZENHEADBUTT
 EggMoves = AGILITY,BABYDOLLEYES,CHARM,DISABLE,ENCORE,EXTRASENSORY,FLAIL,FREEZEDRY,HOWL,HYPNOSIS,MOONBLAST,POWERSWAP,ROAR,SECRETPOWER,SPITE,TAILSLAP
 Color = White
-Pokedex = In hot weather, this Pokémon makes ice shards with its six tails and sprays them around to cool itself off.
+Pokedex = 天气炎热时，这只宝可梦会用六条尾巴制造冰砾，四处喷洒来给自己降温。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 WildItemUncommon = SNOWBALL
 Evolution = NINETALES,Item,ICESTONE
 #-------------------------------
 [NINETALES,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ICE,FAIRY
 BaseStats = 73,67,75,109,81,100
 EVs = SPEED,2
@@ -208,13 +208,13 @@ HiddenAbilities = SNOWWARNING
 Moves = -1,DISABLE,-1,MIST,-1,ICEBEAM,-1,AURORABEAM,-1,CONFUSERAY,-1,SPITE,-1,POWDERSNOW,-1,EXTRASENSORY,-1,NASTYPLOT,-1,ICESHARD,-1,FREEZEDRY,-1,AURORAVEIL,0,DAZZLINGGLEAM,1,ICYWIND,1,IMPRISON,1,BLIZZARD,1,TAILWHIP
 TutorMoves = AGILITY,AQUATAIL,ATTRACT,AURORAVEIL,AVALANCHE,BATONPASS,BLIZZARD,BODYSLAM,CALMMIND,CAPTIVATE,CHARM,CHILLINGWATER,CONFIDE,CONFUSERAY,COVET,DARKPULSE,DAZZLINGGLEAM,DIG,DISARMINGVOICE,DOUBLEEDGE,DOUBLETEAM,DRAININGKISS,DREAMEATER,ENCORE,ENDURE,FACADE,FAKETEARS,FOULPLAY,FROSTBREATH,FRUSTRATION,GIGAIMPACT,HAIL,HEADBUTT,HEALBELL,HELPINGHAND,HEX,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICICLESPEAR,ICYWIND,IMPRISON,IRONTAIL,LASERFOCUS,MIMIC,MISTYTERRAIN,NASTYPLOT,NATURALGIFT,PAINSPLIT,PAYBACK,PLAYROUGH,POWERSWAP,PROTECT,PSYCHUP,PSYSHOCK,RAINDANCE,REST,RETURN,ROAR,ROLEPLAY,ROUND,SAFEGUARD,SECRETPOWER,SLEEPTALK,SNORE,SNOWSCAPE,SPITE,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAILSLAP,TAKEDOWN,TERABLAST,TRIPLEAXEL,WEATHERBALL,WONDERROOM,ZENHEADBUTT
 Color = Blue
-Pokedex = It lives on mountains perpetually covered in snow and is revered as a deity incarnate. It appears draped in a blizzard.
+Pokedex = 它生活在终年积雪的山上，被尊为神明的化身。它现身时身披暴风雪。
 Generation = 7
 Flags = InheritFormWithEverstone
 WildItemUncommon = SNOWBALL
 #-------------------------------
 [DIGLETT,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = GROUND,STEEL
 BaseStats = 10,55,30,90,35,45
 Abilities = SANDVEIL,TANGLINGHAIR
@@ -222,12 +222,12 @@ Moves = 1,SANDATTACK,1,METALCLAW,4,GROWL,8,ASTONISH,12,MUDSLAP,16,BULLDOZE,20,SU
 TutorMoves = AGILITY,ALLYSWITCH,ASSURANCE,ATTRACT,BEATUP,BODYSLAM,BULLDOZE,CAPTIVATE,CHARM,CONFIDE,CUT,DIG,DOUBLETEAM,EARTHPOWER,EARTHQUAKE,ECHOEDVOICE,ENDURE,FACADE,FLASHCANNON,FOULPLAY,FRUSTRATION,HELPINGHAND,HIDDENPOWER,HONECLAWS,IRONDEFENSE,IRONHEAD,METALCLAW,METALSOUND,MIMIC,MUDSHOT,MUDSLAP,NATURALGIFT,PROTECT,REST,RETURN,REVERSAL,ROCKBLAST,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SANDTOMB,SCARYFACE,SCORCHINGSANDS,SCREECH,SECRETPOWER,SHADOWCLAW,SLEEPTALK,SLUDGEBOMB,SMACKDOWN,SNORE,STEALTHROCK,STEELBEAM,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUCKERPUNCH,SUNNYDAY,SWAGGER,SWORDSDANCE,TAKEDOWN,TERABLAST,THIEF,WORKUP
 EggMoves = ANCIENTPOWER,BEATUP,ENDURE,FEINTATTACK,FINALGAMBIT,HEADBUTT,HONECLAWS,MEMENTO,METALSOUND,PURSUIT,REVERSAL,THRASH
 Weight = 1.0
-Pokedex = Its head sports an altered form of whiskers made of metal. When in communication with its comrades, its whiskers wobble to and fro.
+Pokedex = 它头上长着由金属构成的特殊胡须。与同伴交流时，胡须会来回摆动。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 #-------------------------------
 [DUGTRIO,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = GROUND,STEEL
 BaseStats = 35,100,60,110,50,70
 EVs = ATTACK,2
@@ -235,12 +235,12 @@ Abilities = SANDVEIL,TANGLINGHAIR
 Moves = 0,SANDTOMB,1,NIGHTSLASH,1,TRIATTACK,1,SANDATTACK,1,METALCLAW,1,GROWL,1,ASTONISH,12,MUDSLAP,16,BULLDOZE,20,SUCKERPUNCH,24,IRONHEAD,30,SANDSTORM,36,DIG,42,EARTHPOWER,48,EARTHQUAKE,54,FISSURE
 TutorMoves = AGILITY,ALLYSWITCH,ASSURANCE,ATTRACT,BEATUP,BODYSLAM,BULLDOZE,CAPTIVATE,CHARM,CONFIDE,CURSE,CUT,DIG,DOUBLEEDGE,DOUBLETEAM,EARTHPOWER,EARTHQUAKE,ECHOEDVOICE,ENDEAVOR,ENDURE,FACADE,FLASHCANNON,FOULPLAY,FRUSTRATION,GIGAIMPACT,HELPINGHAND,HIDDENPOWER,HONECLAWS,HYPERBEAM,IRONDEFENSE,IRONHEAD,METALCLAW,METALSOUND,MIMIC,MUDSHOT,MUDSLAP,NATURALGIFT,PROTECT,REST,RETURN,REVERSAL,ROCKBLAST,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SANDTOMB,SCARYFACE,SCORCHINGSANDS,SCREECH,SECRETPOWER,SHADOWCLAW,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SMACKDOWN,SNORE,STEALTHROCK,STEELBEAM,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUCKERPUNCH,SUNNYDAY,SWAGGER,SWORDSDANCE,TAKEDOWN,TERABLAST,THIEF,THROATCHOP,TRIATTACK,UPROAR,WORKUP
 Weight = 66.6
-Pokedex = Its shining gold hair provides it with protection. It's reputed that keeping any of its fallen hairs will bring bad luck.
+Pokedex = 它闪耀的金色毛发为它提供保护。据说保留它掉落的毛发会带来厄运。
 Generation = 7
 Flags = InheritFormWithEverstone
 #-------------------------------
 [MEOWTH,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = DARK
 BaseStats = 40,35,35,90,50,40
 HiddenAbilities = RATTLED
@@ -248,13 +248,13 @@ Moves = 1,FAKEOUT,1,GROWL,4,FEINT,8,SCRATCH,12,PAYDAY,16,BITE,20,TAUNT,24,ASSURA
 TutorMoves = AERIALACE,AGILITY,AMNESIA,ASSURANCE,ATTRACT,BODYSLAM,CAPTIVATE,CHARM,CHILLINGWATER,CONFIDE,CONFUSERAY,COVET,CURSE,CUT,DARKPULSE,DEFENSECURL,DIG,DOUBLEEDGE,DOUBLETEAM,DREAMEATER,ECHOEDVOICE,EMBARGO,ENDEAVOR,ENDURE,FACADE,FAKETEARS,FLASH,FOULPLAY,FRUSTRATION,GUNKSHOT,HEADBUTT,HELPINGHAND,HIDDENPOWER,HONECLAWS,HYPERVOICE,ICYWIND,IRONTAIL,KNOCKOFF,LASHOUT,LASTRESORT,METALCLAW,MIMIC,NASTYPLOT,NATURALGIFT,PAYBACK,PAYDAY,PLAYROUGH,POWERGEM,PROTECT,PSYCHUP,QUASH,RAINDANCE,REST,RETALIATE,RETURN,ROUND,SCREECH,SECRETPOWER,SEEDBOMB,SHADOWBALL,SHADOWCLAW,SHOCKWAVE,SLEEPTALK,SNARL,SNATCH,SNORE,SPITE,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,TAKEDOWN,TAUNT,TERABLAST,THIEF,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERWAVE,TORMENT,TRAILBLAZE,UTURN,WORKUP
 EggMoves = AMNESIA,ASSIST,CHARM,COVET,FLAIL,FLATTER,FOULPLAY,HYPNOSIS,PARTINGSHOT,PUNISHMENT,SNATCH,SPITE
 Color = Blue
-Pokedex = It's impulsive, selfish, and fickle. It's very popular with some Trainers who like giving it the attention it needs.
+Pokedex = 它冲动、自私又善变。一些喜欢给予它所需关注的训练家非常喜欢它。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 Evolution = PERSIAN,Happiness
 #-------------------------------
 [MEOWTH,2]
-FormName = Galarian
+FormName = 伽勒尔
 Types = STEEL
 BaseStats = 50,65,55,40,40,40
 Abilities = PICKUP,TOUGHCLAWS
@@ -264,13 +264,13 @@ EggMoves = COVET,CURSE,DOUBLEEDGE,FLAIL,NIGHTSLASH,SPITE
 Weight = 7.5
 Color = Brown
 Shape = BipedalTail
-Pokedex = Living with a savage, seafaring people has toughened this Pokémon's body so much that parts of it have turned to iron.
+Pokedex = 与凶悍的航海民族生活使这只宝可梦的身体变得坚硬，部分甚至变成了铁。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 Evolution = PERRSERKER,Level,28
 #-------------------------------
 [PERSIAN,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = DARK
 BaseStats = 65,60,60,115,75,65
 Abilities = FURCOAT,TECHNICIAN
@@ -280,12 +280,12 @@ TutorMoves = AERIALACE,AGILITY,AMNESIA,ASSURANCE,ATTRACT,BEATUP,BODYSLAM,BURNING
 Height = 1.1
 Weight = 33.0
 Color = Blue
-Pokedex = Its round face is a symbol of wealth. Persian that have bigger, plumper faces are considered more beautiful.
+Pokedex = 它圆圆的脸是财富的象征。脸越大越饱满的猫老大被认为越美丽。
 Generation = 7
 Flags = InheritFormWithEverstone
 #-------------------------------
 [GROWLITHE,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = FIRE,ROCK
 BaseStats = 60,75,45,55,65,50
 HiddenAbilities = ROCKHEAD
@@ -295,12 +295,12 @@ EggMoves = COVET,DOUBLEEDGE,DOUBLEKICK,HEADSMASH,MORNINGSUN,THRASH
 Height = 0.8
 Weight = 22.7
 Category = Scout
-Pokedex = They patrol their territory in pairs. The igneous rock components in the fur of this species are the result of volcanic activity in its habitat.
+Pokedex = 它们成对巡视地盘。这个物种毛发中的火成岩成分是其栖息地火山活动的结果。
 Generation = 8
 Flags = EggInRegion_3,InheritFormWithEverStone
 #-------------------------------
 [ARCANINE,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = FIRE,ROCK
 BaseStats = 95,115,80,90,95,80
 HiddenAbilities = ROCKHEAD
@@ -308,23 +308,23 @@ Moves = 0,EXTREMESPEED,1,FLAMEWHEEL,1,HELPINGHAND,1,AGILITY,1,FIREFANG,1,RETALIA
 TutorMoves = AERIALACE,AGILITY,BODYSLAM,BULLDOZE,CLOSECOMBAT,CRUNCH,DIG,DOUBLEEDGE,DRAGONPULSE,ENDURE,FACADE,FIREBLAST,FIREFANG,FIRESPIN,FLAMECHARGE,FLAMETHROWER,FLAREBLITZ,GIGAIMPACT,HEATCRASH,HEATWAVE,HELPINGHAND,HYPERBEAM,HYPERVOICE,IRONHEAD,OUTRAGE,OVERHEAT,POWERGEM,PROTECT,PSYCHICFANGS,REST,REVERSAL,ROAR,ROCKBLAST,ROCKSLIDE,ROCKTOMB,SANDSTORM,SCARYFACE,SCORCHINGSANDS,SLEEPTALK,SMACKDOWN,SMARTSTRIKE,SNARL,SOLARBEAM,STEALTHROCK,STONEEDGE,SUBSTITUTE,SUNNYDAY,TAKEDOWN,TEMPERFLARE,TERABLAST,THIEF,THUNDERFANG,WILDCHARGE,WILLOWISP
 Height = 2.0
 Weight = 168.0
-Pokedex = Snaps at its foes with fangs cloaked in blazing flame. Despite its bulk, it deftly feints every which way, leading opponents on a deceptively merry chase.
+Pokedex = 它用裹着炽热火焰的獠牙咬向对手。尽管体型庞大，它却能灵巧地四处虚晃，引诱对手进行一场迷惑的追逐。
 Generation = 8
 Flags = InheritFormWithEverStone
 #-------------------------------
 [ALAKAZAM,1]
-FormName = Mega Alakazam
+FormName = 超级胡地
 MegaStone = ALAKAZITE
 BaseStats = 55,50,65,150,175,105
 BaseExp = 300
 Abilities = TRACE
 HiddenAbilities = TRACE
 Height = 1.2
-Pokedex = Having traded away its muscles, Alakazam's true power has been unleashed. With its psychic powers, it can foresee all things.
+Pokedex = 舍弃了肌肉后，胡地真正的力量被解放出来。凭借超能力，它能预知一切。
 Generation = 6
 #-------------------------------
 [VICTREEBEL,1]
-FormName = Mega Victreebel
+FormName = 超级大食花
 MegaStone = VICTREEBELITE
 BaseStats = 80,125,85,70,135,95
 BaseExp = 295
@@ -332,11 +332,11 @@ Abilities = INNARDSOUT
 HiddenAbilities = INNARDSOUT
 Height = 4.5
 Weight = 125.5
-Pokedex = The volume of this Pokémon's acid has increased due to Mega Evolution, filling its mouth. If it's not careful, the acid will overflow and spill out.
+Pokedex = 因超级进化，这只宝可梦的酸液量增加，充满了嘴巴。一不留神，酸液就会溢出洒出。
 Generation = 9
 #-------------------------------
 [GEODUDE,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ROCK,ELECTRIC
 Abilities = MAGNETPULL,STURDY
 HiddenAbilities = GALVANIZE
@@ -345,13 +345,13 @@ TutorMoves = ANCIENTPOWER,ATTRACT,BLOCK,BODYSLAM,BRICKBREAK,BRUTALSWING,BULLDOZE
 EggMoves = AUTOTOMIZE,BLOCK,COUNTER,CURSE,ENDURE,FLAIL,MAGNETRISE,ROCKCLIMB,SCREECH,WIDEGUARD,ZAPCANNON
 Weight = 20.3
 Color = Gray
-Pokedex = Geodude compete against each other with headbutts. The iron sand on their heads will stick to whichever one has stronger magnetism.
+Pokedex = 小拳石用头锤相互较量。它们头上的铁砂会吸附在磁力更强的那只身上。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 WildItemUncommon = CELLBATTERY
 #-------------------------------
 [GRAVELER,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ROCK,ELECTRIC
 Abilities = MAGNETPULL,STURDY
 HiddenAbilities = GALVANIZE
@@ -359,13 +359,13 @@ Moves = 1,TACKLE,1,DEFENSECURL,1,CHARGE,1,ROCKPOLISH,10,ROLLOUT,12,SPARK,16,ROCK
 TutorMoves = ALLYSWITCH,ANCIENTPOWER,ATTRACT,BLOCK,BODYSLAM,BRICKBREAK,BRUTALSWING,BULLDOZE,CAPTIVATE,CHARGE,CHARGEBEAM,CONFIDE,COUNTER,CURSE,DEFENSECURL,DIG,DOUBLEEDGE,DOUBLETEAM,DYNAMICPUNCH,EARTHPOWER,EARTHQUAKE,ELECTRICTERRAIN,ELECTROWEB,ENDURE,EXPLOSION,FACADE,FIREBLAST,FIREPUNCH,FLAMETHROWER,FLING,FOCUSBLAST,FOCUSPUNCH,FRUSTRATION,GYROBALL,HARDPRESS,HEADBUTT,HIDDENPOWER,HIGHHORSEPOWER,INCINERATE,IRONDEFENSE,MAGNETRISE,MEGAPUNCH,METRONOME,MIMIC,MUDSHOT,MUDSLAP,NATURALGIFT,NATUREPOWER,POWERUPPUNCH,PROTECT,REST,RETURN,ROCKBLAST,ROCKCLIMB,ROCKPOLISH,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROLLOUT,ROUND,SANDSTORM,SCARYFACE,SECRETPOWER,SEISMICTOSS,SHOCKWAVE,SLEEPTALK,SMACKDOWN,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,STRENGTH,SUBSTITUTE,SUCKERPUNCH,SUNNYDAY,SUPERCELLSLAM,SUPERPOWER,SWAGGER,TAKEDOWN,TERABLAST,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,VOLTSWITCH,WILDCHARGE
 Weight = 110.0
 Color = Gray
-Pokedex = They eat rocks and often get into a scrap over them. The shock of Graveler smashing together causes a flash of light and a booming noise.
+Pokedex = 它们吃岩石，常为岩石争斗。隆隆石相互撞击的冲击会产生闪光和巨响。
 Generation = 7
 Flags = InheritFormWithEverstone
 WildItemUncommon = CELLBATTERY
 #-------------------------------
 [GOLEM,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = ROCK,ELECTRIC
 Abilities = MAGNETPULL,STURDY
 HiddenAbilities = GALVANIZE
@@ -374,13 +374,13 @@ TutorMoves = ALLYSWITCH,ANCIENTPOWER,ATTRACT,BLOCK,BODYPRESS,BODYSLAM,BRICKBREAK
 Height = 1.7
 Weight = 316.0
 Color = Gray
-Pokedex = It fires rocks charged with electricity. Even if the rock isn't fired that accurately, just grazing an opponent will cause numbness and fainting.
+Pokedex = 它发射带电的岩石。即使岩石射得不太准，只要擦到对手就会使其麻痹昏厥。
 Generation = 7
 Flags = InheritFormWithEverstone
 WildItemCommon = CELLBATTERY
 #-------------------------------
 [PONYTA,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = PSYCHIC
 Abilities = RUNAWAY,PASTELVEIL
 HiddenAbilities = ANTICIPATION
@@ -390,12 +390,12 @@ Height = 0.8
 Weight = 24.0
 Color = White
 Category = Unique Horn
-Pokedex = Its small horn hides a healing power. With a few rubs from this Pokémon's horn, any slight wound you have will be healed.
+Pokedex = 它的小角隐藏着治愈之力。被它的角摩擦几下，你身上的小伤口就会痊愈。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 #-------------------------------
 [RAPIDASH,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = PSYCHIC,FAIRY
 Abilities = RUNAWAY,PASTELVEIL
 HiddenAbilities = ANTICIPATION
@@ -404,36 +404,36 @@ TutorMoves = AGILITY,ALLYSWITCH,ATTRACT,BATONPASS,BODYSLAM,BOUNCE,CALMMIND,CAPTI
 Weight = 80.0
 Color = White
 Category = Unique Horn
-Pokedex = Little can stand up to its psycho cut. Unleashed from this Pokémon's horn, the move will punch a hole right through a thick metal sheet.
+Pokedex = 很少有东西能抵挡它的精神利刃。这招从它的角上释放，能直接穿透厚厚的金属板。
 Generation = 8
 Flags = InheritFormWithEverstone
 #-------------------------------
 [SLOWPOKE,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = PSYCHIC
 Abilities = GLUTTONY,OWNTEMPO
 Moves = 1,TACKLE,1,CURSE,3,GROWL,6,ACID,9,YAWN,12,CONFUSION,15,DISABLE,18,WATERPULSE,21,HEADBUTT,24,ZENHEADBUTT,27,AMNESIA,30,SURF,33,SLACKOFF,36,PSYCHIC,39,PSYCHUP,42,RAINDANCE,45,HEALPULSE
 TutorMoves = AMNESIA,ATTRACT,AVALANCHE,BLIZZARD,BODYSLAM,BRINE,BULLDOZE,CALMMIND,CAPTIVATE,CHILLINGWATER,CONFIDE,CURSE,DIG,DIVE,DOUBLETEAM,EARTHQUAKE,ENDURE,EXPANDINGFORCE,FACADE,FIREBLAST,FLAMETHROWER,FOULPLAY,FRUSTRATION,GRASSKNOT,HAIL,HELPINGHAND,HIDDENPOWER,HYDROPUMP,ICEBEAM,ICYWIND,IMPRISON,IRONTAIL,LIGHTSCREEN,LIQUIDATION,MIMIC,MUDSHOT,NATURALGIFT,PAYDAY,PROTECT,PSYBEAM,PSYCHIC,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,RAINDANCE,REST,RETURN,ROUND,SAFEGUARD,SECRETPOWER,SHADOWBALL,SKILLSWAP,SLEEPTALK,SNORE,SNOWSCAPE,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWIFT,TAKEDOWN,TERABLAST,THUNDERWAVE,TRIATTACK,TRICK,TRICKROOM,WATERFALL,WATERPULSE,WEATHERBALL,WHIRLPOOL,WONDERROOM,ZENHEADBUTT
-Pokedex = Although this Pokémon is normally zoned out, its expression abruptly sharpens on occasion. The cause for this seems to lie in Slowpoke's diet.
+Pokedex = 虽然这只宝可梦平时总是一副呆呆的样子，但偶尔表情会突然变得锐利。其原因似乎与呆呆兽的饮食有关。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 Evolution = SLOWBRO,Item,GALARICACUFF
 Evolution = SLOWKING,Item,GALARICAWREATH
 #-------------------------------
 [SLOWBRO,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = POISON,PSYCHIC
 BaseStats = 95,100,95,30,100,70
 Abilities = QUICKDRAW,OWNTEMPO
 Moves = 0,SHELLSIDEARM,1,WITHDRAW,1,TACKLE,1,CURSE,1,GROWL,1,ACID,9,YAWN,12,CONFUSION,15,DISABLE,18,WATERPULSE,21,HEADBUTT,24,ZENHEADBUTT,27,AMNESIA,30,SURF,33,SLACKOFF,36,PSYCHIC,39,PSYCHUP,42,RAINDANCE,45,HEALPULSE
 TutorMoves = ACIDSPRAY,AMNESIA,ATTRACT,AVALANCHE,BLIZZARD,BODYPRESS,BODYSLAM,BRICKBREAK,BRINE,BRUTALSWING,BULLDOZE,CALMMIND,CAPTIVATE,CHILLINGWATER,CONFIDE,CURSE,DIG,DIVE,DOUBLEEDGE,DOUBLETEAM,DRAINPUNCH,EARTHQUAKE,ENDURE,EXPANDINGFORCE,FACADE,FIREBLAST,FLAMETHROWER,FLING,FOCUSBLAST,FOULPLAY,FRUSTRATION,GIGAIMPACT,GRASSKNOT,GUNKSHOT,HAIL,HAZE,HELPINGHAND,HIDDENPOWER,HYDROPUMP,HYPERBEAM,ICEBEAM,ICEFANG,ICEPUNCH,ICYWIND,IMPRISON,IRONDEFENSE,IRONTAIL,LIGHTSCREEN,LIQUIDATION,MEGAKICK,MEGAPUNCH,METRONOME,MIMIC,MUDDYWATER,MUDSHOT,NASTYPLOT,NATURALGIFT,PAYDAY,POISONJAB,POWERGEM,PROTECT,PSYBEAM,PSYCHIC,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,RAINDANCE,RAZORSHELL,REST,RETURN,ROCKBLAST,ROUND,SAFEGUARD,SANDSTORM,SCARYFACE,SECRETPOWER,SHADOWBALL,SKILLSWAP,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SMACKDOWN,SNORE,SNOWSCAPE,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWIFT,TAKEDOWN,TERABLAST,THUNDERWAVE,TOXIC,TRIATTACK,TRICK,TRICKROOM,VENOSHOCK,WATERFALL,WATERPULSE,WEATHERBALL,WHIRLPOOL,WONDERROOM,ZENHEADBUTT
 Weight = 70.5
-Pokedex = If this Pokémon squeezes the tongue of the Shellder biting it, the Shellder will launch a toxic liquid from the tip of its shell.
+Pokedex = 如果这只宝可梦挤压咬着它的大舌贝的舌头，大舌贝就会从壳尖喷出毒液。
 Generation = 8
 Flags = InheritFormWithEverstone
 #-------------------------------
 [SLOWBRO,2]
-FormName = Mega Slowbro
+FormName = 超级呆壳兽
 MegaStone = SLOWBRONITE
 BaseStats = 95,75,180,30,130,80
 BaseExp = 207
@@ -442,11 +442,11 @@ HiddenAbilities = SHELLARMOR
 Height = 2.0
 Weight = 120.0
 Shape = HeadArms
-Pokedex = Having been swallowed whole by Shellder, Slowbro now has an iron defense. It's pretty comfortable in there, too.
+Pokedex = 因为被大舌贝整个吞下，呆壳兽如今拥有了钢铁般的防御。它在里面也相当舒服。
 Generation = 6
 #-------------------------------
 [FARFETCHD,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = FIGHTING
 BaseStats = 52,95,55,55,58,62
 Abilities = STEADFAST
@@ -455,14 +455,14 @@ Moves = 1,PECK,1,SANDATTACK,5,LEER,10,FURYCUTTER,15,ROCKSMASH,20,BRUTALSWING,25,
 TutorMoves = ASSURANCE,ATTRACT,BODYSLAM,BRAVEBIRD,BRICKBREAK,BRUTALSWING,CAPTIVATE,CLOSECOMBAT,CONFIDE,DOUBLEEDGE,DOUBLETEAM,DUALWINGBEAT,ENDURE,FACADE,FOCUSENERGY,FRUSTRATION,HELPINGHAND,HIDDENPOWER,LEAFBLADE,MIMIC,NATURALGIFT,POISONJAB,PROTECT,REST,RETALIATE,RETURN,REVENGE,ROUND,SECRETPOWER,SLEEPTALK,SNORE,SOLARBLADE,STEELWING,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWAGGER,SWORDSDANCE,THROATCHOP,WORKUP
 EggMoves = COUNTER,COVET,CURSE,DOUBLEEDGE,FEINT,FLAIL,NIGHTSLASH,QUICKATTACK,QUICKGUARD,SIMPLEBEAM,SKYATTACK
 Weight = 42.0
-Pokedex = The stalks of leeks are thicker and longer in the Galar region. Farfetch'd that adapted to these stalks took on a unique form.
+Pokedex = 伽勒尔地区的大葱茎更粗更长。适应了这些茎的大葱鸭形成了独特的样子。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 WildItemCommon = LEEK
 Evolution = SIRFETCHD,AfterBattleCounter,3
 #-------------------------------
 [GRIMER,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = POISON,DARK
 Abilities = POISONTOUCH,GLUTTONY
 HiddenAbilities = POWEROFALCHEMY
@@ -472,12 +472,12 @@ EggMoves = ASSURANCE,CLEARSMOG,CURSE,IMPRISON,MEANLOOK,POWERUPPUNCH,PURSUIT,RECY
 Height = 0.7
 Weight = 42.0
 Color = Green
-Pokedex = A Grimer, which had been brought in to solve a problem with garbage, developed over time into this form.
+Pokedex = 为解决垃圾问题而被带来的臭泥，随着时间推移变成了这种样子。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 #-------------------------------
 [MUK,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = POISON,DARK
 Abilities = POISONTOUCH,GLUTTONY
 HiddenAbilities = POWEROFALCHEMY
@@ -486,47 +486,47 @@ TutorMoves = ACIDSPRAY,ATTRACT,BLOCK,BODYSLAM,BRICKBREAK,BRUTALSWING,CAPTIVATE,C
 Height = 1.0
 Weight = 52.0
 Color = Green
-Pokedex = The garbage it eats causes continuous chemical changes in its body, which produce its exceedingly vivid coloration.
+Pokedex = 它吃下的垃圾在体内引起持续的化学变化，从而产生了它极其鲜艳的色彩。
 Generation = 7
 Flags = InheritFormWithEverstone
 #-------------------------------
 [GENGAR,1]
-FormName = Mega Gengar
+FormName = 超级耿鬼
 MegaStone = GENGARITE
 BaseStats = 60,65,80,130,170,95
 BaseExp = 300
 Abilities = SHADOWTAG
 HiddenAbilities = SHADOWTAG
 Height = 1.4
-Pokedex = The energy of Mega Evolution awakened it. It sinks into another dimension, where it keeps a patient watch for its chance to attack.
+Pokedex = 超级进化的能量唤醒了它。它潜入异次元，在那里耐心等待攻击的机会。
 Generation = 6
 #-------------------------------
 [VOLTORB,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = ELECTRIC,GRASS
 Moves = 1,CHARGE,1,TACKLE,4,THUNDERSHOCK,6,STUNSPORE,9,BULLETSEED,11,ROLLOUT,13,SCREECH,16,CHARGEBEAM,20,SWIFT,22,ELECTROBALL,26,SELFDESTRUCT,29,ENERGYBALL,34,SEEDBOMB,34,DISCHARGE,41,EXPLOSION,46,GYROBALL,50,GRASSYTERRAIN
 TutorMoves = AGILITY,BULLETSEED,CHARGE,CHARGEBEAM,DOUBLEEDGE,ELECTRICTERRAIN,ELECTROBALL,ELECTROWEB,ENDURE,ENERGYBALL,FACADE,FOULPLAY,GIGADRAIN,GRASSKNOT,GRASSYGLIDE,GRASSYTERRAIN,GYROBALL,LEAFSTORM,PROTECT,RAINDANCE,REFLECT,REST,SEEDBOMB,SLEEPTALK,SOLARBEAM,SUBSTITUTE,SWIFT,TAKEDOWN,TAUNT,TERABLAST,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,VOLTSWITCH,WILDCHARGE
 EggMoves = LEECHSEED,RECYCLE,WORRYSEED
 Weight = 13.0
 Category = Sphere
-Pokedex = An enigmatic Pokémon that happens to bear a resemblance to a Poké Ball. When excited, it discharges the electric current it has stored in its belly.
+Pokedex = 一种碰巧酷似精灵球的神秘宝可梦。兴奋时，它会释放储存在腹部的电流。
 Generation = 8
 Flags = EggInRegion_3,InheritFormWithEverStone
 Evolution = ELECTRODE,Item,LEAFSTONE
 #-------------------------------
 [ELECTRODE,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = ELECTRIC,GRASS
 Moves = 0,CHLOROBLAST,1,CHARGE,1,TACKLE,4,THUNDERSHOCK,6,STUNSPORE,9,BULLETSEED,11,ROLLOUT,13,SCREECH,16,CHARGEBEAM,20,SWIFT,22,ELECTROBALL,26,SELFDESTRUCT,29,ENERGYBALL,34,SEEDBOMB,34,DISCHARGE,41,EXPLOSION,46,GYROBALL,50,GRASSYTERRAIN
 TutorMoves = AGILITY,BULLETSEED,CHARGE,CHARGEBEAM,CURSE,DOUBLEEDGE,ELECTRICTERRAIN,ELECTROBALL,ELECTROWEB,ENDURE,ENERGYBALL,FACADE,FOULPLAY,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRASSYGLIDE,GRASSYTERRAIN,GYROBALL,HYPERBEAM,LEAFSTORM,PROTECT,RAINDANCE,REFLECT,REST,SCARYFACE,SEEDBOMB,SLEEPTALK,SOLARBEAM,SUBSTITUTE,SUPERCELLSLAM,SWIFT,TAKEDOWN,TAUNT,TERABLAST,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,VOLTSWITCH,WILDCHARGE
 Weight = 71.0
 Category = Sphere
-Pokedex = The surface tissue of its body is oddly similar in composition to an Apricorn. When irritated, this Pokémon looses an electric current equal to 20 lightning bolts.
+Pokedex = 它身体表层的组织成分与球果出奇地相似。被激怒时，它会释放出相当于20道闪电的电流。
 Generation = 8
 Flags = InheritFormWithEverStone
 #-------------------------------
 [EXEGGUTOR,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = GRASS,DRAGON
 BaseStats = 95,105,85,45,125,75
 Abilities = FRISK
@@ -534,7 +534,7 @@ Moves = -1,GROWTH,0,DRAGONHAMMER,1,SEEDBOMB,1,PSYSHOCK,1,WOODHAMMER,1,LEAFSTORM,
 TutorMoves = ANCIENTPOWER,ATTRACT,BLOCK,BODYSLAM,BREAKINGSWIPE,BRICKBREAK,BRUTALSWING,BULLDOZE,BULLETSEED,CALMMIND,CAPTIVATE,CONFIDE,CURSE,DOUBLEEDGE,DOUBLETEAM,DRACOMETEOR,DRAGONCHEER,DRAGONPULSE,DRAGONTAIL,DREAMEATER,EARTHQUAKE,ENDURE,ENERGYBALL,EXPLOSION,FACADE,FLAMETHROWER,FLASH,FRUSTRATION,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRASSYGLIDE,GRASSYTERRAIN,GRAVITY,HEADBUTT,HELPINGHAND,HIDDENPOWER,HYPERBEAM,IMPRISON,INFESTATION,IRONHEAD,IRONTAIL,KNOCKOFF,LEAFSTORM,LIGHTSCREEN,LOWKICK,MAGICALLEAF,MIMIC,NATURALGIFT,NATUREPOWER,OUTRAGE,POWERSWAP,POWERWHIP,PROTECT,PSYBEAM,PSYCHIC,PSYCHICNOISE,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,REFLECT,REST,RETURN,ROLLOUT,ROUND,SECRETPOWER,SEEDBOMB,SELFDESTRUCT,SKILLSWAP,SLEEPTALK,SLUDGEBOMB,SNORE,SOLARBEAM,STOMPINGTANTRUM,STOREDPOWER,STRENGTH,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWAGGER,SWORDSDANCE,SYNTHESIS,TAKEDOWN,TELEKINESIS,TERABLAST,TERRAINPULSE,THIEF,TRAILBLAZE,TRICK,TRICKROOM,UPROAR,WORRYSEED,ZENHEADBUTT
 Height = 10.9
 Weight = 415.6
-Pokedex = As it grew taller and taller, it outgrew its reliance on psychic powers, while within it awakened the power of the sleeping dragon.
+Pokedex = 随着它越长越高，它不再依赖超能力，同时体内沉睡的龙之力觉醒了。
 Generation = 7
 #-------------------------------
 [CUBONE,1]
@@ -542,7 +542,7 @@ Generation = 7
 Evolution = MAROWAK,LevelNight,28
 #-------------------------------
 [MAROWAK,1]
-FormName = Alolan
+FormName = 阿罗拉
 Types = FIRE,GHOST
 Abilities = CURSEDBODY,LIGHTNINGROD
 HiddenAbilities = ROCKHEAD
@@ -550,11 +550,11 @@ Moves = 1,SHADOWBONE,1,FALSESWIPE,1,HEADBUTT,1,RETALIATE,1,FOCUSENERGY,1,DOUBLEE
 TutorMoves = AERIALACE,ALLYSWITCH,ATTRACT,BLIZZARD,BODYSLAM,BRICKBREAK,BRUTALSWING,BULLDOZE,BURNINGJEALOUSY,CAPTIVATE,CONFIDE,COUNTER,DARKPULSE,DIG,DOUBLEEDGE,DOUBLETEAM,DREAMEATER,DYNAMICPUNCH,EARTHPOWER,EARTHQUAKE,ECHOEDVOICE,ENDEAVOR,ENDURE,FACADE,FALSESWIPE,FIREBLAST,FIREPUNCH,FIRESPIN,FLAMECHARGE,FLAMETHROWER,FLAREBLITZ,FLING,FOCUSBLAST,FOCUSENERGY,FOCUSPUNCH,FRUSTRATION,FURYCUTTER,GIGAIMPACT,HEADBUTT,HEATWAVE,HEX,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,IMPRISON,INCINERATE,IRONDEFENSE,IRONHEAD,IRONTAIL,KNOCKOFF,LASERFOCUS,LOWKICK,MEGAKICK,MEGAPUNCH,MIMIC,MUDSLAP,NATURALGIFT,OUTRAGE,PAINSPLIT,POLTERGEIST,POWERUPPUNCH,PROTECT,RAINDANCE,REST,RETALIATE,RETURN,ROCKCLIMB,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROUND,SANDSTORM,SCORCHINGSANDS,SCREECH,SECRETPOWER,SEISMICTOSS,SHADOWBALL,SLEEPTALK,SMACKDOWN,SNORE,SPITE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,SWORDSDANCE,THIEF,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,UPROAR,WILLOWISP
 Weight = 34.0
 Color = Purple
-Pokedex = Its custom is to mourn its lost companions. Mounds of dirt by the side of the road mark the graves of the Marowak.
+Pokedex = 它的习俗是悼念失去的同伴。路边的一堆堆泥土标记着嘎啦嘎啦的坟墓。
 Generation = 7
 #-------------------------------
 [WEEZING,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = POISON,FAIRY
 HiddenAbilities = MISTYSURGE
 Moves = 0,DOUBLEHIT,1,STRANGESTEAM,1,DEFOG,1,HEATWAVE,1,SMOKESCREEN,1,HAZE,1,POISONGAS,1,TACKLE,1,SMOG,1,AROMATICMIST,12,CLEARSMOG,16,ASSURANCE,20,SLUDGE,24,FAIRYWIND,28,SELFDESTRUCT,32,SLUDGEBOMB,38,TOXIC,44,BELCH,50,EXPLOSION,56,MEMENTO,62,DESTINYBOND,68,MISTYTERRAIN
@@ -562,34 +562,34 @@ TutorMoves = ACIDSPRAY,ASSURANCE,ATTRACT,BODYSLAM,BRUTALSWING,CAPTIVATE,CONFIDE,
 Height = 3.0
 Weight = 16.0
 Color = Gray
-Pokedex = This Pokémon consumes particles that contaminate the air. Instead of leaving droppings, it expels clean air.
+Pokedex = 这只宝可梦以污染空气的颗粒为食。它不排泄粪便，而是排出洁净的空气。
 Generation = 8
 WildItemUncommon = MISTYSEED
 #-------------------------------
 [KANGASKHAN,1]
-FormName = Mega Kangaskhan
+FormName = 超级袋兽
 MegaStone = KANGASKHANITE
 BaseStats = 105,125,100,100,60,100
 BaseExp = 207
 Abilities = PARENTALBOND
 HiddenAbilities = PARENTALBOND
 Weight = 100.0
-Pokedex = The explosive energy the child is bathed in causes temporary growth. The mother is beside herself with worry about it.
+Pokedex = 孩子沐浴在爆炸性的能量中，因而暂时长大。母亲为此担心得不知所措。
 Generation = 6
 #-------------------------------
 [STARMIE,1]
-FormName = Mega Starmie
+FormName = 超级宝石海星
 MegaStone = STARMINITE
 BaseStats = 60,140,105,120,130,105
 BaseExp = 232
 Abilities = HUGEPOWER
 HiddenAbilities = HUGEPOWER
 Height = 2.3
-Pokedex = Its movements have become more humanlike. Whether it's simply trying to communicate or wants to supplant humanity is unclear.
+Pokedex = 它的动作变得更加拟人。它究竟只是想交流，还是想取代人类，尚不清楚。
 Generation = 9
 #-------------------------------
 [MRMIME,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = ICE,PSYCHIC
 BaseStats = 50,65,65,100,90,90
 EVs = SPEED,2
@@ -601,13 +601,13 @@ Height = 1.4
 Weight = 56.8
 Color = White
 Category = Dancing
-Pokedex = Its talent is tap-dancing. It can also manipulate temperatures to create a floor of ice, which this Pokémon can kick up to use as a barrier.
+Pokedex = 它的才能是踢踏舞。它还能操控温度制造冰之地板，将其踢起作为屏障。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 Evolution = MRRIME,Level,42
 #-------------------------------
 [PINSIR,1]
-FormName = Mega Pinsir
+FormName = 超级凯罗斯
 MegaStone = PINSIRITE
 Types = BUG,FLYING
 BaseStats = 65,155,120,105,65,90
@@ -617,11 +617,11 @@ HiddenAbilities = AERILATE
 Height = 1.7
 Weight = 59.0
 Shape = MultiWinged
-Pokedex = It zips around at blistering speeds, looking for an opening to skewer its opponent on its giant pincers.
+Pokedex = 它以极快的速度四处飞窜，寻找破绽用巨大的钳子刺穿对手。
 Generation = 6
 #-------------------------------
 [TAUROS,1]
-FormName = Paldean (Combat Breed)
+FormName = 帕底亚（斗战种）
 Types = FIGHTING
 BaseStats = 75,110,105,100,30,70
 EVs = ATTACK,2
@@ -630,12 +630,12 @@ Moves = 1,TACKLE,1,TAILWHIP,5,WORKUP,10,DOUBLEKICK,15,ASSURANCE,20,HEADBUTT,25,S
 TutorMoves = BODYPRESS,BODYSLAM,BULKUP,BULLDOZE,CLOSECOMBAT,CURSE,DIG,DOUBLEEDGE,DRILLRUN,EARTHQUAKE,ENDEAVOR,ENDURE,FACADE,GIGAIMPACT,HIGHHORSEPOWER,HYPERBEAM,IRONHEAD,LASHOUT,OUTRAGE,PROTECT,RAINDANCE,REST,REVERSAL,ROCKSLIDE,ROCKTOMB,SANDSTORM,SCARYFACE,SLEEPTALK,SMARTSTRIKE,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUNNYDAY,SURF,TAKEDOWN,TERABLAST,THIEF,THROATCHOP,TRAILBLAZE,WILDCHARGE,ZENHEADBUTT
 Weight = 115.0
 Color = Black
-Pokedex = This Pokémon has a muscular body and excels at close-quarters combat. It uses its short horns to strike the opponent's weak spots.
+Pokedex = 这只宝可梦身体健壮，擅长近身战斗。它用短角攻击对手的弱点。
 Generation = 9
 Flags = EggInRegion_4,InheritFormWithEverStone
 #-------------------------------
 [TAUROS,2]
-FormName = Paldean (Blaze Breed)
+FormName = 帕底亚（火炽种）
 Types = FIGHTING,FIRE
 BaseStats = 75,110,105,100,30,70
 EVs = ATTACK,2
@@ -644,12 +644,12 @@ Moves = 1,TACKLE,1,TAILWHIP,5,WORKUP,10,DOUBLEKICK,15,FLAMECHARGE,20,HEADBUTT,25
 TutorMoves = BODYPRESS,BODYSLAM,BULKUP,BULLDOZE,CLOSECOMBAT,CURSE,DIG,DOUBLEEDGE,DRILLRUN,EARTHQUAKE,ENDEAVOR,ENDURE,FACADE,FIREBLAST,FIRESPIN,FLAMECHARGE,FLAMETHROWER,FLAREBLITZ,GIGAIMPACT,HIGHHORSEPOWER,HYPERBEAM,IRONHEAD,LASHOUT,OUTRAGE,OVERHEAT,PROTECT,RAINDANCE,REST,REVERSAL,ROCKSLIDE,ROCKTOMB,SANDSTORM,SCARYFACE,SLEEPTALK,SMARTSTRIKE,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUNNYDAY,TAKEDOWN,TEMPERFLARE,TERABLAST,THIEF,TRAILBLAZE,WILDCHARGE,WILLOWISP,ZENHEADBUTT
 Weight = 85.0
 Color = Black
-Pokedex = People call this kind of Tauros the Blaze Breed due to the hot air it snorts from its nostrils. Its three tails are intertwined.
+Pokedex = 由于它从鼻孔喷出热气，人们称这种肯泰罗为火炽种。它的三条尾巴交织在一起。
 Generation = 9
 Flags = InheritFormWithEverStone
 #-------------------------------
 [TAUROS,3]
-FormName = Paldean (Aqua Breed)
+FormName = 帕底亚（水澜种）
 Types = FIGHTING,WATER
 BaseStats = 75,110,105,100,30,70
 EVs = ATTACK,2
@@ -658,12 +658,12 @@ Moves = 1,TACKLE,1,TAILWHIP,5,WORKUP,10,DOUBLEKICK,15,AQUAJET,20,HEADBUTT,25,SCA
 TutorMoves = BODYPRESS,BODYSLAM,BULKUP,BULLDOZE,CHILLINGWATER,CLOSECOMBAT,CURSE,DIG,DOUBLEEDGE,DRILLRUN,EARTHQUAKE,ENDEAVOR,ENDURE,FACADE,GIGAIMPACT,HIGHHORSEPOWER,HYDROPUMP,HYPERBEAM,IRONHEAD,LASHOUT,LIQUIDATION,OUTRAGE,PROTECT,RAINDANCE,REST,REVERSAL,ROCKSLIDE,ROCKTOMB,SANDSTORM,SCARYFACE,SLEEPTALK,SMARTSTRIKE,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SURF,TAKEDOWN,TERABLAST,THIEF,TRAILBLAZE,WATERPULSE,WHIRLPOOL,WILDCHARGE,ZENHEADBUTT
 Weight = 110.0
 Color = Black
-Pokedex = It swims by jetting water from its horns. The most notable characteristic of the Aqua Breed is its high body fat, which allows it to float easily.
+Pokedex = 它从角中喷水来游泳。水澜种最显著的特征是体脂很高，使它容易漂浮。
 Generation = 9
 Flags = InheritFormWithEverStone
 #-------------------------------
 [GYARADOS,1]
-FormName = Mega Gyarados
+FormName = 超级暴鲤龙
 MegaStone = GYARADOSITE
 Types = WATER,DARK
 BaseStats = 95,155,109,81,70,130
@@ -671,11 +671,11 @@ BaseExp = 224
 Abilities = MOLDBREAKER
 HiddenAbilities = MOLDBREAKER
 Weight = 305.0
-Pokedex = It zooms out of the water at Mach speeds. Even large ships caught in its path are split cleanly in two!
+Pokedex = 它以马赫速度冲出水面。连挡在它路径上的大船也会被干净利落地劈成两半！
 Generation = 6
 #-------------------------------
 [AERODACTYL,1]
-FormName = Mega Aerodactyl
+FormName = 超级化石翼龙
 MegaStone = AERODACTYLITE
 BaseStats = 80,135,85,150,70,95
 BaseExp = 215
@@ -683,11 +683,11 @@ Abilities = TOUGHCLAWS
 HiddenAbilities = TOUGHCLAWS
 Height = 2.1
 Weight = 79.0
-Pokedex = When it Mega Evolves, it becomes more vicious than ever before. Some say that's because its excess of power is causing it pain.
+Pokedex = 超级进化后，它变得比以往更加凶暴。有人说这是因为过剩的力量让它感到痛苦。
 Generation = 6
 #-------------------------------
 [ARTICUNO,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = PSYCHIC,FLYING
 BaseStats = 90,85,85,95,125,100
 EVs = SPECIAL_ATTACK,3
@@ -698,11 +698,11 @@ TutorMoves = AGILITY,AIRCUTTER,AIRSLASH,ALLYSWITCH,BRAVEBIRD,CALMMIND,CONFIDE,DO
 Weight = 50.9
 Color = Purple
 Category = Cruel
-Pokedex = Its feather-like blades are composed of psychic energy and can shear through thick iron sheets as if they were paper.
+Pokedex = 它羽毛般的刀刃由超能力构成，能像切纸一样切断厚厚的铁板。
 Generation = 8
 #-------------------------------
 [ZAPDOS,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = FIGHTING,FLYING
 BaseStats = 90,125,90,100,85,90
 EVs = ATTACK,3
@@ -712,11 +712,11 @@ Moves = 1,PECK,1,FOCUSENERGY,5,ROCKSMASH,10,LIGHTSCREEN,15,PLUCK,20,AGILITY,25,A
 TutorMoves = ACROBATICS,AERIALACE,AGILITY,ASSURANCE,BLAZEKICK,BOUNCE,BRAVEBIRD,BRICKBREAK,BULKUP,CLOSECOMBAT,COACHING,CONFIDE,DOUBLEEDGE,DOUBLETEAM,DUALWINGBEAT,ENDEAVOR,ENDURE,FACADE,FLY,FOCUSENERGY,FRUSTRATION,GIGAIMPACT,HELPINGHAND,HIDDENPOWER,HURRICANE,HYPERBEAM,KNOCKOFF,LIGHTSCREEN,LOWKICK,LOWSWEEP,MEGAKICK,MIMIC,NATURALGIFT,PAYBACK,PROTECT,RAINDANCE,REST,RETALIATE,RETURN,REVENGE,REVERSAL,ROUND,SANDSTORM,SCARYFACE,SCREECH,SECRETPOWER,SLEEPTALK,SNORE,STEELWING,STOMPINGTANTRUM,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWAGGER,SWIFT,TAILWIND,TAKEDOWN,TAUNT,TERABLAST,THROATCHOP,TRAILBLAZE,UTURN
 Weight = 58.2
 Category = Strong Legs
-Pokedex = When its feathers rub together, they produce a crackling sound like the zapping of electricity. That's why this Pokémon is called Zapdos.
+Pokedex = 它的羽毛相互摩擦时，会发出像电流噼啪作响的声音。因此这只宝可梦被称为闪电鸟。
 Generation = 8
 #-------------------------------
 [MOLTRES,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = DARK,FLYING
 BaseStats = 90,85,90,90,100,125
 EVs = SPECIAL_DEFENSE,3
@@ -727,21 +727,21 @@ TutorMoves = ACROBATICS,AERIALACE,AGILITY,AIRSLASH,ASSURANCE,BRAVEBIRD,CONFIDE,D
 Weight = 66.0
 Color = Red
 Category = Malevolent
-Pokedex = This Pokémon's sinister, flame-like aura will consume the spirit of any creature it hits. Victims become burned-out shadows of themselves.
+Pokedex = 这只宝可梦邪恶的火焰般气场会吞噬它击中之物的灵魂。受害者会变成自身燃尽的空壳。
 Generation = 8
 #-------------------------------
 [DRAGONITE,1]
-FormName = Mega Dragonite
+FormName = 超级快龙
 MegaStone = DRAGONINITE
 BaseStats = 91,124,115,100,145,125
 BaseExp = 350
 Abilities = MULTISCALE
 Weight = 290.0
-Pokedex = Mega Evolution has excessively powered up this Pokémon's feelings of kindness. It finishes off its opponents with mercy in its heart.
+Pokedex = 超级进化使这只宝可梦的仁慈之心过度增强。它怀着怜悯之心了结对手。
 Generation = 9
 #-------------------------------
 [MEWTWO,1]
-FormName = Mega Mewtwo X
+FormName = 超级超梦X
 MegaStone = MEWTWONITEX
 Types = PSYCHIC,FIGHTING
 BaseStats = 106,190,100,130,154,100
@@ -750,11 +750,11 @@ Abilities = STEADFAST
 HiddenAbilities = STEADFAST
 Height = 2.3
 Weight = 127.0
-Pokedex = Psychic power has augmented its muscles. It has a grip strength of one ton and can sprint a hundred meters in two seconds flat!
+Pokedex = 超能力强化了它的肌肉。它握力可达一吨，能在两秒内冲刺一百米！
 Generation = 6
 #-------------------------------
 [MEWTWO,2]
-FormName = Mega Mewtwo Y
+FormName = 超级超梦Y
 MegaStone = MEWTWONITEY
 BaseStats = 106,150,70,140,194,120
 BaseExp = 390
@@ -762,11 +762,11 @@ Abilities = INSOMNIA
 HiddenAbilities = INSOMNIA
 Height = 1.5
 Weight = 33.0
-Pokedex = Despite its diminished size, its mental power has grown phenomenally. With a mere thought, it can smash a skyscraper to smithereens.
+Pokedex = 尽管体型缩小了，它的精神力却惊人地增长。仅凭一个念头，它就能把摩天大楼轰成碎片。
 Generation = 6
 #-------------------------------
 [MEGANIUM,1]
-FormName = Mega Meganium
+FormName = 超级大竺葵
 MegaStone = MEGANIUMITE
 Types = GRASS,FAIRY
 BaseStats = 80,92,115,80,143,115
@@ -775,11 +775,11 @@ Abilities = MEGASOL
 HiddenAbilities = MEGASOL
 Height = 2.4
 Weight = 201.0
-Pokedex = This Pokémon can fire a tremendously powerful Solar Beam from its four flowers. Another name for this is Mega Sol Cannon.
+Pokedex = 这只宝可梦能从四朵花中发射威力惊人的日光束。这招的另一个名字是超级太阳炮。
 Generation = 9
 #-------------------------------
 [TYPHLOSION,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = FIRE,GHOST
 BaseStats = 73,84,78,95,119,85
 HiddenAbilities = FRISK
@@ -788,11 +788,11 @@ TutorMoves = AERIALACE,BLASTBURN,BODYSLAM,BRICKBREAK,BULLDOZE,BURNINGJEALOUSY,CA
 Height = 1.6
 Weight = 69.8
 Category = Ghost Flame
-Pokedex = Said to purify forsaken souls with its flames and guide them to the afterlife. Its form may have been influenced by the energy of a sacred mountain.
+Pokedex = 据说它会用火焰净化被遗弃的灵魂，引导它们前往来世。它的样子可能受到了圣山能量的影响。
 Generation = 8
 #-------------------------------
 [FERALIGATR,1]
-FormName = Mega Feraligatr
+FormName = 超级大力鳄
 MegaStone = FERALIGITE
 Types = WATER,DRAGON
 BaseStats = 85,160,125,78,89,93
@@ -801,27 +801,27 @@ Abilities = DRAGONIZE
 HiddenAbilities = DRAGONIZE
 Weight = 108.8
 Category = Double Jaw
-Pokedex = With its arms and hoodlike fin, this Pokémon forms a gigantic set of jaws with a bite 10 times as powerful as Mega Feraligatr's actual jaws.
+Pokedex = 它用双臂和兜帽般的鳍构成巨大的下颚，咬合力是超级大力鳄真正下颚的10倍。
 Generation = 9
 #-------------------------------
 [PICHU,2]
-FormName = Spiky-Eared
+FormName = 锯齿耳
 Generation = 4
 Evolution = PIKACHU,None
 #-------------------------------
 [AMPHAROS,1]
-FormName = Mega Ampharos
+FormName = 超级电龙
 MegaStone = AMPHAROSITE
 Types = ELECTRIC,DRAGON
 BaseStats = 90,95,105,45,165,110
 BaseExp = 305
 Abilities = MOLDBREAKER
 HiddenAbilities = MOLDBREAKER
-Pokedex = Massive amounts of energy intensely stimulated Ampharos's cells, apparently awakening its long-sleeping dragon's blood.
+Pokedex = 巨大的能量强烈刺激了电龙的细胞，似乎唤醒了它沉睡已久的龙之血脉。
 Generation = 6
 #-------------------------------
 [WOOPER,1]
-FormName = Paldean
+FormName = 帕底亚
 Types = POISON,GROUND
 Abilities = POISONPOINT,WATERABSORB
 Moves = 1,MUDSHOT,1,TAILWHIP,4,TACKLE,8,POISONTAIL,12,TOXICSPIKES,16,SLAM,21,YAWN,24,POISONJAB,28,SLUDGEWAVE,32,AMNESIA,36,TOXIC,40,EARTHQUAKE
@@ -830,13 +830,13 @@ EggMoves = ACIDSPRAY,AFTERYOU,ANCIENTPOWER,COUNTER,CURSE,DOUBLEKICK,HAZE,MIST,RE
 Weight = 11.0
 Color = Brown
 Category = Poison Fish
-Pokedex = After losing a territorial struggle, Wooper began living on land. The Pokémon changed over time, developing a poisonous film to protect its body.
+Pokedex = 在地盘争夺中落败后，乌波开始在陆地上生活。随着时间推移它发生了变化，长出毒膜保护身体。
 Generation = 9
 Flags = EggInRegion_4,InheritFormWithEverStone
 Evolution = CLODSIRE,Level,20
 #-------------------------------
 [SLOWKING,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = POISON,PSYCHIC
 BaseStats = 95,65,80,30,110,110
 Abilities = CURIOUSMEDICINE,OWNTEMPO
@@ -844,7 +844,7 @@ Moves = -1,TOXIC,-1,FUTURESIGHT,-1,CHILLYRECEPTION,0,EERIESPELL,1,POWERGEM,1,NAS
 TutorMoves = ACIDSPRAY,AMNESIA,ATTRACT,AVALANCHE,BLIZZARD,BODYSLAM,BRICKBREAK,BRINE,BULLDOZE,CALMMIND,CAPTIVATE,CHILLINGWATER,CONFIDE,CURSE,DIG,DIVE,DOUBLETEAM,DRAINPUNCH,EARTHQUAKE,ENDURE,EXPANDINGFORCE,FACADE,FIREBLAST,FIREPUNCH,FLAMETHROWER,FLING,FOCUSBLAST,FOULPLAY,FRUSTRATION,FUTURESIGHT,GIGAIMPACT,GRASSKNOT,GUNKSHOT,HAIL,HELPINGHAND,HEX,HIDDENPOWER,HYDROPUMP,HYPERBEAM,ICEBEAM,ICYWIND,IMPRISON,IRONDEFENSE,IRONTAIL,LIGHTSCREEN,LIQUIDATION,LOWSWEEP,MEGAKICK,MEGAPUNCH,METRONOME,MIMIC,MUDDYWATER,MUDSHOT,NASTYPLOT,NATURALGIFT,PAYDAY,POISONJAB,POWERGEM,PROTECT,PSYBEAM,PSYCHIC,PSYCHICNOISE,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,RAINDANCE,RAZORSHELL,REST,RETURN,ROUND,SAFEGUARD,SCARYFACE,SECRETPOWER,SHADOWBALL,SKILLSWAP,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNARL,SNORE,SNOWSCAPE,STOMPINGTANTRUM,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWIFT,TAKEDOWN,TAUNT,TERABLAST,THUNDERPUNCH,THUNDERWAVE,TOXIC,TOXICSPIKES,TRIATTACK,TRICK,TRICKROOM,VENOMDRENCH,VENOSHOCK,WATERFALL,WATERPULSE,WEATHERBALL,WHIRLPOOL,WONDERROOM,ZENHEADBUTT
 Height = 1.8
 Category = Hexpert
-Pokedex = While chanting strange spells, this Pokémon combines its internal toxins with what it's eaten, creating strange potions.
+Pokedex = 它一边念诵奇怪的咒语，一边将体内的毒素与吃下的东西混合，制造出奇怪的药水。
 Generation = 8
 Flags = InheritFormWithEverstone
 #-------------------------------
@@ -932,7 +932,7 @@ FormName = !
 Generation = 3
 #-------------------------------
 [STEELIX,1]
-FormName = Mega Steelix
+FormName = 超级大钢蛇
 MegaStone = STEELIXITE
 BaseStats = 75,125,230,30,55,95
 BaseExp = 214
@@ -940,23 +940,23 @@ Abilities = SANDFORCE
 HiddenAbilities = SANDFORCE
 Height = 10.5
 Weight = 740.0
-Pokedex = To protect itself from opponents' attacks, it uses magnetism to control pieces of its hard outer shell that have flaked off.
+Pokedex = 为保护自己免受对手攻击，它用磁力操控脱落的坚硬外壳碎片。
 Generation = 6
 #-------------------------------
 [QWILFISH,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = DARK,POISON
 Moves = 1,POISONSTING,1,TACKLE,4,HARDEN,8,BITE,12,FELLSTINGER,16,MINIMIZE,20,SPIKES,24,BRINE,28,BARBBARRAGE,32,PINMISSILE,36,TOXICSPIKES,40,STOCKPILE,40,SPITUP,44,TOXIC,48,CRUNCH,52,ACUPRESSURE,56,DESTINYBOND
 TutorMoves = ACIDSPRAY,AGILITY,BLIZZARD,CHILLINGWATER,CRUNCH,CURSE,DARKPULSE,DOUBLEEDGE,ENDURE,FACADE,GIGAIMPACT,GUNKSHOT,GYROBALL,HAZE,HEX,HYDROPUMP,ICEBEAM,ICYWIND,LASHOUT,LIQUIDATION,MUDSHOT,PAINSPLIT,POISONJAB,POISONTAIL,PROTECT,RAINDANCE,REST,REVERSAL,SCALESHOT,SCARYFACE,SHADOWBALL,SLEEPTALK,SLUDGEBOMB,SPIKES,SPITE,SUBSTITUTE,SURF,SWIFT,SWORDSDANCE,TAKEDOWN,TAUNT,TERABLAST,THROATCHOP,TOXIC,TOXICSPIKES,VENOSHOCK,WATERFALL,WATERPULSE
 EggMoves = ACIDSPRAY,AQUAJET,AQUATAIL,ASTONISH,BUBBLEBEAM,FLAIL,HAZE,SELFDESTRUCT,SUPERSONIC,WATERPULSE
 Color = Black
-Pokedex = It absorbs toxins from the food it eats. The distinct purple spikes on its body are evidence of its potent poison.
+Pokedex = 它从食物中吸收毒素。身上独特的紫色尖刺就是它拥有剧毒的证明。
 Generation = 8
 Flags = EggInRegion_3,InheritFormWithEverStone
 Evolution = OVERQWIL,HasMove,BARBBARRAGE
 #-------------------------------
 [SCIZOR,1]
-FormName = Mega Scizor
+FormName = 超级巨钳螳螂
 MegaStone = SCIZORITE
 BaseStats = 70,150,140,75,65,100
 BaseExp = 210
@@ -964,11 +964,11 @@ Abilities = TECHNICIAN
 HiddenAbilities = TECHNICIAN
 Height = 2.0
 Weight = 125.0
-Pokedex = It's better at beating things than grasping them. When it battles for a long time, the weight of its pincers becomes too much to bear.
+Pokedex = 它更擅长击打而非抓握。长时间战斗时，钳子的重量会变得难以承受。
 Generation = 6
 #-------------------------------
 [HERACROSS,1]
-FormName = Mega Heracross
+FormName = 超级赫拉克罗斯
 MegaStone = HERACRONITE
 BaseStats = 80,185,115,75,40,105
 BaseExp = 210
@@ -976,24 +976,24 @@ Abilities = SKILLLINK
 HiddenAbilities = SKILLLINK
 Height = 1.7
 Weight = 62.5
-Pokedex = A tremendous influx of energy builds it up, but when Mega Evolution ends, Heracross is bothered by terrible soreness in its muscles.
+Pokedex = 巨大的能量涌入使它强壮，但超级进化结束后，赫拉克罗斯会被肌肉的剧痛所困扰。
 Generation = 6
 #-------------------------------
 [SNEASEL,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = FIGHTING,POISON
 Moves = 1,SCRATCH,1,LEER,1,ROCKSMASH,6,TAUNT,12,QUICKATTACK,18,METALCLAW,24,POISONJAB,30,BRICKBREAK,36,HONECLAWS,42,SLASH,48,AGILITY,54,SCREECH,60,CLOSECOMBAT
 TutorMoves = ACIDSPRAY,AERIALACE,AGILITY,BRICKBREAK,BULKUP,CALMMIND,CLOSECOMBAT,COACHING,DIG,ENDURE,FACADE,FALSESWIPE,FLING,FOCUSBLAST,FOCUSPUNCH,GIGAIMPACT,GRASSKNOT,GUNKSHOT,LASHOUT,LOWKICK,LOWSWEEP,METALCLAW,NASTYPLOT,POISONJAB,POISONTAIL,PROTECT,RAINDANCE,REST,REVERSAL,SHADOWBALL,SHADOWCLAW,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SPITE,SUBSTITUTE,SUNNYDAY,SWIFT,SWORDSDANCE,TAKEDOWN,TAUNT,TERABLAST,THIEF,THROATCHOP,TOXIC,TOXICSPIKES,TRAILBLAZE,VACUUMWAVE,VENOSHOCK,XSCISSOR
 EggMoves = COUNTER,DOUBLEHIT,FAKEOUT,FEINT,NIGHTSLASH,QUICKGUARD,SWITCHEROO
 Weight = 27.0
 Color = Gray
-Pokedex = Its sturdy, curved claws are ideal for traversing precipitous cliffs. From the tips of these claws drips a venom that infiltrates the nerves of caught prey.
+Pokedex = 它坚固弯曲的爪子非常适合在陡峭的悬崖上行走。爪尖滴下的毒液会侵入被捕猎物的神经。
 Generation = 8
 Flags = EggInRegion_3,InheritFormWithEverStone
 Evolution = SNEASLER,DayHoldItem,RAZORCLAW
 #-------------------------------
 [CORSOLA,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = GHOST
 BaseStats = 60,55,100,30,65,100
 Abilities = WEAKARMOR
@@ -1003,24 +1003,24 @@ TutorMoves = AMNESIA,ATTRACT,BLIZZARD,BODYSLAM,BRINE,BULLDOZE,CALMMIND,CAPTIVATE
 EggMoves = CONFUSERAY,DESTINYBOND,HAZE,HEADSMASH,NATUREPOWER,WATERPULSE
 Weight = 0.5
 Color = White
-Pokedex = Sudden climate change wiped out this ancient kind of Corsola. This Pokémon absorbs others' life-force through its branches.
+Pokedex = 气候的骤变使这种古代太阳珊瑚灭绝。这只宝可梦通过枝条吸取他人的生命力。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 Evolution = CURSOLA,Level,38
 #-------------------------------
 [SKARMORY,1]
-FormName = Mega Skarmory
+FormName = 超级盔甲鸟
 MegaStone = SKARMORITE
 BaseStats = 65,140,110,110,40,100
 BaseExp = 213
 Abilities = STALWART
 HiddenAbilities = STALWART
 Weight = 40.4
-Pokedex = It flies faster than the speed of sound. After whipping up shock waves to send enemies flying, it finishes them off with its talons.
+Pokedex = 它飞得比声音还快。掀起冲击波将敌人击飞后，再用利爪了结它们。
 Generation = 9
 #-------------------------------
 [HOUNDOOM,1]
-FormName = Mega Houndoom
+FormName = 超级黑鲁加
 MegaStone = HOUNDOOMINITE
 BaseStats = 75,90,90,115,140,90
 BaseExp = 210
@@ -1028,22 +1028,22 @@ Abilities = SOLARPOWER
 HiddenAbilities = SOLARPOWER
 Height = 1.9
 Weight = 49.5
-Pokedex = Its red claws and the tips of its tail are melting from high internal temperatures that are painful to Houndoom itself.
+Pokedex = 它红色的爪子和尾巴尖端因体内高温而融化，这温度连黑鲁加自己都感到痛苦。
 Generation = 6
 #-------------------------------
 [TYRANITAR,1]
-FormName = Mega Tyranitar
+FormName = 超级班基拉斯
 MegaStone = TYRANITARITE
 BaseStats = 100,164,150,71,95,120
 BaseExp = 350
 HiddenAbilities = SANDSTREAM
 Height = 2.5
 Weight = 255.0
-Pokedex = Due to the colossal power poured into it, this Pokémon's back split right open. Its destructive instincts are the only thing keeping it moving.
+Pokedex = 由于被注入了巨大的力量，这只宝可梦的背部裂开了。唯有破坏的本能支撑着它行动。
 Generation = 6
 #-------------------------------
 [SCEPTILE,1]
-FormName = Mega Sceptile
+FormName = 超级蜥蜴王
 MegaStone = SCEPTILITE
 Types = GRASS,DRAGON
 BaseStats = 70,110,75,145,145,85
@@ -1052,20 +1052,20 @@ Abilities = LIGHTNINGROD
 HiddenAbilities = LIGHTNINGROD
 Height = 1.9
 Weight = 55.2
-Pokedex = The seeds on its back are filled with energy from Mega Evolution. The Pokémon detonates these seeds to launch the tip of its tail.
+Pokedex = 它背上的种子充满了超级进化的能量。它引爆这些种子，将尾巴尖端发射出去。
 Generation = 6
 #-------------------------------
 [BLAZIKEN,1]
-FormName = Mega Blaziken
+FormName = 超级火焰鸡
 MegaStone = BLAZIKENITE
 BaseStats = 80,160,80,100,130,80
 BaseExp = 315
 Abilities = SPEEDBOOST
-Pokedex = Boiling-hot blood courses through its entire body, doubling the sharpness of its moves. It subdues opponents in the blink of an eye.
+Pokedex = 滚烫的血液流遍全身，使它的招式威力倍增。它在眨眼间就能制服对手。
 Generation = 6
 #-------------------------------
 [SWAMPERT,1]
-FormName = Mega Swampert
+FormName = 超级巨沼怪
 MegaStone = SWAMPERTITE
 BaseStats = 100,150,110,70,95,110
 BaseExp = 318
@@ -1073,53 +1073,53 @@ Abilities = SWIFTSWIM
 HiddenAbilities = SWIFTSWIM
 Height = 1.9
 Weight = 102.0
-Pokedex = The water within its body further strengthens its already enlarged muscles, using the same principles as a hydraulic pump.
+Pokedex = 体内的水利用与液压泵相同的原理，进一步强化了它本已增大的肌肉。
 Generation = 6
 #-------------------------------
 [ZIGZAGOON,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = DARK,NORMAL
 Moves = 1,TACKLE,1,LEER,3,SANDATTACK,6,LICK,9,SNARL,12,HEADBUTT,15,BABYDOLLEYES,18,PINMISSILE,21,REST,24,TAKEDOWN,27,SCARYFACE,30,COUNTER,33,TAUNT,36,DOUBLEEDGE
 TutorMoves = ASSURANCE,ATTRACT,BLIZZARD,BODYSLAM,CAPTIVATE,CONFIDE,DIG,DOUBLEEDGE,DOUBLETEAM,ENDURE,FACADE,FAKETEARS,FLING,FRUSTRATION,GRASSKNOT,GUNKSHOT,HELPINGHAND,HIDDENPOWER,HYPERVOICE,ICEBEAM,ICYWIND,IRONTAIL,LASHOUT,MIMIC,MUDSHOT,NATURALGIFT,PAYBACK,PINMISSILE,PROTECT,RAINDANCE,REST,RETALIATE,RETURN,ROUND,SCARYFACE,SCREECH,SECRETPOWER,SEEDBOMB,SHADOWBALL,SLEEPTALK,SNARL,SNORE,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWIFT,TAUNT,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,TRICK,WHIRLPOOL,WORKUP
 EggMoves = KNOCKOFF,PARTINGSHOT,QUICKGUARD
 Color = White
-Pokedex = Its restlessness has it constantly running around. If it sees another Pokémon, it will purposely run into them in order to start a fight.
+Pokedex = 它躁动不安，不停地四处奔跑。一看到其他宝可梦，就会故意撞上去挑衅打架。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 #-------------------------------
 [LINOONE,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = DARK,NORMAL
 Moves = 0,NIGHTSLASH,1,SWITCHEROO,1,PINMISSILE,1,BABYDOLLEYES,1,TACKLE,1,LEER,1,SANDATTACK,1,LICK,9,SNARL,12,HEADBUTT,15,HONECLAWS,18,FURYSWIPES,23,REST,28,TAKEDOWN,33,SCARYFACE,38,COUNTER,43,TAUNT,48,DOUBLEEDGE
 TutorMoves = ASSURANCE,ATTRACT,BLIZZARD,BODYPRESS,BODYSLAM,CAPTIVATE,CONFIDE,DIG,DOUBLEEDGE,DOUBLETEAM,ENDURE,FACADE,FAKETEARS,FLING,FRUSTRATION,GIGAIMPACT,GRASSKNOT,GUNKSHOT,HELPINGHAND,HIDDENPOWER,HYPERBEAM,HYPERVOICE,ICEBEAM,ICYWIND,IRONTAIL,LASHOUT,MIMIC,MUDSHOT,NATURALGIFT,PAYBACK,PINMISSILE,PROTECT,RAINDANCE,REST,RETALIATE,RETURN,ROUND,SCARYFACE,SCREECH,SECRETPOWER,SEEDBOMB,SHADOWBALL,SHADOWCLAW,SLEEPTALK,SNARL,SNORE,STOMPINGTANTRUM,SUBSTITUTE,SUNNYDAY,SURF,SWAGGER,SWIFT,TAUNT,THIEF,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERWAVE,TRICK,WHIRLPOOL,WORKUP
-Pokedex = It uses its long tongue to taunt opponents. Once the opposition is enraged, this Pokémon hurls itself at the opponent, tackling them forcefully.
+Pokedex = 它用长舌头挑衅对手。一旦对手被激怒，它就会猛扑上去，用力撞击对手。
 Generation = 8
 Flags = InheritFormWithEverstone
 Evolution = OBSTAGOON,LevelNight,35
 #-------------------------------
 [GARDEVOIR,1]
-FormName = Mega Gardevoir
+FormName = 超级沙奈朵
 MegaStone = GARDEVOIRITE
 BaseStats = 68,85,65,100,165,135
 BaseExp = 309
 Abilities = PIXILATE
 HiddenAbilities = PIXILATE
-Pokedex = When it opens the red plate on its chest and unleashes its heart, its strongest psychic power is released.
+Pokedex = 当它打开胸口的红色装甲、释放内心时，最强的超能力就会被释放出来。
 Generation = 6
 #-------------------------------
 [SABLEYE,1]
-FormName = Mega Sableye
+FormName = 超级勾魂眼
 MegaStone = SABLENITE
 BaseStats = 50,85,125,20,85,115
 BaseExp = 168
 Abilities = MAGICBOUNCE
 HiddenAbilities = MAGICBOUNCE
 Weight = 161.0
-Pokedex = Supporting a giant heavy jewel, it can't change direction very nimbly and is vulnerable to attack from behind.
+Pokedex = 因为在支撑巨大的重宝珠，它无法灵活转向，背后容易受到攻击。
 Generation = 6
 #-------------------------------
 [MAWILE,1]
-FormName = Mega Mawile
+FormName = 超级大嘴娃
 MegaStone = MAWILITE
 BaseStats = 50,105,125,50,55,95
 BaseExp = 168
@@ -1127,11 +1127,11 @@ Abilities = HUGEPOWER
 HiddenAbilities = HUGEPOWER
 Height = 1.0
 Weight = 23.5
-Pokedex = Its two sets of jaws thrash about violently as if they each had a will of their own. One gnash from them can turn a boulder to dust.
+Pokedex = 它的两对颚像各有意志般剧烈摆动。一次咬合就能把巨石化为齑粉。
 Generation = 6
 #-------------------------------
 [AGGRON,1]
-FormName = Mega Aggron
+FormName = 超级波士可多拉
 MegaStone = AGGRONITE
 Types = STEEL
 BaseStats = 70,140,230,50,60,80
@@ -1139,20 +1139,20 @@ Abilities = FILTER
 HiddenAbilities = FILTER
 Height = 2.2
 Weight = 395.0
-Pokedex = Energy from Mega Evolution has turned the iron inside this Pokémon into steel armor that covers Mega Aggron's whole body.
+Pokedex = 超级进化的能量将它体内的铁变成覆盖超级波士可多拉全身的钢之铠甲。
 Generation = 6
 #-------------------------------
 [MEDICHAM,1]
-FormName = Mega Medicham
+FormName = 超级恰雷姆
 MegaStone = MEDICHAMITE
 BaseStats = 60,100,85,100,80,85
 BaseExp = 179
 HiddenAbilities = PUREPOWER
-Pokedex = Thanks to Mega Evolution, its mental power is limitless. It conjures up arms imbued with malice to defeat its enemies.
+Pokedex = 借助超级进化，它的精神力变得无限。它变出充满恶意的臂膀来击败敌人。
 Generation = 6
 #-------------------------------
 [MANECTRIC,1]
-FormName = Mega Manectric
+FormName = 超级雷电兽
 MegaStone = MANECTITE
 BaseStats = 70,75,80,135,135,80
 BaseExp = 201
@@ -1160,11 +1160,11 @@ Abilities = INTIMIDATE
 HiddenAbilities = INTIMIDATE
 Height = 1.8
 Weight = 44.0
-Pokedex = Too much electricity has built up in its body, irritating Manectric. Its explosive speed is equal to that of a lightning bolt.
+Pokedex = 体内积聚了过多电力，让雷电兽烦躁不安。它爆发性的速度堪比闪电。
 Generation = 6
 #-------------------------------
 [SHARPEDO,1]
-FormName = Mega Sharpedo
+FormName = 超级巨牙鲨
 MegaStone = SHARPEDONITE
 BaseStats = 70,140,70,105,110,65
 BaseExp = 196
@@ -1172,11 +1172,11 @@ Abilities = STRONGJAW
 HiddenAbilities = STRONGJAW
 Height = 2.5
 Weight = 130.3
-Pokedex = The yellow patterns it bears are old scars. The energy from Mega Evolution runs through them, causing it sharp pain and suffering.
+Pokedex = 它身上的黄色花纹是旧伤疤。超级进化的能量流过其间，给它带来剧痛和折磨。
 Generation = 6
 #-------------------------------
 [CAMERUPT,1]
-FormName = Mega Camerupt
+FormName = 超级喷火驼
 MegaStone = CAMERUPTITE
 BaseStats = 70,120,100,20,145,105
 BaseExp = 196
@@ -1184,11 +1184,11 @@ Abilities = SHEERFORCE
 HiddenAbilities = SHEERFORCE
 Height = 2.5
 Weight = 320.5
-Pokedex = When this Pokémon's rage reaches a boiling point, the huge volcano in the hump on its back erupts violently, spewing molten lava.
+Pokedex = 当这只宝可梦的怒火达到沸点，它背上驼峰中的巨大火山就会猛烈喷发，喷出熔岩。
 Generation = 6
 #-------------------------------
 [ALTARIA,1]
-FormName = Mega Altaria
+FormName = 超级七夕青鸟
 MegaStone = ALTARIANITE
 Types = DRAGON,FAIRY
 BaseStats = 75,110,110,80,110,105
@@ -1196,29 +1196,29 @@ BaseExp = 207
 Abilities = PIXILATE
 HiddenAbilities = PIXILATE
 Height = 1.5
-Pokedex = Its down is so soft, it seems as if a touch could melt it. But it's strong enough that just a few strands could be used to hoist a dump truck.
+Pokedex = 它的绒毛柔软得仿佛一碰就会融化。但它足够坚韧，仅几根就能吊起一辆自卸卡车。
 Generation = 6
 #-------------------------------
 [CASTFORM,1]
-FormName = Sunny Form
+FormName = 晴天形态
 Types = FIRE
 Color = Red
-Pokedex = This is the form Castform takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care.
+Pokedex = 这是飘浮泡泡在最晴朗的日子里变成的样子。它的皮肤摸起来出乎意料地烫，接近时要小心。
 #-------------------------------
 [CASTFORM,2]
-FormName = Rainy Form
+FormName = 雨天形态
 Types = WATER
 Color = Blue
-Pokedex = This is the form Castform takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge.
+Pokedex = 这是飘浮泡泡被雨水浸湿后变成的样子。挤压它的身体，水就会像从海绵里一样渗出。
 #-------------------------------
 [CASTFORM,3]
-FormName = Snowy Form
+FormName = 雪天形态
 Types = ICE
 Color = White
-Pokedex = This is the form Castform takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius.
+Pokedex = 这是飘浮泡泡被雪覆盖后变成的样子。它的身体变成类似冰的物质，温度接近零下5摄氏度。
 #-------------------------------
 [BANETTE,1]
-FormName = Mega Banette
+FormName = 超级诅咒娃娃
 MegaStone = BANETTITE
 BaseStats = 64,165,75,75,93,83
 BaseExp = 194
@@ -1226,11 +1226,11 @@ Abilities = PRANKSTER
 HiddenAbilities = PRANKSTER
 Height = 1.2
 Weight = 13.0
-Pokedex = Extraordinary energy amplifies its cursing power to such an extent that it can't help but curse its own Trainer.
+Pokedex = 异常的能量增强了它的诅咒之力，以至于它忍不住连自己的训练家都诅咒。
 Generation = 6
 #-------------------------------
 [CHIMECHO,1]
-FormName = Mega Chimecho
+FormName = 超级风铃铃
 MegaStone = CHIMECHITE
 Types = PSYCHIC,STEEL
 BaseStats = 75,80,110,65,135,120
@@ -1238,32 +1238,32 @@ BaseExp = 209
 HiddenAbilities = LEVITATE
 Height = 1.2
 Weight = 8.0
-Pokedex = It vibrates its entire body to attack in all directions using sound waves. Any who hear the vibrations get so confused, they forget who they are.
+Pokedex = 它振动整个身体，用声波向四面八方攻击。听到振动的人会混乱得忘记自己是谁。
 Generation = 9
 #-------------------------------
 [ABSOL,1]
-FormName = Mega Absol
+FormName = 超级阿勃梭鲁
 MegaStone = ABSOLITE
 BaseStats = 65,150,60,115,115,60
 BaseExp = 198
 Abilities = MAGICBOUNCE
 HiddenAbilities = MAGICBOUNCE
 Weight = 49.0
-Pokedex = When this Pokémon whips the winglike fur on its back as though beating its wings, it sends an intimidating aura flying at its opponents.
+Pokedex = 当这只宝可梦像拍打翅膀一样甩动背上的翼状毛时，会向对手送去令人生畏的气场。
 Generation = 6
 #-------------------------------
 [ABSOL,2]
-FormName = Mega Absol Z
+FormName = 超级阿勃梭鲁Z
 MegaStone = ABSOLITEZ
 Types = DARK,GHOST
 BaseStats = 65,154,60,151,75,60
 BaseExp = 198
 Weight = 49.0
-Pokedex = Using fur that it has made into sharp, clawlike shapes, it cuts down foes with a single blow. This is an act of kindness to keep them from suffering.
+Pokedex = 它把毛发变成锋利的爪状，一击砍倒对手。这是为了让对手免受痛苦而施予的仁慈。
 Generation = 9
 #-------------------------------
 [GLALIE,1]
-FormName = Mega Glalie
+FormName = 超级冰鬼护
 MegaStone = GLALITITE
 BaseStats = 80,120,80,100,120,80
 BaseExp = 203
@@ -1271,11 +1271,11 @@ Abilities = REFRIGERATE
 HiddenAbilities = REFRIGERATE
 Height = 2.1
 Weight = 350.2
-Pokedex = It envelops prey in its mouth, freezing them instantly. But its jaw is dislocated, so it's unable to eat them.
+Pokedex = 它用嘴包住猎物，瞬间将其冻结。但它的下颚脱臼，无法吃掉它们。
 Generation = 6
 #-------------------------------
 [SALAMENCE,1]
-FormName = Mega Salamence
+FormName = 超级暴飞龙
 MegaStone = SALAMENCITE
 BaseStats = 95,145,130,120,120,90
 BaseExp = 350
@@ -1283,11 +1283,11 @@ Abilities = AERILATE
 HiddenAbilities = AERILATE
 Height = 1.8
 Weight = 112.6
-Pokedex = It puts its forelegs inside its shell to streamline itself for flight. Salamence flies at high speeds over all kinds of topographical features.
+Pokedex = 它把前腿收进壳里，使身体呈流线型以便飞行。暴飞龙高速飞越各种地形。
 Generation = 6
 #-------------------------------
 [METAGROSS,1]
-FormName = Mega Metagross
+FormName = 超级巨金怪
 MegaStone = METAGROSSITE
 BaseStats = 95,145,130,120,120,90
 BaseExp = 350
@@ -1295,54 +1295,54 @@ Abilities = TOUGHCLAWS
 HiddenAbilities = TOUGHCLAWS
 Height = 2.5
 Weight = 942.9
-Pokedex = Its intellect surpasses its previous level, resulting in battles so cruel, they'll make you want to cover your eyes.
+Pokedex = 它的智力超越了以往的水平，战斗之残酷让人不忍直视。
 Generation = 6
 #-------------------------------
 [LATIAS,1]
-FormName = Mega Latias
+FormName = 超级拉帝亚斯
 MegaStone = LATIASITE
 BaseStats = 80,100,120,110,140,150
 BaseExp = 350
 Height = 1.8
 Weight = 52.0
 Color = Purple
-Pokedex = Both its flying capabilities and its attack power have increased. It scatters transparent down to confuse its enemies.
+Pokedex = 它的飞行能力和攻击力都得到了提升。它散落透明的绒毛来迷惑敌人。
 Generation = 6
 #-------------------------------
 [LATIOS,1]
-FormName = Mega Latios
+FormName = 超级拉帝欧斯
 MegaStone = LATIOSITE
 BaseStats = 80,130,100,110,160,120
 BaseExp = 350
 Height = 2.3
 Weight = 70.0
 Color = Purple
-Pokedex = It flies at speeds exceeding Mach 4. It is among the top tier of all Pokémon in terms of aerial combat capability.
+Pokedex = 它以超过4马赫的速度飞行。在空中战斗能力方面，它位居所有宝可梦的顶尖之列。
 Generation = 6
 #-------------------------------
 [KYOGRE,1]
-FormName = Primal Kyogre
+FormName = 原始盖欧卡
 BaseStats = 100,150,90,90,180,160
 BaseExp = 385
 Abilities = PRIMORDIALSEA
 Height = 9.8
 Weight = 430.0
-Pokedex = Kyogre reverted to this state via the Blue Orb, which contains the energy of the primordial world. Kyogre's body resembles seawater.
+Pokedex = 盖欧卡通过蕴含原始世界能量的蓝色宝珠恢复到了这种状态。盖欧卡的身体宛如海水。
 Generation = 6
 #-------------------------------
 [GROUDON,1]
-FormName = Primal Groudon
+FormName = 原始固拉多
 Types = GROUND,FIRE
 BaseStats = 100,180,160,90,150,90
 BaseExp = 385
 Abilities = DESOLATELAND
 Height = 5.0
 Weight = 999.7
-Pokedex = This is Groudon's true form, restored using the Red Orb. Energy spills from its body in the form of magma.
+Pokedex = 这是固拉多使用红色宝珠恢复后的真正形态。能量以岩浆的形式从它体内溢出。
 Generation = 6
 #-------------------------------
 [RAYQUAZA,1]
-FormName = Mega Rayquaza
+FormName = 超级烈空坐
 MegaMove = DRAGONASCENT
 MegaMessage = 1
 BaseStats = 105,180,100,115,180,100
@@ -1351,32 +1351,32 @@ Abilities = DELTASTREAM
 HiddenAbilities = DELTASTREAM
 Height = 10.8
 Weight = 392.0
-Pokedex = A shooting star streaking across the night sky may, in fact, be Mega Rayquaza flying gracefully after a meteoroid.
+Pokedex = 划过夜空的流星，其实可能是超级烈空坐在追赶流星体时优雅飞行的身影。
 Generation = 6
 #-------------------------------
 [DEOXYS,1]
-FormName = Attack Forme
+FormName = 攻击形态
 BaseStats = 50,180,20,150,180,20
 EVs = ATTACK,2,SPECIAL_ATTACK,1
 Moves = 1,LEER,1,WRAP,7,NIGHTSHADE,13,TELEPORT,19,TAUNT,25,PSYSHOCK,31,PSYCHIC,37,SUPERPOWER,43,SKILLSWAP,49,ZENHEADBUTT,55,COSMICPOWER,61,ZAPCANNON,67,PSYCHOBOOST,73,HYPERBEAM
 TutorMoves = AERIALACE,AGILITY,ALLYSWITCH,BIND,BRICKBREAK,BRUTALSWING,CALMMIND,CHARGEBEAM,CONFIDE,COUNTER,CUT,DARKPULSE,DOUBLETEAM,DRAINPUNCH,DREAMEATER,DYNAMICPUNCH,ENDURE,ENERGYBALL,EXPANDINGFORCE,FACADE,FIREPUNCH,FLASH,FLASHCANNON,FLING,FOCUSBLAST,FRUSTRATION,FUTURESIGHT,GIGAIMPACT,GRASSKNOT,GRAVITY,HEADBUTT,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICEPUNCH,ICYWIND,IMPRISON,KNOCKOFF,LASERFOCUS,LIGHTSCREEN,LOWKICK,LOWSWEEP,MAGICCOAT,MEGAKICK,MEGAPUNCH,METEORBEAM,MIMIC,NASTYPLOT,NATURALGIFT,NIGHTSHADE,PAINSPLIT,POISONJAB,POWERUPPUNCH,PROTECT,PSYBEAM,PSYCHIC,PSYCHICNOISE,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REFLECT,REST,RETURN,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROLEPLAY,ROUND,SAFEGUARD,SCARYFACE,SECRETPOWER,SEISMICTOSS,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SKILLSWAP,SLEEPTALK,SNATCH,SNORE,SOLARBEAM,STEALTHROCK,STOMPINGTANTRUM,STOREDPOWER,STRENGTH,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWAGGER,SWIFT,TAKEDOWN,TAUNT,TELEKINESIS,TERABLAST,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,TORMENT,TRICK,TRICKROOM,WATERPULSE,WONDERROOM,ZENHEADBUTT
 #-------------------------------
 [DEOXYS,2]
-FormName = Defense Forme
+FormName = 防御形态
 BaseStats = 50,70,160,90,70,160
 EVs = DEFENSE,2,SPECIAL_DEFENSE,1
 Moves = 1,LEER,1,WRAP,7,NIGHTSHADE,13,TELEPORT,19,KNOCKOFF,25,SPIKES,31,PSYCHIC,37,PROTECT,43,SKILLSWAP,49,ZENHEADBUTT,55,IRONDEFENSE,55,AMNESIA,61,RECOVER,67,PSYCHOBOOST,73,COUNTER,73,MIRRORCOAT
 TutorMoves = AERIALACE,AGILITY,ALLYSWITCH,AMNESIA,BIND,BRICKBREAK,BRUTALSWING,CALMMIND,CHARGEBEAM,CONFIDE,COUNTER,CUT,DARKPULSE,DOUBLETEAM,DRAINPUNCH,DREAMEATER,DYNAMICPUNCH,ENDURE,ENERGYBALL,EXPANDINGFORCE,FACADE,FIREPUNCH,FLASH,FLASHCANNON,FLING,FOCUSBLAST,FRUSTRATION,FUTURESIGHT,GIGAIMPACT,GRASSKNOT,GRAVITY,HEADBUTT,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICEPUNCH,ICYWIND,IMPRISON,IRONDEFENSE,KNOCKOFF,LASERFOCUS,LIGHTSCREEN,LOWKICK,LOWSWEEP,MAGICCOAT,MEGAKICK,MEGAPUNCH,METEORBEAM,MIMIC,NATURALGIFT,NIGHTSHADE,PAINSPLIT,POISONJAB,POWERUPPUNCH,PROTECT,PSYBEAM,PSYCHIC,PSYCHICNOISE,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REFLECT,REST,RETURN,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROLEPLAY,ROUND,SAFEGUARD,SCARYFACE,SECRETPOWER,SEISMICTOSS,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SKILLSWAP,SLEEPTALK,SNATCH,SNORE,SOLARBEAM,SPIKES,STEALTHROCK,STOMPINGTANTRUM,STOREDPOWER,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,TAKEDOWN,TAUNT,TELEKINESIS,TERABLAST,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,TORMENT,TRICK,TRICKROOM,WATERPULSE,WONDERROOM,ZENHEADBUTT
 #-------------------------------
 [DEOXYS,3]
-FormName = Speed Forme
+FormName = 速度形态
 BaseStats = 50,95,90,180,95,90
 EVs = SPEED,3
 Moves = 1,LEER,1,WRAP,7,NIGHTSHADE,13,DOUBLETEAM,19,KNOCKOFF,25,PSYSHOCK,31,PSYCHIC,37,SWIFT,43,SKILLSWAP,49,ZENHEADBUTT,55,AGILITY,61,RECOVER,67,PSYCHOBOOST,73,EXTREMESPEED
 TutorMoves = AERIALACE,AGILITY,ALLYSWITCH,AMNESIA,BIND,BRICKBREAK,BRUTALSWING,CALMMIND,CHARGEBEAM,CONFIDE,COUNTER,CUT,DARKPULSE,DOUBLETEAM,DRAINPUNCH,DREAMEATER,DYNAMICPUNCH,ENDURE,ENERGYBALL,EXPANDINGFORCE,FACADE,FIREPUNCH,FLASH,FLASHCANNON,FLING,FOCUSBLAST,FRUSTRATION,FUTURESIGHT,GIGAIMPACT,GRASSKNOT,GRAVITY,HEADBUTT,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICEPUNCH,ICYWIND,IMPRISON,KNOCKOFF,LASERFOCUS,LIGHTSCREEN,LOWKICK,LOWSWEEP,MAGICCOAT,MEGAKICK,MEGAPUNCH,METEORBEAM,MIMIC,NASTYPLOT,NATURALGIFT,NIGHTSHADE,PAINSPLIT,POISONJAB,POWERUPPUNCH,PROTECT,PSYBEAM,PSYCHIC,PSYCHICNOISE,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REFLECT,REST,RETURN,ROCKSLIDE,ROCKSMASH,ROCKTOMB,ROLEPLAY,ROUND,SAFEGUARD,SCARYFACE,SECRETPOWER,SEISMICTOSS,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SKILLSWAP,SLEEPTALK,SNATCH,SNORE,SOLARBEAM,STEALTHROCK,STOMPINGTANTRUM,STOREDPOWER,STRENGTH,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,TAKEDOWN,TAUNT,TELEKINESIS,TERABLAST,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,TORMENT,TRICK,TRICKROOM,WATERPULSE,WONDERROOM,ZENHEADBUTT
 #-------------------------------
 [STARAPTOR,1]
-FormName = Mega Staraptor
+FormName = 超级姆克鹰
 MegaStone = STARAPTITE
 Types = FIGHTING,FLYING
 BaseStats = 85,140,100,110,60,90
@@ -1385,19 +1385,19 @@ Abilities = CONTRARY
 HiddenAbilities = CONTRARY
 Height = 1.9
 Weight = 50.0
-Pokedex = Mega Staraptor is a top-class flier. It can easily soar through the sky while gripping a Steelix that weighs more than 880 lbs.
+Pokedex = 超级姆克鹰是顶级飞行者。它能轻松抓着体重超过880磅的大钢蛇翱翔天际。
 Generation = 9
 #-------------------------------
 [BURMY,1]
-FormName = Sandy Cloak
+FormName = 砂土蓑衣
 Color = Brown
 #-------------------------------
 [BURMY,2]
-FormName = Trash Cloak
+FormName = 垃圾蓑衣
 Color = Red
 #-------------------------------
 [WORMADAM,1]
-FormName = Sandy Cloak
+FormName = 砂土蓑衣
 Types = BUG,GROUND
 BaseStats = 60,79,105,36,59,85
 EVs = DEFENSE,2
@@ -1406,7 +1406,7 @@ TutorMoves = ALLYSWITCH,ATTRACT,BUGBITE,BUGBUZZ,BULLDOZE,CAPTIVATE,CONFIDE,DIG,D
 Color = Brown
 #-------------------------------
 [WORMADAM,2]
-FormName = Trash Cloak
+FormName = 垃圾蓑衣
 Types = BUG,STEEL
 BaseStats = 60,69,95,36,69,95
 EVs = DEFENSE,1,SPECIAL_DEFENSE,1
@@ -1415,22 +1415,22 @@ TutorMoves = ALLYSWITCH,ATTRACT,BUGBITE,BUGBUZZ,CAPTIVATE,CONFIDE,DIG,DOUBLEEDGE
 Color = Red
 #-------------------------------
 [CHERRIM,1]
-FormName = Sunshine Form
+FormName = 晴天形态
 Color = Pink
-Pokedex = After absorbing plenty of sunlight, Cherrim takes this form. It's full of energy while it's like this, and its liveliness will go on until sundown.
+Pokedex = 吸收充足阳光后，樱花儿会变成这个样子。处于这种形态时它充满活力，这份活力会持续到日落。
 #-------------------------------
 [SHELLOS,1]
-FormName = East Sea
+FormName = 东海
 Color = Blue
-Pokedex = Its appearance changes depending on the environment. One theory suggests that living in cold seas causes Shellos to take on this form.
+Pokedex = 它的外表会随环境而改变。有一种说法认为，生活在寒冷海域使无壳海兔变成了这种样子。
 #-------------------------------
 [GASTRODON,1]
-FormName = East Sea
+FormName = 东海
 Color = Blue
-Pokedex = Its body is covered in a sticky slime. It's very susceptible to dehydration, so it can't spend too much time on land.
+Pokedex = 它的身体覆盖着黏滑的黏液。它极易脱水，所以不能在陆地上待太久。
 #-------------------------------
 [LOPUNNY,1]
-FormName = Mega Lopunny
+FormName = 超级长耳兔
 MegaStone = LOPUNNITE
 Types = NORMAL,FIGHTING
 BaseStats = 65,136,94,135,54,96
@@ -1439,31 +1439,31 @@ Abilities = SCRAPPY
 HiddenAbilities = SCRAPPY
 Height = 1.3
 Weight = 28.3
-Pokedex = It swings its ears like whips and strikes its enemies with them. It has an intensely combative disposition.
+Pokedex = 它像鞭子一样甩动耳朵抽打敌人。它生性好斗。
 Generation = 6
 #-------------------------------
 [GARCHOMP,1]
-FormName = Mega Garchomp
+FormName = 超级烈咬陆鲨
 MegaStone = GARCHOMPITE
 BaseStats = 108,170,115,92,120,95
 BaseExp = 350
 Abilities = SANDFORCE
 HiddenAbilities = SANDFORCE
-Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+Pokedex = 它引以为傲的翅膀变成了镰刀，使它暴怒发狂。它疯狂挥舞镰刀，把地面切得支离破碎。
 Generation = 6
 #-------------------------------
 [GARCHOMP,2]
-FormName = Mega Garchomp Z
+FormName = 超级烈咬陆鲨Z
 MegaStone = GARCHOMPITEZ
 Types = DRAGON
 BaseStats = 108,130,85,151,141,85
 BaseExp = 350
 Weight = 99.0
-Pokedex = Garchomp has gained a new Mega-Evolved form. It flies around foes at Mach speed and cuts them to shreds with its sinister wing claws.
+Pokedex = 烈咬陆鲨获得了新的超级进化形态。它以马赫速度绕着对手飞行，用邪恶的翼爪将它们撕成碎片。
 Generation = 9
 #-------------------------------
 [LUCARIO,1]
-FormName = Mega Lucario
+FormName = 超级路卡利欧
 MegaStone = LUCARIONITE
 BaseStats = 70,145,88,112,140,70
 BaseExp = 219
@@ -1471,43 +1471,43 @@ Abilities = ADAPTABILITY
 HiddenAbilities = ADAPTABILITY
 Height = 1.3
 Weight = 57.5
-Pokedex = It readies itself to face its enemies by focusing its mental energies. Its fighting style can be summed up in a single word: heartless.
+Pokedex = 它集中精神能量来面对敌人。它的战斗风格可以用一个词概括：冷酷无情。
 Generation = 6
 #-------------------------------
 [LUCARIO,2]
-FormName = Mega Lucario Z
+FormName = 超级路卡利欧Z
 MegaStone = LUCARIONITEZ
 BaseStats = 70,100,70,151,164,70
 BaseExp = 219
 Height = 1.3
 Weight = 49.4
-Pokedex = By completely cloaking itself in its aura, Mega Lucario Z can parry all manner of attacks, battling as if it were gracefully dancing.
+Pokedex = 通过将自身完全包裹在波导中，超级路卡利欧Z能招架各种攻击，战斗时宛如优雅起舞。
 Generation = 9
 #-------------------------------
 [ABOMASNOW,1]
-FormName = Mega Abomasnow
+FormName = 超级暴雪王
 MegaStone = ABOMASITE
 BaseStats = 90,132,105,30,132,105
 BaseExp = 208
 HiddenAbilities = SNOWWARNING
 Height = 2.7
 Weight = 185.0
-Pokedex = The buds on its back have sprouted into impressive icicles that can whip up massive blizzards of -22 degrees Fahrenheit.
+Pokedex = 它背上的花苞长成了巨大的冰柱，能掀起零下22华氏度的猛烈暴风雪。
 Generation = 6
 #-------------------------------
 [GALLADE,1]
-FormName = Mega Gallade
+FormName = 超级艾路雷朵
 MegaStone = GALLADITE
 BaseStats = 68,165,95,110,65,115
 BaseExp = 309
 Abilities = INNERFOCUS
 HiddenAbilities = INNERFOCUS
 Weight = 56.4
-Pokedex = It gets power from the bond it has with its Trainer. Mega Evolution has given it plates to slice its enemies and a cape to protect its body.
+Pokedex = 它从与训练家的牵绊中获得力量。超级进化赋予了它斩敌的利刃和护体的披风。
 Generation = 6
 #-------------------------------
 [FROSLASS,1]
-FormName = Mega Froslass
+FormName = 超级雪妖女
 MegaStone = FROSLASSITE
 BaseStats = 70,80,70,120,140,100
 BaseExp = 218
@@ -1515,72 +1515,72 @@ Abilities = SNOWWARNING
 HiddenAbilities = SNOWWARNING
 Height = 2.6
 Weight = 29.6
-Pokedex = This Pokémon can use eerie cold air imbued with ghost energy to freeze even insubstantial things, such as flames or the wind.
+Pokedex = 这只宝可梦能用蕴含幽灵能量的诡异冷气，冻结连火焰或风这样无形的东西。
 Generation = 9
 #-------------------------------
 [ROTOM,1]
-FormName = Heat Rotom
+FormName = 加热洛托姆
 Types = ELECTRIC,FIRE
 BaseStats = 50,65,107,86,105,107
 BaseExp = 182
-Pokedex = This Rotom has possessed a convection microwave oven that uses a special motor. It also has a flair for manipulating flames.
+Pokedex = 这只洛托姆附身于使用特殊马达的对流微波炉上。它还擅长操控火焰。
 #-------------------------------
 [ROTOM,2]
-FormName = Wash Rotom
+FormName = 清洗洛托姆
 Types = ELECTRIC,WATER
 BaseStats = 50,65,107,86,105,107
 BaseExp = 182
-Pokedex = This form of Rotom enjoys coming up with water-based pranks. Be careful with it if you don't want your room flooded.
+Pokedex = 这种形态的洛托姆喜欢想些和水有关的恶作剧。如果不想房间被淹，就要小心它。
 #-------------------------------
 [ROTOM,3]
-FormName = Frost Rotom
+FormName = 结霜洛托姆
 Types = ELECTRIC,ICE
 BaseStats = 50,65,107,86,105,107
 BaseExp = 182
-Pokedex = Rotom assumes this form when it takes over a refrigerator powered by a special motor. It battles by spewing cold air.
+Pokedex = 洛托姆占据使用特殊马达的冰箱时会变成这种样子。它通过喷出冷气来战斗。
 #-------------------------------
 [ROTOM,4]
-FormName = Fan Rotom
+FormName = 旋转洛托姆
 Types = ELECTRIC,FLYING
 BaseStats = 50,65,107,86,105,107
 BaseExp = 182
-Pokedex = In this form, Rotom applies its new power over wind to its love of pranks. It will happily blow away any important documents it can find.
+Pokedex = 在这种形态下，洛托姆把操控风的新能力用在了恶作剧上。它会兴高采烈地把找到的重要文件吹走。
 #-------------------------------
 [ROTOM,5]
-FormName = Mow Rotom
+FormName = 切割洛托姆
 Types = ELECTRIC,GRASS
 BaseStats = 50,65,107,86,105,107
 BaseExp = 182
-Pokedex = This is Rotom after it's seized control of a lawn mower that has a special motor. As it mows down grass, it scatters the clippings everywhere.
+Pokedex = 这是洛托姆占据使用特殊马达的割草机后的样子。它割草时会把碎草撒得到处都是。
 #-------------------------------
 [DIALGA,1]
-FormName = Origin Forme
+FormName = 起源形态
 BaseStats = 100,100,120,90,150,120
 Height = 7.0
 Weight = 850.0
 Color = Blue
-Pokedex = Radiant light caused Dialga to take on a form bearing a striking resemblance to the creator Pokémon. Dialga now wields colossal strength.
+Pokedex = 耀眼的光芒使帝牙卢卡变成了与创世宝可梦惊人相似的样子。帝牙卢卡如今掌握了巨大的力量。
 #-------------------------------
 [PALKIA,1]
-FormName = Origin Forme
+FormName = 起源形态
 BaseStats = 90,100,100,120,150,120
 Height = 6.3
 Weight = 660.0
 Shape = Quadruped
-Pokedex = It soars across the sky in a form that greatly resembles the creator of all things. This imitation of appearance may be its attempt to gain Arceus's powers.
+Pokedex = 它以与万物创造者极为相似的样子翱翔天际。这种外表的模仿或许是它试图获得阿尔宙斯力量的方式。
 #-------------------------------
 [HEATRAN,1]
-FormName = Mega Heatran
+FormName = 超级席多蓝恩
 MegaStone = HEATRANITE
 BaseStats = 91,120,106,67,175,141
 BaseExp = 350
 Height = 2.8
 Weight = 570.0
-Pokedex = It's said that if it goes all out, it can heat its body up to temperatures over 1.8 million degrees Fahrenheit. This heat keeps enemies at bay.
+Pokedex = 据说它全力以赴时，能把身体加热到超过180万华氏度。这股热量能逼退敌人。
 Generation = 9
 #-------------------------------
 [GIRATINA,1]
-FormName = Origin Forme
+FormName = 起源形态
 BaseStats = 150,120,100,90,120,100
 Abilities = LEVITATE
 HiddenAbilities = LEVITATE
@@ -1590,18 +1590,18 @@ Weight = 650.0
 Shape = Serpentine
 #-------------------------------
 [DARKRAI,1]
-FormName = Mega Darkrai
+FormName = 超级达克莱伊
 MegaStone = DARKRANITE
 BaseStats = 70,120,130,85,165,130
 BaseExp = 350
 Height = 3.0
 Weight = 240.0
 Category = Bad Dreams
-Pokedex = Its dark power blocks out the sun, plunging the surrounding area into darkness. There is no escaping its evil eye.
+Pokedex = 它的黑暗力量遮蔽太阳，使周围陷入黑暗。无人能逃过它的邪眼。
 Generation = 9
 #-------------------------------
 [SHAYMIN,1]
-FormName = Sky Forme
+FormName = 天空形态
 Types = GRASS,FLYING
 BaseStats = 100,103,75,127,120,75
 EVs = SPEED,3
@@ -1612,80 +1612,80 @@ Height = 0.4
 Weight = 5.2
 #-------------------------------
 [ARCEUS,1]
-FormName = Fighting Type
+FormName = 格斗属性
 Types = FIGHTING
 #-------------------------------
 [ARCEUS,2]
-FormName = Flying Type
+FormName = 飞行属性
 Types = FLYING
 #-------------------------------
 [ARCEUS,3]
-FormName = Poison Type
+FormName = 毒属性
 Types = POISON
 #-------------------------------
 [ARCEUS,4]
-FormName = Ground Type
+FormName = 地面属性
 Types = GROUND
 #-------------------------------
 [ARCEUS,5]
-FormName = Rock Type
+FormName = 岩石属性
 Types = ROCK
 #-------------------------------
 [ARCEUS,6]
-FormName = Bug Type
+FormName = 虫属性
 Types = BUG
 #-------------------------------
 [ARCEUS,7]
-FormName = Ghost Type
+FormName = 幽灵属性
 Types = GHOST
 #-------------------------------
 [ARCEUS,8]
-FormName = Steel Type
+FormName = 钢属性
 Types = STEEL
 #-------------------------------
 [ARCEUS,9]
-FormName = Unknown Type
+FormName = 未知属性
 Types = QMARKS
 #-------------------------------
 [ARCEUS,10]
-FormName = Fire Type
+FormName = 火属性
 Types = FIRE
 #-------------------------------
 [ARCEUS,11]
-FormName = Water Type
+FormName = 水属性
 Types = WATER
 #-------------------------------
 [ARCEUS,12]
-FormName = Grass Type
+FormName = 草属性
 Types = GRASS
 #-------------------------------
 [ARCEUS,13]
-FormName = Electric Type
+FormName = 电属性
 Types = ELECTRIC
 #-------------------------------
 [ARCEUS,14]
-FormName = Psychic Type
+FormName = 超能力属性
 Types = PSYCHIC
 #-------------------------------
 [ARCEUS,15]
-FormName = Ice Type
+FormName = 冰属性
 Types = ICE
 #-------------------------------
 [ARCEUS,16]
-FormName = Dragon Type
+FormName = 龙属性
 Types = DRAGON
 #-------------------------------
 [ARCEUS,17]
-FormName = Dark Type
+FormName = 恶属性
 Types = DARK
 #-------------------------------
 [ARCEUS,18]
-FormName = Fairy Type
+FormName = 妖精属性
 Types = FAIRY
 Generation = 6
 #-------------------------------
 [EMBOAR,1]
-FormName = Mega Emboar
+FormName = 超级炎武王
 MegaStone = EMBOARITE
 BaseStats = 110,148,75,75,110,110
 BaseExp = 314
@@ -1693,11 +1693,11 @@ Abilities = MOLDBREAKER
 HiddenAbilities = MOLDBREAKER
 Height = 1.8
 Weight = 180.3
-Pokedex = Brandishing a blazing flame shaped like a serpentine spear, it rushes in to rescue its imperiled allies.
+Pokedex = 它挥舞着形如蛇矛的炽热火焰，冲上前去营救身陷险境的同伴。
 Generation = 9
 #-------------------------------
 [SAMUROTT,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = WATER,DARK
 BaseStats = 90,108,80,85,100,65
 EVs = ATTACK,3
@@ -1705,11 +1705,11 @@ HiddenAbilities = SHARPNESS
 Moves = 0,CEASELESSEDGE,1,SUCKERPUNCH,1,SLASH,1,MEGAHORN,1,TACKLE,1,TAILWHIP,1,WATERGUN,13,FOCUSENERGY,18,RAZORSHELL,21,FURYCUTTER,25,WATERPULSE,29,AERIALACE,34,AQUAJET,39,ENCORE,46,AQUATAIL,51,RETALIATE,58,SWORDSDANCE,63,HYDROPUMP
 TutorMoves = AERIALACE,AIRSLASH,AVALANCHE,BLIZZARD,BODYSLAM,BRICKBREAK,BULLDOZE,CHILLINGWATER,DARKPULSE,DIG,DRILLRUN,ENCORE,ENDURE,FACADE,FALSESWIPE,FLING,FLIPTURN,GIGAIMPACT,GRASSKNOT,HAIL,HELPINGHAND,HYDROCANNON,HYDROPUMP,HYPERBEAM,ICEBEAM,ICYWIND,KNOCKOFF,LASHOUT,LIQUIDATION,PROTECT,RAINDANCE,REST,SCARYFACE,SLEEPTALK,SMARTSTRIKE,SNARL,SNOWSCAPE,SUBSTITUTE,SURF,SWIFT,SWORDSDANCE,TAKEDOWN,TAUNT,TERABLAST,THIEF,THROATCHOP,UPPERHAND,VACUUMWAVE,WATERFALL,WATERPLEDGE,WATERPULSE,WHIRLPOOL,XSCISSOR
 Weight = 58.2
-Pokedex = Hard of heart and deft of blade, this rare form of Samurott's turbulent blows crash into foes like ceaseless pounding waves.
+Pokedex = 这种罕见形态的大剑鬼心志坚定、刀法娴熟，它汹涌的打击如不停拍打的巨浪般袭向敌人。
 Generation = 8
 #-------------------------------
 [EXCADRILL,1]
-FormName = Mega Excadrill
+FormName = 超级龙头地鼠
 MegaStone = EXCADRITE
 BaseStats = 110,165,100,103,65,65
 BaseExp = 228
@@ -1717,11 +1717,11 @@ Abilities = PIERCINGDRILL
 HiddenAbilities = PIERCINGDRILL
 Height = 0.9
 Weight = 60.0
-Pokedex = If this Pokémon brings its arms and head together to form a streamlined shape and spins at high speeds, it can destroy anything.
+Pokedex = 如果这只宝可梦把双臂和头合拢成流线型并高速旋转，就能摧毁任何东西。
 Generation = 9
 #-------------------------------
 [AUDINO,1]
-FormName = Mega Audino
+FormName = 超级差不多娃娃
 MegaStone = AUDINITE
 Types = NORMAL,FAIRY
 BaseStats = 103,60,126,50,80,126
@@ -1731,11 +1731,11 @@ HiddenAbilities = HEALER
 Height = 1.5
 Weight = 32.0
 Color = White
-Pokedex = Anyone who touches the secondary feelers that have sprouted from the base of its throat will fall into a deep sleep.
+Pokedex = 任何碰到它喉部根部长出的副触角的人，都会陷入沉睡。
 Generation = 6
 #-------------------------------
 [SCOLIPEDE,1]
-FormName = Mega Scolipede
+FormName = 超级蜈蚣王
 MegaStone = SCOLIPITE
 BaseStats = 60,140,149,62,75,99
 BaseExp = 293
@@ -1743,11 +1743,11 @@ Abilities = SHELLARMOR
 HiddenAbilities = SHELLARMOR
 Height = 3.2
 Weight = 230.5
-Pokedex = Its deadly venom gives off a faint glow. The venom affects Scolipede's mind, honing its viciousness.
+Pokedex = 它致命的毒液发出微光。毒液会影响蜈蚣王的心智，磨砺其凶暴本性。
 Generation = 9
 #-------------------------------
 [LILLIGANT,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = GRASS,FIGHTING
 BaseStats = 70,105,75,105,50,75
 EVs = ATTACK,1,SPEED,1
@@ -1758,23 +1758,23 @@ Height = 1.2
 Weight = 19.2
 Shape = Bipedal
 Category = Spinning
-Pokedex = Its well-developed legs are the result of a life spent on mountains covered in deep snow. The scent it exudes from its flower crown heartens those in proximity.
+Pokedex = 它发达的腿是在积雪深厚的山间生活所造就的。它从花冠散发出的香气能让身边的人振作。
 Generation = 8
 #-------------------------------
 [BASCULIN,1]
-FormName = Blue-Striped
+FormName = 蓝条纹
 Abilities = ROCKHEAD,ADAPTABILITY
-Pokedex = Even Basculin, which devours everything it can with its huge jaws, is nothing more than food to organisms stronger than itself.
+Pokedex = 即便是用巨大下颚吞噬一切的野蛮鲈鱼，对更强的生物而言也不过是食物。
 WildItemUncommon = DEEPSEASCALE
 #-------------------------------
 [BASCULIN,2]
-FormName = White-Striped
+FormName = 白条纹
 Abilities = RATTLED,ADAPTABILITY
 Moves = 1,WATERGUN,1,TAILWHIP,4,TACKLE,8,FLAIL,12,AQUAJET,16,BITE,20,SCARYFACE,24,HEADBUTT,28,SOAK,32,CRUNCH,36,TAKEDOWN,40,UPROAR,44,WAVECRASH,48,THRASH,52,DOUBLEEDGE,56,HEADSMASH
 TutorMoves = AGILITY,BLIZZARD,CHILLINGWATER,CRUNCH,DOUBLEEDGE,ENDEAVOR,ENDURE,FACADE,FLIPTURN,HAIL,HYDROPUMP,ICEBEAM,ICEFANG,ICYWIND,LIQUIDATION,MUDDYWATER,MUDSHOT,PROTECT,PSYCHICFANGS,RAINDANCE,REST,SCALESHOT,SCARYFACE,SLEEPTALK,SNOWSCAPE,SUBSTITUTE,SURF,SWIFT,TAKEDOWN,TERABLAST,UPROAR,WATERFALL,WATERPULSE,WHIRLPOOL,ZENHEADBUTT
 EggMoves = ENDEAVOR,LASTRESPECTS
 Category = Mellow
-Pokedex = They live in frigid seas, forming schools and sharing food among themselves. When the time comes, they return to the river they were born in.
+Pokedex = 它们生活在寒冷的海域，成群结队并分享食物。时机到来时，它们会回到出生的河川。
 Generation = 8
 Flags = InheritFormWithEverStone
 Evolution = BASCULEGION,Counter,294
@@ -1786,13 +1786,13 @@ Moves = 1,WATERGUN,1,TAILWHIP,4,TACKLE,8,FLAIL,12,AQUAJET,16,BITE,20,SCARYFACE,2
 TutorMoves = AGILITY,BLIZZARD,CHILLINGWATER,CRUNCH,DOUBLEEDGE,ENDEAVOR,ENDURE,FACADE,FLIPTURN,HAIL,HYDROPUMP,ICEBEAM,ICEFANG,ICYWIND,LIQUIDATION,MUDDYWATER,MUDSHOT,PROTECT,PSYCHICFANGS,RAINDANCE,REST,SCALESHOT,SCARYFACE,SLEEPTALK,SNOWSCAPE,SUBSTITUTE,SURF,SWIFT,TAKEDOWN,TERABLAST,UPROAR,WATERFALL,WATERPULSE,WHIRLPOOL,ZENHEADBUTT
 EggMoves = ENDEAVOR,LASTRESPECTS
 Category = Mellow
-Pokedex = They live in frigid seas, forming schools and sharing food among themselves. When the time comes, they return to the river they were born in.
+Pokedex = 它们生活在寒冷的海域，成群结队并分享食物。时机到来时，它们会回到出生的河川。
 Generation = 8
 Flags = InheritFormWithEverStone
 Evolution = BASCULEGION,Counter,294
 #-------------------------------
 [DARUMAKA,2]
-FormName = Galarian
+FormName = 伽勒尔
 Types = ICE
 Moves = 1,POWDERSNOW,1,TACKLE,4,TAUNT,8,BITE,12,AVALANCHE,16,WORKUP,20,ICEFANG,24,HEADBUTT,28,ICEPUNCH,32,UPROAR,36,BELLYDRUM,40,BLIZZARD,44,THRASH,48,SUPERPOWER
 TutorMoves = ATTRACT,AVALANCHE,BLIZZARD,BRICKBREAK,CAPTIVATE,CONFIDE,DIG,DOUBLEEDGE,DOUBLETEAM,ENCORE,ENDURE,FACADE,FIREBLAST,FIREFANG,FIREPUNCH,FIRESPIN,FLAMETHROWER,FLAREBLITZ,FLING,FOCUSENERGY,FRUSTRATION,GRASSKNOT,GYROBALL,HEATWAVE,HIDDENPOWER,ICEBEAM,ICEFANG,ICEPUNCH,MEGAKICK,MEGAPUNCH,MIMIC,NATURALGIFT,OVERHEAT,PROTECT,REST,RETURN,ROCKSLIDE,ROCKTOMB,ROUND,SECRETPOWER,SLEEPTALK,SNORE,SOLARBEAM,SUBSTITUTE,SUNNYDAY,SUPERPOWER,SWAGGER,TAUNT,THIEF,TOXIC,UPROAR,UTURN,WILLOWISP,WORKUP,ZENHEADBUTT
@@ -1800,22 +1800,22 @@ EggMoves = FLAMEWHEEL,FOCUSPUNCH,FREEZEDRY,HAMMERARM,INCINERATE,POWERUPPUNCH,TAK
 Height = 0.7
 Weight = 40.0
 Color = White
-Pokedex = The colder they get, the more energetic they are. They freeze their breath to make snowballs, using them as ammo for playful snowball fights.
+Pokedex = 天气越冷，它们越有精神。它们冻结呼出的气息做成雪球，用作打雪仗的弹药。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 Evolution = DARMANITAN,Item,ICESTONE
 #-------------------------------
 [DARMANITAN,1]
-FormName = Zen Mode
+FormName = 达摩模式
 Types = FIRE,PSYCHIC
 BaseStats = 105,30,105,55,140,105
 BaseExp = 189
 EVs = SPECIAL_ATTACK,2
 Color = Blue
-Pokedex = When wounded, it stops moving. It goes as still as stone to meditate, sharpening its mind and spirit.
+Pokedex = 受伤时，它会停止行动。它如石头般静止不动地冥想，磨砺心智与精神。
 #-------------------------------
 [DARMANITAN,2]
-FormName = Galarian Standard Mode
+FormName = 伽勒尔普通模式
 Types = ICE
 Abilities = GORILLATACTICS
 Moves = 0,ICICLECRASH,1,POWDERSNOW,1,TACKLE,1,TAUNT,1,BITE,12,AVALANCHE,16,WORKUP,20,ICEFANG,24,HEADBUTT,28,ICEPUNCH,32,UPROAR,38,BELLYDRUM,44,BLIZZARD,50,THRASH,56,SUPERPOWER
@@ -1824,12 +1824,12 @@ Height = 1.7
 Weight = 120.0
 Color = White
 Category = Zen Charm
-Pokedex = On days when blizzards blow through, it comes down to where people live. It stashes food in the snowball on its head, taking it home for later.
+Pokedex = 在暴风雪肆虐的日子，它会来到人类居住的地方。它把食物藏进头上的雪球里，带回家以备后用。
 Generation = 8
 Flags = InheritFormWithEverstone
 #-------------------------------
 [DARMANITAN,3]
-FormName = Galarian Zen Mode
+FormName = 伽勒尔达摩模式
 Types = ICE,FIRE
 BaseStats = 105,160,55,135,30,55
 BaseExp = 189
@@ -1841,80 +1841,80 @@ Height = 1.7
 Weight = 120.0
 Color = White
 Category = Zen Charm
-Pokedex = Anger has reignited its atrophied flame sac. This Pokémon spews fire everywhere as it rampages indiscriminately.
+Pokedex = 愤怒使它萎缩的火焰袋重新燃起。这只宝可梦肆意暴走，四处喷火。
 Generation = 8
 #-------------------------------
 [SCRAFTY,1]
-FormName = Mega Scrafty
+FormName = 超级头巾混混
 MegaStone = SCRAFTINITE
 BaseStats = 65,130,135,68,55,135
 BaseExp = 221
 Abilities = INTIMIDATE
 HiddenAbilities = INTIMIDATE
 Weight = 31.0
-Pokedex = Mega Evolution has caused Scrafty's shed skin to turn white, growing tough and supple. Of course, this Pokémon is still as feisty as ever.
+Pokedex = 超级进化使头巾混混蜕下的皮变成白色，变得又韧又柔。当然，这只宝可梦依旧好斗如初。
 Generation = 9
 #-------------------------------
 [YAMASK,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = GROUND,GHOST
 BaseStats = 38,55,85,30,30,65
 Abilities = WANDERINGSPIRIT
 Moves = 1,ASTONISH,1,PROTECT,4,HAZE,8,NIGHTSHADE,12,DISABLE,16,BRUTALSWING,20,CRAFTYSHIELD,24,HEX,28,MEANLOOK,32,SLAM,36,CURSE,40,SHADOWBALL,44,EARTHQUAKE,48,POWERSPLIT,48,GUARDSPLIT,52,DESTINYBOND
 TutorMoves = ALLYSWITCH,ATTRACT,BRUTALSWING,CALMMIND,CAPTIVATE,CONFIDE,DARKPULSE,DOUBLEEDGE,DOUBLETEAM,EARTHPOWER,EARTHQUAKE,ENDURE,ENERGYBALL,FACADE,FAKETEARS,FRUSTRATION,HEX,HIDDENPOWER,IMPRISON,IRONDEFENSE,MIMIC,NASTYPLOT,NATURALGIFT,PAYBACK,POLTERGEIST,PROTECT,PSYCHIC,RAINDANCE,REST,RETURN,ROCKSLIDE,ROCKTOMB,ROUND,SAFEGUARD,SANDSTORM,SECRETPOWER,SHADOWBALL,SKILLSWAP,SLEEPTALK,SNORE,SUBSTITUTE,SWAGGER,THIEF,TOXIC,TOXICSPIKES,TRICK,TRICKROOM,WILLOWISP,WONDERROOM,ZENHEADBUTT
-Pokedex = A clay slab with cursed engravings took possession of a Yamask. The slab is said to be absorbing the Yamask's dark power.
+Pokedex = 一块刻有诅咒的泥板占据了哭哭面具。据说泥板正在吸取哭哭面具的黑暗力量。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 Evolution = RUNERIGUS,AfterBattleCounterMakeReady,49
 Evolution = RUNERIGUS,EventReady,2
 #-------------------------------
 [ZORUA,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = NORMAL,GHOST
 BaseStats = 35,60,40,70,85,40
 Moves = 1,SCRATCH,1,LEER,4,TORMENT,8,HONECLAWS,12,SHADOWSNEAK,16,CURSE,20,TAUNT,24,KNOCKOFF,28,SPITE,32,AGILITY,36,SHADOWBALL,40,BITTERMALICE,44,NASTYPLOT,48,FOULPLAY
 TutorMoves = AGILITY,BURNINGJEALOUSY,CALMMIND,CONFUSERAY,CURSE,DARKPULSE,DIG,ENDURE,FACADE,FAKETEARS,FLING,FOCUSPUNCH,FOULPLAY,GIGAIMPACT,HAIL,HEX,HYPERBEAM,ICYWIND,IMPRISON,KNOCKOFF,LASHOUT,NASTYPLOT,NIGHTSHADE,PAINSPLIT,PHANTOMFORCE,PROTECT,PSYCHUP,RAINDANCE,REST,ROAR,SHADOWBALL,SHADOWCLAW,SKITTERSMACK,SLEEPTALK,SLUDGEBOMB,SNARL,SNOWSCAPE,SPITE,SUBSTITUTE,SWIFT,TAKEDOWN,TAUNT,TERABLAST,THIEF,TRICK,UTURN,WILLOWISP
 EggMoves = COMEUPPANCE,DETECT,EXTRASENSORY,MEMENTO
 Category = Spiteful Fox
-Pokedex = A once-departed soul, returned to life. Derives power from resentment, which rises as energy atop its head. In this way, Zorua vents lingering malice.
+Pokedex = 逝去的灵魂重返生命。它从怨恨中汲取力量，怨恨化为能量浮现在头顶。索罗亚以此宣泄挥之不去的恶意。
 Generation = 8
 Flags = EggInRegion_3,InheritFormWithEverStone
 #-------------------------------
 [ZOROARK,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = NORMAL,GHOST
 BaseStats = 55,100,60,110,125,60
 Moves = 0,SHADOWCLAW,1,UTURN,1,SCRATCH,1,LEER,1,TORMENT,1,HONECLAWS,12,SHADOWSNEAK,16,CURSE,20,TAUNT,24,KNOCKOFF,28,SPITE,34,AGILITY,40,SHADOWBALL,46,BITTERMALICE,52,NASTYPLOT,58,FOULPLAY
 TutorMoves = AERIALACE,AGILITY,BODYSLAM,BRICKBREAK,BURNINGJEALOUSY,CALMMIND,CONFUSERAY,CRUNCH,CURSE,DARKPULSE,DIG,ENDURE,FACADE,FAKETEARS,FLAMETHROWER,FLING,FOCUSBLAST,FOCUSPUNCH,FOULPLAY,GIGAIMPACT,GRASSKNOT,HAIL,HELPINGHAND,HEX,HYPERBEAM,HYPERVOICE,ICYWIND,IMPRISON,KNOCKOFF,LASHOUT,LOWKICK,LOWSWEEP,NASTYPLOT,NIGHTSHADE,PAINSPLIT,PHANTOMFORCE,POLTERGEIST,PROTECT,PSYCHIC,PSYCHUP,RAINDANCE,REST,ROAR,SCARYFACE,SHADOWBALL,SHADOWCLAW,SKITTERSMACK,SLEEPTALK,SLUDGEBOMB,SNARL,SNOWSCAPE,SPITE,SUBSTITUTE,SWIFT,SWORDSDANCE,TAKEDOWN,TAUNT,TERABLAST,THIEF,THROATCHOP,TRICK,UTURN,WILLOWISP
 Weight = 73.0
 Category = Baneful Fox
-Pokedex = With its disheveled white fur, it looks like an embodiment of death. Heedless of its own safety, Zoroark attacks its nemeses with an intense bitter energy.
+Pokedex = 它蓬乱的白色毛发让它看起来像是死亡的化身。索罗亚克不顾自身安危，怀着强烈的怨恨能量攻击宿敌。
 Generation = 8
 Flags = InheritFormWithEverStone
 #-------------------------------
 [DEERLING,1]
-FormName = Summer Form
+FormName = 夏天的样子
 Color = Green
 #-------------------------------
 [DEERLING,2]
-FormName = Autumn Form
+FormName = 秋天的样子
 Color = Red
 #-------------------------------
 [DEERLING,3]
-FormName = Winter Form
+FormName = 冬天的样子
 Color = Brown
 #-------------------------------
 [SAWSBUCK,1]
-FormName = Summer Form
+FormName = 夏天的样子
 #-------------------------------
 [SAWSBUCK,2]
-FormName = Autumn Form
+FormName = 秋天的样子
 #-------------------------------
 [SAWSBUCK,3]
-FormName = Winter Form
+FormName = 冬天的样子
 #-------------------------------
 [EELEKTROSS,1]
-FormName = Mega Eelektross
+FormName = 超级麻麻鳗鱼王
 MegaStone = EELEKTROSSITE
 BaseStats = 85,145,80,80,135,90
 BaseExp = 308
@@ -1922,22 +1922,22 @@ Abilities = EELEVATE
 HiddenAbilities = EELEVATE
 Height = 3.0
 Weight = 180.0
-Pokedex = It now generates 10 times the electricity it did before Mega Evolving. It discharges this electricity from its false Eelektrik, which are made of mucus.
+Pokedex = 它现在产生的电力是超级进化前的10倍。它通过由黏液构成的假麻麻鳗放电。
 Generation = 9
 #-------------------------------
 [CHANDELURE,1]
-FormName = Mega Chandelure
+FormName = 超级水晶灯火灵
 MegaStone = CHANDELURITE
 BaseStats = 60,75,110,90,175,110
 BaseExp = 310
 Abilities = INFILTRATOR
 Height = 2.5
 Weight = 69.6
-Pokedex = One of its eyes is a window linking our world with the afterlife. This Pokémon draws in hatred and converts it into power.
+Pokedex = 它的一只眼睛是连接我们世界与来世的窗口。这只宝可梦吸取憎恨，将其转化为力量。
 Generation = 9
 #-------------------------------
 [STUNFISK,1]
-FormName = Galarian
+FormName = 伽勒尔
 Types = GROUND,STEEL
 BaseStats = 109,81,99,32,66,84
 Abilities = MIMICRY
@@ -1947,23 +1947,23 @@ TutorMoves = ATTRACT,BOUNCE,BULLDOZE,CAPTIVATE,CONFIDE,CRUNCH,DIG,DOUBLEEDGE,DOU
 EggMoves = ASTONISH,BIND,COUNTER,CURSE,PAINSPLIT,REFLECTTYPE,SPITE,YAWN
 Weight = 20.5
 Color = Green
-Pokedex = Its conspicuous lips lure prey in as it lies in wait in the mud. When prey gets close, Stunfisk clamps its jagged steel fins down on them.
+Pokedex = 它潜伏在泥中，用醒目的嘴唇引诱猎物。猎物靠近时，泥巴鱼用锯齿状的钢鳍夹住它们。
 Generation = 8
 Flags = EggInRegion_2,InheritFormWithEverstone
 #-------------------------------
 [GOLURK,1]
-FormName = Mega Golurk
+FormName = 超级泥偶巨人
 MegaStone = GOLURKITE
 BaseStats = 89,159,105,55,70,105
 BaseExp = 219
 Abilities = UNSEENFIST
 HiddenAbilities = UNSEENFIST
 Height = 4.0
-Pokedex = The energy within Golurk has been stimulated by Mega Evolution. The Pokémon could explode at any moment.
+Pokedex = 超级进化刺激了泥偶巨人体内的能量。这只宝可梦随时可能爆炸。
 Generation = 9
 #-------------------------------
 [BRAVIARY,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = PSYCHIC,FLYING
 BaseStats = 110,83,70,65,112,70
 EVs = SPECIAL_ATTACK,2
@@ -1974,11 +1974,11 @@ Height = 1.7
 Weight = 43.4
 Color = White
 Category = Battle Cry
-Pokedex = Screaming a bloodcurdling battle cry, this huge and ferocious bird Pokémon goes out on the hunt. It blasts lakes with shock waves, then scoops up any floating prey.
+Pokedex = 这只巨大凶猛的鸟宝可梦发出令人毛骨悚然的战吼外出狩猎。它用冲击波轰击湖泊，然后捞起浮上来的猎物。
 Generation = 8
 #-------------------------------
 [TORNADUS,1]
-FormName = Therian Forme
+FormName = 灵兽形态
 BaseStats = 79,100,80,121,110,90
 EVs = SPEED,3
 Abilities = REGENERATOR
@@ -1987,7 +1987,7 @@ Height = 1.4
 Shape = Winged
 #-------------------------------
 [THUNDURUS,1]
-FormName = Therian Forme
+FormName = 灵兽形态
 BaseStats = 79,105,70,101,145,80
 EVs = SPECIAL_ATTACK,3
 Abilities = VOLTABSORB
@@ -1996,7 +1996,7 @@ Height = 3.0
 Shape = BipedalTail
 #-------------------------------
 [LANDORUS,1]
-FormName = Therian Forme
+FormName = 灵兽形态
 BaseStats = 89,145,90,91,105,80
 EVs = ATTACK,3
 Abilities = INTIMIDATE
@@ -2005,24 +2005,24 @@ Height = 1.3
 Shape = Quadruped
 #-------------------------------
 [KYUREM,1]
-FormName = White Kyurem
+FormName = 白色酋雷姆
 BaseStats = 125,120,90,95,170,100
 BaseExp = 350
 EVs = SPECIAL_ATTACK,3
 Abilities = TURBOBLAZE
 Moves = 1,DRAGONBREATH,1,NOBLEROAR,1,ANCIENTPOWER,1,FREEZEDRY,8,SLASH,16,ENDEAVOR,24,DRAGONPULSE,32,ICEBEAM,40,HYPERVOICE,48,FUSIONFLARE,56,BLIZZARD,64,IMPRISON,72,OUTRAGE,80,ICEBURN,88,SHEERCOLD
 Height = 3.6
-Pokedex = It has foreseen that a world of truth will arrive for people and Pokémon. It strives to protect that future.
+Pokedex = 它预见到一个人与宝可梦共存真实的世界将会到来。它为守护那个未来而努力。
 #-------------------------------
 [KYUREM,2]
-FormName = Black Kyurem
+FormName = 黑色酋雷姆
 BaseStats = 125,170,100,95,120,90
 BaseExp = 350
 EVs = ATTACK,3
 Abilities = TERAVOLT
 Moves = 1,DRAGONBREATH,1,NOBLEROAR,1,ANCIENTPOWER,1,FREEZEDRY,8,SLASH,16,ENDEAVOR,24,DRAGONPULSE,32,ICEBEAM,40,HYPERVOICE,48,FUSIONBOLT,56,BLIZZARD,64,IMPRISON,72,OUTRAGE,80,FREEZESHOCK,88,SHEERCOLD
 Height = 3.3
-Pokedex = It's said that this Pokémon battles in order to protect the ideal world that will exist in the future for people and Pokémon.
+Pokedex = 据说这只宝可梦战斗，是为了守护未来人与宝可梦共存的理想世界。
 #-------------------------------
 [KYUREM,3]
 PokedexForm = 1
@@ -2043,44 +2043,44 @@ Moves = 1,DRAGONBREATH,1,NOBLEROAR,1,ANCIENTPOWER,1,FREEZEDRY,8,SLASH,16,ENDEAVO
 Height = 3.3
 #-------------------------------
 [KELDEO,1]
-FormName = Resolute Form
-Pokedex = The power that lay hidden in its body now covers its horn, turning it into a sword that can slice through anything.
+FormName = 觉悟形态
+Pokedex = 潜藏于它体内的力量如今覆盖在角上，将其变成一把能斩断一切的剑。
 #-------------------------------
 [MELOETTA,1]
-FormName = Pirouette Forme
+FormName = 舞步形态
 Types = NORMAL,FIGHTING
 BaseStats = 100,128,90,128,77,77
 EVs = ATTACK,1,DEFENSE,1,SPEED,1
 #-------------------------------
 [GENESECT,1]
-FormName = Shock Drive
+FormName = 闪电卡带
 #-------------------------------
 [GENESECT,2]
-FormName = Burn Drive
+FormName = 火焰卡带
 #-------------------------------
 [GENESECT,3]
-FormName = Chill Drive
+FormName = 冰冷卡带
 #-------------------------------
 [GENESECT,4]
-FormName = Douse Drive
+FormName = 清水卡带
 #-------------------------------
 [CHESNAUGHT,1]
-FormName = Mega Chesnaught
+FormName = 超级布里卡隆
 MegaStone = CHESNAUGHTITE
 BaseStats = 88,137,172,44,74,115
 BaseExp = 315
 Abilities = BULLETPROOF
-Pokedex = It has fortified armor and a will to defend at all costs. Both are absurdly strong.
+Pokedex = 它拥有强化的铠甲和誓死防御的意志。两者都强得离谱。
 Generation = 9
 #-------------------------------
 [DELPHOX,1]
-FormName = Mega Delphox
+FormName = 超级妖火红狐
 MegaStone = DELPHOXITE
 BaseStats = 75,69,72,134,159,125
 BaseExp = 317
 Abilities = LEVITATE
 HiddenAbilities = LEVITATE
-Pokedex = It wields flaming branches to dazzle its opponents before incinerating them with a huge fireball.
+Pokedex = 它挥舞燃烧的树枝迷惑对手，然后用巨大的火球将它们烧成灰烬。
 Generation = 9
 #-------------------------------
 [GRENINJA,1]
@@ -2090,7 +2090,7 @@ HiddenAbilities = BATTLEBOND
 EggGroups = Undiscovered
 #-------------------------------
 [GRENINJA,2]
-FormName = Ash-Greninja
+FormName = 小智版甲贺忍蛙
 BaseStats = 72,145,67,132,153,71
 BaseExp = 320
 Abilities = BATTLEBOND
@@ -2098,117 +2098,117 @@ HiddenAbilities = BATTLEBOND
 Generation = 7
 #-------------------------------
 [GRENINJA,3]
-FormName = Mega Greninja
+FormName = 超级甲贺忍蛙
 MegaStone = GRENINJITE
 BaseStats = 72,125,77,142,133,81
 BaseExp = 315
 Abilities = PROTEAN
-Pokedex = This Pokémon spins a giant shuriken at high speed to make it float, then clings to it upside down to catch opponents unawares.
+Pokedex = 这只宝可梦高速旋转巨大的手里剑使其浮起，然后倒挂在上面，趁对手不备发动袭击。
 Generation = 9
 #-------------------------------
 [VIVILLON,1]
-FormName = Continental Pattern
+FormName = 大陆花纹
 #-------------------------------
 [VIVILLON,2]
-FormName = Elegant Pattern
+FormName = 高雅花纹
 #-------------------------------
 [VIVILLON,3]
-FormName = Garden Pattern
+FormName = 庭园花纹
 #-------------------------------
 [VIVILLON,4]
-FormName = High Plains Pattern
+FormName = 荒野花纹
 #-------------------------------
 [VIVILLON,5]
-FormName = Icy Snow Pattern
+FormName = 冰雪花纹
 #-------------------------------
 [VIVILLON,6]
-FormName = Jungle Pattern
+FormName = 丛林花纹
 #-------------------------------
 [VIVILLON,7]
-FormName = Marine Pattern
+FormName = 大海花纹
 #-------------------------------
 [VIVILLON,8]
-FormName = Meadow Pattern
+FormName = 草原花纹
 #-------------------------------
 [VIVILLON,9]
-FormName = Modern Pattern
+FormName = 现代花纹
 #-------------------------------
 [VIVILLON,10]
-FormName = Monsoon Pattern
+FormName = 季风花纹
 #-------------------------------
 [VIVILLON,11]
-FormName = Ocean Pattern
+FormName = 大洋花纹
 #-------------------------------
 [VIVILLON,12]
-FormName = Polar Pattern
+FormName = 雪原花纹
 #-------------------------------
 [VIVILLON,13]
-FormName = River Pattern
+FormName = 河流花纹
 #-------------------------------
 [VIVILLON,14]
-FormName = Sandstorm Pattern
+FormName = 沙暴花纹
 #-------------------------------
 [VIVILLON,15]
-FormName = Savanna Pattern
+FormName = 热带草原花纹
 #-------------------------------
 [VIVILLON,16]
-FormName = Sun Pattern
+FormName = 太阳花纹
 #-------------------------------
 [VIVILLON,17]
-FormName = Tundra Pattern
+FormName = 苔原花纹
 #-------------------------------
 [VIVILLON,18]
-FormName = Fancy Pattern
+FormName = 华丽花纹
 #-------------------------------
 [VIVILLON,19]
-FormName = Poké Ball Pattern
+FormName = 精灵球花纹
 #-------------------------------
 [PYROAR,1]
-FormName = Mega Pyroar
+FormName = 超级火炎狮
 MegaStone = PYROARITE
 BaseStats = 86,88,92,126,129,86
 BaseExp = 227
 Abilities = FIREMANE
 HiddenAbilities = FIREMANE
 Weight = 93.3
-Pokedex = This Pokémon spews flames hotter than 18,000 degrees Fahrenheit. It swings around its grand, blazing mane as it protects its allies.
+Pokedex = 这只宝可梦喷出超过18000华氏度的火焰。它甩动华丽的炽热鬃毛，保护同伴。
 Generation = 9
 #-------------------------------
 [FLABEBE,1]
-FormName = Yellow Flower
+FormName = 黄花
 #-------------------------------
 [FLABEBE,2]
-FormName = Orange Flower
+FormName = 橙花
 #-------------------------------
 [FLABEBE,3]
-FormName = Blue Flower
+FormName = 蓝花
 #-------------------------------
 [FLABEBE,4]
-FormName = White Flower
+FormName = 白花
 #-------------------------------
 [FLOETTE,1]
-FormName = Yellow Flower
+FormName = 黄花
 #-------------------------------
 [FLOETTE,2]
-FormName = Orange Flower
+FormName = 橙花
 #-------------------------------
 [FLOETTE,3]
-FormName = Blue Flower
+FormName = 蓝花
 #-------------------------------
 [FLOETTE,4]
-FormName = White Flower
+FormName = 白花
 #-------------------------------
 [FLOETTE,5]
-FormName = Eternal Flower
+FormName = 永恒之花
 BaseStats = 74,65,67,92,125,128
 BaseExp = 243
 Moves = 1,TACKLE,1,VINEWHIP,1,FAIRYWIND,10,SAFEGUARD,15,RAZORLEAF,20,WISH,25,MAGICALLEAF,27,GRASSYTERRAIN,33,PETALBLIZZARD,38,SYNTHESIS,43,MISTYTERRAIN,46,MOONBLAST,50,LIGHTOFRUIN,51,PETALDANCE,58,SOLARBEAM
 EggGroups = Undiscovered
-Pokedex = The flower it's holding can no longer be found blooming anywhere. It's also thought to contain terrifying power.
+Pokedex = 它手持的花朵已无处可见其绽放。人们认为其中蕴含着可怕的力量。
 Evolution = FLORGES,None
 #-------------------------------
 [FLOETTE,6]
-FormName = Mega Floette
+FormName = 超级花叶蒂
 MegaStone = FLOETTITE
 UnmegaForm = 5
 BaseStats = 74,85,87,102,155,148
@@ -2216,58 +2216,58 @@ BaseExp = 293
 Abilities = FAIRYAURA
 HiddenAbilities = FAIRYAURA
 Weight = 100.8
-Pokedex = The Eternal Flower has absorbed all the energy from Mega Evolution. The flower now attacks enemies on its own.
+Pokedex = 永恒之花吸收了超级进化的全部能量。如今这朵花会自行攻击敌人。
 Generation = 9
 #-------------------------------
 [FLORGES,1]
-FormName = Yellow Flower
+FormName = 黄花
 #-------------------------------
 [FLORGES,2]
-FormName = Orange Flower
+FormName = 橙花
 #-------------------------------
 [FLORGES,3]
-FormName = Blue Flower
+FormName = 蓝花
 #-------------------------------
 [FLORGES,4]
-FormName = White Flower
+FormName = 白花
 #-------------------------------
 [FURFROU,1]
-FormName = Heart Trim
+FormName = 心形造型
 #-------------------------------
 [FURFROU,2]
-FormName = Star Trim
+FormName = 星星造型
 #-------------------------------
 [FURFROU,3]
-FormName = Diamond Trim
+FormName = 钻石造型
 #-------------------------------
 [FURFROU,4]
-FormName = Debutante Trim
+FormName = 淑女造型
 #-------------------------------
 [FURFROU,5]
-FormName = Matron Trim
+FormName = 贵妇造型
 #-------------------------------
 [FURFROU,6]
-FormName = Dandy Trim
+FormName = 绅士造型
 #-------------------------------
 [FURFROU,7]
-FormName = La Reine Trim
+FormName = 女王造型
 #-------------------------------
 [FURFROU,8]
-FormName = Kabuki Trim
+FormName = 歌舞伎造型
 #-------------------------------
 [FURFROU,9]
-FormName = Pharaoh Trim
+FormName = 法老造型
 #-------------------------------
 [MEOWSTIC,1]
-FormName = Female
+FormName = 雌性
 HiddenAbilities = COMPETITIVE
 Moves = 1,MAGICALLEAF,1,SCRATCH,1,LEER,1,FAKEOUT,1,DISARMINGVOICE,9,CONFUSION,12,STOREDPOWER,15,CHARGEBEAM,18,COVET,21,PSYBEAM,24,SUCKERPUNCH,29,ROLEPLAY,34,LIGHTSCREEN,34,REFLECT,39,PSYSHOCK,44,EXTRASENSORY,49,SHADOWBALL,54,PSYCHIC,59,FUTURESIGHT
 TutorMoves = ALLURINGVOICE,ALLYSWITCH,ATTRACT,BATONPASS,CALMMIND,CAPTIVATE,CHARGEBEAM,CHARM,CONFIDE,COVET,CUT,DARKPULSE,DIG,DISARMINGVOICE,DOUBLETEAM,DREAMEATER,ECHOEDVOICE,ENDURE,ENERGYBALL,EXPANDINGFORCE,FACADE,FAKETEARS,FLASH,FRUSTRATION,FUTURESIGHT,GIGAIMPACT,GRAVITY,HEALBELL,HELPINGHAND,HIDDENPOWER,HYPERBEAM,IRONTAIL,LIGHTSCREEN,MAGICALLEAF,MAGICCOAT,MAGICROOM,MIMIC,NASTYPLOT,NATURALGIFT,PAYBACK,PAYDAY,PLAYROUGH,POWERUPPUNCH,PROTECT,PSYBEAM,PSYCHIC,PSYCHICNOISE,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,RAINDANCE,RECYCLE,REFLECT,REST,RETURN,ROLEPLAY,ROUND,SAFEGUARD,SECRETPOWER,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SKILLSWAP,SLEEPTALK,SNATCH,SNORE,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SWAGGER,SWIFT,TAILSLAP,TELEKINESIS,TERABLAST,THUNDERBOLT,THUNDERWAVE,TORMENT,TRAILBLAZE,TRICK,TRICKROOM,WONDERROOM,WORKUP,ZENHEADBUTT
 Color = White
-Pokedex = Females are a bit more selfish and aggressive than males. If they don't get what they want, they will torment you with their psychic abilities.
+Pokedex = 雌性比雄性更自私、更具攻击性。如果得不到想要的东西，就会用超能力折磨你。
 #-------------------------------
 [MEOWSTIC,2]
-FormName = Mega Meowstic
+FormName = 超级超能妙喵
 MegaStone = MEOWSTICITE
 BaseStats = 74,48,76,124,143,101
 BaseExp = 213
@@ -2276,7 +2276,7 @@ HiddenAbilities = TRACE
 Height = 0.8
 Weight = 10.1
 Category = Second Sight
-Pokedex = Mega Meowstic can use its psychic power to compress or expand anything. It overwhelms foes by contorting space itself.
+Pokedex = 超级超能妙喵能用超能力压缩或膨胀任何东西。它通过扭曲空间本身来压制对手。
 Generation = 9
 #-------------------------------
 [MEOWSTIC,3]
@@ -2291,13 +2291,13 @@ Weight = 10.1
 Generation = 9
 #-------------------------------
 [AEGISLASH,1]
-FormName = Blade Forme
+FormName = 刀剑形态
 BaseStats = 60,140,50,60,140,50
 EVs = ATTACK,2,SPECIAL_ATTACK,1
-Pokedex = Once upon a time, a king with an Aegislash reigned over the land. His Pokémon eventually drained him of life, and his kingdom fell with him.
+Pokedex = 从前，一位拥有坚盾剑怪的国王统治着这片土地。他的宝可梦最终吸干了他的生命，王国也随之覆灭。
 #-------------------------------
 [MALAMAR,1]
-FormName = Mega Malamar
+FormName = 超级乌贼王
 MegaStone = MALAMARITE
 BaseStats = 86,102,88,88,98,120
 BaseExp = 219
@@ -2305,11 +2305,11 @@ Abilities = CONTRARY
 HiddenAbilities = CONTRARY
 Height = 2.9
 Weight = 69.8
-Pokedex = It uses its colorful lights to overwrite the personalities and memories of others - and to control them.
+Pokedex = 它用彩色光芒覆盖他人的性格与记忆——并操控他们。
 Generation = 9
 #-------------------------------
 [BARBARACLE,1]
-FormName = Mega Barbaracle
+FormName = 超级龟足巨铠
 MegaStone = BARBARACITE
 BaseStats = 72,140,130,88,64,106
 BaseExp = 225
@@ -2317,11 +2317,11 @@ Abilities = TOUGHCLAWS
 HiddenAbilities = TOUGHCLAWS
 Height = 2.2
 Weight = 100.0
-Pokedex = It uses its many arms to toy with its opponents. This keeps the head extremely busy.
+Pokedex = 它用众多的手臂戏弄对手。这让头部忙得不可开交。
 Generation = 9
 #-------------------------------
 [DRAGALGE,1]
-FormName = Mega Dragalge
+FormName = 超级毒藻龙
 MegaStone = DRAGALGITE
 BaseStats = 65,85,105,44,132,163
 BaseExp = 223
@@ -2329,11 +2329,11 @@ Abilities = REGENERATOR
 HiddenAbilities = REGENERATOR
 Height = 2.1
 Weight = 100.3
-Pokedex = It spits a liquid that causes the regenerative power of cells to run wild. The liquid is deadly poison to everything other than itself.
+Pokedex = 它吐出能让细胞再生力失控的液体。这液体对除它自身以外的一切都是致命毒药。
 Generation = 9
 #-------------------------------
 [HAWLUCHA,1]
-FormName = Mega Hawlucha
+FormName = 超级摔角鹰人
 MegaStone = HAWLUCHANITE
 BaseStats = 78,137,100,118,74,93
 BaseExp = 225
@@ -2341,11 +2341,11 @@ Abilities = NOGUARD
 HiddenAbilities = NOGUARD
 Height = 1.0
 Weight = 25.0
-Pokedex = Mega Evolution has pumped up all its muscles. Hawlucha flexes to show off its strength.
+Pokedex = 超级进化使它全身的肌肉都隆起。摔角鹰人绷紧肌肉，展示自己的力量。
 Generation = 9
 #-------------------------------
 [SLIGGOO,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = STEEL,DRAGON
 BaseStats = 58,75,83,40,83,113
 Abilities = SAPSIPPER,SHELLARMOR
@@ -2354,11 +2354,11 @@ TutorMoves = ACIDSPRAY,BLIZZARD,BODYSLAM,CHARM,CHILLINGWATER,CURSE,DRACOMETEOR,D
 Height = 0.7
 Weight = 68.5
 Category = Snail
-Pokedex = A creature given to melancholy. I suspect its metallic shell developed as a result of the mucus on its skin reacting with the iron in Hisui's water.
+Pokedex = 一种多愁善感的生物。我推测它的金属外壳是皮肤上的黏液与洗翠水中之铁反应而形成的。
 Generation = 8
 #-------------------------------
 [GOODRA,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = STEEL,DRAGON
 BaseStats = 80,100,100,60,110,150
 Abilities = SAPSIPPER,SHELLARMOR
@@ -2367,63 +2367,63 @@ TutorMoves = ACIDSPRAY,BLIZZARD,BODYPRESS,BODYSLAM,BREAKINGSWIPE,BULLDOZE,CHARM,
 Height = 1.7
 Weight = 334.1
 Category = Shell Bunker
-Pokedex = Able to freely control the hardness of its metallic shell. It loathes solitude and is extremely clingy—it will fume and run riot if those dearest to it ever leave its side.
+Pokedex = 能自由控制金属外壳的硬度。它厌恶孤独，极其黏人——若最亲近的人离开身边，它就会发怒撒野。
 Generation = 8
 #-------------------------------
 [PUMPKABOO,1]
-FormName = Medium Variety
+FormName = 普通尺寸
 BaseStats = 49,66,70,51,44,55
 HiddenAbilities = INSOMNIA
 Height = 0.4
 Weight = 5.0
-Pokedex = Spirits that wander this world are placed into Pumpkaboo's body. They're then moved on to the afterlife.
+Pokedex = 在此世徘徊的灵魂会被装进南瓜精的身体，然后被送往另一个世界。
 #-------------------------------
 [PUMPKABOO,2]
-FormName = Large Variety
+FormName = 大尺寸
 BaseStats = 54,66,70,46,44,55
 Height = 0.5
 Weight = 7.5
-Pokedex = When taking spirits to the afterlife, large Pumpkaboo prefer the spirits of adults to those of children.
+Pokedex = 将灵魂带往另一个世界时，大个子的南瓜精比起小孩子的灵魂，更喜欢大人的灵魂。
 #-------------------------------
 [PUMPKABOO,3]
-FormName = Jumbo Variety
+FormName = 特大尺寸
 BaseStats = 59,66,70,41,44,55
 HiddenAbilities = INSOMNIA
 Height = 0.8
 Weight = 15.0
-Pokedex = Massive Pumpkaboo are said to be the product of areas where a great number of lost souls lingered.
+Pokedex = 据说特大尺寸的南瓜精是大量迷失灵魂滞留之地的产物。
 WildItemCommon = MIRACLESEED
 WildItemUncommon = MIRACLESEED
 WildItemRare = MIRACLESEED
 #-------------------------------
 [GOURGEIST,1]
-FormName = Medium Variety
+FormName = 普通尺寸
 BaseStats = 65,90,122,84,58,75
 HiddenAbilities = INSOMNIA
 Height = 0.9
 Weight = 12.5
-Pokedex = Eerie cries emanate from its body in the dead of night. The sounds are said to be the wails of spirits who are suffering in the afterlife.
+Pokedex = 深夜时分，诡异的声音从它体内传出。据说那是正在另一个世界受苦的灵魂的哀号。
 #-------------------------------
 [GOURGEIST,2]
-FormName = Large Variety
+FormName = 大尺寸
 BaseStats = 75,95,122,69,58,75
 Height = 1.1
 Weight = 14.0
-Pokedex = Large Gourgeist put on the guise of adults, taking the hands of children to lead them to the afterlife.
+Pokedex = 大尺寸的南瓜怪人会装扮成大人，牵着孩子的手将他们引向来世。
 #-------------------------------
 [GOURGEIST,3]
-FormName = Jumbo Variety
+FormName = 特大尺寸
 BaseStats = 85,100,122,54,58,75
 HiddenAbilities = INSOMNIA
 Height = 1.7
 Weight = 39.0
-Pokedex = Supersized Gourgeist aren't picky. They will forcefully drag anyone off to the afterlife.
+Pokedex = 特大尺寸的南瓜怪人从不挑剔。它们会把任何人强行拖往另一个世界。
 WildItemCommon = MIRACLESEED
 WildItemUncommon = MIRACLESEED
 WildItemRare = MIRACLESEED
 #-------------------------------
 [AVALUGG,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = ICE,ROCK
 BaseStats = 95,127,184,38,34,36
 Abilities = STRONGJAW,ICEBODY
@@ -2431,25 +2431,25 @@ Moves = 0,ROCKSLIDE,1,WIDEGUARD,1,RAPIDSPIN,1,HARDEN,1,TACKLE,1,POWDERSNOW,9,CUR
 TutorMoves = AVALANCHE,BLIZZARD,BODYPRESS,BODYSLAM,BULLDOZE,CHILLINGWATER,CRUNCH,CURSE,DIG,DOUBLEEDGE,EARTHQUAKE,ENDURE,FACADE,GIGAIMPACT,GYROBALL,HAIL,HARDPRESS,HEAVYSLAM,HIGHHORSEPOWER,HYPERBEAM,ICEBEAM,ICEFANG,ICESPINNER,ICICLESPEAR,ICYWIND,IRONDEFENSE,IRONHEAD,METEORBEAM,PROTECT,RAINDANCE,REST,ROCKBLAST,ROCKSLIDE,ROCKTOMB,SANDSTORM,SCARYFACE,SLEEPTALK,SNOWSCAPE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,TAKEDOWN,TERABLAST
 Height = 1.4
 Weight = 262.4
-Pokedex = The armor of ice covering its lower jaw puts steel to shame and can shatter rocks with ease. This Pokémon barrels along steep mountain paths.
+Pokedex = 覆盖它下颚的冰之铠甲令钢铁都相形见绌，能轻易粉碎岩石。这只宝可梦在陡峭的山路上横冲直撞。
 Generation = 8
 #-------------------------------
 [XERNEAS,1]
-FormName = Active Mode
+FormName = 活动模式
 #-------------------------------
 [ZYGARDE,1]
-FormName = 10% Forme
+FormName = 10%形态
 BaseStats = 54,100,71,115,61,85
 BaseExp = 243
 Height = 1.2
 Weight = 33.5
 Color = Black
 Shape = Quadruped
-Pokedex = This is Zygarde when about 10% of its pieces have been assembled. It leaps at its opponent's chest and sinks its sharp fangs into them.
+Pokedex = 这是约10%的细胞聚集而成的基格尔德。它扑向对手的胸口，用锋利的獠牙咬进去。
 Generation = 7
 #-------------------------------
 [ZYGARDE,2]
-FormName = Complete Forme
+FormName = 完全体形态
 BaseStats = 216,100,121,85,91,95
 BaseExp = 354
 Abilities = POWERCONSTRUCT
@@ -2458,7 +2458,7 @@ Height = 4.5
 Weight = 610.0
 Color = Black
 Shape = BipedalTail
-Pokedex = This is Zygarde's perfected form. From the orifice on its chest, it radiates high-powered energy that eliminates everything.
+Pokedex = 这是基格尔德完美的形态。它从胸口的孔洞中放射出能消灭一切的高能能量。
 Generation = 7
 #-------------------------------
 [ZYGARDE,3]
@@ -2473,7 +2473,7 @@ Color = Black
 Shape = BipedalTail
 #-------------------------------
 [ZYGARDE,4]
-FormName = Mega Zygarde
+FormName = 超级基格尔德
 MegaStone = ZYGARDITE
 UnmegaForm = 2
 BaseStats = 216,70,91,100,216,85
@@ -2484,7 +2484,7 @@ Height = 7.7
 Weight = 610.0
 Color = Black
 Shape = BipedalTail
-Pokedex = In response to people's emotions during an unprecedented crisis, Zygarde Mega Evolves and calms the situation with its unmatched power.
+Pokedex = 为回应空前危机中人们的情绪，基格尔德超级进化，以无与伦比的力量平息事态。
 Generation = 9
 #-------------------------------
 [ZYGARDE,5]
@@ -2502,7 +2502,7 @@ Shape = BipedalTail
 Generation = 9
 #-------------------------------
 [DIANCIE,1]
-FormName = Mega Diancie
+FormName = 超级蒂安希
 MegaStone = DIANCITE
 BaseStats = 50,160,110,110,160,110
 BaseExp = 350
@@ -2510,10 +2510,10 @@ Abilities = MAGICBOUNCE
 HiddenAbilities = MAGICBOUNCE
 Height = 1.1
 Weight = 27.8
-Pokedex = This Pokémon is also known as the Royal Pink Princess. The dazzling, sparkling diamond on its forehead is a whopping 2,000 carats.
+Pokedex = 这只宝可梦也被称为皇家粉色公主。它额头上耀眼闪耀的钻石足有2000克拉。
 #-------------------------------
 [HOOPA,1]
-FormName = Hoopa Unbound
+FormName = 解放胡帕
 Types = PSYCHIC,DARK
 BaseStats = 80,160,60,80,170,130
 BaseExp = 340
@@ -2521,21 +2521,21 @@ Moves = 1,DESTINYBOND,1,ALLYSWITCH,1,CONFUSION,6,ASTONISH,10,TRICK,15,LIGHTSCREE
 Height = 6.5
 Weight = 490.0
 Shape = BipedalTail
-Pokedex = This is Hoopa's true form, in which it has regained its sealed powers. The hole in its chest is said to connect to another dimension.
+Pokedex = 这是胡帕找回被封印力量后的真正形态。据说它胸口的洞连接着另一个次元。
 #-------------------------------
 [DECIDUEYE,1]
-FormName = Hisuian
+FormName = 洗翠
 Types = GRASS,FIGHTING
 BaseStats = 88,112,80,60,95,95
 HiddenAbilities = SCRAPPY
 Moves = 0,TRIPLEARROWS,1,LEAFSTORM,1,UTURN,1,TACKLE,1,GROWL,1,LEAFAGE,9,PECK,12,SHADOWSNEAK,15,RAZORLEAF,20,SYNTHESIS,25,PLUCK,30,BULKUP,37,SUCKERPUNCH,44,LEAFBLADE,51,FEATHERDANCE,58,BRAVEBIRD
 TutorMoves = AERIALACE,AIRCUTTER,AIRSLASH,AURASPHERE,BATONPASS,BRAVEBIRD,BRICKBREAK,BULKUP,BULLETSEED,CLOSECOMBAT,COACHING,CONFUSERAY,DUALWINGBEAT,ENDURE,ENERGYBALL,FACADE,FALSESWIPE,FEATHERDANCE,FOCUSBLAST,FOCUSPUNCH,FRENZYPLANT,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRASSPLEDGE,GRASSYGLIDE,GRASSYTERRAIN,HAZE,HELPINGHAND,HYPERBEAM,KNOCKOFF,LEAFSTORM,LIGHTSCREEN,LOWKICK,LOWSWEEP,MAGICALLEAF,NASTYPLOT,NIGHTSHADE,PROTECT,RAINDANCE,REST,REVERSAL,ROCKTOMB,SCARYFACE,SEEDBOMB,SHADOWCLAW,SLEEPTALK,SMACKDOWN,SOLARBEAM,SUBSTITUTE,SUNNYDAY,SWIFT,SWORDSDANCE,TAILWIND,TAKEDOWN,TAUNT,TERABLAST,TRAILBLAZE,UPPERHAND,UTURN
 Weight = 37.0
-Pokedex = Decidueye's feathers insulates the Pokémon against extreme cold. This is firm proof that evolution can be influenced by environment.
+Pokedex = 狙射树枭的羽毛能为它抵御严寒。这有力地证明进化会受到环境的影响。
 Generation = 8
 #-------------------------------
 [CRABOMINABLE,1]
-FormName = Mega Crabominable
+FormName = 超级好胜毛蟹
 MegaStone = CRABOMINITE
 BaseStats = 97,157,122,33,62,107
 BaseExp = 217
@@ -2543,26 +2543,26 @@ Abilities = IRONFIST
 HiddenAbilities = IRONFIST
 Height = 2.6
 Weight = 252.8
-Pokedex = It can pulverize reinforced concrete with a light swing of one of its fists, each of which is covered in a thick layer of ice.
+Pokedex = 它每只拳头都覆盖着厚厚的冰层，轻轻一挥就能将钢筋混凝土打成粉末。
 Generation = 9
 #-------------------------------
 [ORICORIO,1]
-FormName = Pom-Pom Style
+FormName = 啦啦队风格
 Types = ELECTRIC,FLYING
 Color = Yellow
-Pokedex = It creates an electric charge by rubbing its feathers together. It dances over to its enemies and delivers shocking electrical punches.
+Pokedex = 它通过摩擦羽毛产生电荷。它跳着舞靠近敌人，打出带电的拳击。
 #-------------------------------
 [ORICORIO,2]
-FormName = Pa'u Style
+FormName = 呼拉舞风格
 Types = PSYCHIC,FLYING
 Color = Pink
-Pokedex = This Oricorio relaxes by swaying gently. This increases its psychic energy, which it then fires at its enemies.
+Pokedex = 这种花舞鸟通过轻轻摇摆来放松。这会增加它的精神能量，然后它将其射向敌人。
 #-------------------------------
 [ORICORIO,3]
-FormName = Sensu Style
+FormName = 静舞风格
 Types = GHOST,FLYING
 Color = Purple
-Pokedex = It summons the dead with its dreamy dancing. From their malice, it draws power with which to curse its enemies.
+Pokedex = 它用梦幻般的舞蹈召唤亡灵。它从它们的恶意中汲取力量来诅咒敌人。
 #-------------------------------
 [ROCKRUFF,2]
 Abilities = OWNTEMPO
@@ -2571,7 +2571,7 @@ Flags = InheritFormFromMother
 Evolution = LYCANROC,LevelEvening,25
 #-------------------------------
 [LYCANROC,1]
-FormName = Midnight Form
+FormName = 午夜样子
 BaseStats = 85,115,75,82,55,75
 Abilities = KEENEYE,VITALSPIRIT
 HiddenAbilities = NOGUARD
@@ -2580,186 +2580,186 @@ TutorMoves = ATTRACT,BODYSLAM,BRICKBREAK,BULKUP,BULLDOZE,CAPTIVATE,CHARM,CLOSECO
 Height = 1.1
 Color = Red
 Shape = BipedalTail
-Pokedex = It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane.
+Pokedex = 它引诱敌人攻击，承受住攻击后，以头锤反击，用岩石般的鬃毛粉碎它们的骨头。
 #-------------------------------
 [LYCANROC,2]
-FormName = Dusk Form
+FormName = 黄昏样子
 BaseStats = 75,117,65,110,55,65
 Abilities = TOUGHCLAWS
 HiddenAbilities = TOUGHCLAWS
 Moves = 0,CRUSHCLAW,1,SUCKERPUNCH,1,ACCELEROCK,1,QUICKGUARD,1,QUICKATTACK,1,COUNTER,1,ENDURE,1,REVERSAL,1,TAUNT,1,TACKLE,1,LEER,1,SANDATTACK,1,DOUBLETEAM,12,ROCKTHROW,16,HOWL,20,BITE,24,ROCKTOMB,30,ROAR,36,ROCKSLIDE,42,CRUNCH,48,SCARYFACE,54,STEALTHROCK,60,STONEEDGE
 TutorMoves = ATTRACT,BODYSLAM,BRICKBREAK,BULKUP,BULLDOZE,CAPTIVATE,CHARM,CLOSECOMBAT,CONFIDE,COVET,CRUNCH,DIG,DOUBLEEDGE,DOUBLETEAM,DRILLRUN,EARTHPOWER,ECHOEDVOICE,ENDEAVOR,ENDURE,FACADE,FIREFANG,FOCUSENERGY,FRUSTRATION,GIGAIMPACT,HELPINGHAND,HIDDENPOWER,HYPERVOICE,IRONDEFENSE,IRONHEAD,IRONTAIL,LASTRESORT,MIMIC,MUDSLAP,NATURALGIFT,OUTRAGE,PLAYROUGH,PROTECT,PSYCHICFANGS,REST,RETURN,REVERSAL,ROAR,ROCKBLAST,ROCKPOLISH,ROCKSLIDE,ROCKTOMB,ROUND,SANDSTORM,SCARYFACE,SECRETPOWER,SLEEPTALK,SNARL,SNORE,STEALTHROCK,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SWAGGER,SWORDSDANCE,TAILSLAP,TAKEDOWN,TAUNT,TERABLAST,THROATCHOP,THUNDERFANG,TRAILBLAZE,WORKUP,ZENHEADBUTT
-Pokedex = Bathed in the setting sun of evening, Lycanroc has undergone a special kind of evolution. An intense fighting spirit underlies its calmness.
+Pokedex = 沐浴在傍晚夕阳下，鬃岩狼人经历了特殊的进化。它平静的外表下蕴藏着强烈的斗志。
 Flags = InheritFormFromMother
 #-------------------------------
 [WISHIWASHI,1]
-FormName = School Form
+FormName = 鱼群形态
 BaseStats = 45,140,130,30,140,135
 BaseExp = 217
 Height = 8.2
 Weight = 78.6
 Shape = MultiBody
-Pokedex = Weak Wishiwashi school together to concentrate their power. Their united force makes them the demon of the sea, feared near and far.
+Pokedex = 弱小的弱丁鱼聚集在一起，凝聚力量。它们团结的力量使它们成为远近闻名的海中恶魔。
 #-------------------------------
 [GOLISOPOD,1]
-FormName = Mega Golisopod
+FormName = 超级具甲武者
 MegaStone = GOLISOPITE
 Types = BUG,STEEL
 BaseStats = 75,150,175,40,70,120
 BaseExp = 236
 Height = 2.3
 Weight = 148.0
-Pokedex = It uses four of its arms to fiercely assail its foes. Once they've been pushed to the brink of defeat, it finishes them off with the arms it kept hidden.
+Pokedex = 它用四条手臂猛烈攻击对手。当对手被逼到失败的边缘时，它便用隐藏的手臂了结它们。
 Generation = 9
 #-------------------------------
 [SILVALLY,1]
-FormName = Type: Fighting
+FormName = 格斗属性
 Types = FIGHTING
 #-------------------------------
 [SILVALLY,2]
-FormName = Type: Flying
+FormName = 飞行属性
 Types = FLYING
 #-------------------------------
 [SILVALLY,3]
-FormName = Type: Poison
+FormName = 毒属性
 Types = POISON
 #-------------------------------
 [SILVALLY,4]
-FormName = Type: Ground
+FormName = 地面属性
 Types = GROUND
 #-------------------------------
 [SILVALLY,5]
-FormName = Type: Rock
+FormName = 岩石属性
 Types = ROCK
 #-------------------------------
 [SILVALLY,6]
-FormName = Type: Bug
+FormName = 虫属性
 Types = BUG
 #-------------------------------
 [SILVALLY,7]
-FormName = Type: Ghost
+FormName = 幽灵属性
 Types = GHOST
 #-------------------------------
 [SILVALLY,8]
-FormName = Type: Steel
+FormName = 钢属性
 Types = STEEL
 #-------------------------------
 [SILVALLY,9]
-FormName = Type: Unknown
+FormName = 未知属性
 Types = QMARKS
 #-------------------------------
 [SILVALLY,10]
-FormName = Type: Fire
+FormName = 火属性
 Types = FIRE
 #-------------------------------
 [SILVALLY,11]
-FormName = Type: Water
+FormName = 水属性
 Types = WATER
 #-------------------------------
 [SILVALLY,12]
-FormName = Type: Grass
+FormName = 草属性
 Types = GRASS
 #-------------------------------
 [SILVALLY,13]
-FormName = Type: Electric
+FormName = 电属性
 Types = ELECTRIC
 #-------------------------------
 [SILVALLY,14]
-FormName = Type: Psychic
+FormName = 超能力属性
 Types = PSYCHIC
 #-------------------------------
 [SILVALLY,15]
-FormName = Type: Ice
+FormName = 冰属性
 Types = ICE
 #-------------------------------
 [SILVALLY,16]
-FormName = Type: Dragon
+FormName = 龙属性
 Types = DRAGON
 #-------------------------------
 [SILVALLY,17]
-FormName = Type: Dark
+FormName = 恶属性
 Types = DARK
 #-------------------------------
 [SILVALLY,18]
-FormName = Type: Fairy
+FormName = 妖精属性
 Types = FAIRY
 #-------------------------------
 [MINIOR,7]
-FormName = Red Core
+FormName = 红色核心
 BaseStats = 60,100,60,120,100,60
 BaseExp = 175
 EVs = ATTACK,1,SPECIAL_ATTACK,1
 Weight = 0.3
 Color = Red
-Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+Pokedex = 如果核心一直暴露在外，它很快就会消亡。如果足够快地把它收进精灵球，或许还能存活。
 Flags = InheritFormFromMother
 #-------------------------------
 [MINIOR,8]
-FormName = Orange Core
+FormName = 橙色核心
 BaseStats = 60,100,60,120,100,60
 BaseExp = 175
 EVs = ATTACK,1,SPECIAL_ATTACK,1
 Weight = 0.3
 Color = Red
-Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+Pokedex = 如果核心一直暴露在外，它很快就会消亡。如果足够快地把它收进精灵球，或许还能存活。
 Flags = InheritFormFromMother
 #-------------------------------
 [MINIOR,9]
-FormName = Yellow Core
+FormName = 黄色核心
 BaseStats = 60,100,60,120,100,60
 BaseExp = 175
 EVs = ATTACK,1,SPECIAL_ATTACK,1
 Weight = 0.3
 Color = Yellow
-Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+Pokedex = 如果核心一直暴露在外，它很快就会消亡。如果足够快地把它收进精灵球，或许还能存活。
 Flags = InheritFormFromMother
 #-------------------------------
 [MINIOR,10]
-FormName = Green Core
+FormName = 绿色核心
 BaseStats = 60,100,60,120,100,60
 BaseExp = 175
 EVs = ATTACK,1,SPECIAL_ATTACK,1
 Weight = 0.3
 Color = Green
-Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+Pokedex = 如果核心一直暴露在外，它很快就会消亡。如果足够快地把它收进精灵球，或许还能存活。
 Flags = InheritFormFromMother
 #-------------------------------
 [MINIOR,11]
-FormName = Blue Core
+FormName = 蓝色核心
 BaseStats = 60,100,60,120,100,60
 BaseExp = 175
 EVs = ATTACK,1,SPECIAL_ATTACK,1
 Weight = 0.3
 Color = Blue
-Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+Pokedex = 如果核心一直暴露在外，它很快就会消亡。如果足够快地把它收进精灵球，或许还能存活。
 Flags = InheritFormFromMother
 #-------------------------------
 [MINIOR,12]
-FormName = Indigo Core
+FormName = 靛蓝核心
 BaseStats = 60,100,60,120,100,60
 BaseExp = 175
 EVs = ATTACK,1,SPECIAL_ATTACK,1
 Weight = 0.3
 Color = Blue
-Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+Pokedex = 如果核心一直暴露在外，它很快就会消亡。如果足够快地把它收进精灵球，或许还能存活。
 Flags = InheritFormFromMother
 #-------------------------------
 [MINIOR,13]
-FormName = Violet Core
+FormName = 紫色核心
 BaseStats = 60,100,60,120,100,60
 BaseExp = 175
 EVs = ATTACK,1,SPECIAL_ATTACK,1
 Weight = 0.3
 Color = Purple
-Pokedex = If its core stays exposed, it will soon die off. It's possible that it may survive if it's put into a Poké Ball quickly enough.
+Pokedex = 如果核心一直暴露在外，它很快就会消亡。如果足够快地把它收进精灵球，或许还能存活。
 Flags = InheritFormFromMother
 #-------------------------------
 [MIMIKYU,1]
-FormName = Busted Form
-Pokedex = Sad that its true identity may be exposed, Mimikyu will mercilessly seek revenge on any opponent that breaks its neck.
+FormName = 破碎形态
+Pokedex = 因真面目可能暴露而悲伤，谜拟丘会毫不留情地向任何弄断它脖子的对手复仇。
 #-------------------------------
 [DRAMPA,1]
-FormName = Mega Drampa
+FormName = 超级老翁龙
 MegaStone = DRAMPANITE
 BaseStats = 78,85,110,36,160,116
 BaseExp = 220
@@ -2767,11 +2767,11 @@ Abilities = BERSERK
 HiddenAbilities = BERSERK
 Weight = 240.5
 Category = Imposing
-Pokedex = Drampa's cells have been invigorated, allowing it to regain its youth. It manipulates the atmosphere to summon storms.
+Pokedex = 老翁龙的细胞被激活，使它重获青春。它操控大气引发风暴。
 Generation = 9
 #-------------------------------
 [NECROZMA,1]
-FormName = Dusk Mane
+FormName = 黄昏之鬃
 Types = PSYCHIC,STEEL
 BaseStats = 97,157,127,77,113,109
 BaseExp = 340
@@ -2780,10 +2780,10 @@ Height = 3.8
 Weight = 460.0
 Color = Yellow
 Shape = Quadruped
-Pokedex = This is Necrozma's form while it's absorbing the power of Solgaleo, making it extremely ferocious and impossible to control.
+Pokedex = 这是奈克洛兹玛吸收索尔迦雷欧力量时的样子，使它极其凶暴且无法控制。
 #-------------------------------
 [NECROZMA,2]
-FormName = Dawn Wings
+FormName = 拂晓之翼
 Types = PSYCHIC,GHOST
 BaseStats = 97,113,109,77,157,127
 BaseExp = 340
@@ -2791,10 +2791,10 @@ EVs = SPECIAL_ATTACK,3
 Height = 4.2
 Weight = 350.0
 Color = Blue
-Pokedex = Lunala no longer has a will of its own. Now under the control of Necrozma, it continuously expels all of its energy.
+Pokedex = 露奈雅拉不再有自己的意志。如今受奈克洛兹玛控制，它不断释放出全部能量。
 #-------------------------------
 [NECROZMA,3]
-FormName = Ultra Necrozma
+FormName = 究极奈克洛兹玛
 Types = PSYCHIC,DRAGON
 BaseStats = 97,167,97,129,167,97
 BaseExp = 377
@@ -2802,7 +2802,7 @@ EVs = ATTACK,1,SPECIAL_ATTACK,1,SPEED,1
 Abilities = NEUROFORCE
 Height = 7.5
 Color = Yellow
-Pokedex = The light pouring out from all over its body affects living things and nature, impacting them in various ways.
+Pokedex = 从它全身倾泻而出的光芒会影响生物与自然，以各种方式作用于它们。
 #-------------------------------
 [NECROZMA,4]
 PokedexForm = 3
@@ -2815,22 +2815,22 @@ Height = 7.5
 Color = Yellow
 #-------------------------------
 [MAGEARNA,1]
-FormName = Original Color
+FormName = 原色
 Color = Red
-Pokedex = This gorgeous Magearna looks as it did at the time of its invention. Its luxurious decoration pleased the king's daughter.
+Pokedex = 这只华丽的玛机雅娜呈现出它被发明时的样子。它奢华的装饰令国王的女儿十分欢喜。
 #-------------------------------
 [MAGEARNA,2]
-FormName = Mega Magearna
+FormName = 超级玛机雅娜
 MegaStone = MAGEARNITE
 BaseStats = 80,125,115,95,170,115
 BaseExp = 350
 Height = 1.3
 Weight = 248.1
-Pokedex = This is Magearna once a previously hidden mode activates. The emotions Magearna had begun to feel now hide away as it fells foe after foe.
+Pokedex = 这是玛机雅娜隐藏模式启动后的样子。它刚刚开始拥有的情感如今隐去，它一个接一个地击倒敌人。
 Generation = 9
 #-------------------------------
 [MAGEARNA,3]
-FormName = Mega Magearna (Original Color)
+FormName = 超级玛机雅娜（原色）
 MegaStone = MAGEARNITE
 UnmegaForm = 1
 BaseStats = 80,125,115,95,170,115
@@ -2838,44 +2838,44 @@ BaseExp = 350
 Height = 1.3
 Weight = 248.1
 Color = Red
-Pokedex = A mechanism to remove Magerna's limitations has lain secretly with Magerna for 500 years. This mechanism is triggered by a Mega Stone.
+Pokedex = 一个解除玛机雅娜限制的装置已秘密隐藏于它体内500年。这个装置由超级石触发。
 Generation = 9
 #-------------------------------
 [ZERAORA,1]
-FormName = Mega Zeraora
+FormName = 超级捷拉奥拉
 MegaStone = ZERAORITE
 BaseStats = 88,157,75,153,147,80
 BaseExp = 350
-Pokedex = It stores up 10 lightning strikes' worth of electricity. When it stops limiting itself, it's in the strongest class of electric Pokémon.
+Pokedex = 它储存了相当于10道闪电的电力。当它不再限制自己时，便属于最强的电属性宝可梦之列。
 Generation = 9
 #-------------------------------
 [CRAMORANT,1]
-FormName = Gulping Form
-Pokedex = Cramorant's gluttony led it to try to swallow an Arrokuda whole, which in turn led to Cramorant getting an Arrokuda stuck in its throat.
+FormName = 吞入形态
+Pokedex = 古月鸟的贪吃使它试图整个吞下刺梭鱼，结果刺梭鱼卡在了它的喉咙里。
 #-------------------------------
 [CRAMORANT,2]
-FormName = Gorging Form
-Pokedex = This Cramorant has accidentally gotten a Pikachu lodged in its gullet. Cramorant is choking a little, but it isn't really bothered.
+FormName = 大口吞下形态
+Pokedex = 这只古月鸟不小心把皮卡丘卡在了喉咙里。古月鸟有点喘不过气，但并不太在意。
 #-------------------------------
 [TOXTRICITY,1]
-FormName = Low Key Form
+FormName = 低调形态
 Abilities = PUNKROCK,MINUS
 Moves = 0,SPARK,1,BELCH,1,TEARFULLOOK,1,NUZZLE,1,GROWL,1,FLAIL,1,ACID,1,THUNDERSHOCK,1,ACIDSPRAY,1,LEER,1,NOBLEROAR,4,CHARGE,8,SHOCKWAVE,12,SCARYFACE,16,TAUNT,24,SCREECH,28,SWAGGER,32,TOXIC,36,DISCHARGE,40,POISONJAB,44,OVERDRIVE,48,BOOMBURST,52,MAGNETICFLUX
 TutorMoves = ATTRACT,CAPTIVATE,CONFIDE,DOUBLEEDGE,DOUBLETEAM,DRAINPUNCH,EERIEIMPULSE,ELECTROBALL,ENCORE,ENDURE,FACADE,FIREPUNCH,FLING,FRUSTRATION,GIGAIMPACT,GUNKSHOT,HEX,HIDDENPOWER,HYPERBEAM,HYPERVOICE,MEGAKICK,MEGAPUNCH,MIMIC,NATURALGIFT,PAYBACK,POISONJAB,PROTECT,REST,RETURN,RISINGVOLTAGE,ROUND,SCARYFACE,SCREECH,SECRETPOWER,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNARL,SNORE,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAUNT,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,TOXIC,UPROAR,VENOMDRENCH,VOLTSWITCH,WILDCHARGE
-Pokedex = Capable of generating 15,000 volts of electricity, this Pokémon looks down on all that would challenge it.
+Pokedex = 这只宝可梦能产生15000伏特的电力，俯视一切挑战它的对手。
 #-------------------------------
 [SINISTEA,1]
-FormName = Antique Form
-Pokedex = The swirl pattern in this Pokémon's body is its weakness. If it gets stirred, the swirl loses its shape, and Sinistea gets dizzy.
+FormName = 真品形态
+Pokedex = 它体内的漩涡花纹是它的弱点。一旦被搅动，漩涡就会变形，来悲茶便会头晕。
 Evolution = POLTEAGEIST,Item,CHIPPEDPOT
 #-------------------------------
 [POLTEAGEIST,1]
-FormName = Antique Form
-Pokedex = Trainers Polteageist trusts will be allowed to experience its distinctive flavor and aroma firsthand by sampling just a tiny bit of its tea.
+FormName = 真品形态
+Pokedex = 怖思壶信任的训练家，会被允许只尝一小口它的茶，亲身感受它独特的风味与香气。
 #-------------------------------
 [ALCREMIE,7]
-FormName = Ruby Cream
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream a sweet and tart flavor.
+FormName = 红宝石奶油
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有酸甜的风味。
 #-------------------------------
 [ALCREMIE,8]
 PokedexForm = 7
@@ -2896,9 +2896,9 @@ PokedexForm = 7
 PokedexForm = 7
 #-------------------------------
 [ALCREMIE,14]
-FormName = Matcha Cream
+FormName = 抹茶奶油
 Color = Green
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream an aromatic flavor.
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有芳香的风味。
 #-------------------------------
 [ALCREMIE,15]
 PokedexForm = 14
@@ -2919,9 +2919,9 @@ PokedexForm = 14
 PokedexForm = 14
 #-------------------------------
 [ALCREMIE,21]
-FormName = Mint Cream
+FormName = 薄荷奶油
 Color = Blue
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream a refreshing flavor.
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有清爽的风味。
 #-------------------------------
 [ALCREMIE,22]
 PokedexForm = 21
@@ -2942,9 +2942,9 @@ PokedexForm = 21
 PokedexForm = 21
 #-------------------------------
 [ALCREMIE,28]
-FormName = Lemon Cream
+FormName = 柠檬奶油
 Color = Yellow
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream a sour flavor.
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有酸味。
 #-------------------------------
 [ALCREMIE,29]
 PokedexForm = 28
@@ -2965,8 +2965,8 @@ PokedexForm = 28
 PokedexForm = 28
 #-------------------------------
 [ALCREMIE,35]
-FormName = Salted Cream
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream a salty flavor.
+FormName = 咸奶油
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有咸味。
 #-------------------------------
 [ALCREMIE,36]
 PokedexForm = 35
@@ -2987,9 +2987,9 @@ PokedexForm = 35
 PokedexForm = 35
 #-------------------------------
 [ALCREMIE,42]
-FormName = Ruby Swirl
+FormName = 红宝石旋涡
 Color = Yellow
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream a mixed flavor.
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有混合的风味。
 #-------------------------------
 [ALCREMIE,43]
 PokedexForm = 42
@@ -3010,9 +3010,9 @@ PokedexForm = 42
 PokedexForm = 42
 #-------------------------------
 [ALCREMIE,49]
-FormName = Caramel Swirl
+FormName = 焦糖旋涡
 Color = Brown
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream a bitter flavor.
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有苦味。
 #-------------------------------
 [ALCREMIE,50]
 PokedexForm = 49
@@ -3033,9 +3033,9 @@ PokedexForm = 49
 PokedexForm = 49
 #-------------------------------
 [ALCREMIE,56]
-FormName = Rainbow Swirl
+FormName = 彩虹旋涡
 Color = Yellow
-Pokedex = The cells that compose its cream fluctuated suddenly during evolution, giving the cream a complex flavor.
+Pokedex = 构成它奶油的身体细胞在进化时突然发生变化，使奶油带有复杂的风味。
 #-------------------------------
 [ALCREMIE,57]
 PokedexForm = 56
@@ -3056,7 +3056,7 @@ PokedexForm = 56
 PokedexForm = 56
 #-------------------------------
 [FALINKS,1]
-FormName = Mega Falinks
+FormName = 超级列阵兵
 MegaStone = FALINKSITE
 BaseStats = 65,135,135,100,70,65
 BaseExp = 215
@@ -3064,54 +3064,54 @@ Abilities = DEFIANT
 HiddenAbilities = DEFIANT
 Height = 1.6
 Weight = 99.0
-Pokedex = Mega Falinks has taken on the ultimate battle formation, which can be achieved only if the troopers and brass have the strongest of bonds.
+Pokedex = 超级列阵兵摆出了终极的战斗阵形，这只有在士兵与首领拥有最强牵绊时才能实现。
 Generation = 9
 #-------------------------------
 [EISCUE,1]
-FormName = Noice Face
+FormName = 解冻头
 BaseStats = 75,80,70,130,65,50
-Pokedex = The ice covering this Pokémon's face has shattered, revealing a slightly worried expression that many people are enamored with.
+Pokedex = 覆盖它脸部的冰碎裂了，露出略带担忧的表情，许多人为此着迷。
 #-------------------------------
 [INDEEDEE,1]
-FormName = Female
+FormName = 雌性
 BaseStats = 70,55,65,85,95,105
 EVs = SPECIAL_DEFENSE,2
 Abilities = OWNTEMPO,SYNCHRONIZE
 Moves = 1,STOREDPOWER,1,PLAYNICE,5,BATONPASS,10,DISARMINGVOICE,15,PSYBEAM,20,HELPINGHAND,25,FOLLOWME,30,HEALINGWISH,35,PSYCHIC,40,CALMMIND,45,GUARDSPLIT,50,PSYCHICTERRAIN
 TutorMoves = ALLURINGVOICE,ALLYSWITCH,ATTRACT,BATONPASS,BODYSLAM,CALMMIND,CAPTIVATE,CHARM,CONFIDE,DAZZLINGGLEAM,DISARMINGVOICE,DOUBLETEAM,DRAININGKISS,DRAINPUNCH,ENDURE,ENERGYBALL,FACADE,FRUSTRATION,GUARDSWAP,HELPINGHAND,HIDDENPOWER,HYPERVOICE,IMPRISON,LIGHTSCREEN,MAGICALLEAF,METRONOME,MIMIC,MYSTICALFIRE,NATURALGIFT,PAYDAY,PLAYROUGH,PROTECT,PSYBEAM,PSYCHIC,PSYCHICTERRAIN,PSYCHUP,PSYSHOCK,REFLECT,REST,RETURN,ROUND,SAFEGUARD,SECRETPOWER,SHADOWBALL,SKILLSWAP,SLEEPTALK,SNORE,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAKEDOWN,TERABLAST,TERRAINPULSE,TRICK,TRICKROOM,ZENHEADBUTT
 EggMoves = FAKEOUT,HEALPULSE,PSYCHUP,PSYCHOSHIFT
-Pokedex = They diligently serve people and Pokémon so they can gather feelings of gratitude. The females are particularly good at babysitting.
+Pokedex = 它们勤恳地服务人和宝可梦，以收集感激之情。雌性尤其擅长照看孩子。
 #-------------------------------
 [MORPEKO,1]
-FormName = Hangry Mode
+FormName = 空腹模式
 Color = Purple
-Pokedex = Hunger hormones affect its temperament. Until its hunger is appeased, it gets up to all manner of evil deeds.
+Pokedex = 饥饿激素影响着它的脾气。在饥饿得到满足之前，它会干出各种坏事。
 #-------------------------------
 [ZACIAN,1]
-FormName = Crowned Sword
+FormName = 剑之王
 Types = FAIRY,STEEL
 BaseStats = 92,170,115,148,80,115
 BaseExp = 360
 Weight = 355.0
-Pokedex = Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike.
+Pokedex = 它能一击斩断任何东西，因而被称为妖精王之剑，令敌我双方都心生敬畏。
 #-------------------------------
 [ZAMAZENTA,1]
-FormName = Crowned Shield
+FormName = 盾之王
 Types = FIGHTING,STEEL
 BaseStats = 92,130,145,128,80,145
 BaseExp = 360
 Weight = 785.0
-Pokedex = Its ability to deflect any attack led to it being known as the Fighting Master's Shield. It was feared and respected by all.
+Pokedex = 它能弹开任何攻击，因此被称为格斗大师之盾。它令所有人既畏惧又尊敬。
 #-------------------------------
 [URSHIFU,1]
-FormName = Rapid Strike Style
+FormName = 连击流
 Types = FIGHTING,WATER
 Moves = 0,SURGINGSTRIKES,1,AQUAJET,1,ROCKSMASH,1,LEER,1,ENDURE,1,FOCUSENERGY,12,AERIALACE,16,SCARYFACE,20,HEADBUTT,24,BRICKBREAK,28,DETECT,32,BULKUP,36,IRONHEAD,40,DYNAMICPUNCH,44,COUNTER,48,CLOSECOMBAT,52,FOCUSPUNCH
 TutorMoves = ACROBATICS,AERIALACE,ATTRACT,AURASPHERE,BODYPRESS,BODYSLAM,BRICKBREAK,BRINE,BULKUP,CAPTIVATE,CHILLINGWATER,CLOSECOMBAT,COACHING,CONFIDE,DIG,DIVE,DOUBLEEDGE,DOUBLETEAM,DRAINPUNCH,ENDURE,FACADE,FALSESWIPE,FIREPUNCH,FLING,FOCUSBLAST,FOCUSENERGY,FOCUSPUNCH,FRUSTRATION,GIGAIMPACT,HELPINGHAND,HIDDENPOWER,ICEPUNCH,ICESPINNER,IRONDEFENSE,IRONHEAD,LIQUIDATION,LOWKICK,LOWSWEEP,MEGAKICK,MEGAPUNCH,METALCLAW,MIMIC,NATURALGIFT,POISONJAB,PROTECT,RAINDANCE,REST,RETALIATE,RETURN,REVENGE,REVERSAL,ROCKSLIDE,ROCKTOMB,ROUND,SCARYFACE,SECRETPOWER,SLEEPTALK,SNORE,STONEEDGE,SUBSTITUTE,SUPERPOWER,SWAGGER,SWIFT,SWORDSDANCE,TAKEDOWN,TAUNT,TERABLAST,THUNDERPUNCH,TRAILBLAZE,UTURN,WATERFALL,WHIRLPOOL,WORKUP,ZENHEADBUTT
-Pokedex = It's believed that this Pokémon modeled its fighting style on the flow of a river—sometimes rapid, sometimes calm.
+Pokedex = 人们认为这只宝可梦以河水的流动为范本形成了自己的战斗风格——时而湍急，时而平静。
 #-------------------------------
 [CALYREX,1]
-FormName = Ice Rider
+FormName = 骑白马
 Types = PSYCHIC,ICE
 BaseStats = 100,165,150,50,85,130
 BaseExp = 340
@@ -3124,10 +3124,10 @@ Weight = 809.1
 Color = White
 Shape = Quadruped
 Category = High King
-Pokedex = According to lore, this Pokémon showed no mercy to those who got in its way, yet it would heal its opponents' wounds after battle.
+Pokedex = 据传说，这只宝可梦对挡路者毫不留情，但战斗后却会治愈对手的伤势。
 #-------------------------------
 [CALYREX,2]
-FormName = Shadow Rider
+FormName = 骑黑马
 Types = PSYCHIC,GHOST
 BaseStats = 100,85,80,150,165,100
 BaseExp = 340
@@ -3140,10 +3140,10 @@ Weight = 53.6
 Color = Black
 Shape = Quadruped
 Category = High King
-Pokedex = Legend says that by using its power to see all events from past to future, this Pokémon saved the creatures of a forest from a meteorite strike.
+Pokedex = 传说这只宝可梦运用其能洞悉从过去到未来一切事件的力量，从陨石撞击中拯救了一座森林的生灵。
 #-------------------------------
 [URSALUNA,1]
-FormName = Bloodmoon Ursaluna
+FormName = 血月月月熊
 BaseStats = 113,70,120,52,135,65
 EVs = SPECIAL_ATTACK,3
 Abilities = MINDSEYE
@@ -3152,55 +3152,55 @@ Moves = -1,MOONLIGHT,1,HEADLONGRUSH,1,SCRATCH,1,LEER,1,LICK,8,FURYSWIPES,13,PAYB
 TutorMoves = AVALANCHE,BODYPRESS,BODYSLAM,BRICKBREAK,BULLDOZE,CALMMIND,CRUNCH,DIG,DOUBLEEDGE,EARTHPOWER,EARTHQUAKE,ENDURE,FACADE,FIREPUNCH,FLING,FOCUSBLAST,FOCUSPUNCH,GIGAIMPACT,GUNKSHOT,HARDPRESS,HEAVYSLAM,HELPINGHAND,HIGHHORSEPOWER,HYPERBEAM,HYPERVOICE,ICEPUNCH,LOWKICK,METALCLAW,MUDSHOT,PROTECT,RAINDANCE,REST,ROAR,ROCKSLIDE,ROCKTOMB,SCARYFACE,SEEDBOMB,SHADOWCLAW,SLEEPTALK,SMACKDOWN,SNARL,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUNNYDAY,SWIFT,SWORDSDANCE,TAKEDOWN,TAUNT,TERABLAST,THIEF,THUNDERPUNCH,TRAILBLAZE,UPROAR,VACUUMWAVE
 Height = 2.7
 Weight = 333.0
-Pokedex = This special Ursaluna can see in the dark with its left eye and protects itself with mud that is as hard as iron.
+Pokedex = 这只特殊的月月熊能用左眼在黑暗中视物，并用硬如铁的泥保护自己。
 Generation = 9
 #-------------------------------
 [BASCULEGION,3]
-FormName = Female
+FormName = 雌性
 BaseStats = 120,92,65,78,100,75
-Pokedex = It can afflict a target with terrifying illusions that are under its control. The deeper the sadness in its friends' souls, the paler Basculegion becomes.
+Pokedex = 它能让目标陷入受它控制的可怕幻象。同伴灵魂中的悲伤越深，幽尾玄鱼就变得越苍白。
 Flags = DefaultForm_3,InheritFormWithEverStone
 #-------------------------------
 [ENAMORUS,1]
-FormName = Therian Form
+FormName = 灵兽形态
 BaseStats = 74,115,110,46,135,100
 Abilities = OVERCOAT
 HiddenAbilities = OVERCOAT
 Shape = Quadruped
-Pokedex = A different guise from its feminine humanoid form. From the clouds, it descends upon those who treat any form of life with disrespect and punishes them.
+Pokedex = 这是与它女性人形姿态不同的样子。它会从云中降临到不尊重任何生命的人面前，予以惩罚。
 #-------------------------------
 [OINKOLOGNE,1]
-FormName = Female
+FormName = 雌性
 BaseStats = 115,90,70,65,59,90
 Abilities = AROMAVEIL,GLUTTONY
 Moves = 1,TACKLE,1,TAILWHIP,3,DISARMINGVOICE,6,ECHOEDVOICE,9,MUDSHOT,12,COVET,15,DIG,17,HEADBUTT,23,YAWN,28,TAKEDOWN,30,WORKUP,34,UPROAR,39,DOUBLEEDGE,45,EARTHPOWER,51,BELCH
 Color = Brown
-Pokedex = This is a meticulous Pokémon that likes to keep things tidy. It shrouds itself in a floral aroma that soothes the Pokémon around it.
+Pokedex = 这是一只一丝不苟、喜欢保持整洁的宝可梦。它用花香包裹自己，安抚周围的宝可梦。
 #-------------------------------
 [MAUSHOLD,1]
-FormName = Family of Three
+FormName = 三只家庭
 Weight = 2.3
-Pokedex = The little one just appeared one day. They all live together like a family, but the relationship between the three is still unclear.
+Pokedex = 那个小的有一天突然出现了。它们像家人一样生活在一起，但三者之间的关系仍不清楚。
 #-------------------------------
 [SQUAWKABILLY,1]
-FormName = Blue Plumage
+FormName = 蓝色羽毛
 Color = Blue
-Pokedex = The largest of their flocks can contain more than 50 individuals. They fly around towns and forests, searching for food and making a racket.
+Pokedex = 它们最大的族群可包含50只以上。它们在城镇和森林间飞行，寻找食物并喧闹不停。
 #-------------------------------
 [SQUAWKABILLY,2]
-FormName = Yellow Plumage
+FormName = 黄色羽毛
 HiddenAbilities = SHEERFORCE
 Color = Yellow
-Pokedex = The yellow Squawkabilly are especially fierce. They've even been known to drive other bird Pokémon out of town.
+Pokedex = 黄羽毛的怒鹦哥格外凶悍。据说它们甚至会把其他鸟宝可梦赶出城镇。
 #-------------------------------
 [SQUAWKABILLY,3]
-FormName = White Plumage
+FormName = 白色羽毛
 HiddenAbilities = SHEERFORCE
 Color = White
-Pokedex = This Pokémon dislikes being alone. It has a strong sense of community and survives by cooperating with allies.
+Pokedex = 这只宝可梦讨厌独处。它有很强的群体意识，靠与同伴合作生存。
 #-------------------------------
 [SCOVILLAIN,1]
-FormName = Mega Scovillain
+FormName = 超级狠辣椒
 MegaStone = SCOVILLAINITE
 BaseStats = 65,138,85,75,138,85
 BaseExp = 220
@@ -3208,19 +3208,19 @@ Abilities = SPICYSPRAY
 HiddenAbilities = SPICYSPRAY
 Height = 1.2
 Weight = 22.0
-Pokedex = Mega Evolution has dialed up this Pokémon's spiciness. It swings its "necktie" around to wallop its foes.
+Pokedex = 超级进化提升了这只宝可梦的辣度。它甩动“领带”痛击对手。
 #-------------------------------
 [PALAFIN,1]
-FormName = Hero Form
+FormName = 英雄形态
 BaseStats = 100,160,97,100,106,87
 BaseExp = 228
 Height = 1.8
 Weight = 97.4
 Category = Hero
-Pokedex = This Pokémon's ancient genes have awakened. It is now so extraordinarily strong that it can easily lift a cruise ship with one fin.
+Pokedex = 这只宝可梦古老的基因觉醒了。它如今强大得仅用一片鳍就能轻松举起一艘游轮。
 #-------------------------------
 [GLIMMORA,1]
-FormName = Mega Glimmora
+FormName = 超级晶光花
 MegaStone = GLIMMORANITE
 BaseStats = 83,90,105,101,150,96
 BaseExp = 234
@@ -3228,29 +3228,29 @@ Abilities = ADAPTABILITY
 HiddenAbilities = ADAPTABILITY
 Height = 2.8
 Weight = 77.0
-Pokedex = Glimmora's petals - now larger and separated from its main body - rotate around it to provide defense while scattering poisonous fragments.
+Pokedex = 晶光花的花瓣——如今变得更大并与主体分离——绕着它旋转提供防御，同时散落有毒的碎片。
 #-------------------------------
 [TATSUGIRI,1]
-FormName = Droopy Form
+FormName = 下垂样子
 Color = Pink
-Pokedex = This Pokémon tricks its opponents by playing dead. It is small and weak, but it uses its smarts to survive.
+Pokedex = 这只宝可梦通过装死来欺骗对手。它又小又弱，却用智慧生存。
 #-------------------------------
 [TATSUGIRI,2]
-FormName = Stretchy Form
+FormName = 伸长样子
 Color = Yellow
-Pokedex = It's one of the most intelligent dragon Pokémon. It camouflages itself by inflating its throat sac.
+Pokedex = 它是最聪明的龙宝可梦之一。它通过膨胀喉囊来伪装自己。
 #-------------------------------
 [TATSUGIRI,3]
-FormName = Mega Tatsugiri (Curly Form)
+FormName = 超级米立龙（卷卷样子）
 MegaStone = TATSUGIRINITE
 BaseStats = 68,65,90,92,135,125
 BaseExp = 216
 Height = 0.6
 Weight = 24.0
-Pokedex = Tatsugiri's brain has been invigorated by Mega Evolution, making it even wilier. It can create and command copies of itself.
+Pokedex = 米立龙的大脑因超级进化而激活，变得更为狡黠。它能制造并操控自己的分身。
 #-------------------------------
 [TATSUGIRI,4]
-FormName = Mega Tatsugiri (Droopy Form)
+FormName = 超级米立龙（下垂样子）
 MegaStone = TATSUGIRINITE
 UnmegaForm = 1
 BaseStats = 68,65,90,92,135,125
@@ -3258,10 +3258,10 @@ BaseExp = 216
 Height = 0.6
 Weight = 24.0
 Color = Pink
-Pokedex = It solidifies the energy of Mega Evolution, building up an overflowing pile to launch as projectiles. These projectiles explode on contact.
+Pokedex = 它将超级进化的能量固化，堆积成满溢的一堆作为弹丸发射。这些弹丸接触后便会爆炸。
 #-------------------------------
 [TATSUGIRI,5]
-FormName = Mega Tatsugiri (Stretchy Form)
+FormName = 超级米立龙（伸长样子）
 MegaStone = TATSUGIRINITE
 UnmegaForm = 2
 BaseStats = 68,65,90,92,135,125
@@ -3269,24 +3269,24 @@ BaseExp = 216
 Height = 0.6
 Weight = 24.0
 Color = Yellow
-Pokedex = Using the energy of Mega Evolution, it creates a dish to ride upon, allowing it to move with total freedom-even through the air.
+Pokedex = 它利用超级进化的能量制造出可供骑乘的器皿，从而能自由自在地移动——甚至穿越空中。
 #-------------------------------
 [DUDUNSPARCE,1]
-FormName = Three-Segment Form
+FormName = 三节形态
 Height = 4.5
 Weight = 47.4
-Pokedex = The gentle Dudunsparce will put Pokémon that wander into its nest onto its back and carry them to the entrance.
+Pokedex = 温和的土龙节节会把误入它巢穴的宝可梦放在背上，驮到入口处。
 #-------------------------------
 [BAXCALIBUR,1]
-FormName = Mega Baxcalibur
+FormName = 超级戟脊龙
 MegaStone = BAXCALIBRITE
 BaseStats = 115,175,117,87,105,101
 BaseExp = 350
 Weight = 315.0
-Pokedex = Baxcalibur's dorsal blade has grown even more massive thanks to Mega Evolution. This Pokémon fires beams from the hilt at its solar plexus.
+Pokedex = 借助超级进化，戟脊龙的背部刀刃变得更加巨大。这只宝可梦从位于胸口的剑柄发射光束。
 #-------------------------------
 [GIMMIGHOUL,1]
-FormName = Roaming Form
+FormName = 游荡形态
 BaseStats = 45,30,25,80,75,45
 Abilities = RUNAWAY
 Height = 0.1
@@ -3294,54 +3294,54 @@ Weight = 0.1
 Color = Gray
 Shape = Bipedal
 Category = Coin Hunter
-Pokedex = It wanders around, carrying an old coin on its back. It survives by draining the life-force from humans who try to pick up its coin.
+Pokedex = 它背着古硬币四处游荡。它靠吸取试图捡起硬币之人的生命力生存。
 #-------------------------------
 [POLTCHAGEIST,1]
-FormName = Artisan Form
-Pokedex = It sprinkles some of its powdery body onto food and drains the life-force from those who so much as lick it.
+FormName = 真品形态
+Pokedex = 它把身体的粉末撒在食物上，吸干哪怕只是舔一口的人的生命力。
 Evolution = SINISTCHA,Item,MASTERPIECETEACUP
 #-------------------------------
 [SINISTCHA,1]
-FormName = Masterpiece Form
-Pokedex = The more stirring it does with the tea whisk on its head, the more energy it builds up. It does this to prepare for battle.
+FormName = 杰作形态
+Pokedex = 它用头上的茶筅搅拌得越多，积聚的能量就越多。它这样做是为战斗做准备。
 #-------------------------------
 [OGERPON,1]
-FormName = Wellspring Mask
+FormName = 水井面具
 Types = GRASS,WATER
 Abilities = WATERABSORB
 Color = Blue
-Pokedex = This form excels in both attack and defense. It ceaselessly unleashes moves like a spring gushes water.
+Pokedex = 这种形态攻守兼备。它如泉水涌出般不停地释放招式。
 #-------------------------------
 [OGERPON,2]
-FormName = Hearthflame Mask
+FormName = 火灶面具
 Types = GRASS,FIRE
 Abilities = MOLDBREAKER
 Color = Red
-Pokedex = This form is the most aggressive, bombarding enemies with the intensity of flames blazing within a hearth.
+Pokedex = 这种样子最具攻击性，以炉灶内熊熊燃烧的火焰之势猛攻敌人。
 #-------------------------------
 [OGERPON,3]
-FormName = Cornerstone Mask
+FormName = 础石面具
 Types = GRASS,ROCK
 Abilities = STURDY
 Color = Gray
-Pokedex = This form has excellent defenses, absorbing impacts solidly like the cornerstones that support houses.
+Pokedex = 这种形态防御出色，像支撑房屋的基石一样稳稳吸收冲击。
 #-------------------------------
 [TERAPAGOS,1]
-FormName = Terastal Form
+FormName = 太晶形态
 BaseStats = 95,95,110,85,105,110
 EVs = DEFENSE,2,SPECIAL_DEFENSE,2
 Abilities = TERASHELL
 Height = 0.3
 Weight = 16.0
 Shape = Head
-Pokedex = Upon sensing danger, it prepares itself for battle by creating a sturdy shell of crystallized Terastal energy.
+Pokedex = 一旦感知到危险，它便制造出由结晶化太晶能量构成的坚固外壳，为战斗做好准备。
 #-------------------------------
 [TERAPAGOS,2]
-FormName = Stellar Form
+FormName = 星晶形态
 BaseStats = 160,105,110,85,130,110
 EVs = HP,3
 Abilities = TERAFORMZERO
 Height = 1.7
 Weight = 77.0
 Shape = Head
-Pokedex = In this form, Terapagos resembles the world as the ancients saw it, and its Terastal energy is abnormally amplified.
+Pokedex = 在这种形态下，太乐巴戈斯呈现出古人眼中的世界模样，其太晶能量异常增强。

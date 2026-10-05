@@ -1,1268 +1,1268 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [STENCH]
-Name = Stench
-Description = By releasing a stench when attacking, the Pokémon may cause the target to flinch.
+Name = 恶臭
+Description = 通过释放臭臭的气味，在攻击的时候，有时会使对手畏缩。	
 #-------------------------------
 [DRIZZLE]
-Name = Drizzle
-Description = When the Pokémon enters a battle, it summons a heavy rain.
+Name = 降雨
+Description = 出场时，会将天气变为下雨。	
 #-------------------------------
 [SPEEDBOOST]
-Name = Speed Boost
-Description = The Pokémon's Speed stat is raised at the end of every turn.
+Name = 加速
+Description = 每一回合速度会变快。	
 #-------------------------------
 [BATTLEARMOR]
-Name = Battle Armor
-Description = The Pokémon's hard armor stops incoming attacks being critical hits.
+Name = 战斗盔甲
+Description = 被坚硬的甲壳守护着，不会被对手的攻击击中要害。
 #-------------------------------
 [STURDY]
-Name = Sturdy
-Description = Immune to 1-hit KO moves. Cannot be KO'd in a single hit when its HP is full.
+Name = 结实
+Description = 在HP全满时，即使受到招式攻击，也不会被一击打倒。一击必杀的招式也没有效果。	
 #-------------------------------
 [DAMP]
-Name = Damp
-Description = The Pokémon dampens its surroundings, which makes all explosive moves fail.
+Name = 湿气
+Description = 通过把周围都弄湿，使谁都无法使用自爆等爆炸类的招式。	
 #-------------------------------
 [LIMBER]
-Name = Limber
-Description = The Pokémon's limber body prevents it from being paralyzed.
+Name = 柔软
+Description = 因为身体柔软，不会变为麻痹状态。
 #-------------------------------
 [SANDVEIL]
-Name = Sand Veil
-Description = Sandstorms boost the Pokémon's evasiveness and will not damage it.
+Name = 沙隐
+Description = 在沙暴的时候，闪避率会提高。
 #-------------------------------
 [STATIC]
-Name = Static
-Description = The Pokémon may paralyze attackers that make direct contact with it.
+Name = 静电
+Description = 身上带有静电，有时会让接触到的对手麻痹。
 #-------------------------------
 [VOLTABSORB]
-Name = Volt Absorb
-Description = Being hit by an Electric-type move restores the Pokémon's HP instead.
+Name = 蓄电
+Description = 受到电属性的招式攻击时，不会受到伤害，而是会回复。
 #-------------------------------
 [WATERABSORB]
-Name = Water Absorb
-Description = Being hit by a Water-type move restores the Pokémon's HP instead.
+Name = 储水
+Description = 受到水属性的招式攻击时，不会受到伤害，而是会回复。
 #-------------------------------
 [OBLIVIOUS]
-Name = Oblivious
-Description = The Pokémon cannot become infatuated, fall for taunts or be intimidated.
+Name = 迟钝
+Description = 因为感觉迟钝，不会变为着迷和被挑衅状态。对威吓也毫不动摇。
 #-------------------------------
 [CLOUDNINE]
-Name = Cloud Nine
-Description = The Pokémon's carefree outlook prevents all effects of weather.
+Name = 无关天气
+Description = 任何天气的影响都会消失。
 #-------------------------------
 [COMPOUNDEYES]
-Name = Compound Eyes
-Description = The Pokémon's superior eyesight boosts its accuracy.
+Name = 复眼
+Description = 因为拥有复眼，招式的命中率会提高。
 #-------------------------------
 [INSOMNIA]
-Name = Insomnia
-Description = The Pokémon suffers from insomnia, which prevents it from falling asleep.
+Name = 不眠
+Description = 因为有着睡不着的体质，所以不会陷入睡眠状态。
 #-------------------------------
 [COLORCHANGE]
-Name = Color Change
-Description = The Pokémon changes its type to match the last damaging move that hit it.
+Name = 变色
+Description = 自己的属性会变为从对手处所受招式的属性。
 #-------------------------------
 [IMMUNITY]
-Name = Immunity
-Description = The Pokémon's strong immune system prevents it from being poisoned.
+Name = 免疫
+Description = 因为体内拥有免疫能力，不会变为中毒状态。
 #-------------------------------
 [FLASHFIRE]
-Name = Flash Fire
-Description = Being hit by a Fire-type move instead powers up the Pokémon's Fire-type moves.
+Name = 引火
+Description = 受到火属性的招式攻击时，吸收火焰，自己使出的火属性招式会变强。
 #-------------------------------
 [SHIELDDUST]
-Name = Shield Dust
-Description = Negates the additional effects of attacks that hit the Pokémon.
+Name = 鳞粉
+Description = 被鳞粉守护着，不会受到招式的追加效果影响。
 #-------------------------------
 [OWNTEMPO]
-Name = Own Tempo
-Description = Having its own tempo means the Pokémon cannot become confused or be intimidated.
+Name = 我行我素
+Description = 因为我行我素，不会变为混乱状态。对威吓也毫不动摇。
 #-------------------------------
 [SUCTIONCUPS]
-Name = Suction Cups
-Description = The Pokémon cannot be forced to switch out by another Pokémon.
+Name = 吸盘
+Description = 用吸盘牢牢贴在地面上，让替换宝可梦的招式和道具无效。
 #-------------------------------
 [INTIMIDATE]
-Name = Intimidate
-Description = When the Pokémon enters a battle, it lowers the Attack stat of all foes.
+Name = 威吓
+Description = 出场时威吓对手，让其退缩，降低对手的攻击。
 #-------------------------------
 [SHADOWTAG]
-Name = Shadow Tag
-Description = The Pokémon steps on the foes' shadows to stop them switching out or fleeing.
+Name = 踩影
+Description = 踩住对手的影子使其无法逃走或替换。
 #-------------------------------
 [ROUGHSKIN]
-Name = Rough Skin
-Description = When the Pokémon is hit by a move that makes contact, it damages the attacker.
+Name = 粗糙皮肤
+Description = 受到攻击时，用粗糙的皮肤弄伤接触到自己的对手。
 #-------------------------------
 [WONDERGUARD]
-Name = Wonder Guard
-Description = The Pokémon is immune to all damaging moves that are not "super effective".
+Name = 神奇守护
+Description = 不可思议的力量，只有效果绝佳的招式才能击中。
 #-------------------------------
 [LEVITATE]
-Name = Levitate
-Description = The Pokémon floats in the air, immune to damaging Ground-type moves.
+Name = 飘浮
+Description = 从地面浮起，从而不会受到地面属性招式的攻击。
 #-------------------------------
 [EFFECTSPORE]
-Name = Effect Spore
-Description = Contact with the Pokémon may inflict poison, sleep or paralysis on the attacker.
+Name = 孢子
+Description = 受到攻击时，有时会把接触到自己的对手变为中毒、麻痹或睡眠状态。
 #-------------------------------
 [SYNCHRONIZE]
-Name = Synchronize
-Description = Pokémon that burn, poison or paralyze this Pokémon are given the same problem.
+Name = 同步
+Description = 将自己的中毒、麻痹或灼伤状态传染给对手。
 #-------------------------------
 [CLEARBODY]
-Name = Clear Body
-Description = The Pokémon's stats cannot be lowered by other Pokémon's moves/Abilities.
+Name = 恒净之躯
+Description = 不会因为对手的招式或特性而被降低能力。
 #-------------------------------
 [NATURALCURE]
-Name = Natural Cure
-Description = The Pokémon's status conditions are cured when it switches out of battle.
+Name = 自然回复
+Description = 回到同行队伍后，异常状态就会被治愈。
 #-------------------------------
 [LIGHTNINGROD]
-Name = Lightning Rod
-Description = The Pokémon draws in all Electric-type moves to raise its Sp. Attack stat.
+Name = 避雷针
+Description = 将电属性的招式吸引到自己身上，不会受到伤害，而是会提高特攻。
 #-------------------------------
 [SERENEGRACE]
-Name = Serene Grace
-Description = The Pokémon's moves are more likely to have their additional effects.
+Name = 天恩
+Description = 托天恩的福，招式的追加效果容易出现。
 #-------------------------------
 [SWIFTSWIM]
-Name = Swift Swim
-Description = The Pokémon's Speed stat is doubled in rain.
+Name = 悠游自如
+Description = 下雨天气时，速度会提高。
 #-------------------------------
 [CHLOROPHYLL]
-Name = Chlorophyll
-Description = The Pokémon's Speed stat is doubled in harsh sunlight.
+Name = 叶绿素
+Description = 晴朗天气时，速度会提高。
 #-------------------------------
 [ILLUMINATE]
-Name = Illuminate
-Description = The Pokémon's accuracy stat cannot be lowered by another Pokémon.
+Name = 发光
+Description = 通过让周围变亮来保持命中率不会被降低。
 #-------------------------------
 [TRACE]
-Name = Trace
-Description = When the Pokémon enters a battle, it copies an opposing Pokémon's Ability.
+Name = 复制
+Description = 出场时，复制对手的特性，变为与之相同的特性。
 #-------------------------------
 [HUGEPOWER]
-Name = Huge Power
-Description = The Pokémon's Attack stat is doubled.
+Name = 大力士
+Description = 物理攻击的威力会变为2倍。
 #-------------------------------
 [POISONPOINT]
-Name = Poison Point
-Description = Contact with the Pokémon may poison the attacker.
+Name = 毒刺
+Description = 有时会让接触到自己的对手变为中毒状态。
 #-------------------------------
 [INNERFOCUS]
-Name = Inner Focus
-Description = The Pokémon's force of will prevents it from flinching or being intimidated.
+Name = 精神力
+Description = 拥有经过锻炼的精神，而不会因对手的攻击而畏缩。对威吓也毫不动摇。
 #-------------------------------
 [MAGMAARMOR]
-Name = Magma Armor
-Description = The Pokémon is coated with hot magma, preventing it from being frozen.
+Name = 熔岩铠甲
+Description = 将炽热的熔岩覆盖在身上，不会变为冰冻状态。
 Flags = FasterEggHatching
 #-------------------------------
 [WATERVEIL]
-Name = Water Veil
-Description = The Pokémon's water veil prevents it from being burned.
+Name = 水幕
+Description = 将水幕裹在身上，不会变为灼伤状态。
 #-------------------------------
 [MAGNETPULL]
-Name = Magnet Pull
-Description = The Pokémon's magnetism stops Steel-type foes switching out or fleeing.
+Name = 磁力
+Description = 用磁力吸住钢属性的宝可梦，使其无法逃走。
 #-------------------------------
 [SOUNDPROOF]
-Name = Soundproof
-Description = Soundproofing gives the Pokémon full immunity to all sound-based moves.
+Name = 隔音
+Description = 通过屏蔽声音，不受到声音招式的影响。
 #-------------------------------
 [RAINDISH]
-Name = Rain Dish
-Description = The Pokémon regains a little HP at the end of every turn in rain.
+Name = 雨盘
+Description = 下雨天气时，会缓缓回复HP。
 #-------------------------------
 [SANDSTREAM]
-Name = Sand Stream
-Description = When the Pokémon enters a battle, it summons a sandstorm.
+Name = 扬沙
+Description = 出场时，会把天气变为沙暴。
 #-------------------------------
 [PRESSURE]
-Name = Pressure
-Description = Puts foes under pressure, causing them to expend more PP to use their moves.
+Name = 压迫感
+Description = 给予对手压迫感，大量减少其使用招式的PP。
 #-------------------------------
 [THICKFAT]
-Name = Thick Fat
-Description = The Pokémon's fat halves the damage it takes from Fire- and Ice-type moves.
+Name = 厚脂肪
+Description = 因为被厚厚的脂肪保护着，会让火属性和冰属性的招式伤害减半。
 #-------------------------------
 [EARLYBIRD]
-Name = Early Bird
-Description = The Pokémon awakens from sleep twice as fast as other Pokémon would.
+Name = 早起
+Description = 即使变为睡眠状态，也能以2倍的速度提早醒来。
 #-------------------------------
 [FLAMEBODY]
-Name = Flame Body
-Description = Contact with the Pokémon may burn the attacker.
+Name = 火焰之躯
+Description = 有时会让接触到自己的对手变为灼伤状态。
 Flags = FasterEggHatching
 #-------------------------------
 [RUNAWAY]
-Name = Run Away
-Description = The Pokémon is always able to flee from battles against wild Pokémon.
+Name = 逃跑
+Description = 一定能从野生宝可梦那儿逃走。
 #-------------------------------
 [KEENEYE]
-Name = Keen Eye
-Description = The Pokémon's accuracy stat cannot be lowered by another Pokémon.
+Name = 锐利目光
+Description = 多亏了锐利的目光，命中率不会被降低。
 #-------------------------------
 [HYPERCUTTER]
-Name = Hyper Cutter
-Description = The Pokémon's Attack stat cannot be lowered by another Pokémon.
+Name = 怪力钳
+Description = 因为拥有以力量自豪的钳子，不会被对手降低攻击。
 #-------------------------------
 [PICKUP]
-Name = Pickup
-Description = The Pokémon picks up items used by other Pokémon. Can find items after battle.
+Name = 捡拾
+Description = 有时会捡来对手用过的道具，冒险过程中也会捡到。
 #-------------------------------
 [TRUANT]
-Name = Truant
-Description = Each time the Pokémon uses a move, it spends the next turn loafing around.
+Name = 懒惰
+Description = 如果使出招式，下一回合就会休息。
 #-------------------------------
 [HUSTLE]
-Name = Hustle
-Description = Boosts the Pokémon's Attack stat, but lowers its physical move accuracy.
+Name = 活力
+Description = 自己的攻击变高，但命中率会降低。
 #-------------------------------
 [CUTECHARM]
-Name = Cute Charm
-Description = The Pokémon may infatuate attackers that make direct contact with it.
+Name = 迷人之躯
+Description = 有时会让接触到自己的对手着迷。
 #-------------------------------
 [PLUS]
-Name = Plus
-Description = Boosts the Pokémon's Sp. Atk stat if an ally has the Plus or Minus Ability.
+Name = 正电
+Description = 出场的伙伴之间如果有正电或负电特性的宝可梦，自己的特攻会提高。
 #-------------------------------
 [MINUS]
-Name = Minus
-Description = Boosts the Pokémon's Sp. Atk stat if an ally has the Plus or Minus Ability.
+Name = 负电
+Description = 出场的伙伴之间如果有正电或负电特性的宝可梦，自己的特攻会提高。
 #-------------------------------
 [FORECAST]
-Name = Forecast
-Description = The Pokémon transforms with the weather, changing its type to match.
+Name = 阴晴不定
+Description = 受天气的影响，会变为水属性、火属性或冰属性中的某一个。
 #-------------------------------
 [STICKYHOLD]
-Name = Sticky Hold
-Description = The Pokémon's held item cannot be removed by other Pokémon.
+Name = 黏着
+Description = 因为道具是粘在黏性身体上的，所以不会被对手夺走。
 #-------------------------------
 [SHEDSKIN]
-Name = Shed Skin
-Description = The Pokémon may cure its own status condition at the end of each turn.
+Name = 蜕皮
+Description = 通过蜕去身上的皮，有时会治愈异常状态。
 #-------------------------------
 [GUTS]
-Name = Guts
-Description = Boosts the Pokémon's Attack stat if it has a status condition.
+Name = 毅力
+Description = 如果变为异常状态，会拿出毅力，攻击会提高。
 #-------------------------------
 [MARVELSCALE]
-Name = Marvel Scale
-Description = Boosts the Pokémon's Defense stat if it has a status condition.
+Name = 神奇鳞片
+Description = 如果变为异常状态，神奇鳞片会发生反应，防御会提高。
 #-------------------------------
 [LIQUIDOOZE]
-Name = Liquid Ooze
-Description = Attackers that drain HP from the Pokémon will take damage instead.
+Name = 污泥浆
+Description = 吸收了污泥浆的对手会因强烈的恶臭而受到伤害，减少HP。
 #-------------------------------
 [OVERGROW]
-Name = Overgrow
-Description = Powers up the Pokémon's Grass-type moves when its HP is low.
+Name = 茂盛
+Description = HP减少的时候，草属性的招式威力会提高。
 #-------------------------------
 [BLAZE]
-Name = Blaze
-Description = Powers up the Pokémon's Fire-type moves when its HP is low.
+Name = 猛火
+Description = HP减少的时候，火属性的招式威力会提高。
 #-------------------------------
 [TORRENT]
-Name = Torrent
-Description = Powers up the Pokémon's Water-type moves when its HP is low.
+Name = 激流
+Description = HP减少的时候，水属性的招式威力会提高。
 #-------------------------------
 [SWARM]
-Name = Swarm
-Description = Powers up the Pokémon's Bug-type moves when its HP is low.
+Name = 虫之预感
+Description = HP减少的时候，虫属性的招式威力会提高。
 #-------------------------------
 [ROCKHEAD]
-Name = Rock Head
-Description = The Pokémon does not take recoil damage from the moves it uses.
+Name = 坚硬脑袋
+Description = 即使使出会受反作用力伤害的招式，HP也不会减少。
 #-------------------------------
 [DROUGHT]
-Name = Drought
-Description = When the Pokémon enters a battle, it turns the sunlight harsh.
+Name = 日照
+Description = 出场时，会将天气变为晴朗。
 #-------------------------------
 [ARENATRAP]
-Name = Arena Trap
-Description = Foes touching the ground are unable to switch out or flee from battle.
+Name = 沙穴
+Description = 在战斗中让对手无法逃走。
 #-------------------------------
 [VITALSPIRIT]
-Name = Vital Spirit
-Description = The Pokémon is full of vitality, and that prevents it from falling asleep.
+Name = 干劲
+Description = 通过激发出干劲，不会变为睡眠状态。
 #-------------------------------
 [WHITESMOKE]
-Name = White Smoke
-Description = The Pokémon's stats cannot be lowered by other Pokémon's moves/Abilities.
+Name = 白色烟雾
+Description = 被白色烟雾保护着，不会被对手降低能力。
 #-------------------------------
 [PUREPOWER]
-Name = Pure Power
-Description = The Pokémon's adeptness at yoga doubles its Attack stat.
+Name = 瑜伽之力
+Description = 因瑜伽的力量，物理攻击的威力会变为2倍。
 #-------------------------------
 [SHELLARMOR]
-Name = Shell Armor
-Description = The Pokémon's hard shell stops incoming attacks being critical hits.
+Name = 硬壳盔甲
+Description = 被坚硬的壳保护着，对手的攻击不会击中要害。
 #-------------------------------
 [AIRLOCK]
-Name = Air Lock
-Description = The Pokémon imposes a pressure that prevents all effects of weather.
+Name = 气闸
+Description = 所有天气的影响都会消失。
 #-------------------------------
 [TANGLEDFEET]
-Name = Tangled Feet
-Description = Boosts the Pokémon's evasiveness if it is confused.
+Name = 蹒跚
+Description = 在混乱状态时，闪避率会提高。
 #-------------------------------
 [MOTORDRIVE]
-Name = Motor Drive
-Description = Being hit by an Electric-type move raises the Pokémon's Speed instead.
+Name = 电气引擎
+Description = 受到电属性的招式攻击时，不会受到伤害，而是速度会提高。
 #-------------------------------
 [RIVALRY]
-Name = Rivalry
-Description = Deals more damage to same gender targets and less to opposite gender targets.
+Name = 斗争心
+Description = 面对性别相同的对手，会燃起斗争心，变得更强。而面对性别不同的，则会变弱。
 #-------------------------------
 [STEADFAST]
-Name = Steadfast
-Description = The Pokémon raises its Speed stat every time it flinches.
+Name = 不屈之心
+Description = 每次畏缩时，不屈之心就会燃起，速度也会提高。
 #-------------------------------
 [SNOWCLOAK]
-Name = Snow Cloak
-Description = Boosts the Pokémon's evasiveness in snow.
+Name = 雪隐
+Description = 下雪天气时，闪避率会提高。
 #-------------------------------
 [GLUTTONY]
-Name = Gluttony
-Description = The Pokémon will eat its held Berry after its HP drops to half or less.
+Name = 贪吃鬼
+Description = 原本HP变得很少时才会吃树果，在HP还有一半时就会把它吃掉。
 #-------------------------------
 [ANGERPOINT]
-Name = Anger Point
-Description = When the Pokémon takes a critical hit, it raises its Attack stat to maximum.
+Name = 愤怒穴位
+Description = 要害被击中时，会大发雷霆，攻击力变为最大。
 #-------------------------------
 [UNBURDEN]
-Name = Unburden
-Description = The Pokémon's Speed stat is doubled after its held item is consumed or lost.
+Name = 轻装
+Description = 失去所持有的道具时，速度会提高。
 #-------------------------------
 [HEATPROOF]
-Name = Heatproof
-Description = The Pokémon takes only half as much damage from Fire-type moves and burns.
+Name = 耐热
+Description = 耐热的体质会让火属性的招式伤害减半。
 #-------------------------------
 [SIMPLE]
-Name = Simple
-Description = When the Pokémon's stats are changed, those changes are doubled.
+Name = 单纯
+Description = 能力变化会变为平时的2倍。
 #-------------------------------
 [DRYSKIN]
-Name = Dry Skin
-Description = Takes more damage from Fire/harsh sunlight, and heals HP from Water/rain.
+Name = 干燥皮肤
+Description = 下雨天气时和受到水属性的招式时，HP会回复。晴朗天气时和受到火属性的招式时，HP会减少。
 #-------------------------------
 [DOWNLOAD]
-Name = Download
-Description = On entering battle, raises an offensive stat matching the foe's weaker defense.
+Name = 下载
+Description = 比较对手的防御和特防，根据较低的那项能力相应地提高自己的攻击或特攻。
 #-------------------------------
 [IRONFIST]
-Name = Iron Fist
-Description = Powers up the Pokémon's punching moves.
+Name = 铁拳
+Description = 使用拳类招式的威力会提高。
 #-------------------------------
 [POISONHEAL]
-Name = Poison Heal
-Description = The Pokémon restores HP from being poisoned instead of taking damage.
+Name = 毒疗
+Description = 变为中毒状态时，HP不会减少，反而会增加起来。
 #-------------------------------
 [ADAPTABILITY]
-Name = Adaptability
-Description = Powers up the Pokémon's moves that are the same type as it.
+Name = 适应力
+Description = 与自身同属性的招式威力会提高。
 #-------------------------------
 [SKILLLINK]
-Name = Skill Link
-Description = Maximizes the number of times the Pokémon's multistrike moves hit.
+Name = 连续攻击
+Description = 如果使用连续招式，总是能使出最高次数。
 #-------------------------------
 [HYDRATION]
-Name = Hydration
-Description = Cures the Pokémon's status condition at the end of every turn in rain.
+Name = 湿润之躯
+Description = 下雨天气时，异常状态会治愈。
 #-------------------------------
 [SOLARPOWER]
-Name = Solar Power
-Description = In harsh sunlight, boosts the Pokémon's Sp. Atk stat, but it loses HP every turn.
+Name = 太阳之力
+Description = 晴朗天气时，特攻会提高，而每回合HP会减少。
 #-------------------------------
 [QUICKFEET]
-Name = Quick Feet
-Description = Boosts the Pokémon's Speed stat if it has a status condition.
+Name = 飞毛腿
+Description = 变为异常状态时，速度会提高。
 #-------------------------------
 [NORMALIZE]
-Name = Normalize
-Description = All the Pokémon's moves become Normal type and are powered up a little.
+Name = 一般皮肤
+Description = 无论是什么属性的招式，全部会变为一般属性。威力会少量提高。
 #-------------------------------
 [SNIPER]
-Name = Sniper
-Description = Powers up the Pokémon's moves if they are critical hits when attacking.
+Name = 狙击手
+Description = 击中要害时，威力会变得更强。
 #-------------------------------
 [MAGICGUARD]
-Name = Magic Guard
-Description = The Pokémon cannot take damage except directly from incoming attacks.
+Name = 魔法防守
+Description = 不会受到攻击以外的伤害。
 #-------------------------------
 [NOGUARD]
-Name = No Guard
-Description = Attacks used by or against the Pokémon will always land and never miss.
+Name = 无防守
+Description = 由于无防守战术，双方使出的招式都必定会击中。
 #-------------------------------
 [STALL]
-Name = Stall
-Description = The Pokémon is always the last to use its moves in each turn.
+Name = 慢出
+Description = 使出招式的顺序必定会变为最后。
 #-------------------------------
 [TECHNICIAN]
-Name = Technician
-Description = Powers up the Pokémon's moves that have a base power of 60 or less.
+Name = 技术高手
+Description = 攻击时可以将低威力招式的威力提高。
 #-------------------------------
 [LEAFGUARD]
-Name = Leaf Guard
-Description = The Pokémon cannot be inflicted with any status conditions in harsh sun.
+Name = 叶子防守
+Description = 晴朗天气时，不会变为异常状态。
 #-------------------------------
 [KLUTZ]
-Name = Klutz
-Description = The Pokémon's clumsiness means it can't use any held items or their effects.
+Name = 笨拙
+Description = 无法使用持有的道具。
 #-------------------------------
 [MOLDBREAKER]
-Name = Mold Breaker
-Description = When the Pokémon attacks, the Abilities of all other Pokémon are ignored.
+Name = 破格
+Description = 可以不受对手特性的干扰，向对手使出招式。
 #-------------------------------
 [SUPERLUCK]
-Name = Super Luck
-Description = The Pokémon is so lucky that the critical-hit ratios of its moves are boosted.
+Name = 超幸运
+Description = 因为拥有超幸运，攻击容易击中对手的要害。
 #-------------------------------
 [AFTERMATH]
-Name = Aftermath
-Description = If the Pokémon is knocked out by a contact attack, it damages the attacker.
+Name = 引爆
+Description = 变为濒死时，会对接触到自己的对手造成伤害。
 #-------------------------------
 [ANTICIPATION]
-Name = Anticipation
-Description = Upon entering battle, the Pokémon senses if a foe has dangerous moves.
+Name = 危险预知
+Description = 可以察觉到对手拥有的危险招式。
 #-------------------------------
 [FOREWARN]
-Name = Forewarn
-Description = Upon entering battle, the Pokémon identifies the foe's strongest move.
+Name = 预知梦
+Description = 出场时，只读取1个对手拥有的招式。
 #-------------------------------
 [UNAWARE]
-Name = Unaware
-Description = The Pokémon ignores the stat changes of all other Pokémon it battles with.
+Name = 纯朴
+Description = 可以无视对手能力的变化，进行攻击。
 #-------------------------------
 [TINTEDLENS]
-Name = Tinted Lens
-Description = Powers up the Pokémon's moves if they are "not very effective".
+Name = 有色眼镜
+Description = 可以将效果不好的招式以通常的威力使出。
 #-------------------------------
 [FILTER]
-Name = Filter
-Description = The Pokémon takes less damage from attacks that are "super effective".
+Name = 过滤
+Description = 受到效果绝佳的攻击时，可以减弱其威力。
 #-------------------------------
 [SLOWSTART]
-Name = Slow Start
-Description = For its first five turns, the Pokémon's Attack and Speed stats are halved.
+Name = 慢启动
+Description = 在5回合内，攻击和速度减半。
 #-------------------------------
 [SCRAPPY]
-Name = Scrappy
-Description = The Pokémon can hit Ghost-type targets with any move and it can't be intimidated.
+Name = 胆量
+Description = 一般属性和格斗属性的招式可以击中幽灵属性的宝可梦。对威吓也毫不动摇。
 #-------------------------------
 [STORMDRAIN]
-Name = Storm Drain
-Description = The Pokémon draws in all Water-type moves to raise its Sp. Attack stat.
+Name = 引水
+Description = 将水属性的招式引到自己身上，不会受到伤害，而是会提高特攻。
 #-------------------------------
 [ICEBODY]
-Name = Ice Body
-Description = The Pokémon regains a little HP at the end of every turn in snow.
+Name = 冰冻之躯
+Description = 下雪天气时，会缓缓回复HP。
 #-------------------------------
 [SOLIDROCK]
-Name = Solid Rock
-Description = The Pokémon takes less damage from attacks that are "super effective".
+Name = 坚硬岩石
+Description = 受到效果绝佳的攻击时，可以减弱其威力。
 #-------------------------------
 [SNOWWARNING]
-Name = Snow Warning
-Description = When the Pokémon enters a battle, it makes it snow.
+Name = 降雪
+Description = 出场时，会将天气变为下雪。
 #-------------------------------
 [HONEYGATHER]
-Name = Honey Gather
-Description = The Pokémon may gather Honey from somewhere after a battle.
+Name = 采蜜
+Description = 战斗结束时，有时候会捡来甜甜蜜。
 #-------------------------------
 [FRISK]
-Name = Frisk
-Description = Upon entering a battle, the Pokémon identifies the items being held by foes.
+Name = 察觉
+Description = 出场时，可以察觉对手的持有物。
 #-------------------------------
 [RECKLESS]
-Name = Reckless
-Description = Powers up the Pokémon's moves that have recoil or crash damage.
+Name = 舍身
+Description = 自己会因反作用力受伤的招式，其威力会提高。
 #-------------------------------
 [MULTITYPE]
-Name = Multitype
-Description = The Pokémon changes its form and type to match the Plate it is holding.
+Name = 多属性
+Description = 自己的属性会根据持有的石板而改变。
 #-------------------------------
 [FLOWERGIFT]
-Name = Flower Gift
-Description = Boosts the Attack and Sp. Def stats of the Pokémon and its allies in harsh sun.
+Name = 花之礼
+Description = 晴朗天气时，自己与同伴的攻击和特防能力会提高。
 #-------------------------------
 [BADDREAMS]
-Name = Bad Dreams
-Description = At the end of each turn, nightmares deal damage to all foes that are asleep.
+Name = 梦魇
+Description = 给予睡眠状态的对手伤害。
 #-------------------------------
 [PICKPOCKET]
-Name = Pickpocket
-Description = The Pokémon steals the held item of an attacker that makes contact with it.
+Name = 顺手牵羊
+Description = 盗取接触到自己的对手的道具。
 #-------------------------------
 [SHEERFORCE]
-Name = Sheer Force
-Description = Powers up the Pokémon's moves, but removes their additional effects.
+Name = 强行
+Description = 招式的追加效果消失，但因此能以更高的威力使出招式。
 #-------------------------------
 [CONTRARY]
-Name = Contrary
-Description = Any stat changes that affect the Pokémon are inverted.
+Name = 唱反调
+Description = 能力的变化发生逆转，原本提高时会降低，而原本降低时会提高。
 #-------------------------------
 [UNNERVE]
-Name = Unnerve
-Description = The Pokémon makes its foes nervous and unable to eat their held Berries.
+Name = 紧张感
+Description = 让对手紧张，使其无法食用树果。
 #-------------------------------
 [DEFIANT]
-Name = Defiant
-Description = The Pokémon sharply raises its Attack stat if its stats are lowered by a foe.
+Name = 不服输
+Description = 被对手降低能力时，攻击会大幅提高。
 #-------------------------------
 [DEFEATIST]
-Name = Defeatist
-Description = The Pokémon's Attack and Sp. Atk stats are halved if its HP is at or below half.
+Name = 软弱
+Description = HP减半时，会变得软弱，攻击和特攻会减半。
 #-------------------------------
 [CURSEDBODY]
-Name = Cursed Body
-Description = WHen the Pokémon is hit by a damaging move, it may disable that move.
+Name = 诅咒之躯
+Description = 受到攻击时，有时会把对手的招式变为定身法状态。
 #-------------------------------
 [HEALER]
-Name = Healer
-Description = The Pokémon may cure its allies' status conditions at the end of each turn.
+Name = 治愈之心
+Description = 有时会治愈异常状态的同伴。
 #-------------------------------
 [FRIENDGUARD]
-Name = Friend Guard
-Description = The Pokémon reduces the damage taken by allies from any attacks.
+Name = 友情防守
+Description = 可以减少我方的伤害。
 #-------------------------------
 [WEAKARMOR]
-Name = Weak Armor
-Description = Physical damage lowers the Pokémon's Defense and sharply raises its Speed.
+Name = 碎裂铠甲
+Description = 受到物理招式的伤害时，防御会降低，速度会大幅提高。
 #-------------------------------
 [HEAVYMETAL]
-Name = Heavy Metal
-Description = The Pokémon is clad in heavy metal that doubles its weight.
+Name = 重金属
+Description = 自身的重量会变为2倍。
 #-------------------------------
 [LIGHTMETAL]
-Name = Light Metal
-Description = The Pokémon's metal shell is lighter than usual, halving its weight.
+Name = 轻金属
+Description = 自身的重量会减半。
 #-------------------------------
 [MULTISCALE]
-Name = Multiscale
-Description = Halves the damage taken by the Pokémon from an attack while its HP is full.
+Name = 多重鳞片
+Description = HP全满时，受到的伤害会变少。
 #-------------------------------
 [TOXICBOOST]
-Name = Toxic Boost
-Description = Powers up the Pokémon's physical moves when it is poisoned.
+Name = 中毒激升
+Description = 变为中毒状态时，物理招式的威力会提高。
 #-------------------------------
 [FLAREBOOST]
-Name = Flare Boost
-Description = Powers up the Pokémon's special moves when it is burned.
+Name = 受热激升
+Description = 变为灼伤状态时，特殊招式的威力会提高。
 #-------------------------------
 [HARVEST]
-Name = Harvest
-Description = The Pokémon may restore its consumed held Berry at the end of each turn.
+Name = 收获
+Description = 可以多次制作出已被使用掉的树果。
 #-------------------------------
 [TELEPATHY]
-Name = Telepathy
-Description = The Pokémon anticipates and avoids the damaging attacks of its allies.
+Name = 心灵感应
+Description = 读取我方的攻击，并闪避其招式伤害。
 #-------------------------------
 [MOODY]
-Name = Moody
-Description = Every turn, the Pokémon sharply raises one of its stats and lowers another.
+Name = 心情不定
+Description = 每一回合，能力中的某项会大幅提高，而某项会降低。
 #-------------------------------
 [OVERCOAT]
-Name = Overcoat
-Description = Protects the Pokémon from weather damage, and from powder and spore effects.
+Name = 防尘
+Description = 不会受到沙暴的伤害。也不会受到粉末类和孢子类招式的影响。
 #-------------------------------
 [POISONTOUCH]
-Name = Poison Touch
-Description = When the Pokémon attacks and makes contact, it may poison the target.
+Name = 毒手
+Description = 只通过接触就有可能让对手变为中毒状态。
 #-------------------------------
 [REGENERATOR]
-Name = Regenerator
-Description = The Pokémon restores a third of its HP when it switches out of battle.
+Name = 再生力
+Description = 退回同行队伍后，HP会少量回复。
 #-------------------------------
 [BIGPECKS]
-Name = Big Pecks
-Description = The Pokémon's Defense stat cannot be lowered by another Pokémon.
+Name = 健壮胸肌
+Description = 不会受到防御降低的效果。
 #-------------------------------
 [SANDRUSH]
-Name = Sand Rush
-Description = Sandstorms double the Pokémon's Speed stat and will not damage it.
+Name = 拨沙
+Description = 沙暴天气时，速度会提高。
 #-------------------------------
 [WONDERSKIN]
-Name = Wonder Skin
-Description = Makes status moves that target the Pokémon more likely to miss.
+Name = 奇迹皮肤
+Description = 成为不易受到变化招式攻击的身体。
 #-------------------------------
 [ANALYTIC]
-Name = Analytic
-Description = Powers up the Pokémon's move if the Pokémon is the last to act that turn.
+Name = 分析
+Description = 如果在最后使出招式，招式的威力会提高。
 #-------------------------------
 [ILLUSION]
-Name = Illusion
-Description = The Pokémon enters battle disguised as the last Pokémon in the party.
+Name = 幻觉
+Description = 假扮成同行队伍中的最后一只宝可梦出场，迷惑对手。
 #-------------------------------
 [IMPOSTER]
-Name = Imposter
-Description = When the Pokémon enters battle, it transforms into the Pokémon it is facing.
+Name = 变身者
+Description = 变身为当前面对的宝可梦。
 #-------------------------------
 [INFILTRATOR]
-Name = Infiltrator
-Description = The Pokémon bypasses its target's safeguards, screens and substitutes.
+Name = 穿透
+Description = 可以穿透对手的壁障或替身进行攻击。
 #-------------------------------
 [MUMMY]
-Name = Mummy
-Description = Contact with the Pokémon changes the attacker's Ability to Mummy.
+Name = 木乃伊
+Description = 被对手接触到后，会将对手变为木乃伊。
 #-------------------------------
 [MOXIE]
-Name = Moxie
-Description = When the Pokémon knocks out a target, it raises its Attack stat.
+Name = 自信过度
+Description = 如果打倒对手，就会充满自信，攻击会提高。
 #-------------------------------
 [JUSTIFIED]
-Name = Justified
-Description = When the Pokémon is hit by a damaging Dark-type move, it raises its Attack stat.
+Name = 正义之心
+Description = 受到恶属性的招式攻击时，因为正义感，攻击会提高。
 #-------------------------------
 [RATTLED]
-Name = Rattled
-Description = Taking damage from a Dark-, Ghost- or Bug-type move raises its Speed stat.
+Name = 胆怯
+Description = 受到恶属性、幽灵属性和虫属性的攻击或威吓时，会因胆怯而速度提高。
 #-------------------------------
 [MAGICBOUNCE]
-Name = Magic Bounce
-Description = The Pokémon reflects detrimental status moves back at the attacker.
+Name = 魔法镜
+Description = 可以不受到由对手使出的变化招式影响，并将其反弹。
 #-------------------------------
 [SAPSIPPER]
-Name = Sap Sipper
-Description = Being hit by a Grass-type move raises the Pokémon's Attack stat instead.
+Name = 食草
+Description = 受到草属性的招式攻击时，不会受到伤害，而是攻击会提高。
 #-------------------------------
 [PRANKSTER]
-Name = Prankster
-Description = The Pokémon's status moves gain priority and are used faster.
+Name = 恶作剧之心
+Description = 可以率先使出变化招式。
 #-------------------------------
 [SANDFORCE]
-Name = Sand Force
-Description = Sandstorms power up the Pokémon's Rock-, Ground- and Steel-type moves.
+Name = 沙之力
+Description = 沙暴天气时，岩石属性、地面属性和钢属性的招式威力会提高。
 #-------------------------------
 [IRONBARBS]
-Name = Iron Barbs
-Description = When the Pokémon is hit by a move that makes contact, it damages the attacker.
+Name = 铁刺
+Description = 用铁刺给予接触到自己的对手伤害。
 #-------------------------------
 [ZENMODE]
-Name = Zen Mode
-Description = Changes the Pokémon's shape when its HP drops to half or less.
+Name = 达摩模式
+Description = HP变为一半以下时，样子会改变。
 #-------------------------------
 [VICTORYSTAR]
-Name = Victory Star
-Description = The Pokémon boosts the accuracy of itself and its allies.
+Name = 胜利之星
+Description = 自己和同伴的命中率会提高。
 #-------------------------------
 [TURBOBLAZE]
-Name = Turboblaze
-Description = When the Pokémon attacks, the Abilities of all other Pokémon are ignored.
+Name = 涡轮火焰
+Description = 可以不受对手特性的干扰，向对手使出招式。
 #-------------------------------
 [TERAVOLT]
-Name = Teravolt
-Description = When the Pokémon attacks, the Abilities of all other Pokémon are ignored.
+Name = 兆级电压
+Description = 可以不受对手特性的干扰，向对手使出招式。
 #-------------------------------
 [AROMAVEIL]
-Name = Aroma Veil
-Description = Protects the Pokémon and its allies from effects that limit the use of moves.
+Name = 芳香幕
+Description = 可以防住向自己和同伴发出的心灵攻击。
 #-------------------------------
 [FLOWERVEIL]
-Name = Flower Veil
-Description = Ally Grass-type Pokémon are protected from status conditions and stat drops.
+Name = 花幕
+Description = 我方的草属性宝可梦能力不会降低，也不会变为异常状态。
 #-------------------------------
 [CHEEKPOUCH]
-Name = Cheek Pouch
-Description = The Pokémon restores a third of its HP when it eats a Berry.
+Name = 颊囊
+Description = 无论是哪种树果，食用后，HP都会回复。
 #-------------------------------
 [PROTEAN]
-Name = Protean
-Description = Once while in battle, the Pokémon's type changes to that of the move it uses.
+Name = 变幻自如
+Description = 变为与自己使出的招式相同的属性。每次出场战斗仅生效一次。
 #-------------------------------
 [FURCOAT]
-Name = Fur Coat
-Description = The Pokémon's thick fur halves the damage it takes from physical moves.
+Name = 毛皮大衣
+Description = 对手给予的物理招式的伤害会减半。
 #-------------------------------
 [MAGICIAN]
-Name = Magician
-Description = The Pokémon steals the held item from any target it hits with a move.
+Name = 魔术师
+Description = 夺走被自己的招式击中的对手的道具。
 #-------------------------------
 [BULLETPROOF]
-Name = Bulletproof
-Description = The Pokémon is immune to all ball and bomb moves.
+Name = 防弹
+Description = 可以防住对手的球和弹类招式。
 #-------------------------------
 [COMPETITIVE]
-Name = Competitive
-Description = When a foe lowers one of the Pokémon's stats, sharply raises its Sp. Atk.
+Name = 好胜
+Description = 如果被对手降低能力，特攻会大幅提高。
 #-------------------------------
 [STRONGJAW]
-Name = Strong Jaw
-Description = Powers up the Pokémon's biting moves.
+Name = 强壮之颚
+Description = 因为颚部强壮，啃咬类招式的威力会提高。
 #-------------------------------
 [REFRIGERATE]
-Name = Refrigerate
-Description = The Pokémon's Normal-type moves become Ice-type and are powered up a little.
+Name = 冰冻皮肤
+Description = 一般属性的招式会变为冰属性。威力会少量提高。
 #-------------------------------
 [SWEETVEIL]
-Name = Sweet Veil
-Description = Prevents the Pokémon and its allies from falling asleep.
+Name = 甜幕
+Description = 自己和同伴的宝可梦不会变为睡眠状态。
 #-------------------------------
 [STANCECHANGE]
-Name = Stance Change
-Description = The Pokémon changes between Blade and Shield Forme with certain attacks.
+Name = 战斗切换
+Description = 如果使出攻击招式，会变为刀剑形态，如果使出招式“王者盾牌”，会变为盾牌形态。
 #-------------------------------
 [GALEWINGS]
-Name = Gale Wings
-Description = The Pokémon's Flying-type moves gain priority when its HP is full.
+Name = 疾风之翼
+Description = HP全满时，飞行属性的招式可以率先使出。
 #-------------------------------
 [MEGALAUNCHER]
-Name = Mega Launcher
-Description = Powers up the Pokémon's aura and pulse moves.
+Name = 超级发射器
+Description = 波动和波导类招式的威力会提高。
 #-------------------------------
 [GRASSPELT]
-Name = Grass Pelt
-Description = Boosts the Pokémon's Defense stat on Grassy Terrain.
+Name = 草之毛皮
+Description = 在青草场地时，防御会提高。
 #-------------------------------
 [SYMBIOSIS]
-Name = Symbiosis
-Description = The Pokémon passes its held item to an ally that has used up their held item.
+Name = 共生
+Description = 同伴使用道具时，会把自己持有的道具传递给同伴。
 #-------------------------------
 [TOUGHCLAWS]
-Name = Tough Claws
-Description = Powers up the Pokémon's moves if they make direct contact with the target.
+Name = 硬爪
+Description = 接触到对手的招式威力会提高。
 #-------------------------------
 [PIXILATE]
-Name = Pixilate
-Description = The Pokémon's Normal-type moves become Fairy-type and are powered up a little.
+Name = 妖精皮肤
+Description = 一般属性的招式会变为妖精属性。威力会少量提高。
 #-------------------------------
 [GOOEY]
-Name = Gooey
-Description = The Pokémon lowers the Speed stat of attackers that make contact with it.
+Name = 黏滑
+Description = 对于用攻击接触到自己的对手，会降低其速度。
 #-------------------------------
 [AERILATE]
-Name = Aerilate
-Description = The Pokémon's Normal-type moves become Flying-type and are powered up a little.
+Name = 飞行皮肤
+Description = 一般属性的招式会变为飞行属性。威力会少量提高。
 #-------------------------------
 [PARENTALBOND]
-Name = Parental Bond
-Description = The child attacks after the parent, but it does less damage.
+Name = 亲子爱
+Description = 亲子俩可以合计攻击2次。
 #-------------------------------
 [DARKAURA]
-Name = Dark Aura
-Description = Powers up the Dark-type moves of all Pokémon on the field.
+Name = 暗黑气场
+Description = 全体的恶属性招式变强。
 #-------------------------------
 [FAIRYAURA]
-Name = Fairy Aura
-Description = Powers up the Fairy-type moves of all Pokémon on the field.
+Name = 妖精气场
+Description = 全体的妖精属性招式变强。
 #-------------------------------
 [AURABREAK]
-Name = Aura Break
-Description = The effects of "Aura" Abilities are reversed, weakening affected moves.
+Name = 气场破坏
+Description = 让气场的效果发生逆转，降低威力。
 #-------------------------------
 [PRIMORDIALSEA]
-Name = Primordial Sea
-Description = While in battle, the Pokémon causes a rain that nullifies Fire-type moves.
+Name = 始源之海
+Description = 变为不会受到火属性攻击的天气。
 #-------------------------------
 [DESOLATELAND]
-Name = Desolate Land
-Description = While in battle, the Pokémon causes harsh sunlight that nullifies Water-type moves.
+Name = 终结之地
+Description = 变为不会受到水属性攻击的天气。
 #-------------------------------
 [DELTASTREAM]
-Name = Delta Stream
-Description = While in battle, generates strong winds that remove Flying-type's weaknesses.
+Name = 德尔塔气流
+Description = 变为令飞行属性的弱点消失的天气。
 #-------------------------------
 [STAMINA]
-Name = Stamina
-Description = When the Pokémon is hit by a damaging move, it raises its Defense stat.
+Name = 持久力
+Description = 受到攻击时，防御会提高。
 #-------------------------------
 [WIMPOUT]
-Name = Wimp Out
-Description = The Pokémon cowardly switches out when its HP drops to half or less.
+Name = 跃跃欲逃
+Description = HP变为一半时，会慌慌张张逃走，退回同行队伍中。
 #-------------------------------
 [EMERGENCYEXIT]
-Name = Emergency Exit
-Description = The Pokémon, sensing danger, switches out when its HP drops to half or less.
+Name = 危险回避
+Description = HP变为一半时，为了回避危险，会退回到同行队伍中。
 #-------------------------------
 [WATERCOMPACTION]
-Name = Water Compaction
-Description = When the Pokémon is hit by a Water-type move, sharply raises its Defense stat.
+Name = 遇水凝固
+Description = 受到水属性的招式攻击时，防御会大幅提高。
 #-------------------------------
 [MERCILESS]
-Name = Merciless
-Description = The Pokémon's attacks always become critical hits if the target is poisoned.
+Name = 不仁不义
+Description = 攻击中毒状态的对手时，必定会击中要害。
 #-------------------------------
 [SHIELDSDOWN]
-Name = Shields Down
-Description = While its HP is at half or less, the Pokémon's shell is broken off.
+Name = 界限盾壳
+Description = HP变为一半时，壳会坏掉，变得有攻击性。
 #-------------------------------
 [STAKEOUT]
-Name = Stakeout
-Description = Doubles the damage of the Pokémon's attack if the target just switched in.
+Name = 蹲守
+Description = 可以对替换出场的对手以2倍的伤害进行攻击。
 #-------------------------------
 [WATERBUBBLE]
-Name = Water Bubble
-Description = Powers up the Pokémon's Water-type moves. Weakens incoming Fire-type moves.
+Name = 水泡
+Description = 降低自己受到的火属性招式的威力，不会灼伤。
 #-------------------------------
 [STEELWORKER]
-Name = Steelworker
-Description = Powers up the Pokémon's Steel-type moves.
+Name = 钢能力者
+Description = 钢属性的招式威力会提高。
 #-------------------------------
 [BERSERK]
-Name = Berserk
-Description = The Pokémon raises its Sp. Atk stat when it is hit and its HP drops to half or less.
+Name = 怒火冲天
+Description = 因对手的攻击HP变为一半时，特攻会提高。
 #-------------------------------
 [SLUSHRUSH]
-Name = Slush Rush
-Description = The Pokémon's Speed stat is doubled in snow.
+Name = 拨雪
+Description = 下雪天气时，速度会提高。
 #-------------------------------
 [LONGREACH]
-Name = Long Reach
-Description = The Pokémon uses its moves without making contact with the target.
+Name = 远隔
+Description = 可以不接触对手就使出所有的招式。
 #-------------------------------
 [LIQUIDVOICE]
-Name = Liquid Voice
-Description = The Pokémon's sound-based moves become Water-type.
+Name = 湿润之声
+Description = 所有的声音招式都变为水属性。
 #-------------------------------
 [TRIAGE]
-Name = Triage
-Description = The Pokémon's healing moves gain priority and are used faster.
+Name = 先行治疗
+Description = 可以率先使出回复招式。
 #-------------------------------
 [GALVANIZE]
-Name = Galvanize
-Description = The Pokémon's Normal-type moves become Electric-type and are powered up.
+Name = 电气皮肤
+Description = 一般属性的招式会变为电属性。威力会少量提高。
 #-------------------------------
 [SURGESURFER]
-Name = Surge Surfer
-Description = Doubles the Pokémon's Speed stat on Electric Terrain.
+Name = 冲浪之尾
+Description = 电气场地时，速度会变为2倍。
 #-------------------------------
 [SCHOOLING]
-Name = Schooling
-Description = The Pokémon forms a powerful school while it is at a quarter HP or higher.
+Name = 鱼群
+Description = HP多的时候会聚起来变强。HP剩余量变少时，群体会分崩离析。
 #-------------------------------
 [DISGUISE]
-Name = Disguise
-Description = Once per battle, the shroud that covers the Pokémon protects it from an attack.
+Name = 画皮
+Description = 通过画皮覆盖住身体，可以防住1次攻击。
 #-------------------------------
 [BATTLEBOND]
-Name = Battle Bond
-Description = Once when the Pokémon defeats a foe, it raises its Attack, Sp. Atk and Speed.
+Name = 牵绊变身
+Description = 打倒对手时，与训练家的牵绊会增强，自己的攻击、特攻、速度会提高。
 #-------------------------------
 [POWERCONSTRUCT]
-Name = Power Construct
-Description = The Pokémon turns into its Complete Forme when its HP becomes half or less.
+Name = 群聚变形
+Description = HP变为一半时，细胞们会赶来支援，变为完全体形态。
 #-------------------------------
 [CORROSION]
-Name = Corrosion
-Description = The Pokémon can poison its target even if its type should prevent poisoning.
+Name = 腐蚀
+Description = 可以使钢属性和毒属性的宝可梦也陷入中毒状态。
 #-------------------------------
 [COMATOSE]
-Name = Comatose
-Description = The Pokémon never wakes up from its drowsing. It can attack while sleeping.
+Name = 绝对睡眠
+Description = 总是半梦半醒的状态，绝对不会醒来。可以就这么睡着进行攻击。
 #-------------------------------
 [QUEENLYMAJESTY]
-Name = Queenly Majesty
-Description = The Pokémon's majesty renders its foes unable to use their priority attacks.
+Name = 女王的威严
+Description = 向对手施加威慑力，使其无法对我方使出先制招式。
 #-------------------------------
 [INNARDSOUT]
-Name = Innards Out
-Description = If the Pokémon is knocked out, it deals its lost HP as damage to the attacker.
+Name = 飞出的内在物
+Description = 被对手打倒的时候，会给予对手相当于HP剩余量的伤害。
 #-------------------------------
 [DANCER]
-Name = Dancer
-Description = Whenever a dance move is used in battle, the Pokémon immediately repeats it.
+Name = 舞者
+Description = 有谁使出跳舞招式时，自己也能就这么接着使出跳舞招式。
 #-------------------------------
 [BATTERY]
-Name = Battery
-Description = Powers up the special moves used by the Pokémon's allies.
+Name = 蓄电池
+Description = 会提高我方的特殊招式的威力。
 #-------------------------------
 [FLUFFY]
-Name = Fluffy
-Description = The Pokémon takes half damage from contact moves but double from Fire moves.
+Name = 毛茸茸
+Description = 会将对手所给予的接触类招式的伤害减半，但火属性招式的伤害会变为2倍。
 #-------------------------------
 [DAZZLING]
-Name = Dazzling
-Description = The Pokémon's vivid body renders its foes unable to use their priority attacks.
+Name = 鲜艳之躯
+Description = 让对手吓一跳，使其无法对我方使出先制招式。
 #-------------------------------
 [SOULHEART]
-Name = Soul-Heart
-Description = The Pokémon raises its Sp. Atk stat every time another Pokémon faints.
+Name = 魂心
+Description = 宝可梦每次变为濒死状态时，特攻会提高。
 #-------------------------------
 [TANGLINGHAIR]
-Name = Tangling Hair
-Description = Contact with the Pokémon lowers the attacker's Speed stat.
+Name = 卷发
+Description = 对于用攻击接触到自己的对手，会降低其速度。
 #-------------------------------
 [RECEIVER]
-Name = Receiver
-Description = The Pokémon copies the Ability of an ally when the ally faints.
+Name = 接球手
+Description = 继承被打倒的同伴的特性，变为相同的特性。
 #-------------------------------
 [POWEROFALCHEMY]
-Name = Power of Alchemy
-Description = The Pokémon copies the Ability of an ally when the ally faints.
+Name = 化学之力
+Description = 继承被打倒的同伴的特性，变为相同的特性。
 #-------------------------------
 [BEASTBOOST]
-Name = Beast Boost
-Description = The Pokémon raises its best stat each time it knocks out a Pokémon.
+Name = 异兽提升
+Description = 打倒对手的时候，自己最高的那项能力会提高。
 #-------------------------------
 [RKSSYSTEM]
-Name = RKS System
-Description = The Pokémon changes its type to match the memory disc it is holding.
+Name = AR系统
+Description = 根据持有的存储碟，自己的属性会改变。
 #-------------------------------
 [ELECTRICSURGE]
-Name = Electric Surge
-Description = When the Pokémon enters battle, it turns the ground into Electric Terrain.
+Name = 电气制造者
+Description = 出场时，会布下电气场地。
 #-------------------------------
 [PSYCHICSURGE]
-Name = Psychic Surge
-Description = When the Pokémon enters battle, it turns the ground into Psychic Terrain.
+Name = 精神制造者
+Description = 出场时，会布下精神场地。
 #-------------------------------
 [MISTYSURGE]
-Name = Misty Surge
-Description = When the Pokémon enters battle, it turns the ground into Misty Terrain.
+Name = 薄雾制造者
+Description = 出场时，会布下薄雾场地。
 #-------------------------------
 [GRASSYSURGE]
-Name = Grassy Surge
-Description = When the Pokémon enters battle, it turns the ground into Grassy Terrain.
+Name = 青草制造者
+Description = 出场时，会布下青草场地。
 #-------------------------------
 [FULLMETALBODY]
-Name = Full Metal Body
-Description = The Pokémon's stats cannot be lowered by other Pokémon's moves/Abilities.
+Name = 金属防护
+Description = 不会因为对手的招式或特性而被降低能力。
 #-------------------------------
 [SHADOWSHIELD]
-Name = Shadow Shield
-Description = Halves the damage taken by the Pokémon from an attack while its HP is full.
+Name = 幻影防守
+Description = HP全满时，受到的伤害会变少。
 #-------------------------------
 [PRISMARMOR]
-Name = Prism Armor
-Description = The Pokémon takes less damage from attacks that are "super effective".
+Name = 棱镜装甲
+Description = 受到效果绝佳的攻击时，可以减弱其威力。
 #-------------------------------
 [NEUROFORCE]
-Name = Neuroforce
-Description = Powers up the Pokémon's moves if they are "super effective".
+Name = 脑核之力
+Description = 效果绝佳的攻击，威力会变得更强。
 #-------------------------------
 [INTREPIDSWORD]
-Name = Intrepid Sword
-Description = When the Pokémon first enters a battle, it raises its Attack stat.
+Name = 不挠之剑
+Description = 首次出场时，攻击会提高。
 #-------------------------------
 [DAUNTLESSSHIELD]
-Name = Dauntless Shield
-Description = When the Pokémon first enters a battle, it raises its Defense stat.
+Name = 不屈之盾
+Description = 首次出场时，防御会提高。
 #-------------------------------
 [LIBERO]
-Name = Libero
-Description = Once while in battle, the Pokémon's type changes to that of the move it uses.
+Name = 自由者
+Description = 变为与自己使出的招式相同的属性。每次出场战斗仅生效一次。
 #-------------------------------
 [BALLFETCH]
-Name = Ball Fetch
-Description = Once per battle, the Pokémon retrieves the first thrown Poké Ball.
+Name = 捡球
+Description = 没有携带道具时，会拾取第1个投出后捕捉失败的精灵球。
 #-------------------------------
 [COTTONDOWN]
-Name = Cotton Down
-Description = When the Pokémon is hit by a damaging move, lowers the Speed stat of all others.
+Name = 棉絮
+Description = 受到攻击后撒下棉絮，降低除自己以外的所有宝可梦的速度。
 #-------------------------------
 [PROPELLERTAIL]
-Name = Propeller Tail
-Description = The Pokémon's moves cannot be redirected by foes' moves/Abilities.
+Name = 螺旋尾鳍
+Description = 能无视具有吸引对手招式效果的特性或招式的影响。
 #-------------------------------
 [MIRRORARMOR]
-Name = Mirror Armor
-Description = Bounces stat-lowering effects back at the Pokémon inflicting them.
+Name = 镜甲
+Description = 只反弹自己受到的能力降低效果。
 #-------------------------------
 [GULPMISSILE]
-Name = Gulp Missile
-Description = The Pokémon catches prey using Surf or Dive. It spits it out when hit to attack.
+Name = 一口导弹
+Description = 冲浪或潜水时会叼来猎物。受到伤害时，会吐出猎物进行攻击。
 #-------------------------------
 [STALWART]
-Name = Stalwart
-Description = This Pokémon's moves cannot be redirected by foes' moves/Abilities.
+Name = 坚毅
+Description = 能无视具有吸引对手招式效果的特性或招式的影响。
 #-------------------------------
 [STEAMENGINE]
-Name = Steam Engine
-Description = Raises the Pokémon's Speed stat drastically if hit by a Fire- or Water-type move.
+Name = 蒸汽机
+Description = 受到水属性或火属性的招式攻击时，速度会巨幅提高。
 Flags = FasterEggHatching
 #-------------------------------
 [PUNKROCK]
-Name = Punk Rock
-Description = Powers up the Pokémon's sound moves. It takes half damage from sound moves.
+Name = 庞克摇滚
+Description = 声音招式的威力会提高。受到的声音招式伤害会减半。
 #-------------------------------
 [SANDSPIT]
-Name = Sand Spit
-Description = When the Pokémon is hit by a damaging move, it summons a sandstorm.
+Name = 吐沙
+Description = 受到攻击时，会刮起沙暴。
 #-------------------------------
 [ICESCALES]
-Name = Ice Scales
-Description = The Pokémon's ice scales halve the damage it takes from special moves.
+Name = 冰鳞粉
+Description = 由于有冰鳞粉的守护，受到的特殊攻击伤害会减半。
 #-------------------------------
 [RIPEN]
-Name = Ripen
-Description = Ripens the Pokémon's held Berry and doubles its effect when consumed.
+Name = 熟成
+Description = 使树果成熟，效果变为2倍。
 #-------------------------------
 [ICEFACE]
-Name = Ice Face
-Description = The ice head blocks damage from a physical attack, but breaks. Snow restores it.
+Name = 结冻头
+Description = 头部的冰会代替自己承受物理攻击，但是样子会改变。下雪时，冰会恢复原状。
 #-------------------------------
 [POWERSPOT]
-Name = Power Spot
-Description = Powers up the moves used by the Pokémon's allies.
+Name = 能量点
+Description = 只要处在相邻位置，招式的威力就会提高。
 #-------------------------------
 [MIMICRY]
-Name = Mimicry
-Description = The Pokémon's type changes depending on the terrain.
+Name = 拟态
+Description = 宝可梦的属性会根据场地的状态而变化。
 #-------------------------------
 [SCREENCLEANER]
-Name = Screen Cleaner
-Description = When the Pokémon enters battle, it removes the effects of screens.
+Name = 除障
+Description = 出场时，敌方和我方的光墙、反射壁和极光幕的效果会消失。
 #-------------------------------
 [STEELYSPIRIT]
-Name = Steely Spirit
-Description = Powers up the Steel-type moves of the Pokémon and its allies.
+Name = 钢之意志
+Description = 我方的钢属性攻击威力会提高。
 #-------------------------------
 [PERISHBODY]
-Name = Perish Body
-Description = Contact with the Pokémon makes it and the attacker faint three turns later.
+Name = 灭亡之躯
+Description = 受到接触类招式攻击时，双方都会在3回合后变为濒死状态。替换后效果消失。
 #-------------------------------
 [WANDERINGSPIRIT]
-Name = Wandering Spirit
-Description = The Pokémon swaps Abilities with an attacker that makes contact with it.
+Name = 游魂
+Description = 与使用接触类招式攻击自己的宝可梦互换特性。
 #-------------------------------
 [GORILLATACTICS]
-Name = Gorilla Tactics
-Description = Boosts the Pokémon's Attack stat but only allows it to use one move.
+Name = 一猩一意
+Description = 虽然攻击会提高，但是只能使出一开始所选的招式。
 #-------------------------------
 [NEUTRALIZINGGAS]
-Name = Neutralizing Gas
-Description = The Pokémon's gas nullifies the effects of all other Pokémon's Abilities.
+Name = 化学变化气体
+Description = 特性为化学变化气体的宝可梦在场时，场上所有宝可梦的特性效果都会消失或者无法生效。
 #-------------------------------
 [PASTELVEIL]
-Name = Pastel Veil
-Description = Prevents the Pokémon and its allies from being poisoned.
+Name = 粉彩护幕
+Description = 自己和同伴都不会陷入中毒的异常状态。
 #-------------------------------
 [HUNGERSWITCH]
-Name = Hunger Switch
-Description = The Pokémon changes between Full Belly Mode and Hangry Mode each turn.
+Name = 饱了又饿
+Description = 每回合结束时会在满腹花纹与空腹花纹之间交替改变样子。
 #-------------------------------
 [QUICKDRAW]
-Name = Quick Draw
-Description = Enables the Pokémon to attack first occasionally when using a damaging move.
+Name = 速击
+Description = 有时能比对手先一步行动。
 #-------------------------------
 [UNSEENFIST]
-Name = Unseen Fist
-Description = The Pokémon's moves that make contact ignore the target's protections.
+Name = 无形拳
+Description = 如果使出的是接触到对手的招式，就可以无视守护效果进行攻击。
 #-------------------------------
 [CURIOUSMEDICINE]
-Name = Curious Medicine
-Description = When the Pokémon enters battle, it removes all stat changes from its allies.
+Name = 怪药
+Description = 出场时会从贝壳撒药，将我方的能力变化复原。
 #-------------------------------
 [TRANSISTOR]
-Name = Transistor
-Description = Powers up the Pokémon's Electric-type moves.
+Name = 电晶体
+Description = 电属性的招式威力会提高。
 #-------------------------------
 [DRAGONSMAW]
-Name = Dragon's Maw
-Description = Powers up the Pokémon's Dragon-type moves.
+Name = 龙颚
+Description = 龙属性的招式威力会提高。
 #-------------------------------
 [CHILLINGNEIGH]
-Name = Chilling Neigh
-Description = When the Pokémon knocks out a target, it raises its Attack stat.
+Name = 苍白嘶鸣
+Description = 打倒对手时会用冰冷的声音嘶鸣并提高攻击。
 #-------------------------------
 [GRIMNEIGH]
-Name = Grim Neigh
-Description = When the Pokémon knocks out a target, it raises its Special Attack stat.
+Name = 漆黑嘶鸣
+Description = 打倒对手时会用恐怖的声音嘶鸣并提高特攻。
 #-------------------------------
 [ASONECHILLINGNEIGH]
-Name = As One
-Description = Combines Calyrex's Unnerve Ability and Glastrier's Chilling Neigh Ability.
+Name = 人马一体
+Description = 兼备蕾冠王的紧张感和灵幽马的漆黑嘶鸣这两种特性。
 #-------------------------------
 [ASONEGRIMNEIGH]
-Name = As One
-Description = Combines Calyrex's Unnerve Ability and Spectrier's Grim Neigh Ability.
+Name = 人马一体
+Description = 兼备蕾冠王的紧张感和灵幽马的漆黑嘶鸣这两种特性。
 #-------------------------------
 [LINGERINGAROMA]
-Name = Lingering Aroma
-Description = Contact with the Pokémon changes the attacker's Ability to Lingering Aroma.
+Name = 甩不掉的气味
+Description = 被对手接触到后，甩不掉的气味会沾上对手。
 #-------------------------------
 [SEEDSOWER]
-Name = Seed Sower
-Description = When the Pokémon is hit by an attack, it turns the ground into Grassy Terrain.
+Name = 掉出种子
+Description = 受到攻击时，会将脚下变成青草场地。
 #-------------------------------
 [THERMALEXCHANGE]
-Name = Thermal Exchange
-Description = The Pokémon raises its Attack stat when hit by a Fire move. Can't be burned.
+Name = 热交换
+Description = 受到火属性的招式攻击时，攻击会提高，且不会陷入灼伤状态。
 #-------------------------------
 [ANGERSHELL]
-Name = Anger Shell
-Description = Lowers defenses and raises offences/Speed when its HP drops to half or less.
+Name = 愤怒甲壳
+Description = 因被对手攻击而HP变为一半时，会因愤怒降低防御和特防。但攻击、特攻、速度会提高。
 #-------------------------------
 [PURIFYINGSALT]
-Name = Purifying Salt
-Description = The Pokémon is immune to status problems. Damage from Ghost moves is halved.
+Name = 洁净之盐
+Description = 因洁净的盐而不会陷入异常状态。会让幽灵属性的招式伤害减半。
 #-------------------------------
 [WELLBAKEDBODY]
-Name = Well-Baked Body
-Description = Being hit by a Fire-type move sharply raises the Pokémon's Defense instead.
+Name = 焦香之躯
+Description = 受到火属性的招式攻击时，不会受到伤害，而是会大幅提高防御。
 #-------------------------------
 [WINDRIDER]
-Name = Wind Rider
-Description = Being hit by a wind move raises the Pokémon's Attack stat instead.
+Name = 乘风
+Description = 吹起了顺风或受到风的招式攻击时，不会受到伤害，而是会提高攻击。
 #-------------------------------
 [GUARDDOG]
-Name = Guard Dog
-Description = The Pokémon can't be forced to switch out. Being intimidated raises Attack.
+Name = 看门犬
+Description = 受到威吓时，攻击会提高。让替换宝可梦的招式和道具无效。
 #-------------------------------
 [ROCKYPAYLOAD]
-Name = Rocky Payload
-Description = Powers up the Pokémon's Rock-type moves.
+Name = 搬岩
+Description = 岩石属性的招式威力会提高。
 #-------------------------------
 [WINDPOWER]
-Name = Wind Power
-Description = Being hit by a wind move powers up the Pokémon's next Electric-type move.
+Name = 风力发电
+Description = 受到风的招式攻击时，会变为充电状态。
 #-------------------------------
 [ZEROTOHERO]
-Name = Zero to Hero
-Description = The Pokémon transforms into its Hero Form when it switches out.
+Name = 全能变身
+Description = 回到同行队伍后，会变为全能形态。
 #-------------------------------
 [COMMANDER]
-Name = Commander
-Description = The Pokémon enters an ally Dondozo's mouth upon entering battle.
+Name = 发号施令
+Description = 出场时，若我方当中有吃吼霸，就会进入其口中，并从其口中发出指令。
 #-------------------------------
 [ELECTROMORPHOSIS]
-Name = Electromorphosis
-Description = Being hit by a move powers up the Pokémon's next Electric-type move.
+Name = 电力转换
+Description = 受到伤害时，会变为充电状态。
 #-------------------------------
 [PROTOSYNTHESIS]
-Name = Protosynthesis
-Description = Boosts the Pokémon's highest stat with Booster Energy or in harsh sunlight.
+Name = 古代活性
+Description = 携带着驱劲能量或天气为晴朗时，数值最高的能力会提高。
 #-------------------------------
 [QUARKDRIVE]
-Name = Quark Drive
-Description = Boosts the Pokémon's highest stat with Booster Energy or Electric Terrain.
+Name = 夸克充能
+Description = 携带着驱劲能量或在电气场地上时，数值最高的能力会提高。
 #-------------------------------
 [GOODASGOLD]
-Name = Good as Gold
-Description = The Pokémon is immune to other Pokémon's status moves that target it.
+Name = 黄金之躯
+Description = 不会氧化的坚固黄金身躯不会受到对手的变化招式的影响。
 #-------------------------------
 [VESSELOFRUIN]
-Name = Vessel of Ruin
-Description = The Pokémon's power reduces the Sp. Atk stats of all other Pokémon.
+Name = 灾祸之鼎
+Description = 以能呼唤灾厄的鼎的力量降低除自己以外的宝可梦的特攻。
 #-------------------------------
 [SWORDOFRUIN]
-Name = Sword of Ruin
-Description = The Pokémon's power reduces the Defense stats of all other Pokémon.
+Name = 灾祸之剑
+Description = 以能呼唤灾厄的剑的力量降低除自己以外的宝可梦的防御。
 #-------------------------------
 [TABLETSOFRUIN]
-Name = Tablets of Ruin
-Description = The Pokémon's power reduces the Attack stats of all other Pokémon.
+Name = 灾祸之简
+Description = 以能呼唤灾厄的简的力量降低除自己以外的宝可梦的攻击。
 #-------------------------------
 [BEADSOFRUIN]
-Name = Beads of Ruin
-Description = The Pokémon's power reduces the Sp. Def stats of all other Pokémon.
+Name = 灾祸之玉
+Description = 以能呼唤灾厄的勾玉的力量降低除自己以外的宝可梦的特防。
 #-------------------------------
 [ORICHALCUMPULSE]
-Name = Orichalcum Pulse
-Description = When entering battle, turns the sunlight harsh. Boosts its Attack in harsh sun.
+Name = 绯红脉动
+Description = 出场时，会将天气变为晴朗。日照强烈时，会通过古代的脉动升高攻击。
 #-------------------------------
 [HADRONENGINE]
-Name = Hadron Engine
-Description = When entering battle, creates Electric Terrain. Boosts its Sp. Atk on it.
+Name = 强子引擎
+Description = 出场时，会布下电气场地。处于电气场地时，会通过未来的机关升高特攻。
 #-------------------------------
 [OPPORTUNIST]
-Name = Opportunist
-Description = If an opponent's stat is raised, the Pokémon raises that same stat for itself.
+Name = 跟风
+Description = 对手的能力提高时，自己也会趁机同样地提高能力。
 #-------------------------------
 [CUDCHEW]
-Name = Cud Chew
-Description = When the Pokémon eats a Berry, it will eat it once more after the next turn.
+Name = 反刍
+Description = 吃了树果后，会在下一回合结束时从胃反刍出来再吃1次。
 #-------------------------------
 [SHARPNESS]
-Name = Sharpness
-Description = Powers up the Pokémon's slicing moves.
+Name = 锋锐
+Description = 提高切割对手的招式的威力。
 #-------------------------------
 [SUPREMEOVERLORD]
-Name = Supreme Overlord
-Description = The Pokémon's Attack and Sp. Atk stats are boosted for each defeated ally.
+Name = 大将
+Description = 出场时，攻击和特攻会按照目前被打倒的同伴数量逐渐提升，被打倒越多，提升越多。
 #-------------------------------
 [COSTAR]
-Name = Costar
-Description = When the Pokémon enters a battle, it copies an ally's stat changes.
+Name = 同台共演
+Description = 出场时，复制同伴的能力变化。
 #-------------------------------
 [TOXICDEBRIS]
-Name = Toxic Debris
-Description = When the Pokémon is hit by a physical move, it scatters poison spikes.
+Name = 毒满地
+Description = 受到物理招式的伤害时，会在对手脚下散布毒菱。
 #-------------------------------
 [ARMORTAIL]
-Name = Armor Tail
-Description = The Pokémon prevents foes from using priority moves against it or its allies.
+Name = 尾甲
+Description = 包裹头部的神秘尾巴使对手无法对我方使出先制招式。
 #-------------------------------
 [EARTHEATER]
-Name = Earth Eater
-Description = Being hit by a Ground-type move will restores the Pokémon's HP instead.
+Name = 食土
+Description = 受到地面属性的招式攻击时，不会受到伤害，而是会得到回复。
 #-------------------------------
 [MYCELIUMMIGHT]
-Name = Mycelium Might
-Description = The Pokémon always uses status moves slowly to ignore impeding Abilities.
+Name = 菌丝之力
+Description = 使出变化招式时，虽然行动必定会变慢，但能不受对手的特性妨碍。
 #-------------------------------
 [HOSPITALITY]
-Name = Hospitality
-Description = When the Pokémon enters a battle, it restores a quarter of an ally's HP.
+Name = 款待
+Description = 出场时款待同伴，回复其少量HP。
 #-------------------------------
 [MINDSEYE]
-Name = Mind's Eye
-Description = The Pokémon can hit Ghost-type targets with any move and it can't lose accuracy.
+Name = 心眼
+Description = 一般属性和格斗属性的招式可以击中幽灵属性的宝可梦。无视对手的闪避率的变化，且命中率不会被降低。
 #-------------------------------
 [EMBODYASPECTSPEED]
-Name = Embody Aspect
-Description = When the Pokémon enters a battle, its mask shines and raises its Speed stat.
+Name = 面影辉映
+Description = 将回忆映于心中，让础石面具发出光辉，提高自己的防御。
 #-------------------------------
 [EMBODYASPECTATTACK]
-Name = Embody Aspect
-Description = When the Pokémon enters a battle, its mask shines and raises its Attack stat.
+Name = 面影辉映
+Description = 将回忆映于心中，让础石面具发出光辉，提高自己的防御。
 #-------------------------------
 [EMBODYASPECTSPDEF]
-Name = Embody Aspect
-Description = When the Pokémon enters a battle, its mask shines and raises its Sp. Def stat.
+Name = 面影辉映
+Description = 将回忆映于心中，让础石面具发出光辉，提高自己的防御。
 #-------------------------------
 [EMBODYASPECTDEFENSE]
-Name = Embody Aspect
-Description = When the Pokémon enters a battle, its mask shines and raises its Defense stat.
+Name = 面影辉映
+Description = 将回忆映于心中，让础石面具发出光辉，提高自己的防御。
 #-------------------------------
 [TOXICCHAIN]
-Name = Toxic Chain
-Description = The Pokémon's toxic chain may badly poison any target the Pokémon hits.
+Name = 毒锁链
+Description = 凭借含有毒素的锁链的力量，有时能让被招式击中的对手陷入剧毒状态。
 #-------------------------------
 [SUPERSWEETSYRUP]
-Name = Supersweet Syrup
-Description = When the Pokémon first enters a battle, it lowers the foes' evasiveness.
+Name = 甘露之蜜
+Description = 首次出场时，会散发出甜腻的蜜的香味来降低对手的闪避率。
 #-------------------------------
 [TERASHIFT]
-Name = Tera Shift
-Description = When the Pokémon enters a battle, it transforms into its Terastal Form.
+Name = 太晶变形
+Description = 出场时，会吸收周围的能量，变为太晶形态。
 #-------------------------------
 [TERASHELL]
-Name = Tera Shell
-Description = When its HP is full, damaging moves that hit the Pokémon will be "not very effective".
+Name = 太晶甲壳
+Description = 甲壳蕴藏着全部属性的力量，会将自己HP全满时受到的伤害全都变为效果不好。
 #-------------------------------
 [TERAFORMZERO]
-Name = Teraform Zero
-Description = The Pokémon prevents all effects of weather and terrain.
+Name = 归零化境
+Description = 太乐巴戈斯变为星晶形态时，蕴藏在它身上的力量会将天气和场地的影响全部归零。
 #-------------------------------
 [POISONPUPPETEER]
-Name = Poison Puppeteer
-Description = Pokémon poisoned by Pecharunt's moves will also become confused.
+Name = 毒傀儡
+Description = 因桃歹郎的招式而陷入中毒状态的对手同时也会陷入混乱状态。
 #-------------------------------
 [PIERCINGDRILL]
-Name = Piercing Drill
-Description = The Pokémon's moves that make contact ignore the target's protections.
+Name = 贯穿钻
+Description = 使用接触类招式时，会无视对手的防守效果，给予原本的1/4的伤害。对手的防守以外的效果会发动。
 #-------------------------------
 [DRAGONIZE]
-Name = Dragonize
-Description = The Pokémon's Normal-type moves become Dragon-type and are powered up a little.
+Name = 龙皮肤
+Description = 一般属性的招式会变为龙属性，威力会变为1.2倍。
 #-------------------------------
 [EELEVATE]
-Name = Eelevate
-Description = The Pokémon is immune to Ground-type moves. Dealing a KO raises its best stat.
+Name = 鳗鳗高升
+Description = 会变为不在地面上，地面属性的招式、撒菱、毒菱、黏黏网状态将无效。用攻击打倒对手时，自己最高的那项能力会提高1阶。
 #-------------------------------
 [MEGASOL]
-Name = Mega Sol
-Description = The Pokémon can use its moves as if the weather were harsh sunlight.
+Name = 超级日光
+Description = 即使天气不是大晴天状态，也能以大晴天状态使用招式。
 #-------------------------------
 [FIREMANE]
-Name = Fire Mane
-Description = Powers up the Pokémon's Fire-type moves.
+Name = 火焰鬃毛
+Description = 火属性招式的威力会变为1.5倍。
 #-------------------------------
 [SPICYSPRAY]
-Name = Spicy Spray
-Description = When the Pokémon takes damage from a move, it burns the attacker.
+Name = 辣椒喷发
+Description = 受到招式的伤害时，会让对手陷入灼伤状态。

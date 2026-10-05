@@ -1,401 +1,401 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [HOENNCOOL]
-Name = Cool Ribbon
+Name = 帅气奖章
 IconPosition = 0
-Description = Hoenn Cool Contest Normal Rank winner!
+Description = 丰缘帅气华丽大赛一般等级优胜者！
 #-------------------------------
 [HOENNCOOLSUPER]
-Name = Cool Ribbon Super
+Name = 帅气超级奖章
 IconPosition = 1
-Description = Hoenn Cool Contest Super Rank winner!
+Description = 丰缘帅气华丽大赛超级等级优胜者！
 #-------------------------------
 [HOENNCOOLHYPER]
-Name = Cool Ribbon Hyper
+Name = 帅气高级奖章
 IconPosition = 2
-Description = Hoenn Cool Contest Hyper Rank winner!
+Description = 丰缘帅气华丽大赛高级等级优胜者！
 #-------------------------------
 [HOENNCOOLMASTER]
-Name = Cool Ribbon Master
+Name = 帅气大师奖章
 IconPosition = 3
-Description = Hoenn Cool Contest Master Rank winner!
+Description = 丰缘帅气华丽大赛大师等级优胜者！
 #-------------------------------
 [HOENNBEAUTY]
-Name = Beauty Ribbon
+Name = 美丽奖章
 IconPosition = 4
-Description = Hoenn Beauty Contest Normal Rank winner!
+Description = 丰缘美丽华丽大赛一般等级优胜者！
 #-------------------------------
 [HOENNBEAUTYSUPER]
-Name = Beauty Ribbon Super
+Name = 美丽超级奖章
 IconPosition = 5
-Description = Hoenn Beauty Contest Super Rank winner!
+Description = 丰缘美丽华丽大赛超级等级优胜者！
 #-------------------------------
 [HOENNBEAUTYHYPER]
-Name = Beauty Ribbon Hyper
+Name = 美丽高级奖章
 IconPosition = 6
-Description = Hoenn Beauty Contest Hyper Rank winner!
+Description = 丰缘美丽华丽大赛高级等级优胜者！
 #-------------------------------
 [HOENNBEAUTYMASTER]
-Name = Beauty Ribbon Master
+Name = 美丽大师奖章
 IconPosition = 7
-Description = Hoenn Beauty Contest Master Rank winner!
+Description = 丰缘美丽华丽大赛大师等级优胜者！
 #-------------------------------
 [HOENNCUTE]
-Name = Cute Ribbon
+Name = 可爱奖章
 IconPosition = 8
-Description = Hoenn Cute Contest Normal Rank winner!
+Description = 丰缘可爱华丽大赛一般等级优胜者！
 #-------------------------------
 [HOENNCUTESUPER]
-Name = Cute Ribbon Super
+Name = 可爱超级奖章
 IconPosition = 9
-Description = Hoenn Cute Contest Super Rank winner!
+Description = 丰缘可爱华丽大赛超级等级优胜者！
 #-------------------------------
 [HOENNCUTEHYPER]
-Name = Cute Ribbon Hyper
+Name = 可爱高级奖章
 IconPosition = 10
-Description = Hoenn Cute Contest Hyper Rank winner!
+Description = 丰缘可爱华丽大赛高级等级优胜者！
 #-------------------------------
 [HOENNCUTEMASTER]
-Name = Cute Ribbon Master
+Name = 可爱大师奖章
 IconPosition = 11
-Description = Hoenn Cute Contest Master Rank winner!
+Description = 丰缘可爱华丽大赛大师等级优胜者！
 #-------------------------------
 [HOENNSMART]
-Name = Smart Ribbon
+Name = 聪明奖章
 IconPosition = 12
-Description = Hoenn Smart Contest Normal Rank winner!
+Description = 丰缘聪明华丽大赛一般等级优胜者！
 #-------------------------------
 [HOENNSMARTSUPER]
-Name = Smart Ribbon Super
+Name = 聪明超级奖章
 IconPosition = 13
-Description = Hoenn Smart Contest Super Rank winner!
+Description = 丰缘聪明华丽大赛超级等级优胜者！
 #-------------------------------
 [HOENNSMARTHYPER]
-Name = Smart Ribbon Hyper
+Name = 聪明高级奖章
 IconPosition = 14
-Description = Hoenn Smart Contest Hyper Rank winner!
+Description = 丰缘聪明华丽大赛高级等级优胜者！
 #-------------------------------
 [HOENNSMARTMASTER]
-Name = Smart Ribbon Master
+Name = 聪明大师奖章
 IconPosition = 15
-Description = Hoenn Smart Contest Master Rank winner!
+Description = 丰缘聪明华丽大赛大师等级优胜者！
 #-------------------------------
 [HOENNTOUGH]
-Name = Tough Ribbon
+Name = 强壮奖章
 IconPosition = 16
-Description = Hoenn Tough Contest Normal Rank winner!
+Description = 丰缘强壮华丽大赛一般等级优胜者！
 #-------------------------------
 [HOENNTOUGHSUPER]
-Name = Tough Ribbon Super
+Name = 强壮超级奖章
 IconPosition = 17
-Description = Hoenn Tough Contest Super Rank winner!
+Description = 丰缘强壮华丽大赛超级等级优胜者！
 #-------------------------------
 [HOENNTOUGHHYPER]
-Name = Tough Ribbon Hyper
+Name = 强壮高级奖章
 IconPosition = 18
-Description = Hoenn Tough Contest Hyper Rank winner!
+Description = 丰缘强壮华丽大赛高级等级优胜者！
 #-------------------------------
 [HOENNTOUGHMASTER]
-Name = Tough Ribbon Master
+Name = 强壮大师奖章
 IconPosition = 19
-Description = Hoenn Tough Contest Master Rank winner!
+Description = 丰缘强壮华丽大赛大师等级优胜者！
 #-------------------------------
 [SINNOHCOOL]
-Name = Cool Ribbon
+Name = 帅气奖章
 IconPosition = 20
-Description = Super Contest Cool Category Normal Rank winner!
+Description = 超级华丽大赛帅气部门一般等级优胜者！
 #-------------------------------
 [SINNOHCOOLSUPER]
-Name = Cool Ribbon Great
+Name = 帅气高手奖章
 IconPosition = 21
-Description = Super Contest Cool Category Great Rank winner!
+Description = 超级华丽大赛帅气部门高级等级优胜者！
 #-------------------------------
 [SINNOHCOOLHYPER]
-Name = Cool Ribbon Ultra
+Name = 帅气究极奖章
 IconPosition = 22
-Description = Super Contest Cool Category Ultra Rank winner!
+Description = 超级华丽大赛帅气部门究极等级优胜者！
 #-------------------------------
 [SINNOHCOOLMASTER]
-Name = Cool Ribbon Master
+Name = 帅气大师奖章
 IconPosition = 23
-Description = Super Contest Cool Category Master Rank winner!
+Description = 超级华丽大赛帅气部门大师等级优胜者！
 #-------------------------------
 [SINNOHBEAUTY]
-Name = Beauty Ribbon
+Name = 美丽奖章
 IconPosition = 24
-Description = Super Contest Beauty Category Normal Rank winner!
+Description = 超级华丽大赛美丽部门一般等级优胜者！
 #-------------------------------
 [SINNOHBEAUTYSUPER]
-Name = Beauty Ribbon Great
+Name = 美丽高手奖章
 IconPosition = 25
-Description = Super Contest Beauty Category Great Rank winner!
+Description = 超级华丽大赛美丽部门高级等级优胜者！
 #-------------------------------
 [SINNOHBEAUTYHYPER]
-Name = Beauty Ribbon Ultra
+Name = 美丽究极奖章
 IconPosition = 26
-Description = Super Contest Beauty Category Ultra Rank winner!
+Description = 超级华丽大赛美丽部门究极等级优胜者！
 #-------------------------------
 [SINNOHBEAUTYMASTER]
-Name = Beauty Ribbon Master
+Name = 美丽大师奖章
 IconPosition = 27
-Description = Super Contest Beauty Category Master Rank winner!
+Description = 超级华丽大赛美丽部门大师等级优胜者！
 #-------------------------------
 [SINNOHCUTE]
-Name = Cute Ribbon
+Name = 可爱奖章
 IconPosition = 28
-Description = Super Contest Cute Category Normal Rank winner!
+Description = 超级华丽大赛可爱部门一般等级优胜者！
 #-------------------------------
 [SINNOHCUTESUPER]
-Name = Cute Ribbon Great
+Name = 可爱高手奖章
 IconPosition = 29
-Description = Super Contest Cute Category Great Rank winner!
+Description = 超级华丽大赛可爱部门高级等级优胜者！
 #-------------------------------
 [SINNOHCUTEHYPER]
-Name = Cute Ribbon Ultra
+Name = 可爱究极奖章
 IconPosition = 30
-Description = Super Contest Cute Category Ultra Rank winner!
+Description = 超级华丽大赛可爱部门究极等级优胜者！
 #-------------------------------
 [SINNOHCUTEMASTER]
-Name = Cute Ribbon Master
+Name = 可爱大师奖章
 IconPosition = 31
-Description = Super Contest Cute Category Master Rank winner!
+Description = 超级华丽大赛可爱部门大师等级优胜者！
 #-------------------------------
 [SINNOHSMART]
-Name = Smart Ribbon
+Name = 聪明奖章
 IconPosition = 32
-Description = Super Contest Smart Category Normal Rank winner!
+Description = 超级华丽大赛聪明部门一般等级优胜者！
 #-------------------------------
 [SINNOHSMARTSUPER]
-Name = Smart Ribbon Great
+Name = 聪明高手奖章
 IconPosition = 33
-Description = Super Contest Smart Category Great Rank winner!
+Description = 超级华丽大赛聪明部门高级等级优胜者！
 #-------------------------------
 [SINNOHSMARTHYPER]
-Name = Smart Ribbon Ultra
+Name = 聪明究极奖章
 IconPosition = 34
-Description = Super Contest Smart Category Ultra Rank winner!
+Description = 超级华丽大赛聪明部门究极等级优胜者！
 #-------------------------------
 [SINNOHSMARTMASTER]
-Name = Smart Ribbon Master
+Name = 聪明大师奖章
 IconPosition = 35
-Description = Super Contest Smart Category Master Rank winner!
+Description = 超级华丽大赛聪明部门大师等级优胜者！
 #-------------------------------
 [SINNOHTOUGH]
-Name = Tough Ribbon
+Name = 强壮奖章
 IconPosition = 36
-Description = Super Contest Tough Category Normal Rank winner!
+Description = 超级华丽大赛强壮部门一般等级优胜者！
 #-------------------------------
 [SINNOHTOUGHSUPER]
-Name = Tough Ribbon Great
+Name = 强壮高手奖章
 IconPosition = 37
-Description = Super Contest Tough Category Great Rank winner!
+Description = 超级华丽大赛强壮部门高级等级优胜者！
 #-------------------------------
 [SINNOHTOUGHHYPER]
-Name = Tough Ribbon Ultra
+Name = 强壮究极奖章
 IconPosition = 38
-Description = Super Contest Tough Category Ultra Rank winner!
+Description = 超级华丽大赛强壮部门究极等级优胜者！
 #-------------------------------
 [SINNOHTOUGHMASTER]
-Name = Tough Ribbon Master
+Name = 强壮大师奖章
 IconPosition = 39
-Description = Super Contest Tough Category Master Rank winner!
+Description = 超级华丽大赛强壮部门大师等级优胜者！
 #-------------------------------
 [WINNING]
-Name = Winning Ribbon
+Name = 优胜奖章
 IconPosition = 40
-Description = Ribbon awarded for clearing Hoenn's Battle Tower's Lv. 50 challenge.
+Description = 在丰缘对战塔通过50级挑战的证明。
 #-------------------------------
 [VICTORY]
-Name = Victory Ribbon
+Name = 胜利奖章
 IconPosition = 41
-Description = Ribbon awarded for clearing Hoenn's Battle Tower's Lv. 100 challenge.
+Description = 在丰缘对战塔通过100级挑战的证明。
 #-------------------------------
 [ABILITY]
-Name = Ability Ribbon
+Name = 才能奖章
 IconPosition = 42
-Description = A Ribbon awarded for defeating the Tower Tycoon at the Battle Tower.
+Description = 在对战塔击败塔主的证明。
 #-------------------------------
 [GREATABILITY]
-Name = Great Ability Ribbon
+Name = 超级才能奖章
 IconPosition = 43
-Description = A Ribbon awarded for defeating the Tower Tycoon at the Battle Tower.
+Description = 在对战塔击败塔主的证明。
 #-------------------------------
 [DOUBLEABILITY]
-Name = Double Ability Ribbon
+Name = 双人才能奖章
 IconPosition = 44
-Description = A Ribbon awarded for completing the Battle Tower Double challenge.
+Description = 完成对战塔双打挑战的证明。
 #-------------------------------
 [MULTIABILITY]
-Name = Multi Ability Ribbon
+Name = 多人才能奖章
 IconPosition = 45
-Description = A Ribbon awarded for completing the Battle Tower Multi challenge.
+Description = 完成对战塔多人挑战的证明。
 #-------------------------------
 [PAIRABILITY]
-Name = Pair Ability Ribbon
+Name = 组队才能奖章
 IconPosition = 46
-Description = A Ribbon awarded for completing the Battle Tower Link Multi challenge.
+Description = 完成对战塔连接多人挑战的证明。
 #-------------------------------
 [WORLDABILITY]
-Name = World Ability Ribbon
+Name = 世界才能奖章
 IconPosition = 47
-Description = A Ribbon awarded for completing the Wi-Fi Battle Tower challenge.
+Description = 完成Wi-Fi对战塔挑战的证明。
 #-------------------------------
 [CHAMPION]
-Name = Champion Ribbon
+Name = 冠军奖章
 IconPosition = 48
-Description = Ribbon for clearing the Pokémon League and entering the Hall of Fame in another region.
+Description = 在其它地区通过宝可梦联盟并进入名人堂的证明。
 #-------------------------------
 [SINNOHCHAMP]
-Name = Sinnoh Champ Ribbon
+Name = 神奥冠军奖章
 IconPosition = 49
-Description = Ribbon awarded for beating the Sinnoh Champion and entering the Hall of Fame.
+Description = 击败神奥冠军并进入名人堂的证明。
 #-------------------------------
 [RECORD]
-Name = Record Ribbon
+Name = 纪录奖章
 IconPosition = 50
-Description = A Ribbon awarded for setting an incredible record.
+Description = 创下惊人纪录的证明。
 #-------------------------------
 [EVENT]
-Name = Event Ribbon
+Name = 活动奖章
 IconPosition = 51
-Description = Pokémon Event Participation Ribbon.
+Description = 宝可梦活动的参加证明。
 #-------------------------------
 [LEGEND]
-Name = Legend Ribbon
+Name = 传说奖章
 IconPosition = 52
-Description = A Ribbon awarded for setting a legendary record.
+Description = 创下传说纪录的证明。
 #-------------------------------
 [GORGEOUS]
-Name = Gorgeous Ribbon
+Name = 豪华奖章
 IconPosition = 53
-Description = An extraordinarily gorgeous and extravagant Ribbon.
+Description = 极其华丽且奢华的奖章。
 #-------------------------------
 [ROYAL]
-Name = Royal Ribbon
+Name = 皇家奖章
 IconPosition = 54
-Description = An incredibly regal Ribbon with an air of nobility.
+Description = 带有高贵气息、极具皇家风范的奖章。
 #-------------------------------
 [GORGEOUSROYAL]
-Name = Gorgeous Royal Ribbon
+Name = 豪华皇家奖章
 IconPosition = 55
-Description = A gorgeous and regal Ribbon that is the peak of fabulous.
+Description = 华丽与皇家兼具、极致出色的奖章。
 #-------------------------------
 [ALERT]
-Name = Alert Ribbon
+Name = 警觉奖章
 IconPosition = 56
-Description = A Ribbon for recalling an invigorating event that created life energy.
+Description = 回忆起激发活力、创造生命能量之事的奖章。
 #-------------------------------
 [SHOCK]
-Name = Shock Ribbon
+Name = 震惊奖章
 IconPosition = 57
-Description = A Ribbon for recalling a thrilling event that made life more exciting.
+Description = 回忆起让生活更加精彩的刺激之事的奖章。
 #-------------------------------
 [DOWNCAST]
-Name = Downcast Ribbon
+Name = 忧郁奖章
 IconPosition = 58
-Description = A Ribbon for recalling feelings of sadness that added spice to life.
+Description = 回忆起为生活增添滋味的悲伤之情的奖章。
 #-------------------------------
 [CARELESS]
-Name = Careless Ribbon
+Name = 大意奖章
 IconPosition = 59
-Description = A Ribbon for recalling a careless error that helped steer life decisions.
+Description = 回忆起帮助指引人生抉择的大意失误的奖章。
 #-------------------------------
 [RELAX]
-Name = Relax Ribbon
+Name = 放松奖章
 IconPosition = 60
-Description = A Ribbon for recalling a refreshing event that added sparkle to life.
+Description = 回忆起为生活增添光彩的清爽之事的奖章。
 #-------------------------------
 [SNOOZE]
-Name = Snooze Ribbon
+Name = 打盹奖章
 IconPosition = 61
-Description = A Ribbon for recalling a deep slumber that made life soothing.
+Description = 回忆起让生活安宁的沉沉酣睡的奖章。
 #-------------------------------
 [SMILE]
-Name = Smile Ribbon
+Name = 微笑奖章
 IconPosition = 62
-Description = A Ribbon for recalling that smiles enrich the quality of life.
+Description = 回忆起笑容丰富生活品质的奖章。
 #-------------------------------
 [FOOTPRINT]
-Name = Footprint Ribbon
+Name = 足迹奖章
 IconPosition = 63
-Description = A Ribbon awarded to a Pokémon deemed to have a top-quality footprint.
+Description = 授予拥有最棒脚印的宝可梦的证明。
 #-------------------------------
 [ARTIST]
-Name = Artist Ribbon
+Name = 肖像奖章
 IconPosition = 64
-Description = Ribbon awarded for being chosen as a super sketch model in Hoenn.
+Description = 在丰缘被选为超级写生模特的证明。
 #-------------------------------
 [EFFORT]
-Name = Effort Ribbon
+Name = 努力奖章
 IconPosition = 65
-Description = Ribbon awarded for being an exceptionally hard worker.
+Description = 授予格外努力者的证明。
 #-------------------------------
 [BIRTHDAY]
-Name = Birthday Ribbon
+Name = 生日奖章
 IconPosition = 66
-Description = A Ribbon to celebrate a birthday.
+Description = 庆祝生日的奖章。
 #-------------------------------
 [SPECIAL]
-Name = Special Ribbon
+Name = 特殊奖章
 IconPosition = 67
-Description = A special Ribbon for a special day.
+Description = 为特别日子准备的特别奖章。
 #-------------------------------
 [CLASSIC]
-Name = Classic Ribbon
+Name = 经典奖章
 IconPosition = 68
-Description = A Ribbon that proclaims love for Pokémon.
+Description = 宣扬对宝可梦之爱的奖章。
 #-------------------------------
 [PREMIER]
-Name = Premier Ribbon
+Name = 纪念奖章
 IconPosition = 69
-Description = Special Holiday Ribbon.
+Description = 特别的节日奖章。
 #-------------------------------
 [SOUVENIR]
-Name = Souvenir Ribbon
+Name = 纪念品奖章
 IconPosition = 70
-Description = A Ribbon to cherish a special memory.
+Description = 珍藏特别回忆的奖章。
 #-------------------------------
 [WISHING]
-Name = Wishing Ribbon
+Name = 许愿奖章
 IconPosition = 71
-Description = A Ribbon said to make your wish come true.
+Description = 据说能让愿望成真的奖章。
 #-------------------------------
 [NATIONAL]
-Name = National Ribbon
+Name = 全国奖章
 IconPosition = 72
-Description = A Ribbon awarded for overcoming all difficult challenges.
+Description = 克服所有艰难挑战的证明。
 #-------------------------------
 [COUNTRY]
-Name = Country Ribbon
+Name = 国家奖章
 IconPosition = 73
-Description = Pokémon League Champion Ribbon.
+Description = 宝可梦联盟冠军奖章。
 #-------------------------------
 [BATTLECHAMPION]
-Name = Battle Champion Ribbon
+Name = 对战冠军奖章
 IconPosition = 74
-Description = Battle Competition Champion Ribbon.
+Description = 对战大赛冠军奖章。
 #-------------------------------
 [REGIONALCHAMPION]
-Name = Regional Champion Ribbon
+Name = 地区冠军奖章
 IconPosition = 75
-Description = Pokémon World Championships Regional Champion Ribbon.
+Description = 宝可梦世界锦标赛地区冠军奖章。
 #-------------------------------
 [EARTH]
-Name = Earth Ribbon
+Name = 地球奖章
 IconPosition = 76
-Description = A Ribbon awarded for winning 100 matches in a row.
+Description = 连续赢得100场比赛的证明。
 #-------------------------------
 [WORLD]
-Name = World Ribbon
+Name = 世界奖章
 IconPosition = 77
-Description = Pokémon League Champion Ribbon.
+Description = 宝可梦联盟冠军奖章。
 #-------------------------------
 [NATIONALCHAMPION]
-Name = National Champion Ribbon
+Name = 全国冠军奖章
 IconPosition = 78
-Description = Pokémon World Championships National Champion Ribbon.
+Description = 宝可梦世界锦标赛全国冠军奖章。
 #-------------------------------
 [WORLDCHAMPION]
-Name = World Champion Ribbon
+Name = 世界冠军奖章
 IconPosition = 79
-Description = Pokémon World Championships World Champion Ribbon.
+Description = 宝可梦世界锦标赛世界冠军奖章。

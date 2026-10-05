@@ -1,20 +1,20 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [CAMPER,Liam]
-LoseText = A very good battle, indeed!
+LoseText = 真是场非常精彩的战斗！
 Pokemon = DIGLETT,10
 Pokemon = BONSLY,11
 #-------------------------------
 [LEADER_Brock,Brock]
 Items = FULLRESTORE,FULLRESTORE
-LoseText = Very good.
+LoseText = 很好。
 Pokemon = GEODUDE,12
     Moves = DEFENSECURL,HEADSMASH,ROCKPOLISH,ROCKTHROW
     AbilityIndex = 0
     Gender = male
     IV = 20,20,20,20,20,20
 Pokemon = ONIX,14
-    Name = Rocky
+    Name = 洛奇
     Moves = HEADSMASH,ROCKTHROW,RAGE,ROCKTOMB
     AbilityIndex = 0
     Item = SITRUSBERRY
@@ -24,60 +24,60 @@ Pokemon = ONIX,14
     Ball = HEAVYBALL
 #-------------------------------
 [TEAMROCKET_M,Grunt,1]
-LoseText = You're too good for me!
+LoseText = 你对我来说太强了！
 Pokemon = WEEPINBELL,21
     Shadow = true
 #-------------------------------
 [TEAMROCKET_F,Grunt,1]
-LoseText = You're too good for me!
+LoseText = 你对我来说太强了！
 Pokemon = BURMY,19
 Pokemon = WINGULL,19
 Pokemon = ELECTABUZZ,20
     Shadow = true
 #-------------------------------
 [YOUNGSTER,Ben]
-LoseText = Aww, I lost.
+LoseText = 呜，我输了。
 Pokemon = RATTATA,11
 Pokemon = EKANS,11
 #-------------------------------
 [CAMPER,Jeff]
-LoseText = A very good battle, indeed!
+LoseText = 真是场非常精彩的战斗！
 Pokemon = SPEAROW,16
 Pokemon = SENTRET,16
 #-------------------------------
 [CAMPER,Jeff,1]
-LoseText = You beat me again!
+LoseText = 你又打败我了！
 Pokemon = FEAROW,29
 Pokemon = FURRET,29
 #-------------------------------
 [PICNICKER,Susie]
-LoseText = Defeated! Oh my!
+LoseText = 被击败了！哎呀！
 Pokemon = MEOWTH,18
 #-------------------------------
 [PICNICKER,Susie,1]
-LoseText = Defeated! Oh my!
+LoseText = 被击败了！哎呀！
 Pokemon = PERSIAN,32
 #-------------------------------
 [HIKER,Ford]
-LoseText = You're too good for me!
+LoseText = 你对我来说太强了！
 Pokemon = MACHOP,19
 #-------------------------------
 [FISHERMAN,Andrew]
-LoseText = Washed out!
+LoseText = 被冲垮了！
 Pokemon = MAGIKARP,14
 Pokemon = MAGIKARP,18
 #-------------------------------
 [BEAUTY,Bridget]
-LoseText = My Skitty!
+LoseText = 我的向尾喵！
 Pokemon = SKITTY,18
 #-------------------------------
 [LASS,Crissy]
-LoseText = You didn't have to win so convincingly!
+LoseText = 你没必要赢得这么彻底吧！
 Pokemon = PLUSLE,17
 Pokemon = MINUN,17
 #-------------------------------
 [COOLCOUPLE,Alice & Bob]
-LoseText = Our teamwork failed!
+LoseText = 我们的合作失败了！
 Pokemon = TURTWIG,19
 Pokemon = CHIMCHAR,19
 #-------------------------------
@@ -86,31 +86,31 @@ LoseText = ...
 Pokemon = COMBUSKEN,19
 #-------------------------------
 [SWIMMER2_F,Ariel]
-LoseText = Washed out!
+LoseText = 被冲垮了！
 Pokemon = STARYU,15
 Pokemon = SHELLOS,11
     Form = 1
 #-------------------------------
 [RIVAL1,Blue]
-LoseText = Not too shabby.
+LoseText = 还不错嘛。
 Pokemon = PIDGEOTTO,17
 Pokemon = RATTATA,15
 Pokemon = BULBASAUR,18
 #-------------------------------
 [RIVAL1,Blue,1]
-LoseText = Not too shabby.
+LoseText = 还不错嘛。
 Pokemon = PIDGEOTTO,17
 Pokemon = RATTATA,15
 Pokemon = CHARMANDER,18
 #-------------------------------
 [RIVAL1,Blue,2]
-LoseText = Not too shabby.
+LoseText = 还不错嘛。
 Pokemon = PIDGEOTTO,17
 Pokemon = RATTATA,15
 Pokemon = SQUIRTLE,18
 #-------------------------------
 [CHAMPION,Blue]
-LoseText = A good battle indeed!
+LoseText = 真是场精彩的战斗！
 Pokemon = VENUSAUR,63
     Item = SITRUSBERRY
 Pokemon = CHARIZARD,63
