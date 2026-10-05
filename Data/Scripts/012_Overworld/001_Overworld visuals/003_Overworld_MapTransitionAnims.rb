@@ -108,7 +108,7 @@ def pbStartOver(game_over = false)
   else
     homedata = GameData::PlayerMetadata.get($player.character_ID)&.home
     homedata = GameData::Metadata.get.home if !homedata
-    if homedata && !pbRgssExists?(sprintf("Data/Map%03d.rxdata", homedata[0]))
+    if homedata && !Game_Map.map_data_exists?(homedata[0])
       if $DEBUG
         pbMessage(_ISPRINTF("在数据文件夹中找不到地图“Map{1:03d}”。游戏将在玩家所在的位置重新开始。", homedata[0]))
       end

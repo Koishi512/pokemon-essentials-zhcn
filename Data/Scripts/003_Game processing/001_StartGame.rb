@@ -18,6 +18,7 @@ module Game
     if $data_system.start_map_id == 0 || !pbRgssExists?(map_file)
       raise _INTL("地图编辑器未设置开始位置。")
     end
+    end
   end
 
   # Loads bootup data from save file (if it exists) or creates bootup data (if

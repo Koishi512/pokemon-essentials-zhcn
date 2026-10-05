@@ -1266,3 +1266,7 @@ Description = 火属性招式的威力会变为1.5倍。
 [SPICYSPRAY]
 Name = 辣椒喷发
 Description = 受到招式的伤害时，会让对手陷入灼伤状态。
+#-------------------------------
+[AURAGUARD]
+Name = 气场守护
+Description = 减半受到接触招式造成的伤害。

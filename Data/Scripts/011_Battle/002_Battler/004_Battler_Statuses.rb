@@ -568,6 +568,7 @@ class Battle::Battler
     @battle.pbDisplay(msg)
     # Destiny Knot
     if hasActiveItem?(:DESTINYKNOT) && user.pbCanAttract?(self, false)
+      @battle.pbCommonAnimation("Attract", user)
       user.pbAttract(self, _INTL("{2}让{1}着迷了！", user.pbThis(true), itemName))
     end
     # Attraction cures

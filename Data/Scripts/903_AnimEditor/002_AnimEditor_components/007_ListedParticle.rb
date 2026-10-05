@@ -26,6 +26,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
     :emitted_auto_movement_group  => [:emit_speed, :emit_speed_range,
                                       :emit_direction, :emit_direction_range,
                                       :emit_gravity, :emit_gravity_range,
+                                      :emit_deceleration, :emit_deceleration_range,
                                       :emit_radius_x_range, :emit_radius_y_range, :emit_radius_z_range,
                                       :emit_period_x, :emit_period_x_range,
                                       :emit_period_y, :emit_period_y_range,
@@ -69,6 +70,15 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
     :projectile  => [:emit_speed, :emit_speed_range,
                      :emit_direction, :emit_direction_range,
                      :emit_gravity, :emit_gravity_range,
+                     :emit_x_multiplier, :emit_y_multiplier,
+                     :emit_zoom_range, :emit_zoom_multiplier,
+                     :emit_zoom_x_range, :emit_zoom_y_range,
+                     :emit_opacity_multiplier,
+                     :spawn_x_offset, :spawn_x_multiplier, :spawn_y_offset, :spawn_y_multiplier,
+                     :spawn_r_offset, :spawn_r_multiplier, :spawn_theta_offset],
+    :dampened    => [:emit_speed, :emit_speed_range,
+                     :emit_direction, :emit_direction_range,
+                     :emit_deceleration, :emit_deceleration_range,
                      :emit_x_multiplier, :emit_y_multiplier,
                      :emit_zoom_range, :emit_zoom_multiplier,
                      :emit_zoom_x_range, :emit_zoom_y_range,
@@ -256,6 +266,10 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
 
   #-----------------------------------------------------------------------------
 
+  def viewport
+    return @main_viewport
+  end
+
   def group_name(group)
     return {
       :position_group               => _INTL("职位"),
@@ -280,6 +294,14 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
       objs[LIST_CONTROL]&.color_scheme = value
     end
     refresh
+  end
+
+  #-----------------------------------------------------------------------------
+
+  def mouse_in_container?
+    return true if @captured && @captured.respond_to?("mouse_in_control?") &&
+                   @captured.mouse_in_control?
+    return super
   end
 
   #-----------------------------------------------------------------------------
@@ -801,12 +823,17 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
     elsif @picker_box
       update_interpolation_picker
       return
-    elsif @captured
+    end
+    old_captured = @captured
+    if @captured
       @captured.update
       @captured = nil if !@captured.busy?
-    else
+    end
+    if !@captured || !@captured.respond_to?("mouse_in_control?") ||
+       !@captured.mouse_in_control?
       @rows.each_value do |objs|
         [LIST_ARROW, LIST_CONTROL].each do |obj|
+          next if old_captured && objs[obj] == old_captured
           objs[obj]&.update
           @captured = objs[obj] if objs[obj]&.busy?
         end

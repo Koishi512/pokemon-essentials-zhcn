@@ -1693,7 +1693,7 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:SOLARPOWER,
 
 Battle::AbilityEffects::DamageCalcFromUser.add(:STAKEOUT,
   proc { |ability, user, target, move, mults, power, type|
-    mults[:attack_multiplier] *= 2 if target.battle.choices[target.index][0] == :SwitchOut
+    mults[:attack_multiplier] *= 2 if target.turnCount == 0
   }
 )
 
@@ -1812,6 +1812,12 @@ Battle::AbilityEffects::DamageCalcFromAlly.add(:STEELYSPIRIT,
 #===============================================================================
 # DamageCalcFromTarget handlers
 #===============================================================================
+
+Battle::AbilityEffects::DamageCalcFromTarget.add(:AURAGUARD,
+  proc { |ability, user, target, move, mults, power, type|
+    mults[:final_damage_multiplier] /= 2 if move.pbContactMove?(user)
+  }
+)
 
 Battle::AbilityEffects::DamageCalcFromTarget.add(:DRYSKIN,
   proc { |ability, user, target, move, mults, power, type|
@@ -2096,6 +2102,7 @@ Battle::AbilityEffects::OnBeingHit.add(:CUTECHARM,
     next if !user.pbCanAttract?(target, false)
     next if battle.pbRandom(100) >= 30
     battle.pbShowAbilitySplash(target)
+    battle.pbCommonAnimation("Attract", user)
     msg = nil
     if !Battle::Scene::USE_ABILITY_SPLASH
       msg = _INTL("{1}{2}让{3}着迷了！",

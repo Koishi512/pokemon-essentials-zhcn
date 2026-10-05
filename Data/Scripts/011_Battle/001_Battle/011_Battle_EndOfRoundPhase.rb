@@ -426,7 +426,7 @@ class Battle
       pbDisplay(_INTL("{1}的灭亡计时变成{2}了！", battler.pbOfThis, battler.effects[PBEffects::PerishSong]))
       if battler.effects[PBEffects::PerishSong] == 0
         perishSongUsers.push(battler.effects[PBEffects::PerishSongUser])
-        battler.pbReduceHP(battler.hp)
+        battler.pbReduceHP(battler.hp, false)
       end
       battler.pbItemHPHealCheck
       battler.pbFaint if battler.fainted?

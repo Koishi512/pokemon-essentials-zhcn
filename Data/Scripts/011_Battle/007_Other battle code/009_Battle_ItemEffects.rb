@@ -314,7 +314,7 @@ Battle::ItemEffects::HPHeal.add(:BERRYJUICE,
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] Forced consuming of #{itemName}") if forced
     battle.pbCommonAnimation("UseItem", battler) if !forced
-    battler.pbRecoverHP(20)
+    battler.pbRecoverHP(20, false)
     if forced
       battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     else
@@ -1700,7 +1700,7 @@ Battle::ItemEffects::AfterMoveUseFromUser.add(:LIFEORB,
     end
     next if !hitBattler
     PBDebug.log("[Item triggered] #{user.pbOfThis} #{user.itemName} (recoil)")
-    user.pbReduceHP(user.totalhp / 10)
+    user.pbReduceHP(user.totalhp / 10, false)
     battle.pbDisplay(_INTL("{1}的生命被少量削减了！", user.pbThis))
     user.pbItemHPHealCheck
     user.pbFaint if user.fainted?
@@ -1716,7 +1716,8 @@ Battle::ItemEffects::AfterMoveUseFromUser.add(:SHELLBELL,
     totalDamage = 0
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
     next if totalDamage <= 0
-    user.pbRecoverHP(totalDamage / 8)
+    battle.pbCommonAnimation("UseItem", user)
+    user.pbRecoverHP(totalDamage / 8, false)
     if Translation.more_possessive_messages?
       battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", user.pbOfThis, user.itemName))
     else
@@ -2027,7 +2028,7 @@ Battle::ItemEffects::EndOfRoundHealing.add(:BLACKSLUDGE,
     if battler.pbHasType?(:POISON)
       next if !battler.canHeal?
       battle.pbCommonAnimation("UseItem", battler)
-      battler.pbRecoverHP(battler.totalhp / 16)
+      battler.pbRecoverHP(battler.totalhp / 16, false)
       if Translation.more_possessive_messages?
         battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", battler.pbOfThis, battler.itemName))
       else
@@ -2046,7 +2047,7 @@ Battle::ItemEffects::EndOfRoundHealing.add(:LEFTOVERS,
   proc { |item, battler, battle|
     next if !battler.canHeal?
     battle.pbCommonAnimation("UseItem", battler)
-    battler.pbRecoverHP(battler.totalhp / 16)
+    battler.pbRecoverHP(battler.totalhp / 16, false)
     if Translation.more_possessive_messages?
       battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", battler.pbOfThis, battler.itemName))
     else

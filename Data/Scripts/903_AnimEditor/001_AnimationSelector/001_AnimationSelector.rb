@@ -86,7 +86,8 @@ class AnimationEditor::AnimationSelector
       :anim_name => "",
       :credit    => "",
       :usable    => :none,
-      :count     => :none
+      :count     => :none,
+      :foe       => :none
     }
     @quit = false
     generate_full_lists
@@ -260,6 +261,17 @@ class AnimationEditor::AnimationSelector
     }, :none)
     @components.add_control_at(:count_filter, FILTER_ROW_CONTROL_X, row_y, menu)
     row_y += FILTER_ROW_HEIGHT
+    # Has foe version
+    label = UIControls::Label.new(FILTER_ROW_LABEL_WIDTH, FILTER_ROW_HEIGHT,
+                                  @viewport, _INTL("Has foe version?"))
+    @components.add_control_at(:foe_filter_label, FILTER_ROW_LABEL_X, row_y, label)
+    menu = UIControls::DropdownList.new(FILTER_ROW_CONTROL_WIDTH, FILTER_ROW_HEIGHT, @viewport, {
+      :none => "---",
+      :yes  => _INTL("Yes"),
+      :no   => _INTL("No")
+    }, :none)
+    @components.add_control_at(:foe_filter, FILTER_ROW_CONTROL_X, row_y, menu)
+    row_y += FILTER_ROW_HEIGHT
     # Button to clear all filters
     btn = UIControls::Button.new(FILTER_BUTTON_WIDTH, FILTER_BUTTON_HEIGHT,
                                  @viewport, _INTL("清除所有过滤器"))
@@ -356,8 +368,11 @@ class AnimationEditor::AnimationSelector
       if captured
         captured.update
         captured = nil if !captured.busy?
-      else
+      end
+      if !captured || !captured.respond_to?("mouse_in_control?") ||
+         !captured.mouse_in_control?
         buttons.each do |btn|
+          next if captured && btn[1] == captured
           btn[1].update
           captured = btn[1] if btn[1].busy?
         end
@@ -394,8 +409,10 @@ class AnimationEditor::AnimationSelector
       ret[:move_name] = move_name if move_name
     end
     ret[:anim_name] = anim.name || anim.move
+    ret[:version]   = anim.version
     ret[:credit]    = anim.credit
     ret[:usable]    = !anim.ignore
+    ret[:foe]       = anim.opposing_animation?
     display_name = ""
     display_name += "\\c[2]" if anim.ignore
     display_name += _INTL("[Foe]") + " " if anim.opposing_animation?
@@ -440,8 +457,10 @@ class AnimationEditor::AnimationSelector
       [@full_common_animations, @common_animations]
     ].each do |anim_set|
       anim_set[0].each_pair do |move, anims|
-        next if @filters[:count] == :one && anims.length > 1
-        next if @filters[:count] == :many && anims.length == 1
+        next if @filters[:count] == :one && anims.any? { |anim| anim[:version] > 0 }
+        next if @filters[:count] == :many && anims.none? { |anim| anim[:version] > 0 }
+        next if @filters[:foe] == :yes && anims.none? { |anim| anim[:foe] }
+        next if @filters[:foe] == :no && anims.any? { |anim| anim[:foe] }
         anims.each do |anim|
           next if @filters[:move_name] != "" && !anim[:move_name].downcase.include?(@filters[:move_name].downcase)
           next if @filters[:anim_name] != "" && !anim[:anim_name].downcase.include?(@filters[:anim_name].downcase)
@@ -598,7 +617,7 @@ class AnimationEditor::AnimationSelector
       [:move_name_filter, :anim_name_filter, :credit_filter].each do |filter|
         @components.get_control(filter).value = ""
       end
-      [:usable_filter, :count_filter].each do |filter|
+      [:usable_filter, :count_filter, :foe_filter].each do |filter|
         @components.get_control(filter).value = :none
       end
       apply_list_filter
@@ -615,7 +634,8 @@ class AnimationEditor::AnimationSelector
       [:anim_name_filter, :anim_name],
       [:credit_filter, :credit],
       [:usable_filter, :usable],
-      [:count_filter, :count]
+      [:count_filter, :count],
+      [:foe_filter, :foe]
     ].each do |filter|
       ctrl = @components.get_control(filter[0])
       next if @filters[filter[1]] == ctrl.value
