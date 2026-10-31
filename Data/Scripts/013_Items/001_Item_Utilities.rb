@@ -15,6 +15,7 @@ module ItemHandlers
   BattleUsableOnBattler = ItemHandlerHash.new
   BattleUseOnBattler    = ItemHandlerHash.new
   BattleUseOnPokemon    = ItemHandlerHash.new
+  PairedItems           = {}
 
   module_function
 
@@ -67,6 +68,13 @@ module ItemHandlers
   # Returns text to display instead of "Use".
   def getUseText(item)
     return UseText.trigger(item)
+  end
+
+  # Other items to register/deregister to the Ready Menu when item is registered
+  # or deregistered.
+  # @return [Symbol, nil] other items, or [nil] if there are none
+  def getPairedItems(item)
+    return PairedItems[item].is_a?(Array) ? PairedItems[item] : [PairedItems[item]]
   end
 
   # Return value:
@@ -680,7 +688,7 @@ end
 
 def pbBattleHPItem(pkmn, battler, restoreHP, screen)
   if battler
-    if battler.pbRecoverHP(restoreHP) > 0
+    if battler.pbRecoverHP(restoreHP, false) > 0
       screen.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     end
   elsif pbItemRestoreHP(pkmn, restoreHP) > 0

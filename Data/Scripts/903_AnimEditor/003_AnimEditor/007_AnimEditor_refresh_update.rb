@@ -133,8 +133,11 @@ class AnimationEditor
       :user_position_and_target_position => _INTL("用户 pos 和目标 pos"),
       :user_side_foreground              => _INTL("在用户面前"),
       :user_side_background              => _INTL("在用户侧的后面"),
+      :non_user_side_foreground          => _INTL("在非用户侧前方"),
+      :non_user_side_background          => _INTL("在非用户侧后方"),
       :target_side_foreground            => _INTL("在目标侧面前方"),
-      :target_side_background            => _INTL("目标侧面后方")
+      :target_side_background            => _INTL("目标侧面后方"),
+      :user_and_other_side               => _INTL("用户和其他侧")
     }
     if @anim[:no_user]
       GameData::Animation::FOCUS_TYPES_WITH_USER.each { |f| focus_values.delete(f) }

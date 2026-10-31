@@ -313,7 +313,7 @@ Battle::ItemEffects::HPHeal.add(:BERRYJUICE,
     next false if !forced && battler.hp > battler.totalhp / 2
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] Forced consuming of #{itemName}") if forced
-    battle.pbCommonAnimation("UseItem", battler) if !forced
+    battle.pbCommonAnimation("HeldItem", battler) if !forced
     battler.pbRecoverHP(20, false)
     if forced
       battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
@@ -412,7 +412,7 @@ Battle::ItemEffects::HPHeal.add(:ORANBERRY,
     end
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battle.pbHideAbilitySplash(battler) if ripening
-    battler.pbRecoverHP(amt)
+    battler.pbRecoverHP(amt, false)
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
@@ -453,7 +453,7 @@ Battle::ItemEffects::HPHeal.add(:SITRUSBERRY,
     end
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battle.pbHideAbilitySplash(battler) if ripening
-    battler.pbRecoverHP(amt)
+    battler.pbRecoverHP(amt, false)
     itemName = GameData::Item.get(item).name
     if forced
       PBDebug.log("[Item triggered] Forced consuming of #{itemName}")
@@ -575,7 +575,7 @@ Battle::ItemEffects::StatusCure.add(:MENTALHERB,
                   battler.effects[PBEffects::HealBlock] == 0
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}")
-    battle.pbCommonAnimation("UseItem", battler) if !forced
+    battle.pbCommonAnimation("HeldItem", battler) if !forced
     if battler.effects[PBEffects::Attract] >= 0
       if forced
         battle.pbDisplay(_INTL("{1}的着迷状态治愈了！", battler.pbThis))
@@ -778,7 +778,7 @@ Battle::ItemEffects::OnMissingTarget.add(:BLUNDERPOLICY,
     next if hit_num > 0 || target.damageState.invulnerable
     next if ["OHKO", "OHKOIce", "OHKOHitsUndergroundTarget"].include?(move.function_code)
     next if !user.pbCanRaiseStatStage?(:SPEED, user)
-    battle.pbCommonAnimation("UseItem", user)
+    battle.pbCommonAnimation("HeldItem", user)
     user.pbRaiseStatStageByCause(:SPEED, 2, user, user.itemName)
     battle.pbDisplay(_INTL("{1}已完成使命，消失了……", user.itemName))
     user.pbHeldItemTriggered(item)
@@ -1392,7 +1392,7 @@ Battle::ItemEffects::OnBeingHit.add(:ABSORBBULB,
   proc { |item, user, target, move, battle|
     next if move.calcType != :WATER
     next if !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, target)
-    battle.pbCommonAnimation("UseItem", target)
+    battle.pbCommonAnimation("HeldItem", target)
     target.pbRaiseStatStageByCause(:SPECIAL_ATTACK, 1, target, target.itemName)
     battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
@@ -1410,7 +1410,7 @@ Battle::ItemEffects::OnBeingHit.add(:CELLBATTERY,
   proc { |item, user, target, move, battle|
     next if move.calcType != :ELECTRIC
     next if !target.pbCanRaiseStatStage?(:ATTACK, target)
-    battle.pbCommonAnimation("UseItem", target)
+    battle.pbCommonAnimation("HeldItem", target)
     target.pbRaiseStatStageByCause(:ATTACK, 1, target, target.itemName)
     battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
@@ -1470,7 +1470,7 @@ Battle::ItemEffects::OnBeingHit.add(:LUMINOUSMOSS,
   proc { |item, user, target, move, battle|
     next if move.calcType != :WATER
     next if !target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, target)
-    battle.pbCommonAnimation("UseItem", target)
+    battle.pbCommonAnimation("HeldItem", target)
     target.pbRaiseStatStageByCause(:SPECIAL_DEFENSE, 1, target, target.itemName)
     battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
@@ -1528,7 +1528,7 @@ Battle::ItemEffects::OnBeingHit.add(:SNOWBALL,
   proc { |item, user, target, move, battle|
     next if move.calcType != :ICE
     next if !target.pbCanRaiseStatStage?(:ATTACK, target)
-    battle.pbCommonAnimation("UseItem", target)
+    battle.pbCommonAnimation("HeldItem", target)
     target.pbRaiseStatStageByCause(:ATTACK, 1, target, target.itemName)
     battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
     target.pbHeldItemTriggered(item)
@@ -1553,7 +1553,7 @@ Battle::ItemEffects::OnBeingHit.add(:WEAKNESSPOLICY,
     next if !Effectiveness.super_effective?(target.damageState.typeMod)
     next if !target.pbCanRaiseStatStage?(:ATTACK, target) &&
             !target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, target)
-    battle.pbCommonAnimation("UseItem", target)
+    battle.pbCommonAnimation("HeldItem", target)
     showAnim = true
     if target.pbCanRaiseStatStage?(:ATTACK, target)
       target.pbRaiseStatStageByCause(:ATTACK, 2, target, target.itemName, showAnim)
@@ -1588,7 +1588,7 @@ Battle::ItemEffects::OnBeingHitPositiveBerry.add(:ENIGMABERRY,
     end
     battle.pbCommonAnimation("EatBerry", battler) if !forced
     battle.pbHideAbilitySplash(battler) if ripening
-    battler.pbRecoverHP(amt)
+    battler.pbRecoverHP(amt, false)
     if forced
       battle.pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
     else
@@ -1674,6 +1674,7 @@ Battle::ItemEffects::AfterMoveUseFromTarget.add(:REDCARD,
     battle.pbCommonAnimation("UseItem", battler)
     battle.pbDisplay(_INTL("{1}猛地向{3}出示了{2}！",
                            battler.pbThis, battler.itemName, user.pbThis(true)))
+                           battler.pbThis, battler.itemName, user.pbThis(true)))
     battler.pbConsumeItem
     next if !user.canBeForcedOutOfBattle?
     battle.pbRecallAndReplace(user.index, newPkmn, true)
@@ -1716,7 +1717,7 @@ Battle::ItemEffects::AfterMoveUseFromUser.add(:SHELLBELL,
     totalDamage = 0
     targets.each { |b| totalDamage += b.damageState.totalHPLost }
     next if totalDamage <= 0
-    battle.pbCommonAnimation("UseItem", user)
+    battle.pbCommonAnimation("HeldItem", user)
     user.pbRecoverHP(totalDamage / 8, false)
     if Translation.more_possessive_messages?
       battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", user.pbOfThis, user.itemName))
@@ -1732,7 +1733,7 @@ Battle::ItemEffects::AfterMoveUseFromUser.add(:THROATSPRAY,
             battle.pbAllFainted?(user.idxOpposingSide)
     next if !move.soundMove? || numHits == 0
     next if !user.pbCanRaiseStatStage?(:SPECIAL_ATTACK, user)
-    battle.pbCommonAnimation("UseItem", user)
+    battle.pbCommonAnimation("HeldItem", user)
     user.pbRaiseStatStage(:SPECIAL_ATTACK, 1, user)
     user.pbConsumeItem
   }
@@ -1797,7 +1798,7 @@ Battle::ItemEffects::OnEndOfUsingMoveStatRestore.add(:WHITEHERB,
     next false if !reducedStats
     itemName = GameData::Item.get(item).name
     PBDebug.log("[Item triggered] #{battler.pbOfThis} #{itemName}") if forced
-    battle.pbCommonAnimation("UseItem", battler) if !forced
+    battle.pbCommonAnimation("HeldItem", battler) if !forced
     if forced
       battle.pbDisplay(_INTL("{1}能力复原了！", battler.pbOfThis))
     else
@@ -1970,7 +1971,7 @@ Battle::ItemEffects::OnTerrainChange.add(:ELECTRICSEED,
     next false if battle.field.terrain != :Electric
     next false if !battler.pbCanRaiseStatStage?(:DEFENSE, battler)
     itemName = GameData::Item.get(item).name
-    battle.pbCommonAnimation("UseItem", battler)
+    battle.pbCommonAnimation("HeldItem", battler)
     next battler.pbRaiseStatStageByCause(:DEFENSE, 1, battler, itemName)
   }
 )
@@ -1980,7 +1981,7 @@ Battle::ItemEffects::OnTerrainChange.add(:GRASSYSEED,
     next false if battle.field.terrain != :Grassy
     next false if !battler.pbCanRaiseStatStage?(:DEFENSE, battler)
     itemName = GameData::Item.get(item).name
-    battle.pbCommonAnimation("UseItem", battler)
+    battle.pbCommonAnimation("HeldItem", battler)
     next battler.pbRaiseStatStageByCause(:DEFENSE, 1, battler, itemName)
   }
 )
@@ -1990,7 +1991,7 @@ Battle::ItemEffects::OnTerrainChange.add(:MISTYSEED,
     next false if battle.field.terrain != :Misty
     next false if !battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, battler)
     itemName = GameData::Item.get(item).name
-    battle.pbCommonAnimation("UseItem", battler)
+    battle.pbCommonAnimation("HeldItem", battler)
     next battler.pbRaiseStatStageByCause(:SPECIAL_DEFENSE, 1, battler, itemName)
   }
 )
@@ -2000,7 +2001,7 @@ Battle::ItemEffects::OnTerrainChange.add(:PSYCHICSEED,
     next false if battle.field.terrain != :Psychic
     next false if !battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, battler)
     itemName = GameData::Item.get(item).name
-    battle.pbCommonAnimation("UseItem", battler)
+    battle.pbCommonAnimation("HeldItem", battler)
     next battler.pbRaiseStatStageByCause(:SPECIAL_DEFENSE, 1, battler, itemName)
   }
 )
@@ -2013,7 +2014,7 @@ Battle::ItemEffects::OnTrickRoomStarted.add(:ROOMSERVICE,
   proc { |item, battler, battle|
     next if battle.field.effects[PBEffects::TrickRoom] == 0
     next if !battler.pbCanLowerStatStage?(:SPEED)
-    battle.pbCommonAnimation("UseItem", battler)
+    battle.pbCommonAnimation("HeldItem", battler)
     battler.pbLowerStatStage(:SPEED, 1, nil)
     battler.pbConsumeItem
   }
@@ -2027,7 +2028,7 @@ Battle::ItemEffects::EndOfRoundHealing.add(:BLACKSLUDGE,
   proc { |item, battler, battle|
     if battler.pbHasType?(:POISON)
       next if !battler.canHeal?
-      battle.pbCommonAnimation("UseItem", battler)
+      battle.pbCommonAnimation("HeldItem", battler)
       battler.pbRecoverHP(battler.totalhp / 16, false)
       if Translation.more_possessive_messages?
         battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", battler.pbOfThis, battler.itemName))
@@ -2035,7 +2036,7 @@ Battle::ItemEffects::EndOfRoundHealing.add(:BLACKSLUDGE,
         battle.pbDisplay(_INTL("{1}用{2}回复了少许HP。", battler.pbThis, battler.itemName))
       end
     elsif battler.takesIndirectDamage?
-      battle.pbCommonAnimation("UseItem", battler)
+      battle.pbCommonAnimation("HeldItem", battler)
       battler.pbTakeEffectDamage(battler.totalhp / 8) do |hp_lost|
         battle.pbDisplay(_INTL("{1}因{2}而受到了伤害！", battler.pbThis, battler.itemName))
       end
@@ -2046,7 +2047,7 @@ Battle::ItemEffects::EndOfRoundHealing.add(:BLACKSLUDGE,
 Battle::ItemEffects::EndOfRoundHealing.add(:LEFTOVERS,
   proc { |item, battler, battle|
     next if !battler.canHeal?
-    battle.pbCommonAnimation("UseItem", battler)
+    battle.pbCommonAnimation("HeldItem", battler)
     battler.pbRecoverHP(battler.totalhp / 16, false)
     if Translation.more_possessive_messages?
       battle.pbDisplay(_INTL("{1}{2}回复了少许HP。", battler.pbOfThis, battler.itemName))
@@ -2132,7 +2133,7 @@ Battle::ItemEffects::OnIntimidated.add(:ADRENALINEORB,
   proc { |item, battler, battle|
     next false if !battler.pbCanRaiseStatStage?(:SPEED, battler)
     itemName = GameData::Item.get(item).name
-    battle.pbCommonAnimation("UseItem", battler)
+    battle.pbCommonAnimation("HeldItem", battler)
     next battler.pbRaiseStatStageByCause(:SPEED, 1, battler, itemName)
   }
 )

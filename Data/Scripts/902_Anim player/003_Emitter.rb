@@ -294,6 +294,9 @@ class AnimationPlayer::Emitter
     end
     # Clockwise
     particle_sprite.emitter_params[:clockwise] = @values[:emit_clockwise]
+    # Offsets
+    particle_sprite.emitter_params[:z] = @values[:emit_z_offset] || 0
+    particle_sprite.emitter_params[:angle] = @values[:emit_angle_offset] || 0
     # Multipliers
     particle_sprite.emitter_params[:x_multiplier] = @values[:emit_x_multiplier] / 100.0
     particle_sprite.emitter_params[:y_multiplier] = @values[:emit_y_multiplier] / 100.0
@@ -395,7 +398,9 @@ class AnimationPlayer::Emitter
     # randomness added above
     if !particle_sprite.is_battler_sprite?
       if AnimationPlayer::Helper.get_first_command_frame(@particle, PARTICLE_PROPERTIES) >= 0
-        [:x, :y, :r, :theta, :priority, :zoom_x, :zoom_y, :angle, :flip, :opacity].each do |property|
+        [:x, :y, :r, :theta, :z, :zoom_x, :zoom_y, :angle, :flip, :opacity].each do |property|
+          next if [:x, :y].include?(property) && @particle[:polar_coordinates]
+          next if [:r, :theta].include?(property) && !@particle[:polar_coordinates]
           particle_sprite.add_set_process(property, @next_emission, GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[property])
         end
         particle_sprite.add_set_process(:visible, @next_emission, true)

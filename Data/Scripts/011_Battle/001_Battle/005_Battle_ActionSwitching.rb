@@ -469,7 +469,7 @@ class Battle
       if battler.canHeal? || battler.status != :NONE
         pbCommonAnimation("HealingWish", battler)
         pbDisplay(_INTL("治愈之愿在{1}身上实现了！", battler.pbThis(true)))
-        battler.pbRecoverHP(battler.totalhp)
+        battler.pbRecoverHP(battler.totalhp, false)
         battler.pbCureStatus(false)
         position.effects[PBEffects::HealingWish] = false
       elsif Settings::MECHANICS_GENERATION < 8
@@ -483,7 +483,7 @@ class Battle
       if battler.canHeal? || battler.status != :NONE || !full_pp
         pbCommonAnimation("LunarDance", battler)
         pbDisplay(_INTL("{1}被神秘的月光包围了！", battler.pbThis))
-        battler.pbRecoverHP(battler.totalhp)
+        battler.pbRecoverHP(battler.totalhp, false)
         battler.pbCureStatus(false)
         battler.eachMove { |m| battler.pbSetPP(m, m.total_pp) }
         position.effects[PBEffects::LunarDance] = false

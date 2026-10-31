@@ -360,6 +360,8 @@ ItemHandlers::UseInField.add(:EXPALLOFF, proc { |item|
   pbMessage(_INTL("学习装置设为开启状态。"))
   next true
 })
+ItemHandlers::PairedItems[:EXPALLOFF] = :EXPALL
+
 
 ItemHandlers::UseText.add(:EXPALL, proc { |item|
   next _INTL("关闭")
@@ -369,6 +371,7 @@ ItemHandlers::UseInField.add(:EXPALL, proc { |item|
   pbMessage(_INTL("学习装置设为关闭状态。"))
   next true
 })
+ItemHandlers::PairedItems[:EXPALL] = :EXPALLOFF
 
 #-------------------------------------------------------------------------------
 

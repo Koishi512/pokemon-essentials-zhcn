@@ -846,6 +846,7 @@ class Battle::Battler
       #       actual removal of the item happens in def pbEffectsAfterMove.
       @battle.pbCommonAnimation("UseItem", user)
       @battle.pbDisplay(_INTL("{1}加强了{2}的威力！",
+                              user.pbThis, GameData::Item.get(user.effects[PBEffects::GemConsumed]).name, move.name))
                               GameData::Item.get(user.effects[PBEffects::GemConsumed]).name, move.name))
     end
   end

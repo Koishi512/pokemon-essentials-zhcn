@@ -36,8 +36,11 @@ module GameData
       "UserPositionAndTargetPosition" => :user_position_and_target_position,
       "UserSideForeground"            => :user_side_foreground,
       "UserSideBackground"            => :user_side_background,
+      "NonUserSideForeground"         => :non_user_side_foreground,
+      "NonUserSideBackground"         => :non_user_side_background,
       "TargetSideForeground"          => :target_side_foreground,
-      "TargetSideBackground"          => :target_side_background
+      "TargetSideBackground"          => :target_side_background,
+      "UserAndOtherSide"              => :user_and_other_side   # Other side's foreground
     }
     FOCUS_TYPES_OF_SCREEN = [   # Neither user nor target
       :foreground, :midground, :background
@@ -45,7 +48,8 @@ module GameData
     FOCUS_TYPES_WITH_USER = [
       :user, :user_position, :user_and_target, :user_position_and_target,
       :user_and_target_position, :user_position_and_target_position,
-      :user_side_foreground, :user_side_background
+      :user_side_foreground, :user_side_background, :non_user_side_foreground,
+      :non_user_side_background, :user_and_other_side
     ]
     FOCUS_TYPES_WITH_TARGET = [
       :target, :target_position, :user_and_target, :user_position_and_target,
@@ -268,6 +272,8 @@ module GameData
       "MoveEmitXMultiplier"       => [:emit_x_multiplier,       "^uuuE", nil, nil, nil, INTERPOLATION_TYPES],
       "SetEmitYMultiplier"        => [:emit_y_multiplier,       "^uu"],
       "MoveEmitYMultiplier"       => [:emit_y_multiplier,       "^uuuE", nil, nil, nil, INTERPOLATION_TYPES],
+      "SetEmitZOffset"            => [:emit_z_offset,           "^ui"],
+      "MoveEmitZOffset"           => [:emit_z_offset,           "^uuiE", nil, nil, nil, INTERPOLATION_TYPES],
       "SetEmitZoomRange"          => [:emit_zoom_range,         "^uu"],
       "MoveEmitZoomRange"         => [:emit_zoom_range,         "^uuuE", nil, nil, nil, INTERPOLATION_TYPES],
       "SetEmitZoomMultiplier"     => [:emit_zoom_multiplier,    "^uu"],
@@ -276,6 +282,8 @@ module GameData
       "MoveEmitZoomXRange"        => [:emit_zoom_x_range,       "^uuuE", nil, nil, nil, INTERPOLATION_TYPES],
       "SetEmitZoomYRange"         => [:emit_zoom_y_range,       "^uu"],
       "MoveEmitZoomYRange"        => [:emit_zoom_y_range,       "^uuuE", nil, nil, nil, INTERPOLATION_TYPES],
+      "SetEmitAngleOffset"        => [:emit_angle_offset,       "^ui"],
+      "MoveEmitAngleOffset"       => [:emit_angle_offset,       "^uuiE", nil, nil, nil, INTERPOLATION_TYPES],
       "SetEmitOpacityMultiplier"  => [:emit_opacity_multiplier, "^uu"],
       "MoveEmitOpacityMultiplier" => [:emit_opacity_multiplier, "^uuuE", nil, nil, nil, INTERPOLATION_TYPES],
       # Extra particle properties for emitted particles. (Radii used by :helix/
@@ -408,10 +416,12 @@ module GameData
       # Property modifiers for emitted particles.
       :emit_x_multiplier       => 100,
       :emit_y_multiplier       => 100,
+      :emit_z_offset           => 0,
       :emit_zoom_range         => 0,
       :emit_zoom_multiplier    => 100,
       :emit_zoom_x_range       => 0,
       :emit_zoom_y_range       => 0,
+      :emit_angle_offset       => 0,
       :emit_opacity_multiplier => 100,
       # Extra particle properties for emitted particles. (Radii used by :helix/
       # :polar emitter types.)
@@ -509,11 +519,13 @@ module GameData
         # Property modifiers for emitted particles.
         :emit_x_multiplier       => _INTL("X ×%"),
         :emit_y_multiplier       => _INTL("Y ×%"),
+        :emit_z_offset           => _INTL("优先级 +"),
         :emit_zoom_range         => _INTL("变焦±%"),
         :emit_zoom_multiplier    => _INTL("变焦×%"),
         :emit_zoom_x_range       => _INTL("缩放X±%"),
         :emit_zoom_y_range       => _INTL("缩放 Y ±%"),
-        :emit_opacity_multiplier => _INTL("不透明度×%"),
+        :emit_angle_offset       => _INTL("角度 +"),
+        :emit_opacity_multiplier => _INTL("不透明度×%")
         # Extra particle properties for emitted particles. (Radii used by :helix/
         # :polar emitter types.)
         :spawn_x_offset          => _INTL("生成 X ±"),
@@ -710,9 +722,27 @@ module GameData
         # animation files
         if !@@cmd_to_pbs_name
           @@cmd_to_pbs_name = {}
+          @@cmd_group = {}
           SUB_SCHEMA.each_pair do |key, val|
             @@cmd_to_pbs_name[val[0]] ||= []
             @@cmd_to_pbs_name[val[0]].push([key, val[1].length])
+            @@cmd_group[key] = 0   # Not a Set/Move command
+            if val[1].length > 1
+              @@cmd_group[key] = 1   # Set/Move commands for the regular particle
+              if val[0].to_s[0, 4] == "mask"
+                @@cmd_group[key] = 2
+              elsif val[0].to_s[-1] == "2"
+                @@cmd_group[key] = 3
+              elsif val[0].to_s[0, 8] == "emitting"
+                @@cmd_group[key] = 4
+              elsif val[0].to_s[0, 7] == "emitter"
+                @@cmd_group[key] = 5
+              elsif val[0].to_s[0, 4] == "emit" ||
+                    val[0].to_s[0, 5] == "spawn" ||
+                    val[0].to_s[0, 6] == "radius"
+                @@cmd_group[key] = 6
+              end
+            end
           end
           # For each property translation, put "SetXYZ" before "MoveXYZ"
           @@cmd_to_pbs_name.each_value do |val|
@@ -761,17 +791,21 @@ module GameData
             end
           end
         end
-        # Sort the array of commands by keyframe order, then by duration, then
-        # by the order they're defined in SUB_SCHEMA
+        # Sort the array of commands by type of command, then by keyframe order,
+        # then by duration, then by the order they're defined in SUB_SCHEMA
         ret.sort! do |a, b|
-          if a[1] == b[1]
-            if a[2] == b[2]
-              next SUB_SCHEMA.keys.index(a[0]) <=> SUB_SCHEMA.keys.index(b[0])
+          if @@cmd_group[a[0]] == @@cmd_group[b[0]]
+            if a[1] == b[1]
+              if a[2] == b[2]
+                next SUB_SCHEMA.keys.index(a[0]) <=> SUB_SCHEMA.keys.index(b[0])
+              else
+                next a[2] <=> b[2]   # Sort by duration
+              end
             else
-              next a[2] <=> b[2]   # Sort by duration
+              next a[1] <=> b[1]   # Sort by keyframe
             end
           else
-            next a[1] <=> b[1]   # Sort by keyframe
+            @@cmd_group[a[0]] <=> @@cmd_group[b[0]]
           end
         end
       end

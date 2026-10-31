@@ -175,7 +175,7 @@ class Battle
       pbCommonAnimation("AquaRing", battler)
       hpGain = battler.totalhp / 16
       hpGain = (hpGain * 1.3).floor if battler.hasActiveItem?(:BIGROOT)
-      battler.pbRecoverHP(hpGain)
+      battler.pbRecoverHP(hpGain, false)
       pbDisplay(_INTL("水环回复了{1}体力！", battler.pbOfThis(true)))
     end
     # Ingrain
@@ -185,7 +185,7 @@ class Battle
       pbCommonAnimation("Ingrain", battler)
       hpGain = battler.totalhp / 16
       hpGain = (hpGain * 1.3).floor if battler.hasActiveItem?(:BIGROOT)
-      battler.pbRecoverHP(hpGain)
+      battler.pbRecoverHP(hpGain, false)
       pbDisplay(_INTL("{1}从根上吸取了养分！", battler.pbThis))
     end
     # Leech Seed

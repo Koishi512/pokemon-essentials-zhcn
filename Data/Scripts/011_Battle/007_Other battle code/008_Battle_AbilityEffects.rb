@@ -416,7 +416,7 @@ Battle::AbilityEffects::WeightCalc.add(:LIGHTMETAL,
 Battle::AbilityEffects::Trace.add(:TRACE,
   proc { |ability, battler, battle, switch_in|
     next if Settings::MECHANICS_GENERATION <= 5
-    Battle::AbilityEffects.triggerTrace(battler.ability, battler, battle, switch_in)
+    Battle::AbilityEffects.triggerOnSwitchIn(battler.ability, battler, battle, switch_in)
   }
 )
 
@@ -3805,7 +3805,7 @@ Battle::AbilityEffects::OnWeatherChange.add(:PROTOSYNTHESIS,
         triggered = true
       elsif battler.hasActiveItem?(:BOOSTERENERGY)
         triggered = true
-        battle.pbCommonAnimation("UseItem", battler)
+        battle.pbCommonAnimation("HeldItem", battler)
         consume_item = true
       end
     end
@@ -3878,7 +3878,7 @@ Battle::AbilityEffects::OnTerrainChange.add(:QUARKDRIVE,
         triggered = true
       elsif battler.hasActiveItem?(:BOOSTERENERGY)
         triggered = true
-        battle.pbCommonAnimation("UseItem", battler)
+        battle.pbCommonAnimation("HeldItem", battler)
         consume_item = true
       end
     end
