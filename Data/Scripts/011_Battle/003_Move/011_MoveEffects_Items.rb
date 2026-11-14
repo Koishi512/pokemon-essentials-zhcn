@@ -90,7 +90,7 @@ class Battle::Move::UserTargetSwapItems < Battle::Move
     if target.hasActiveAbility?(:STICKYHOLD) && !target.beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(target)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("对于{1}没有起到效果！！", target.pbThis(true)))
         else
           @battle.pbDisplay(_INTL("因为{2}，对于{1}没有起到效果！！",
@@ -157,16 +157,18 @@ class Battle::Move::RemoveTargetItem < Battle::Move
     return base_power
   end
 
-  def pbEffectAfterAllHits(user, target)
+  def pbKnockOffItem(user, targets)
     return if user.wild?   # Wild Pokémon can't knock off
     return if user.fainted?
-    return if target.damageState.unaffected || target.damageState.substitute
-    return if !target.item || target.unlosableItem?(target.item)
-    return if target.hasActiveAbility?(:STICKYHOLD) && !target.beingMoldBroken?
-    itemName = target.itemName
-    target.pbRemoveItem
-    target.knockOffItem
-    @battle.pbDisplay(_INTL("{1}掉落了{2}！", target.pbThis, itemName))
+    targets.each do |target|
+      next if target.damageState.unaffected || target.damageState.substitute
+      next if !target.item || target.unlosableItem?(target.item)
+      next if target.hasActiveAbility?(:STICKYHOLD) && !target.beingMoldBroken?
+      itemName = target.itemName
+      target.pbRemoveItem
+      target.knockOffItem
+      @battle.pbDisplay(_INTL("{1}掉落了{2}！", target.pbThis, itemName))
+    end
   end
 end
 
@@ -204,7 +206,7 @@ class Battle::Move::CorrodeTargetItem < Battle::Move
     if target.hasActiveAbility?(:STICKYHOLD) && !target.beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(target)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1}没有受到影响！", target.pbThis))
         else
           @battle.pbDisplay(_INTL("因为{2}，对于{1}没有起到效果！！",

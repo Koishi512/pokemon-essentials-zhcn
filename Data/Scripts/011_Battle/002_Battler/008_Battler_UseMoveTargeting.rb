@@ -157,7 +157,7 @@ class Battle::Battler
       @battle.pbShowAbilitySplash(b)
       targets.clear
       pbAddTarget(targets, user, b, move, nearOnly)
-      if Battle::Scene::USE_ABILITY_SPLASH
+      if Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("{1}吸引了攻击！", b.pbThis))
       else
         @battle.pbDisplay(_INTL("{1}用{2}吸引了攻击！", b.pbThis, b.abilityName))

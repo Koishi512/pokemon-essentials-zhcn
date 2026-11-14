@@ -87,6 +87,7 @@ class Battle::Move
   def pbEffectAgainstTarget(user, target); end
   def pbEffectGeneral(user); end
   def pbAdditionalEffect(user, target); end
+  def pbKnockOffItem(user, targets); end   # For Knock Off
   def pbEffectAfterAllHits(user, target); end   # Move effects that occur after all hits
   def pbSwitchOutTargetEffect(user, targets, numHits, switched_battlers); end
   def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers); end
@@ -139,7 +140,7 @@ class Battle::Move
     if target.hasActiveAbility?(:AROMAVEIL) && !target.beingMoldBroken?
       if showMessage
         @battle.pbShowAbilitySplash(target)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", target.pbThis))
         else
           @battle.pbDisplay(_INTL("因为{2}，对于{1}完全没有效果！",
@@ -153,7 +154,7 @@ class Battle::Move
       next if !b.hasActiveAbility?(:AROMAVEIL) || b.beingMoldBroken?
       if showMessage
         @battle.pbShowAbilitySplash(b)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", target.pbThis))
         else
           @battle.pbDisplay(_INTL("因为{2}{3}，对于{1}完全没有效果！",
@@ -276,7 +277,7 @@ class Battle::Move
         animArray.push([b, oldHP, effectiveness])
       end
       if animArray.length > 0
-        @battle.scene.pbHitAndHPLossAnimation(animArray)
+        @battle.visuals.pbHitAndHPLossAnimation(animArray)
         animArray.clear
       end
     end
@@ -327,7 +328,7 @@ class Battle::Move
       if user.pokemon.isSpecies?(:FARFETCHD) && user.pokemon.form == 1
         user.pokemon.evolution_counter += 1
       end
-      crit_color = Battle::Scene::MESSAGE_BASE_CRITICAL_COLOR.to_rgb24 + "," + Battle::Scene::MESSAGE_SHADOW_CRITICAL_COLOR.to_rgb24
+      crit_color = Battle::Visuals::MESSAGE_BASE_CRITICAL_COLOR.to_rgb24 + "," + Battle::Visuals::MESSAGE_SHADOW_CRITICAL_COLOR.to_rgb24
       if target.damageState.affection_critical
         if numTargets > 1
           @battle.pbDisplay(_INTL("为了得到夸奖，{1}在瞄准后<c3={2}>击中了</c3>{3}的<c3={2}>要害！</c3>",
@@ -347,6 +348,7 @@ class Battle::Move
     end
     if target.damageState.substitute && target.effects[PBEffects::Substitute] == 0
       target.effects[PBEffects::Substitute] = 0
+      @battle.visuals.pbSwapBattlerAndSubstitute(target.index, :doll_fade_battler_in)
       @battle.pbDisplay(_INTL("{1}替身消失了……", target.pbOfThis))
     end
   end
@@ -354,7 +356,7 @@ class Battle::Move
   def pbEndureKOMessage(target)
     if target.damageState.disguise
       @battle.pbShowAbilitySplash(target)
-      if Battle::Scene::USE_ABILITY_SPLASH
+      if Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("画皮变成了替身！"))
       else
         @battle.pbDisplay(_INTL("{1}画皮变成了替身！", target.pbOfThis))
@@ -364,7 +366,7 @@ class Battle::Move
       target.pbReduceHP(target.totalhp / 8, false) if Settings::MECHANICS_GENERATION >= 8
     elsif target.damageState.iceFace
       @battle.pbShowAbilitySplash(target)
-      if !Battle::Scene::USE_ABILITY_SPLASH
+      if !Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("{1}{2}发动了！", target.pbOfThis, target.abilityName))
       end
       target.pbChangeForm(1, _INTL("{1}变成其他样子了！", target.pbThis))
@@ -373,7 +375,7 @@ class Battle::Move
       @battle.pbDisplay(_INTL("{1}挺住了攻击！", target.pbThis))
     elsif target.damageState.sturdy
       @battle.pbShowAbilitySplash(target)
-      if Battle::Scene::USE_ABILITY_SPLASH
+      if Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("{1}挺住了攻击！", target.pbThis))
       else
         @battle.pbDisplay(_INTL("{1}靠着结实特性撑住了！", target.pbThis))

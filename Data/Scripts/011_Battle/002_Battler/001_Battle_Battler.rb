@@ -123,7 +123,7 @@ class Battle::Battler
     @status = value
     @pokemon.status = value if @pokemon
     self.statusCount = 0 if value != :POISON && value != :SLEEP
-    @battle.scene.pbRefreshOne(@index)
+    @battle.visuals.pbRefreshOne(@index)
   end
 
   attr_reader :statusCount
@@ -131,7 +131,7 @@ class Battle::Battler
   def statusCount=(value)
     @statusCount = value
     @pokemon.statusCount = value if @pokemon
-    @battle.scene.pbRefreshOne(@index)
+    @battle.visuals.pbRefreshOne(@index)
   end
 
   #-----------------------------------------------------------------------------
@@ -712,7 +712,7 @@ class Battle::Battler
     if hasActiveAbility?(:MAGICGUARD)
       if showMsg
         @battle.pbShowAbilitySplash(self)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
         else
           @battle.pbDisplay(_INTL("因为{2}，对于{1}完全没有效果！", pbThis, abilityName))
@@ -746,6 +746,8 @@ class Battle::Battler
 
   def takesShadowSkyDamage?
     return false if !takesIndirectDamage?
+    return false if inTwoTurnAttack?("TwoTurnAttackInvulnerableUnderground",
+                                     "TwoTurnAttackInvulnerableUnderwater")
     return false if shadowPokemon?
     return true
   end
@@ -772,7 +774,7 @@ class Battle::Battler
       if hasActiveAbility?(:OVERCOAT) && !beingMoldBroken?
         if showMsg
           @battle.pbShowAbilitySplash(self)
-          if Battle::Scene::USE_ABILITY_SPLASH
+          if Battle::Visuals::USE_ABILITY_SPLASH
             @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
           else
             @battle.pbDisplay(_INTL("因为{2}，对于{1}完全没有效果！", pbThis, abilityName))
@@ -823,8 +825,12 @@ class Battle::Battler
   end
 
   # Returns whether this battler can be made to switch out because of another
-  # battler's move.
+  # battler's move or Red Card.
   def canBeForcedOutOfBattle?(show_message = true)
+    if semiInvulnerable?
+      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      return false
+    end
     if @effects[PBEffects::Commanding] >= 0 || @effects[PBEffects::CommandedBy] >= 0
       @battle.pbDisplay(_INTL("但是，没有起到效果！！")) if show_message
       return false
@@ -832,7 +838,7 @@ class Battle::Battler
     if hasActiveAbility?(:SUCTIONCUPS) && !beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(self)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1}屹立不动！", pbThis))
         else
           @battle.pbDisplay(_INTL("{1}的{2}固定住了自己！", pbThis, abilityName))

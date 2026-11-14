@@ -123,9 +123,11 @@ class Battle::Battler
         break
       end
       if ally
+        @battle.visuals.pbForceBattlerInvisibility(@index, false)   # In case semi-invulnerable
         @battle.pbShowAbilitySplash(self)
         @battle.pbCommonAnimation("Commander", self, ally)
-        @battle.pbDisplay(_INTL("{1}作为发号施令的要员而被{2}吞下去了！", pbThis, ally.pbOfThis(true)))
+        @battle.visuals.pbForceBattlerInvisibility(@index, true)
+        @battle.pbDisplay(_INTL("{1}作为发号施令的要员而被{2}吞下去了！", pbThis, ally.pbThis(true)))
         @effects[PBEffects::Commanding] = ally.index
         ally.effects[PBEffects::CommandedBy] = @index
         # Reset various values
@@ -184,12 +186,12 @@ class Battle::Battler
     if show_message
       @battle.pbShowAbilitySplash(self)
       if pbCanRaiseStatStage?(stat, self)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           pbRaiseStatStage(stat, increment, self)
         else
           pbRaiseStatStageByCause(stat, increment, self, abilityName)
         end
-      elsif Battle::Scene::USE_ABILITY_SPLASH
+      elsif Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true)))
       else
         @battle.pbDisplay(_INTL("{1}{2}使{3}没有效果！", pbOfThis, abilityName, move.name))
@@ -211,12 +213,12 @@ class Battle::Battler
     if show_message
       @battle.pbShowAbilitySplash(self)
       if canHeal? && pbRecoverHP(@totalhp / 4) > 0
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1}的体力回复了！", pbThis))
         else
           @battle.pbDisplay(_INTL("{1}{2}回复了体力！", pbOfThis, abilityName))
         end
-      elsif Battle::Scene::USE_ABILITY_SPLASH
+      elsif Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", pbThis(true)))
       else
         @battle.pbDisplay(_INTL("{1}{2}使{3}没有效果！", pbOfThis, abilityName, move.name))
@@ -239,7 +241,7 @@ class Battle::Battler
     elsif oldAbil == :ILLUSION && @effects[PBEffects::Illusion]
       @effects[PBEffects::Illusion] = nil
       if !@effects[PBEffects::Transform]
-        @battle.scene.pbChangePokemon(self, @pokemon)
+        @battle.visuals.pbChangePokemon(self, @pokemon)
         @battle.pbDisplay(_INTL("{1}{2}消失了！", pbOfThis, GameData::Ability.get(oldAbil).name))
         @battle.pbSetSeen(self)
       end
@@ -324,7 +326,7 @@ class Battle::Battler
       next if !b.item || b.unlosableItem?(b.item)
       next if unlosableItem?(b.item)
       @battle.pbShowAbilitySplash(b)
-      if Battle::Scene::USE_ABILITY_SPLASH
+      if Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("{1}将{2}交给了{3}！",
                                 b.pbThis, b.itemName, pbThis(true)))
       else
@@ -347,7 +349,7 @@ class Battle::Battler
     if hasActiveAbility?(:CHEEKPOUCH) && GameData::Item.get(item_to_use).is_berry? && canHeal?
       @battle.pbShowAbilitySplash(self)
       pbRecoverHP(@totalhp / 3)
-      if Battle::Scene::USE_ABILITY_SPLASH
+      if Battle::Visuals::USE_ABILITY_SPLASH
         @battle.pbDisplay(_INTL("{1}的体力回复了！", pbThis))
       else
         @battle.pbDisplay(_INTL("{1}{2}回复了体力！", pbOfThis, abilityName))
@@ -375,10 +377,10 @@ class Battle::Battler
     pbItemStatusCureCheck(item_to_use, fling)
     pbItemEndOfMoveCheck(item_to_use, fling)
     # For Enigma Berry, Kee Berry and Maranga Berry, which have their effects
-    # when forcibly consumed by Pluck/Fling.
+    # when forcibly consumed by Pluck/Fling
     if item_to_use
       itm = item_to_use || self.item
-      if Battle::ItemEffects.triggerOnBeingHitPositiveBerry(itm, self, @battle, true)
+      if Battle::ItemEffects.triggerForcedRestoreBerry(itm, self, @battle, true)
         pbHeldItemTriggered(itm, false, fling)
       end
     end

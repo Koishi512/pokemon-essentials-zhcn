@@ -13,6 +13,7 @@ module GameData
     attr_reader :can_bicycle
     attr_reader :always_bicycle
     attr_reader :weather
+    attr_reader :no_reflections
     attr_reader :still_reflections
     attr_reader :dive_map_id
     attr_reader :teleport_destination
@@ -44,6 +45,7 @@ module GameData
       "Bicycle"           => [:can_bicycle,          "b"],
       "BicycleAlways"     => [:always_bicycle,       "b"],
       "Weather"           => [:weather,              "eu", :Weather],
+      "NoReflections"     => [:no_reflections,       "b"],
       "StillReflections"  => [:still_reflections,    "b"],
       "DiveMap"           => [:dive_map_id,          "v"],
       "HealingSpot"       => [:teleport_destination, "vuu"],
@@ -76,6 +78,7 @@ module GameData
         ["Bicycle",           BooleanProperty,         _INTL("如果为真，此地图上可以使用自行车。")],
         ["BicycleAlways",     BooleanProperty,         _INTL("如果为真，此地图上自行车将自动骑乘且无法下车。")],
         ["Weather",           WeatherEffectProperty,   _INTL("此地图的天气条件。")],
+        ["NoReflections",     BooleanProperty,         _INTL("如果为真，事件和玩家的倒影将不会显示。")],
         ["StillReflections",  BooleanProperty,         _INTL("如果为真，事件和玩家的倒影不会水平波动。")],
         ["DiveMap",           MapProperty,             _INTL("指定此地图的水下图层。仅当此地图有深水时使用。")],
         ["HealingSpot",       MapCoordsProperty,       _INTL("此宝可梦中心所在城镇的地图ID，以及其在该城镇内的入口X和Y坐标。")],
@@ -107,6 +110,7 @@ module GameData
       @can_bicycle          = hash[:can_bicycle]
       @always_bicycle       = hash[:always_bicycle]
       @weather              = hash[:weather]
+      @no_reflections       = hash[:no_reflections]
       @still_reflections    = hash[:still_reflections]
       @dive_map_id          = hash[:dive_map_id]
       @teleport_destination = hash[:teleport_destination]

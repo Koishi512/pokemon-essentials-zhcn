@@ -660,10 +660,8 @@ end
 class Battle::Move::FlinchTargetFailsIfTargetNotUsingPriorityMove < Battle::Move::FlinchTarget
   def pbMoveFailed?(user, targets)
     failed = true
-    if !b.movedThisRound?
-      targets.each do |target|
-        failed = false if @battle.choices[target.index][4] > 0
-      end
+    targets.each do |target|
+      failed = false if !target.movedThisRound? && @battle.choices[target.index][4] > 0
     end
     if failed
       @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
@@ -742,7 +740,7 @@ class Battle::Move::ConfuseTargetCrashDamageIfFails < Battle::Move::ConfuseTarge
   def pbCrashDamage(user)
     return if !user.takesIndirectDamage?
     @battle.pbDisplay(_INTL("{1}因势头过猛而撞到了地面！", user.pbThis))
-    @battle.scene.pbDamageAnimation(user)
+    @battle.visuals.pbDamageAnimation(user)
     user.pbReduceHP(user.totalhp / 2, false)
     user.pbItemHPHealCheck
     user.pbFaint if user.fainted?
@@ -883,8 +881,8 @@ class Battle::Move::SetUserTypesToResistLastAttack < Battle::Move
     newType = @newTypes[@battle.pbRandom(@newTypes.length)]
     user.pbChangeTypes(newType)
     typeName = GameData::Type.get(newType).name
-      @battle.pbDisplay(_INTL("{1}变身成了{2}属性！", user.pbThis, typeName))
-    end
+    @battle.pbDisplay(_INTL("{1}变身成了{2}属性！", user.pbThis, typeName))
+  end
 end
 
 #===============================================================================
@@ -1199,10 +1197,13 @@ end
 class Battle::Move::SetUserAndAlliesAbilityToTargetAbility < Battle::Move
   def ignoresSubstitute?(user); return true; end
 
-  def pbMoveFailed?(user, targets)
-    failed = true
+  def pbDetermineValidTargets(user)
     @valid_targets = [user] + user.allAllies
     @valid_targets.delete_if { |battler| battler.unlosableAbility? }
+  end
+
+  def pbMoveFailed?(user, targets)
+    pbDetermineValidTargets(user)
     if @valid_targets.empty?
       @battle.pbDisplay(_INTL("但是，没有起到效果！！"))
       return true
@@ -1339,7 +1340,7 @@ class Battle::Move::UserTargetSwapAbilities < Battle::Move
       @battle.pbReplaceAbilitySplash(user)
       @battle.pbReplaceAbilitySplash(target)
     end
-    if Battle::Scene::USE_ABILITY_SPLASH
+    if Battle::Visuals::USE_ABILITY_SPLASH
       @battle.pbDisplay(_INTL("{1}互换了各自的特性！", user.pbThis))
     else
       @battle.pbDisplay(_INTL("{1}互换了其{2}特性与目标的{3}特性！",
@@ -1502,6 +1503,7 @@ class Battle::Move::HitsTargetInSkyGroundsTarget < Battle::Move
                                "TwoTurnAttackInvulnerableInSkyParalyzeTarget")   # NOTE: Not Sky Drop.
       target.effects[PBEffects::TwoTurnAttack] = nil
       @battle.pbClearChoice(target.index) if !target.movedThisRound?
+      @battle.visuals.pbForceBattlerInvisibility(target.index, false)
     end
     target.effects[PBEffects::MagnetRise]  = 0
     target.effects[PBEffects::Telekinesis] = 0
@@ -1532,6 +1534,7 @@ class Battle::Move::StartGravity < Battle::Move
                             "TwoTurnAttackInvulnerableInSkyTargetCannotAct")
         b.effects[PBEffects::TwoTurnAttack] = nil
         @battle.pbClearChoice(b.index) if !b.movedThisRound?
+        @battle.visuals.pbForceBattlerInvisibility(target.index, false)
         showMessage = true
       end
       if b.effects[PBEffects::MagnetRise] > 0 ||
@@ -1588,6 +1591,6 @@ class Battle::Move::TransformUserIntoTarget < Battle::Move
 
   def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
     super
-    @battle.scene.pbChangePokemon(user, targets[0].pokemon)
+    @battle.visuals.pbChangePokemon(user, targets[0].pokemon)
   end
 end

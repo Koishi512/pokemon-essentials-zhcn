@@ -76,7 +76,7 @@ class Battle::Move::OHKO < Battle::Move::FixedDamageMove
     if target.hasActiveAbility?(:STURDY) && !target.beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(target)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("对于{1}没有起到效果！！", target.pbThis(true)))
         else
           @battle.pbDisplay(_INTL("因为{2}，对于{1}没有起到效果！！",

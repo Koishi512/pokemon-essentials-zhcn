@@ -584,6 +584,7 @@ class Battle::Move::RaiseUserAtkSpd1RemoveEntryHazardsAndSubstitutes < Battle::M
       next if b.effects[PBEffects::Substitute] == 0
       b.effects[PBEffects::Substitute] = 0
       something_tidied = true
+      @battle.visuals.pbSwapBattlerAndSubstitute(b.index, :doll_fade_battler_in)
       @battle.pbDisplay(_INTL("{1}替身消失了……", b.pbOfThis))
     end
     if user.pbOwnSide.effects[PBEffects::StealthRock]
@@ -1336,7 +1337,7 @@ class Battle::Move::LowerTargetSpAtk2IfCanAttract < Battle::Move::TargetStatDown
     if target.hasActiveAbility?(:OBLIVIOUS) && !target.beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(target)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", target.pbThis))
         else
           @battle.pbDisplay(_INTL("{1}{2}阻止了着迷！", target.pbOfThis, target.abilityName))
@@ -1717,7 +1718,7 @@ class Battle::Move::LowerPoisonedTargetAtkSpAtkSpd1 < Battle::Move
       end
       if failed
         @battle.pbShowAbilitySplash(target)
-        if !Battle::Scene::USE_ABILITY_SPLASH
+        if !Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1}{2}发动了！", target.pbOfThis, target.abilityName))
         end
         user.pbCanLowerStatStage?(@statDown[0], target, self, true, false, true)   # Show fail message

@@ -1,7 +1,7 @@
 #===============================================================================
-# Bug-Catching Contest battle scene (the visuals of the battle).
+# Bug-Catching Contest battle visuals class.
 #===============================================================================
-class Battle::Scene
+class Battle::Visuals
   alias _bugContest_pbInitSprites pbInitSprites unless method_defined?(:_bugContest_pbInitSprites)
 
   def pbInitSprites
@@ -44,7 +44,7 @@ class BugContestBattle < Battle
 
   def pbCommandMenu(idxBattler, _firstAction)
     cmds = [:fight, nil, :throw_ball_contest, :run, :pokemon]
-    return @scene.pbCommandMenuEx(idxBattler, cmds)
+    return @visuals.pbCommandMenuEx(idxBattler, cmds)
   end
 
   def pbConsumeItemInBag(_item, _idxBattler)
@@ -58,12 +58,12 @@ class BugContestBattle < Battle
       helptext = _INTL("现有的宝可梦：\n{1} Lv.{2} 最大HP：{3}\n这只宝可梦：\n{4} Lv.{5} 最大HP：{6}",
                        lastPokemon.name, lastPokemon.level, lastPokemon.totalhp,
                        pkmn.name, pkmn.level, pkmn.totalhp)
-      @scene.pbShowHelp(helptext)
+      @visuals.pbShowHelp(helptext)
       if pbDisplayConfirm(_INTL("要替换宝可梦吗？"))
         pbBugContestState.lastPokemon = pkmn
-        @scene.pbHideHelp
+        @visuals.pbHideHelp
       else
-        @scene.pbHideHelp
+        @visuals.pbHideHelp
         return
       end
     else

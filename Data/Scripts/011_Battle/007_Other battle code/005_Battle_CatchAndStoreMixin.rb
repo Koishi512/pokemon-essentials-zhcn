@@ -11,7 +11,7 @@ module Battle::CatchAndStoreMixin
     if !pkmn.shadowPokemon?
       if $PokemonSystem.givenicknames == 0 &&
          pbDisplayConfirm(_INTL("要给{1}起昵称吗？", pkmn.name))
-        nickname = @scene.pbNameEntry(_INTL("{1}的名字是？", pkmn.speciesName), pkmn)
+        nickname = @visuals.pbNameEntry(_INTL("{1}的名字是？", pkmn.speciesName), pkmn)
         pkmn.name = nickname
       end
     end
@@ -40,7 +40,7 @@ module Battle::CatchAndStoreMixin
           end
           pbDisplay(_INTL("请从同行的宝可梦里选择要交换的宝可梦。"))
           party_index = -1
-          @scene.pbPartyScreen(0, (@sendToBoxes != 2), 1) do |idxParty, _party_screen|
+          @visuals.pbPartyScreen(0, (@sendToBoxes != 2), 1) do |idxParty, _party_screen|
             party_index = idxParty
             next true
           end
@@ -75,7 +75,7 @@ module Battle::CatchAndStoreMixin
             UI::PokemonSummary.new(pkmn, mode: :in_battle).main
           end
         when 3   # Check party
-          @scene.pbPartyScreen(0, true, 2)
+          @visuals.pbPartyScreen(0, true, 2)
         end
       end
     end
@@ -101,7 +101,7 @@ module Battle::CatchAndStoreMixin
         if $player.has_pokedex && $player.pokedex.species_in_unlocked_dex?(pkmn.species)
           pbDisplayPaused(_INTL("{1}的资料被新添加到宝可梦图鉴里了！", pkmn.name))
           pbPlayer.pokedex.register_last_seen(pkmn)
-          @scene.pbShowPokedex(pkmn.species)
+          @visuals.pbShowPokedex(pkmn.species)
         end
       end
       # Record a Shadow Pokémon's species as having been caught
@@ -135,7 +135,7 @@ module Battle::CatchAndStoreMixin
       @poke_ball_failed = true                        # For Ball Fetch
     end
     # Animation of Ball throw, absorb, shake and capture/burst out
-    @scene.pbThrow(ball, num_shakes, @criticalCapture, battler.index, showPlayer)
+    @visuals.pbThrow(ball, num_shakes, @criticalCapture, battler.index, showPlayer)
     # Outcome
     pbThrowPokeBallOutcome(battler, pkmn, ball, num_shakes)
   end
@@ -165,7 +165,7 @@ module Battle::CatchAndStoreMixin
     if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?)
       item_name = GameData::Item.get(ball).name
       PBDebug.log("[Threw Poké Ball] #{item_name}, failed due to opposing trainer blocking")
-      @scene.pbThrowAndDeflect(ball, 1)   # Animation
+      @visuals.pbThrowAndDeflect(ball, 1)   # Animation
       pbDisplay(_INTL("{1}被训练家击飞了！拿别人东西的是小偷！", item_name))
       return true
     end
@@ -281,7 +281,7 @@ module Battle::CatchAndStoreMixin
 
   def pbThrowPokeBallSuccess(battler, pkmn, ball)
     pbDisplayBrief(_INTL("太好了！捉到{1}了！", pkmn.name))
-    @scene.pbThrowSuccess   # Play capture success jingle
+    @visuals.pbThrowSuccess   # Play capture success jingle
     pbRemoveFromParty(battler.index, battler.pokemonIndex)
     # Gain Exp
     if Settings::GAIN_EXP_FOR_CAPTURE
@@ -307,7 +307,7 @@ module Battle::CatchAndStoreMixin
     pkmn.forced_form = nil if MultipleForms.hasFunction?(pkmn.species, "getForm")
     @peer.pbOnLeavingBattle(self, pkmn, true, true)
     # Make the Poké Ball and data box disappear
-    @scene.pbHideCaptureBall(battler.index)
+    @visuals.pbHideCaptureBall(battler.index)
     # Save the Pokémon for storage at the end of battle
     @caughtPokemon.push(pkmn)
   end

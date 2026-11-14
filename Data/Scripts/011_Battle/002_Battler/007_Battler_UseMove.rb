@@ -100,6 +100,7 @@ class Battle::Battler
     @effects[PBEffects::Uproar]        = 0
     @effects[PBEffects::Bide]          = 0
     @currentMove = nil if @effects[PBEffects::HyperBeam] == 0
+    @battle.visuals.pbForceBattlerInvisibility(@index, false)
     # Reset counters for moves which increase them when used in succession
     @effects[PBEffects::FuryCutter] = 0
     @effects[PBEffects::GigatonHammer] = false if move_failed
@@ -627,6 +628,7 @@ class Battle::Battler
     # Instruct
     @battle.allBattlers.each do |b|
       next if !b.effects[PBEffects::Instruct] || !b.lastMoveUsed
+      next if b.usingMultiTurnAttack?
       b.effects[PBEffects::Instruct] = false
       idxMove = -1
       b.eachMoveWithIndex { |m, i| idxMove = i if m.id == b.lastMoveUsed }
@@ -652,7 +654,8 @@ class Battle::Battler
        @battle.pbCheckGlobalAbility(:DANCER) && move.danceMove?
       dancers = []
       @battle.pbPriority(true).each do |b|
-        dancers.push(b) if b.index != user.index && b.hasActiveAbility?(:DANCER)
+        dancers.push(b) if b.index != user.index && b.hasActiveAbility?(:DANCER) &&
+                           !b.usingMultiTurnAttack?
       end
       while dancers.length > 0
         nextUser = dancers.pop
@@ -670,7 +673,7 @@ class Battle::Battler
         preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
         @battle.pbShowAbilitySplash(nextUser, true)
         @battle.pbHideAbilitySplash(nextUser)
-        if !Battle::Scene::USE_ABILITY_SPLASH
+        if !Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("因为{2}，{1}继续跳着舞！",
                                   nextUser.pbThis, nextUser.abilityName))
         end
@@ -745,8 +748,10 @@ class Battle::Battler
         next if b.damageState.unaffected
         move.pbEndureKOMessage(b)
       end
+      # Knock Off
+      move.pbKnockOffItem(user, targets)
       # HP-healing held items
-      pbProcessMoveHit_TriggerHealingUponDealingDamage(move, user, targets)
+      pbProcessMoveHit_TriggerRestoringUponDealingDamage(move, user, targets)
       # Animate battlers fainting (checks all battlers rather than just targets
       # because Flame Burst's splash damage affects non-targets)
       @battle.pbPriority(true).each { |b| pbProcessMoveHit_CheckIfBattlerFaintedFromHit(move, user, b) }
@@ -846,8 +851,7 @@ class Battle::Battler
       #       actual removal of the item happens in def pbEffectsAfterMove.
       @battle.pbCommonAnimation("UseItem", user)
       @battle.pbDisplay(_INTL("{1}加强了{2}的威力！",
-                              user.pbThis, GameData::Item.get(user.effects[PBEffects::GemConsumed]).name, move.name))
-                              GameData::Item.get(user.effects[PBEffects::GemConsumed]).name, move.name))
+                               GameData::Item.get(user.effects[PBEffects::GemConsumed]).name, move.name))
     end
   end
 
@@ -882,13 +886,17 @@ class Battle::Battler
     end
   end
 
-  def pbProcessMoveHit_TriggerHealingUponDealingDamage(move, user, targets)
+  def pbProcessMoveHit_TriggerRestoringUponDealingDamage(move, user, targets)
     # HP-healing held items
     # NOTE: This checks all battlers rather than just targets because Flame
     #       Burst's splash damage affects non-targets.
     @battle.pbPriority(true).each do |b|
       next if move.preventsBattlerConsumingHealingBerry?(b, targets)
       b.pbItemHPHealCheck
+      # Kee/Maranga/Enigma Berry (trigger after Knock Off removes the held item)
+      if b.itemActive?(true)
+        Battle::ItemEffects.triggerRestoreOnBeingHit(b.item, user, b, move, @battle)
+      end
     end
   end
 

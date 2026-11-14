@@ -62,7 +62,7 @@ class Battle
       amt = battler.totalhp / 16
     end
     return if amt < 0
-    @scene.pbDamageAnimation(battler)
+    @visuals.pbDamageAnimation(battler)
     battler.pbReduceHP(amt, false)
     battler.pbItemHPHealCheck
     battler.pbFaint if battler.fainted?
@@ -141,8 +141,8 @@ class Battle
       priority.each do |battler|
         next if battler.opposes?(side)
         next if !battler.takesIndirectDamage? || battler.pbHasType?(:FIRE)
-        @scene.pbDamageAnimation(battler)
-        battler.pbTakeEffectDamage(battler.totalhp / 8, false) do |hp_lost|
+        @visuals.pbDamageAnimation(battler)
+        battler.pbTakeEffectDamage(battler.totalhp / 8) do |hp_lost|
           pbDisplay(_INTL("{1}受到了火海的伤害！", battler.pbThis))
         end
       end
@@ -223,7 +223,7 @@ class Battle
           pbCommonAnimation(anim_name, battler) if anim_name
           pbShowAbilitySplash(battler)
           battler.pbRecoverHP(battler.totalhp / 8)
-          if Scene::USE_ABILITY_SPLASH
+          if Visuals::USE_ABILITY_SPLASH
             pbDisplay(_INTL("{1}的体力回复了！", battler.pbThis))
           else
             pbDisplay(_INTL("{1}{2}回复了体力！", battler.pbOfThis, battler.abilityName))
@@ -317,8 +317,8 @@ class Battle
     if @battlers[battler.effects[PBEffects::TrappingUser]].hasActiveItem?(:BINDINGBAND)
       hpLoss = (Settings::MECHANICS_GENERATION >= 6) ? battler.totalhp / 6 : battler.totalhp / 8
     end
-    @scene.pbDamageAnimation(battler)
-    battler.pbTakeEffectDamage(hpLoss, false) do |hp_lost|
+    @visuals.pbDamageAnimation(battler)
+    battler.pbTakeEffectDamage(hpLoss) do |hp_lost|
       pbDisplay(_INTL("{1}受到了{2}的伤害！", battler.pbThis, move_name))
     end
   end
@@ -640,7 +640,7 @@ class Battle
     PBDebug.log("")
     PBDebug.log("[End of round #{@turnCount + 1}]")
     @endOfRound = true
-    @scene.pbBeginEndOfRoundPhase
+    @visuals.pbBeginEndOfRoundPhase
     clearStagesChangeRecords
     pbCalculatePriority                 # recalculate speeds
     priority = pbPriority(true, true)   # in order of fastest -> slowest speeds only
@@ -692,7 +692,7 @@ class Battle
     priority.each do |battler|
       next if !battler.inHyperMode? || @choices[battler.index][0] != :UseMove
       hpLoss = battler.totalhp / 24
-      @scene.pbDamageAnimation(battler)
+      @visuals.pbDamageAnimation(battler)
       battler.pbReduceHP(hpLoss, false)
       pbDisplay(_INTL("兴奋状态让{1}受到了伤害！", battler.pbThis(true)))
       battler.pbFaint if battler.fainted?

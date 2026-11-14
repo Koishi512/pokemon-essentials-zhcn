@@ -30,14 +30,11 @@ class BushBitmap
   def pbBushDepthBitmap(bitmap, depth)
     ret = Bitmap.new(bitmap.width, bitmap.height)
     charheight = ret.height / 4
-    cy = charheight - depth - 2
+    cy = charheight - depth
     4.times do |i|
       y = i * charheight
-      if cy >= 0
-        ret.blt(0, y, bitmap, Rect.new(0, y, ret.width, cy))
-        ret.blt(0, y + cy, bitmap, Rect.new(0, y + cy, ret.width, 2), 170)
-      end
-      ret.blt(0, y + cy + 2, bitmap, Rect.new(0, y + cy + 2, ret.width, 2), 85) if cy + 2 >= 0
+      ret.blt(0, y, bitmap, Rect.new(0, y, ret.width, cy)) if cy >= 0
+      ret.blt(0, y + cy, bitmap, Rect.new(0, y + cy, ret.width, 2)) if cy + 2 >= 0
     end
     return ret
   end
@@ -218,12 +215,14 @@ class Sprite_Character < RPG::Sprite
     bushdepth = bush_depth
     if bushdepth == 0
       # Not in a bush, just update self's bitmap
-      self.bitmap = (@charbitmapAnimated) ? @charbitmap.bitmap : @charbitmap
+      new_bitmap = (@charbitmapAnimated) ? @charbitmap.bitmap : @charbitmap
+      self.bitmap = new_bitmap if bitmap != new_bitmap
       return
     end
     # Make and use a bush bitmap
     @bushbitmap = BushBitmap.new(@charbitmap, (@tile_id >= TilemapRenderer::TILESET_START_ID), bushdepth) if !@bushbitmap
-    self.bitmap = @bushbitmap.bitmap
+    new_bitmap = @bushbitmap.bitmap
+    self.bitmap = new_bitmap if bitmap != new_bitmap
   end
 
   def update_visibility

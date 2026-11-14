@@ -125,7 +125,7 @@ class Battle::Battler
       if showMessages
         @battle.pbShowAbilitySplash(immAlly || self)
         msg = ""
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           case newStatus
           when :SLEEP     then msg = _INTL("{1}不会睡着！", pbThis)
           when :POISON    then msg = _INTL("{1}不会中毒！", pbThis)
@@ -474,7 +474,7 @@ class Battle::Battler
     if (selfInflicted || !beingMoldBroken?) && hasActiveAbility?(:OWNTEMPO)
       if showMessages
         @battle.pbShowAbilitySplash(self)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1}不会混乱！", pbThis))
         else
           @battle.pbDisplay(_INTL("{1}{2}阻止了混乱！", pbOfThis, abilityName))
@@ -535,7 +535,7 @@ class Battle::Battler
     if hasActiveAbility?([:AROMAVEIL, :OBLIVIOUS]) && !beingMoldBroken?
       if showMessages
         @battle.pbShowAbilitySplash(self)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
         else
           @battle.pbDisplay(_INTL("{1}{2}阻止了着迷！", pbOfThis, abilityName))
@@ -548,7 +548,7 @@ class Battle::Battler
         next if !b.hasActiveAbility?(:AROMAVEIL) || b.beingMoldBroken?
         if showMessages
           @battle.pbShowAbilitySplash(b)
-          if Battle::Scene::USE_ABILITY_SPLASH
+          if Battle::Visuals::USE_ABILITY_SPLASH
             @battle.pbDisplay(_INTL("对于{1}，完全没有效果！", pbThis))
           else
             @battle.pbDisplay(_INTL("{1}{2}阻止了着迷！", b.pbOfThis, b.abilityName))

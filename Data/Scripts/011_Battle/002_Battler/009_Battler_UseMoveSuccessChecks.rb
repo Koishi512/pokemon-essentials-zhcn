@@ -492,7 +492,7 @@ class Battle::Battler
           target.damageState.protected = true
           @battle.successStates[user.index].protected = true
           if move.pbContactMove?(user) && user.affectedByContactEffect? && user.takesIndirectDamage?
-            @battle.scene.pbDamageAnimation(user)
+            @battle.visuals.pbDamageAnimation(user)
             user.pbReduceHP(user.totalhp / 8, false)
             @battle.pbDisplay(_INTL("{1}受伤了！", user.pbThis))
             user.pbItemHPHealCheck
@@ -583,7 +583,7 @@ class Battle::Battler
     if target.hasAirborneAbility? && !target.beingMoldBroken?
       if show_message
         @battle.pbShowAbilitySplash(target)
-        if Battle::Scene::USE_ABILITY_SPLASH
+        if Battle::Visuals::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("没有击中{1}！", target.pbThis))
         else
           @battle.pbDisplay(_INTL("因为{2}，没有击中{1}！", target.pbThis, target.abilityName))
@@ -623,7 +623,7 @@ class Battle::Battler
       if target.hasActiveAbility?(:OVERCOAT) && !target.beingMoldBroken?
         if show_message
           @battle.pbShowAbilitySplash(target)
-          if Battle::Scene::USE_ABILITY_SPLASH
+          if Battle::Visuals::USE_ABILITY_SPLASH
             @battle.pbDisplay(_INTL("这对{1}，好像没有效果……", target.pbThis(true)))
           else
             @battle.pbDisplay(_INTL("因为{2}，对{1}没有效果。", target.pbThis(true), target.abilityName))
