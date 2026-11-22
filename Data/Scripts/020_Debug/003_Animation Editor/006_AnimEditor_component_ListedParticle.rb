@@ -188,7 +188,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
   def initialize_bitmaps
     icon_color = get_color_of(:text)
     # Expandable arrow to left of listed particle
-    arrow_graphic = %w(
+    arrow_graphic = %w[
       . . . . . . . . . . . . . . . . . . . .
       . . . . . . . . . . . . . . . . . . . .
       . . . . . . . . . . . . . . . . . . . .
@@ -209,7 +209,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
       . . . . . . . . . . . . . . . . . . . .
       . . . . . . . . . . . . . . . . . . . .
       . . . . . . . . . . . . . . . . . . . .
-    )
+    ]
     @bitmaps[:collapsed_arrow] = Bitmap.new(LIST_ARROW_SIZE, LIST_ARROW_SIZE) if !@bitmaps[:collapsed_arrow]
     @bitmaps[:collapsed_arrow].clear
     @bitmaps[:expanded_arrow] = Bitmap.new(LIST_ARROW_SIZE, LIST_ARROW_SIZE) if !@bitmaps[:expanded_arrow]
@@ -220,7 +220,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
       @bitmaps[:expanded_arrow].fill_rect(i / LIST_ARROW_SIZE, i % LIST_ARROW_SIZE, 1, 1, icon_color)
     end
     # Particle properties button graphic
-    properties_graphic = %w(
+    properties_graphic = %w[
       . . . . . . . . . . . .
       . X X X X X . . . X X .
       . . . . . . . . . . . .
@@ -233,7 +233,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
       . X X X X X . . X X X .
       . . . . . . . . . . . .
       . . . . . . . . . . . .
-    )
+    ]
     properties_bitmap_size = PROPERTIES_BUTTON_SIZE - (UIControls::Button::BUTTON_FRAME_THICKNESS * 2)   # 12
     @bitmaps[:properties] = Bitmap.new(properties_bitmap_size, properties_bitmap_size) if !@bitmaps[:properties]
     @bitmaps[:properties].clear
@@ -286,15 +286,15 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
 
   def group_name(group)
     return {
-      :position_group               => _INTL("职位"),
+      :position_group               => _INTL("位置"),
       :transformation_group         => _INTL("转型"),
       :appearance_group             => _INTL("外观"),
       :mask_group                   => _INTL("位图蒙版"),
       :second_layer_group           => _INTL("第二层"),
       :emitter_group                => _INTL("发射器"),
       :emitted_spawn_location_group => _INTL("发射的生成位置"),
-	    :emitted_auto_movement_group  => _INTL("发射自动机芯"),
-	    :emitted_modifiers_group      => _INTL("发射修饰符"),
+      :emitted_auto_movement_group  => _INTL("发射自动机芯"),
+      :emitted_modifiers_group      => _INTL("发射修饰符")
     }[group] || group.to_s.capitalize
   end
 
@@ -313,7 +313,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
   #-----------------------------------------------------------------------------
 
   def mouse_in_container?
-    return true if @captured && @captured.respond_to?("mouse_in_control?") &&
+    return true if @captured&.respond_to?("mouse_in_control?") &&
                    @captured.mouse_in_control?
     return super
   end
@@ -555,7 +555,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
     create_row_contents(:main)
     if @groups_expanded[:main]
       groups = (is_emitter?) ? EMITTER_PROPERTY_GROUPS : PROPERTY_GROUPS
-      groups.keys.each { |key| create_row_contents(key) }
+      groups.each_key { |key| create_row_contents(key) }
       groups.each_pair do |key, properties|
         next if !@groups_expanded[key]
         properties.each { |prop| create_row_contents(prop) }
@@ -572,7 +572,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
       obj.y = y_pos + ((FULL_ROW_HEIGHT - obj.height) / 2) if vis
     end
     if @rows[row][LIST_ARROW] && @groups_expanded.has_key?(row)
-      @rows[row][LIST_ARROW].value = (@groups_expanded[row] ? 1 : 0)
+      @rows[row][LIST_ARROW].value = ((@groups_expanded[row]) ? 1 : 0)
     end
     refresh_values
   end
@@ -647,7 +647,6 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
     group = group_for_row(row)   # Could be a group or :main or nil
     level = 2   # Property
     arrow = 0   # 0 = no arrow, 1 = collapsed arrow, 2 = expanded arrow
-    arrow_level = 0   # No arrow
     draw_box = true
     bg_color = get_color_of(:property_background)
     text = "Unnamed"
@@ -657,18 +656,15 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
       if @particle[:name] == "SE"
         bg_color = get_color_of(:se_background)
       else
-        arrow = @groups_expanded[row] ? 2 : 1
+        arrow = (@groups_expanded[row]) ? 2 : 1
         bg_color = focus_color(@particle[:focus])
       end
       text = @particle[:name] || "Unnamed"
     elsif groups.keys.include?(row)
       level = 1
-      arrow = @groups_expanded[row] ? 2 : 1
+      arrow = (@groups_expanded[row]) ? 2 : 1
       draw_box = false
       text = group_name(row)
-    elsif groups[:main] && groups[:main].include?(row)   # Properties
-      # Treated as level 2
-      text = GameData::Animation.property_display_name(row) + ":"
     else   # Properties
       text = GameData::Animation.property_display_name(row) + ":"
     end

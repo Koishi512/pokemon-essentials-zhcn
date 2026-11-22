@@ -192,7 +192,7 @@ end
 
 def pbDebugVariables(mode)
   viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
-  viewport.z = 99999
+  viewport.z = 99_999
   sprites = {}
   sprites["right_window"] = SpriteWindow_DebugVariables.new(viewport)
   right_window = sprites["right_window"]
@@ -485,7 +485,7 @@ end
 #===============================================================================
 def pbDebugRoamers
   viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
-  viewport.z = 99999
+  viewport.z = 99_999
   sprites = {}
   sprites["cmdwindow"] = SpriteWindow_DebugRoamers.new(viewport)
   cmdwindow = sprites["cmdwindow"]
@@ -656,7 +656,7 @@ def pbImportAllAnimations
         pbSafeCopyFile(image, RTP.getImagePath("Graphics/Animations/" + File.basename(image)), "Graphics/Animations/" + File.basename(image))
       end
       Dir.glob(folder + "/*.anm") do |f|
-        textdata = BattleAnimationEditor.loadBase64Anim(IO.read(f)) rescue nil
+        textdata = BattleAnimationEditor.loadBase64Anim(File.read(f)) rescue nil
         if textdata.is_a?(PBAnimation)
           index = pbAllocateAnimation(animations, textdata.name)
           missingFiles = []

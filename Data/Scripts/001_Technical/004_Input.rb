@@ -68,7 +68,7 @@ module Input
     self::BACK       => [:X,  :B],
     self::ACTION     => [:Z,  :X],
     self::QUICK_UP   => [:A,  :LEFTSHOULDER],
-    self::QUICK_DOWN => [:S,  :RIGHTSHOULDER],
+    self::QUICK_DOWN => [:S,  :RIGHTSHOULDER]
   }
 
   # All keyboard keys that can be mapped to an input by the player.
@@ -136,7 +136,7 @@ module Input
     :RIGHTSHOULDER => _INTL("右肩键"),
     :BACK          => _INTL("返回"),
     :GUIDE         => _INTL("指南"),
-    :START         => _INTL("开始"),
+    :START         => _INTL("开始")
 #    :MISC1         => _INTL("Share/Mic"),
 #    :PADDLE1       => _INTL("Paddle 1"),
 #    :PADDLE2       => _INTL("Paddle 2"),
@@ -156,7 +156,7 @@ module Input
 #    :RSTICK_UP     => _INTL("R Stick Up"),
 #    :RSTICK_DOWN   => _INTL("R Stick Down"),
     :LEFTTRIGGER   => _INTL("左扳机键"),
-    :RIGHTTRIGGER  => _INTL("右扳机键"),
+    :RIGHTTRIGGER  => _INTL("右扳机键")
   }
 
   #-----------------------------------------------------------------------------
@@ -186,10 +186,10 @@ module Input
 
   if !defined? __orig_press?
     class << self
-      alias :__orig_press? :press?
-      alias :__orig_trigger? :trigger?
-      alias :__orig_repeat? :repeat?
-      alias :__orig_release? :release?
+      alias __orig_press? press?
+      alias __orig_trigger? trigger?
+      alias __orig_repeat? repeat?
+      alias __orig_release? release?
     end
   end
 
@@ -215,25 +215,25 @@ module Input
 
   def self.multi_pressex?(*key)
     return true if key[0].any? { |k| pressex?(k) }
-    return true if key[1].any? { |k| AXIS_HASH.key?(k) ? axis_pressex?(k) : Controller.pressex?(k) }
+    return true if key[1].any? { |k| (AXIS_HASH.key?(k)) ? axis_pressex?(k) : Controller.pressex?(k) }
     return false
   end
 
   def self.multi_triggerex?(*key)
     return true if key[0].any? { |k| triggerex?(k) }
-    return true if key[1].any? { |k| AXIS_HASH.key?(k) ? axis_triggerex?(k) : Controller.triggerex?(k) }
+    return true if key[1].any? { |k| (AXIS_HASH.key?(k)) ? axis_triggerex?(k) : Controller.triggerex?(k) }
     return false
   end
 
   def self.multi_repeatex?(*key)
     return true if key[0].any? { |k| triggerex?(k) || repeatex?(k) }
-    return true if key[1].any? { |k| AXIS_HASH.key?(k) ? axis_triggerex?(k) || axis_repeatex?(k) : Controller.triggerex?(k) || Controller.repeatex?(k) }
+    return true if key[1].any? { |k| (AXIS_HASH.key?(k)) ? axis_triggerex?(k) || axis_repeatex?(k) : Controller.triggerex?(k) || Controller.repeatex?(k) }
     return false
   end
 
   def self.multi_releaseex?(*key)
     return true if key[0].any? { |k| releaseex?(k) }
-    return true if key[1].any? { |k| AXIS_HASH.key?(k) ? axis_releaseex?(k) : Controller.releaseex?(k) }
+    return true if key[1].any? { |k| (AXIS_HASH.key?(k)) ? axis_releaseex?(k) : Controller.releaseex?(k) }
     return false
   end
 
@@ -247,7 +247,7 @@ module Input
   ENABLE_GAMEPAD_AXIS = true
 
   # Used hash for higher performance when checking keys.
-  AXIS_HASH = ENABLE_GAMEPAD_AXIS ? [
+  AXIS_HASH = (ENABLE_GAMEPAD_AXIS) ? [
     :LSTICK_LEFT, :LSTICK_RIGHT, :LSTICK_UP, :LSTICK_DOWN,
     :RSTICK_LEFT, :RSTICK_RIGHT, :RSTICK_UP, :RSTICK_DOWN,
     :LEFTTRIGGER, :RIGHTTRIGGER
@@ -267,7 +267,7 @@ module Input
 
   def self.refresh_axis_array
     return if !ENABLE_GAMEPAD_AXIS
-    for k in AXIS_HASH.keys
+    AXIS_HASH.each_key do |k|
       @@axis_states_trigger_time[k] ||= 0
       @@axis_states_repeat_time[k] ||= 0
       @@axis_states_old[k] = @@axis_states[k]
@@ -285,29 +285,32 @@ module Input
 
   def self.axis_state(key)
     return case key
-      when :LSTICK_LEFT  then -Controller.axes_left[0]
-      when :LSTICK_RIGHT then  Controller.axes_left[0]
-      when :LSTICK_UP    then -Controller.axes_left[1]
-      when :LSTICK_DOWN  then  Controller.axes_left[1]
-      when :RSTICK_LEFT  then -Controller.axes_right[0]
-      when :RSTICK_RIGHT then  Controller.axes_right[0]
-      when :RSTICK_UP    then -Controller.axes_right[1]
-      when :RSTICK_DOWN  then  Controller.axes_right[1]
-      when :LEFTTRIGGER  then  Controller.axes_trigger[0]
-      when :RIGHTTRIGGER then  Controller.axes_trigger[1]
-      else 0
-    end
+           when :LSTICK_LEFT  then -Controller.axes_left[0]
+           when :LSTICK_RIGHT then  Controller.axes_left[0]
+           when :LSTICK_UP    then -Controller.axes_left[1]
+           when :LSTICK_DOWN  then  Controller.axes_left[1]
+           when :RSTICK_LEFT  then -Controller.axes_right[0]
+           when :RSTICK_RIGHT then  Controller.axes_right[0]
+           when :RSTICK_UP    then -Controller.axes_right[1]
+           when :RSTICK_DOWN  then  Controller.axes_right[1]
+           when :LEFTTRIGGER  then  Controller.axes_trigger[0]
+           when :RIGHTTRIGGER then  Controller.axes_trigger[1]
+           else 0
+           end
   end
 
   def self.axis_pressex?(index)
     return @@axis_states[index]
   end
+
   def self.axis_triggerex?(index)
     return @@axis_states_trigger[index]
   end
+
   def self.axis_repeatex?(index)
     return @@axis_states_repeat[index]
   end
+
   def self.axis_releaseex?(index)
     return @@axis_states_release[index]
   end

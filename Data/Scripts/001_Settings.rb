@@ -1,6 +1,6 @@
 #==============================================================================#
 #                              Pokémon Essentials                              #
-#                                 Version 21.99                                #
+#                                  Version 22                                  #
 #                https://github.com/Maruno17/pokemon-essentials                #
 #==============================================================================#
 
@@ -42,7 +42,7 @@ module Settings
       "Sue Donnim<s>",
       "",
       _INTL("特别感谢："),
-      "Pizza"
+      "Ignoring deadlines"
     ]
   end
 
@@ -450,7 +450,7 @@ end
 # DO NOT EDIT THESE!
 #===============================================================================
 module Essentials
-  VERSION = "21.99"
+  VERSION = "22"
   ERROR_TEXT = ""
-  MKXPZ_VERSION = "2.4.2/826929e"
+  MKXPZ_VERSION = "2.4.2/3c7c47c"
 end

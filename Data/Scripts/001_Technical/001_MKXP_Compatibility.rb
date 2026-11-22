@@ -1,6 +1,6 @@
 #===============================================================================
-# Using mkxp-z v2.4.2/826929e - built 2026/06/30.
-# https://github.com/mkxp-z/mkxp-z/actions/runs/28475006907
+# Using mkxp-z v2.4.2/3c7c47c - built 2026/11/16.
+# https://github.com/mkxp-z/mkxp-z/actions/runs/43788937344
 #===============================================================================
 $VERBOSE = nil
 Font.default_shadow = false if Font.respond_to?(:default_shadow)
@@ -36,11 +36,11 @@ class Bitmap
 
   def draw_text(x, y, width, height = nil, text = "", align = 0)
     if x.is_a?(Rect)
-      x.y -= (@text_offset_y || 0)
+      x.y -= @text_offset_y || 0
       # rect, string & alignment
       mkxp_draw_text(x, y, width)
     else
-      y -= (@text_offset_y || 0)
+      y -= @text_offset_y || 0
       height = text_size(text).height
       mkxp_draw_text(x, y, width, height, text, align)
     end

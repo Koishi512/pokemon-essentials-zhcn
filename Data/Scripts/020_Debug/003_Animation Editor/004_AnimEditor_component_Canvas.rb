@@ -67,7 +67,7 @@ class AnimationEditor::Canvas < Sprite
   def initialize_bitmaps
     # Emitter bitmap
     btmp_size = 16
-    btmp_graphic = %w(
+    btmp_graphic = %w[
       . . . . . . . . . . . . . . . ~
       . . . . . . . . . . . . . . ~ X
       . . . . . . . . . . . . . . ~ X
@@ -84,7 +84,7 @@ class AnimationEditor::Canvas < Sprite
       . . . . . . . . . . . . . ~ X X
       . ~ ~ ~ ~ ~ ~ ~ ~ ~ . . ~ X ~ ~
       ~ X X X X X X X X X ~ . ~ X ~ X
-    )
+    ]
     btmp = Bitmap.new(btmp_size * 2, btmp_size * 2)
     red_color = Color.red
     white_color = Color.white
@@ -130,7 +130,7 @@ class AnimationEditor::Canvas < Sprite
     @sel_frame_bitmap.outline_rect(2, 2, @sel_frame_bitmap.width - 4, @sel_frame_bitmap.height - 4, PARTICLE_FRAME_COLOR)
     @sel_frame_sprite = Sprite.new(viewport)
     @sel_frame_sprite.bitmap = @sel_frame_bitmap
-    @sel_frame_sprite.z = 99999
+    @sel_frame_sprite.z = 99_999
     @sel_frame_sprite.ox = @sel_frame_bitmap.width / 2
     @sel_frame_sprite.oy = @sel_frame_bitmap.height / 2
     # Frame for other particles
@@ -325,7 +325,7 @@ class AnimationEditor::Canvas < Sprite
         if particle_idx
           focus_z = AnimationPlayer::Helper.get_z_focus(@anim[:particles][particle_idx], idx, idx)
         else
-          focus_z = 1000 + ((100 * ((idx / 2) + 1)) * (idx.even? ? 1 : -1))
+          focus_z = 1000 + ((100 * ((idx / 2) + 1)) * ((idx.even?) ? 1 : -1))
         end
         AnimationPlayer::Helper.apply_z_focus_to_sprite(@battler_sprites[idx], 0, focus_z)
       end
@@ -393,7 +393,7 @@ class AnimationEditor::Canvas < Sprite
     end
     sprite = Sprite.new(viewport)
     sprite.bitmap = @frame_bitmap
-    sprite.z = 99998
+    sprite.z = 99_998
     sprite.ox = @frame_bitmap.width / 2
     sprite.oy = @frame_bitmap.height / 2
     if sub_index >= 0
@@ -417,7 +417,7 @@ class AnimationEditor::Canvas < Sprite
         @battler_sprites[i * 2] = Sprite.new(self.viewport)
         frame_sprite = Sprite.new(viewport)
         frame_sprite.bitmap = @frame_bitmap
-        frame_sprite.z = 99998
+        frame_sprite.z = 99_998
         frame_sprite.ox = @frame_bitmap.width / 2
         frame_sprite.oy = @frame_bitmap.height / 2
         @battler_frame_sprites[i * 2] = frame_sprite
@@ -432,7 +432,7 @@ class AnimationEditor::Canvas < Sprite
         @battler_sprites[(i * 2) + 1] = Sprite.new(self.viewport)
         frame_sprite = Sprite.new(viewport)
         frame_sprite.bitmap = @frame_bitmap
-        frame_sprite.z = 99998
+        frame_sprite.z = 99_998
         frame_sprite.ox = @frame_bitmap.width / 2
         frame_sprite.oy = @frame_bitmap.height / 2
         @battler_frame_sprites[(i * 2) + 1] = frame_sprite
@@ -446,7 +446,7 @@ class AnimationEditor::Canvas < Sprite
   end
 
   def refresh_battler_graphics
-    if !@user_sprite_name || !@user_sprite_name || @user_sprite_name != @settings[:anim_editor][:user_sprite_name]
+    if !@user_bitmap_front || !@user_sprite_name || @user_sprite_name != @settings[:anim_editor][:user_sprite_name]
       @user_sprite_name = @settings[:anim_editor][:user_sprite_name]
       @user_bitmap_front_name = GameData::Species.front_sprite_filename(@user_sprite_name)
       @user_bitmap_back_name = GameData::Species.back_sprite_filename(@user_sprite_name)
@@ -493,7 +493,7 @@ class AnimationEditor::Canvas < Sprite
       form = $~[2].to_i
     end
     data = GameData::SpeciesMetrics.get_species_form(species, form)
-    data.apply_metrics_to_sprite(spr, index) if data
+    data&.apply_metrics_to_sprite(spr, index)
     ret = [spr.x - spr.ox, spr.y - spr.oy - (btmp.height / 2)]
     spr.dispose
     return ret
@@ -527,13 +527,11 @@ class AnimationEditor::Canvas < Sprite
     case particle[:name]
     when "User"
       spr = @battler_sprites[user_index]
-      raise _INTL("不知何故未找到粒子 {1} 的精灵（战斗者索引 {2}）。",
-                  particle[:name], user_index) if !spr
+      raise _INTL("不知何故未找到粒子 {1} 的精灵（战斗者索引 {2}）。", particle[:name], user_index) if !spr
       frame = @battler_frame_sprites[user_index]
     when "Target"
       spr = @battler_sprites[target_idx]
-      raise _INTL("不知何故未找到粒子 {1} 的精灵（战斗者索引 {2}）。",
-                  particle[:name], target_idx) if !spr
+      raise _INTL("不知何故未找到粒子 {1} 的精灵（战斗者索引 {2}）。", particle[:name], target_idx) if !spr
       frame = @battler_frame_sprites[target_idx]
     else
       create_particle_sprite(index, target_idx)
@@ -582,7 +580,7 @@ class AnimationEditor::Canvas < Sprite
       offset_xy = AnimationPlayer::Helper.get_xy_offset(particle, spr)
       spr.x -= offset_xy[0]
       spr.y -= offset_xy[1]
-      spr.z = 99997
+      spr.z = 99_997
       spr.opacity = 255
       spr.ox = spr.bitmap.width / 2
       spr.oy = spr.bitmap.height / 2
@@ -602,13 +600,11 @@ class AnimationEditor::Canvas < Sprite
       particle, spr2, user_index, target_idx,
       [@user_bitmap_front_name, @user_bitmap_back_name], [@target_bitmap_front_name, @target_bitmap_back_name]
     )
-    if @particle_tiled_sprites[index]
-      @particle_tiled_sprites[index].each do |ts|
-        AnimationPlayer::Helper.set_bitmap_and_origin(
-          particle, ts, user_index, target_idx,
-          [@user_bitmap_front_name, @user_bitmap_back_name], [@target_bitmap_front_name, @target_bitmap_back_name]
-        )
-      end
+    @particle_tiled_sprites[index]&.each do |ts|
+      AnimationPlayer::Helper.set_bitmap_and_origin(
+        particle, ts, user_index, target_idx,
+        [@user_bitmap_front_name, @user_bitmap_back_name], [@target_bitmap_front_name, @target_bitmap_back_name]
+      )
     end
     # Set properties of sprites
     SPRITE_PROPERTIES_TO_SET.each do |property|
@@ -778,9 +774,7 @@ class AnimationEditor::Canvas < Sprite
       end
       focus_z = AnimationPlayer::Helper.get_z_focus(particle, user_index, target_idx)
       AnimationPlayer::Helper.apply_z_focus_to_sprite(sprite1, value, focus_z)
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.z = sprite1.z }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.z = sprite1.z }
     when :z2
       sprite2.z = sprite1.z + value if sprite2
     when :zoom_x
@@ -825,9 +819,7 @@ class AnimationEditor::Canvas < Sprite
       sprite1.mirror = value
       relative_to_index = index_that_particle_is_relative_to(particle, target_idx)
       sprite1.mirror = !sprite1.mirror if relative_to_index >= 0 && relative_to_index.odd? && particle[:foe_flip]
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.mirror = sprite1.mirror }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.mirror = sprite1.mirror }
     when :flip2
       if sprite2
         sprite2.mirror = sprite1.mirror
@@ -844,23 +836,17 @@ class AnimationEditor::Canvas < Sprite
       if sprite2
         sprite2.visible = sprite1.visible && particle[:second_layer] && (particle[:emitter_type] || :none) == :none
       end
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.visible = sprite1.visible }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.visible = sprite1.visible }
     when :opacity
       vis = AnimationEditor::ParticleDataHelper.get_keyframe_particle_value(particle, :visible, @display_keyframe)[0]
       sprite1.opacity = (vis) ? value : 0
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.opacity = sprite1.opacity }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.opacity = sprite1.opacity }
     when :opacity2
       sprite2.opacity = sprite1.opacity + value if sprite2
     when :color
       col = Color.new_from_rgb(value)
       sprite1.color.set(col.red, col.green, col.blue, col.alpha)
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.color.set(col.red, col.green, col.blue, col.alpha) }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.color.set(col.red, col.green, col.blue, col.alpha) }
     when :color2
       if sprite2
         col = Color.new_from_rgb(value)
@@ -869,9 +855,7 @@ class AnimationEditor::Canvas < Sprite
     when :tone
       ton = Tone.new_from_rgbg(value)
       sprite1.tone.set(ton.red, ton.green, ton.blue, ton.gray)
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.tone.set(ton.red, ton.green, ton.blue, ton.gray) }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.tone.set(ton.red, ton.green, ton.blue, ton.gray) }
     when :tone2
       if sprite2
         ton = Tone.new_from_rgbg(value)
@@ -879,9 +863,7 @@ class AnimationEditor::Canvas < Sprite
       end
     when :invert_color
       sprite1.invert = value
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.invert = sprite1.invert }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.invert = sprite1.invert }
     when :invert_color2
       if sprite2
         sprite2.invert = sprite1.invert
@@ -893,9 +875,7 @@ class AnimationEditor::Canvas < Sprite
       sprite2.src_rect.x = value.floor * sprite2.src_rect.width if sprite2
     when :blending
       sprite1.blend_type = value
-      if @particle_tiled_sprites[index]
-        @particle_tiled_sprites[index].each { |ts| ts.blend_type = sprite1.blend_type }
-      end
+      @particle_tiled_sprites[index]&.each { |ts| ts.blend_type = sprite1.blend_type }
     when :blending2
       sprite2.blend_type = value if sprite2
     when :mask_blending
@@ -1019,7 +999,7 @@ class AnimationEditor::Canvas < Sprite
     @battler_frame_sprites.each_with_index do |sprite, index|
       next if !sprite || sprite.disposed? || !sprite.visible
       next if !mouse_in_sprite?(sprite, mouse_x, mouse_y)
-      dist = (sprite.x - mouse_x) ** 2 + (sprite.y - mouse_y) ** 2
+      dist = ((sprite.x - mouse_x)**2) + ((sprite.y - mouse_y)**2)
       next if nearest_distance >= 0 && nearest_distance < dist
       if index == user_index
         nearest_index = @anim[:particles].index { |particle| particle[:name] == "User" }
@@ -1033,7 +1013,7 @@ class AnimationEditor::Canvas < Sprite
       sprites.each do |spr|
         next if !spr || spr.disposed? || !spr.visible
         next if !mouse_in_sprite?(spr, mouse_x, mouse_y)
-        dist = (spr.x - mouse_x) ** 2 + (spr.y - mouse_y) ** 2
+        dist = ((spr.x - mouse_x)**2) + ((spr.y - mouse_y)**2)
         next if nearest_distance >= 0 && nearest_distance < dist
         nearest_index = index
         nearest_distance = dist
@@ -1075,11 +1055,6 @@ class AnimationEditor::Canvas < Sprite
       x_move = increment
     end
     if x_move != 0
-      if GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus])
-        sprite, frame = get_sprite_and_frame(@selected_particle, first_target_index)
-      else
-        sprite, frame = get_sprite_and_frame(@selected_particle)
-      end
       x_move *= -1 if particle[:polar_coordinates]
       if (particle[:emitter_type] || :none) == :none
         property = (particle[:polar_coordinates]) ? :theta : :x
@@ -1098,11 +1073,6 @@ class AnimationEditor::Canvas < Sprite
       y_move = increment
     end
     if y_move != 0
-      if GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus])
-        sprite, frame = get_sprite_and_frame(@selected_particle, first_target_index)
-      else
-        sprite, frame = get_sprite_and_frame(@selected_particle)
-      end
       y_move *= -1 if particle[:polar_coordinates]
       if (particle[:emitter_type] || :none) == :none
         property = (particle[:polar_coordinates]) ? :r : :y
@@ -1149,9 +1119,9 @@ class AnimationEditor::Canvas < Sprite
     return if @captured[0] == new_canvas_x && @captured[1] == new_canvas_y
     particle = @anim[:particles][@selected_particle]
     if GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(particle[:focus])
-      sprite, frame = get_sprite_and_frame(@selected_particle, first_target_index)
+      sprite, _frame = get_sprite_and_frame(@selected_particle, first_target_index)
     else
-      sprite, frame = get_sprite_and_frame(@selected_particle)
+      sprite, _frame = get_sprite_and_frame(@selected_particle)
     end
     spr2 = get_second_sprite(@selected_particle, first_target_index)
     # Check if moved at all (in polar coordinates)
@@ -1161,6 +1131,7 @@ class AnimationEditor::Canvas < Sprite
       new_pos_y = new_canvas_y
       case particle[:focus]
       when :foreground, :midground, :background
+        # No focus to shift the sprite relative to
       when :user
         new_pos_x -= @user_coords[0]
         new_pos_y -= @user_coords[1]
@@ -1229,7 +1200,7 @@ class AnimationEditor::Canvas < Sprite
         new_r = new_pos_y.abs
         new_theta = (new_pos_y > 0) ? 270 : 90
       else
-        new_r = Math.sqrt((new_pos_x ** 2) + (new_pos_y ** 2)).round
+        new_r = Math.sqrt((new_pos_x**2) + (new_pos_y**2)).round
         new_theta = (Math.atan(-new_pos_y / new_pos_x.to_f) * 180 / Math::PI).round
         new_theta += 180 if new_pos_x < 0
         new_theta += 360 if new_theta < 0
@@ -1253,6 +1224,7 @@ class AnimationEditor::Canvas < Sprite
       new_pos_x = new_canvas_x
       case particle[:focus]
       when :foreground, :midground, :background
+        # No focus to shift the sprite relative to
       when :user, :user_position
         new_pos_x -= @user_coords[0]
       when :target, :target_position
@@ -1303,6 +1275,7 @@ class AnimationEditor::Canvas < Sprite
       new_pos_y = new_canvas_y
       case particle[:focus]
       when :foreground, :midground, :background
+        # No focus to shift the sprite relative to
       when :user
         new_pos_y -= @user_coords[1]
       when :user_position
@@ -1401,12 +1374,10 @@ class AnimationEditor::Canvas < Sprite
     case @anim[:particles][@selected_particle][:name]
     when "User"
       target = @battler_sprites[user_index]
-      raise _INTL("不知何故找不到粒子“{1}”的精灵。",
-                  @anim[:particles][@selected_particle][:name]) if !target
+      raise _INTL("不知何故找不到粒子“{1}”的精灵。", @anim[:particles][@selected_particle][:name]) if !target
     when "Target"
       target = @battler_sprites[target_indices[0]]
-      raise _INTL("不知何故找不到粒子“{1}”的精灵。",
-                  @anim[:particles][@selected_particle][:name]) if !target
+      raise _INTL("不知何故找不到粒子“{1}”的精灵。", @anim[:particles][@selected_particle][:name]) if !target
     else
       target = @particle_sprites[@selected_particle]
       if target && GameData::Animation::FOCUS_TYPES_WITH_TARGET.include?(@anim[:particles][@selected_particle][:focus])

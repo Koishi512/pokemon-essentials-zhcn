@@ -128,8 +128,8 @@ class UI::PokemonStorageVisualsSidePane < UI::SpriteContainer
     mark_variants = @bitmaps[:markings].bitmap.height / MARK_HEIGHT
     (@bitmaps[:markings].bitmap.width / MARK_WIDTH).times do |i|
       draw_image(@bitmaps[:markings], 38 + (i * MARK_WIDTH), 262,
-                i * MARK_WIDTH, [(@pokemon.markings[i] || 0), mark_variants - 1].min * MARK_HEIGHT,
-                MARK_WIDTH, MARK_HEIGHT)
+                 i * MARK_WIDTH, [@pokemon.markings[i] || 0, mark_variants - 1].min * MARK_HEIGHT,
+                 MARK_WIDTH, MARK_HEIGHT)
     end
   end
 
@@ -245,7 +245,7 @@ end
 #===============================================================================
 class UI::PokemonStorageVisualsPokemonIcon < PokemonIconSprite
   OUTLINE_COLOR = Color.new(248, 0, 0)
-  FULL_BORDER  = true   # true = draws the corners
+  FULL_BORDER   = true   # true = draws the corners
 
   def create_outline_bitmap
     @selected_bitmap = Bitmap.new(@animBitmap.height + 4, @animBitmap.height + 4)
@@ -962,7 +962,7 @@ class UI::PokemonStorageVisuals < UI::BaseVisuals
     timer_start = System.uptime
     loop do
       @sprites[:party_panel].y = lerp(start_y, start_y + @sprites[:party_panel].height,
-                                    0.4, timer_start, System.uptime)
+                                      0.4, timer_start, System.uptime)
       self.update
       Graphics.update
       break if @sprites[:party_panel].y == start_y + @sprites[:party_panel].height
@@ -1338,7 +1338,7 @@ class UI::PokemonStorageVisuals < UI::BaseVisuals
     # Draw marking icons
     (@bitmaps[:markings].bitmap.width / MARKING_WIDTH).times do |i|
       src_x = i * MARKING_WIDTH
-      src_y = [(@markings[i] || 0), mark_variants - 1].min * MARKING_HEIGHT
+      src_y = [@markings[i] || 0, mark_variants - 1].min * MARKING_HEIGHT
       draw_image(@bitmaps[:markings],
                  marking_x + (marking_spacing_x * (i % markings_per_row)),
                  marking_y + (marking_spacing_y * (i / markings_per_row)),
@@ -1840,13 +1840,13 @@ class UI::PokemonStorage < UI::BaseScreen
           screen.show_message(_INTL("这个盒子满了。"))
           next
         end
-        screen.visuals.store_pokemon(new_box, new_index) {
+        screen.visuals.store_pokemon(new_box, new_index) do
           if was_holding
             screen.storage.pbMoveCaughtToBox(pkmn, new_box)
           else
             screen.storage.pbMove(new_box, new_index, old_box, old_index)
           end
-        }
+        end
         screen.refresh
         screen.refresh_selected_pokemon
         break
@@ -1922,12 +1922,12 @@ class UI::PokemonStorage < UI::BaseScreen
     :effect => proc { |screen|
       next if !screen.slot_pokemon
       if screen.holding_item?
-        if screen.slot_pokemon && screen.slot_pokemon.hasItem?
+        if screen.slot_pokemon&.hasItem?
           screen.perform_action(:swap_items)
         else
           screen.perform_action(:put_down_item)
         end
-      elsif screen.slot_pokemon && screen.slot_pokemon.hasItem?
+      elsif screen.slot_pokemon&.hasItem?
         screen.perform_action(:pick_up_item)
       end
     }

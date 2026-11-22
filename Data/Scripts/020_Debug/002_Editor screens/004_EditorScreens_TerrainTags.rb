@@ -16,7 +16,7 @@ class PokemonTilesetScene
   def initialize
     @tilesets_data = load_data("Data/Tilesets.rxdata")
     @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
-    @viewport.z = 99999
+    @viewport.z = 99_999
     @sprites = {}
     @sprites["title"] = Window_UnformattedTextPokemon.newWithSize(
       _INTL("图块集编辑器\n售后服务：滚动\nZ：菜单"),

@@ -88,21 +88,19 @@ class AnimationPlayer
         )
       end
     end
-    if @targets
-      @targets.each do |target|
-        if @forceSubstitutes[target.index]
-          @battler_filenames[target.index].push(GameData::Species.substitute_sprite_filename)
-          @battler_filenames[target.index].push(GameData::Species.substitute_sprite_filename(true))
-        else
-          pkmn = target.pokemon
-          @battler_filenames[target.index] = []
-          @battler_filenames[target.index].push(GameData::Species.front_sprite_filename(
-            pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?)
-          )
-          @battler_filenames[target.index].push(GameData::Species.back_sprite_filename(
-            pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?)
-          )
-        end
+    @targets&.each do |target|
+      if @forceSubstitutes[target.index]
+        @battler_filenames[target.index].push(GameData::Species.substitute_sprite_filename)
+        @battler_filenames[target.index].push(GameData::Species.substitute_sprite_filename(true))
+      else
+        pkmn = target.pokemon
+        @battler_filenames[target.index] = []
+        @battler_filenames[target.index].push(GameData::Species.front_sprite_filename(
+          pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?)
+        )
+        @battler_filenames[target.index].push(GameData::Species.back_sprite_filename(
+          pkmn.species, pkmn.form, pkmn.gender, pkmn.shiny?)
+        )
       end
     end
   end
@@ -116,12 +114,10 @@ class AnimationPlayer
                       sprite.y - sprite.oy + (sprite.bitmap.height / 2)]
     end
     @target_coords = []
-    if @targets
-      @targets.each do |target|
-        sprite = @sprites["pokemon_#{target.index}"]
-        @target_coords[target.index] = [sprite.x - sprite.ox + (sprite.bitmap.width / 2),
-                                        sprite.y - sprite.oy + (sprite.bitmap.height / 2)]
-      end
+    @targets&.each do |target|
+      sprite = @sprites["pokemon_#{target.index}"]
+      @target_coords[target.index] = [sprite.x - sprite.ox + (sprite.bitmap.width / 2),
+                                      sprite.y - sprite.oy + (sprite.bitmap.height / 2)]
     end
   end
 
@@ -296,14 +292,18 @@ class AnimationPlayer
     case particle[:graphic]
     when "USER", "USER_OPP", "USER_FRONT", "USER_BACK"
       sprite = @sprites["pokemon_#{@user.index}"]
-      particle_sprite.sprite.each { |spr| spr.ox = sprite.ox }
-      particle_sprite.sprite.each { |spr| spr.oy = sprite.oy }
+      particle_sprite.sprite.each do |spr|
+        spr.ox = sprite.ox
+        spr.oy = sprite.oy
+      end
       offset_xy[0] += sprite.ox - (sprite.bitmap.width / 2)
       offset_xy[1] += sprite.oy - sprite.bitmap.height
     when "TARGET", "TARGET_OPP", "TARGET_FRONT", "TARGET_BACK"
       sprite = @sprites["pokemon_#{target_idx}"]
-      particle_sprite.sprite.each { |spr| spr.ox = sprite.ox }
-      particle_sprite.sprite.each { |spr| spr.oy = sprite.oy }
+      particle_sprite.sprite.each do |spr|
+        spr.ox = sprite.ox
+        spr.oy = sprite.oy
+      end
       offset_xy[0] += sprite.ox - (sprite.bitmap.width / 2)
       offset_xy[1] += sprite.oy - sprite.bitmap.height
     end
@@ -617,7 +617,7 @@ class AnimationPlayer::ParticleSprite
           process[4], start_val, end_val, process[2],
           process[1], elapsed_time
         )
-        new_val.push((val >= 0 ? "+" : "-") + sprintf("%02X", val.abs))
+        new_val.push(((val >= 0) ? "+" : "-") + sprintf("%02X", val.abs))
       end
       @values[process[0]] = new_val.join
     else
@@ -634,7 +634,7 @@ class AnimationPlayer::ParticleSprite
   def update_emitter_type_properties(elapsed_time, changed_properties)
     return if (@emitter_params[:type] || :none) == :none
     delta_t = (elapsed_time - @emitter_params[:start_time]) / @slowdown.to_f
-    case (@emitter_params[:type] || :none)
+    case @emitter_params[:type]
     when :no_movement
       # NOTE: This doesn't change any properties.
     when :straight
@@ -678,7 +678,7 @@ class AnimationPlayer::ParticleSprite
     when :helix
       if @emitter_params[:period_x] != 0
         new_angle = @emitter_params[:direction] || 0
-        new_angle += (360 * delta_t / @emitter_params[:period_x]) * (@emitter_params[:clockwise] ? -1 : 1)
+        new_angle += (360 * delta_t / @emitter_params[:period_x]) * ((@emitter_params[:clockwise]) ? -1 : 1)
         new_x = @values[:radius_x] * @emitter_params[:radius_x_mult] * Math.sin(new_angle * Math::PI / 180)
         @values[:auto_movement_x] = new_x
         changed_properties.push(:x)
@@ -690,7 +690,7 @@ class AnimationPlayer::ParticleSprite
       end
       if @emitter_params[:period_z] != 0
         new_angle = @emitter_params[:direction] || 0
-        new_angle += (360 * delta_t / @emitter_params[:period_z]) * (@emitter_params[:clockwise] ? -1 : 1)
+        new_angle += (360 * delta_t / @emitter_params[:period_z]) * ((@emitter_params[:clockwise]) ? -1 : 1)
         new_z = @values[:radius_z] * @emitter_params[:radius_z_mult] * Math.cos(new_angle * Math::PI / 180)
         @values[:auto_movement_z] = new_z
         changed_properties.push(:z)
@@ -698,7 +698,7 @@ class AnimationPlayer::ParticleSprite
     when :polar
       if @emitter_params[:period_x] != 0
         new_angle = @emitter_params[:direction] || 0
-        new_angle += (360 * delta_t / @emitter_params[:period_x]) * (@emitter_params[:clockwise] ? -1 : 1)
+        new_angle += (360 * delta_t / @emitter_params[:period_x]) * ((@emitter_params[:clockwise]) ? -1 : 1)
         new_x = @values[:radius_x] * @emitter_params[:radius_x_mult] * Math.cos(new_angle * Math::PI / 180)
         @values[:auto_movement_x] = new_x
         changed_properties.push(:x)
@@ -731,7 +731,7 @@ class AnimationPlayer::ParticleSprite
       spawn_offset = (@property_offsets[:spawn_x] || 0) + (@values[:spawn_x_offset] || 0)
       spawn_offset *= @values[:spawn_x_multiplier] / 100.0
       value += spawn_offset   # Emitter to spawn point
-      value += (@property_offsets[:emitter_x] || 0)   # Focus to emitter
+      value += @property_offsets[:emitter_x] || 0   # Focus to emitter
       value *= @emitter_params[:x_multiplier] || 1
       value *= -1 if @foe_invert_x
       AnimationPlayer::Helper.apply_xy_value_using_focus_to_sprite(@sprite[0], :x, value, @focus_xy)   # Screen to focus
@@ -759,7 +759,7 @@ class AnimationPlayer::ParticleSprite
       spawn_offset = (@property_offsets[:spawn_y] || 0) + (@values[:spawn_y_offset] || 0)
       spawn_offset *= @values[:spawn_y_multiplier] / 100.0
       value += spawn_offset   # Emitter to spawn point
-      value += (@property_offsets[:emitter_y] || 0)   # Focus to emitter
+      value += @property_offsets[:emitter_y] || 0   # Focus to emitter
       value *= @emitter_params[:y_multiplier] || 1
       value *= -1 if @foe_invert_y
       AnimationPlayer::Helper.apply_xy_value_using_focus_to_sprite(@sprite[0], :y, value, @focus_xy)   # Screen to focus
@@ -793,14 +793,14 @@ class AnimationPlayer::ParticleSprite
       dist *= @values[:spawn_r_multiplier] / 100.0
       dir = (@property_offsets[:spawn_theta] || 0) + (@values[:spawn_theta_offset] || 0)
       @values[:spawn_x_offset] = dist * Math.cos(dir * Math::PI / 180)
-      @values[:spawn_x_offset] -= (@property_offsets[:spawn_x] || 0)
+      @values[:spawn_x_offset] -= @property_offsets[:spawn_x] || 0
       @values[:spawn_y_offset] = -dist * Math.sin(dir * Math::PI / 180)
-      @values[:spawn_y_offset] -= (@property_offsets[:spawn_y] || 0)
+      @values[:spawn_y_offset] -= @property_offsets[:spawn_y] || 0
       apply_sprite_property(:x, @values[:x])
       apply_sprite_property(:y, @values[:y])
     when :z
       value += @values[:auto_movement_z] || 0   # Used by emitters
-      value += (@property_offsets[property] || 0)
+      value += @property_offsets[property] || 0
       value += @emitter_params[:z] || 0
       if @foe_invert_z
         if @focus_z.is_a?(Array)
@@ -811,13 +811,11 @@ class AnimationPlayer::ParticleSprite
       end
       AnimationPlayer::Helper.apply_z_focus_to_sprite(@sprite[0], value, @focus_z)
       apply_sprite_property(:z2, @values[:z2])
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.z = @sprite[0].z }
-      end
+      @tiled_sprites&.each { |spr| spr.z = @sprite[0].z }
     when :z2
       @sprite[1].z = @sprite[0].z + value if @sprite[1]
     when :zoom_x
-      value += (@property_offsets[property] || 0)
+      value += @property_offsets[property] || 0
       value *= @emitter_params[:zoom_multiplier] || 1
       value *= @emitter_params[:zoom_mult] || 1
       value *= @emitter_params[:zoom_x_mult] || 1
@@ -826,7 +824,7 @@ class AnimationPlayer::ParticleSprite
     when :zoom_x2
       @sprite[1].zoom_x = @sprite[0].zoom_x * value / 100.0 if @sprite[1]
     when :zoom_y
-      value += (@property_offsets[property] || 0)
+      value += @property_offsets[property] || 0
       value *= @emitter_params[:zoom_multiplier] || 1
       value *= @emitter_params[:zoom_mult] || 1
       value *= @emitter_params[:zoom_y_mult] || 1
@@ -838,14 +836,14 @@ class AnimationPlayer::ParticleSprite
       if @initial_angle == :always_particle_to_focus
         apply_sprite_property_override(:angle)
       else
-        value += (@property_offsets[property] || 0)
+        value += @property_offsets[property] || 0
         value += @emitter_params[:angle] || 0
         @sprite[0].angle = value
       end
       @sprite[0].angle *= -1 if @random_invert_angle
       apply_sprite_property(:angle2, @values[:angle2])
     when :angle2
-     if @sprite[1]
+      if @sprite[1]
         new_val = value
         new_val *= -1 if @random_invert_angle
         @sprite[1].angle = @sprite[0].angle + new_val
@@ -855,66 +853,52 @@ class AnimationPlayer::ParticleSprite
       @sprite[0].mirror = !@sprite[0].mirror if @foe_flip
       @sprite[0].mirror = !@sprite[0].mirror if @random_invert_flip
       apply_sprite_property(:flip2, @values[:flip2])
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.mirror = @sprite[0].mirror }
-      end
+      @tiled_sprites&.each { |spr| spr.mirror = @sprite[0].mirror }
     when :flip2
-     if @sprite[1]
+      if @sprite[1]
         @sprite[1].mirror = @sprite[0].mirror
         @sprite[1].mirror = !@sprite[1].mirror if value
       end
     when :visible
       @sprite.each { |spr| spr.visible = !@forceInvisibility && value }
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.visible = !@forceInvisibility && value }
-      end
+      @tiled_sprites&.each { |spr| spr.visible = !@forceInvisibility && value }
     when :opacity
-      value += (@property_offsets[property] || 0)
+      value += @property_offsets[property] || 0
       value *= @emitter_params[:opacity_multiplier] || 1
       @sprite[0].opacity = value
       apply_sprite_property(:opacity2, @values[:opacity2]) if @sprite[1]
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.opacity = @sprite[0].opacity }
-      end
+      @tiled_sprites&.each { |spr| spr.opacity = @sprite[0].opacity }
     when :opacity2
       if @sprite[1]
         @sprite[1].opacity = @sprite[0].opacity + (value * (@emitter_params[:opacity_multiplier] || 1))
       end
     when :color
       @sprite[0].color = Color.new_from_rgb(value)
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.color = Color.new_from_rgb(value) }
-      end
+      @tiled_sprites&.each { |spr| spr.color = Color.new_from_rgb(value) }
     when :color2
       @sprite[1].color = Color.new_from_rgb(value) if @sprite[1]
     when :tone
       @sprite[0].tone = Tone.new_from_rgbg(value)
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.tone = Tone.new_from_rgbg(value) }
-      end
+      @tiled_sprites&.each { |spr| spr.tone = Tone.new_from_rgbg(value) }
     when :tone2
       @sprite[1].tone = Tone.new_from_rgbg(value) if @sprite[1]
     when :invert_color
       @sprite[0].invert = value
       apply_sprite_property(:invert_color2, @values[:invert_color2])
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.invert = @sprite[0].invert }
-      end
+      @tiled_sprites&.each { |spr| spr.invert = @sprite[0].invert }
     when :invert_color2
       if @sprite[1]
         @sprite[1].invert = @sprite[0].invert
         @sprite[1].invert = !@sprite[1].invert if value
       end
     when :frame
-      value += (@property_offsets[property] || 0)
+      value += @property_offsets[property] || 0
       @sprite[0].src_rect.x = value.floor * @sprite[0].src_rect.width
     when :frame2
       @sprite[1].src_rect.x = value.floor * @sprite[1].src_rect.width if @sprite[1]
     when :blending
       @sprite[0].blend_type = value
-      if @tiled_sprites
-        @tiled_sprites.each { |spr| spr.blend_type = value }
-      end
+      @tiled_sprites&.each { |spr| spr.blend_type = value }
     when :blending2
       @sprite[1].blend_type = value if @sprite[1]
     when :mask_blending
@@ -949,7 +933,7 @@ class AnimationPlayer::ParticleSprite
       target_y += @offset_xy[1]
       # Recalculate angle
       @sprite[0].angle = AnimationPlayer::Helper.angle_between(sprite_x, sprite_y, target_x, target_y)
-      @sprite[0].angle += (@property_offsets[property] || 0)
+      @sprite[0].angle += @property_offsets[property] || 0
       @sprite[0].angle += @values[:angle]
       apply_sprite_property(:angle2, @values[:angle2])
     end
@@ -1245,7 +1229,7 @@ class AnimationPlayer::Emitter
       [:emit_deceleration, :deceleration],
       [:emit_period_x, :period_x],
       [:emit_period_y, :period_y],
-      [:emit_period_z, :period_z],
+      [:emit_period_z, :period_z]
     ].each do |property|
       val = @values[property[0]]
       val_range = @values[(property[0].to_s + "_range").to_sym]
@@ -1437,7 +1421,7 @@ class AnimationPlayer::Emitter
           process[4], start_val, end_val, process[2],
           process[1], elapsed_time
         )
-        new_val.push((val >= 0 ? "+" : "-") + sprintf("%02X", val.abs))
+        new_val.push(((val >= 0) ? "+" : "-") + sprintf("%02X", val.abs))
       end
       @values[process[0]] = new_val.join
     else
@@ -1534,6 +1518,7 @@ module AnimationPlayer::Helper
     ret = nil
     case particle[:focus]
     when :foreground, :midground, :background
+      # No battler to focus on; focus point is the top left of the screen
     when :user
       ret = [user_coords.clone]
     when :user_position
@@ -1606,13 +1591,13 @@ module AnimationPlayer::Helper
     when :background
       # NOTE: No change.
     when :user, :user_position
-      ret = 1000 + ((100 * ((user_index / 2) + 1)) * (user_index.even? ? 1 : -1))
+      ret = 1000 + ((100 * ((user_index / 2) + 1)) * ((user_index.even?) ? 1 : -1))
     when :target, :target_position
-      ret = 1000 + ((100 * ((target_index / 2) + 1)) * (target_index.even? ? 1 : -1))
+      ret = 1000 + ((100 * ((target_index / 2) + 1)) * ((target_index.even?) ? 1 : -1))
     when :user_and_target, :user_position_and_target, :user_and_target_position,
          :user_position_and_target_position
-      user_pos = 1000 + ((100 * ((user_index / 2) + 1)) * (user_index.even? ? 1 : -1))
-      target_pos = 1000 + ((100 * ((target_index / 2) + 1)) * (target_index.even? ? 1 : -1))
+      user_pos = 1000 + ((100 * ((user_index / 2) + 1)) * ((user_index.even?) ? 1 : -1))
+      target_pos = 1000 + ((100 * ((target_index / 2) + 1)) * ((target_index.even?) ? 1 : -1))
       ret = [user_pos, target_pos]
     when :user_side_foreground, :target_side_foreground
       this_idx = (particle[:focus] == :user_side_foreground) ? user_index : target_index
@@ -1627,8 +1612,8 @@ module AnimationPlayer::Helper
     when :non_user_side_background
       ret = 1000 if user_index.odd?   # User is on foe's side
     when :user_and_other_side   # Other side's foreground
-      user_pos = 1000 + ((100 * ((user_index / 2) + 1)) * (user_index.even? ? 1 : -1))
-      side_pos = 1000 + (user_index.odd? ? 1000 : 0)
+      user_pos = 1000 + ((100 * ((user_index / 2) + 1)) * ((user_index.even?) ? 1 : -1))
+      side_pos = 1000 + ((user_index.odd?) ? 1000 : 0)
       ret = [user_pos, side_pos]
     end
     return ret

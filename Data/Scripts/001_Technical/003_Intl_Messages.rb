@@ -123,49 +123,47 @@ module Translator
             t += 5
             Graphics.update
           end
-          begin
-            event.pages.size.times do |i|
-              neednewline = false
+          event.pages.size.times do |i|
+            neednewline = false
+            lastitem = ""
+            event.pages[i].list.size.times do |j|
+              list = event.pages[i].list[j]
+              if neednewline && list.code != 401   # Continuation of 101 Show Text
+                if lastitem != ""
+                  lastitem.gsub!(/([^\.\!\?])\s\s+/) { |m| $1 + " " }
+                  items.push(lastitem)
+                  lastitem = ""
+                end
+                neednewline = false
+              end
+              if list.code == 101   # Show Text
+                lastitem += list.parameters[0].to_s
+                neednewline = true
+              elsif list.code == 102   # Show Choices
+                list.parameters[0].length.times do |k|
+                  choices.push(list.parameters[0][k])
+                end
+                neednewline = false
+              elsif list.code == 401   # Continuation of 101 Show Text
+                lastitem += " " if lastitem != ""
+                lastitem += list.parameters[0].to_s
+                neednewline = true
+              elsif list.code == 355 || list.code == 655   # Script or script continuation line
+                find_translatable_text_from_event_script(items, list.parameters[0])
+              elsif list.code == 111 && list.parameters[0] == 12   # Conditional Branch
+                find_translatable_text_from_event_script(items, list.parameters[1])
+              elsif list.code == 209   # Set Move Route
+                route = list.parameters[1]
+                route.list.size.times do |k|
+                  if route.list[k].code == PBMoveRoute::SCRIPT
+                    find_translatable_text_from_event_script(items, route.list[k].parameters[0])
+                  end
+                end
+              end
+            end
+            if neednewline && lastitem != ""
+              items.push(lastitem)
               lastitem = ""
-              event.pages[i].list.size.times do |j|
-                list = event.pages[i].list[j]
-                if neednewline && list.code != 401   # Continuation of 101 Show Text
-                  if lastitem != ""
-                    lastitem.gsub!(/([^\.\!\?])\s\s+/) { |m| $1 + " " }
-                    items.push(lastitem)
-                    lastitem = ""
-                  end
-                  neednewline = false
-                end
-                if list.code == 101   # Show Text
-                  lastitem += list.parameters[0].to_s
-                  neednewline = true
-                elsif list.code == 102   # Show Choices
-                  list.parameters[0].length.times do |k|
-                    choices.push(list.parameters[0][k])
-                  end
-                  neednewline = false
-                elsif list.code == 401   # Continuation of 101 Show Text
-                  lastitem += " " if lastitem != ""
-                  lastitem += list.parameters[0].to_s
-                  neednewline = true
-                elsif list.code == 355 || list.code == 655   # Script or script continuation line
-                  find_translatable_text_from_event_script(items, list.parameters[0])
-                elsif list.code == 111 && list.parameters[0] == 12   # Conditional Branch
-                  find_translatable_text_from_event_script(items, list.parameters[1])
-                elsif list.code == 209   # Set Move Route
-                  route = list.parameters[1]
-                  route.list.size.times do |k|
-                    if route.list[k].code == PBMoveRoute::SCRIPT
-                      find_translatable_text_from_event_script(items, route.list[k].parameters[0])
-                    end
-                  end
-                end
-              end
-              if neednewline && lastitem != ""
-                items.push(lastitem)
-                lastitem = ""
-              end
             end
           end
         end
@@ -390,7 +388,8 @@ module Translator
     end
     msg_window.textspeed = MessageConfig.pbSettingToTextSpeed($PokemonSystem.textspeed)
     pbMessageDisplay(msg_window,
-       _INTL("文本文件在文件夹 \"Text_{1}\" 中已成功编译到文件 \"Data/messages_{2}.dat\"。", dir_name, dat_filename))
+                     _INTL("文本文件在文件夹 \"Text_{1}\" 中已成功编译到文件 \"Data/messages_{2}.dat\"。",
+                           dir_name, dat_filename))
     pbMessageDisplay(msg_window, _INTL("您可能需要关闭游戏以查看消息的任何更改。"))
     pbDisposeMessageWindow(msg_window)
   end

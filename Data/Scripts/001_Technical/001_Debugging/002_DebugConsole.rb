@@ -8,19 +8,16 @@ module Console
 
   def setup_console
     return unless $DEBUG
-    echoln "GPU最大缓存：#{Bitmap.max_size}"
-    echoln Console.markup_style("你可以忽略以上关于fluidsynth的消息。", text: :brown)
-    echoln ""
-    echoln Console.markup_style("===============================================================================", text: :yellow)
+    echoln "GPU Cache Max: #{Bitmap.max_size}"
+    echoln Console.markup_style("The above warnings/error messages in white are from mkxp-z. You can ignore them.", text: :brown)
+    echoln Console.markup_style("================================================================================", text: :yellow)
     echoln Console.markup_style("\"#{System.game_title}\" Debug Console Window", text: :yellow)
-    echoln Console.markup_style("===============================================================================", text: :yellow)
-    echoln "你正在以调试模式运行，可能是因为你点击了 RPG Maker XP 中的 \"测试\" 按钮。如果你想以普通玩家身份运行游戏，请直接运行 Game.exe。"
-    echoln ""
-    echoln "关闭此窗口将关闭游戏。"
-    echoln ""
-    echoln Console.markup_style("===============================================================================", text: :yellow)
-    echoln Console.markup_style("调试输出：", text: :yellow)
-    echoln Console.markup_style("===============================================================================", text: :yellow)
+    echoln Console.markup_style("================================================================================", text: :yellow)
+    echoln "You are playing in Debug Mode. Closing this window will close the game."
+    echoln "If you want to play as a regular player, run Game.exe directly."
+    echoln Console.markup_style("================================================================================", text: :yellow)
+    echoln Console.markup_style("Debug Output:", text: :yellow)
+    echoln Console.markup_style("================================================================================", text: :yellow)
     echoln ""
   end
 
@@ -43,7 +40,7 @@ end
 module Kernel
   def echo(string)
     return unless $DEBUG
-    printf(string.is_a?(String) ? string : string.inspect)
+    printf((string.is_a?(String)) ? string : string.inspect)
   end
 
   def echoln(string)
@@ -80,7 +77,7 @@ module Console
   # list item
   def echo_li(msg, pad = 0, color = :brown)
     echo markup_style("  -> ", text: color)
-    pad = (pad - msg.length) > 0 ? "." * (pad - msg.length) : ""
+    pad = (pad - msg.length > 0) ? "." * (pad - msg.length) : ""
     echo markup(msg + pad)
   end
 

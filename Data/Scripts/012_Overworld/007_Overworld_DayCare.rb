@@ -420,14 +420,14 @@ class DayCare
 
   def self.get_details(index, name_var, cost_var)
     day_care = $PokemonGlobal.day_care
-    index = (day_care.slots.index { |slot| slot.filled? } || 0) if index < 0
+    index = day_care.slots.index { |slot| slot.filled? } || 0 if index < 0
     $game_variables[name_var] = day_care[index].pokemon_name if name_var > 0
     $game_variables[cost_var] = day_care[index].cost if cost_var > 0
   end
 
   def self.get_level_gain(index, name_var, level_var)
     day_care = $PokemonGlobal.day_care
-    index = (day_care.slots.index { |slot| slot.filled? } || 0) if index < 0
+    index = day_care.slots.index { |slot| slot.filled? } || 0 if index < 0
     $game_variables[name_var] = day_care[index].pokemon_name if name_var > 0
     $game_variables[level_var] = day_care[index].level_gain if level_var > 0
   end
@@ -441,14 +441,16 @@ class DayCare
     day_care = $PokemonGlobal.day_care
     pkmn = $player.party[party_index]
     raise _INTL("队伍中无索引为{1}的宝可梦。", party_index) if pkmn.nil?
+    deposited = false
     day_care.slots.each do |slot|
       next if slot.filled?
       slot.deposit(pkmn)
       $player.party.delete_at(party_index)
       day_care.reset_egg_counters
-      return
+      deposited = true
+      break
     end
-    raise _INTL("没有寄放宝可梦的空间了。")
+    raise _INTL("没有寄放宝可梦的空间了。") if !deposited
   end
 
   def self.withdraw(index)

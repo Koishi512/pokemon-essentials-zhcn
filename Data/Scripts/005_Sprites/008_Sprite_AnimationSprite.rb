@@ -227,7 +227,7 @@ class SpriteAnimation
       when 1
         self.flash(timing.flash_color, timing.flash_duration * 2)
       when 2
-        self.viewport.flash(timing.flash_color, timing.flash_duration * 2) if self.viewport
+        self.viewport&.flash(timing.flash_color, timing.flash_duration * 2)
       when 3
         self.flash(nil, timing.flash_duration * 2)
       end
@@ -313,12 +313,14 @@ class Spriteset_Map
   end
 
   def addUserSprite(new_sprite)
+    added = false
     @usersprites.each_with_index do |sprite, i|
       next if sprite && !sprite.disposed?
       @usersprites[i] = new_sprite
-      return
+      added = true
+      break
     end
-    @usersprites.push(new_sprite)
+    @usersprites.push(new_sprite) if !added
   end
 
   def dispose

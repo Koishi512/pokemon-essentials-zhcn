@@ -740,9 +740,9 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_gender, {
     end
     cmd = 0
     loop do
-      msg = [_INTL("性别为男。"), _INTL("性别为女。")][pkmn.male? ? 0 : 1]
+      msg = [_INTL("性别为雄性。"), _INTL("性别为雌性。")][(pkmn.male?) ? 0 : 1]
       cmd = pbMessage("\\ts[]" + msg,
-                      [_INTL("变男"), _INTL("使女性"), _INTL("重置")], -1, nil, cmd)
+                      [_INTL("变为雄性"), _INTL("变为雌性"), _INTL("重置")], -1, nil, cmd)
       break if cmd < 0
       case cmd
       when 0   # Make male
@@ -810,17 +810,17 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_species, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_shininess, {
-  "name"   => _INTL("设置光泽度"),
+  "name"   => _INTL("设置异色"),
   "parent" => :main,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     cmd = 0
     loop do
-      msg_idx = pkmn.shiny? ? (pkmn.super_shiny? ? 1 : 0) : 2
-      msg = [_INTL("有光泽。"), _INTL("是超级闪亮的。"), _INTL("是正常的（不闪亮）。")][msg_idx]
+      msg_idx = (pkmn.shiny?) ? ((pkmn.super_shiny?) ? 1 : 0) : 2
+      msg = [_INTL("是异色的。"), _INTL("是超异色的。"), _INTL("是正常的（非异色）。")][msg_idx]
       cmd = pbMessage("\\ts[]" + msg,
-                      [_INTL("使闪亮"),
-                       _INTL("打造超级闪亮"),
+                      [_INTL("使异色"),
+                       _INTL("使超异色"),
                        _INTL("使正常"),
                        _INTL("重置")], -1, nil, cmd)
       break if cmd < 0

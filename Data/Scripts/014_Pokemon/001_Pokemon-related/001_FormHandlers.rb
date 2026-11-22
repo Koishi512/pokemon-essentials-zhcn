@@ -102,12 +102,9 @@ def drawSpot(bitmap, spotpattern, x, y, red, green, blue)
       xOrg = (x + xx) * 2
       yOrg = (y + yy) * 2
       color = bitmap.get_pixel(xOrg, yOrg)
-      r = color.red + red
-      g = color.green + green
-      b = color.blue + blue
-      color.red   = [[r, 0].max, 255].min
-      color.green = [[g, 0].max, 255].min
-      color.blue  = [[b, 0].max, 255].min
+      color.red   = (color.red + red).clamp(0, 255)
+      color.green = (color.green + green).clamp(0, 255)
+      color.blue  = (color.blue + blue).clamp(0, 255)
       bitmap.set_pixel(xOrg, yOrg, color)
       bitmap.set_pixel(xOrg + 1, yOrg, color)
       bitmap.set_pixel(xOrg, yOrg + 1, color)
@@ -284,13 +281,13 @@ MultipleForms.register(:ROTOM, {
 
 MultipleForms.register(:DIALGA, {
   "getForm" => proc { |pkmn|
-    next pkmn.hasItem?(:ADAMANTCRYSTAL) ? 1 : 0
+    next (pkmn.hasItem?(:ADAMANTCRYSTAL)) ? 1 : 0
   }
 })
 
 MultipleForms.register(:PALKIA, {
   "getForm" => proc { |pkmn|
-    next pkmn.hasItem?(:LUSTROUSGLOBE) ? 1 : 0
+    next (pkmn.hasItem?(:LUSTROUSGLOBE)) ? 1 : 0
   }
 })
 

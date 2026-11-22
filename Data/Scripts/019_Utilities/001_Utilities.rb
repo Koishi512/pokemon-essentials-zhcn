@@ -469,7 +469,7 @@ def pbMoveTutorChoose(move, movelist = nil, by_machine = false, one_use_machine 
         screen.show_message(_INTL("不能给蛋教授任何招式。"))
       elsif pkmn.shadowPokemon?
         screen.show_message(_INTL("不能给黑暗宝可梦教授任何招式。"))
-      elsif movelist && movelist.none? { |j| j == pkmn.species }
+      elsif movelist&.none? { |j| j == pkmn.species }
         screen.show_message(_INTL("{1}不能学会{2}。", pkmn.name, move_name))
       elsif !pkmn.compatible_with_move?(move)
         screen.show_message(_INTL("{1}不能学会{2}。", pkmn.name, move_name))
@@ -493,7 +493,7 @@ def pbConvertItemToItem(variable, array)
   (array.length / 2).times do |i|
     next if item != array[2 * i]
     pbSet(variable, array[(2 * i) + 1])
-    return
+    break
   end
 end
 
@@ -503,7 +503,7 @@ def pbConvertItemToPokemon(variable, array)
   (array.length / 2).times do |i|
     next if item != array[2 * i]
     pbSet(variable, GameData::Species.get(array[(2 * i) + 1]).id)
-    return
+    break
   end
 end
 

@@ -43,6 +43,7 @@ class TilemapRenderer
 #    1 => [["Sand shore"], ["Flowers2"]],
 #    2 => [[], ["Flowers2", "Waterfall", "Waterfall crest", "Waterfall bottom"]],
 #    6 => [["Water rock", "Sea deep"], []]
+    2 => [[], ["Water current north", "Water current west", "Water current east", "Water current south"]]
   }
 
   #=============================================================================
@@ -215,7 +216,7 @@ class TilemapRenderer
         tile.src_rect.x = SOURCE_TILE_WIDTH
         tile.src_rect.y -= SOURCE_TILE_HEIGHT * TILES_PER_AUTOTILE / 2
       end
-      tile.src_rect.x += frame * SOURCE_TILE_WIDTH * (wraps ? 2 : 1)
+      tile.src_rect.x += frame * SOURCE_TILE_WIDTH * ((wraps) ? 2 : 1)
     end
 
     def update

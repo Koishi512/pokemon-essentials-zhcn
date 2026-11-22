@@ -89,6 +89,7 @@ class PokemonEncounters
   # Returns whether the player's current location allows wild encounters to
   # trigger upon taking a step.
   def encounter_possible_here?
+    return false if $PokemonGlobal.forced_movement?
     return true if $PokemonGlobal.surfing
     terrain_tag = $game_map.terrain_tag($game_player.x, $game_player.y)
     return false if terrain_tag.ice
@@ -130,10 +131,7 @@ class PokemonEncounters
     first_pkmn = $player.first_pokemon
     if first_pkmn
       case first_pkmn.item_id
-      when :CLEANSETAG
-        encounter_chance *= 2.0 / 3
-        min_steps_needed *= 4 / 3.0
-      when :PUREINCENSE
+      when :CLEANSETAG, :PUREINCENSE
         encounter_chance *= 2.0 / 3
         min_steps_needed *= 4 / 3.0
       else   # Ignore ability effects if an item effect applies

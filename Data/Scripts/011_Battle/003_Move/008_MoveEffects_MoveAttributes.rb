@@ -275,7 +275,7 @@ end
 #===============================================================================
 class Battle::Move::PowerHigherWithTargetFasterThanUser < Battle::Move
   def pbBasePower(base_power, user, target)
-    return [[(25 * target.pbSpeed / user.pbSpeed).floor, 150].min, 1].max
+    return (25 * target.pbSpeed / user.pbSpeed).floor.clamp(1, 150)
   end
 end
 
@@ -1527,13 +1527,11 @@ class Battle::Move::TypeAndPowerDependOnUserBerry < Battle::Move
   def pbBaseType(user)
     ret = :NORMAL
     item = user.item
-    if item
-      item.flags.each do |flag|
-        next if !flag[/^NaturalGift_(\w+)_(?:\d+)$/i]
-        typ = $~[1].to_sym
-        ret = typ if GameData::Type.exists?(typ)
-        break
-      end
+    item&.flags.each do |flag|
+      next if !flag[/^NaturalGift_(\w+)_(?:\d+)$/i]
+      typ = $~[1].to_sym
+      ret = typ if GameData::Type.exists?(typ)
+      break
     end
     return ret
   end

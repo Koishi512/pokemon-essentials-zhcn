@@ -73,7 +73,7 @@ class Battle::Visuals
       next if hash[:condition] && !hash[:condition].call(@battle, idxBattler, firstAction)
       options.push([key, hash[:row] || 0, hash[:order] || 0])
     end
-    options.sort! { |a, b| a[1] == b[1] ? a[2] <=> b[2] : a[1] <=> b[1] }
+    options.sort! { |a, b| (a[1] == b[1]) ? a[2] <=> b[2] : a[1] <=> b[1] }
     # Sort options by row and order, and insert "nil" to separate rows
     commands = []
     last_row = 0
@@ -121,14 +121,14 @@ class Battle::Visuals
   # The player chooses a move for a Pokémon to use.
   #-----------------------------------------------------------------------------
 
-  def pbFightMenu(idxBattler, megaEvoPossible = false)
+  def pbFightMenu(idxBattler, special_actions, &block)
     pbShowWindow(FIGHT_BOX)
     battler = @battle.battlers[idxBattler]
     cw = @sprites["fightWindow"]
     move_index = 0
     move_index = @lastMove[idxBattler] if battler.moves[@lastMove[idxBattler]]&.id
     cw.set_battler_and_index(battler, move_index)
-    cw.mega_evolution_state = (megaEvoPossible) ? 1 : 0
+    pbFightMenu_SetSpecialStates(cw, idxBattler, move_index, special_actions)
     cw.active = true
     pbSelectBattler(idxBattler)
     need_full_refresh = false
@@ -142,9 +142,7 @@ class Battle::Visuals
         need_refresh = true
       end
       if need_refresh
-        if megaEvoPossible
-          cw.mega_evolution_state = (@battle.pbRegisteredMegaEvolution?(idxBattler)) ? 2 : 1
-        end
+        pbFightMenu_RefreshSpecialStates(cw, idxBattler, move_index, special_actions)
         need_refresh = false
       end
       # General update
@@ -157,18 +155,37 @@ class Battle::Visuals
         need_refresh = true
       elsif Input.trigger?(Input::BACK)   # Cancel fight menu
         pbPlayCancelSE
-        break if yield -1
+        break if yield :cancel
         need_refresh = true
-      elsif Input.trigger?(Input::ACTION)   # Toggle Mega Evolution
-        if cw.mega_evolution_state > 0
-          pbPlayDecisionSE
-          break if yield -2
-          need_refresh = true
-        end
+      else   # Toggle Mega Evolution
+        actn = pbFightMenu_UpdateSpecialInputs(cw, idxBattler, move_index, special_actions, &block)
+        break if actn[0]
+        need_refresh = true if actn[1]
       end
     end
     cw.active = false
     @lastMove[idxBattler] = cw.index
+  end
+
+  def pbFightMenu_SetSpecialStates(cw, idxBattler, move_index, special_actions)
+    cw.mega_evolution_state = (special_actions[:mega_evolve]) ? 1 : 0
+  end
+
+  def pbFightMenu_RefreshSpecialStates(cw, idxBattler, move_index, special_actions)
+    if special_actions[:mega_evolve]
+      cw.mega_evolution_state = (@battle.pbRegisteredMegaEvolution?(idxBattler)) ? 2 : 1
+    end
+  end
+
+  def pbFightMenu_UpdateSpecialInputs(cw, idxBattler, move_index, special_actions, &block)
+    if Input.trigger?(Input::ACTION)   # Toggle Mega Evolution
+      if special_actions[:mega_evolve]
+        pbPlayDecisionSE
+        return [true] if yield :mega_evolve   # Break
+        return [false, true]   # Don't break, do refresh
+      end
+    end
+    return [false, false]   # Don't break, don't refresh
   end
 
   #-----------------------------------------------------------------------------
@@ -282,25 +299,18 @@ class Battle::Visuals
           case useType
           when 1   # Use on Pokémon
             if @battle.pbTeamLengthFromBattlerIndex(idxBattler) == 1
-              if yield item.id, useType, @battle.battlers[idxBattler].pokemonIndex, -1, bag_screen
-                break
-              else
-                next
-              end
+              break if yield item.id, useType, @battle.battlers[idxBattler].pokemonIndex, -1, bag_screen
+              next
             end
           when 3   # Use on battler
             if @battle.pbPlayerBattlerCount == 1
-              if yield item.id, useType, @battle.battlers[idxBattler].pokemonIndex, -1, bag_screen
-                break
-              else
-                next
-              end
+              break if yield item.id, useType, @battle.battlers[idxBattler].pokemonIndex, -1, bag_screen
+              next
             end
           end
           # Fade out and hide Bag screen
           bag_sprites_status = pbFadeOutAndHide(bag_screen.sprites)
           # Get player's party
-          party    = @battle.pbParty(idxBattler)
           partyPos = @battle.pbPartyOrder(idxBattler)
           partyStart, _partyEnd = @battle.pbTeamIndexRangeFromBattlerIndex(idxBattler)
           modParty = @battle.pbPlayerDisplayParty(idxBattler)

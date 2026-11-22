@@ -53,7 +53,7 @@ class Battle::AI
     when :FLASHFIRE, :WELLBAKEDBODY
       return move_type == :FIRE
     when :GOODASGOLD
-      return move.is_a?(Pokemon::Move) ? move.status_move? : move.statusMove?
+      return (move.is_a?(Pokemon::Move)) ? move.status_move? : move.statusMove?
     when :LIGHTNINGROD, :MOTORDRIVE, :VOLTABSORB
       return move_type == :ELECTRIC
     when :SAPSIPPER
@@ -1017,7 +1017,7 @@ Battle::AI::Handlers::ItemRanking.addIf(:type_boosting_items,
     next [:BLACKBELT, :BLACKGLASSES, :CHARCOAL, :DRAGONFANG, :FAIRYFEATHER,
           :HARDSTONE, :MAGNET, :METALCOAT, :MIRACLESEED, :MYSTICWATER,
           :NEVERMELTICE, :POISONBARB, :SHARPBEAK, :SILKSCARF, :SILVERPOWDER,
-          :SOFTSAND,:SPELLTAG, :TWISTEDSPOON,
+          :SOFTSAND, :SPELLTAG, :TWISTEDSPOON,
           :DRACOPLATE, :DREADPLATE, :EARTHPLATE, :FISTPLATE, :FLAMEPLATE,
           :ICICLEPLATE, :INSECTPLATE, :IRONPLATE, :MEADOWPLATE, :MINDPLATE,
           :PIXIEPLATE, :SKYPLATE, :SPLASHPLATE, :SPOOKYPLATE, :STONEPLATE,

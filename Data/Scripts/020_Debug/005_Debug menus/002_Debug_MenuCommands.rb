@@ -83,13 +83,13 @@ MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
         when 0   # Steps remaining
           if Settings::SAFARI_STEPS > 0
             params = ChooseNumberParams.new
-            params.setRange(0, 99999)
+            params.setRange(0, 99_999)
             params.setDefaultValue(safari.steps)
             safari.steps = pbMessageChooseNumber(_INTL("设置此 Safari 游戏中剩余的步骤。"), params)
           end
         when 1   # Safari Balls
           params = ChooseNumberParams.new
-          params.setRange(0, 99999)
+          params.setRange(0, 99_999)
           params.setDefaultValue(safari.ballcount)
           safari.ballcount = pbMessageChooseNumber(
             _INTL("设置{1}的数量。", GameData::Item.get(:SAFARIBALL).name_plural), params)
@@ -117,7 +117,7 @@ MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
         when 0   # Steps remaining
           if Settings::BUG_CONTEST_TIME > 0
             params = ChooseNumberParams.new
-            params.setRange(0, 99999)
+            params.setRange(0, 99_999)
             params.setDefaultValue(min)
             new_time = pbMessageChooseNumber(_INTL("设置本次捉虫大赛的剩余时间（以分钟为单位）。"), params)
             contest.timer_start += (new_time - min) * 60
@@ -129,7 +129,7 @@ MenuHandlers.add(:debug_menu, :safari_zone_and_bug_contest, {
           end
         when 1   # Sport Balls
           params = ChooseNumberParams.new
-          params.setRange(0, 99999)
+          params.setRange(0, 99_999)
           params.setDefaultValue(contest.ballcount)
           contest.ballcount = pbMessageChooseNumber(
             _INTL("设置{1}的数量。", GameData::Item.get(:SPORTBALL).name_plural), params)
@@ -149,19 +149,19 @@ MenuHandlers.add(:debug_menu, :edit_field_effects, {
     cmd = 0
     loop do
       cmds = []
-      cmds.push(_INTL("排斥步骤：{1}", $PokemonGlobal.repel))
-      cmds.push(($PokemonMap.strengthUsed ? "[Y]" : "[  ]") + " " + _INTL("使用的力量"))
-      cmds.push(($PokemonGlobal.flashUsed ? "[Y]" : "[  ]") + " " + _INTL("使用闪光灯"))
-      cmds.push(($PokemonMap.lower_encounter_rate ? "[Y]" : "[  ]") + " " + _INTL("遭遇率较低"))
-      cmds.push(($PokemonMap.higher_encounter_rate ? "[Y]" : "[  ]") + " " + _INTL("遭遇率更高"))
-      cmds.push(($PokemonMap.lower_level_wild_pokemon ? "[Y]" : "[  ]") + " " + _INTL("低等级野生宝可梦"))
-      cmds.push(($PokemonMap.higher_level_wild_pokemon ? "[Y]" : "[  ]") + " " + _INTL("高级野生宝可梦"))
+      cmds.push(_INTL("喷雾步数：{1}", $PokemonGlobal.repel))
+      cmds.push((($PokemonMap.strengthUsed) ? "[Y]" : "[  ]") + " " + _INTL("已使用怪力"))
+      cmds.push((($PokemonGlobal.flashUsed) ? "[Y]" : "[  ]") + " " + _INTL("已使用闪光"))
+      cmds.push((($PokemonMap.lower_encounter_rate) ? "[Y]" : "[  ]") + " " + _INTL("遭遇率较低"))
+      cmds.push((($PokemonMap.higher_encounter_rate) ? "[Y]" : "[  ]") + " " + _INTL("遭遇率更高"))
+      cmds.push((($PokemonMap.lower_level_wild_pokemon) ? "[Y]" : "[  ]") + " " + _INTL("低等级野生宝可梦"))
+      cmds.push((($PokemonMap.higher_level_wild_pokemon) ? "[Y]" : "[  ]") + " " + _INTL("高等级野生宝可梦"))
       cmd = pbShowCommands(nil, cmds, -1, cmd)
       break if cmd < 0
       case cmd
       when 0   # Repel steps
         params = ChooseNumberParams.new
-        params.setRange(0, 99999)
+        params.setRange(0, 99_999)
         params.setDefaultValue($PokemonGlobal.repel)
         $PokemonGlobal.repel = pbMessageChooseNumber(_INTL("设置剩余步数。"), params)
       when 1   # Strength used
@@ -232,7 +232,7 @@ MenuHandlers.add(:debug_menu, :storage_wallpapers, {
       paperscmds.push(_INTL("全部解锁"))
       paperscmds.push(_INTL("全部锁定"))
       (PokemonStorage::BASIC_WALLPAPER_COUNT...w.length).each do |i|
-        paperscmds.push((unlockarray[i] ? "[Y]" : "[  ]") + " " + w[i])
+        paperscmds.push(((unlockarray[i]) ? "[Y]" : "[  ]") + " " + w[i])
       end
       paperscmd = pbShowCommands(nil, paperscmds, -1, paperscmd)
       break if paperscmd < 0
@@ -509,7 +509,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
         else
           ticked = applied_rules[rule_sym]
           ticked = !ticked if ["anims", "canrun", "canswitch", "switchstyle", "cannotlose"].include?(rule) && !applied_rules[rule_sym].nil?
-          rules.push((ticked ? "[Y]" : "[  ]") + " " + rule.to_s)
+          rules.push(((ticked) ? "[Y]" : "[  ]") + " " + rule.to_s)
         end
         rules_syms[0].push(rule_sym)
         rules_syms[1].push(rule)
@@ -534,7 +534,7 @@ MenuHandlers.add(:debug_menu, :set_battle_rules, {
         end
       when :backdrop_name, :base_name
         text = pbMessageFreeText(_INTL("输入战斗规则“{1}”的值。", rule),
-                                    applied_rules[rule_sym] || "", false, 100, Graphics.width)
+                                 applied_rules[rule_sym] || "", false, 100, Graphics.width)
         applied_rules[rule_sym] = (text && text != "") ? text : nil
       when :outcome_variable
         params = ChooseNumberParams.new
@@ -1019,7 +1019,7 @@ MenuHandlers.add(:debug_menu, :set_badges, {
       badgecmds.push(_INTL("全部给予"))
       badgecmds.push(_INTL("全部删除"))
       24.times do |i|
-        badgecmds.push(($player.badges[i] ? "[Y]" : "[  ]") + " " + _INTL("徽章{1}", i + 1))
+        badgecmds.push((($player.badges[i]) ? "[Y]" : "[  ]") + " " + _INTL("徽章{1}", i + 1))
       end
       badgecmd = pbShowCommands(nil, badgecmds, -1, badgecmd)
       break if badgecmd < 0
@@ -1047,19 +1047,19 @@ MenuHandlers.add(:debug_menu, :toggle_running_shoes, {
 })
 
 MenuHandlers.add(:debug_menu, :toggle_pokedex, {
-  "name"        => _INTL("切换宝可梦图鉴与区域图鉴"),
+  "name"        => _INTL("切换宝可梦图鉴与地区图鉴"),
   "parent"      => :player_menu,
-  "description" => _INTL("切换宝可梦图鉴拥有状态，并编辑区域图鉴的可访问性。"),
+  "description" => _INTL("切换宝可梦图鉴拥有状态，并编辑地区图鉴的可访问性。"),
   "effect"      => proc {
     dexescmd = 0
     loop do
       dexescmds = []
-      dexescmds.push(_INTL("拥有图鉴：{1}", $player.has_pokedex ? "[YES]" : "[NO]"))
+      dexescmds.push(_INTL("拥有图鉴：{1}", ($player.has_pokedex) ? "[YES]" : "[NO]"))
       dex_names = Settings.pokedex_names
       dex_names.length.times do |i|
         name = (dex_names[i].is_a?(Array)) ? dex_names[i][0] : dex_names[i]
         unlocked = $player.pokedex.unlocked?(i)
-        dexescmds.push((unlocked ? "[Y]" : "[  ]") + " " + name)
+        dexescmds.push(((unlocked) ? "[Y]" : "[  ]") + " " + name)
       end
       dexescmd = pbShowCommands(nil, dexescmds, -1, dexescmd)
       break if dexescmd < 0
@@ -1082,7 +1082,7 @@ MenuHandlers.add(:debug_menu, :toggle_pokegear, {
   "effect"      => proc {
     $player.has_pokegear = !$player.has_pokegear
     pbMessage(_INTL("已获得宝可装置。")) if $player.has_pokegear
-    pbMessage(_INTL("丢失的宝可梦。")) if !$player.has_pokegear
+    pbMessage(_INTL("已失去宝可装置。")) if !$player.has_pokegear
   }
 })
 
@@ -1101,11 +1101,11 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
       time = $PokemonGlobal.phone.time_to_next_call.to_i   # time is in seconds
       min = time / 60
       sec = time % 60
-      cmds.push(_INTL("距下一次通话的时间：{1}米{2}秒", min, sec))
-      cmds.push((Phone.rematches_enabled ? "[Y]" : "[  ]") + " " + _INTL("可能重赛"))
-      cmds.push(_INTL("最大重赛版本：{1}", Phone.rematch_variant))
+      cmds.push(_INTL("距下一次通话的时间：{1}分{2}秒", min, sec))
+      cmds.push(((Phone.rematches_enabled) ? "[Y]" : "[  ]") + " " + _INTL("可再战"))
+      cmds.push(_INTL("最大再战版本：{1}", Phone.rematch_variant))
       if $PokemonGlobal.phone.contacts.length > 0
-        cmds.push(_INTL("让所有联系人做好重赛准备"))
+        cmds.push(_INTL("让所有联系人做好再战准备"))
         cmds.push(_INTL("编辑个人联系人：{1}", $PokemonGlobal.phone.contacts.length))
       end
       cmd = pbShowCommands(nil, cmds, -1, cmd)
@@ -1113,7 +1113,7 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
       case cmd
       when 0   # Time until next call
         params = ChooseNumberParams.new
-        params.setRange(0, 99999)
+        params.setRange(0, 99_999)
         params.setDefaultValue(min)
         params.setCancelValue(-1)
         new_time = pbMessageChooseNumber(_INTL("设置距离下一次电话的时间（以分钟为单位）。"), params)
@@ -1152,9 +1152,9 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
           edit_cmd = 0
           loop do
             edit_cmds = []
-            edit_cmds.push((contact.visible? ? "[Y]" : "[  ]") + " " + _INTL("联系方式可见"))
+            edit_cmds.push(((contact.visible?) ? "[Y]" : "[  ]") + " " + _INTL("联系方式可见"))
             if contact.trainer?
-              edit_cmds.push((contact.can_rematch? ? "[Y]" : "[  ]") + " " + _INTL("可以战斗"))
+              edit_cmds.push(((contact.can_rematch?) ? "[Y]" : "[  ]") + " " + _INTL("可以战斗"))
               ready_time = contact.time_to_ready   # time is in seconds
               ready_min = ready_time / 60
               ready_sec = ready_time % 60
@@ -1172,7 +1172,7 @@ MenuHandlers.add(:debug_menu, :edit_phone_contacts, {
               contact.time_to_ready = 0 if contact.can_rematch?
             when 2   # Time until ready to battle
               params = ChooseNumberParams.new
-              params.setRange(0, 99999)
+              params.setRange(0, 99_999)
               params.setDefaultValue(ready_min)
               params.setCancelValue(-1)
               new_time = pbMessageChooseNumber(_INTL("设置该训练家再次对战的等待时间（分钟）。"), params)

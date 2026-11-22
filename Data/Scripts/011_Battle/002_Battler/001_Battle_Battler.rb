@@ -138,11 +138,11 @@ class Battle::Battler
   # Properties from Pokémon.
   #-----------------------------------------------------------------------------
 
-  def happiness;       return @pokemon ? @pokemon.happiness : 0;       end
-  def affection_level; return @pokemon ? @pokemon.affection_level : 2; end
-  def gender;          return @pokemon ? @pokemon.gender : 0;          end
-  def nature;          return @pokemon ? @pokemon.nature : nil;        end
-  def pokerusStage;    return @pokemon ? @pokemon.pokerusStage : 0;    end
+  def happiness;       return (@pokemon) ? @pokemon.happiness : 0;       end
+  def affection_level; return (@pokemon) ? @pokemon.affection_level : 2; end
+  def gender;          return (@pokemon) ? @pokemon.gender : 0;          end
+  def nature;          return (@pokemon) ? @pokemon.nature : nil;        end
+  def pokerusStage;    return (@pokemon) ? @pokemon.pokerusStage : 0;    end
 
   def isSpecies?(*check_species)
     return @pokemon&.isSpecies?(*check_species)
@@ -229,12 +229,12 @@ class Battle::Battler
   def pbThis(lowerCase = false)
     if opposes?
       if @battle.trainerBattle?
-        return lowerCase ? _INTL("对手的{1}", name) : _INTL("对手的{1}", name)
+        return (lowerCase) ? _INTL("对手的{1}", name) : _INTL("对手的{1}", name)
       else
-        return lowerCase ? _INTL("野生的{1}", name) : _INTL("野生的{1}", name)
+        return (lowerCase) ? _INTL("野生的{1}", name) : _INTL("野生的{1}", name)
       end
     elsif !pbOwnedByPlayer?
-      return lowerCase ? _INTL("我方的{1}", name) : _INTL("我方的{1}", name)
+      return (lowerCase) ? _INTL("我方的{1}", name) : _INTL("我方的{1}", name)
     end
     return name
   end
@@ -242,42 +242,42 @@ class Battle::Battler
   def pbOfThis(lowerCase = false)
     if opposes?
       if @battle.trainerBattle?
-        return lowerCase ? _INTL("对手的{1}的", name) : _INTL("对手的{1}的", name)
+        return (lowerCase) ? _INTL("对手的{1}的", name) : _INTL("对手的{1}的", name)
       else
-        return lowerCase ? _INTL("野生的{1}的", name) : _INTL("野生的{1}的", name)
+        return (lowerCase) ? _INTL("野生的{1}的", name) : _INTL("野生的{1}的", name)
       end
     elsif !pbOwnedByPlayer?
-      return lowerCase ? _INTL("我方的{1}的", name) : _INTL("我方的{1}的", name)
+      return (lowerCase) ? _INTL("我方的{1}的", name) : _INTL("我方的{1}的", name)
     end
     return _INTL("{1}的", name)
   end
 
   def pbTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("对手") : _INTL("对手")
+      return (lowerCase) ? _INTL("对手") : _INTL("对手")
     end
-    return lowerCase ? _INTL("我方") : _INTL("我方")
+    return (lowerCase) ? _INTL("我方") : _INTL("我方")
   end
 
   def pbOfTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("对手的") : _INTL("对手的")
+      return (lowerCase) ? _INTL("对手的") : _INTL("对手的")
     end
-    return lowerCase ? _INTL("我方的") : _INTL("我方的")
+    return (lowerCase) ? _INTL("我方的") : _INTL("我方的")
   end
 
   def pbOpposingTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("我方") : _INTL("我方")
+      return (lowerCase) ? _INTL("我方") : _INTL("我方")
     end
-    return lowerCase ? _INTL("对手") : _INTL("对手")
+    return (lowerCase) ? _INTL("对手") : _INTL("对手")
   end
 
   def pbOfOpposingTeam(lowerCase = false)
     if opposes?
-      return lowerCase ? _INTL("我方的") : _INTL("我方的")
+      return (lowerCase) ? _INTL("我方的") : _INTL("我方的")
     end
-    return lowerCase ? _INTL("对手的") : _INTL("对手的")
+    return (lowerCase) ? _INTL("对手的") : _INTL("对手的")
   end
 
   #-----------------------------------------------------------------------------

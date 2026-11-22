@@ -347,8 +347,8 @@ class Game_Map
     return if @display_x == value
     @display_x = value
     if metadata&.snap_edges
-      max_x = (self.width - (Graphics.width.to_f / TILE_WIDTH)) * REAL_RES_X
-      @display_x = [0, [@display_x, max_x].min].max
+      max_x = (self.width * REAL_RES_X) - (Graphics.width * X_SUBPIXELS)
+      @display_x = [[@display_x, max_x].min, 0].max
     end
     $map_factory&.setMapsInRange
   end
@@ -357,8 +357,8 @@ class Game_Map
     return if @display_y == value
     @display_y = value
     if metadata&.snap_edges
-      max_y = (self.height - (Graphics.height.to_f / TILE_HEIGHT)) * REAL_RES_Y
-      @display_y = [0, [@display_y, max_y].min].max
+      max_y = (self.height * REAL_RES_Y) - (Graphics.height * Y_SUBPIXELS)
+      @display_y = [[@display_y, max_y].min, 0].max
     end
     $map_factory&.setMapsInRange
   end

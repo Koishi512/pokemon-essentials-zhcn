@@ -78,7 +78,7 @@ class Game_Player < Game_Character
     when :diving, :diving_fast, :diving_jumping, :diving_stopped
       self.move_speed = 3 if !@move_route_forcing
       new_charset = pbGetPlayerCharset(meta.dive_charset)
-    when :surfing, :surfing_fast, :surfing_jumping, :surfing_stopped
+    when :surfing, :surfing_fast, :surfing_jumping, :surfing_stopped, :riding_water_current
       if !@move_route_forcing
         self.move_speed = (type == :surfing_jumping) ? 3 : 4
       end
@@ -217,8 +217,8 @@ class Game_Player < Game_Character
   def pbFacingEvent(ignoreInterpreter = false)
     return nil if $game_system.map_interpreter.running? && !ignoreInterpreter
     # Check the tile in front of the player for events
-    new_x = @x + (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-    new_y = @y + (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+    new_x = @x + ((@direction == 6) ? 1 : (@direction == 4) ? -1 : 0)
+    new_y = @y + ((@direction == 2) ? 1 : (@direction == 8) ? -1 : 0)
     return nil if !$game_map.valid?(new_x, new_y)
     $game_map.events.each_value do |event|
       next if !event.at_coordinate?(new_x, new_y)
@@ -227,8 +227,8 @@ class Game_Player < Game_Character
     end
     # If the tile in front is a counter, check one tile beyond that for events
     if $game_map.counter?(new_x, new_y)
-      new_x += (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-      new_y += (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+      new_x += ((@direction == 6) ? 1 : (@direction == 4) ? -1 : 0)
+      new_y += ((@direction == 2) ? 1 : (@direction == 8) ? -1 : 0)
       $game_map.events.each_value do |event|
         next if !event.at_coordinate?(new_x, new_y)
         next if event.jumping? || event.over_trigger?
@@ -252,8 +252,8 @@ class Game_Player < Game_Character
   #         * 0 = Determines if all directions are impassable (for jumping)
   def passable?(x, y, dir, strict = false)
     # Get new coordinates
-    new_x = x + (dir == 6 ? 1 : dir == 4 ? -1 : 0)
-    new_y = y + (dir == 2 ? 1 : dir == 8 ? -1 : 0)
+    new_x = x + ((dir == 6) ? 1 : (dir == 4) ? -1 : 0)
+    new_y = y + ((dir == 2) ? 1 : (dir == 8) ? -1 : 0)
     # If coordinates are outside of map
     return false if !$game_map.validLax?(new_x, new_y)
     if !$game_map.valid?(new_x, new_y)
@@ -367,8 +367,8 @@ class Game_Player < Game_Character
     # If event is running
     return result if $game_system.map_interpreter.running?
     # Calculate front event coordinates
-    new_x = @x + (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-    new_y = @y + (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+    new_x = @x + ((@direction == 6) ? 1 : (@direction == 4) ? -1 : 0)
+    new_y = @y + ((@direction == 2) ? 1 : (@direction == 8) ? -1 : 0)
     return false if !$game_map.valid?(new_x, new_y)
     # All event loops
     $game_map.events.each_value do |event|
@@ -383,8 +383,8 @@ class Game_Player < Game_Character
     # If fitting event is not found
     if result == false && $game_map.counter?(new_x, new_y)
       # Calculate coordinates of 1 tile further away
-      new_x += (@direction == 6 ? 1 : @direction == 4 ? -1 : 0)
-      new_y += (@direction == 2 ? 1 : @direction == 8 ? -1 : 0)
+      new_x += ((@direction == 6) ? 1 : (@direction == 4) ? -1 : 0)
+      new_y += ((@direction == 2) ? 1 : (@direction == 8) ? -1 : 0)
       return false if !$game_map.valid?(new_x, new_y)
       # All event loops
       $game_map.events.each_value do |event|
@@ -477,37 +477,7 @@ class Game_Player < Game_Character
   end
 
   def update_move
-    if !@moved_last_frame || @stopped_last_frame   # Started a new step
-      if $PokemonGlobal.ice_sliding || @last_terrain_tag.ice
-        set_movement_type(:ice_sliding)
-      elsif $PokemonGlobal.descending_waterfall
-        set_movement_type(:descending_waterfall)
-      elsif $PokemonGlobal.ascending_waterfall
-        set_movement_type(:ascending_waterfall)
-      else
-        faster = can_run?
-        if $PokemonGlobal&.diving
-          set_movement_type((faster) ? :diving_fast : :diving)
-        elsif $PokemonGlobal&.surfing
-          set_movement_type((faster) ? :surfing_fast : :surfing)
-        elsif $PokemonGlobal&.bicycle
-          set_movement_type((faster) ? :cycling_fast : :cycling)
-        else
-          set_movement_type((faster) ? :running : :walking)
-        end
-      end
-      if jumping?
-        if $PokemonGlobal&.diving
-          set_movement_type(:diving_jumping)
-        elsif $PokemonGlobal&.surfing
-          set_movement_type(:surfing_jumping)
-        elsif $PokemonGlobal&.bicycle
-          set_movement_type(:cycling_jumping)
-        else
-          set_movement_type(:jumping)   # Walking speed/charset while jumping
-        end
-      end
-    end
+    update_movement_type_on_moving_after_stopped if !@moved_last_frame || @stopped_last_frame   # Started a new step
     was_jumping = jumping?
     super
     if was_jumping && !jumping? && !@transparent && (@tile_id > 0 || @character_name != "")
@@ -518,19 +488,55 @@ class Game_Player < Game_Character
     end
   end
 
-  def update_stop
-    if @stopped_last_frame
+  def update_movement_type_on_moving_after_stopped
+    if $PokemonGlobal.ice_sliding || @last_terrain_tag.ice
+      set_movement_type(:ice_sliding)
+    elsif $PokemonGlobal.descending_waterfall
+      set_movement_type(:descending_waterfall)
+    elsif $PokemonGlobal.ascending_waterfall
+      set_movement_type(:ascending_waterfall)
+    elsif $PokemonGlobal.riding_water_current
+      set_movement_type(:riding_water_current)
+    else
+      faster = can_run?
       if $PokemonGlobal&.diving
-        set_movement_type(:diving_stopped)
+        set_movement_type((faster) ? :diving_fast : :diving)
       elsif $PokemonGlobal&.surfing
-        set_movement_type(:surfing_stopped)
+        set_movement_type((faster) ? :surfing_fast : :surfing)
       elsif $PokemonGlobal&.bicycle
-        set_movement_type(:cycling_stopped)
+        set_movement_type((faster) ? :cycling_fast : :cycling)
       else
-        set_movement_type(:walking_stopped)
+        set_movement_type((faster) ? :running : :walking)
       end
     end
+    if jumping?
+      if $PokemonGlobal&.diving
+        set_movement_type(:diving_jumping)
+      elsif $PokemonGlobal&.surfing
+        set_movement_type(:surfing_jumping)
+      elsif $PokemonGlobal&.bicycle
+        set_movement_type(:cycling_jumping)
+      else
+        set_movement_type(:jumping)   # Walking speed/charset while jumping
+      end
+    end
+  end
+
+  def update_stop
+    update_movement_type_on_being_stopped if @stopped_last_frame
     super
+  end
+
+  def update_movement_type_on_being_stopped
+    if $PokemonGlobal&.diving
+      set_movement_type(:diving_stopped)
+    elsif $PokemonGlobal&.surfing
+      set_movement_type(:surfing_stopped)
+    elsif $PokemonGlobal&.bicycle
+      set_movement_type(:cycling_stopped)
+    else
+      set_movement_type(:walking_stopped)
+    end
   end
 
   def update_pattern

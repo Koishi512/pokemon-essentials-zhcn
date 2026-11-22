@@ -76,7 +76,7 @@ module Battle::AbilityEffects
 
   def self.trigger(hash, *args, ret: false)
     new_ret = hash.trigger(*args)
-    return (!new_ret.nil?) ? new_ret : ret
+    return (new_ret.nil?) ? ret : new_ret
   end
 
   #-----------------------------------------------------------------------------
@@ -285,9 +285,9 @@ module Battle::AbilityEffects
     return trigger(TrappingByTarget, ability, switcher, bearer, battle)
   end
 
-def self.triggerOnSwitchInNeutralizingGas(ability, battler, battle, switch_in = false)
-  OnSwitchInNeutralizingGas.trigger(ability, battler, battle, switch_in)
-end
+  def self.triggerOnSwitchInNeutralizingGas(ability, battler, battle, switch_in = false)
+    OnSwitchInNeutralizingGas.trigger(ability, battler, battle, switch_in)
+  end
 
   def self.triggerOnSwitchInUnnerve(ability, battler, battle, switch_in = false)
     OnSwitchInUnnerve.trigger(ability, battler, battle, switch_in)
@@ -2743,19 +2743,18 @@ Battle::AbilityEffects::EndOfRoundHealing.add(:HEALER,
       showing_splash = true
       old_status = ally.status
       ally.pbCureStatus(Battle::Visuals::USE_ABILITY_SPLASH)
-      if !Battle::Visuals::USE_ABILITY_SPLASH
-        case old_status
-        when :SLEEP
-          battle.pbDisplay(_INTL("{1}{2}让队友醒过来了！", battler.pbOfThis, battler.abilityName))
-        when :POISON
-          battle.pbDisplay(_INTL("{1}{2}治愈了队友的中毒！", battler.pbOfThis, battler.abilityName))
-        when :BURN
-          battle.pbDisplay(_INTL("{1}{2}治愈了队友的灼伤！", battler.pbOfThis, battler.abilityName))
-        when :PARALYSIS
-          battle.pbDisplay(_INTL("{1}{2}治愈了队友的麻痹！", battler.pbOfThis, battler.abilityName))
-        when :FROZEN
-          battle.pbDisplay(_INTL("{1}{2}治愈了队友的冰冻！", battler.pbOfThis, battler.abilityName))
-        end
+      next if Battle::Visuals::USE_ABILITY_SPLASH
+      case old_status
+      when :SLEEP
+        battle.pbDisplay(_INTL("{1}{2}让队友醒过来了！", battler.pbOfThis, battler.abilityName))
+      when :POISON
+        battle.pbDisplay(_INTL("{1}{2}治愈了队友的中毒！", battler.pbOfThis, battler.abilityName))
+      when :BURN
+        battle.pbDisplay(_INTL("{1}{2}治愈了队友的灼伤！", battler.pbOfThis, battler.abilityName))
+      when :PARALYSIS
+        battle.pbDisplay(_INTL("{1}{2}治愈了队友的麻痹！", battler.pbOfThis, battler.abilityName))
+      when :FROZEN
+        battle.pbDisplay(_INTL("{1}{2}治愈了队友的冰冻！", battler.pbOfThis, battler.abilityName))
       end
     end
     battle.pbHideAbilitySplash(battler) if showing_splash
@@ -3487,7 +3486,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:SLOWSTART,
 
 Battle::AbilityEffects::OnSwitchIn.add(:SNOWWARNING,
   proc { |ability, battler, battle, switch_in|
-    battle.pbStartWeatherAbility((Settings::USE_SNOWSTORM_WEATHER_INSTEAD_OF_HAIL ? :Snowstorm : :Hail), battler)
+    battle.pbStartWeatherAbility(((Settings::USE_SNOWSTORM_WEATHER_INSTEAD_OF_HAIL) ? :Snowstorm : :Hail), battler)
   }
 )
 

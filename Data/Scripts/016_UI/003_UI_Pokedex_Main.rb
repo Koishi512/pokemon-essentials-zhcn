@@ -91,7 +91,7 @@ class UI::PokedexVisualsList < Window_DrawableCommand
                      num_text, self.baseColor, self.shadowColor)
     # Draw species name
     name_text = ($player.seen?(@dex[this_index][1])) ? GameData::Species.get(@dex[this_index][1]).name : "----------"
-    pbDrawShadowText(self.contents, rect.x + 84 + (@dex[this_index][0] >= 1000 ? 8 : 0), rect.y + 6, rect.width, rect.height,
+    pbDrawShadowText(self.contents, rect.x + 84 + ((@dex[this_index][0] >= 1000) ? 8 : 0), rect.y + 6, rect.width, rect.height,
                      name_text, self.baseColor, self.shadowColor)
   end
 
@@ -230,7 +230,6 @@ end
 #
 #===============================================================================
 class UI::PokedexVisuals < UI::BaseVisuals
-  attr_reader :index
   attr_reader :display_dex
 
   GRAPHICS_FOLDER            = "Pokedex/"   # Subfolder in Graphics/UI
@@ -581,13 +580,13 @@ class UI::PokedexVisuals < UI::BaseVisuals
     when :alphabetical
       @display_dex.sort! { |a, b| a[:name] <=> b[:name] }
     when :heaviest
-      @display_dex.sort! { |a, b| a[:weight] == b[:weight] ? a[:number] <=> b[:number] : b[:weight] <=> a[:weight] }
+      @display_dex.sort! { |a, b| (a[:weight] == b[:weight]) ? a[:number] <=> b[:number] : b[:weight] <=> a[:weight] }
     when :lightest
-      @display_dex.sort! { |a, b| a[:weight] == b[:weight] ? a[:number] <=> b[:number] : a[:weight] <=> b[:weight] }
+      @display_dex.sort! { |a, b| (a[:weight] == b[:weight]) ? a[:number] <=> b[:number] : a[:weight] <=> b[:weight] }
     when :tallest
-      @display_dex.sort! { |a, b| a[:height] == b[:height] ? a[:number] <=> b[:number] : b[:height] <=> a[:height] }
+      @display_dex.sort! { |a, b| (a[:height] == b[:height]) ? a[:number] <=> b[:number] : b[:height] <=> a[:height] }
     when :shortest
-      @display_dex.sort! { |a, b| a[:height] == b[:height] ? a[:number] <=> b[:number] : a[:height] <=> b[:height] }
+      @display_dex.sort! { |a, b| (a[:height] == b[:height]) ? a[:number] <=> b[:number] : a[:height] <=> b[:height] }
     end
     # Condense into an array of [number, species]
     @display_dex.map! { |entry| [entry[:number], entry[:species]] }
@@ -797,14 +796,14 @@ class UI::PokedexVisuals < UI::BaseVisuals
     # Draw filter value at top
     if draw_text
       if !filter_value.is_a?(Array)
-        filter_text = (options.is_a?(Hash) ? options[filter_value] : filter_value) || blank_text
+        filter_text = ((options.is_a?(Hash)) ? options[filter_value] : filter_value) || blank_text
         draw_text(filter_text, 362, 66, align: :center, theme: :search, outline: :outline)
       end
     else
       yield -1, 0, 0 if block_given?
     end
     # Draw buttons with text
-    (options.is_a?(Hash) ? options.keys : options).each_with_index do |value, i|
+    ((options.is_a?(Hash)) ? options.keys : options).each_with_index do |value, i|
       button_x = metrics[:start_pos][0] + ((i % metrics[:columns]) * (metrics[:size][0] + metrics[:spacing][0]))
       button_y = metrics[:start_pos][1] + ((i / metrics[:columns]) * (metrics[:size][1] + metrics[:spacing][1]))
       src_x = metrics[:src_pos][0]
@@ -828,13 +827,13 @@ class UI::PokedexVisuals < UI::BaseVisuals
       button_y = metrics[:start_pos][1] + ((blank_index / metrics[:columns]) * (metrics[:size][1] + metrics[:spacing][1]))
       src_x = metrics[:src_pos][0]
       src_x += 184 if (filter_value.is_a?(Array) && filter_value.include?(nil)) ||
-                      (!filter_value.is_a?(Array) && filter_value == nil)
+                      (!filter_value.is_a?(Array) && filter_value.nil?)
       draw_image(@bitmaps[:search_buttons], button_x, button_y,
                  src_x, metrics[:src_pos][1], *metrics[:size])
-      if blank_text != ""
-        draw_text(blank_text, button_x + ((metrics[:size][0] - 4) / 2), button_y + 12, align: :center, theme: :search, outline: :outline)
-      else
+      if blank_text.empty?
         yield options.length, button_x, button_y if block_given?
+      else
+        draw_text(blank_text, button_x + ((metrics[:size][0] - 4) / 2), button_y + 12, align: :center, theme: :search, outline: :outline)
       end
     end
   end
@@ -909,26 +908,26 @@ class UI::PokedexVisuals < UI::BaseVisuals
     draw_text(min_text, 286, 66, align: :center, theme: :search, outline: :outline)
     draw_text(max_text, 414, 66, align: :center, theme: :search, outline: :outline)
     draw_image(@bitmaps[:height_weight], 462, 52,
-              (is_weight) ? 32 : 0, (imperial_offset) ? 44 : 0, 32, 44)
+               (is_weight) ? 32 : 0, (imperial_offset) ? 44 : 0, 32, 44)
     # Draw min left/right arrows
     draw_image(@bitmaps[:size_sliders], 16, 264,
-              0, 192, 32, 44) if min_index > 0
+               0, 192, 32, 44) if min_index > 0
     draw_image(@bitmaps[:size_sliders], 464, 264,
-              32, 192, 32, 44) if min_index < max_index
+               32, 192, 32, 44) if min_index < max_index
     # Draw max left/right arrows
     draw_image(@bitmaps[:size_sliders], 16, 120,
-              0, 192, 32, 44) if max_index > min_index
+               0, 192, 32, 44) if max_index > min_index
     draw_image(@bitmaps[:size_sliders], 464, 120,
-              32, 192, 32, 44) if max_index < intervals.length - 1
+               32, 192, 32, 44) if max_index < intervals.length - 1
     # Draw slider boxes and their texts
     start_x = 44
     end_x = 348
     min_x = lerp(start_x, end_x, intervals.length - 1, min_index)
     max_x = lerp(start_x, end_x, intervals.length - 1, max_index)
     draw_image(@bitmaps[:size_sliders], min_x, 222,
-              0, 96, 120, 96)
+               0, 96, 120, 96)
     draw_image(@bitmaps[:size_sliders], max_x, 110,
-              0, 0, 120, 96)
+               0, 0, 120, 96)
     draw_text(min_text, min_x + 60, 290, align: :center, theme: :search, outline: :none)
     draw_text(max_text, max_x + 60, 146, align: :center, theme: :search, outline: :none)
   end
@@ -991,8 +990,8 @@ class UI::PokedexVisuals < UI::BaseVisuals
       pbSEPlay("GUI pokedex open")
       return :open_search
     when Input::BACK
+      pbPlayCloseMenuSE
       if list_filtered?
-        pbPlayCloseMenuSE
         pbFadeOutIn do
           clear_filters
           refresh_display_dex
@@ -1000,7 +999,6 @@ class UI::PokedexVisuals < UI::BaseVisuals
           refresh
         end
       else
-        pbPlayCloseMenuSE
         return :quit
       end
     end
@@ -1139,10 +1137,10 @@ class UI::PokedexVisuals < UI::BaseVisuals
       @search_sub_index = 0
     when :height
       @old_filter = [@filters[:min_height], @filters[:max_height]]
-      @search_sub_index = 100 + (HEIGHT_INTERVALS.index(@filters[:max_height]) || HEIGHT_INTERVALS.length - 1)
+      @search_sub_index = 100 + (HEIGHT_INTERVALS.index(@filters[:max_height]) || (HEIGHT_INTERVALS.length - 1))
     when :weight
       @old_filter = [@filters[:min_weight], @filters[:max_weight]]
-      @search_sub_index = 100 + (WEIGHT_INTERVALS.index(@filters[:max_weight]) || WEIGHT_INTERVALS.length - 1)
+      @search_sub_index = 100 + (WEIGHT_INTERVALS.index(@filters[:max_weight]) || (WEIGHT_INTERVALS.length - 1))
     else
       @old_filter = @filters[new_page]
       @search_sub_index = 0
@@ -1167,7 +1165,7 @@ class UI::PokedexVisuals < UI::BaseVisuals
   end
 
   def update_input_button_grid(filter, options, columns, has_blank)
-    max_index = options.length - 1 + (has_blank ? 1 : 0)
+    max_index = options.length - 1 + ((has_blank) ? 1 : 0)
     rows = (max_index / columns) + 1
     if Input.repeat?(Input::UP)
       if @search_sub_index == -2   # OK
@@ -1242,7 +1240,7 @@ class UI::PokedexVisuals < UI::BaseVisuals
       if @search_sub_index >= 0
         new_value = (@search_sub_index < options.length) ? options[@search_sub_index] : nil
         if @search_sub_index >= options.length   # Blank/nil button
-          filter_to_change = (@filters[:type2] != new_value) ? :type2 : :type1
+          filter_to_change = (@filters[:type2] == new_value) ? :type1 : :type2
           if @filters[filter_to_change] != new_value
             pbPlayDecisionSE
             @filters[filter_to_change] = new_value

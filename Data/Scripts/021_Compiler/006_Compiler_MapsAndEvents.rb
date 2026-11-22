@@ -154,7 +154,7 @@ module Compiler
       next if GameData::MapMetadata.exists?(map_id)
       data_hash = {
         :id        => map_id,
-        :real_name => map_infos[map_id].name,
+        :real_name => map_infos[map_id].name
       }
       GameData::MapMetadata.register(data_hash)
       added_count += 1
@@ -299,7 +299,7 @@ module Compiler
   end
 
   def push_self_switch(list, swtch, switchOn, indent = 0)
-    list.push(RPG::EventCommand.new(123, indent, [swtch, switchOn ? 0 : 1]))
+    list.push(RPG::EventCommand.new(123, indent, [swtch, (switchOn) ? 0 : 1]))
   end
 
   def apply_pages(page, pages)
@@ -626,10 +626,10 @@ module Compiler
         continue = true if value.upcase == "TRUE" || value.upcase == "YES"
         push_comment(firstpage.list, command) if rewriteComments
       elsif command[/^EndIfSwitch\:\s*([\s\S]+)$/i]
-        endifswitch.push(($~[1].gsub(/^\s+/, "").gsub(/\s+$/, "")).to_i)
+        endifswitch.push($~[1].gsub(/^\s+/, "").gsub(/\s+$/, "").to_i)
         push_comment(firstpage.list, command) if rewriteComments
       elsif command[/^VanishIfSwitch\:\s*([\s\S]+)$/i]
-        vanishifswitch.push(($~[1].gsub(/^\s+/, "").gsub(/\s+$/, "")).to_i)
+        vanishifswitch.push($~[1].gsub(/^\s+/, "").gsub(/\s+$/, "").to_i)
         push_comment(firstpage.list, command) if rewriteComments
       elsif command[/^Backdrop\:\s*([\s\S]+)$/i]
         backdrop = $~[1].gsub(/^\s+/, "").gsub(/\s+$/, "")

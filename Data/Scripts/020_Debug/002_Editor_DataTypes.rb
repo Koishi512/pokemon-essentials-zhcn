@@ -132,7 +132,7 @@ end
 #===============================================================================
 module BooleanProperty
   def self.set(settingname, _oldsetting)
-    return pbConfirmMessage(_INTL("启用设置 {1}？", settingname)) ? true : false
+    return (pbConfirmMessage(_INTL("启用设置 {1}？", settingname))) ? true : false
   end
 
   def self.format(value)
@@ -739,7 +739,7 @@ end
 
 def chooseMapPoint(map, rgnmap = false)
   viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
-  viewport.z = 99999
+  viewport.z = 99_999
   title = Window_UnformattedTextPokemon.newWithSize(
     _INTL("单击地图上的一个点。"), 0, Graphics.height - 64, Graphics.width, 64, viewport
   )
@@ -930,7 +930,7 @@ module PocketProperty
   end
 
   def self.format(value)
-    return _INTL("没有口袋") if value == 0 || value == :None
+    return _INTL("没有口袋") if [0, :None].include?(value)
     return (value) ? GameData::BagPocket.get(value).name : value.inspect
   end
 end
@@ -1064,7 +1064,7 @@ class GameDataPoolProperty
     loop do
       if need_refresh
         if @auto_sort
-          values.sort! { |a, b| (a[0].nil?) ? -1 : b[0].nil? ? 1 : a[1] <=> b[1] }
+          values.sort! { |a, b| (a[0].nil?) ? -1 : (b[0].nil?) ? 1 : a[1] <=> b[1] }
         end
         commands = values.map { |entry| entry[1] }
         need_refresh = false
@@ -1620,7 +1620,7 @@ end
 #===============================================================================
 def pbPropertyList(title, data, properties, saveprompt = false)
   viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
-  viewport.z = 99999
+  viewport.z = 99_999
   list = pbListWindow([], Graphics.width / 2)
   list.viewport = viewport
   list.z        = 2

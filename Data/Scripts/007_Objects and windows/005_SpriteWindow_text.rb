@@ -48,7 +48,7 @@ class Window_UnformattedTextPokemon < SpriteWindow_Base
   # maxwidth is maximum acceptable window width.
   def resizeToFitInternal(text, maxwidth)
     dims = [0, 0]
-    cwidth = maxwidth < 0 ? Graphics.width : maxwidth
+    cwidth = (maxwidth < 0) ? Graphics.width : maxwidth
     getLineBrokenChunks(self.contents, text,
                         cwidth - self.borderX - SpriteWindow_Base::TEXT_PADDING, dims, true)
     return dims
@@ -331,7 +331,7 @@ class Window_AdvancedTextPokemon < SpriteWindow_Base
           # can slow down letter-by-letter display
           if ch[5] || (ch[0] != "\r")
             @fmtchars.push(ch)
-            @textchars.push(ch[5] ? "" : ch[0])
+            @textchars.push((ch[5]) ? "" : ch[0])
           end
         end
         fmt.clear
@@ -345,7 +345,7 @@ class Window_AdvancedTextPokemon < SpriteWindow_Base
           chy = ch[2] + ch[4]
           width = chx if width < chx
           height = chy if height < chy
-          @textchars.push(ch[5] ? "" : ch[0])
+          @textchars.push((ch[5]) ? "" : ch[0])
         end
       end
       @bitmapwidth = width
@@ -416,11 +416,11 @@ class Window_AdvancedTextPokemon < SpriteWindow_Base
     return if @pausesprite
     arrow_filename = "Graphics/Windowskins/pause_arrow"
     if @windowskin_name
-      try_arrow_filename = "Graphics/Windowskins/#{File.basename(@windowskin_name, ".*")}_arrow"
+      try_arrow_filename = "Graphics/Windowskins/#{File.basename(@windowskin_name, '.*')}_arrow"
       arrow_filename = try_arrow_filename if pbResolveBitmap(try_arrow_filename)
     end
     @pausesprite = AnimatedSprite.create(arrow_filename, 4, 3)
-    @pausesprite.z       = 100000
+    @pausesprite.z       = 100_000
     @pausesprite.visible = false
   end
 
@@ -447,13 +447,13 @@ class Window_AdvancedTextPokemon < SpriteWindow_Base
       @pausesprite.x = self.x + self.startX + @endOfText.x + @endOfText.width - 2
       @pausesprite.y = self.y + self.startY + @endOfText.y - @scrollY
     when 1   # Lower right
-      pauseWidth  = @pausesprite.bitmap ? @pausesprite.framewidth : 16
-      pauseHeight = @pausesprite.bitmap ? @pausesprite.frameheight : 16
+      pauseWidth  = (@pausesprite.bitmap) ? @pausesprite.framewidth : 16
+      pauseHeight = (@pausesprite.bitmap) ? @pausesprite.frameheight : 16
       @pausesprite.x = self.x + self.width - 40 + (pauseWidth / 2)
       @pausesprite.y = self.y + self.height - 60 + (pauseHeight / 2)
     when 2   # Lower middle
-      pauseWidth  = @pausesprite.bitmap ? @pausesprite.framewidth : 16
-      pauseHeight = @pausesprite.bitmap ? @pausesprite.frameheight : 16
+      pauseWidth  = (@pausesprite.bitmap) ? @pausesprite.framewidth : 16
+      pauseHeight = (@pausesprite.bitmap) ? @pausesprite.frameheight : 16
       @pausesprite.x = self.x + (self.width / 2) - (pauseWidth / 2)
       @pausesprite.y = self.y + self.height - 36 + (pauseHeight / 2)
     end
@@ -645,7 +645,7 @@ class Window_InputNumberPokemon < SpriteWindow_Base
   end
 
   def number
-    @number * (@sign && @negative ? -1 : 1)
+    return @number * ((@sign && @negative) ? -1 : 1)
   end
 
   def number=(value)
@@ -654,15 +654,15 @@ class Window_InputNumberPokemon < SpriteWindow_Base
       @negative = (value < 0)
       @number = [value.abs, (10**@digits_max) - 1].min
     else
-      @number = [[value, 0].max, (10**@digits_max) - 1].min
+      @number = value.clamp(0, (10**@digits_max) - 1)
     end
     refresh
   end
 
   def sign=(value)
     @sign = value
-    self.width = (@digits_max * 24) + 8 + self.borderX + (@sign ? 24 : 0)
-    @index = (@digits_max - 1) + (@sign ? 1 : 0)
+    self.width = (@digits_max * 24) + 8 + self.borderX + ((@sign) ? 24 : 0)
+    @index = (@digits_max - 1) + ((@sign) ? 1 : 0)
     refresh
   end
 
@@ -673,17 +673,17 @@ class Window_InputNumberPokemon < SpriteWindow_Base
     self.contents.clear
     s = sprintf("%0*d", @digits_max, @number.abs)
     if @sign
-      textHelper(0, 0, @negative ? "-" : "+", 0)
+      textHelper(0, 0, (@negative) ? "-" : "+", 0)
     end
     @digits_max.times do |i|
-      index = i + (@sign ? 1 : 0)
+      index = i + ((@sign) ? 1 : 0)
       textHelper(index * 24, 0, s[i, 1], index)
     end
   end
 
   def update
     super
-    digits = @digits_max + (@sign ? 1 : 0)
+    digits = @digits_max + ((@sign) ? 1 : 0)
     cursor_to_show = ((System.uptime - @cursor_timer_start) / 0.35).to_i.even?
     if cursor_to_show != @cursor_shown
       @cursor_shown = cursor_to_show
@@ -980,8 +980,8 @@ module UpDownArrowMixin
     @downarrow = AnimatedSprite.create("Graphics/UI/down_arrow", 8, 2, self.viewport)
     RPG::Cache.retain("Graphics/UI/up_arrow")
     RPG::Cache.retain("Graphics/UI/down_arrow")
-    @uparrow.z   = 99998
-    @downarrow.z = 99998
+    @uparrow.z   = 99_998
+    @downarrow.z = 99_998
     @uparrow.visible   = false
     @downarrow.visible = false
     @uparrow.play
@@ -1226,7 +1226,7 @@ class Window_CommandPokemon < Window_DrawableCommand
   end
 
   def itemCount
-    return @commands ? @commands.length : 0
+    return (@commands) ? @commands.length : 0
   end
 
   def drawItem(index, _count, rect)
@@ -1320,7 +1320,7 @@ class Window_AdvancedCommandPokemon < Window_DrawableCommand
                              Graphics.width - self.borderX - SpriteWindow_Base::TEXT_PADDING - 16,
                              -1, text, self.rowHeight, true, true)
     chars.each do |ch|
-      dims[0] = dims[0] ? [dims[0], ch[1]].min : ch[1]
+      dims[0] = (dims[0]) ? [dims[0], ch[1]].min : ch[1]
       dims[1] = [dims[1], ch[1] + ch[3]].max
     end
     dims[0] = 0 if !dims[0]
@@ -1371,7 +1371,7 @@ class Window_AdvancedCommandPokemon < Window_DrawableCommand
   end
 
   def itemCount
-    return @commands ? @commands.length : 0
+    return (@commands) ? @commands.length : 0
   end
 
   def drawItem(index, _count, rect)

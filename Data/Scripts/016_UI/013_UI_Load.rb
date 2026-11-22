@@ -120,8 +120,8 @@ class UI::LoadContinuePanel < UI::LoadPanel
 
   GRAPHICS_FOLDER = "Load/"
   TEXT_COLOR_THEMES = {   # Themes not in DEFAULT_TEXT_COLOR_THEMES
-    :male    => [Color.new(0, 112, 248), Color.new(120, 184, 232)],
-    :female  => [Color.new(232, 32, 16), Color.new(248, 168, 184)]
+    :male   => [Color.new(0, 112, 248), Color.new(120, 184, 232)],
+    :female => [Color.new(232, 32, 16), Color.new(248, 168, 184)]
   }
   PANEL_WIDTH  = 392
   PANEL_HEIGHT = 248
@@ -354,8 +354,9 @@ class UI::LoadVisuals < UI::BaseVisuals
   def create_continue_panel(slot_index)
     slot_index += @save_data.length if slot_index < 0
     slot_index -= @save_data.length if slot_index >= @save_data.length
-    ret = UI::LoadContinuePanel.new(@commands[:continue],
-      @save_data[slot_index][1], slot_index, @save_data.length, @viewport)
+    ret = UI::LoadContinuePanel.new(
+      @commands[:continue], @save_data[slot_index][1], slot_index, @save_data.length, @viewport
+    )
     ret.x = (Graphics.width - ret.width) / 2
     return ret
   end
@@ -371,7 +372,7 @@ class UI::LoadVisuals < UI::BaseVisuals
     new_index = old_index
     loop do
       new_index = (new_index + 1) % @commands.length
-      break if @sprites[@commands.keys[new_index]] && @sprites[@commands.keys[new_index]].visible
+      break if @sprites[@commands.keys[new_index]]&.visible
       break if new_index == old_index
     end
     return if new_index == old_index
@@ -386,7 +387,7 @@ class UI::LoadVisuals < UI::BaseVisuals
     loop do
       new_index -= 1
       new_index += @commands.length if new_index < 0
-      break if @sprites[@commands.keys[new_index]] && @sprites[@commands.keys[new_index]].visible
+      break if @sprites[@commands.keys[new_index]]&.visible
       break if new_index == old_index
     end
     return if new_index == old_index
@@ -437,7 +438,7 @@ class UI::LoadVisuals < UI::BaseVisuals
 
   def refresh
     super
-    @commands.keys.each { |key| @sprites[key]&.refresh }
+    @commands.each_key { |key| @sprites[key]&.refresh }
     refresh_panel_positions
     refresh_selected_panel
   end
@@ -453,7 +454,7 @@ class UI::LoadVisuals < UI::BaseVisuals
     sprite_y = PANEL_SPACING_EDGE
     # Determine the relative positions of all option panels
     sprite_pos = {}
-    @commands.keys.each do |key|
+    @commands.each_key do |key|
       next if !@sprites[key] || !@sprites[key].visible   # If Mystery Gift option isn't available
       sprite_pos[key] = sprite_y
       sprite_y += @sprites[key].height + PANEL_SPACING
@@ -474,7 +475,7 @@ class UI::LoadVisuals < UI::BaseVisuals
   end
 
   def refresh_selected_panel
-    @commands.keys.each do |key|
+    @commands.each_key do |key|
       @sprites[key]&.selected = (key == @index)
     end
     @sprites[:continue_previous]&.selected = false
@@ -624,10 +625,10 @@ class UI::Load < UI::BaseScreen
       show_message(_INTL("一旦存档文件被删除，将无法恢复。") + "\1")
       pbPlayDecisionSE
       if show_confirm_serious_message(_INTL("确定要删除存档文件吗？"))
-        delete_save_data(filename) {
+        delete_save_data(filename) do
           @save_data.delete_if { |save| save[0] == filename }
           @visuals.refresh_after_save_file_deleted
-        }
+        end
       end
     end
   end

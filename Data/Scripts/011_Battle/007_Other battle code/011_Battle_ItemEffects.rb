@@ -60,7 +60,7 @@ module Battle::ItemEffects
 
   def self.trigger(hash, *args, ret: false)
     new_ret = hash.trigger(*args)
-    return (!new_ret.nil?) ? new_ret : ret
+    return (new_ret.nil?) ? ret : new_ret
   end
 
   #-----------------------------------------------------------------------------
@@ -658,8 +658,10 @@ Battle::ItemEffects::StatusCure.add(:RAWSTBERRY,
 
 Battle::ItemEffects::StatLossImmunity.add(:CLEARAMULET,
   proc { |item, battler, stat, battle, showMessages|
-    battle.pbDisplay(_INTL("{1}受到{2}的效果令能力不会下降！",
-                           battler.pbThis, GameData::Item.get(item).name)) if showMessages
+    if showMessages
+      battle.pbDisplay(_INTL("{1}受到{2}的效果令能力不会下降！",
+                             battler.pbThis, GameData::Item.get(item).name))
+    end
     next true
   }
 )

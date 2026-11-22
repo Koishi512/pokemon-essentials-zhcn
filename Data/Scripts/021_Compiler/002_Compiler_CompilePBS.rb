@@ -282,8 +282,7 @@ module Compiler
     GameData::TownMap.save
   end
 
-  def validate_compiled_town_map(hash)
-  end
+  def validate_compiled_town_map(hash); end
 
   def validate_all_compiled_town_maps
     # Get town map names and descriptions for translating
@@ -390,8 +389,7 @@ module Compiler
     end
   end
 
-  def validate_compiled_ability(hash)
-  end
+  def validate_compiled_ability(hash); end
 
   def validate_all_compiled_abilities
     # Get abilty names/descriptions for translating
@@ -446,7 +444,7 @@ module Compiler
 
   def validate_compiled_item(hash)
     # Support for pockets still being numbers
-    if hash[:pocket] && hash[:pocket].is_a?(Integer)
+    if hash[:pocket]&.is_a?(Integer)
       all_pockets = GameData::BagPocket.all_pockets
       if hash[:pocket] <= 0 || !all_pockets[hash[:pocket] - 1]
         raise _INTL("道具 {2} 的口袋编号 {1} 无效。", hash[:pocket], hash[:id])
@@ -485,11 +483,9 @@ module Compiler
     end
   end
 
-  def validate_compiled_berry_plant(hash)
-  end
+  def validate_compiled_berry_plant(hash); end
 
-  def validate_all_compiled_berry_plants
-  end
+  def validate_all_compiled_berry_plants; end
 
   #-----------------------------------------------------------------------------
   # Compile Pokémon data.
@@ -524,13 +520,11 @@ module Compiler
     hash[:weight] = [(hash[:weight] * 10).round, 1].max if hash[:weight]
     # Ensure evolutions have a parameter if they need one (don't need to ensure
     # the parameter makes sense; that happens below)
-    if hash[:evolutions]
-      hash[:evolutions].each do |evo|
-        FileLineData.setSection(hash[:id].to_s, "Evolution", "Evolution = #{evo[0]},#{evo[1]}")   # For error reporting
-        param_type = GameData::Evolution.get(evo[1]).parameter
-        next if evo[2] || param_type.nil?
-        raise _INTL("进化方式 {1} 需要参数，但未提供参数。", evo[1]) + "\n" + FileLineData.linereport
-      end
+    hash[:evolutions]&.each do |evo|
+      FileLineData.setSection(hash[:id].to_s, "Evolution", "Evolution = #{evo[0]},#{evo[1]}")   # For error reporting
+      param_type = GameData::Evolution.get(evo[1]).parameter
+      next if evo[2] || param_type.nil?
+      raise _INTL("进化方式 {1} 需要参数，但未提供参数。", evo[1]) + "\n" + FileLineData.linereport
     end
     # Record all evolutions as not being prevolutions
     if hash[:evolutions].is_a?(Array)
@@ -773,8 +767,7 @@ module Compiler
     end
   end
 
-  def validate_all_compiled_pokemon_metrics
-  end
+  def validate_all_compiled_pokemon_metrics; end
 
   #-----------------------------------------------------------------------------
   # Compile Shadow Pokémon data.
@@ -798,8 +791,7 @@ module Compiler
     end
   end
 
-  def validate_all_compiled_shadow_pokemon
-  end
+  def validate_all_compiled_shadow_pokemon; end
 
   #-----------------------------------------------------------------------------
   # Compile Regional Dexes.
@@ -851,8 +843,7 @@ module Compiler
     end
   end
 
-  def validate_compiled_ribbon(hash)
-  end
+  def validate_compiled_ribbon(hash); end
 
   def validate_all_compiled_ribbons
     # Get ribbon names/descriptions for translating
@@ -1103,7 +1094,7 @@ module Compiler
                     pkmn[:real_name], Pokemon::MAX_NAME_SIZE) + "\n" + FileLineData.linereport
       end
       # Ensure no duplicate moves
-      pkmn[:moves].uniq! if pkmn[:moves]
+      pkmn[:moves]&.uniq!
       # Ensure valid IVs, convert IVs to hash format
       if pkmn[:iv]
         iv_hash = {}
@@ -1369,8 +1360,7 @@ module Compiler
     end
   end
 
-  def validate_compiled_player_metadata(hash)
-  end
+  def validate_compiled_player_metadata(hash); end
 
   # Should be used to check both global metadata and player character metadata.
   def validate_all_compiled_metadata
@@ -1420,11 +1410,9 @@ module Compiler
     end
   end
 
-  def validate_compiled_dungeon_tileset(hash)
-  end
+  def validate_compiled_dungeon_tileset(hash); end
 
-  def validate_all_compiled_dungeon_tilesets
-  end
+  def validate_all_compiled_dungeon_tilesets; end
 
   #-----------------------------------------------------------------------------
   # Compile dungeon parameters data.
@@ -1449,8 +1437,7 @@ module Compiler
     end
   end
 
-  def validate_all_compiled_dungeon_parameters
-  end
+  def validate_all_compiled_dungeon_parameters; end
 
   #-----------------------------------------------------------------------------
   # Compile phone messages.

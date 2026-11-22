@@ -6,7 +6,7 @@ class UI::PokedexDexesVisualsList < Window_CommandPokemon
 
   def initialize(dexes, width)
     @dexes = dexes
-    commands = dexes.map { |dex| dex.is_a?(Array) ? dex[1] : dex }
+    commands = dexes.map { |dex| (dex.is_a?(Array)) ? dex[1] : dex }
     super(commands, width)
     @selarrow = AnimatedBitmap.new(UI::PokedexDexesVisuals::UI_FOLDER + "sel_arrow_white")
     self.baseColor   = Color.new(248, 248, 248)
@@ -37,7 +37,7 @@ class UI::PokedexDexesVisualsList < Window_CommandPokemon
     pbDrawShadowText(self.contents, rect.x + 220, rect.y + (self.contents.text_offset_y || 0),
                      64, rect.height, entry[2].to_s, self.baseColor, self.shadowColor, 2)   # Right align
     # Draw owned Poké Ball icon
-    all_owned  = (entry[3] >= entry[4])
+    all_owned = (entry[3] >= entry[4])
     pbDrawImagePositions(self.contents,
                          [[pokedex_folder + "icon_dexes_seen_own", rect.x + 308, rect.y + 6,
                            (all_owned) ? SEEN_OWNED_ICON_SIZE[0] : 0, SEEN_OWNED_ICON_SIZE[1], *SEEN_OWNED_ICON_SIZE]])

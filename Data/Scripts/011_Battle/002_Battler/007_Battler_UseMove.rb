@@ -505,12 +505,11 @@ class Battle::Battler
     # Dazzling/Queenly Majesty/Armor Tail make the move fail here
     @battle.pbPriority(true).each do |b|
       next if !b || !b.abilityActive?
-      if Battle::AbilityEffects.triggerMoveBlocking(b.ability, b, user, targets, move, @battle)
-        @battle.pbShowAbilitySplash(b)
-        @battle.pbDisplay(_INTL("{1}无法使出{2}！", user.pbThis, move.name))
-        @battle.pbHideAbilitySplash(b)
-        return true
-      end
+      next if !Battle::AbilityEffects.triggerMoveBlocking(b.ability, b, user, targets, move, @battle)
+      @battle.pbShowAbilitySplash(b)
+      @battle.pbDisplay(_INTL("{1}无法使出{2}！", user.pbThis, move.name))
+      @battle.pbHideAbilitySplash(b)
+      return true
     end
     return false
   end
@@ -646,10 +645,11 @@ class Battle::Battler
         end
         b.lastRoundMoved = oldLastRoundMoved
         @battle.pbJudge
-        return if @battle.decided?
+        break if @battle.decided?
       end
       b.effects[PBEffects::Instructed] = false
     end
+    return if @battle.decided?
     # Dancer
     if !@effects[PBEffects::Dancer] && !user.lastMoveFailed && actual_hits > 0 &&
        !move.snatched && move.magicCoatIndex < 0 && move.magicBounceIndex < 0 &&
@@ -659,7 +659,7 @@ class Battle::Battler
         dancers.push(b) if b.index != user.index && b.hasActiveAbility?(:DANCER) &&
                            !b.usingMultiTurnAttack?
       end
-      while dancers.length > 0
+      while !dancers.empty?
         nextUser = dancers.pop
         oldLastRoundMoved = nextUser.lastRoundMoved
         # NOTE: Petal Dance being used because of Dancer shouldn't lock the
@@ -689,7 +689,7 @@ class Battle::Battler
           nextUser.effects[PBEffects::ProtectRate] = oldProtectRate
           nextUser.currentMove = oldCurrentMove
           @battle.pbJudge
-          return if @battle.decided?
+          break if @battle.decided?
         end
         nextUser.effects[PBEffects::Dancer] = false
       end

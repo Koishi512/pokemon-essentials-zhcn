@@ -38,12 +38,12 @@ class Battle::Visuals::Animation::Intro < Battle::Visuals::Animation
     end
     # Fading blackness over whole screen
     blackScreen = addNewSprite(0, 0, "Graphics/Battle animations/Screens/black")
-    blackScreen.setZ(0, 99999)
+    blackScreen.setZ(0, 99_999)
     blackScreen.moveOpacity(0, 8, 0)
     # Fading blackness over command bar
     blackBar = addNewSprite(@sprites["cmdBar_bg"].x, @sprites["cmdBar_bg"].y,
                             "Graphics/Battle animations/Screens/black_bar")
-    blackBar.setZ(0, 99998)
+    blackBar.setZ(0, 99_998)
     blackBar.moveOpacity(appearTime * 3 / 4, appearTime / 4, 0)
   end
 
@@ -874,11 +874,10 @@ class Battle::Visuals::Animation::SwapSubstitute < Battle::Visuals::Animation
 
   def createSlideProcesses
     batSprite = @sprites["pokemon_#{@idxBattler}"]
+    battler_x = batSprite.x
     if @side == 0
-      battler_x = batSprite.x
       off_screen_x = batSprite.ox - batSprite.width
     else
-      battler_x = batSprite.x
       off_screen_x = Graphics.width + batSprite.ox
     end
     duration = (battler_x - off_screen_x).abs / 40

@@ -52,7 +52,7 @@ class Battle
     end
 
     def self.should_black_out?(decision)
-      return decision == LOSE || decision == DRAW
+      return [LOSE, DRAW].include?(decision)
     end
 
     def self.success?(decision)
@@ -156,8 +156,8 @@ class Battle
     @priorityTrickRoom = false
     @choices           = []
     @megaEvolution     = [
-      [-1] * (@player ? @player.length : 1),
-      [-1] * (@opponent ? @opponent.length : 1)
+      [-1] * ((@player) ? @player.length : 1),
+      [-1] * ((@opponent) ? @opponent.length : 1)
     ]
     @initialItems      = [
       Array.new(@party1.length) { |i| [@party1[i]&.item_id, 0, i, false] },

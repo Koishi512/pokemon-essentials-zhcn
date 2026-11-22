@@ -667,12 +667,15 @@ class Pokemon
     move_data = GameData::Move.try_get(move_id)
     return if !move_data
     # Check if self already knows the move; if so, move it to the end of the array
+    added = false
     @moves.each_with_index do |m, i|
       next if m.id != move_data.id
       @moves.push(m)
       @moves.delete_at(i)
-      return
+      added = true
+      break
     end
+    return if added
     # Move is not already known; learn it
     @moves.push(Pokemon::Move.new(move_data.id))
     # Delete the first known move if self now knows more moves than it should
@@ -1153,9 +1156,7 @@ class Pokemon
     nature_mod = {}
     GameData::Stat.each_main { |s| nature_mod[s.id] = 100 }
     this_nature = self.nature_for_stats
-    if this_nature
-      this_nature.stat_changes.each { |change| nature_mod[change[0]] += change[1] }
-    end
+    this_nature&.stat_changes.each { |change| nature_mod[change[0]] += change[1] }
     # Calculate stats
     stats = {}
     GameData::Stat.each_main do |s|
