@@ -145,7 +145,7 @@ end
 #===============================================================================
 module BooleanProperty2
   def self.set(_settingname, _oldsetting)
-    ret = pbShowCommands(nil, [_INTL("真实"), _INTL("错误")], -1)
+    ret = pbShowCommands(nil, [_INTL("是"), _INTL("否")], -1)
     return (ret >= 0) ? (ret == 0) : nil
   end
 
@@ -154,8 +154,8 @@ module BooleanProperty2
   end
 
   def self.format(value)
-    return _INTL("真实") if value
-    return (value.nil?) ? "-" : _INTL("错误")
+    return _INTL("是") if value
+    return (value.nil?) ? "-" : _INTL("否")
   end
 end
 
@@ -288,7 +288,7 @@ class StringListProperty
             do_refresh = true
           end
         else   # Edit value
-          case pbMessage("\\ts[]" + _INTL("用这个值做什么？"),
+          case pbMessage("\\ts[]" + _INTL("要对这个值做什么？"),
                          [_INTL("编辑"), _INTL("删除"), _INTL("取消")], 3)
           when 0   # Edit
             new_value = pbMessageFreeText(_INTL("输入新值。"),
@@ -310,7 +310,7 @@ class StringListProperty
           end
         end
       else   # Cancel/quit
-        case pbMessage(_INTL("保留更改吗？"), [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
+        case pbMessage(_INTL("保留更改吗？"), [_INTL("是"), _INTL("否"), _INTL("取消")], 3)
         when 0
           real_cmds.length.times do |i|
             real_cmds[i] = (real_cmds[i][1] == -1) ? nil : real_cmds[i][0]
@@ -500,7 +500,7 @@ module TypesProperty
     loop do
       cmds = []
       2.times { |i| cmds.push(_INTL("输入{1}：{2}", i, ret[i] || "-")) }
-      index = pbMessage(_INTL("设置该物种的类型。"), cmds, -1)
+      index = pbMessage(_INTL("设置该物种的属性。"), cmds, -1)
       break if index < 0
       new_type = pbChooseTypeList(ret[index])
       ret[index] = new_type if new_type
@@ -1096,8 +1096,8 @@ class GameDataPoolProperty
               need_refresh = true
             end
           else   # Edit existing value
-            case pbMessage("\\ts[]" + _INTL("用这个值做什么？"),
-                           [_INTL("改变值"), _INTL("删除"), _INTL("取消")], 3)
+            case pbMessage("\\ts[]" + _INTL("要对这个值做什么？"),
+                           [_INTL("更改值"), _INTL("删除"), _INTL("取消")], 3)
             when 0   # Change value
               new_value = pbChooseFromGameDataList(@game_data, entry[0])
               if new_value && new_value != entry[0]
@@ -1123,7 +1123,7 @@ class GameDataPoolProperty
           end
         else   # Cancel/quit
           case pbMessage(_INTL("应用更改？"),
-                         [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
+                         [_INTL("是"), _INTL("否"), _INTL("取消")], 3)
           when 0
             values.shift   # Remove the "add value" option
             values.length.times do |i|
@@ -1231,7 +1231,7 @@ module LevelUpMovesProperty
             params.setRange(0, GameData::GrowthRate.max_level)
             params.setDefaultValue(1)
             params.setCancelValue(-1)
-            newlevel = pbMessageChooseNumber(_INTL("选择一个级别。"), params)
+            newlevel = pbMessageChooseNumber(_INTL("选择一个等级。"), params)
             if newlevel >= 0
               newmove = pbChooseMoveList
               if newmove
@@ -1250,13 +1250,13 @@ module LevelUpMovesProperty
               end
             end
           else   # Edit existing move
-            case pbMessage("\\ts[]" + _INTL("这个动作要做什么？"),
-                           [_INTL("改变等级"), _INTL("改变动作"), _INTL("删除"), _INTL("取消")], 4)
+            case pbMessage("\\ts[]" + _INTL("要对这个招式做什么？"),
+                           [_INTL("更改等级"), _INTL("更改招式"), _INTL("删除"), _INTL("取消")], 4)
             when 0   # Change level
               params = ChooseNumberParams.new
               params.setRange(0, GameData::GrowthRate.max_level)
               params.setDefaultValue(entry[0])
-              newlevel = pbMessageChooseNumber(_INTL("选择一个新级别。"), params)
+              newlevel = pbMessageChooseNumber(_INTL("选择一个新等级。"), params)
               if newlevel >= 0 && newlevel != entry[0]
                 havemove = -1
                 realcmds.each do |e|
@@ -1297,7 +1297,7 @@ module LevelUpMovesProperty
           end
         else   # Cancel/quit
           case pbMessage(_INTL("保存更改吗？"),
-                         [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
+                         [_INTL("是"), _INTL("否"), _INTL("取消")], 3)
           when 0
             realcmds.shift
             realcmds.length.times do |i|
@@ -1430,7 +1430,7 @@ class EvolutionsProperty
         if cmd[1] >= 0
           entry = realcmds[cmd[1]]
           if entry[3] == -1   # Add new evolution path
-            pbMessage(_INTL("选择进化的形式、方法和参数。"))
+            pbMessage(_INTL("选择进化的形态、方法和参数。"))
             newspecies = pbChooseSpeciesList
             if newspecies
               newmethodindex = pbMessage(_INTL("选择一种进化方法。"), @methods, -1)
@@ -1457,8 +1457,8 @@ class EvolutionsProperty
               end
             end
           else   # Edit evolution
-            case pbMessage("\\ts[]" + _INTL("用这个进化做什么？"),
-                           [_INTL("改变物种"), _INTL("变更方法"),
+            case pbMessage("\\ts[]" + _INTL("要对这个进化做什么？"),
+                           [_INTL("更改物种"), _INTL("更改方法"),
                             _INTL("更改参数"), _INTL("删除"), _INTL("取消")], 5)
             when 0   # Change species
               newspecies = pbChooseSpeciesList(entry[0])
@@ -1530,7 +1530,7 @@ class EvolutionsProperty
           end
         else
           cmd2 = pbMessage(_INTL("保存更改吗？"),
-                           [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
+                           [_INTL("是"), _INTL("否"), _INTL("取消")], 3)
           if [0, 1].include?(cmd2)
             if cmd2 == 0
               realcmds.length.times do |i|
@@ -1582,9 +1582,9 @@ module EncounterSlotProperty
     data[3] = data[2] if !data[3]
     properties = [
       [_INTL("概率"),   NonzeroLimitProperty.new(999),       _INTL("选择该槽位的相对概率。")],
-      [_INTL("物种"),       SpeciesFormProperty.new(data[1]),    _INTL("宝可梦种类/形态。")],
-      [_INTL("最低等级"), NonzeroLimitProperty.new(max_level), _INTL("该物种的最低水平 (1-{1})。", max_level)],
-      [_INTL("最高等级"), NonzeroLimitProperty.new(max_level), _INTL("该物种的最高水平 (1-{1})。", max_level)]
+      [_INTL("物种"),       SpeciesFormProperty.new(data[1]),    _INTL("宝可梦的物种/形态。")],
+      [_INTL("最低等级"), NonzeroLimitProperty.new(max_level), _INTL("该物种的最低等级（1-{1}）。", max_level)],
+      [_INTL("最高等级"), NonzeroLimitProperty.new(max_level), _INTL("该物种的最高等级（1-{1}）。", max_level)]
     ]
     pbPropertyList(setting_name, data, properties, false)
     if data[2] > data[3]
@@ -1602,16 +1602,16 @@ module EncounterSlotProperty
     species_data = GameData::Species.get(value[1])
     if species_data.form > 0
       if value[2] == value[3]
-        return sprintf("%d, %s_%d (Lv.%d)", value[0],
-                       species_data.real_name, species_data.form, value[2])
+        return _INTL("{1}，{2}_{3}（等级 {4}）", value[0],
+                     species_data.real_name, species_data.form, value[2])
       end
-      return sprintf("%d, %s_%d (Lv.%d-%d)", value[0],
-                     species_data.real_name, species_data.form, value[2], value[3])
+      return _INTL("{1}，{2}_{3}（等级 {4}-{5}）", value[0],
+                   species_data.real_name, species_data.form, value[2], value[3])
     end
     if value[2] == value[3]
-      return sprintf("%d, %s (Lv.%d)", value[0], species_data.real_name, value[2])
+      return _INTL("{1}，{2}（等级 {3}）", value[0], species_data.real_name, value[2])
     end
-    return sprintf("%d, %s (Lv.%d-%d)", value[0], species_data.real_name, value[2], value[3])
+    return _INTL("{1}，{2}（等级 {3}-{4}）", value[0], species_data.real_name, value[2], value[3])
   end
 end
 
@@ -1686,7 +1686,7 @@ def pbPropertyList(title, data, properties, saveprompt = false)
     end
     if selectedmap == -1 && saveprompt
       cmd = pbMessage(_INTL("保存更改吗？"),
-                      [_INTL("是的"), _INTL("否"), _INTL("取消")], 3)
+                      [_INTL("是"), _INTL("否"), _INTL("取消")], 3)
       if cmd == 2
         selectedmap = list.index
       else

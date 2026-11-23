@@ -152,7 +152,7 @@ class UIControls::ColorPicker < UIControls::BaseControl
     ctrl.set_interactive_rects
     @picker_controls[:hex] = ctrl
     # Cancel button
-    ctrl = UIControls::Button.new(PICKER_BOX_PREVIEW_WIDTH + 4, 20, @picker_box_viewport, _INTL("Cancel"))
+    ctrl = UIControls::Button.new(PICKER_BOX_PREVIEW_WIDTH + 4, 20, @picker_box_viewport, _INTL("取消"))
     ctrl.x = PICKER_BOX_PREVIEW_X - 2
     ctrl.y = PICKER_BOX_SLIDER_Y + (4 * PICKER_BOX_ROW_HEIGHT) + ((PICKER_BOX_ROW_HEIGHT - ctrl.height) / 2)
     ctrl.color_scheme = @color_scheme
@@ -228,7 +228,7 @@ class UIControls::ColorPicker < UIControls::BaseControl
       draw_text(@picker_box.bitmap, txt_x, label_y, label)
       label_y += PICKER_BOX_ROW_HEIGHT
     end
-    hex_text = _INTL("Hex:")
+    hex_text = _INTL("十六进制：")
     hex_x = PICKER_BOX_SLIDER_CONTROL_X + PICKER_BOX_SLIDER_CONTROL_WIDTH - PICKER_BOX_HEX_BOX_WIDTH - PICKER_BOX_LABEL_SPACING
     hex_x -= @picker_box.bitmap.text_size(hex_text).width
     draw_text(@picker_box.bitmap, hex_x, PICKER_BOX_SLIDER_Y + TEXT_OFFSET_Y + (4 * PICKER_BOX_ROW_HEIGHT), hex_text)
@@ -559,7 +559,7 @@ class UIControls::TonePicker < UIControls::BaseControl
       @picker_controls[id] = ctrl
     end
     # Cancel button
-    ctrl = UIControls::Button.new(PICKER_BOX_PREVIEW_WIDTH + 4, 20, @picker_box_viewport, _INTL("Cancel"))
+    ctrl = UIControls::Button.new(PICKER_BOX_PREVIEW_WIDTH + 4, 20, @picker_box_viewport, _INTL("取消"))
     ctrl.x = PICKER_BOX_PREVIEW_X - 2
     ctrl.y = PICKER_BOX_SLIDER_Y + (4 * PICKER_BOX_ROW_HEIGHT) + ((PICKER_BOX_ROW_HEIGHT - ctrl.height) / 2)
     ctrl.color_scheme = @color_scheme
@@ -634,7 +634,7 @@ class UIControls::TonePicker < UIControls::BaseControl
                                     PICKER_BOX_PREVIEW_WIDTH + 4, PICKER_BOX_PREVIEW_HEIGHT + 4, get_color_of(:line))
     # Tone slider labels
     label_y = PICKER_BOX_SLIDER_Y + TEXT_OFFSET_Y
-    [_INTL("R:"), _INTL("G:"), _INTL("B:"), _INTL("G:")].each do |label|
+    [_INTL("R:"), _INTL("G:"), _INTL("B:"), _INTL("A:")].each do |label|
       txt_x = PICKER_BOX_SLIDER_X - PICKER_BOX_LABEL_SPACING
       txt_x -= @picker_box.bitmap.text_size(label).width
       draw_text(@picker_box.bitmap, txt_x, label_y, label)
@@ -943,9 +943,9 @@ class UIControls::SEPicker < UIControls::BaseControl
     @picker_controls[:list] = ctrl
     # Buttons
     button_x = PICKER_BOX_LIST_X
-    [[:add, _INTL("Add")],
-     [:edit, _INTL("Edit")],
-     [:delete, _INTL("Delete")]].each do |ct|
+    [[:add, _INTL("添加")],
+     [:edit, _INTL("编辑")],
+     [:delete, _INTL("删除")]].each do |ct|
       ctrl = UIControls::Button.new(PICKER_BOX_BUTTON_WIDTH, PICKER_BOX_BUTTON_HEIGHT, @picker_box_viewport, ct[1])
       ctrl.x = button_x
       ctrl.y = PICKER_BOX_LIST_Y + PICKER_BOX_LIST_HEIGHT + PICKER_BOX_SPACING

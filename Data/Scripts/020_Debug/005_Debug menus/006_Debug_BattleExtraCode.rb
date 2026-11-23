@@ -3,139 +3,139 @@
 #===============================================================================
 module Battle::DebugVariables
   BATTLER_EFFECTS = {
-    PBEffects::AllySwitchRate => {name: "Ally Switch success chance 1/x",                  default: 1, max: 999},
-    PBEffects::AquaRing       => {name: "Aqua Ring applies",                               default: false},
-    PBEffects::Attract        => {name: "Battler that self is attracted to",               default: -1},   # Battler index
-    PBEffects::BanefulBunker  => {name: "Baneful Bunker applies this round",               default: false},
+    PBEffects::AllySwitchRate => {name: "交换场地成功率（1/x）",                  default: 1, max: 999},
+    PBEffects::AquaRing       => {name: "水流环生效",                               default: false},
+    PBEffects::Attract        => {name: "使自己着迷的战斗者",               default: -1},   # Battler index
+    PBEffects::BanefulBunker  => {name: "本回合碉堡生效",               default: false},
 #    PBEffects::BeakBlast - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::Bide           => {name: "Bide number of rounds remaining",                 default: 0},
-    PBEffects::BideDamage     => {name: "Bide damage accumulated",                         default: 0, max: 999},
-    PBEffects::BideTarget     => {name: "Bide last battler to hurt self",                  default: -1},   # Battler index
-    PBEffects::BoosterEnergy  => {name: "Booster Energy's effect applies",                 default: false},
-    PBEffects::BurningBulwark => {name: "Burning Bulwark applies this round",              default: false},
-    PBEffects::BurnUp         => {name: "Burn Up has removed self's Fire type",            default: false},
-    PBEffects::Charge         => {name: "Charge number of rounds remaining",               default: 0},
-    PBEffects::ChoiceBand     => {name: "Move locked into by Choice items",                default: nil, type: :move},
+    PBEffects::Bide           => {name: "忍忍剩余回合数",                 default: 0},
+    PBEffects::BideDamage     => {name: "忍忍累积伤害",                         default: 0, max: 999},
+    PBEffects::BideTarget     => {name: "忍忍最后伤害自己的战斗者",                  default: -1},   # Battler index
+    PBEffects::BoosterEnergy  => {name: "驱劲能量效果生效",                 default: false},
+    PBEffects::BurningBulwark => {name: "本回合火焰守护生效",              default: false},
+    PBEffects::BurnUp         => {name: "燃尽已移除自身火属性",            default: false},
+    PBEffects::Charge         => {name: "充电剩余回合数",               default: 0},
+    PBEffects::ChoiceBand     => {name: "被讲究类道具锁定的招式",                default: nil, type: :move},
 #    PBEffects::CommandedBy - not suitable for setting via debug
 #    PBEffects::Commanding - not suitable for setting via debug
-    PBEffects::Confusion      => {name: "Confusion number of rounds remaining",            default: 0},
+    PBEffects::Confusion      => {name: "混乱剩余回合数",            default: 0},
 #    PBEffects::Counter - not suitable for setting via debug
 #    PBEffects::CounterTarget - not suitable for setting via debug
-    PBEffects::CudChewBerry   => {name: "Item to be eaten by Cud Chew",                    default: nil, type: :item},
-    PBEffects::CudChewCounter => {name: "Cud Chew number of rounds remaining",             default: 0},
-    PBEffects::Curse          => {name: "Curse damaging applies",                          default: false},
+    PBEffects::CudChewBerry   => {name: "反刍要吃的道具",                    default: nil, type: :item},
+    PBEffects::CudChewCounter => {name: "反刍剩余回合数",             default: 0},
+    PBEffects::Curse          => {name: "诅咒伤害效果生效",                          default: false},
 #    PBEffects::Dancer - only used while Dancer is running, not suitable for setting via debug
-    PBEffects::DefenseCurl    => {name: "Used Defense Curl",                               default: false},
+    PBEffects::DefenseCurl    => {name: "已使用变圆",                               default: false},
 #    PBEffects::DestinyBond - not suitable for setting via debug
 #    PBEffects::DestinyBondPrevious - not suitable for setting via debug
 #    PBEffects::DestinyBondTarget - not suitable for setting via debug
-    PBEffects::Disable        => {name: "Disable number of rounds remaining",              default: 0},
-    PBEffects::DisableMove    => {name: "Disabled move",                                   default: nil, type: :move},
-    PBEffects::DoubleShock    => {name: "Double Shock has removed self's Electric type",   default: false},
-    PBEffects::Electrify      => {name: "Electrify making moves Electric",                 default: false},
-    PBEffects::Embargo        => {name: "Embargo number of rounds remaining",              default: 0},
-    PBEffects::Encore         => {name: "Encore number of rounds remaining",               default: 0},
-    PBEffects::EncoreMove     => {name: "Encored move",                                    default: nil, type: :move},
-    PBEffects::Endure         => {name: "Endures all lethal damage this round",            default: false},
+    PBEffects::Disable        => {name: "定身法剩余回合数",              default: 0},
+    PBEffects::DisableMove    => {name: "被定身法的招式",                                   default: nil, type: :move},
+    PBEffects::DoubleShock    => {name: "电光双击已移除自身电属性",   default: false},
+    PBEffects::Electrify      => {name: "输电使招式变为电属性",                 default: false},
+    PBEffects::Embargo        => {name: "查封剩余回合数",              default: 0},
+    PBEffects::Encore         => {name: "再来一次剩余回合数",               default: 0},
+    PBEffects::EncoreMove     => {name: "被再来一次的招式",                                    default: nil, type: :move},
+    PBEffects::Endure         => {name: "本回合挺住所有致命伤害",            default: false},
 #    PBEffects::ExtraType - set elsewhere
 #    PBEffects::FirstPledge - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::FlashFire      => {name: "Flash Fire powering up Fire moves",               default: false},
-    PBEffects::Flinch         => {name: "Will flinch this round",                          default: false},
-    PBEffects::FocusEnergy    => {name: "Focus Energy critical hit stages (0-4)",          default: 0, max: 4},
+    PBEffects::FlashFire      => {name: "引火强化火属性招式",               default: false},
+    PBEffects::Flinch         => {name: "本回合会畏缩",                          default: false},
+    PBEffects::FocusEnergy    => {name: "聚气击中要害等级（0-4）",          default: 0, max: 4},
 #    PBEffects::FocusPunch - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::FollowMe       => {name: "Follow Me drawing in attacks (if 1+)",            default: 0},   # Order of use, lowest takes priority
-    PBEffects::Foresight      => {name: "Foresight applies (Ghost loses immunities)",      default: false},
-    PBEffects::FuryCutter     => {name: "Fury Cutter power multiplier 2**x (0-4)",         default: 0, max: 4},
-    PBEffects::GastroAcid     => {name: "Gastro Acid is negating self's ability",          default: false},
+    PBEffects::FollowMe       => {name: "看我嘛吸引攻击（1以上）",            default: 0},   # Order of use, lowest takes priority
+    PBEffects::Foresight      => {name: "识破生效（幽灵属性失去免疫）",      default: false},
+    PBEffects::FuryCutter     => {name: "连斩威力倍率 2**x（0-4）",         default: 0, max: 4},
+    PBEffects::GastroAcid     => {name: "胃液使自身特性无效",          default: false},
 #    PBEffects::GemConsumed - only applies during use of move, not suitable for setting via debug
-    PBEffects::GigatonHammer  => {name: "Gigaton Hammer/Blood Moon is the last used move", default: false},
-    PBEffects::Grudge         => {name: "Grudge will apply if self faints",                default: false},
-    PBEffects::HealBlock      => {name: "Heal Block number of rounds remaining",           default: 0},
-    PBEffects::HelpingHand    => {name: "Helping Hand will power up self's move",          default: 0},
-    PBEffects::HyperBeam      => {name: "Hyper Beam recharge rounds remaining",            default: 0},
+    PBEffects::GigatonHammer  => {name: "巨力锤/血月是最后使用的招式", default: false},
+    PBEffects::Grudge         => {name: "自身倒下时怨念生效",                default: false},
+    PBEffects::HealBlock      => {name: "回复封锁剩余回合数",           default: 0},
+    PBEffects::HelpingHand    => {name: "帮助将强化自身招式",          default: 0},
+    PBEffects::HyperBeam      => {name: "破坏光线无法行动的剩余回合数",            default: 0},
 #    PBEffects::Illusion - is a Pokémon object, too complex to be worth bothering with
-    PBEffects::Imprison       => {name: "Imprison disables others' moves known by self",   default: false},
-    PBEffects::Ingrain        => {name: "Ingrain applies",                                 default: false},
+    PBEffects::Imprison       => {name: "封印使对手无法使用自身会的招式",   default: false},
+    PBEffects::Ingrain        => {name: "扎根生效",                                 default: false},
 #    PBEffects::Instruct - only used while Instruct is running, not suitable for setting via debug
 #    PBEffects::Instructed - only used while Instruct is running, not suitable for setting via debug
-    PBEffects::JawLock        => {name: "Battler trapping self with Jaw Lock",             default: -1},   # Battler index
-    PBEffects::KingsShield    => {name: "King's Shield applies this round",                default: false},
-    PBEffects::LaserFocus     => {name: "Laser Focus certain critial hit duration",        default: 0},
-    PBEffects::LeechSeed      => {name: "Battler that used Leech Seed on self",            default: -1},   # Battler index
-    PBEffects::LockOn         => {name: "Lock-On number of rounds remaining",              default: 0},
-    PBEffects::LockOnPos      => {name: "Battler that self is targeting with Lock-On",     default: -1},   # Battler index
+    PBEffects::JawLock        => {name: "用紧咬不放束缚自己的战斗者",             default: -1},   # Battler index
+    PBEffects::KingsShield    => {name: "本回合王者盾牌生效",                default: false},
+    PBEffects::LaserFocus     => {name: "磨砺必定击中要害的持续回合",        default: 0},
+    PBEffects::LeechSeed      => {name: "对自己使用寄生种子的战斗者",            default: -1},   # Battler index
+    PBEffects::LockOn         => {name: "锁定剩余回合数",              default: 0},
+    PBEffects::LockOnPos      => {name: "自身用锁定指定的战斗者",     default: -1},   # Battler index
 #    PBEffects::MagicBounce - only applies during use of move, not suitable for setting via debug
 #    PBEffects::MagicCoat - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::MagnetRise     => {name: "Magnet Rise number of rounds remaining",          default: 0},
-    PBEffects::MeanLook       => {name: "Battler trapping self with Mean Look, etc.",      default: -1},   # Battler index
+    PBEffects::MagnetRise     => {name: "电磁飘浮剩余回合数",          default: 0},
+    PBEffects::MeanLook       => {name: "用黑色目光等束缚自己的战斗者",      default: -1},   # Battler index
 #    PBEffects::MeFirst - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::Metronome      => {name: "Metronome item power multiplier 1 + 0.2*x (0-5)", default: 0, max: 5},
-    PBEffects::MicleBerry     => {name: "Micle Berry boosting next move's accuracy",       default: false},
-    PBEffects::Minimize       => {name: "Used Minimize",                                   default: false},
-    PBEffects::MiracleEye     => {name: "Miracle Eye applies (Dark loses immunities)",     default: false},
+    PBEffects::Metronome      => {name: "节拍器道具威力倍率 1 + 0.2*x（0-5）", default: 0, max: 5},
+    PBEffects::MicleBerry     => {name: "通通果提升下一招命中率",       default: false},
+    PBEffects::Minimize       => {name: "已使用变小",                                   default: false},
+    PBEffects::MiracleEye     => {name: "奇迹之眼生效（恶属性失去免疫）",     default: false},
 #    PBEffects::MirrorCoat - not suitable for setting via debug
 #    PBEffects::MirrorCoatTarget - not suitable for setting via debug
 #    PBEffects::MoveNext - not suitable for setting via debug
-    PBEffects::MudSport       => {name: "Used Mud Sport (Gen 5 and older)",                default: false},
-    PBEffects::Nightmare      => {name: "Taking Nightmare damage",                         default: false},
-    PBEffects::NoRetreat      => {name: "No Retreat trapping self in battle",              default: false},
-    PBEffects::Obstruct       => {name: "Obstruct applies this round",                     default: false},
-    PBEffects::Octolock       => {name: "Battler trapping self with Octolock",             default: -1},   # Battler index
-    PBEffects::Outrage        => {name: "Outrage number of rounds remaining",              default: 0},
+    PBEffects::MudSport       => {name: "已使用玩泥巴（第5世代及以前）",                default: false},
+    PBEffects::Nightmare      => {name: "受到恶梦伤害",                         default: false},
+    PBEffects::NoRetreat      => {name: "背水一战使自身无法替换",              default: false},
+    PBEffects::Obstruct       => {name: "本回合拦堵生效",                     default: false},
+    PBEffects::Octolock       => {name: "用蛸固束缚自己的战斗者",             default: -1},   # Battler index
+    PBEffects::Outrage        => {name: "逆鳞剩余回合数",              default: 0},
 #    PBEffects::ParentalBond - only applies during use of move, not suitable for setting via debug
-    PBEffects::PerishSong     => {name: "Perish Song number of rounds remaining",          default: 0},
-    PBEffects::PerishSongUser => {name: "Battler that used Perish Song on self",           default: -1},   # Battler index
-    PBEffects::PickupItem     => {name: "Item retrievable by Pickup",                      default: nil, type: :item},
-    PBEffects::PickupUse      => {name: "Pickup item consumed time (higher=more recent)",  default: 0},
-    PBEffects::Pinch          => {name: "(Battle Palace) Behavior changed at <50% HP",     default: false},
-    PBEffects::Powder         => {name: "Powder will explode self's Fire move this round", default: false},
+    PBEffects::PerishSong     => {name: "灭亡之歌剩余回合数",          default: 0},
+    PBEffects::PerishSongUser => {name: "对自己使用灭亡之歌的战斗者",           default: -1},   # Battler index
+    PBEffects::PickupItem     => {name: "可被捡拾拾取的道具",                      default: nil, type: :item},
+    PBEffects::PickupUse      => {name: "捡拾道具的消耗时间（数值越大越新）",  default: 0},
+    PBEffects::Pinch          => {name: "（对战宫殿）HP低于50%时行动方式改变",     default: false},
+    PBEffects::Powder         => {name: "本回合粉尘会使自身火属性招式爆炸", default: false},
 #    PBEffects::PowerTrick - doesn't actually swap the stats therefore does nothing, not suitable for setting via debug
 #    PBEffects::Prankster - not suitable for setting via debug
 #    PBEffects::PriorityAbility - not suitable for setting via debug
 #    PBEffects::PriorityItem - not suitable for setting via debug
-    PBEffects::Protect        => {name: "Protect applies this round",                      default: false},
-    PBEffects::ProtectRate    => {name: "Protect success chance 1/x",                      default: 1, max: 999},
+    PBEffects::Protect        => {name: "本回合守住生效",                      default: false},
+    PBEffects::ProtectRate    => {name: "守住成功率（1/x）",                      default: 1, max: 999},
 #    PBEffects::ProtosynthesisStat - TODO: code doesn't support choosing a stat
 #    PBEffects::Quash - not suitable for setting via debug
 #    PBEffects::Rage - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::RagePowder     => {name: "Rage Powder applies (use with Follow Me)",        default: false},
-    PBEffects::Rollout        => {name: "Rollout rounds remaining (lower=stronger)",       default: 0},
-    PBEffects::Roost          => {name: "Roost removing Flying type this round",           default: false},
-    PBEffects::SaltCure       => {name: "Salt Cure applies (takes damage each round)",     default: false},
+    PBEffects::RagePowder     => {name: "愤怒粉生效（与看我嘛配合）",        default: false},
+    PBEffects::Rollout        => {name: "滚动剩余回合数（数值越小威力越高）",       default: 0},
+    PBEffects::Roost          => {name: "本回合羽栖移除飞行属性",           default: false},
+    PBEffects::SaltCure       => {name: "盐腌生效（每回合受到伤害）",     default: false},
 #    PBEffects::ShedTail - only applies while switching with Shed Tail, not suitable for setting via debug
 #    PBEffects::ShellTrap - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::SilkTrap       => {name: "Silk Trap applies this round",                    default: false},
+    PBEffects::SilkTrap       => {name: "本回合线阱生效",                    default: false},
 #    PBEffects::SkyDrop - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::SlowStart      => {name: "Slow Start rounds remaining",                     default: 0},
-    PBEffects::SmackDown      => {name: "Smack Down is grounding self",                    default: false},
+    PBEffects::SlowStart      => {name: "慢启动剩余回合数",                     default: 0},
+    PBEffects::SmackDown      => {name: "击落使自身接地",                    default: false},
 #    PBEffects::Snatch - only applies to use of specific move, not suitable for setting via debug
-    PBEffects::SpikyShield    => {name: "Spiky Shield applies this round",                 default: false},
-    PBEffects::Spotlight      => {name: "Spotlight drawing in attacks (if 1+)",            default: 0},
-    PBEffects::Stockpile      => {name: "Stockpile count (0-3)",                           default: 0, max: 3},
-    PBEffects::StockpileDef   => {name: "Def stages gained by Stockpile (0-12)",           default: 0, max: 12},
-    PBEffects::StockpileSpDef => {name: "Sp. Def stages gained by Stockpile (0-12)",       default: 0, max: 12},
-    PBEffects::Substitute     => {name: "Substitute's HP",                                 default: 0, max: 999},
-    PBEffects::SyrupBomb      => {name: "Syrup Bomb number of rounds remaining",           default: 0},
-    PBEffects::SyrupBombUser  => {name: "Battler that used Syrup Bomb on self",            default: -1},   # Battler index
-    PBEffects::TarShot        => {name: "Tar Shot weakening self to Fire",                 default: false},
-    PBEffects::Taunt          => {name: "Taunt number of rounds remaining",                default: 0},
-    PBEffects::Telekinesis    => {name: "Telekinesis number of rounds remaining",          default: 0},
-    PBEffects::ThroatChop     => {name: "Throat Chop number of rounds remaining",          default: 0},
-    PBEffects::Torment        => {name: "Torment preventing repeating moves",              default: false},
+    PBEffects::SpikyShield    => {name: "本回合尖刺防守生效",                 default: false},
+    PBEffects::Spotlight      => {name: "聚光灯吸引攻击（1以上）",            default: 0},
+    PBEffects::Stockpile      => {name: "蓄力次数（0-3）",                           default: 0, max: 3},
+    PBEffects::StockpileDef   => {name: "蓄力获得的防御等级（0-12）",           default: 0, max: 12},
+    PBEffects::StockpileSpDef => {name: "蓄力获得的特防等级（0-12）",       default: 0, max: 12},
+    PBEffects::Substitute     => {name: "替身的HP",                                 default: 0, max: 999},
+    PBEffects::SyrupBomb      => {name: "糖浆炸弹剩余回合数",           default: 0},
+    PBEffects::SyrupBombUser  => {name: "对自己使用糖浆炸弹的战斗者",            default: -1},   # Battler index
+    PBEffects::TarShot        => {name: "沥青射击使自身更容易受到火属性伤害",                 default: false},
+    PBEffects::Taunt          => {name: "挑衅剩余回合数",                default: 0},
+    PBEffects::Telekinesis    => {name: "意念移物剩余回合数",          default: 0},
+    PBEffects::ThroatChop     => {name: "深渊突刺剩余回合数",          default: 0},
+    PBEffects::Torment        => {name: "无理取闹使自身无法连续使用招式",              default: false},
 #    PBEffects::Toxic - set elsewhere
 #    PBEffects::Transform - too complex to be worth bothering with
 #    PBEffects::TransformSpecies - too complex to be worth bothering with
-    PBEffects::Trapping       => {name: "Trapping number of rounds remaining",             default: 0},
-    PBEffects::TrappingMove   => {name: "Move that is trapping self",                      default: nil, type: :move},
-    PBEffects::TrappingUser   => {name: "Battler trapping self (for Binding Band)",        default: -1},   # Battler index
-    PBEffects::Truant         => {name: "Truant will loaf around this round",              default: false},
+    PBEffects::Trapping       => {name: "束缚剩余回合数",             default: 0},
+    PBEffects::TrappingMove   => {name: "束缚自身的招式",                      default: nil, type: :move},
+    PBEffects::TrappingUser   => {name: "束缚自身的战斗者（用于紧绑束带）",        default: -1},   # Battler index
+    PBEffects::Truant         => {name: "懒惰在本回合偷懒",              default: false},
 #    PBEffects::TwoTurnAttack - only applies to use of specific moves, not suitable for setting via debug
-    PBEffects::Unburden       => {name: "Self lost its item (for Unburden)",               default: false},
-    PBEffects::Uproar         => {name: "Uproar number of rounds remaining",               default: 0},
-    PBEffects::Vulnerable     => {name: "Attacks definitely hit self (Glaive Rush)",       default: false},
-    PBEffects::WaterSport     => {name: "Used Water Sport (Gen 5 and older)",              default: false},
-    PBEffects::WeightChange   => {name: "Weight change +0.1*x kg",                         default: 0, min: -99_999, max: 99_999},
-    PBEffects::Yawn           => {name: "Yawn rounds remaining until falling asleep",      default: 0}
+    PBEffects::Unburden       => {name: "自身失去了道具（用于轻装）",               default: false},
+    PBEffects::Uproar         => {name: "吵闹剩余回合数",               default: 0},
+    PBEffects::Vulnerable     => {name: "攻击必定命中自身（巨剑突击）",       default: false},
+    PBEffects::WaterSport     => {name: "已使用玩水（第5世代及以前）",              default: false},
+    PBEffects::WeightChange   => {name: "体重变化 +0.1*x kg",                         default: 0, min: -99_999, max: 99_999},
+    PBEffects::Yawn           => {name: "哈欠剩余回合数（之后陷入睡眠）",      default: 0}
   }
 
   POSITION_EFFECTS = {
@@ -143,52 +143,52 @@ module Battle::DebugVariables
 #    PBEffects::FutureSightMove - too complex to be worth bothering with
 #    PBEffects::FutureSightUserIndex - too complex to be worth bothering with
 #    PBEffects::FutureSightUserPartyIndex - too complex to be worth bothering with
-    PBEffects::HealingWish => {name: "Whether Healing Wish is waiting to apply", default: false},
-    PBEffects::LunarDance  => {name: "Whether Lunar Dance is waiting to apply",  default: false}
+    PBEffects::HealingWish => {name: "治愈之愿是否等待生效", default: false},
+    PBEffects::LunarDance  => {name: "新月舞是否等待生效",  default: false}
 #    PBEffects::Wish - too complex to be worth bothering with
 #    PBEffects::WishAmount - too complex to be worth bothering with
 #    PBEffects::WishMaker - too complex to be worth bothering with
   }
 
   SIDE_EFFECTS = {
-    PBEffects::AuroraVeil         => {name: "Aurora Veil duration",                   default: 0},
-    PBEffects::CraftyShield       => {name: "Crafty Shield applies this round",       default: false},
-    PBEffects::EchoedVoiceCounter => {name: "Echoed Voice rounds used (max. 5)",      default: 0, max: 5},
-    PBEffects::EchoedVoiceUsed    => {name: "Echoed Voice used this round",           default: false},
-    PBEffects::LastRoundFainted   => {name: "Round when side's battler last fainted", default: -2},   # Treated as -1, isn't a battler index
-    PBEffects::LightScreen        => {name: "Light Screen duration",                  default: 0},
-    PBEffects::LuckyChant         => {name: "Lucky Chant duration",                   default: 0},
-    PBEffects::MatBlock           => {name: "Mat Block applies this round",           default: false},
-    PBEffects::Mist               => {name: "Mist duration",                          default: 0},
-    PBEffects::QuickGuard         => {name: "Quick Guard applies this round",         default: false},
-    PBEffects::Rainbow            => {name: "Rainbow duration",                       default: 0},
-    PBEffects::Reflect            => {name: "Reflect duration",                       default: 0},
-    PBEffects::Round              => {name: "Round was used this round",              default: false},
-    PBEffects::Safeguard          => {name: "Safeguard duration",                     default: 0},
-    PBEffects::SeaOfFire          => {name: "Sea Of Fire duration",                   default: 0},
-    PBEffects::Spikes             => {name: "Spikes layers (0-3)",                    default: 0, max: 3},
-    PBEffects::StealthRock        => {name: "Stealth Rock exists",                    default: false},
-    PBEffects::StickyWeb          => {name: "Sticky Web exists",                      default: false},
-    PBEffects::Swamp              => {name: "Swamp duration",                         default: 0},
-    PBEffects::Tailwind           => {name: "Tailwind duration",                      default: 0},
-    PBEffects::ToxicSpikes        => {name: "Toxic Spikes layers (0-2)",              default: 0, max: 2},
-    PBEffects::WideGuard          => {name: "Wide Guard applies this round",          default: false}
+    PBEffects::AuroraVeil         => {name: "极光幕持续回合",                   default: 0},
+    PBEffects::CraftyShield       => {name: "本回合戏法防守生效",       default: false},
+    PBEffects::EchoedVoiceCounter => {name: "回声已使用回合数（最多5）",      default: 0, max: 5},
+    PBEffects::EchoedVoiceUsed    => {name: "本回合已使用回声",           default: false},
+    PBEffects::LastRoundFainted   => {name: "该方战斗者最后倒下的回合", default: -2},   # Treated as -1, isn't a battler index
+    PBEffects::LightScreen        => {name: "光墙持续回合",                  default: 0},
+    PBEffects::LuckyChant         => {name: "幸运咒语持续回合",                   default: 0},
+    PBEffects::MatBlock           => {name: "本回合掀榻榻米生效",           default: false},
+    PBEffects::Mist               => {name: "白雾持续回合",                          default: 0},
+    PBEffects::QuickGuard         => {name: "本回合快速防守生效",         default: false},
+    PBEffects::Rainbow            => {name: "彩虹持续回合",                       default: 0},
+    PBEffects::Reflect            => {name: "反射壁持续回合",                       default: 0},
+    PBEffects::Round              => {name: "本回合已使用轮唱",              default: false},
+    PBEffects::Safeguard          => {name: "神秘守护持续回合",                     default: 0},
+    PBEffects::SeaOfFire          => {name: "火海持续回合",                   default: 0},
+    PBEffects::Spikes             => {name: "撒菱层数（0-3）",                    default: 0, max: 3},
+    PBEffects::StealthRock        => {name: "隐形岩存在",                    default: false},
+    PBEffects::StickyWeb          => {name: "黏黏网存在",                      default: false},
+    PBEffects::Swamp              => {name: "沼泽持续回合",                         default: 0},
+    PBEffects::Tailwind           => {name: "顺风持续回合",                      default: 0},
+    PBEffects::ToxicSpikes        => {name: "毒菱层数（0-2）",              default: 0, max: 2},
+    PBEffects::WideGuard          => {name: "本回合广域防守生效",          default: false}
   }
 
   FIELD_EFFECTS = {
-    PBEffects::AmuletCoin      => {name: "Amulet Coin doubling prize money", default: false},
-    PBEffects::FairyLock       => {name: "Fairy Lock trapping duration",     default: 0},
-    PBEffects::FusionBolt      => {name: "Fusion Bolt was used",             default: false},
-    PBEffects::FusionFlare     => {name: "Fusion Flare was used",            default: false},
-    PBEffects::Gravity         => {name: "Gravity duration",                 default: 0},
-    PBEffects::HappyHour       => {name: "Happy Hour doubling prize money",  default: false},
-    PBEffects::IonDeluge       => {name: "Ion Deluge making moves Electric", default: false},
-    PBEffects::MagicRoom       => {name: "Magic Room duration",              default: 0},
-    PBEffects::MudSportField   => {name: "Mud Sport duration (Gen 6+)",      default: 0},
-    PBEffects::PayDay          => {name: "Pay Day additional prize money",   default: 0, max: Settings::MAX_MONEY},
-    PBEffects::TrickRoom       => {name: "Trick Room duration",              default: 0},
-    PBEffects::WaterSportField => {name: "Water Sport duration (Gen 6+)",    default: 0},
-    PBEffects::WonderRoom      => {name: "Wonder Room duration",             default: 0}
+    PBEffects::AmuletCoin      => {name: "护符金币使奖金翻倍", default: false},
+    PBEffects::FairyLock       => {name: "妖精之锁束缚持续回合",     default: 0},
+    PBEffects::FusionBolt      => {name: "已使用交错闪电",             default: false},
+    PBEffects::FusionFlare     => {name: "已使用交错火焰",            default: false},
+    PBEffects::Gravity         => {name: "重力持续回合",                 default: 0},
+    PBEffects::HappyHour       => {name: "庆祝使奖金翻倍",  default: false},
+    PBEffects::IonDeluge       => {name: "等离子浴使招式变为电属性", default: false},
+    PBEffects::MagicRoom       => {name: "魔法空间持续回合",              default: 0},
+    PBEffects::MudSportField   => {name: "玩泥巴持续回合（第6世代及以后）",      default: 0},
+    PBEffects::PayDay          => {name: "聚宝功追加奖金",   default: 0, max: Settings::MAX_MONEY},
+    PBEffects::TrickRoom       => {name: "戏法空间持续回合",              default: 0},
+    PBEffects::WaterSportField => {name: "玩水持续回合（第6世代及以后）",    default: 0},
+    PBEffects::WonderRoom      => {name: "奇妙空间持续回合",             default: 0}
   }
 end
 
@@ -246,7 +246,7 @@ class SpriteWindow_DebugBattleFieldEffects < Window_DrawableCommand
       if variable >= 0
         battler_name = @battle.battlers[variable].name
         battler_name = "-" if nil_or_empty?(battler_name)
-        variable_text = sprintf("[%d] %s", variable, battler_name)
+        variable_text = _INTL("[{1}] {2}", variable, battler_name)
       else
         variable_text = _INTL("[无]")
       end
@@ -300,7 +300,7 @@ class Battle::DebugSetEffects
     params.setRange(min, max)
     params.setDefaultValue(default)
     params.setNegativesAllowed(true) if min < 0
-    return pbMessageChooseNumber(_INTL("设置值 ({1}-{2})。", min, max), params)
+    return pbMessageChooseNumber(_INTL("设置值（{1}-{2}）。", min, max), params)
   end
 
   def choose_battler(default)
@@ -311,11 +311,11 @@ class Battle::DebugSetEffects
       next if battler.nil?   # Position doesn't exist
       name = battler.pbThis
       name = "-" if battler.fainted? || nil_or_empty?(name)
-      commands.push(sprintf("[%d] %s", i, name))
+      commands.push(_INTL("[{1}] {2}", i, name))
       cmds.push(i)
       cmd = cmds.length - 1 if default == i
     end
-    cmd = pbMessage("\\ts[]" + _INTL("选择一名战士/位置。"), commands, -1, nil, cmd)
+    cmd = pbMessage("\\ts[]" + _INTL("选择一名战斗者/位置。"), commands, -1, nil, cmd)
     return (cmd >= 0) ? cmds[cmd] : default
   end
 

@@ -3,18 +3,18 @@
 #===============================================================================
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :hp_status_menu, {
-  "name"   => _INTL("生命值/状态..."),
+  "name"   => _INTL("HP/异常状态..."),
   "parent" => :main,
   "usage"  => :both
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_hp, {
-  "name"   => _INTL("设置生命值"),
+  "name"   => _INTL("设置HP"),
   "parent" => :hp_status_menu,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.egg?
-      pbMessage("\\ts[]" + _INTL("{1} is an egg.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 是蛋。", pkmn.name))
       next
     elsif battler && pkmn.totalhp == 1
       pbMessage("\\ts[]" + _INTL("无法更改 HP，{1} 的最大 HP 为 1，并且正在战斗。", pkmn.name))
@@ -25,7 +25,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_hp, {
     params.setRange(min_hp, pkmn.totalhp)
     params.setDefaultValue(pkmn.hp)
     new_hp = pbMessageChooseNumber(
-      "\\ts[]" + _INTL("设置{1}的生命值({2}-{3})。", (battler) ? battler.pbThis(true) : pkmn.name, min_hp, pkmn.totalhp),
+      "\\ts[]" + _INTL("设置{1}的HP（{2}-{3}）。", (battler) ? battler.pbThis(true) : pkmn.name, min_hp, pkmn.totalhp),
       params
     )
     next if new_hp == pkmn.hp
@@ -39,10 +39,10 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_status, {
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.egg?
-      pbMessage("\\ts[]" + _INTL("{1} is an egg.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 是蛋。", pkmn.name))
       next
     elsif pkmn.hp <= 0
-      pbMessage("\\ts[]" + _INTL("{1} is fainted, can't change status.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 已失去战斗能力，无法更改异常状态。", pkmn.name))
       next
     end
     cmd = 0
@@ -56,12 +56,12 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_status, {
     loop do
       msg = _INTL("当前状态：{1}", GameData::Status.get(pkmn.status).name)
       if pkmn.status == :SLEEP
-        msg += " " + _INTL("(turns: {1})", pkmn.statusCount)
+        msg += " " + _INTL("（剩余 {1} 回合）", pkmn.statusCount)
       elsif pkmn.status == :POISON && pkmn.statusCount > 0
         if battler
-          msg += " " + _INTL("(toxic, count: {1})", battler.effects[PBEffects::Toxic])
+          msg += " " + _INTL("（剧毒，计数：{1}）", battler.effects[PBEffects::Toxic])
         else
-          msg += " " + _INTL("(toxic)")
+          msg += " " + _INTL("（剧毒）")
         end
       end
       cmd = pbMessage("\\ts[]" + msg, commands, -1, nil, cmd)
@@ -81,18 +81,18 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_status, {
           params.setRange(0, 99)
           params.setDefaultValue((pkmn.status == :SLEEP) ? pkmn.statusCount : 3)
           params.setCancelValue(-1)
-          count = pbMessageChooseNumber("\\ts[]" + _INTL("设置{1}的睡眠计数（0-99）。", pkmn_name), params)
+          count = pbMessageChooseNumber("\\ts[]" + _INTL("设置{1}的睡眠回合数（0-99）。", pkmn_name), params)
           next if count < 0
           (battler || pkmn).statusCount = count
         when :POISON
-          if pbConfirmMessage("\\ts[]" + _INTL("让{1}严重中毒（有毒）？", pkmn_name))
+          if pbConfirmMessage("\\ts[]" + _INTL("要让{1}陷入剧毒状态吗？", pkmn_name))
             if battler
               params = ChooseNumberParams.new
               params.setRange(0, 16)
               params.setDefaultValue(battler.effects[PBEffects::Toxic])
               params.setCancelValue(-1)
               count = pbMessageChooseNumber(
-                "\\ts[]" + _INTL("设置{1}的有毒计数（0-16）。", pkmn_name), params
+                "\\ts[]" + _INTL("设置{1}的剧毒计数（0-16）。", pkmn_name), params
               )
               next if count < 0
               battler.statusCount = 1
@@ -111,12 +111,12 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_status, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :full_heal, {
-  "name"   => _INTL("恢复HP和状态"),
+  "name"   => _INTL("恢复HP和异常状态"),
   "parent" => :hp_status_menu,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.egg?
-      pbMessage("\\ts[]" + _INTL("{1} is an egg.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 是蛋。", pkmn.name))
       next
     end
     if battler
@@ -134,18 +134,18 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :full_heal, {
 #===============================================================================
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :level_stats, {
-  "name"   => _INTL("统计/等级..."),
+  "name"   => _INTL("等级/能力值..."),
   "parent" => :main,
   "usage"  => :both
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_stages, {
-  "name"   => _INTL("设置统计阶段"),
+  "name"   => _INTL("设置能力阶级"),
   "parent" => :level_stats,
   "usage"  => :battler,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.egg?
-      pbMessage("\\ts[]" + _INTL("{1} is an egg.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 是蛋。", pkmn.name))
       next
     end
     cmd = 0
@@ -160,7 +160,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_stages, {
         stat_ids.push(stat.id)
       end
       commands.push(_INTL("[全部重置]"))
-      cmd = pbMessage("\\ts[]" + _INTL("选择要更改的统计阶段。"), commands, -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + _INTL("选择要更改的能力阶级。"), commands, -1, nil, cmd)
       break if cmd < 0
       if cmd < stat_ids.length   # Set a stat
         params = ChooseNumberParams.new
@@ -179,12 +179,12 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_stages, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_values, {
-  "name"   => _INTL("设置统计值"),
+  "name"   => _INTL("设置能力值"),
   "parent" => :level_stats,
   "usage"  => :battler,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.egg?
-      pbMessage("\\ts[]" + _INTL("{1} is an egg.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 是蛋。", pkmn.name))
       next
     end
     stat_ids = []
@@ -208,7 +208,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_values, {
         commands.push(command_name)
       end
       commands.push(_INTL("[全部重置]"))
-      cmd = pbMessage("\\ts[]" + _INTL("选择要更改的统计值。"), commands, -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + _INTL("选择要更改的能力值。"), commands, -1, nil, cmd)
       break if cmd < 0
       if cmd < stat_ids.length   # Set a stat
         params = ChooseNumberParams.new
@@ -243,12 +243,12 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_values, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_level, {
-  "name"   => _INTL("设置级别"),
+  "name"   => _INTL("设置等级"),
   "parent" => :level_stats,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.egg?
-      pbMessage("\\ts[]" + _INTL("{1} is an egg.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 是蛋。", pkmn.name))
       next
     end
     params = ChooseNumberParams.new
@@ -271,13 +271,13 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_exp, {
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.egg?
-      pbMessage("\\ts[]" + _INTL("{1} is an egg.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 是蛋。", pkmn.name))
       next
     end
     min_exp = pkmn.growth_rate.minimum_exp_for_level(pkmn.level)
     max_exp = pkmn.growth_rate.minimum_exp_for_level(pkmn.level + 1)
     if min_exp == max_exp
-      pbMessage("\\ts[]" + _INTL("{1} is at the maximum level.", pkmn.name))
+      pbMessage("\\ts[]" + _INTL("{1} 已达到最高等级。", pkmn.name))
       next
     end
     params = ChooseNumberParams.new
@@ -291,7 +291,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_exp, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :hidden_values, {
-  "name"   => _INTL("努力值/个体值……"),
+  "name"   => _INTL("努力值/个体值..."),
   "parent" => :level_stats,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
@@ -314,7 +314,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :hidden_values, {
           end
           ev_commands.push(_INTL("随机化所有"))
           ev_commands.push(_INTL("最大随机化所有"))
-          cmd2 = pbMessage("\\ts[]" + _INTL("修改哪项努力值？\n总计：{1}/{2} ({3}%)",
+          cmd2 = pbMessage("\\ts[]" + _INTL("修改哪项努力值？\n总计：{1}/{2}（{3}%）",
                                             total_evs, Pokemon::EV_LIMIT, 100 * total_evs / Pokemon::EV_LIMIT),
                            ev_commands, -1, nil, cmd2)
           break if cmd2 < 0
@@ -328,7 +328,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :hidden_values, {
             params.setRange(0, upperLimit)
             params.setDefaultValue(thisValue)
             params.setCancelValue(thisValue)
-            f = pbMessageChooseNumber("\\ts[]" + _INTL("将 EV 设置为 {1}（最多 {2}）。",
+            f = pbMessageChooseNumber("\\ts[]" + _INTL("设置{1}的努力值（0-{2}）。",
                                                        GameData::Stat.get(ev_id[cmd2]).name, upperLimit), params)
             if f != pkmn.ev[ev_id[cmd2]]
               pkmn.ev[ev_id[cmd2]] = f
@@ -367,7 +367,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :hidden_values, {
             iv_id.push(s.id)
             totaliv += pkmn.iv[s.id]
           end
-          msg = _INTL("更改哪个 IV？\n隐藏力量：{1}，力量{2}\n总计：{3}/{4} ({5}%)",
+          msg = _INTL("更改哪项个体值？\n觉醒力量：{1}，威力 {2}\n总计：{3}/{4}（{5}%）",
                       GameData::Type.get(hiddenpower[0]).name, hiddenpower[1], totaliv,
                       iv_id.length * Pokemon::IV_STAT_LIMIT, 100 * totaliv / (iv_id.length * Pokemon::IV_STAT_LIMIT))
           ivcommands.push(_INTL("随机化所有"))
@@ -378,7 +378,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :hidden_values, {
             params.setRange(0, Pokemon::IV_STAT_LIMIT)
             params.setDefaultValue(pkmn.iv[iv_id[cmd2]])
             params.setCancelValue(pkmn.iv[iv_id[cmd2]])
-            f = pbMessageChooseNumber("\\ts[]" + _INTL("将 IV 设置为 {1}（最多 31）。",
+            f = pbMessageChooseNumber("\\ts[]" + _INTL("设置{1}的个体值（0-31）。",
                                                        GameData::Stat.get(iv_id[cmd2]).name), params)
             if f != pkmn.iv[iv_id[cmd2]]
               pkmn.iv[iv_id[cmd2]] = f
@@ -414,7 +414,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_happiness, {
 #===============================================================================
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_types, {
-  "name"   => _INTL("设置类型"),
+  "name"   => _INTL("设置属性"),
   "parent" => :main,
   "usage"  => :battler,
   "effect" => proc { |pkmn, battler, battle|
@@ -426,14 +426,14 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_types, {
       max_main_types.times do |i|
         type = battler.types[i]
         type_name = (type) ? GameData::Type.get(type).name : "-"
-        commands.push(_INTL("类型{1}：{2}", i + 1, type_name))
+        commands.push(_INTL("属性{1}：{2}", i + 1, type_name))
         types.push(type)
       end
       extra_type = battler.effects[PBEffects::ExtraType]
       extra_type_name = (extra_type) ? GameData::Type.get(extra_type).name : "-"
-      commands.push(_INTL("额外类型：{1}", extra_type_name))
+      commands.push(_INTL("额外属性：{1}", extra_type_name))
       types.push(extra_type)
-      msg = _INTL("有效类型：{1}", battler.pbTypes(true).map { |t| GameData::Type.get(t).name }.join("/"))
+      msg = _INTL("有效属性：{1}", battler.pbTypes(true).map { |t| GameData::Type.get(t).name }.join("/"))
       msg += "\n" + _INTL("（将属性改为自身即可移除。）")
       cmd = pbMessage("\\ts[]" + msg, commands, -1, nil, cmd)
       break if cmd < 0
@@ -441,7 +441,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_types, {
       new_type = pbChooseTypeList(old_type)
       if new_type
         if new_type == old_type
-          if pbConfirmMessage(_INTL("删除这个类型？"))
+          if pbConfirmMessage(_INTL("删除这个属性？"))
             if cmd < max_main_types
               battler.types[cmd] = nil
             else
@@ -464,18 +464,18 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_types, {
 #===============================================================================
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :moves, {
-  "name"   => _INTL("动..."),
+  "name"   => _INTL("招式..."),
   "parent" => :main,
   "usage"  => :both
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :teach_move, {
-  "name"   => _INTL("教动作"),
+  "name"   => _INTL("教招式"),
   "parent" => :moves,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.numMoves >= Pokemon::MAX_MOVES
-      pbMessage("\\ts[]" + _INTL("{1} already knows {2} moves. It needs to forget one first.",
+      pbMessage("\\ts[]" + _INTL("{1} 已经知道 {2} 个招式，需要先忘记一个招式。",
                                  pkmn.name, pkmn.numMoves))
       next
     end
@@ -483,12 +483,12 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :teach_move, {
     next if !new_move
     move_name = GameData::Move.get(new_move).name
     if pkmn.hasMove?(new_move)
-      pbMessage("\\ts[]" + _INTL("{1} already knows {2}.", pkmn.name, move_name))
+      pbMessage("\\ts[]" + _INTL("{1} 已经知道 {2}。", pkmn.name, move_name))
       next
     end
     pkmn.learn_move(new_move)
     battler&.moves&.push(Battle::Move.from_pokemon_move(battle, pkmn.moves.last))
-    pbMessage("\\ts[]" + _INTL("{1} learned {2}!", pkmn.name, move_name))
+    pbMessage("\\ts[]" + _INTL("{1} 学会了 {2}！", pkmn.name, move_name))
   }
 })
 
@@ -502,23 +502,23 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :forget_move, {
     pkmn.moves.each_with_index do |move, index|
       next if !move || !move.id
       if move.total_pp <= 0
-        move_names.push(_INTL("{1} (PP: ---)", move.name))
+        move_names.push(_INTL("{1}（PP：---）", move.name))
       else
-        move_names.push(_INTL("{1} (PP: {2}/{3})", move.name, move.pp, move.total_pp))
+        move_names.push(_INTL("{1}（PP：{2}/{3}）", move.name, move.pp, move.total_pp))
       end
       move_indices.push(index)
     end
-    cmd = pbMessage("\\ts[]" + _INTL("忘记哪个动作了？"), move_names, -1)
+    cmd = pbMessage("\\ts[]" + _INTL("要忘记哪个招式？"), move_names, -1)
     next if cmd < 0
     old_move_name = pkmn.moves[move_indices[cmd]].name
     pkmn.forget_move_at_index(move_indices[cmd])
     battler&.moves&.delete_at(move_indices[cmd])
-    pbMessage("\\ts[]" + _INTL("{1} forgot {2}.", pkmn.name, old_move_name))
+    pbMessage("\\ts[]" + _INTL("{1} 忘记了 {2}。", pkmn.name, old_move_name))
   }
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_move_pp, {
-  "name"   => _INTL("设置招式 PP"),
+  "name"   => _INTL("设置招式PP..."),
   "parent" => :moves,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
@@ -529,26 +529,26 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_move_pp, {
       pkmn.moves.each_with_index do |move, index|
         next if !move || !move.id
         if move.total_pp <= 0
-          move_names.push(_INTL("{1} (PP: ---)", move.name))
+          move_names.push(_INTL("{1}（PP：---）", move.name))
         else
-          move_names.push(_INTL("{1} (PP: {2}/{3})", move.name, move.pp, move.total_pp))
+          move_names.push(_INTL("{1}（PP：{2}/{3}）", move.name, move.pp, move.total_pp))
         end
         move_indices.push(index)
       end
       commands = move_names + [_INTL("恢复所有PP")]
-      cmd = pbMessage("\\ts[]" + _INTL("改变哪个动作的PP？"), commands, -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + _INTL("更改哪个招式的PP？"), commands, -1, nil, cmd)
       break if cmd < 0
       if cmd >= 0 && cmd < move_names.length   # Move
         move = pkmn.moves[move_indices[cmd]]
         move_name = move.name
         if move.total_pp <= 0
-          pbMessage("\\ts[]" + _INTL("{1} has infinite PP.", move_name))
+          pbMessage("\\ts[]" + _INTL("{1} 的PP无限。", move_name))
         else
           cmd2 = 0
           loop do
-            msg = _INTL("{1}: PP {2}/{3} (PP Up {4}/3)", move_name, move.pp, move.total_pp, move.ppup)
+            msg = _INTL("{1}：PP {2}/{3}（PP提升 {4}/3）", move_name, move.pp, move.total_pp, move.ppup)
             cmd2 = pbMessage("\\ts[]" + msg,
-                             [_INTL("设置PP"), _INTL("全聚丙烯"), _INTL("设置PP")], -1, nil, cmd2)
+                             [_INTL("设置PP"), _INTL("补满PP"), _INTL("设置PP提升")], -1, nil, cmd2)
             break if cmd2 < 0
             case cmd2
             when 0   # Change PP
@@ -556,7 +556,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_move_pp, {
               params.setRange(0, move.total_pp)
               params.setDefaultValue(move.pp)
               h = pbMessageChooseNumber(
-                "\\ts[]" + _INTL("将 PP 设置为 {1}（最大为 {2}）。", move_name, move.total_pp), params
+                "\\ts[]" + _INTL("设置{1}的PP（0-{2}）。", move_name, move.total_pp), params
               )
               move.pp = h
               if battler && battler.moves[move_indices[cmd]].id == move.id
@@ -572,7 +572,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_move_pp, {
               params.setRange(0, 3)
               params.setDefaultValue(move.ppup)
               h = pbMessageChooseNumber(
-                "\\ts[]" + _INTL("将 PP Up 设置为 {1}（最多 3）。", move_name), params
+                "\\ts[]" + _INTL("设置{1}的PP提升（0-3）。", move_name), params
               )
               move.ppup = h
               move.pp = move.total_pp if move.pp > move.total_pp
@@ -593,13 +593,13 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_move_pp, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :reset_moves, {
-  "name"   => _INTL("重置动作"),
+  "name"   => _INTL("重置招式"),
   "parent" => :moves,
   "usage"  => :pokemon,
   "effect" => proc { |pkmn, battler, battle|
     next if !pbConfirmMessage(_INTL("将宝可梦的招式替换为它在野生状态下会知道的招式？"))
     pkmn.reset_moves
-    pbMessage("\\ts[]" + _INTL("{1}'s moves were reset.", pkmn.name))
+    pbMessage("\\ts[]" + _INTL("{1} 的招式已重置。", pkmn.name))
   }
 })
 
@@ -650,7 +650,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_ability, {
     cmd = 0
     commands = []
     commands.push(_INTL("设置宝可梦的特性"))
-    commands.push(_INTL("为战士设定特性")) if battler
+    commands.push(_INTL("为战斗者设置特性")) if battler
     commands.push(_INTL("重置"))
     loop do
       if battler
@@ -688,7 +688,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_ability, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_nature, {
-  "name"   => _INTL("设置性质"),
+  "name"   => _INTL("设置性格"),
   "parent" => :main,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
@@ -735,7 +735,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_gender, {
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.singleGendered?
-      pbMessage("\\ts[]" + _INTL("{1} is single-gendered or genderless.", pkmn.speciesName))
+      pbMessage("\\ts[]" + _INTL("{1} 只有一种性别或没有性别。", pkmn.speciesName))
       next
     end
     cmd = 0
@@ -747,10 +747,10 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_gender, {
       case cmd
       when 0   # Make male
         pkmn.makeMale
-        pbMessage("\\ts[]" + _INTL("{1}'s gender couldn't be changed.", pkmn.name)) if !pkmn.male?
+        pbMessage("\\ts[]" + _INTL("{1} 的性别无法更改。", pkmn.name)) if !pkmn.male?
       when 1   # Make female
         pkmn.makeFemale
-        pbMessage("\\ts[]" + _INTL("{1}'s gender couldn't be changed.", pkmn.name)) if !pkmn.female?
+        pbMessage("\\ts[]" + _INTL("{1} 的性别无法更改。", pkmn.name)) if !pkmn.female?
       when 2   # Reset
         pkmn.gender = nil
       end
@@ -759,7 +759,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_gender, {
 })
 
 MenuHandlers.add(:battle_pokemon_debug_menu, :set_form, {
-  "name"   => _INTL("设定形式"),
+  "name"   => _INTL("设置形态"),
   "parent" => :main,
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
@@ -768,24 +768,24 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_form, {
     GameData::Species.each do |sp|
       next if sp.species != pkmn.species
       form_name = sp.form_name
-      form_name = _INTL("未命名表格") if !form_name || form_name.empty?
-      form_name = sprintf("%d: %s", sp.form, form_name)
+      form_name = _INTL("未命名形态") if !form_name || form_name.empty?
+      form_name = _INTL("{1}：{2}", sp.form, form_name)
       formcmds[0].push(sp.form)
       formcmds[1].push(form_name)
       cmd = formcmds[0].length - 1 if pkmn.form == sp.form
     end
     if formcmds[0].length <= 1
-      pbMessage("\\ts[]" + _INTL("物种 {1} 只有一种形式。", pkmn.speciesName))
+      pbMessage("\\ts[]" + _INTL("物种 {1} 只有一种形态。", pkmn.speciesName))
       next
     end
     loop do
-      cmd = pbMessage("\\ts[]" + _INTL("形式为{1}。", pkmn.form), formcmds[1], -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + _INTL("当前形态：{1}。", pkmn.form), formcmds[1], -1, nil, cmd)
       break if cmd < 0
       f = formcmds[0][cmd]
       next if f == pkmn.form
       pkmn.forced_form = nil
       if MultipleForms.hasFunction?(pkmn, "getForm")
-        next if !pbConfirmMessage(_INTL("这个物种决定了它自己的形态。覆盖？"))
+        next if !pbConfirmMessage(_INTL("这个物种决定了它自己的形态。要覆盖吗？"))
         pkmn.forced_form = f
       end
       pkmn.form_simple = f
@@ -849,16 +849,16 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :shadow_pokemon, {
     if battler.shadowPokemon?
       loop do
         if battler.inHyperMode?
-          msg = _INTL("黑暗宝可梦（超级模式）")
+          msg = _INTL("黑暗宝可梦（逆鳞状态）")
         else
-          msg = _INTL("黑暗宝可梦（未处于超级模式）")
+          msg = _INTL("黑暗宝可梦（未处于逆鳞状态）")
         end
-        cmd = pbMessage("\\ts[]" + msg, [_INTL("切换超级模式"), _INTL("取消")], -1, nil, 0)
+        cmd = pbMessage("\\ts[]" + msg, [_INTL("切换逆鳞状态"), _INTL("取消")], -1, nil, 0)
         break if cmd != 0
         if battler.inHyperMode?
           pkmn.hyper_mode = false
         elsif battler.fainted? || !battler.pbOwnedByPlayer?
-          pbMessage("\\ts[]" + _INTL("宝可梦昏倒了或者不是玩家的。无法将其置于超级模式。"))
+          pbMessage("\\ts[]" + _INTL("该宝可梦已失去战斗能力，或者并非玩家持有，无法将其置于逆鳞状态。"))
         else
           pkmn.hyper_mode = true
         end

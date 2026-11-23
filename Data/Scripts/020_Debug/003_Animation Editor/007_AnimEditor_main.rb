@@ -248,12 +248,12 @@ class AnimationEditor
   def get_animation_display_name
     ret = ""
     case @anim[:type]
-    when :move       then ret += _INTL("[Move]")
-    when :opp_move   then ret += _INTL("[Foe Move]")
-    when :common     then ret += _INTL("[Common]")
-    when :opp_common then ret += _INTL("[Foe Common]")
+    when :move       then ret += _INTL("[招式]")
+    when :opp_move   then ret += _INTL("[对手招式]")
+    when :common     then ret += _INTL("[通用]")
+    when :opp_common then ret += _INTL("[对手通用]")
     else
-      raise _INTL("Unknown animation type.")
+      raise _INTL("未知的动画类型。")
     end
     case @anim[:type]
     when :move, :opp_move
@@ -278,90 +278,90 @@ class AnimationEditor
 
   def set_help_window_contents
     help_window = @components[:help]
-    help_window.add_header_label(:header, _INTL("Help"))
+    help_window.add_header_label(:header, _INTL("帮助"))
     # Mouse controls
-    help_window.add_underlined_label(:section_mouse, _INTL("Mouse controls"))
-    help_window.add_labelled_label(:text_left_click, _INTL("Left click"), _INTL("Select/change something."))
-    help_window.add_labelled_label(:text_left_drag, _INTL("Left click and drag"), _INTL("Move a command in the timeline, move a particle in the canvas, move through keyframes in the time bar."))
-    help_window.add_labelled_label(:text_right_click, _INTL("Right click"), _INTL("Change the type of interpolation between two commands."))
-    help_window.add_labelled_label(:text_right_drag, _INTL("Right click and drag"), _INTL("Rotate the selected particle in the canvas."))
-    help_window.add_labelled_label(:text_scroll_wheel, _INTL("Scroll wheel"), _INTL("Scroll up/down in places where there is a scrollbar, change a particle's size in the canvas."))
+    help_window.add_underlined_label(:section_mouse, _INTL("鼠标操作"))
+    help_window.add_labelled_label(:text_left_click, _INTL("左键单击"), _INTL("选择或更改项目。"))
+    help_window.add_labelled_label(:text_left_drag, _INTL("左键拖动"), _INTL("在时间轴中移动指令，在画布中移动粒子，在时间栏中切换关键帧。"))
+    help_window.add_labelled_label(:text_right_click, _INTL("右键单击"), _INTL("更改两条指令之间的插值类型。"))
+    help_window.add_labelled_label(:text_right_drag, _INTL("右键拖动"), _INTL("在画布中旋转选中的粒子。"))
+    help_window.add_labelled_label(:text_scroll_wheel, _INTL("滚轮"), _INTL("在带有滚动条的区域上下滚动，在画布中更改粒子大小。"))
     # Keyboard controls
-    help_window.add_underlined_label(:section_keyboard, _INTL("Keyboard controls"))
-    help_window.add_labelled_label(:text_esc, _INTL("Esc"), _INTL("Close any pop-up window (such as this one)."))
-    help_window.add_labelled_label(:text_space, _INTL("Space"), _INTL("Play the animation, or stop it if it's playing."))
-    help_window.add_labelled_label(:text_arrows, _INTL("Up/Down/Left/Right"), _INTL("Change which keyframe and row is selected. Hold Ctrl to move faster."))
-    help_window.add_labelled_label(:text_tab, _INTL("Tab"), _INTL("Select the next particle. Hold Shift to select the previous particle instead."))
-    help_window.add_labelled_label(:text_wasd, _INTL("W/A/S/D"), _INTL("Move the selected particle in the canvas. Hold Ctrl to move faster."))
-    help_window.add_labelled_label(:text_delete, _INTL("Delete"), _INTL("Remove the command selected in the timeline."))
-    help_window.add_labelled_label(:text_insert, _INTL("Insert"), _INTL("Add a command at the selected point in the timeline."))
-    help_window.add_labelled_label(:text_undo, _INTL("Ctrl + Z"), _INTL("Undo."))
-    help_window.add_labelled_label(:text_redo, _INTL("Ctrl + Y"), _INTL("Redo."))
+    help_window.add_underlined_label(:section_keyboard, _INTL("键盘操作"))
+    help_window.add_labelled_label(:text_esc, _INTL("Esc"), _INTL("关闭任意弹出窗口（例如本窗口）。"))
+    help_window.add_labelled_label(:text_space, _INTL("Space"), _INTL("播放动画；若正在播放，则停止。"))
+    help_window.add_labelled_label(:text_arrows, _INTL("上/下/左/右"), _INTL("更改选中的关键帧和行。按住 Ctrl 可加快移动速度。"))
+    help_window.add_labelled_label(:text_tab, _INTL("Tab"), _INTL("选择下一个粒子。按住 Shift 则选择上一个粒子。"))
+    help_window.add_labelled_label(:text_wasd, _INTL("W/A/S/D"), _INTL("在画布中移动选中的粒子。按住 Ctrl 可加快移动速度。"))
+    help_window.add_labelled_label(:text_delete, _INTL("Delete"), _INTL("删除时间轴中选中的指令。"))
+    help_window.add_labelled_label(:text_insert, _INTL("Insert"), _INTL("在时间轴中选中的位置添加指令。"))
+    help_window.add_labelled_label(:text_undo, _INTL("Ctrl + Z"), _INTL("撤销。"))
+    help_window.add_labelled_label(:text_redo, _INTL("Ctrl + Y"), _INTL("重做。"))
     # Close button
     help_window.increment_row_count
-    help_window.add_fitted_button(:close, _INTL("Close"))
+    help_window.add_fitted_button(:close, _INTL("关闭"))
     help_window.get_control(:close).x = help_window.x + ((help_window.width - help_window.get_control(:close).real_width) / 2)
     help_window.visible = false
   end
 
   def set_editor_settings_contents
     editor_settings = @components[:editor_settings]
-    editor_settings.add_header_label(:header, _INTL("Editor settings"))
+    editor_settings.add_header_label(:header, _INTL("编辑器设置"))
     # Misc settings
-    editor_settings.add_labelled_dropdown_list(:color_scheme, _INTL("Color scheme"), color_scheme_options, :light)
+    editor_settings.add_labelled_dropdown_list(:color_scheme, _INTL("配色方案"), color_scheme_options, :light)
     interps = {}
     GameData::Animation::INTERPOLATION_TYPES.each_pair { |name, id| interps[id] = name }
-    editor_settings.add_labelled_dropdown_list(:default_interpolation, _INTL("Default interpolation"), interps, :linear)
+    editor_settings.add_labelled_dropdown_list(:default_interpolation, _INTL("默认插值"), interps, :linear)
     # Canvas graphics
-    editor_settings.add_underlined_label(:canvas_header, _INTL("Canvas graphics"))
-    editor_settings.add_labelled_dropdown_list(:canvas_bg, _INTL("Background graphic"), {}, "")
-    editor_settings.add_labelled_dropdown_list(:user_sprite_name, _INTL("User graphic"), {}, "")
+    editor_settings.add_underlined_label(:canvas_header, _INTL("画布图像"))
+    editor_settings.add_labelled_dropdown_list(:canvas_bg, _INTL("背景图像"), {}, "")
+    editor_settings.add_labelled_dropdown_list(:user_sprite_name, _INTL("使用者图像"), {}, "")
     ctrl = editor_settings.get_control(:user_sprite_name)
     ctrl.max_rows = 20
-    editor_settings.add_labelled_dropdown_list(:target_sprite_name, _INTL("Target graphic"), {}, "")
+    editor_settings.add_labelled_dropdown_list(:target_sprite_name, _INTL("目标图像"), {}, "")
     ctrl = editor_settings.get_control(:target_sprite_name)
     ctrl.max_rows = 20
     # Close button
     editor_settings.increment_row_count
-    editor_settings.add_fitted_button(:close, _INTL("Close"))
+    editor_settings.add_fitted_button(:close, _INTL("关闭"))
     editor_settings.get_control(:close).x = editor_settings.x + ((editor_settings.width - editor_settings.get_control(:close).real_width) / 2)
     editor_settings.visible = false
   end
 
   def set_animation_properties_contents
     anim_properties = @components[:animation_properties]
-    anim_properties.add_header_label(:header, _INTL("Animation properties"))
+    anim_properties.add_header_label(:header, _INTL("动画属性"))
     # Identity
-    anim_properties.add_underlined_label(:identity_label, _INTL("Identity"))
-    anim_properties.add_labelled_dropdown_list(:type, _INTL("Animation type"), {
-      :move   => _INTL("Move"),
-      :common => _INTL("Common")
+    anim_properties.add_underlined_label(:identity_label, _INTL("基本信息"))
+    anim_properties.add_labelled_dropdown_list(:type, _INTL("动画类型"), {
+      :move   => _INTL("招式"),
+      :common => _INTL("通用")
     }, :move)
     anim_properties.add_labelled_text_box_dropdown_list(:move, "", [], "")
     move_ctrl = anim_properties.get_control(:move)
     move_ctrl.max_rows = 20
-    anim_properties.add_labelled_number_text_box(:version, _INTL("Version"), 0, 99, 0)
-    anim_properties.add_labelled_text_box(:name, _INTL("Name"), "")
-    anim_properties.add_labelled_text_box(:pbs_path, _INTL("PBS filepath"), "")
+    anim_properties.add_labelled_number_text_box(:version, _INTL("版本"), 0, 99, 0)
+    anim_properties.add_labelled_text_box(:name, _INTL("名称"), "")
+    anim_properties.add_labelled_text_box(:pbs_path, _INTL("PBS 文件路径"), "")
     # User and target locations
-    anim_properties.add_underlined_label(:user_and_target_label, _INTL("User and target"))
-    anim_properties.add_labelled_checkbox(:has_user, _INTL("Involves a user?"), true)
-    anim_properties.add_labelled_checkbox(:opp_variant, _INTL("User is on far side?"), false)
-    anim_properties.add_labelled_checkbox(:has_target, _INTL("Involves a target?"), true)
+    anim_properties.add_underlined_label(:user_and_target_label, _INTL("使用者与目标"))
+    anim_properties.add_labelled_checkbox(:has_user, _INTL("包含使用者？"), true)
+    anim_properties.add_labelled_checkbox(:opp_variant, _INTL("使用者是对手方吗？"), false)
+    anim_properties.add_labelled_checkbox(:has_target, _INTL("包含目标？"), true)
     # Playing
-    anim_properties.add_underlined_label(:playing_label, _INTL("Playing"))
+    anim_properties.add_underlined_label(:playing_label, _INTL("播放"))
     anim_properties.add_labelled_number_text_box(:fps, _INTL("FPS"), 1, 100, 20)
-    anim_properties.add_labelled_checkbox(:hides_data_boxes, _INTL("Hides data boxes?"), false)
-    anim_properties.add_labelled_text_box(:scripts, _INTL("Scripts"), "")
+    anim_properties.add_labelled_checkbox(:hides_data_boxes, _INTL("隐藏数据框？"), false)
+    anim_properties.add_labelled_text_box(:scripts, _INTL("脚本"), "")
     # Animation completion status
-    anim_properties.add_underlined_label(:completion_label, _INTL("Completion"))
-    anim_properties.add_labelled_checkbox(:usable, _INTL("Can be used in battle?"), true)
+    anim_properties.add_underlined_label(:completion_label, _INTL("完成情况"))
+    anim_properties.add_labelled_checkbox(:usable, _INTL("可在战斗中使用？"), true)
     # Other
-    anim_properties.add_underlined_label(:other_label, _INTL("Other"))
-    anim_properties.add_labelled_text_box(:credit, _INTL("Credit"), "")
+    anim_properties.add_underlined_label(:other_label, _INTL("其他"))
+    anim_properties.add_labelled_text_box(:credit, _INTL("鸣谢"), "")
     # Close button
     anim_properties.increment_row_count
-    anim_properties.add_fitted_button(:close, _INTL("Close"))
+    anim_properties.add_fitted_button(:close, _INTL("关闭"))
     anim_properties.get_control(:close).x = anim_properties.x + ((anim_properties.width - anim_properties.get_control(:close).real_width) / 2)
     anim_properties.visible = false
   end
@@ -369,52 +369,52 @@ class AnimationEditor
   def set_particle_properties_contents
     defaults = GameData::Animation::PARTICLE_DEFAULT_VALUES
     part_properties = @components[:particle_properties]
-    part_properties.add_header_label(:header, _INTL("Particle properties"))
+    part_properties.add_header_label(:header, _INTL("粒子属性"))
     # Misc
-    part_properties.add_labelled_text_box(:name, _INTL("Name"), defaults[:name])
+    part_properties.add_labelled_text_box(:name, _INTL("名称"), defaults[:name])
     part_properties.get_control(:name).set_blacklist("", "User", "Target", "SE")
-    part_properties.add_labelled_dropdown_list(:focus, _INTL("Focus"), {}, defaults[:focus])
-    part_properties.add_labelled_checkbox(:polar_coordinates, _INTL("Use polar coordinates?"), defaults[:polar_coordinates])
+    part_properties.add_labelled_dropdown_list(:focus, _INTL("焦点"), {}, defaults[:focus])
+    part_properties.add_labelled_checkbox(:polar_coordinates, _INTL("使用极坐标？"), defaults[:polar_coordinates])
     # Graphic
-    part_properties.add_underlined_label(:graphics_label, _INTL("Graphics"))
-    part_properties.add_labelled_label(:graphic_name, _INTL("Graphic filename"), defaults[:graphic])
-    part_properties.add_labelled_fitted_button(:graphic, "", _INTL("Change"))
-    part_properties.add_labelled_label(:mask_graphic_name, _INTL("Mask graphic filename"), defaults[:mask_graphic])
-    part_properties.add_labelled_fitted_button(:mask_graphic, "", _INTL("Change"))
-    part_properties.add_labelled_checkbox(:tiled_graphic, _INTL("Tiled graphic?"), defaults[:tiled_graphic])
-    part_properties.add_labelled_checkbox(:second_layer, _INTL("Has second layer?"), defaults[:second_layer])
+    part_properties.add_underlined_label(:graphics_label, _INTL("图像"))
+    part_properties.add_labelled_label(:graphic_name, _INTL("图像文件名"), defaults[:graphic])
+    part_properties.add_labelled_fitted_button(:graphic, "", _INTL("更改"))
+    part_properties.add_labelled_label(:mask_graphic_name, _INTL("蒙版图像文件名"), defaults[:mask_graphic])
+    part_properties.add_labelled_fitted_button(:mask_graphic, "", _INTL("更改"))
+    part_properties.add_labelled_checkbox(:tiled_graphic, _INTL("平铺图像？"), defaults[:tiled_graphic])
+    part_properties.add_labelled_checkbox(:second_layer, _INTL("有第二图层？"), defaults[:second_layer])
     # OppMove replacements
-    part_properties.add_underlined_label(:opposing_label, _INTL("If on opposing side..."))
-    part_properties.add_labelled_checkbox(:foe_invert_x, _INTL("Invert X?"), defaults[:foe_invert_x])
-    part_properties.add_labelled_checkbox(:foe_invert_y, _INTL("Invert Y?"), defaults[:foe_invert_y])
-    part_properties.add_labelled_checkbox(:foe_invert_z, _INTL("Invert Z?"), defaults[:foe_invert_z])
-    part_properties.add_labelled_checkbox(:foe_flip, _INTL("Flip sprite?"), defaults[:foe_flip])
+    part_properties.add_underlined_label(:opposing_label, _INTL("对手方使用时..."))
+    part_properties.add_labelled_checkbox(:foe_invert_x, _INTL("沿 X 轴翻转？"), defaults[:foe_invert_x])
+    part_properties.add_labelled_checkbox(:foe_invert_y, _INTL("沿 Y 轴翻转？"), defaults[:foe_invert_y])
+    part_properties.add_labelled_checkbox(:foe_invert_z, _INTL("沿 Z 轴翻转？"), defaults[:foe_invert_z])
+    part_properties.add_labelled_checkbox(:foe_flip, _INTL("翻转精灵图？"), defaults[:foe_flip])
     # Property overrides
-    part_properties.add_underlined_label(:property_override_label, _INTL("Property base values"))
+    part_properties.add_underlined_label(:property_override_label, _INTL("属性覆盖"))
     initial_angles = {}
     GameData::Animation::PARTICLE_INITIAL_ANGLES.each_pair { |name, key| initial_angles[key] = name }
-    part_properties.add_labelled_dropdown_list(:initial_angle, _INTL("Initial angle"), initial_angles, defaults[:initial_angle])
+    part_properties.add_labelled_dropdown_list(:initial_angle, _INTL("初始角度"), initial_angles, defaults[:initial_angle])
     # Randomization
-    part_properties.add_underlined_label(:property_randomize_label, _INTL("Property randomization"))
-    part_properties.add_labelled_number_text_box(:random_angle_range, _INTL("Random angle offset"), 0, 180, defaults[:random_angle_range])
-    part_properties.add_labelled_checkbox(:random_invert_angle, _INTL("Randomly invert angle?"), defaults[:random_invert_angle])
-    part_properties.add_labelled_checkbox(:random_invert_flip, _INTL("Randomly invert flip?"), defaults[:random_invert_flip])
-    part_properties.add_labelled_number_text_box(:random_frame_max, _INTL("Random frame (max)"), 0, 99, defaults[:random_frame_max])
+    part_properties.add_underlined_label(:property_randomize_label, _INTL("属性随机化"))
+    part_properties.add_labelled_number_text_box(:random_angle_range, _INTL("随机角度偏移"), 0, 180, defaults[:random_angle_range])
+    part_properties.add_labelled_checkbox(:random_invert_angle, _INTL("随机反转角度？"), defaults[:random_invert_angle])
+    part_properties.add_labelled_checkbox(:random_invert_flip, _INTL("随机翻转？"), defaults[:random_invert_flip])
+    part_properties.add_labelled_number_text_box(:random_frame_max, _INTL("随机帧（最大值）"), 0, 99, defaults[:random_frame_max])
     # Emitter
-    part_properties.add_underlined_label(:emitter_label, _INTL("Emitter properties"))
+    part_properties.add_underlined_label(:emitter_label, _INTL("发射器属性"))
     emitter_types = {}
     GameData::Animation::EMITTER_TYPES.each_pair { |name, key| emitter_types[key] = name }
-    part_properties.add_labelled_dropdown_list(:emitter_type, _INTL("Emitter type"), emitter_types, defaults[:emitter_type])
-    part_properties.add_labelled_number_text_box(:emitter_rate, _INTL("Emissions/second"), 1, 500, defaults[:emitter_rate])
-    part_properties.add_labelled_number_text_box(:emitter_intensity, _INTL("Sprites/emission"), 1, 20, defaults[:emitter_intensity])
-    part_properties.add_labelled_checkbox(:emitter_position_polar_coordinates, _INTL("Polar coords (position)?"), defaults[:emitter_position_polar_coordinates])
-    part_properties.add_labelled_checkbox(:emitter_spawn_polar_coordinates, _INTL("Polar coords (spawn area)?"), defaults[:emitter_spawn_polar_coordinates])
+    part_properties.add_labelled_dropdown_list(:emitter_type, _INTL("发射器类型"), emitter_types, defaults[:emitter_type])
+    part_properties.add_labelled_number_text_box(:emitter_rate, _INTL("每秒发射数"), 1, 500, defaults[:emitter_rate])
+    part_properties.add_labelled_number_text_box(:emitter_intensity, _INTL("每次发射数量"), 1, 20, defaults[:emitter_intensity])
+    part_properties.add_labelled_checkbox(:emitter_position_polar_coordinates, _INTL("极坐标（位置）？"), defaults[:emitter_position_polar_coordinates])
+    part_properties.add_labelled_checkbox(:emitter_spawn_polar_coordinates, _INTL("极坐标（生成区域）？"), defaults[:emitter_spawn_polar_coordinates])
     # Particle existence
-    part_properties.add_fitted_button(:duplicate, _INTL("Duplicate this particle"))
-    part_properties.add_fitted_button(:delete, _INTL("Delete this particle"))
+    part_properties.add_fitted_button(:duplicate, _INTL("复制此粒子"))
+    part_properties.add_fitted_button(:delete, _INTL("删除此粒子"))
     # Close button
     part_properties.increment_row_count
-    part_properties.add_fitted_button(:close, _INTL("Close"))
+    part_properties.add_fitted_button(:close, _INTL("关闭"))
     part_properties.get_control(:close).x = part_properties.x + ((part_properties.width - part_properties.get_control(:close).real_width) / 2)
     part_properties.visible = false
   end
@@ -425,14 +425,14 @@ class AnimationEditor
     editor.add_control_at(:title,
       editor.x + BATCH_EDITOR_PARTICLE_LIST_X,
       editor.y,
-      UIControls::Label.new(editor.width, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("Apply offset to particle commands"))
+      UIControls::Label.new(editor.width, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("对粒子指令应用偏移"))
     )
     editor.get_control(:title).header = true
     # Particle list
     editor.add_control_at(:particles_label,
       editor.x + BATCH_EDITOR_PARTICLE_LIST_X,
       editor.y + BATCH_EDITOR_PARTICLE_LIST_Y,
-      UIControls::Label.new(BATCH_EDITOR_PARTICLE_LIST_WIDTH, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("Particles:"))
+      UIControls::Label.new(BATCH_EDITOR_PARTICLE_LIST_WIDTH, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("粒子："))
     )
     editor.add_control_at(:particles,
       editor.x + BATCH_EDITOR_PARTICLE_LIST_X,
@@ -445,8 +445,8 @@ class AnimationEditor
     # Buttons beneath particle list
     list = editor.get_control(:particles)
     button_width = (list.width - BATCH_EDITOR_SPACING) / 2
-    [[:select_all_particles, _INTL("Select all")],
-     [:select_no_particles, _INTL("Select none")]].each_with_index do |btn, i|
+    [[:select_all_particles, _INTL("全选")],
+     [:select_no_particles, _INTL("全不选")]].each_with_index do |btn, i|
       editor.add_control_at(btn[0],
         list.x + (i * (button_width + BATCH_EDITOR_SPACING)),
         list.y + list.height + BATCH_EDITOR_SPACING,
@@ -461,7 +461,7 @@ class AnimationEditor
     editor.add_control_at(:keyframes_label,
       label_x,
       label_y,
-      UIControls::Label.new(BATCH_EDITOR_LABEL_WIDTH, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("Keyframes:"))
+      UIControls::Label.new(BATCH_EDITOR_LABEL_WIDTH, BATCH_EDITOR_ROW_HEIGHT, editor.viewport, _INTL("关键帧："))
     )
     editor.add_control_at(:keyframes_to_label,
       label_x + BATCH_EDITOR_LABEL_WIDTH + BATCH_EDITOR_NUMBER_BOX_WIDTH + to_label_x_offset,
@@ -492,7 +492,7 @@ class AnimationEditor
         label_y,
         UIControls::Label.new(
           BATCH_EDITOR_LABEL_WIDTH, BATCH_EDITOR_ROW_HEIGHT,
-          editor.viewport, GameData::Animation.property_display_name(property) + ":"
+          editor.viewport, GameData::Animation.property_display_name(property) + "："
         )
       )
       editor.add_control_at((property.to_s + "_plus_label").to_sym,
@@ -511,20 +511,20 @@ class AnimationEditor
     editor.add_control_at(:close,
       editor.x + editor.width - BATCH_EDITOR_PARTICLE_LIST_X - BATCH_EDITOR_APPLY_BUTTON_WIDTH,
       editor.y + editor.height - (BATCH_EDITOR_SPACING - 1) - BATCH_EDITOR_BUTTON_HEIGHT,
-      UIControls::Button.new(BATCH_EDITOR_APPLY_BUTTON_WIDTH, BATCH_EDITOR_BUTTON_HEIGHT, editor.viewport, _INTL("Close"))
+      UIControls::Button.new(BATCH_EDITOR_APPLY_BUTTON_WIDTH, BATCH_EDITOR_BUTTON_HEIGHT, editor.viewport, _INTL("关闭"))
     )
     # Apply button
     editor.add_control_at(:apply,
       editor.get_control(:close).x - BATCH_EDITOR_SPACING - BATCH_EDITOR_APPLY_BUTTON_WIDTH,
       editor.get_control(:close).y,
-      UIControls::Button.new(BATCH_EDITOR_APPLY_BUTTON_WIDTH, BATCH_EDITOR_BUTTON_HEIGHT, editor.viewport, _INTL("Apply"))
+      UIControls::Button.new(BATCH_EDITOR_APPLY_BUTTON_WIDTH, BATCH_EDITOR_BUTTON_HEIGHT, editor.viewport, _INTL("应用"))
     )
     editor.visible = false
   end
 
   def set_graphic_chooser_contents
     graphic_chooser = @components[:graphic_chooser]
-    graphic_chooser.add_header_label(:header, _INTL("Choose a file"))
+    graphic_chooser.add_header_label(:header, _INTL("选择文件"))
     # List of files
     list = UIControls::List.new(CHOOSER_FILE_LIST_WIDTH, CHOOSER_FILE_LIST_HEIGHT, graphic_chooser.viewport, [])
     graphic_chooser.add_control_at(:list,
@@ -536,7 +536,7 @@ class AnimationEditor
     graphic_chooser.add_control_at(:filter_label,
       graphic_chooser.x + CHOOSER_FILE_LIST_X,
       filter_y,
-      UIControls::Label.new(CHOOSER_FILE_LIST_WIDTH, CHOOSER_ROW_HEIGHT, graphic_chooser.viewport, _INTL("Filter:"))
+      UIControls::Label.new(CHOOSER_FILE_LIST_WIDTH, CHOOSER_ROW_HEIGHT, graphic_chooser.viewport, _INTL("筛选："))
     )
     graphic_chooser.add_control_at(:filter,
       graphic_chooser.x + CHOOSER_FILE_LIST_X + 60,
@@ -546,10 +546,10 @@ class AnimationEditor
     graphic_chooser.add_control_at(:filter_clear,
       graphic_chooser.x + CHOOSER_FILE_LIST_X + CHOOSER_FILE_LIST_WIDTH - 60,
       filter_y + 2,
-      UIControls::Button.new(60, 20, graphic_chooser.viewport, _INTL("Clear"))
+      UIControls::Button.new(60, 20, graphic_chooser.viewport, _INTL("清除"))
     )
     # Buttons
-    [[:ok, _INTL("OK")], [:cancel, _INTL("Cancel")]].each_with_index do |option, i|
+    [[:ok, _INTL("确定")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
       btn = UIControls::Button.new(CHOOSER_BUTTON_WIDTH, MESSAGE_BOX_BUTTON_HEIGHT, graphic_chooser.viewport, option[1])
       graphic_chooser.add_control_at(option[0],
                                      graphic_chooser.x + graphic_chooser.width - (CHOOSER_BUTTON_WIDTH * 2) - 4 - 3 + ((CHOOSER_BUTTON_WIDTH + 4) * i),
@@ -562,7 +562,7 @@ class AnimationEditor
 
   def set_audio_chooser_contents
     audio_chooser = @components[:audio_chooser]
-    audio_chooser.add_header_label(:header, _INTL("Choose a file"))
+    audio_chooser.add_header_label(:header, _INTL("选择文件"))
     # List of files
     list = UIControls::List.new(CHOOSER_FILE_LIST_WIDTH, CHOOSER_FILE_LIST_HEIGHT, audio_chooser.viewport, [])
     audio_chooser.add_control_at(:list,
@@ -570,7 +570,7 @@ class AnimationEditor
                                  audio_chooser.y + CHOOSER_FILE_LIST_Y,
                                  list)
     # Volume and pitch sliders
-    [[:volume, _INTL("Volume"), 0, 100], [:pitch, _INTL("Pitch"), 0, 200]].each_with_index do |option, i|
+    [[:volume, _INTL("音量"), 0, 100], [:pitch, _INTL("音调"), 0, 200]].each_with_index do |option, i|
       label = UIControls::Label.new(AUDIO_CHOOSER_LABEL_WIDTH, 28, audio_chooser.viewport, option[1])
       audio_chooser.add_control_at((option[0].to_s + "_label").to_sym,
                                    list.x + list.width + 6, list.y + (28 * i), label)
@@ -578,7 +578,7 @@ class AnimationEditor
       audio_chooser.add_control_at(option[0], label.x + label.width + 9, label.y, slider)
     end
     # Playback buttons
-    [[:play, _INTL("Play")], [:stop, _INTL("Stop")]].each_with_index do |option, i|
+    [[:play, _INTL("播放")], [:stop, _INTL("停止")]].each_with_index do |option, i|
       btn = UIControls::Button.new(CHOOSER_BUTTON_WIDTH, MESSAGE_BOX_BUTTON_HEIGHT, audio_chooser.viewport, option[1])
       audio_chooser.add_control_at(option[0],
                                    list.x + list.width + 4 + ((CHOOSER_BUTTON_WIDTH + 4) * i),
@@ -590,7 +590,7 @@ class AnimationEditor
     audio_chooser.add_control_at(:filter_label,
       audio_chooser.x + CHOOSER_FILE_LIST_X,
       filter_y,
-      UIControls::Label.new(CHOOSER_FILE_LIST_WIDTH, CHOOSER_ROW_HEIGHT, audio_chooser.viewport, _INTL("Filter:"))
+      UIControls::Label.new(CHOOSER_FILE_LIST_WIDTH, CHOOSER_ROW_HEIGHT, audio_chooser.viewport, _INTL("筛选："))
     )
     audio_chooser.add_control_at(:filter,
       audio_chooser.x + CHOOSER_FILE_LIST_X + 60,
@@ -600,10 +600,10 @@ class AnimationEditor
     audio_chooser.add_control_at(:filter_clear,
       audio_chooser.x + CHOOSER_FILE_LIST_X + CHOOSER_FILE_LIST_WIDTH - 60,
       filter_y + 2,
-      UIControls::Button.new(60, 20, audio_chooser.viewport, _INTL("Clear"))
+      UIControls::Button.new(60, 20, audio_chooser.viewport, _INTL("清除"))
     )
     # Buttons
-    [[:ok, _INTL("OK")], [:cancel, _INTL("Cancel")]].each_with_index do |option, i|
+    [[:ok, _INTL("确定")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
       btn = UIControls::Button.new(CHOOSER_BUTTON_WIDTH, MESSAGE_BOX_BUTTON_HEIGHT, audio_chooser.viewport, option[1])
       audio_chooser.add_control_at(option[0],
                                    audio_chooser.x + audio_chooser.width - (CHOOSER_BUTTON_WIDTH * 2) - 4 - 3 + ((CHOOSER_BUTTON_WIDTH + 4) * i),
@@ -803,7 +803,7 @@ class AnimationEditor
   end
 
   def confirm_message(text)
-    return message(text, [:yes, _INTL("Yes")], [:no, _INTL("No")]) == :yes
+    return message(text, [:yes, _INTL("是")], [:no, _INTL("否")]) == :yes
   end
 
   #-----------------------------------------------------------------------------
@@ -1000,22 +1000,22 @@ class AnimationEditor
       ["USER", "USER_OPP", "USER_FRONT", "USER_BACK", "TARGET", "TARGET_OPP", "TARGET_FRONT", "TARGET_BACK"]
     )
     if choosing_mask
-      all_files.prepend(["", _INTL("[[None]]")])
+      all_files.prepend(["", _INTL("[[无]]")])
     else
       if !@anim[:no_target]
         all_files.prepend(
-          ["TARGET",       _INTL("[[Target's sprite]]")],
-          ["TARGET_OPP",   _INTL("[[Target's other side sprite]]")],
-          ["TARGET_FRONT", _INTL("[[Target's front sprite]]")],
-          ["TARGET_BACK",  _INTL("[[Target's back sprite]]")]
+          ["TARGET",       _INTL("[[目标的精灵图]]")],
+          ["TARGET_OPP",   _INTL("[[目标对面的精灵图]]")],
+          ["TARGET_FRONT", _INTL("[[目标的正面精灵图]]")],
+          ["TARGET_BACK",  _INTL("[[目标的背面精灵图]]")]
         )
       end
       if !@anim[:no_user]
         all_files.prepend(
-          ["USER",         _INTL("[[User's sprite]]")],
-          ["USER_OPP",     _INTL("[[User's other side sprite]]")],
-          ["USER_FRONT",   _INTL("[[User's front sprite]]")],
-          ["USER_BACK",    _INTL("[[User's back sprite]]")]
+          ["USER",         _INTL("[[使用者的精灵图]]")],
+          ["USER_OPP",     _INTL("[[使用者对面的精灵图]]")],
+          ["USER_FRONT",   _INTL("[[使用者的正面精灵图]]")],
+          ["USER_BACK",    _INTL("[[使用者的背面精灵图]]")]
         )
       end
     end
@@ -1154,8 +1154,8 @@ class AnimationEditor
     # Get a list of files
     list = audio_chooser.get_control(:list)
     all_files = get_all_files_in_folder(audio_folder, [".wav", ".ogg", ".mp3", ".wma"], ["USER", "TARGET"])
-    all_files.prepend(["TARGET", _INTL("[[Target's cry]]")]) if !@anim[:no_target]
-    all_files.prepend(["USER", _INTL("[[User's cry]]")]) if !@anim[:no_user]
+    all_files.prepend(["TARGET", _INTL("[[目标的叫声]]")]) if !@anim[:no_target]
+    all_files.prepend(["USER", _INTL("[[使用者的叫声]]")]) if !@anim[:no_user]
     idx = 0
     all_files.each_with_index do |f, i|
       next if f[0] != selected
@@ -1721,7 +1721,7 @@ class AnimationEditor
       @components[:timeline].particle_index = p_index + 1
       refresh
     when :delete
-      if confirm_message(_INTL("Are you sure you want to delete this particle?"))
+      if confirm_message(_INTL("确定要删除此粒子吗？"))
         p_index = idx_particle
         AnimationEditor::ParticleDataHelper.delete_particle(@anim[:particles], p_index)
         @components[:timeline].delete_particle(p_index)
@@ -1859,14 +1859,14 @@ class AnimationEditor
     when :move, :opp_move
       move_list = []
       GameData::Move.each { |m| move_list.push([m.id.to_s, m.name]) }
-      move_list.push(["STRUGGLE", _INTL("Struggle")]) if move_list.none? { |val| val[0] == "STRUGGLE" }
+      move_list.push(["STRUGGLE", _INTL("挣扎")]) if move_list.none? { |val| val[0] == "STRUGGLE" }
       move_list.sort! { |a, b| a[1] <=> b[1] }
-      ctrls.get_control(:move_label).text = _INTL("Move")
+      ctrls.get_control(:move_label).text = _INTL("招式")
       ctrls.get_control(:move).options = move_list.to_h
       ctrls.get_control(:move).value = @anim[:move]
       ctrls.get_control(:type).value = :move
     when :common, :opp_common
-      ctrls.get_control(:move_label).text = _INTL("Common animation")
+      ctrls.get_control(:move_label).text = _INTL("通用动画")
       ctrls.get_control(:move).options = COMMON_ANIMATIONS.sort
       ctrls.get_control(:move).value = @anim[:move]
       ctrls.get_control(:type).value = :common
@@ -1890,14 +1890,14 @@ class AnimationEditor
     this_particle = @anim[:particles][idx_particle]
     # Graphic name
     graphic_override_names = {
-      "USER"         => _INTL("[[User's sprite]]"),
-      "USER_OPP"     => _INTL("[[User's other side sprite]]"),
-      "USER_FRONT"   => _INTL("[[User's front sprite]]"),
-      "USER_BACK"    => _INTL("[[User's back sprite]]"),
-      "TARGET"       => _INTL("[[Target's sprite]]"),
-      "TARGET_OPP"   => _INTL("[[Target's other side sprite]]"),
-      "TARGET_FRONT" => _INTL("[[Target's front sprite]]"),
-      "TARGET_BACK"  => _INTL("[[Target's back sprite]]")
+      "USER"         => _INTL("[[使用者的精灵图]]"),
+      "USER_OPP"     => _INTL("[[使用者对面的精灵图]]"),
+      "USER_FRONT"   => _INTL("[[使用者的正面精灵图]]"),
+      "USER_BACK"    => _INTL("[[使用者的背面精灵图]]"),
+      "TARGET"       => _INTL("[[目标的精灵图]]"),
+      "TARGET_OPP"   => _INTL("[[目标对面的精灵图]]"),
+      "TARGET_FRONT" => _INTL("[[目标的正面精灵图]]"),
+      "TARGET_BACK"  => _INTL("[[目标的背面精灵图]]")
     }
     graphic_name = this_particle[:graphic]
     graphic_name = graphic_override_names[graphic_name] if graphic_override_names.has_key?(graphic_name)
@@ -1917,24 +1917,24 @@ class AnimationEditor
       ctrls.get_control(:second_layer).enable
     end
     focus_values = {
-      :foreground                        => _INTL("Foreground"),
-      :midground                         => _INTL("Midground"),
-      :background                        => _INTL("Background"),
-      :user                              => _INTL("User"),
-      :user_position                     => _INTL("User's position"),
-      :target                            => _INTL("Target"),
-      :target_position                   => _INTL("Target's position"),
-      :user_and_target                   => _INTL("User and target"),
-      :user_position_and_target          => _INTL("User pos and target"),
-      :user_and_target_position          => _INTL("User and target pos"),
-      :user_position_and_target_position => _INTL("User pos and target pos"),
-      :user_side_foreground              => _INTL("In front of user's side"),
-      :user_side_background              => _INTL("Behind user's side"),
-      :non_user_side_foreground          => _INTL("In front of non-user's side"),
-      :non_user_side_background          => _INTL("Behind non-user's side"),
-      :target_side_foreground            => _INTL("In front of target's side"),
-      :target_side_background            => _INTL("Behind target's side"),
-      :user_and_other_side               => _INTL("User and other side")
+      :foreground                        => _INTL("前景"),
+      :midground                         => _INTL("中景"),
+      :background                        => _INTL("背景"),
+      :user                              => _INTL("使用者"),
+      :user_position                     => _INTL("使用者位置"),
+      :target                            => _INTL("目标"),
+      :target_position                   => _INTL("目标位置"),
+      :user_and_target                   => _INTL("使用者与目标"),
+      :user_position_and_target          => _INTL("使用者位置与目标"),
+      :user_and_target_position          => _INTL("使用者与目标位置"),
+      :user_position_and_target_position => _INTL("使用者位置与目标位置"),
+      :user_side_foreground              => _INTL("使用者一侧的前方"),
+      :user_side_background              => _INTL("使用者一侧的后方"),
+      :non_user_side_foreground          => _INTL("使用者对面一侧的前方"),
+      :non_user_side_background          => _INTL("使用者对面一侧的后方"),
+      :target_side_foreground            => _INTL("目标一侧的前方"),
+      :target_side_background            => _INTL("目标一侧的后方"),
+      :user_and_other_side               => _INTL("使用者与对面一侧")
     }
     if @anim[:no_user]
       GameData::Animation::FOCUS_TYPES_WITH_USER.each { |f| focus_values.delete(f) }
@@ -2176,8 +2176,8 @@ class AnimationEditor
         play_animation
         @ready_to_play = false
       elsif @captured.nil? && @quit
-        case message(_INTL("Do you want to save changes to the animation?"),
-                     [:yes, _INTL("Yes")], [:no, _INTL("No")], [:cancel, _INTL("Cancel")])
+        case message(_INTL("要保存对动画的更改吗？"),
+                     [:yes, _INTL("是")], [:no, _INTL("否")], [:cancel, _INTL("取消")])
         when :yes
           save
         when :cancel

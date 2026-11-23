@@ -65,11 +65,11 @@ class AnimationEditor::MenuBar < UIControls::BaseContainer
 
   def initialize_controls
     add_control_at(:quit, QUIT_BUTTON_X, QUIT_BUTTON_Y,
-                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("Quit")))
+                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("退出")))
     add_control_at(:save, SAVE_BUTTON_X, SAVE_BUTTON_Y,
-                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("Save")))
+                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("保存")))
     add_control_at(:help, HELP_BUTTON_X, HELP_BUTTON_Y,
-                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("Help")))
+                   UIControls::Button.new(BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, _INTL("帮助")))
     add_control_at(:settings, SETTINGS_BUTTON_X, SETTINGS_BUTTON_Y,
                    UIControls::BitmapButton.new(@viewport, @bitmaps[:settings]))
     add_control_at(:name, NAME_BUTTON_X, NAME_BUTTON_Y,
@@ -109,12 +109,12 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
     ctrl_width = @width - CONTROL_X
     # Header
     add_control_at(:header, 0, ctrl_y,
-                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("Battler positions")))
+                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("战斗者位置")))
     @controls[:header].header = true
     ctrl_y += LINE_SPACING
     # Side sizes
     add_control_at(:side_size_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("Side sizes")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("每方人数")))
     add_control_at(:side_size_1, CONTROL_X, ctrl_y,
                    UIControls::DropdownList.new(38, LINE_SPACING, @viewport, {
                      1 => "1",
@@ -122,7 +122,7 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
                      3 => "3"
                    }, 1))
     add_control_at(:side_size_vs_label, CONTROL_X + 39, ctrl_y,
-                   UIControls::Label.new(24, LINE_SPACING, @viewport, _INTL("vs.")))
+                   UIControls::Label.new(24, LINE_SPACING, @viewport, _INTL("对")))
     add_control_at(:side_size_2, CONTROL_X + 67, ctrl_y,
                    UIControls::DropdownList.new(38, LINE_SPACING, @viewport, {
                      1 => "1",
@@ -132,7 +132,7 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # User index
     add_control_at(:user_index_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("User index")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("使用者索引")))
     add_control_at(:user_index, CONTROL_X, ctrl_y,
                    UIControls::DropdownList.new(38, LINE_SPACING, @viewport, {
                      1 => "1",
@@ -142,13 +142,13 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Target indices
     add_control_at(:target_indices_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("Target indices")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("目标索引")))
     add_control_at(:target_indices, CONTROL_X, ctrl_y,
                    UIControls::TextBox.new(105, LINE_SPACING, @viewport, ""))
     ctrl_y += LINE_SPACING
     # User opposes
     add_control_at(:user_opposes_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("User is opposing?")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("使用者是对手方吗？")))
     add_control_at(:user_opposes, CONTROL_X, ctrl_y,
                    UIControls::Checkbox.new(40, LINE_SPACING, @viewport, false))
   end
@@ -285,7 +285,7 @@ class AnimationEditor::PlayControls < UIControls::BaseContainer
     @controls[:unloop].visible = @looping
     # Slowdown label
     add_control_at(:slowdown_label, SLOWDOWN_LABEL_X, SLOWDOWN_LABEL_Y,
-                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("Slowdown factor")))
+                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("慢放系数")))
     @controls[:slowdown_label].x -= (@controls[:slowdown_label].text_width / 2)
     # Slowdown factor buttons
     SLOWDOWN_FACTORS.each_with_index do |value, i|
@@ -298,7 +298,7 @@ class AnimationEditor::PlayControls < UIControls::BaseContainer
     end
     # Duration label
     add_control_at(:duration_label, DURATION_LABEL_X, DURATION_LABEL_Y,
-                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("Duration:")))
+                   UIControls::Label.new(200, LABEL_HEIGHT, self.viewport, _INTL("持续时间：")))
     # Duration value
     add_control_at(:duration_value, DURATION_VALUE_X, DURATION_VALUE_Y,
                    UIControls::Label.new(200, LABEL_HEIGHT, self.viewport,
@@ -408,7 +408,7 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_width = @width - CONTROL_X
     # Header
     add_control_at(:header, 0, ctrl_y,
-                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("Batch edits")))
+                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("批量编辑")))
     @controls[:header].header = true
     ctrl_y += LINE_SPACING
     # Undo/redo buttons
@@ -419,12 +419,12 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Time shifts header
     add_control_at(:time_shifts_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("Time shifts")))
+                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("时间偏移")))
     get_control(:time_shifts_label).underlined = true
     ctrl_y += LINE_SPACING
     # Shift all particles
     add_control_at(:shift_all_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("All particles")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("所有粒子")))
     add_control_at(:shift_all_left, CONTROL_X, ctrl_y + BUTTON_Y_OFFSET,
                    UIControls::Button.new(LEFT_RIGHT_BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, "<"))
     add_control_at(:shift_all_right, CONTROL_X + LEFT_RIGHT_BUTTON_WIDTH + BUTTON_SPACING, ctrl_y + BUTTON_Y_OFFSET,
@@ -436,7 +436,7 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Shift selected particle
     add_control_at(:shift_one_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("Selected particle")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("选中的粒子")))
     add_control_at(:shift_one_left, CONTROL_X, ctrl_y + BUTTON_Y_OFFSET,
                    UIControls::Button.new(LEFT_RIGHT_BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, "<"))
     add_control_at(:shift_one_right, CONTROL_X + LEFT_RIGHT_BUTTON_WIDTH + BUTTON_SPACING, ctrl_y + BUTTON_Y_OFFSET,
@@ -448,7 +448,7 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Shift selected row
     add_control_at(:shift_row_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("Selected row")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("选中的行")))
     add_control_at(:shift_row_left, CONTROL_X, ctrl_y + BUTTON_Y_OFFSET,
                    UIControls::Button.new(LEFT_RIGHT_BUTTON_WIDTH, BUTTON_HEIGHT, @viewport, "<"))
     add_control_at(:shift_row_right, CONTROL_X + LEFT_RIGHT_BUTTON_WIDTH + BUTTON_SPACING, ctrl_y + BUTTON_Y_OFFSET,
@@ -460,15 +460,15 @@ class AnimationEditor::BatchEdits < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Command values header
     add_control_at(:command_values_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("Command values")))
+                   UIControls::Label.new(@width, LINE_SPACING, @viewport, _INTL("指令值")))
     get_control(:command_values_label).underlined = true
     ctrl_y += LINE_SPACING
     # Edit command values button
     add_control_at(:offset_commands, LABEL_X, ctrl_y + BUTTON_Y_OFFSET,
-                   UIControls::Button.new(100, BUTTON_HEIGHT, @viewport, _INTL("Apply offset")))
+                   UIControls::Button.new(100, BUTTON_HEIGHT, @viewport, _INTL("应用偏移")))
     ctrl_y += LINE_SPACING
     add_control_at(:clear_selected_row, LABEL_X, ctrl_y + BUTTON_Y_OFFSET,
-                   UIControls::Button.new(145, BUTTON_HEIGHT, @viewport, _INTL("Clear selected row")))
+                   UIControls::Button.new(145, BUTTON_HEIGHT, @viewport, _INTL("清除选中行")))
     ctrl_y += LINE_SPACING
   end
 end

@@ -5,11 +5,11 @@
 MenuHandlers.add(:battle_debug_menu, :battlers, {
   "name"        => _INTL("战斗者..."),
   "parent"      => :main,
-  "description" => _INTL("观察战斗中的宝可梦并改变它们的属性。")
+  "description" => _INTL("观察战斗中的宝可梦并更改它们的属性。")
 })
 
 MenuHandlers.add(:battle_debug_menu, :list_player_battlers, {
-  "name"        => _INTL("玩家端的战斗者"),
+  "name"        => _INTL("玩家方的战斗者"),
   "parent"      => :battlers,
   "description" => _INTL("在玩家一方的战斗中编辑宝可梦。"),
   "effect"      => proc { |battle|
@@ -17,12 +17,8 @@ MenuHandlers.add(:battle_debug_menu, :list_player_battlers, {
     cmds = []
     battle.allSameSideBattlers(0, true).each do |b|
       battlers.push(b)
-      text = "[#{b.index}] #{b.name}"
-      if b.pbOwnedByPlayer?
-        text += " (yours)"
-      else
-        text += " (ally's)"
-      end
+      text = _INTL("[{1}] {2}", b.index, b.name)
+      text += " " + ((b.pbOwnedByPlayer?) ? _INTL("（我方）") : _INTL("（同伴）"))
       cmds.push(text)
     end
     cmd = 0
@@ -35,15 +31,15 @@ MenuHandlers.add(:battle_debug_menu, :list_player_battlers, {
 })
 
 MenuHandlers.add(:battle_debug_menu, :list_foe_battlers, {
-  "name"        => _INTL("敌方战士"),
+  "name"        => _INTL("对手战斗者"),
   "parent"      => :battlers,
-  "description" => _INTL("编辑战斗对方的宝可梦。"),
+  "description" => _INTL("编辑战斗对手方的宝可梦。"),
   "effect"      => proc { |battle|
     battlers = []
     cmds = []
     battle.allOtherSideBattlers(0, true).each do |b|
       battlers.push(b)
-      cmds.push("[#{b.index}] #{b.name}")
+      cmds.push(_INTL("[{1}] {2}", b.index, b.name))
     end
     cmd = 0
     loop do
@@ -64,7 +60,7 @@ MenuHandlers.add(:battle_debug_menu, :speed_order, {
     commands = []
     battlers.each do |value|
       b = value[0]
-      commands.push(sprintf("[%d] %s (speed: %d)", b.index, b.pbThis, value[1]))
+      commands.push(_INTL("[{1}] {2}（速度：{3}）", b.index, b.pbThis, value[1]))
     end
     pbMessage("\\ts[]" + _INTL("战斗者按从最快到最慢的顺序列出。速度包括修饰符。"),
               commands, -1)
@@ -76,9 +72,9 @@ MenuHandlers.add(:battle_debug_menu, :speed_order, {
 #===============================================================================
 
 MenuHandlers.add(:battle_debug_menu, :pokemon_teams, {
-  "name"        => _INTL("宝可梦队伍"),
+  "name"        => _INTL("队伍中的宝可梦"),
   "parent"      => :main,
-  "description" => _INTL("查看并编辑每个团队中的所有宝可梦。"),
+  "description" => _INTL("查看并编辑每个队伍中的所有宝可梦。"),
   "effect"      => proc { |battle|
     player_party_starts = battle.pbPartyStarts(0)
     foe_party_starts = battle.pbPartyStarts(1)
@@ -92,11 +88,11 @@ MenuHandlers.add(:battle_debug_menu, :pokemon_teams, {
           first_index = foe_party_starts[i]
           last_index = (i < foe_party_starts.length - 1) ? foe_party_starts[i + 1] : battle.pbParty(1).length
           num_pkmn = last_index - first_index
-          commands.push(_INTL("对手{1}：{2}（{3}宝可梦）", i + 1, trainer.full_name, num_pkmn))
+          commands.push(_INTL("对手 {1}：{2}（{3} 只宝可梦）", i + 1, trainer.full_name, num_pkmn))
           team_indices.push([1, i, first_index])
         end
       else
-        commands.push(_INTL("对手：{1}野生宝可梦", battle.pbParty(1).length))
+        commands.push(_INTL("对手：{1} 只野生宝可梦", battle.pbParty(1).length))
         team_indices.push([1, 0, 0])
       end
       battle.player.each_with_index do |trainer, i|
@@ -104,14 +100,14 @@ MenuHandlers.add(:battle_debug_menu, :pokemon_teams, {
         last_index = (i < player_party_starts.length - 1) ? player_party_starts[i + 1] : battle.pbParty(0).length
         num_pkmn = last_index - first_index
         if i == 0   # Player
-          commands.push(_INTL("你：{1}（{2}宝可梦）", trainer.full_name, num_pkmn))
+          commands.push(_INTL("你：{1}（{2} 只宝可梦）", trainer.full_name, num_pkmn))
         else
-          commands.push(_INTL("盟友 {1}：{2}（{3} 宝可梦）", i, trainer.full_name, num_pkmn))
+          commands.push(_INTL("同伴 {1}：{2}（{3} 只宝可梦）", i, trainer.full_name, num_pkmn))
         end
         team_indices.push([0, i, first_index])
       end
       # Choose a team
-      cmd = pbMessage("\\ts[]" + _INTL("选择一个团队。"), commands, -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + _INTL("选择一个队伍。"), commands, -1, nil, cmd)
       break if cmd < 0
       # Pick a Pokémon to look at
       pkmn_cmd = 0
@@ -120,7 +116,8 @@ MenuHandlers.add(:battle_debug_menu, :pokemon_teams, {
         pkmn_cmds = []
         battle.eachInTeam(team_indices[cmd][0], team_indices[cmd][1]) do |p|
           pkmn.push(p)
-          pkmn_cmds.push("[#{pkmn_cmds.length + 1}] #{p.name} Lv.#{p.level} (HP: #{p.hp}/#{p.totalhp})")
+          pkmn_cmds.push(_INTL("[{1}] {2} 等级 {3}（HP：{4}/{5}）",
+                               pkmn_cmds.length + 1, p.name, p.level, p.hp, p.totalhp))
         end
         pkmn_cmd = pbMessage("\\ts[]" + _INTL("选择一个宝可梦。"), pkmn_cmds, -1, nil, pkmn_cmd)
         break if pkmn_cmd < 0
@@ -136,9 +133,9 @@ MenuHandlers.add(:battle_debug_menu, :pokemon_teams, {
 #===============================================================================
 
 MenuHandlers.add(:battle_debug_menu, :trainers, {
-  "name"        => _INTL("训练家选项……"),
+  "name"        => _INTL("训练家选项..."),
   "parent"      => :main,
-  "description" => _INTL("适用于训练家的变量。")
+  "description" => _INTL("适用于训练家的选项。")
 })
 
 MenuHandlers.add(:battle_debug_menu, :trainer_items, {
@@ -154,7 +151,7 @@ MenuHandlers.add(:battle_debug_menu, :trainer_items, {
       trainer_indices = []
       battle.opponent&.each_with_index do |trainer, i|
         items = (battle.items) ? battle.items[i].clone : []
-        commands.push(_INTL("对手 {1}：{2}（{3}个道具）", i + 1, trainer.full_name, items.length))
+        commands.push(_INTL("对手 {1}：{2}（{3} 个道具）", i + 1, trainer.full_name, items.length))
         item_arrays.push(items)
         trainer_indices.push([1, i])
       end
@@ -162,7 +159,7 @@ MenuHandlers.add(:battle_debug_menu, :trainer_items, {
         battle.player.each_with_index do |trainer, i|
           next if i == 0   # Player
           items = (battle.ally_items) ? battle.ally_items[i].clone : []
-          commands.push(_INTL("盟友 {1}：{2}（{3}个道具）", i, trainer.full_name, items.length))
+          commands.push(_INTL("同伴 {1}：{2}（{3} 个道具）", i, trainer.full_name, items.length))
           item_arrays.push(items)
           trainer_indices.push([0, i])
         end
@@ -205,10 +202,10 @@ MenuHandlers.add(:battle_debug_menu, :mega_evolution, {
         next if !trainers
         side_values.each_with_index do |value, i|
           next if !trainers[i]
-          text = (side == 0) ? "Your side:" : "Foe side:"
-          text += sprintf(" %d: %s", i, trainers[i].name)
-          text += " [ABLE]" if value == -1
-          text += " [UNABLE]" if value == -2
+          text = (side == 0) ? _INTL("我方") : _INTL("对手方")
+          text += _INTL(" {1}：{2}", i, trainers[i].name)
+          text += _INTL(" [可超级进化]") if value == -1
+          text += _INTL(" [不可超级进化]") if value == -2
           commands.push(text)
           cmds.push([side, i])
         end
@@ -231,7 +228,7 @@ MenuHandlers.add(:battle_debug_menu, :mega_evolution, {
 #===============================================================================
 
 MenuHandlers.add(:battle_debug_menu, :field, {
-  "name"        => _INTL("场效应..."),
+  "name"        => _INTL("场地效果..."),
   "parent"      => :main,
   "description" => _INTL("适用于整个战场的效果。")
 })
@@ -255,21 +252,21 @@ MenuHandlers.add(:battle_debug_menu, :weather, {
       if weather_data.id != :None
         if battle.field.weatherDuration > 0
           msg += "\n"
-          msg += _INTL("持续时间：另外 {1} 轮", battle.field.weatherDuration)
+          msg += _INTL("持续时间：剩余 {1} 回合", battle.field.weatherDuration)
         elsif battle.field.weatherDuration < 0
           msg += "\n"
           msg += _INTL("持续时间：无限")
         end
       end
-      cmd = pbMessage("\\ts[]" + msg, [_INTL("变更类型"),
-                                       _INTL("变更持续时间"),
-                                       _INTL("天气晴朗")], -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + msg, [_INTL("更改天气"),
+                                       _INTL("更改持续时间"),
+                                       _INTL("清除天气")], -1, nil, cmd)
       break if cmd < 0
       case cmd
       when 0   # Change type
         weather_cmd = weather_types.index(battle.field.weather) || 0
         new_weather = pbMessage(
-          "\\ts[]" + _INTL("选择新的天气类型。"), weather_cmds, -1, nil, weather_cmd
+          "\\ts[]" + _INTL("选择新的天气。"), weather_cmds, -1, nil, weather_cmd
         )
         if new_weather >= 0
           battle.field.weather = weather_types[new_weather]
@@ -317,21 +314,21 @@ MenuHandlers.add(:battle_debug_menu, :terrain, {
       if terrain_data.id != :None
         if battle.field.terrainDuration > 0
           msg += "\n"
-          msg += _INTL("持续时间：另外 {1} 轮", battle.field.terrainDuration)
+          msg += _INTL("持续时间：剩余 {1} 回合", battle.field.terrainDuration)
         elsif battle.field.terrainDuration < 0
           msg += "\n"
           msg += _INTL("持续时间：无限")
         end
       end
-      cmd = pbMessage("\\ts[]" + msg, [_INTL("变更类型"),
-                                       _INTL("变更持续时间"),
-                                       _INTL("地形清晰")], -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + msg, [_INTL("更改地形"),
+                                       _INTL("更改持续时间"),
+                                       _INTL("清除地形")], -1, nil, cmd)
       break if cmd < 0
       case cmd
       when 0   # Change type
         terrain_cmd = terrain_types.index(battle.field.terrain) || 0
         new_terrain = pbMessage(
-          "\\ts[]" + _INTL("选择新的地形类型。"), terrain_cmds, -1, nil, terrain_cmd
+          "\\ts[]" + _INTL("选择新的地形。"), terrain_cmds, -1, nil, terrain_cmd
         )
         if new_terrain >= 0
           battle.field.terrain = terrain_types[new_terrain]
@@ -376,8 +373,8 @@ MenuHandlers.add(:battle_debug_menu, :environment_time, {
       environment_data = GameData::Environment.try_get(battle.environment)
       msg = _INTL("环境：{1}", environment_data.name || _INTL("未知"))
       msg += "\n"
-      msg += _INTL("一天中的时间：{1}", [_INTL("日"), _INTL("晚上"), _INTL("夜晚")][battle.time])
-      cmd = pbMessage("\\ts[]" + msg, [_INTL("改变环境"),
+      msg += _INTL("一天中的时间：{1}", [_INTL("白天"), _INTL("傍晚"), _INTL("夜晚")][battle.time])
+      cmd = pbMessage("\\ts[]" + msg, [_INTL("更改环境"),
                                        _INTL("更改一天中的时间")], -1, nil, cmd)
       break if cmd < 0
       case cmd
@@ -391,7 +388,7 @@ MenuHandlers.add(:battle_debug_menu, :environment_time, {
         end
       when 1   # Change time of day
         new_time = pbMessage("\\ts[]" + _INTL("选择新的时间。"),
-                             [_INTL("日"), _INTL("晚上"), _INTL("夜晚")], -1, nil, battle.time)
+                             [_INTL("白天"), _INTL("傍晚"), _INTL("夜晚")], -1, nil, battle.time)
         battle.time = new_time if new_time >= 0 && new_time != battle.time
       end
     end
@@ -401,7 +398,7 @@ MenuHandlers.add(:battle_debug_menu, :environment_time, {
 MenuHandlers.add(:battle_debug_menu, :backdrop, {
   "name"        => _INTL("背景名称"),
   "parent"      => :field,
-  "description" => _INTL("设置背景和基础图形的名称。"),
+  "description" => _INTL("设置背景和基础图像的名称。"),
   "effect"      => proc { |battle|
     loop do
       cmd = pbMessage("\\ts[]" + _INTL("设置哪个背景名称？"),
@@ -423,7 +420,7 @@ MenuHandlers.add(:battle_debug_menu, :backdrop, {
 })
 
 MenuHandlers.add(:battle_debug_menu, :set_field_effects, {
-  "name"        => _INTL("其他场效应..."),
+  "name"        => _INTL("其他场地效果..."),
   "parent"      => :field,
   "description" => _INTL("查看/设置适用于整个战场的其他效果。"),
   "effect"      => proc { |battle|
@@ -434,7 +431,7 @@ MenuHandlers.add(:battle_debug_menu, :set_field_effects, {
 })
 
 MenuHandlers.add(:battle_debug_menu, :player_side, {
-  "name"        => _INTL("玩家的副作用..."),
+  "name"        => _INTL("玩家侧效果..."),
   "parent"      => :field,
   "description" => _INTL("适用于玩家所在一侧的效果。"),
   "effect"      => proc { |battle|
@@ -445,9 +442,9 @@ MenuHandlers.add(:battle_debug_menu, :player_side, {
 })
 
 MenuHandlers.add(:battle_debug_menu, :opposing_side, {
-  "name"        => _INTL("福的副作用..."),
+  "name"        => _INTL("对手侧效果..."),
   "parent"      => :field,
-  "description" => _INTL("适用于对方的效果。"),
+  "description" => _INTL("适用于对手方的效果。"),
   "effect"      => proc { |battle|
     editor = Battle::DebugSetEffects.new(battle, :side, 1)
     editor.update
@@ -467,22 +464,22 @@ MenuHandlers.add(:battle_debug_menu, :position_effects, {
       positions.push(i)
       battler = battle.battlers[i]
       if battler && !battler.fainted?
-        text = "[#{i}] #{battler.name}"
+        text = _INTL("[{1}] {2}", i, battler.name)
       else
-        text = "[#{i}] " + _INTL("(empty)")
+        text = "[#{i}] " + _INTL("（空）")
       end
       if battler.pbOwnedByPlayer?
-        text += " " + _INTL("(yours)")
+        text += " " + _INTL("（我方）")
       elsif battle.opposes?(i)
-        text += " " + _INTL("(opposing)")
+        text += " " + _INTL("（对手）")
       else
-        text += " " + _INTL("(ally's)")
+        text += " " + _INTL("（同伴）")
       end
       cmds.push(text)
     end
     cmd = 0
     loop do
-      cmd = pbMessage("\\ts[]" + _INTL("选择一个战士位置。"), cmds, -1, nil, cmd)
+      cmd = pbMessage("\\ts[]" + _INTL("选择一个战斗者位置。"), cmds, -1, nil, cmd)
       break if cmd < 0
       editor = Battle::DebugSetEffects.new(battle, :position, positions[cmd])
       editor.update

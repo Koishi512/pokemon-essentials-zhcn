@@ -19,7 +19,7 @@ class PokemonTilesetScene
     @viewport.z = 99_999
     @sprites = {}
     @sprites["title"] = Window_UnformattedTextPokemon.newWithSize(
-      _INTL("图块集编辑器\n售后服务：滚动\nZ：菜单"),
+      _INTL("图块集编辑器\n滚动：方向键\nZ：菜单"),
       TILESET_WIDTH, 0, Graphics.width - TILESET_WIDTH, 128, @viewport
     )
     @sprites["background"] = BitmapSprite.new(Graphics.width, Graphics.height, @viewport)
@@ -143,7 +143,7 @@ class PokemonTilesetScene
     # Write terrain tag info about selected tile
     terrain_tag = @tileset.terrain_tags[tile_id] || 0
     if GameData::TerrainTag.exists?(terrain_tag)
-      terrain_tag_name = sprintf("%d: %s", terrain_tag, GameData::TerrainTag.get(terrain_tag).real_name)
+      terrain_tag_name = sprintf("%d：%s", terrain_tag, GameData::TerrainTag.get(terrain_tag).real_name)
     else
       terrain_tag_name = terrain_tag.to_s
     end
@@ -236,7 +236,7 @@ class PokemonTilesetScene
         old_idx = 0
         GameData::TerrainTag.each do |tag|
           old_idx = cmds.length if tag.id_number == old_tag
-          cmds.push("#{tag.id_number}: #{tag.real_name}")
+          cmds.push("#{tag.id_number}：#{tag.real_name}")
           ids.push(tag.id_number)
         end
         val = pbMessage("\\l[1]\\ts[]" + _INTL("设置地形标签。"), cmds, -1, nil, old_idx)

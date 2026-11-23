@@ -178,7 +178,7 @@ class Debug::EditorBase
 
   def menu_bar_buttons
     return [
-      [:quit, _INTL("戒烟")],
+      [:quit, _INTL("退出")],
       [:save, _INTL("保存")]
     ]
   end
@@ -288,15 +288,15 @@ class Debug::EditorBase
   end
 
   def message(text)
-    message_with_options(text, [:ok, _INTL("好的")])
+    message_with_options(text, [:ok, _INTL("确定")])
   end
 
   def confirm_message(text)
-    return message_with_options(text, [:yes, _INTL("是的")], [:no, _INTL("否")]) == :yes
+    return message_with_options(text, [:yes, _INTL("是")], [:no, _INTL("否")]) == :yes
   end
 
   def confirm_cancel_message(text)
-    return message_with_options(text, [:yes, _INTL("是的")], [:no, _INTL("否")], [:cancel, _INTL("取消")])
+    return message_with_options(text, [:yes, _INTL("是")], [:no, _INTL("否")], [:cancel, _INTL("取消")])
   end
 
   #-----------------------------------------------------------------------------
@@ -358,7 +358,7 @@ class Debug::EditorBase
     control_container.add_control_at(:filter_label,
       control_container.x + GRAPHIC_CHOOSER_FILE_LIST_X,
       filter_y,
-      UIControls::Label.new(GRAPHIC_CHOOSER_FILE_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("过滤器："))
+      UIControls::Label.new(GRAPHIC_CHOOSER_FILE_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("筛选："))
     )
     control_container.add_control_at(:filter,
       control_container.x + GRAPHIC_CHOOSER_FILE_LIST_X + filter_label_width,
@@ -372,7 +372,7 @@ class Debug::EditorBase
       UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, control_container.viewport, _INTL("清除"))
     )
     # Buttons
-    [[:ok, _INTL("好的")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
+    [[:ok, _INTL("确定")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
       btn = UIControls::Button.new(BIG_BUTTON_WIDTH, BIG_BUTTON_HEIGHT, control_container.viewport, option[1])
       control_container.add_control_at(option[0],
         control_container.x + control_container.width - (BIG_BUTTON_WIDTH * 2) - ELEMENT_SPACING - EDGE_BUFFER + ((BIG_BUTTON_WIDTH + ELEMENT_SPACING) * i),
@@ -545,7 +545,7 @@ class Debug::EditorBase
       padding = ""
       padding += "      " * (map_level[1] - 1) if map_level[1] > 1
       padding += "└─ " if map_level[1] > 0
-      ret.push([map_level[0], sprintf("%s%03d: %s", padding, map_level[0], map_infos[map_level[0]].name)])
+      ret.push([map_level[0], sprintf("%s%03d：%s", padding, map_level[0], map_infos[map_level[0]].name)])
       (index + 1...map_levels.length).each do |i|
         next if map_levels[i][2] != map_level[0]
         stack.push(i)
@@ -583,7 +583,7 @@ class Debug::EditorBase
     control_container.add_control_at(:filter_label,
       control_container.x + LOCATION_CHOOSER_MAP_LIST_X,
       filter_y,
-      UIControls::Label.new(LOCATION_CHOOSER_MAP_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("过滤器："))
+      UIControls::Label.new(LOCATION_CHOOSER_MAP_LIST_WIDTH, ROW_HEIGHT, control_container.viewport, _INTL("筛选："))
     )
     control_container.add_control_at(:filter,
       control_container.x + LOCATION_CHOOSER_MAP_LIST_X + filter_label_width,
@@ -621,7 +621,7 @@ class Debug::EditorBase
     control_container.add_control_at(:h_scrollbar, preview_area_x, preview_area_y + LOCATION_CHOOSER_VIEWPORT_SIZE[1] + 3,
                                      UIControls::Scrollbar.new(LOCATION_CHOOSER_VIEWPORT_SIZE[0], control_container.viewport, :horizontal))
     # Buttons
-    [[:ok, _INTL("好的")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
+    [[:ok, _INTL("确定")], [:cancel, _INTL("取消")]].each_with_index do |option, i|
       btn = UIControls::Button.new(BIG_BUTTON_WIDTH, BIG_BUTTON_HEIGHT, control_container.viewport, option[1])
       control_container.add_control_at(option[0],
         control_container.x + control_container.width - (BIG_BUTTON_WIDTH * 2) - ELEMENT_SPACING - EDGE_BUFFER + ((BIG_BUTTON_WIDTH + ELEMENT_SPACING) * i),
@@ -850,7 +850,7 @@ class Debug::EditorBase
   def apply_button_press(button)
     case button
     when :quit
-      case confirm_cancel_message(_INTL("您想保存更改吗？"))
+      case confirm_cancel_message(_INTL("你想保存更改吗？"))
       when :yes
         apply_button_press(:save)
         @quit = true

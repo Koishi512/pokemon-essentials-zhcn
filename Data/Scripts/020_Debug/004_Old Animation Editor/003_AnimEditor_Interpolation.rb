@@ -236,7 +236,7 @@ module BattleAnimationEditor
     sliderwin2.opacity = 200
     defcurvebutton = sliderwin2.addButton(_INTL("定义平滑曲线"))
     defpathbutton = sliderwin2.addButton(_INTL("定义手绘路径"))
-    okbutton = sliderwin2.addButton(_INTL("好的"))
+    okbutton = sliderwin2.addButton(_INTL("确定"))
     cancelbutton = sliderwin2.addButton(_INTL("取消"))
     points = []
     path = nil

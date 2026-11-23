@@ -196,9 +196,9 @@ class UI::PokemonStorage
     pkmn.moves.each do |move|
       next if !move || !move.id
       if move.total_pp <= 0
-        move_names.push(_INTL("{1} (PP: ---)", move.name))
+        move_names.push(_INTL("{1}（PP：---）", move.name))
       else
-        move_names.push(_INTL("{1} (PP: {2}/{3})", move.name, move.pp, move.total_pp))
+        move_names.push(_INTL("{1}（PP：{2}/{3}）", move.name, move.pp, move.total_pp))
       end
     end
     return show_menu(message, move_names)
@@ -233,9 +233,9 @@ class UI::PartyDebug < UI::BaseScreen
     pkmn.moves.each do |move|
       next if !move || !move.id
       if move.total_pp <= 0
-        move_names.push(_INTL("{1} (PP: ---)", move.name))
+        move_names.push(_INTL("{1}（PP：---）", move.name))
       else
-        move_names.push(_INTL("{1} (PP: {2}/{3})", move.name, move.pp, move.total_pp))
+        move_names.push(_INTL("{1}（PP：{2}/{3}）", move.name, move.pp, move.total_pp))
       end
     end
     return show_menu(message, move_names, index, align: :vertical)
@@ -325,30 +325,30 @@ module Battle::DebugMixin
     ret = ""
     return ret if battler.nil?
     # Battler index, name
-    ret += sprintf("[%d] %s", battler.index, battler.pbThis)
+    ret += _INTL("[{1}] {2}", battler.index, battler.pbThis)
     ret += "\n"
     # Species
     ret += _INTL("物种：{1}", GameData::Species.get(battler.species).name)
     ret += "\n"
     # Form number
-    ret += _INTL("表格：{1}", battler.form)
+    ret += _INTL("形态：{1}", battler.form)
     ret += "\n"
     # Level, gender, shininess
-    ret += _INTL("级别 {1}、{2}", battler.level,
+    ret += _INTL("等级 {1}，{2}", battler.level,
                  (battler.pokemon.male?) ? "♂" : (battler.pokemon.female?) ? "♀" : _INTL("无性别的"))
-    ret += ", " + _INTL("闪亮的") if battler.pokemon.shiny?
+    ret += "，" + _INTL("异色") if battler.pokemon.shiny?
     ret += "\n"
     # HP
-    ret += _INTL("生命值：{1}/{2} ({3}%)", battler.hp, battler.totalhp, (100.0 * battler.hp / battler.totalhp).to_i)
+    ret += _INTL("HP：{1}/{2}（{3}%）", battler.hp, battler.totalhp, (100.0 * battler.hp / battler.totalhp).to_i)
     ret += "\n"
     # Status
     ret += _INTL("状态：{1}", GameData::Status.get(battler.status).name)
     case battler.status
     when :SLEEP
-      ret += " " + _INTL("({1} rounds left)", battler.statusCount)
+      ret += " " + _INTL("（剩余 {1} 回合）", battler.statusCount)
     when :POISON
       if battler.statusCount > 0
-        ret += " " + _INTL("(toxic, {1}/16)", battler.effects[PBEffects::Toxic])
+        ret += " " + _INTL("（剧毒，{1}/16）", battler.effects[PBEffects::Toxic])
       end
     end
     ret += "\n"
@@ -362,7 +362,7 @@ module Battle::DebugMixin
       stage_text += " " + stat.name_brief
       stages.push(stage_text)
     end
-    ret += _INTL("统计阶段：{1}", (stages.empty?) ? "-" : stages.join(", "))
+    ret += _INTL("能力阶级：{1}", (stages.empty?) ? "-" : stages.join(", "))
     ret += "\n"
     # Ability
     ret += _INTL("特性：{1}", (battler.ability) ? battler.abilityName : "-")
@@ -377,26 +377,26 @@ module Battle::DebugMixin
     return ret if pkmn.nil?
     sp_data = pkmn.species_data
     # Name, species
-    ret += sprintf("%s (%s)", pkmn.name, sp_data.name)
+    ret += _INTL("{1}（{2}）", pkmn.name, sp_data.name)
     ret += "\n"
     # Form number
-    ret += _INTL("表格：{1}", sp_data.form)
+    ret += _INTL("形态：{1}", sp_data.form)
     ret += "\n"
     # Level, gender, shininess
-    ret += _INTL("级别 {1}、{2}", pkmn.level,
+    ret += _INTL("等级 {1}，{2}", pkmn.level,
                  (pkmn.male?) ? "♂" : (pkmn.female?) ? "♀" : _INTL("无性别的"))
-    ret += ", " + _INTL("闪亮的") if pkmn.shiny?
+    ret += "，" + _INTL("异色") if pkmn.shiny?
     ret += "\n"
     # HP
-    ret += _INTL("生命值：{1}/{2} ({3}%)", pkmn.hp, pkmn.totalhp, (100.0 * pkmn.hp / pkmn.totalhp).to_i)
+    ret += _INTL("HP：{1}/{2}（{3}%）", pkmn.hp, pkmn.totalhp, (100.0 * pkmn.hp / pkmn.totalhp).to_i)
     ret += "\n"
     # Status
     ret += _INTL("状态：{1}", GameData::Status.get(pkmn.status).name)
     case pkmn.status
     when :SLEEP
-      ret += " " + _INTL("({1} rounds left)", pkmn.statusCount)
+      ret += " " + _INTL("（剩余 {1} 回合）", pkmn.statusCount)
     when :POISON
-      ret += " " + _INTL("(toxic)") if pkmn.statusCount > 0
+      ret += " " + _INTL("（剧毒）") if pkmn.statusCount > 0
     end
     ret += "\n"
     # Ability

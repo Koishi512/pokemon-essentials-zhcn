@@ -18,7 +18,7 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
     ctrl_y += LINE_SPACING
     # Side sizes
     add_control_at(:side_size_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("侧面尺寸")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("每方人数")))
     add_control_at(:side_size_1, CONTROL_X, ctrl_y,
                    UIControls::DropdownList.new(38, LINE_SPACING, @viewport, {
                      1 => "1",
@@ -26,7 +26,7 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
                      3 => "3"
                    }, 1))
     add_control_at(:side_size_vs_label, CONTROL_X + 39, ctrl_y,
-                   UIControls::Label.new(24, LINE_SPACING, @viewport, _INTL("与")))
+                   UIControls::Label.new(24, LINE_SPACING, @viewport, _INTL("对")))
     add_control_at(:side_size_2, CONTROL_X + 67, ctrl_y,
                    UIControls::DropdownList.new(38, LINE_SPACING, @viewport, {
                      1 => "1",
@@ -40,7 +40,7 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
     #       changing the index, update the target indices control's blacklist
     #       index.
     add_control_at(:user_index_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("用户索引")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("使用者索引")))
     add_control_at(:user_index, CONTROL_X, ctrl_y,
                    UIControls::DropdownList.new(38, LINE_SPACING, @viewport, {
                      1 => "1",
@@ -54,13 +54,13 @@ class AnimationEditor::BattlersLayout < UIControls::BaseContainer
     #       it is changed, swap the booleans for the old and new blacklist
     #       indices.
     add_control_at(:target_indices_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("目标指数")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("目标索引")))
     add_control_at(:target_indices, CONTROL_X, ctrl_y,
                    UIControls::TextBox.new(105, LINE_SPACING, @viewport, ""))
     ctrl_y += LINE_SPACING
     # User opposes
     add_control_at(:user_opposes_label, LABEL_X, ctrl_y,
-                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("用户反对？")))
+                   UIControls::Label.new(label_width, LINE_SPACING, @viewport, _INTL("使用者是对手方吗？")))
     add_control_at(:user_opposes, CONTROL_X, ctrl_y,
                    UIControls::Checkbox.new(40, LINE_SPACING, @viewport, false))
   end

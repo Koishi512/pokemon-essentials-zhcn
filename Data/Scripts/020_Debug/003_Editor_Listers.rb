@@ -323,7 +323,7 @@ class MapLister
     @commands.clear
     @commands.push(_INTL("[全局]")) if @addGlobalOffset == 1
     @maps.length.times do |i|
-      @commands.push(sprintf("%s%03d %s", ("  " * @maps[i][2]), @maps[i][0], @maps[i][1]))
+      @commands.push(sprintf("%s%03d：%s", ("  " * @maps[i][2]), @maps[i][0], @maps[i][1]))
     end
     return @commands
   end
@@ -378,7 +378,7 @@ class SpeciesLister
       @ids.push(true)
     end
     cmds.each do |i|
-      @commands.push(sprintf("%03d: %s", i[0], i[2]))
+      @commands.push(sprintf("%03d：%s", i[0], i[2]))
       @ids.push(i[1])
     end
     @index = @selection
@@ -438,7 +438,7 @@ class ItemLister
       @ids.push(true)
     end
     cmds.each do |i|
-      @commands.push(sprintf("%03d: %s", i[0], i[2]))
+      @commands.push(sprintf("%03d：%s", i[0], i[2]))
       @ids.push(i[1])
     end
     @index = @selection
@@ -499,7 +499,7 @@ class TrainerTypeLister
       @ids.push(true)
     end
     cmds.each do |t|
-      @commands.push(sprintf("%03d: %s", t[0], t[2]))
+      @commands.push(sprintf("%03d：%s", t[0], t[2]))
       @ids.push(t[1])
     end
     @index = @selection
@@ -591,11 +591,11 @@ class TrainerBattleLister
     end
     cmds.each do |t|
       if t[3] > 0
-        @commands.push(_INTL("{1} {2} ({3}) x{4}",
+        @commands.push(_INTL("{1} {2}（{3}）×{4}",
                              GameData::TrainerType.get(t[1]).name, t[2], t[3],
                              GameData::Trainer.get(t[1], t[2], t[3]).pokemon.length))
       else
-        @commands.push(_INTL("{1} {2} x{3}",
+        @commands.push(_INTL("{1} {2} ×{3}",
                              GameData::TrainerType.get(t[1]).name, t[2],
                              GameData::Trainer.get(t[1], t[2], t[3]).pokemon.length))
       end
@@ -635,7 +635,7 @@ class TrainerBattleLister
       tr_data = GameData::Trainer.get(@ids[index][0], @ids[index][1], @ids[index][2])
       tr_data&.pokemon.each_with_index do |pkmn, i|
         text += "\n" if i > 0
-        text += sprintf("%s Lv.%d", GameData::Species.get(pkmn[:species]).real_name, pkmn[:level])
+        text += _INTL("{1} 等级 {2}", GameData::Species.get(pkmn[:species]).real_name, pkmn[:level])
       end
     end
     @pkmnList.text = text

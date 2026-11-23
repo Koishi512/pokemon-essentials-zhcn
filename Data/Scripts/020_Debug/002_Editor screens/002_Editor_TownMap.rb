@@ -300,7 +300,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     row_y += ROW_HEIGHT
     # Point image filename
     label = UIControls::Label.new(POINT_CONTROLS_LABEL_WIDTH, ROW_HEIGHT,
-                                  @viewport, _INTL("图片文件名"))
+                                  @viewport, _INTL("图像文件名"))
     @components.add_control_at(:point_filename_label, label_x, row_y, label)
     button = UIControls::Button.new(INLINE_BUTTON_WIDTH, INLINE_BUTTON_HEIGHT, @viewport, _INTL("编辑"))
     @components.add_control_at(:point_filename_button, label_x + POINT_CONTROLS_LABEL_WIDTH + POINT_CONTROLS_CONTROL_WIDTH - button.width, row_y + 2, button)
@@ -497,7 +497,7 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
     if spot
       map_infos = pbLoadMapInfos
       map_name = map_infos[spot[0]].name
-      fly_spot_text = sprintf("%03d: %s (%d,%d)", spot[0], map_name, spot[1], spot[2])
+      fly_spot_text = sprintf("%03d：%s（%d,%d）", spot[0], map_name, spot[1], spot[2])
     end
     @components.get_control(:point_fly_destination).text = fly_spot_text
   end
@@ -686,13 +686,13 @@ class Debug::PBSEditor::TownMap < Debug::EditorBase
       set_region(new_region_id)
     when :delete_region
       if @data.length > 1
-        if confirm_message(_INTL("您确定要删除该区域吗？"))
+        if confirm_message(_INTL("你确定要删除该区域吗？"))
           region_index = @data.keys.index(@region_id)
           @data.delete(@region_id)
           set_region(@data.keys[region_index] || @data.keys.last)
         end
       else
-        message(_INTL("您无法删除您唯一的区域！"))
+        message(_INTL("你无法删除你唯一的区域！"))
       end
     when :map_control
       map_pos = @components.get_control(:map_control).mouse_pos
@@ -886,7 +886,7 @@ end
 #
 #===============================================================================
 MenuHandlers.add(:debug_menu, :set_town_map, {
-  "name"        => _INTL("编辑town_map.txt"),
+  "name"        => _INTL("编辑 town_map.txt"),
   "parent"      => :pbs_editors_menu,
   "description" => _INTL("编辑城镇地图的内容。"),
   "effect"      => proc {

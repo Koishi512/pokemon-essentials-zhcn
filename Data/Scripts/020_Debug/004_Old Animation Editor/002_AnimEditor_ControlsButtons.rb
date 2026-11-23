@@ -610,7 +610,7 @@ module BattleAnimationEditor
 
     def initialize(canvas)
       @canvas = canvas
-      super(_INTL("帧数："), 1, canvas.animation.length, 0)
+      super(_INTL("帧："), 1, canvas.animation.length, 0)
     end
   end
 

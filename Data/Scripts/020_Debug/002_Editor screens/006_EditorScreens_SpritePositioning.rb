@@ -171,7 +171,7 @@ class SpritePositioner
     metrics_data = GameData::SpeciesMetrics.get_species_form(@species, @form)
     if pbResolveBitmap(sprintf("Graphics/Pokemon/Shadow/%s_%d", metrics_data.species, metrics_data.form)) ||
        pbResolveBitmap(sprintf("Graphics/Pokemon/Shadow/%s", metrics_data.species))
-      pbMessage("This species has its own shadow sprite in Graphics/Pokemon/Shadow/. The shadow size metric cannot be edited.")
+      pbMessage(_INTL("该物种在 Graphics/Pokemon/Shadow/ 中有自己的阴影精灵图，无法编辑阴影大小。"))
       return false
     end
     oldval = metrics_data.shadow_size
@@ -319,12 +319,12 @@ class SpritePositioner
   def pbMenu
     refresh
     cw = Window_CommandPokemon.new(
-      [_INTL("设置盟友位置"),
-       _INTL("设置敌人位置"),
-       _INTL("设置敌人高度"),
+      [_INTL("设置我方位置"),
+       _INTL("设置对手位置"),
+       _INTL("设置对手高度"),
        _INTL("设置阴影大小"),
        _INTL("设置阴影位置"),
-       _INTL("自动定位精灵")]
+       _INTL("自动定位宝可梦位置")]
     )
     cw.x        = Graphics.width - cw.width
     cw.y        = Graphics.height - cw.height
@@ -360,7 +360,7 @@ class SpritePositioner
     cw.y = Graphics.height - cw.height
     allspecies = []
     GameData::Species.each do |sp|
-      name = (sp.form == 0) ? sp.name : _INTL("{1} (form {2})", sp.real_name, sp.form)
+      name = (sp.form == 0) ? sp.name : _INTL("{1}（形态 {2}）", sp.real_name, sp.form)
       allspecies.push([sp.id, sp.species, sp.form, name]) if name && !name.empty?
     end
     allspecies.sort! { |a, b| a[3] <=> b[3] }

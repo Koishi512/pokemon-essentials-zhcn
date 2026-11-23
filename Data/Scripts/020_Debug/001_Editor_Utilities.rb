@@ -112,7 +112,7 @@ end
 #===============================================================================
 def pbChooseFromGameDataList(game_data, default = nil)
   if !GameData.const_defined?(game_data.to_sym)
-    raise _INTL("无法在GameData模块内找到类{1}。", game_data.to_s)
+    raise _INTL("无法在 GameData 模块内找到类 {1}。", game_data.to_s)
   end
   game_data_module = GameData.const_get(game_data.to_sym)
   commands = []
@@ -351,7 +351,7 @@ def pbChooseList(commands, default = 0, cancelValue = -1, sortType = 1)
       realcommands = []
       commands.each do |command|
         if sortType <= 0
-          realcommands.push(sprintf("%03d: %s", command[0], command[1]))
+          realcommands.push(sprintf("%03d：%s", command[0], command[1]))
         else
           realcommands.push(command[1])
         end

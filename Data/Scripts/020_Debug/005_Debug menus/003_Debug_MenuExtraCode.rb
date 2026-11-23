@@ -8,7 +8,7 @@ def pbDefaultMap
 end
 
 def pbWarpToMap
-  mapid = pbListScreen(_INTL("扭曲到地图"), MapLister.new(pbDefaultMap))
+  mapid = pbListScreen(_INTL("传送到地图"), MapLister.new(pbDefaultMap))
   if mapid > 0
     map = Game_Map.new
     map.setup(mapid)
@@ -145,7 +145,7 @@ class SpriteWindow_DebugVariables < Window_DrawableCommand
       status = "\"__\"" if nil_or_empty?(status)
     end
     name ||= ""
-    id_text = sprintf("%04d:", index + 1)
+    id_text = sprintf("%04d：", index + 1)
     rect = drawCursor(index, rect)
     totalWidth = rect.width
     idWidth     = totalWidth * 15 / 100
@@ -276,24 +276,24 @@ def pbDebugDayCare
             msg += ", ♀"
           end
           if slot.level_gain > 0
-            msg += ", " + _INTL("Lv.{1} (+{2})", pkmn.level, slot.level_gain)
+            msg += ", " + _INTL("等级 {1}（+{2}）", pkmn.level, slot.level_gain)
           else
-            msg += ", " + _INTL("{1}级", pkmn.level)
+            msg += ", " + _INTL("等级 {1}", pkmn.level)
           end
-          commands.push(_INTL("[Slot {1}] {2}", i, msg))
+          commands.push(_INTL("[栏位 {1}] {2}", i, msg))
         else
-          commands.push(_INTL("[Slot {1}] Empty", i))
+          commands.push(_INTL("[栏位 {1}] 空", i))
         end
       end
       compat = $PokemonGlobal.day_care.get_compatibility
       if day_care.egg_generated
         commands.push(_INTL("[可获得蛋]"))
       elsif compat > 0
-        commands.push(_INTL("[Can produce egg]"))
+        commands.push(_INTL("[可产出蛋]"))
       else
-        commands.push(_INTL("[Cannot breed]"))
+        commands.push(_INTL("[无法育种]"))
       end
-      commands.push(_INTL("[Steps to next cycle: {1}]", 256 - day_care.step_counter))
+      commands.push(_INTL("[距离下一周期还需的步数：{1}]", 256 - day_care.step_counter))
       cmd_window.commands = commands
       need_refresh = false
     end
@@ -311,7 +311,7 @@ def pbDebugDayCare
                          [_INTL("收集蛋"), _INTL("清除蛋"), _INTL("取消")], 3)
           when 0   # Collect egg
             if $player.party_full?
-              pbMessage(_INTL("队伍已满，无法领取彩蛋。"))
+              pbMessage(_INTL("队伍已满，无法领取蛋。"))
             else
               DayCare.collect_egg
               pbMessage(_INTL("收集了{1}颗蛋。", $player.last_party.speciesName))
@@ -342,7 +342,7 @@ def pbDebugDayCare
         params = ChooseNumberParams.new
         params.setDefaultValue(day_care.step_counter)
         params.setRange(1, 256)
-        new_counter = pbMessageChooseNumber(_INTL("设置直到下一个周期的步骤 (1-256)。"), params)
+        new_counter = pbMessageChooseNumber(_INTL("设置距离下一个周期的步数（1-256）。"), params)
         if new_counter != 256 - day_care.step_counter
           day_care.step_counter = 256 - new_counter
           need_refresh = true
@@ -352,14 +352,14 @@ def pbDebugDayCare
       slot = day_care[cmd]
       if slot.filled?
         pkmn = slot.pokemon
-        msg = _INTL("费用：${1}", slot.cost)
+        msg = _INTL("费用：{1}", slot.cost)
         if pkmn.level < GameData::GrowthRate.max_level
           end_exp = pkmn.growth_rate.minimum_exp_for_level(pkmn.level + 1)
-          msg += "\n" + _INTL("进入下一级别的步骤：{1}", end_exp - pkmn.exp)
+          msg += "\n" + _INTL("距离下一等级还需的步数：{1}", end_exp - pkmn.exp)
         end
         # Show level change and cost
         case pbMessage("\\ts[]" + msg,
-                       [_INTL("总结"), _INTL("撤回"), _INTL("取消")], 3)
+                       [_INTL("概要"), _INTL("取回"), _INTL("取消")], 3)
         when 0   # Summary
           pbFadeOutIn do
             UI::PokemonSummary.new(pkmn).main
@@ -442,22 +442,22 @@ class SpriteWindow_DebugRoamers < Window_DrawableCommand
     statusWidth = rect.width * 50 / 100
     if index == self.itemCount - 2
       # Advance roaming
-      self.shadowtext(_INTL("[All roam to new locations]"), rect.x, rect.y, nameWidth, rect.height)
+      self.shadowtext(_INTL("[全部迁移到新地点]"), rect.x, rect.y, nameWidth, rect.height)
     elsif index == self.itemCount - 1
       # Advance roaming
       self.shadowtext(_INTL("[清除所有当前漫游者位置]"), rect.x, rect.y, nameWidth, rect.height)
     else
       pkmn = Settings::ROAMING_SPECIES[index]
-      name = GameData::Species.get(pkmn[:species]).name + " (Lv. #{pkmn[:level]})"
+      name = _INTL("{1}（等级 {2}）", GameData::Species.get(pkmn[:species]).name, pkmn[:level])
       status = ""
       statuscolor = 0
       if !pkmn[:game_switch] || pkmn[:game_switch] <= 0 || $game_switches[pkmn[:game_switch]]
         status = $PokemonGlobal.roamPokemon[index]
         if status == true
           if $PokemonGlobal.roamPokemonCaught[index]
-            status = "[CAUGHT]"
+            status = _INTL("[已捕获]")
           else
-            status = "[DEFEATED]"
+            status = _INTL("[已击败]")
           end
           statuscolor = 1
         else
@@ -465,14 +465,14 @@ class SpriteWindow_DebugRoamers < Window_DrawableCommand
           curmap = $PokemonGlobal.roamPosition[index]
           if curmap
             mapinfos = pbLoadMapInfos
-            status = "[ROAMING][#{curmap}: #{mapinfos[curmap].name}]"
+            status = _INTL("[漫游中][{1}：{2}]", curmap, mapinfos[curmap].name)
           else
-            status = "[ROAMING][map not set]"
+            status = _INTL("[漫游中][未设置地图]")
           end
           statuscolor = 2
         end
       else
-        status = "[NOT ROAMING][Switch #{pkmn[:game_switch]} is off]"
+        status = _INTL("[未漫游][开关 {1} 已关闭]", pkmn[:game_switch])
       end
       self.shadowtext(name, rect.x, rect.y, nameWidth, rect.height)
       self.shadowtext(status, rect.x + nameWidth, rect.y, statusWidth, rect.height, 1, statuscolor)
@@ -731,7 +731,7 @@ def pbDebugFixInvalidTiles
     end
     next if map_errors == 0
     # Map was changed; save it
-    Console.echoln_li(_INTL("{1} error tile(s) found on map {2}: {3}.", map_errors, id, mapData.mapinfos[id].name))
+    Console.echoln_li(_INTL("在地图 {2}（{3}）上发现了 {1} 个无效图块。", map_errors, id, mapData.mapinfos[id].name))
     total_errors += map_errors
     num_error_maps += 1
     mapData.saveMap(id)
@@ -742,9 +742,9 @@ def pbDebugFixInvalidTiles
   else
     echoln ""
     Console.echo_h2(_INTL("完成。发现并修复了 {1} 个错误。", total_errors), text: :green)
-    Console.echo_warn(_INTL("RMXP 数据已更改。立即关闭 RMXP，而不保存以确保应用更改。"))
+    Console.echo_warn(_INTL("RMXP 数据已更改。请立即关闭 RMXP，并且不要保存，以确保更改生效。"))
     echoln ""
-    pbMessage(_INTL("{1} error(s) were found across {2} map(s) and fixed.", total_errors, num_error_maps))
+    pbMessage(_INTL("共在 {2} 张地图上发现并修复了 {1} 个错误。", total_errors, num_error_maps))
     pbMessage(_INTL("关闭 RPG Maker XP 以确保正确应用更改。"))
   end
 end

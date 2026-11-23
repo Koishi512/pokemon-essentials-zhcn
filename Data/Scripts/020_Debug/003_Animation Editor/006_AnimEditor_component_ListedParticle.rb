@@ -287,13 +287,13 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
   def group_name(group)
     return {
       :position_group               => _INTL("位置"),
-      :transformation_group         => _INTL("转型"),
+      :transformation_group         => _INTL("变换"),
       :appearance_group             => _INTL("外观"),
-      :mask_group                   => _INTL("位图蒙版"),
-      :second_layer_group           => _INTL("第二层"),
+      :mask_group                   => _INTL("蒙版"),
+      :second_layer_group           => _INTL("第二图层"),
       :emitter_group                => _INTL("发射器"),
-      :emitted_spawn_location_group => _INTL("发射的生成位置"),
-      :emitted_auto_movement_group  => _INTL("发射自动机芯"),
+      :emitted_spawn_location_group => _INTL("发射生成位置"),
+      :emitted_auto_movement_group  => _INTL("自动移动"),
       :emitted_modifiers_group      => _INTL("发射修饰符")
     }[group] || group.to_s.capitalize
   end
@@ -649,7 +649,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
     arrow = 0   # 0 = no arrow, 1 = collapsed arrow, 2 = expanded arrow
     draw_box = true
     bg_color = get_color_of(:property_background)
-    text = "Unnamed"
+    text = _INTL("未命名")
     groups = (is_emitter?) ? EMITTER_PROPERTY_GROUPS : PROPERTY_GROUPS
     if row == :main
       level = 0
@@ -659,14 +659,14 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
         arrow = (@groups_expanded[row]) ? 2 : 1
         bg_color = focus_color(@particle[:focus])
       end
-      text = @particle[:name] || "Unnamed"
+      text = @particle[:name] || _INTL("未命名")
     elsif groups.keys.include?(row)
       level = 1
       arrow = (@groups_expanded[row]) ? 2 : 1
       draw_box = false
       text = group_name(row)
     else   # Properties
-      text = GameData::Animation.property_display_name(row) + ":"
+      text = GameData::Animation.property_display_name(row) + "："
     end
     box_x = LIST_BOX_TOP_LEVEL_X + (LIST_BOX_INDENT_X * level)
     # Draw box
@@ -782,9 +782,9 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
                                         GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[:tone])
     when :blending, :blending2, :mask_blending
       vals = {
-        0 => _INTL("None"),
-        1 => _INTL("Add"),
-        2 => _INTL("Sub")
+        0 => _INTL("无"),
+        1 => _INTL("加算"),
+        2 => _INTL("减算")
       }
       ctrl = UIControls::DropdownList.new(ctrl_width, ctrl_height, @list_viewport, vals, 0)
     else
@@ -793,7 +793,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
         default = GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[row] || 0
         ctrl = UIControls::FittedNumberTextBox.new(ctrl_width, ctrl_height, @list_viewport, *vals, default)
       else
-        raise _INTL("Couldn't decide what kind of control to make for property {1}.", row)
+        raise _INTL("无法确定为属性 {1} 创建哪种控件。", row)
       end
     end
     if ctrl

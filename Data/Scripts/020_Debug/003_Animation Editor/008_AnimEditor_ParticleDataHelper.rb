@@ -543,18 +543,18 @@ module AnimationEditor::ParticleDataHelper
     ret = ""
     case property
     when :user_cry
-      ret += _INTL("[[User's cry]]")
+      ret += _INTL("[[使用者的叫声]]")
     when :target_cry
-      ret += _INTL("[[Target's cry]]")
+      ret += _INTL("[[目标的叫声]]")
     when :se
       ret += value[3]
     else
       raise _INTL("发现 SE 粒子的未处理属性 {1}。", property)
     end
     volume = (property == :se) ? value[4] : value[3]
-    ret += " " + _INTL("(volume: {1})", volume) if volume && volume != 100
+    ret += " " + _INTL("（音量：{1}）", volume) if volume && volume != 100
     pitch = (property == :se) ? value[5] : value[4]
-    ret += " " + _INTL("(pitch: {1})", pitch) if pitch && pitch != 100
+    ret += " " + _INTL("（音调：{1}）", pitch) if pitch && pitch != 100
     return ret
   end
 

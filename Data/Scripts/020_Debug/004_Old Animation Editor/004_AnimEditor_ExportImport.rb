@@ -72,7 +72,7 @@ module BattleAnimationEditor
         graphic = animations[animations.selected].graphic
         graphic = "Graphics/Animations/#{graphic}"
         if graphic && graphic != "" && !FileTest.image_exist?(graphic)
-          pbMessage(_INTL("找不到动画文件{1}。无论如何，动画都会加载。", graphic))
+          pbMessage(_INTL("找不到动画图像 {1}。无论如何，动画都会加载。", graphic))
         end
         canvas.loadAnimation(animations[animations.selected])
         animwin.animbitmap = canvas.animbitmap
@@ -145,6 +145,6 @@ module BattleAnimationEditor
       save_data(animations, "Data/PkmnAnimations.rxdata")
       $game_temp.battle_animations_data = nil
     end
-    pbMessage(_INTL("{1} animations converted to new format.", count))
+    pbMessage(_INTL("已将 {1} 个动画转换为新格式。", count))
   end
 end

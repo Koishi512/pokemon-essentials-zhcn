@@ -993,14 +993,14 @@ module BattleAnimationEditor
       @canvas = canvas
       @oldname = nil
       @window = Window_UnformattedTextPokemon.newWithSize(
-        _INTL("姓名：{1}", @canvas.animation.name), x, y, width, height, viewport
+        _INTL("名称：{1}", @canvas.animation.name), x, y, width, height, viewport
       )
     end
 
     def viewport=(value); @window.viewport = value; end
 
     def update
-      newtext = _INTL("姓名：{1}", @canvas.animation.name)
+      newtext = _INTL("名称：{1}", @canvas.animation.name)
       if @oldname != newtext
         @window.text = newtext
         @oldname = newtext
