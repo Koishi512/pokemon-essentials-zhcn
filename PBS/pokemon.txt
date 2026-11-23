@@ -231,7 +231,7 @@ Color = Blue
 Shape = BipedalTail
 Habitat = WatersEdge
 Category = 甲壳
-Pokedex = 甲壳上的喷射口能够精准地瞄准目标。打出的水弹可以命中５０米外的空罐子。
+Pokedex = 甲壳上的喷射口能够精准地瞄准目标。打出的水弹可以命中50米外的空罐子。
 Generation = 1
 #-------------------------------
 [CATERPIE]
@@ -307,7 +307,7 @@ Color = White
 Shape = MultiWinged
 Habitat = Forest
 Category = 蝴蝶
-Pokedex = 寻找美味花蜜的能力非常优秀，会从离家１０公里外盛开的花朵上采回花蜜。
+Pokedex = 寻找美味花蜜的能力非常优秀，会从离家10公里外盛开的花朵上采回花蜜。
 Generation = 1
 WildItemUncommon = SILVERPOWDER
 #-------------------------------
@@ -543,7 +543,7 @@ Color = Brown
 Shape = Winged
 Habitat = RoughTerrain
 Category = 小鸟
-Pokedex = 响亮的叫声可以传到１公里之外。到处都能听到高亢的声音时，就是它在通知伙伴们有危险的信号。
+Pokedex = 响亮的叫声可以传到1公里之外。到处都能听到高亢的声音时，就是它在通知伙伴们有危险的信号。
 Generation = 1
 WildItemUncommon = SHARPBEAK
 Evolution = FEAROW,Level,20
@@ -1099,7 +1099,7 @@ Color = Purple
 Shape = Winged
 Habitat = Cave
 Category = 蝙蝠
-Pokedex = 会用４颗尖牙咬住对手吸食血液。在没有月亮的漆黑夜晚，会频繁地飞来飞去袭击人和宝可梦。
+Pokedex = 会用4颗尖牙咬住对手吸食血液。在没有月亮的漆黑夜晚，会频繁地飞来飞去袭击人和宝可梦。
 Generation = 1
 Evolution = CROBAT,Happiness
 #-------------------------------
@@ -1399,7 +1399,7 @@ Color = Yellow
 Shape = Quadruped
 Habitat = Urban
 Category = 暹罗猫
-Pokedex = ６根粗硬胡须的作用是通过感知空气流动来判断周围的情况。胡须被抓住后就会变得温顺起来。
+Pokedex = 6根粗硬胡须的作用是通过感知空气流动来判断周围的情况。胡须被抓住后就会变得温顺起来。
 Generation = 1
 WildItemUncommon = QUICKCLAW
 #-------------------------------
@@ -1557,7 +1557,7 @@ Color = Brown
 Shape = Quadruped
 Habitat = Grassland
 Category = 传说
-Pokedex = 据说它是一个昼夜能跑上１００００公里距离的快速宝可梦。体内的熊熊火焰会化为它的力量。
+Pokedex = 据说它是一个昼夜能跑上10000公里距离的快速宝可梦。体内的熊熊火焰会化为它的力量。
 Generation = 1
 #-------------------------------
 [POLIWAG]
@@ -1664,7 +1664,7 @@ Color = Brown
 Shape = BipedalTail
 Habitat = Urban
 Category = 念力
-Pokedex = 每天要睡上１８个小时。即使醒着的时候也会保持坐姿，用瞬间移动来移动身体。
+Pokedex = 每天要睡上18个小时。即使醒着的时候也会保持坐姿，用瞬间移动来移动身体。
 Generation = 1
 WildItemUncommon = TWISTEDSPOON
 Evolution = KADABRA,Level,16
@@ -2065,7 +2065,7 @@ Color = Yellow
 Shape = Quadruped
 Habitat = Grassland
 Category = 火马
-Pokedex = 虽然平时会很悠闲地在原野上到处乱跑，但一旦认真起来，鬃毛上的火焰便会燃烧，会以２４０公里的时速开始奔跑。
+Pokedex = 虽然平时会很悠闲地在原野上到处乱跑，但一旦认真起来，鬃毛上的火焰便会燃烧，会以240公里的时速开始奔跑。
 Generation = 1
 #-------------------------------
 [SLOWPOKE]
@@ -2091,7 +2091,7 @@ Color = Pink
 Shape = Quadruped
 Habitat = WatersEdge
 Category = 憨憨
-Pokedex = 会把尾巴放进河里钓食物，但钓着钓着就会忘记自己在做什么，然后就会躺在河边直至１天结束。
+Pokedex = 会把尾巴放进河里钓食物，但钓着钓着就会忘记自己在做什么，然后就会躺在河边直至1天结束。
 Generation = 1
 WildItemUncommon = LAGGINGTAIL
 Evolution = SLOWBRO,Level,37
@@ -2704,7 +2704,7 @@ Color = Pink
 Shape = MultiBody
 Habitat = Forest
 Category = 蛋
-Pokedex = ６只情同手足的蛋会互相吸引，一起咕噜噜地滚动。如果蛋壳上的裂纹增多了，就表示它快进化了。
+Pokedex = 6只情同手足的蛋会互相吸引，一起咕噜噜地滚动。如果蛋壳上的裂纹增多了，就表示它快进化了。
 Generation = 1
 WildItemUncommon = PSYCHICSEED
 Evolution = EXEGGUTOR,Item,LEAFSTONE
@@ -3051,7 +3051,7 @@ Color = Brown
 Shape = BipedalTail
 Habitat = Grassland
 Category = 亲子
-Pokedex = 就算只有１只袋兽宝宝在玩，也绝对不要去捉它哦。因为那样在它附近的母亲会非常生气。
+Pokedex = 就算只有1只袋兽宝宝在玩，也绝对不要去捉它哦。因为那样在它附近的母亲会非常生气。
 Generation = 1
 #-------------------------------
 [HORSEA]
@@ -3618,7 +3618,7 @@ Color = Red
 Shape = Quadruped
 Habitat = Urban
 Category = 火
-Pokedex = 蓬松的体毛有着向空气中散热，让过热的体温下降的功能。体温最高能上升至９００度。
+Pokedex = 蓬松的体毛有着向空气中散热，让过热的体温下降的功能。体温最高能上升至900度。
 Generation = 1
 #-------------------------------
 [PORYGON]
@@ -3722,7 +3722,7 @@ Color = Brown
 Shape = Insectoid
 Habitat = Sea
 Category = 甲壳
-Pokedex = 虽然是从化石中复活的宝可梦，但偶尔也能发现存活至今的化石盔。它的样子在３亿年中丝毫未变。
+Pokedex = 虽然是从化石中复活的宝可梦，但偶尔也能发现存活至今的化石盔。它的样子在3亿年中丝毫未变。
 Generation = 1
 Evolution = KABUTOPS,Level,40
 #-------------------------------
@@ -3961,7 +3961,7 @@ Color = Brown
 Shape = BipedalTail
 Habitat = WatersEdge
 Category = 龙
-Pokedex = 用１６小时就能绕地球１周。如果发现有在暴风雨中遇难的船只，就会将其引导到陆地边上的善良的宝可梦。
+Pokedex = 用16小时就能绕地球1周。如果发现有在暴风雨中遇难的船只，就会将其引导到陆地边上的善良的宝可梦。
 Generation = 1
 WildItemUncommon = DRAGONSCALE
 #-------------------------------
@@ -4068,7 +4068,7 @@ Color = Green
 Shape = Quadruped
 Habitat = Grassland
 Category = 叶子
-Pokedex = 在脖子周围那些圆圆卷起的叶子中都长有１个小树芽。那香味会让人焕发活力。
+Pokedex = 在脖子周围那些圆圆卷起的叶子中都长有1个小树芽。那香味会让人焕发活力。
 Generation = 2
 Evolution = MEGANIUM,Level,32
 #-------------------------------
@@ -4432,7 +4432,7 @@ Color = Green
 Shape = Insectoid
 Habitat = Forest
 Category = 吐丝
-Pokedex = 用丝做成的陷阱是它的第２条神经网络。据说仅凭丝上传来的细微振动，它就能判断出猎物的种类。
+Pokedex = 用丝做成的陷阱是它的第2条神经网络。据说仅凭丝上传来的细微振动，它就能判断出猎物的种类。
 Generation = 2
 Evolution = ARIADOS,Level,22
 #-------------------------------
@@ -4982,7 +4982,7 @@ Color = Green
 Shape = BipedalTail
 Habitat = Grassland
 Category = 棉草
-Pokedex = 气温超过１８度就会开花。开花方式会随温度的不同而变化，所以有时也会用它来代替温度计。
+Pokedex = 气温超过18度就会开花。开花方式会随温度的不同而变化，所以有时也会用它来代替温度计。
 Generation = 2
 Evolution = JUMPLUFF,Level,27
 #-------------------------------
@@ -5113,7 +5113,7 @@ Color = Red
 Shape = MultiWinged
 Habitat = Forest
 Category = 薄翼
-Pokedex = 不转动眼珠就可以３６０度环视。擅长急停和转向，很快便能将它盯上的猎物追得走投无路。
+Pokedex = 不转动眼珠就可以360度环视。擅长急停和转向，很快便能将它盯上的猎物追得走投无路。
 Generation = 2
 WildItemUncommon = WIDELENS
 Evolution = YANMEGA,HasMove,ANCIENTPOWER
@@ -5505,7 +5505,7 @@ Color = Gray
 Shape = Serpentine
 Habitat = Cave
 Category = 铁蛇
-Pokedex = 在地下住得比大岩蛇还深。会朝着地球的中心挖掘，有时洞深可达１公里。
+Pokedex = 在地下住得比大岩蛇还深。会朝着地球的中心挖掘，有时洞深可达1公里。
 Generation = 2
 WildItemUncommon = METALCOAT
 #-------------------------------
@@ -6146,7 +6146,7 @@ Pokedex = 拥有能轻松将翻斗车拉动的力量。像岩石一样坚硬的�
 Generation = 2
 #-------------------------------
 [PORYGON2]
-Name = 多边兽２型
+Name = 多边兽2型
 Types = NORMAL
 BaseStats = 85,80,90,60,105,95
 GenderRatio = Genderless
@@ -6219,7 +6219,7 @@ Color = White
 Shape = BipedalTail
 Habitat = Urban
 Category = 画画
-Pokedex = 会用尾巴前端渗出的体液在领地周围画上自己的标记。至今已发现了５０００种标记。
+Pokedex = 会用尾巴前端渗出的体液在领地周围画上自己的标记。至今已发现了5000种标记。
 Generation = 2
 #-------------------------------
 [TYROGUE]
@@ -6382,7 +6382,7 @@ Color = Pink
 Shape = BipedalTail
 Habitat = Grassland
 Category = 奶牛
-Pokedex = 每天可以产出２０升的牛奶。甜甜的牛奶大人小孩都非常喜欢。喝不惯牛奶的人会将其制成酸奶食用。
+Pokedex = 每天可以产出20升的牛奶。甜甜的牛奶大人小孩都非常喜欢。喝不惯牛奶的人会将其制成酸奶食用。
 Generation = 2
 WildItemCommon = MOOMOOMILK
 WildItemUncommon = MOOMOOMILK
@@ -8323,7 +8323,7 @@ Color = Purple
 Shape = Bipedal
 Habitat = Forest
 Category = 萤火虫
-Pokedex = 会利用甜甜的香气诱导电萤虫在夜空中描绘２００种以上的图形。
+Pokedex = 会利用甜甜的香气诱导电萤虫在夜空中描绘200种以上的图形。
 Generation = 3
 WildItemUncommon = BRIGHTPOWDER
 #-------------------------------
@@ -8566,7 +8566,7 @@ Color = Red
 Shape = Quadruped
 Habitat = Mountain
 Category = 喷火
-Pokedex = 平时生活在火山口。它背上的驼峰每１０年都会大爆发一次，便因而闻名。
+Pokedex = 平时生活在火山口。它背上的驼峰每10年都会大爆发一次，便因而闻名。
 Generation = 3
 #-------------------------------
 [TORKOAL]
@@ -9970,7 +9970,7 @@ Color = Blue
 Shape = MultiBody
 Habitat = RoughTerrain
 Category = 铁足
-Pokedex = 由金属怪组合生成。拥有４个大脑的巨金怪有着堪比超级计算机的智商。
+Pokedex = 由金属怪组合生成。拥有4个大脑的巨金怪有着堪比超级计算机的智商。
 Generation = 3
 WildItemUncommon = METALCOAT
 #-------------------------------
@@ -10226,7 +10226,7 @@ Weight = 60.8
 Color = Red
 Shape = Bipedal
 Habitat = Rare
-Category = ＤＮＡ
+Category = DNA
 Pokedex = 当宇宙病毒被激光照射时，发生突变而形成的宝可梦。身体的形状很适合快速移动。
 Generation = 3
 Flags = Mythical
@@ -10453,7 +10453,7 @@ Weight = 84.5
 Color = Blue
 Shape = BipedalTail
 Category = 皇帝
-Pokedex = 从嘴部延伸出的３只角是实力的象征。领袖的角是最大的。
+Pokedex = 从嘴部延伸出的3只角是实力的象征。领袖的角是最大的。
 Generation = 4
 #-------------------------------
 [STARLY]
@@ -10781,7 +10781,7 @@ Weight = 31.5
 Color = Blue
 Shape = BipedalTail
 Category = 头锤
-Pokedex = 栖息在大约１亿年前的古代密林中。头盖骨像铁一样坚硬。
+Pokedex = 栖息在大约1亿年前的古代密林中。头盖骨像铁一样坚硬。
 Generation = 4
 Evolution = RAMPARDOS,Level,30
 #-------------------------------
@@ -10831,7 +10831,7 @@ Weight = 57.0
 Color = Gray
 Shape = Quadruped
 Category = 护盾
-Pokedex = 栖息在约１亿年前的密林里的宝可梦。脸上的皮肤异常坚硬。
+Pokedex = 栖息在约1亿年前的密林里的宝可梦。脸上的皮肤异常坚硬。
 Generation = 4
 Evolution = BASTIODON,Level,30
 #-------------------------------
@@ -10961,7 +10961,7 @@ Weight = 5.5
 Color = Yellow
 Shape = MultiBody
 Category = 幼蜂
-Pokedex = ３只合为一只的宝可梦。一直在为蜂女王辛勤搬运甜甜的花蜜。
+Pokedex = 3只合为一只的宝可梦。一直在为蜂女王辛勤搬运甜甜的花蜜。
 Generation = 4
 WildItemUncommon = HONEY
 Evolution = VESPIQUEN,LevelFemale,21
@@ -11140,7 +11140,7 @@ Weight = 6.3
 Color = Purple
 Shape = Serpentine
 Category = 海兔
-Pokedex = 颜色和样子会因栖息地不同而有所不同。在神奥地区确认到有２种不同的样子。
+Pokedex = 颜色和样子会因栖息地不同而有所不同。在神奥地区确认到有2种不同的样子。
 Generation = 4
 Flags = InheritFormFromMother
 Evolution = GASTRODON,Level,30
@@ -11192,7 +11192,7 @@ Weight = 20.3
 Color = Purple
 Shape = BipedalTail
 Category = 长尾
-Pokedex = 能用２根尾巴灵活地剥掉树果的壳来进食。真正的手臂几乎不怎么用了。
+Pokedex = 能用2根尾巴灵活地剥掉树果的壳来进食。真正的手臂几乎不怎么用了。
 Generation = 4
 #-------------------------------
 [DRIFLOON]
@@ -11440,7 +11440,7 @@ Weight = 19.2
 Color = Purple
 Shape = Quadruped
 Category = 臭鼬
-Pokedex = 从屁屁喷出具有强烈臭味的液体保护自己。气味２４小时内都不会消散。
+Pokedex = 从屁屁喷出具有强烈臭味的液体保护自己。气味24小时内都不会消散。
 Generation = 4
 Evolution = SKUNTANK,Level,34
 #-------------------------------
@@ -11465,7 +11465,7 @@ Weight = 38.0
 Color = Purple
 Shape = Quadruped
 Category = 臭鼬
-Pokedex = 从尾巴尖端喷出带有恶臭的液体进行攻击。喷射距离能达到５０米以上。
+Pokedex = 从尾巴尖端喷出带有恶臭的液体进行攻击。喷射距离能达到50米以上。
 Generation = 4
 #-------------------------------
 [BRONZOR]
@@ -11516,7 +11516,7 @@ Weight = 187.0
 Color = Green
 Shape = HeadArms
 Category = 铜钟
-Pokedex = 沉睡了２０００多年的青铜钟在工地被挖掘出来，成为了一件大新闻。
+Pokedex = 沉睡了2000多年的青铜钟在工地被挖掘出来，成为了一件大新闻。
 Generation = 4
 WildItemUncommon = METALCOAT
 #-------------------------------
@@ -11647,7 +11647,7 @@ Weight = 108.0
 Color = Purple
 Shape = HeadBase
 Category = 封印
-Pokedex = １０８个魂魄聚集在一起生成的宝可梦。被绑缚在楔石的裂缝里。
+Pokedex = 108个魂魄聚集在一起生成的宝可梦。被绑缚在楔石的裂缝里。
 Generation = 4
 #-------------------------------
 [GIBLE]
@@ -11979,7 +11979,7 @@ Weight = 27.0
 Color = Green
 Shape = Multiped
 Category = 捕虫
-Pokedex = 先用甜香的唾液引诱猎物，然后用大颚大口地嚼。要花１整天吃掉猎物。
+Pokedex = 先用甜香的唾液引诱猎物，然后用大颚大口地嚼。要花1整天吃掉猎物。
 Generation = 4
 #-------------------------------
 [FINNEON]
@@ -12029,7 +12029,7 @@ Weight = 24.0
 Color = Blue
 Shape = Finned
 Category = 霓虹
-Pokedex = 生活在深深的海底。让４片鳍的花纹发光，以此引诱猎物。
+Pokedex = 生活在深深的海底。让4片鳍的花纹发光，以此引诱猎物。
 Generation = 4
 #-------------------------------
 [MANTYKE]
@@ -12054,7 +12054,7 @@ Weight = 65.0
 Color = Blue
 Shape = Winged
 Category = 风筝
-Pokedex = ２根触角能够感受到海水细微的流动。是种很亲近人的宝可梦。
+Pokedex = 2根触角能够感受到海水细微的流动。是种很亲近人的宝可梦。
 Generation = 4
 Evolution = MANTINE,HasInParty,REMORAID
 #-------------------------------
@@ -12131,7 +12131,7 @@ Weight = 34.0
 Color = Black
 Shape = BipedalTail
 Category = 钩爪
-Pokedex = 生活在寒冷地方的宝可梦。４到５只组成一个团队，以出色的合作来追捕猎物。
+Pokedex = 生活在寒冷地方的宝可梦。4到5只组成一个团队，以出色的合作来追捕猎物。
 Generation = 4
 WildItemUncommon = QUICKCLAW
 #-------------------------------
@@ -12279,7 +12279,7 @@ Weight = 68.0
 Color = Red
 Shape = BipedalTail
 Category = 爆炎
-Pokedex = 从手臂前端发射出摄氏２０００度的火球。以火山口作为自己的住所。
+Pokedex = 从手臂前端发射出摄氏2000度的火球。以火山口作为自己的住所。
 Generation = 4
 WildItemUncommon = MAGMARIZER
 #-------------------------------
@@ -12425,7 +12425,7 @@ Weight = 291.0
 Color = Brown
 Shape = Quadruped
 Category = 双牙
-Pokedex = 在１万年前的地层发现了被冰封的象牙猪，而且还因苏醒过来而引发了骚动。
+Pokedex = 在1万年前的地层发现了被冰封的象牙猪，而且还因苏醒过来而引发了骚动。
 Generation = 4
 #-------------------------------
 [PORYGONZ]
@@ -12497,7 +12497,7 @@ Weight = 340.0
 Color = Gray
 Shape = MultiBody
 Category = 罗盘
-Pokedex = 能用磁力自由地操纵被称为小朝北鼻的３个小部件。
+Pokedex = 能用磁力自由地操纵被称为小朝北鼻的3个小部件。
 Generation = 4
 WildItemUncommon = MAGNET
 #-------------------------------
@@ -12547,7 +12547,7 @@ Weight = 26.6
 Color = White
 Shape = HeadArms
 Category = 雪国
-Pokedex = 据说它会吐出零下５０度的气息冻结猎物，然后将其带到秘密的地方装饰起来。
+Pokedex = 据说它会吐出零下50度的气息冻结猎物，然后将其带到秘密的地方装饰起来。
 Generation = 4
 #-------------------------------
 [ROTOM]
@@ -12917,7 +12917,7 @@ Weight = 320.0
 Color = White
 Shape = Quadruped
 Category = 创造
-Pokedex = 神话里将它描述为用１０００只手创造了宇宙的宝可梦。
+Pokedex = 神话里将它描述为用1000只手创造了宇宙的宝可梦。
 Generation = 4
 Flags = Mythical
 #-------------------------------
@@ -13417,7 +13417,7 @@ Weight = 11.0
 Color = Red
 Shape = BipedalTail
 Category = 高温
-Pokedex = 生活在火山的洞穴里。头上的那丛毛发熊熊燃烧着，温度高达３００度。
+Pokedex = 生活在火山的洞穴里。头上的那丛毛发熊熊燃烧着，温度高达300度。
 Generation = 5
 Evolution = SIMISEAR,Item,FIRESTONE
 #-------------------------------
@@ -13692,7 +13692,7 @@ Weight = 18.0
 Color = Blue
 Shape = HeadLegs
 Category = 地幔
-Pokedex = １００年前的大地震时，从地裂中被发现。体内拥有能量核心。
+Pokedex = 100年前的大地震时，从地裂中被发现。体内拥有能量核心。
 Generation = 5
 WildItemCommon = EVERSTONE
 WildItemUncommon = HARDSTONE
@@ -13848,7 +13848,7 @@ Weight = 40.4
 Color = Gray
 Shape = Bipedal
 Category = 地底
-Pokedex = 在地下１００米掘出如迷宫般的巢穴。一不小心就会把地铁隧道凿穿。
+Pokedex = 在地下100米掘出如迷宫般的巢穴。一不小心就会把地铁隧道凿穿。
 Generation = 5
 #-------------------------------
 [AUDINO]
@@ -14724,7 +14724,7 @@ Weight = 16.5
 Color = Blue
 Shape = Quadruped
 Category = 古代龟
-Pokedex = 在大约１亿年前的海里游动。有时候会爬上陆地袭击猎物。
+Pokedex = 在大约1亿年前的海里游动。有时候会爬上陆地袭击猎物。
 Generation = 5
 Evolution = CARRACOSTA,Level,37
 #-------------------------------
@@ -15225,7 +15225,7 @@ Weight = 57.5
 Color = White
 Shape = MultiBody
 Category = 暴风雪
-Pokedex = 如果２个头同时发怒，就会从角上喷出猛烈的暴风雪。会用大雪掩埋四周。
+Pokedex = 如果2个头同时发怒，就会从角上喷出猛烈的暴风雪。会用大雪掩埋四周。
 Generation = 5
 WildItemCommon = NEVERMELTICE
 #-------------------------------
@@ -15432,7 +15432,7 @@ Weight = 33.0
 Color = White
 Shape = Multiped
 Category = 漂浮
-Pokedex = 用毒将猎物麻痹后，将其带到据说在海下８０００米深的住所。
+Pokedex = 用毒将猎物麻痹后，将其带到据说在海下8000米深的住所。
 Generation = 5
 Evolution = JELLICENT,Level,40
 #-------------------------------
@@ -15607,7 +15607,7 @@ Weight = 21.0
 Color = Gray
 Shape = MultiBody
 Category = 齿轮
-Pokedex = 通过２个身体的咬合旋转，制造出用以生存的能量。
+Pokedex = 通过2个身体的咬合旋转，制造出用以生存的能量。
 Generation = 5
 Evolution = KLANG,Level,38
 #-------------------------------
@@ -15753,7 +15753,7 @@ Weight = 9.0
 Color = Blue
 Shape = BipedalTail
 Category = 脑
-Pokedex = 据说它是来自于传闻５０年前有ＵＦＯ坠落的沙漠里。
+Pokedex = 据说它是来自于传闻50年前有UFO坠落的沙漠里。
 Generation = 5
 Evolution = BEHEEYEM,Level,42
 #-------------------------------
@@ -16505,7 +16505,7 @@ Weight = 160.0
 Color = Blue
 Shape = BipedalTail
 Category = 凶暴
-Pokedex = 双臂上的头是没有大脑的。用３个头把一切都吃光并破坏掉。
+Pokedex = 双臂上的头是没有大脑的。用3个头把一切都吃光并破坏掉。
 Generation = 5
 #-------------------------------
 [LARVESTA]
@@ -16530,7 +16530,7 @@ Weight = 28.8
 Color = White
 Shape = Insectoid
 Category = 火炬
-Pokedex = 栖息在火山脚下。从５只角喷出火焰，击退来袭的敌人。
+Pokedex = 栖息在火山脚下。从5只角喷出火焰，击退来袭的敌人。
 Generation = 5
 Evolution = VOLCARONA,Level,59
 #-------------------------------
@@ -16555,7 +16555,7 @@ Weight = 46.0
 Color = White
 Shape = MultiWinged
 Category = 太阳
-Pokedex = 战斗时，从６根翅膀到处飞撒火花鳞粉，把周围变成一片火海。
+Pokedex = 战斗时，从6根翅膀到处飞撒火花鳞粉，把周围变成一片火海。
 Generation = 5
 WildItemCommon = SILVERPOWDER
 WildItemUncommon = SILVERPOWDER
@@ -16933,7 +16933,7 @@ Weight = 90.0
 Color = Green
 Shape = BipedalTail
 Category = 刺铠
-Pokedex = 有着用身体撞击来弄翻５０吨重坦克的力量。会把自己当作护盾来保护伙伴。
+Pokedex = 有着用身体撞击来弄翻50吨重坦克的力量。会把自己当作护盾来保护伙伴。
 Generation = 6
 #-------------------------------
 [FENNEKIN]
@@ -17058,7 +17058,7 @@ Weight = 10.9
 Color = Blue
 Shape = Bipedal
 Category = 泡蛙
-Pokedex = 使用投掷被泡泡包着的小石头的招式。控制力很强，可以击中３０米外的空罐子。
+Pokedex = 使用投掷被泡泡包着的小石头的招式。控制力很强，可以击中30米外的空罐子。
 Generation = 6
 Evolution = GRENINJA,Level,36
 #-------------------------------
@@ -17334,7 +17334,7 @@ Weight = 81.5
 Color = Brown
 Shape = Quadruped
 Category = 王者
-Pokedex = 吐出摄氏６０００度的气息猛烈地威吓对手。雌性会保护群体中的孩子。
+Pokedex = 吐出摄氏6000度的气息猛烈地威吓对手。雌性会保护群体中的孩子。
 Generation = 6
 #-------------------------------
 [FLABEBE]
@@ -17641,7 +17641,7 @@ Weight = 4.5
 Color = Brown
 Shape = MultiBody
 Category = 刀剑
-Pokedex = 要抵挡住２把剑发出的复杂的连续攻击，即便是用剑高手也不可能。
+Pokedex = 要抵挡住2把剑发出的复杂的连续攻击，即便是用剑高手也不可能。
 Generation = 6
 Evolution = AEGISLASH,Item,DUSKSTONE
 #-------------------------------
@@ -17964,7 +17964,7 @@ Weight = 35.3
 Color = Blue
 Shape = Serpentine
 Category = 发射器
-Pokedex = 从钳子后面的喷管里喷出水，利用这个推进力以６０节的速度前进。
+Pokedex = 从钳子后面的喷管里喷出水，利用这个推进力以60节的速度前进。
 Generation = 6
 #-------------------------------
 [HELIOPTILE]
@@ -18014,7 +18014,7 @@ Weight = 21.0
 Color = Yellow
 Shape = BipedalTail
 Category = 发电
-Pokedex = 会张开颈伞发电。１只光电伞蜥就能制造出一栋高层建筑所必需的电。
+Pokedex = 会张开颈伞发电。1只光电伞蜥就能制造出一栋高层建筑所必需的电。
 Generation = 6
 #-------------------------------
 [TYRUNT]
@@ -18039,7 +18039,7 @@ Weight = 26.0
 Color = Brown
 Shape = BipedalTail
 Category = 幼君
-Pokedex = 大颚的破坏力可以嘎嘣嘎嘣地嚼坏汽车。栖息在１亿年前。
+Pokedex = 大颚的破坏力可以嘎嘣嘎嘣地嚼坏汽车。栖息在1亿年前。
 Generation = 6
 Evolution = TYRANTRUM,LevelDay,39
 #-------------------------------
@@ -18089,7 +18089,7 @@ Weight = 25.2
 Color = Blue
 Shape = Quadruped
 Category = 冻原
-Pokedex = 从１亿年前起就处于冰封状态的身体的一部分复活而来的古代宝可梦。
+Pokedex = 从1亿年前起就处于冰封状态的身体的一部分复活而来的古代宝可梦。
 Generation = 6
 Evolution = AURORUS,LevelNight,39
 #-------------------------------
@@ -18492,7 +18492,7 @@ Weight = 8.0
 Color = Purple
 Shape = Winged
 Category = 音波
-Pokedex = 如果被２０万赫兹的超音波照到，连强壮的摔角手也会头晕目眩，无法站立。
+Pokedex = 如果被20万赫兹的超音波照到，连强壮的摔角手也会头晕目眩，无法站立。
 Generation = 6
 Evolution = NOIVERN,Level,48
 #-------------------------------
@@ -18541,7 +18541,7 @@ Weight = 215.0
 Color = Blue
 Shape = Quadruped
 Category = 生命
-Pokedex = 据说，能够分享出永恒的生命。以树木的样子睡了１０００年后复活。
+Pokedex = 据说，能够分享出永恒的生命。以树木的样子睡了1000年后复活。
 Generation = 6
 Flags = Legendary
 #-------------------------------
@@ -18739,7 +18739,7 @@ Weight = 36.6
 Color = Brown
 Shape = Winged
 Category = 箭羽
-Pokedex = 搭弦射出收藏在翅膀里的箭羽。有着连前方１００米的小石头也能穿透的精度。
+Pokedex = 搭弦射出收藏在翅膀里的箭羽。有着连前方100米的小石头也能穿透的精度。
 Generation = 7
 #-------------------------------
 [LITTEN]
@@ -19326,7 +19326,7 @@ Weight = 8.0
 Color = Blue
 Shape = HeadBase
 Category = 非星
-Pokedex = 用头上的毒刺扎猎物。在其虚弱的时候，用１０条触手抓住，一击毙命。
+Pokedex = 用头上的毒刺扎猎物。在其虚弱的时候，用10条触手抓住，一击毙命。
 Generation = 7
 WildItemUncommon = POISONBARB
 Evolution = TOXAPEX,Level,38
@@ -19352,7 +19352,7 @@ Weight = 14.5
 Color = Blue
 Shape = Multiped
 Category = 非星
-Pokedex = 如果被超坏星的毒伤到，会遭受３天３夜的剧烈疼痛，即使得到救助，也会留下后遗症。
+Pokedex = 如果被超坏星的毒伤到，会遭受3天3夜的剧烈疼痛，即使得到救助，也会留下后遗症。
 Generation = 7
 WildItemUncommon = POISONBARB
 #-------------------------------
@@ -19482,7 +19482,7 @@ Weight = 1.5
 Color = Pink
 Shape = BipedalTail
 Category = 镰草
-Pokedex = 太阳升起后，就会展开４片叶子进行日光浴。会从头顶发出好闻的味道哦。
+Pokedex = 太阳升起后，就会展开4片叶子进行日光浴。会从头顶发出好闻的味道哦。
 Generation = 7
 WildItemUncommon = MIRACLESEED
 Evolution = LURANTIS,LevelDay,34
@@ -19867,7 +19867,7 @@ Weight = 108.0
 Color = Gray
 Shape = Bipedal
 Category = 装甲
-Pokedex = 用６条手臂灵活地战斗。平常就在深海的岩洞里好像冥想一般静静地生活。
+Pokedex = 用6条手臂灵活地战斗。平常就在深海的岩洞里好像冥想一般静静地生活。
 Generation = 7
 #-------------------------------
 [SANDYGAST]
@@ -20590,7 +20590,7 @@ Weight = 999.9
 Color = Green
 Shape = Bipedal
 Category = 发射
-Pokedex = 究极异兽的一种。从２条手臂喷出气体烧毁森林的样子已被确认无疑。
+Pokedex = 究极异兽的一种。从2条手臂喷出气体烧毁森林的样子已被确认无疑。
 Generation = 7
 Flags = UltraBeast
 #-------------------------------
@@ -20686,7 +20686,7 @@ Weight = 80.5
 Color = Gray
 Shape = Bipedal
 Category = 人造
-Pokedex = ５００多年前被制造出的人造宝可梦。理解人类的语言但不会说。
+Pokedex = 500多年前被制造出的人造宝可梦。理解人类的语言但不会说。
 Generation = 7
 Flags = Mythical
 #-------------------------------
@@ -20783,7 +20783,7 @@ Weight = 820.0
 Color = Gray
 Shape = Quadruped
 Category = 石墙
-Pokedex = 从究极之洞里出现。好像是复数的生命累积起来，形成了１只。
+Pokedex = 从究极之洞里出现。好像是复数的生命累积起来，形成了1只。
 Generation = 7
 Flags = UltraBeast
 #-------------------------------
@@ -20880,7 +20880,7 @@ Weight = 800.0
 Color = Gray
 Shape = Bipedal
 Category = 螺帽
-Pokedex = 因为拥有产出铁的力量而受到崇拜。不知为何，经过３０００年后突然苏醒了过来。
+Pokedex = 因为拥有产出铁的力量而受到崇拜。不知为何，经过3000年后突然苏醒了过来。
 Generation = 7
 Flags = Mythical
 #-------------------------------
@@ -21056,7 +21056,7 @@ Weight = 4.0
 Color = Blue
 Shape = Quadruped
 Category = 水蜥
-Pokedex = 害怕时流下的泪水中含有相当于１００颗洋葱的催泪成分，能让对手泪流不止。
+Pokedex = 害怕时流下的泪水中含有相当于100颗洋葱的催泪成分，能让对手泪流不止。
 Generation = 8
 Evolution = DRIZZILE,Level,16
 #-------------------------------
@@ -21584,7 +21584,7 @@ Weight = 12.0
 Color = Black
 Shape = Head
 Category = 煤炭
-Pokedex = 大约４００年前在煤矿坑中被人们发现。身体绝大部分的成分都和煤炭相同。
+Pokedex = 大约400年前在煤矿坑中被人们发现。身体绝大部分的成分都和煤炭相同。
 Generation = 8
 Evolution = CARKOL,Level,18
 #-------------------------------
@@ -21609,7 +21609,7 @@ Weight = 78.0
 Color = Black
 Shape = HeadLegs
 Category = 煤炭
-Pokedex = 能通过高速旋转自己的脚，以３０公里的时速奔跑。能喷出１０００度的火焰。
+Pokedex = 能通过高速旋转自己的脚，以30公里的时速奔跑。能喷出1000度的火焰。
 Generation = 8
 Evolution = COALOSSAL,Level,34
 #-------------------------------
@@ -21935,7 +21935,7 @@ Weight = 120.0
 Color = Red
 Shape = Multiped
 Category = 发热
-Pokedex = 发热时的体温大约有８００度。会像鞭子那样弯曲身体朝着敌人弹跳过去。
+Pokedex = 发热时的体温大约有800度。会像鞭子那样弯曲身体朝着敌人弹跳过去。
 Generation = 8
 #-------------------------------
 [CLOBBOPUS]
@@ -22087,7 +22087,7 @@ Weight = 4.8
 Color = Pink
 Shape = Bipedal
 Category = 肃静
-Pokedex = 会用头上的辫子攻击对手，让对方安静下来。破坏力强到能一击ＫＯ职业拳击手。
+Pokedex = 会用头上的辫子攻击对手，让对方安静下来。破坏力强到能一击KO职业拳击手。
 Generation = 8
 Evolution = HATTERENE,Level,42
 #-------------------------------
@@ -22424,7 +22424,7 @@ Weight = 62.0
 Color = Yellow
 Shape = MultiBody
 Category = 阵形
-Pokedex = ６只为一体的宝可梦。惯于团队行动，会一边变换阵形一边战斗。
+Pokedex = 6只为一体的宝可梦。惯于团队行动，会一边变换阵形一边战斗。
 Generation = 8
 #-------------------------------
 [PINCURCHIN]
@@ -22449,7 +22449,7 @@ Weight = 1.0
 Color = Purple
 Shape = Multiped
 Category = 海胆
-Pokedex = 每根刺里都储存着电力。即使是折断的刺也至少能连续放电３小时。
+Pokedex = 每根刺里都储存着电力。即使是折断的刺也至少能连续放电3小时。
 Generation = 8
 #-------------------------------
 [SNOM]
@@ -22625,7 +22625,7 @@ Weight = 100.0
 Color = Yellow
 Shape = Quadruped
 Category = 像铜
-Pokedex = 能轻松举起重达５吨的货物的大力士宝可梦。会用鼻子挖地。
+Pokedex = 能轻松举起重达5吨的货物的大力士宝可梦。会用鼻子挖地。
 Generation = 8
 WildItemUncommon = LAGGINGTAIL
 Evolution = COPPERAJAH,Level,34
@@ -22824,7 +22824,7 @@ Weight = 11.0
 Color = Green
 Shape = HeadArms
 Category = 保姆
-Pokedex = 飞行速度为每小时２００公里。与多龙梅西亚一起战斗，到它进化为止都会细心照顾。
+Pokedex = 飞行速度为每小时200公里。与多龙梅西亚一起战斗，到它进化为止都会细心照顾。
 Generation = 8
 Evolution = DRAGAPULT,Level,60
 #-------------------------------
@@ -23076,7 +23076,7 @@ Weight = 800.0
 Color = White
 Shape = Quadruped
 Category = 烈马
-Pokedex = 拥有十分惊人的怪力。戴在脸上的冰之面罩硬度是钻石的１００倍。
+Pokedex = 拥有十分惊人的怪力。戴在脸上的冰之面罩硬度是钻石的100倍。
 Generation = 8
 Flags = Legendary
 #-------------------------------
@@ -23650,7 +23650,7 @@ Weight = 1.0
 Color = Gray
 Shape = Insectoid
 Category = 蝗虫
-Pokedex = 总是将第３双脚折起来。拥有陷入危机时能够跳跃１０米以上的脚力。
+Pokedex = 总是将第3双脚折起来。拥有陷入危机时能够跳跃10米以上的脚力。
 Generation = 9
 Evolution = LOKIX,Level,24
 #-------------------------------
@@ -24202,7 +24202,7 @@ Weight = 38.6
 Color = Yellow
 Shape = Winged
 Category = 军舰鸟
-Pokedex = 通过膨胀喉囊来增强电力。乘着风可以在１天内就飞上７００公里。
+Pokedex = 通过膨胀喉囊来增强电力。乘着风可以在1天内就飞上700公里。
 Generation = 9
 #-------------------------------
 [MASCHIFF]
@@ -24552,7 +24552,7 @@ Weight = 1.5
 Color = Yellow
 Shape = HeadLegs
 Category = 褶边
-Pokedex = 由腹部的褶边放射出的精神力量能让它浮在脚尖距离地面仅有１厘米的空中。
+Pokedex = 由腹部的褶边放射出的精神力量能让它浮在脚尖距离地面仅有1厘米的空中。
 Generation = 9
 Evolution = ESPATHRA,Level,35
 #-------------------------------
@@ -24677,7 +24677,7 @@ Weight = 1.8
 Color = White
 Shape = HeadBase
 Category = 糯鳗
-Pokedex = 就算身处２０米之外，它也能嗅出轻身鳕散发出的气味，然后躲进沙子里藏身。
+Pokedex = 就算身处20米之外，它也能嗅出轻身鳕散发出的气味，然后躲进沙子里藏身。
 Generation = 9
 Evolution = WUGTRIO,Level,26
 #-------------------------------
@@ -24826,7 +24826,7 @@ Weight = 120.0
 Color = Gray
 Shape = HeadLegs
 Category = 多汽缸
-Pokedex = 在增加到８个之多的汽缸里引爆混有毒素和岩石成分的气体来制造能量。
+Pokedex = 在增加到8个之多的汽缸里引爆混有毒素和岩石成分的气体来制造能量。
 Generation = 9
 #-------------------------------
 [CYCLIZAR]
@@ -24851,7 +24851,7 @@ Weight = 63.0
 Color = Green
 Shape = BipedalTail
 Category = 坐骑
-Pokedex = 似乎自古以来就会让人类坐在背上。１万年前的壁画里描绘着那样的情景。
+Pokedex = 似乎自古以来就会让人类坐在背上。1万年前的壁画里描绘着那样的情景。
 Generation = 9
 #-------------------------------
 [ORTHWORM]
@@ -25200,7 +25200,7 @@ Weight = 160.0
 Color = Brown
 Shape = Quadruped
 Category = 长颈
-Pokedex = 通过同步头部和尾巴的脑波，来让自己的超能力提升到了麒麟奇的１０倍之高。
+Pokedex = 通过同步头部和尾巴的脑波，来让自己的超能力提升到了麒麟奇的10倍之高。
 Generation = 9
 #-------------------------------
 [DUDUNSPARCE]
@@ -25225,7 +25225,7 @@ Weight = 39.2
 Color = Yellow
 Shape = Serpentine
 Category = 地蛇
-Pokedex = 会用坚硬的尾巴来挖穿地下深处的岩盘来筑巢。巢穴长达１０公里。
+Pokedex = 会用坚硬的尾巴来挖穿地下深处的岩盘来筑巢。巢穴长达10公里。
 Generation = 9
 #-------------------------------
 [KINGAMBIT]
@@ -25297,7 +25297,7 @@ Weight = 8.0
 Color = Pink
 Shape = BipedalTail
 Category = 悖谬
-Pokedex = 过去只有１次目击纪录。这只宝可梦与古老的探险记所记载的神秘生物长得很像。
+Pokedex = 过去只有1次目击纪录。这只宝可梦与古老的探险记所记载的神秘生物长得很像。
 Generation = 9
 Flags = Paradox
 WildItemUncommon = BOOSTERENERGY
@@ -25522,7 +25522,7 @@ Weight = 36.0
 Color = White
 Shape = MultiWinged
 Category = 悖谬
-Pokedex = 与超自然杂志中所介绍的监视人类的ＵＦＯ这种未知物体很相似。
+Pokedex = 与超自然杂志中所介绍的监视人类的UFO这种未知物体很相似。
 Generation = 9
 Flags = Paradox
 WildItemUncommon = BOOSTERENERGY
@@ -25547,7 +25547,7 @@ Weight = 303.0
 Color = Green
 Shape = BipedalTail
 Category = 悖谬
-Pokedex = 它与可疑杂志所报道的１０亿年后的班基拉斯有部分特征相似。
+Pokedex = 它与可疑杂志所报道的10亿年后的班基拉斯有部分特征相似。
 Generation = 9
 Flags = Paradox
 WildItemUncommon = BOOSTERENERGY
@@ -25648,7 +25648,7 @@ Weight = 5.0
 Color = Red
 Shape = HeadBase
 Category = 宝箱
-Pokedex = 大约１５００年前在宝箱里出生。若有坏蛋打算偷走宝藏，就会被它吸走精气。
+Pokedex = 大约1500年前在宝箱里出生。若有坏蛋打算偷走宝藏，就会被它吸走精气。
 Generation = 9
 Evolution = GHOLDENGO,LevelCoins,999
 #-------------------------------
@@ -25672,7 +25672,7 @@ Weight = 30.0
 Color = Yellow
 Shape = Bipedal
 Category = 宝者
-Pokedex = 据说它的身体是由１０００枚硬币组成的。喜欢与人亲近，不管与谁都能立刻处好关系。
+Pokedex = 据说它的身体是由1000枚硬币组成的。喜欢与人亲近，不管与谁都能立刻处好关系。
 Generation = 9
 #-------------------------------
 [WOCHIEN]
@@ -25719,7 +25719,7 @@ Weight = 152.2
 Color = White
 Shape = Quadruped
 Category = 灾厄
-Pokedex = 会操控１００吨的积雪。在自己引起的雪崩中自由进出，天真无邪地玩耍。
+Pokedex = 会操控100吨的积雪。在自己引起的雪崩中自由进出，天真无邪地玩耍。
 Generation = 9
 Flags = Legendary
 #-------------------------------
@@ -25767,7 +25767,7 @@ Weight = 4.9
 Color = Red
 Shape = Finned
 Category = 灾厄
-Pokedex = 会操控３０００度的火焰。熔化岩石和沙砾来做成熔岩海，并在里边悠闲自在地游泳。
+Pokedex = 会操控3000度的火焰。熔化岩石和沙砾来做成熔岩海，并在里边悠闲自在地游泳。
 Generation = 9
 Flags = Legendary
 #-------------------------------

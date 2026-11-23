@@ -68,7 +68,7 @@ Abilities = NOGUARD
 HiddenAbilities = NOGUARD
 Height = 2.2
 Weight = 50.5
-Pokedex = 肌肉的力量大幅提升。能够连续２个星期不眠不休地持续飞行。
+Pokedex = 肌肉的力量大幅提升。能够连续2个星期不眠不休地持续飞行。
 Generation = 6
 #-------------------------------
 [RATTATA,1]
@@ -123,7 +123,7 @@ HiddenAbilities = ELECTRICSURGE
 BaseExp = 293
 Height = 1.2
 Weight = 38.0
-Pokedex = 从双耳和分叉的尾巴发出５０００万伏特的电光，并以Ｘ字的样子飞翔。
+Pokedex = 从双耳和分叉的尾巴发出5000万伏特的电光，并以X字的样子飞翔。
 Generation = 9
 #-------------------------------
 [RAICHU,3]
@@ -135,7 +135,7 @@ HiddenAbilities = NOGUARD
 BaseExp = 293
 Height = 1.0
 Weight = 26.0
-Pokedex = 从太阳穴伸展出来的锯齿状体毛和尾巴尖端会放出Ｙ字轨迹的电击。
+Pokedex = 从太阳穴伸展出来的锯齿状体毛和尾巴尖端会放出Y字轨迹的电击。
 Generation = 9
 #-------------------------------
 [SANDSHREW,1]
@@ -180,7 +180,7 @@ Abilities = MAGICBOUNCE
 HiddenAbilities = MAGICBOUNCE
 Height = 1.7
 Weight = 42.3
-Pokedex = 利用月光的力量，自如地控制周围２０米的重力来四处飞行。
+Pokedex = 利用月光的力量，自如地控制周围20米的重力来四处飞行。
 Generation = 9
 #-------------------------------
 [VULPIX,1]
@@ -192,7 +192,7 @@ Moves = 1,POWDERSNOW,1,TAILWHIP,4,DISABLE,8,ICESHARD,12,SPITE,16,ICYWIND,20,CONF
 TutorMoves = AGILITY,AQUATAIL,ATTRACT,AURORAVEIL,BATONPASS,BLIZZARD,BODYSLAM,CAPTIVATE,CHARM,CHILLINGWATER,CONFIDE,CONFUSERAY,COVET,DARKPULSE,DAZZLINGGLEAM,DIG,DISARMINGVOICE,DOUBLEEDGE,DOUBLETEAM,DRAININGKISS,ENCORE,ENDURE,FACADE,FAKETEARS,FOULPLAY,FROSTBREATH,FRUSTRATION,HAIL,HEADBUTT,HEALBELL,HELPINGHAND,HEX,HIDDENPOWER,ICEBEAM,ICICLESPEAR,ICYWIND,IMPRISON,IRONTAIL,MIMIC,MISTYTERRAIN,NASTYPLOT,NATURALGIFT,PAINSPLIT,PAYBACK,PLAYROUGH,POWERSWAP,PROTECT,PSYCHUP,RAINDANCE,REST,RETURN,ROAR,ROLEPLAY,ROUND,SAFEGUARD,SECRETPOWER,SLEEPTALK,SNORE,SNOWSCAPE,SPITE,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAILSLAP,TAKEDOWN,TERABLAST,WEATHERBALL,ZENHEADBUTT
 EggMoves = AGILITY,BABYDOLLEYES,CHARM,DISABLE,ENCORE,EXTRASENSORY,FLAIL,FREEZEDRY,HOWL,HYPNOSIS,MOONBLAST,POWERSWAP,ROAR,SECRETPOWER,SPITE,TAILSLAP
 Color = White
-Pokedex = 在炎热的时候，用６根尾巴制作冰砾在周围挥洒，让身体冷却下来。
+Pokedex = 在炎热的时候，用6根尾巴制作冰砾在周围挥洒，让身体冷却下来。
 Generation = 7
 Flags = EggInRegion_1,InheritFormWithEverstone
 WildItemUncommon = SNOWBALL
@@ -521,7 +521,7 @@ Moves = 0,CHLOROBLAST,1,CHARGE,1,TACKLE,4,THUNDERSHOCK,6,STUNSPORE,9,BULLETSEED,
 TutorMoves = AGILITY,BULLETSEED,CHARGE,CHARGEBEAM,CURSE,DOUBLEEDGE,ELECTRICTERRAIN,ELECTROBALL,ELECTROWEB,ENDURE,ENERGYBALL,FACADE,FOULPLAY,GIGADRAIN,GIGAIMPACT,GRASSKNOT,GRASSYGLIDE,GRASSYTERRAIN,GYROBALL,HYPERBEAM,LEAFSTORM,PROTECT,RAINDANCE,REFLECT,REST,SCARYFACE,SEEDBOMB,SLEEPTALK,SOLARBEAM,SUBSTITUTE,SUPERCELLSLAM,SWIFT,TAKEDOWN,TAUNT,TERABLAST,THIEF,THUNDER,THUNDERBOLT,THUNDERWAVE,VOLTSWITCH,WILDCHARGE
 Weight = 71.0
 Category = Sphere
-Pokedex = 体表的组织与球果的成分极为接近，不可思议。当它情绪焦躁时所放出的电流，能量足以匹敌２０次的落雷。
+Pokedex = 体表的组织与球果的成分极为接近，不可思议。当它情绪焦躁时所放出的电流，能量足以匹敌20次的落雷。
 Generation = 8
 Flags = InheritFormWithEverStone
 #-------------------------------
@@ -644,7 +644,7 @@ Moves = 1,TACKLE,1,TAILWHIP,5,WORKUP,10,DOUBLEKICK,15,FLAMECHARGE,20,HEADBUTT,25
 TutorMoves = BODYPRESS,BODYSLAM,BULKUP,BULLDOZE,CLOSECOMBAT,CURSE,DIG,DOUBLEEDGE,DRILLRUN,EARTHQUAKE,ENDEAVOR,ENDURE,FACADE,FIREBLAST,FIRESPIN,FLAMECHARGE,FLAMETHROWER,FLAREBLITZ,GIGAIMPACT,HIGHHORSEPOWER,HYPERBEAM,IRONHEAD,LASHOUT,OUTRAGE,OVERHEAT,PROTECT,RAINDANCE,REST,REVERSAL,ROCKSLIDE,ROCKTOMB,SANDSTORM,SCARYFACE,SLEEPTALK,SMARTSTRIKE,STOMPINGTANTRUM,STONEEDGE,SUBSTITUTE,SUNNYDAY,TAKEDOWN,TEMPERFLARE,TERABLAST,THIEF,TRAILBLAZE,WILDCHARGE,WILLOWISP,ZENHEADBUTT
 Weight = 85.0
 Color = Black
-Pokedex = 会喷出高温的鼻息，因此被命名为火炽种。３根尾巴总是拧在一起。
+Pokedex = 会喷出高温的鼻息，因此被命名为火炽种。3根尾巴总是拧在一起。
 Generation = 9
 Flags = InheritFormWithEverStone
 #-------------------------------
@@ -750,7 +750,7 @@ Abilities = STEADFAST
 HiddenAbilities = STEADFAST
 Height = 2.3
 Weight = 127.0
-Pokedex = 身体上的肌肉因精神力量而增强。它的握力为１吨。只要２秒就可以跑完１００米！
+Pokedex = 身体上的肌肉因精神力量而增强。它的握力为1吨。只要2秒就可以跑完100米！
 Generation = 6
 #-------------------------------
 [MEWTWO,2]
@@ -775,7 +775,7 @@ Abilities = MEGASOL
 HiddenAbilities = MEGASOL
 Height = 2.4
 Weight = 201.0
-Pokedex = 从４朵花中放出的日光束威力巨大。别名超级日光炮。
+Pokedex = 从4朵花中放出的日光束威力巨大。别名超级日光炮。
 Generation = 9
 #-------------------------------
 [TYPHLOSION,1]
@@ -801,7 +801,7 @@ Abilities = DRAGONIZE
 HiddenAbilities = DRAGONIZE
 Weight = 108.8
 Category = Double Jaw
-Pokedex = 用兜帽般的鳍和双臂构成一个巨大的颚，咬合的威力提升为１０倍。
+Pokedex = 用兜帽般的鳍和双臂构成一个巨大的颚，咬合的威力提升为10倍。
 Generation = 9
 #-------------------------------
 [PICHU,2]
@@ -1127,7 +1127,7 @@ Abilities = HUGEPOWER
 HiddenAbilities = HUGEPOWER
 Height = 1.0
 Weight = 23.5
-Pokedex = ２个颚部像是有意识一样，猛烈地大闹着。只要咬一口，连岩石都能粉碎。
+Pokedex = 2个颚部像是有意识一样，猛烈地大闹着。只要咬一口，连岩石都能粉碎。
 Generation = 6
 #-------------------------------
 [AGGRON,1]
@@ -1215,7 +1215,7 @@ Pokedex = 被雨淋到时飘浮泡泡的样子。如果按它的身体，就会�
 FormName = 雪天形态
 Types = ICE
 Color = White
-Pokedex = 被雪落到时飘浮泡泡的样子。全身像冰一般，体温是零下５度左右。
+Pokedex = 被雪落到时飘浮泡泡的样子。全身像冰一般，体温是零下5度左右。
 #-------------------------------
 [BANETTE,1]
 FormName = 超级诅咒娃娃
@@ -1319,7 +1319,7 @@ BaseExp = 350
 Height = 2.3
 Weight = 70.0
 Color = Purple
-Pokedex = 飞行速度超过４马赫。拥有在宝可梦中顶级的空中战斗力。
+Pokedex = 飞行速度超过4马赫。拥有在宝可梦中顶级的空中战斗力。
 Generation = 6
 #-------------------------------
 [KYOGRE,1]
@@ -1387,7 +1387,7 @@ Abilities = CONTRARY
 HiddenAbilities = CONTRARY
 Height = 1.9
 Weight = 50.0
-Pokedex = 拥有顶级的飞行能力。能抓着超过４００公斤的大钢蛇轻轻松松地飞翔。
+Pokedex = 拥有顶级的飞行能力。能抓着超过400公斤的大钢蛇轻轻松松地飞翔。
 Generation = 9
 #-------------------------------
 [BURMY,1]
@@ -1498,7 +1498,7 @@ BaseExp = 208
 HiddenAbilities = SNOWWARNING
 Height = 2.7
 Weight = 185.0
-Pokedex = 背部的花苞中长出了气派的冰柱，能卷起零下３０度的猛烈暴风雪。
+Pokedex = 背部的花苞中长出了气派的冰柱，能卷起零下30度的猛烈暴风雪。
 Generation = 6
 #-------------------------------
 [GALLADE,1]
@@ -1582,7 +1582,7 @@ BaseStats = 91,120,106,67,175,141
 BaseExp = 350
 Height = 2.8
 Weight = 570.0
-Pokedex = 据说它在火力全开时体温会升高到１００万度，决不允许敌人靠近。
+Pokedex = 据说它在火力全开时体温会升高到100万度，决不允许敌人靠近。
 Generation = 9
 #-------------------------------
 [GIRATINA,1]
@@ -1928,7 +1928,7 @@ Abilities = EELEVATE
 HiddenAbilities = EELEVATE
 Height = 3.0
 Weight = 180.0
-Pokedex = 发电量是超级进化前的１０倍。会从由粘液构成的假麻麻鳗那里放电。
+Pokedex = 发电量是超级进化前的10倍。会从由粘液构成的假麻麻鳗那里放电。
 Generation = 9
 #-------------------------------
 [CHANDELURE,1]
@@ -2177,7 +2177,7 @@ BaseExp = 227
 Abilities = FIREMANE
 HiddenAbilities = FIREMANE
 Weight = 93.3
-Pokedex = 能吐出超过１万度的火焰。会一边乱摆熊熊燃烧的鬃毛，一边保护伙伴。
+Pokedex = 能吐出超过1万度的火焰。会一边乱摆熊熊燃烧的鬃毛，一边保护伙伴。
 Generation = 9
 #-------------------------------
 [FLABEBE,1]
@@ -2517,7 +2517,7 @@ Abilities = MAGICBOUNCE
 HiddenAbilities = MAGICBOUNCE
 Height = 1.1
 Weight = 27.8
-Pokedex = 额头上光辉夺目的钻石竟然有２０００克拉重。别名皇家粉色公主。
+Pokedex = 额头上光辉夺目的钻石竟然有2000克拉重。别名皇家粉色公主。
 #-------------------------------
 [HOOPA,1]
 FormName = 解放胡帕
@@ -2618,7 +2618,7 @@ Abilities = TOUGHCLAWS
 HiddenAbilities = TOUGHCLAWS
 Height = 2.3
 Weight = 148.0
-Pokedex = 用４根臂膀猛烈地攻击，将对手逼入绝境后，就会用隐藏的臂膀给予致命一击。
+Pokedex = 用4根臂膀猛烈地攻击，将对手逼入绝境后，就会用隐藏的臂膀给予致命一击。
 Generation = 9
 #-------------------------------
 [SILVALLY,1]
@@ -2847,7 +2847,7 @@ BaseExp = 350
 Height = 1.3
 Weight = 248.1
 Color = Red
-Pokedex = 早在５００年前，就被暗中装上了以超级石为钥匙来解除限制的机关。
+Pokedex = 早在500年前，就被暗中装上了以超级石为钥匙来解除限制的机关。
 Generation = 9
 #-------------------------------
 [ZERAORA,1]
@@ -2855,7 +2855,7 @@ FormName = 超级捷拉奥拉
 MegaStone = ZERAORITE
 BaseStats = 88,157,75,153,147,80
 BaseExp = 350
-Pokedex = 能储存相当于１０个雷的电力。解除限制后是电气宝可梦中最强的级别。
+Pokedex = 能储存相当于10个雷的电力。解除限制后是电气宝可梦中最强的级别。
 Generation = 9
 #-------------------------------
 [CRAMORANT,1]
@@ -2871,7 +2871,7 @@ FormName = 低调形态
 Abilities = PUNKROCK,MINUS
 Moves = 0,SPARK,1,BELCH,1,TEARFULLOOK,1,NUZZLE,1,GROWL,1,FLAIL,1,ACID,1,THUNDERSHOCK,1,ACIDSPRAY,1,LEER,1,NOBLEROAR,4,CHARGE,8,SHOCKWAVE,12,SCARYFACE,16,TAUNT,24,SCREECH,28,SWAGGER,32,TOXIC,36,DISCHARGE,40,POISONJAB,44,OVERDRIVE,48,BOOMBURST,52,MAGNETICFLUX
 TutorMoves = ATTRACT,CAPTIVATE,CONFIDE,DOUBLEEDGE,DOUBLETEAM,DRAINPUNCH,EERIEIMPULSE,ELECTROBALL,ENCORE,ENDURE,FACADE,FIREPUNCH,FLING,FRUSTRATION,GIGAIMPACT,GUNKSHOT,HEX,HIDDENPOWER,HYPERBEAM,HYPERVOICE,MEGAKICK,MEGAPUNCH,MIMIC,NATURALGIFT,PAYBACK,POISONJAB,PROTECT,REST,RETURN,RISINGVOLTAGE,ROUND,SCARYFACE,SCREECH,SECRETPOWER,SLEEPTALK,SLUDGEBOMB,SLUDGEWAVE,SNARL,SNORE,STOREDPOWER,SUBSTITUTE,SWAGGER,SWIFT,TAUNT,THROATCHOP,THUNDER,THUNDERBOLT,THUNDERPUNCH,THUNDERWAVE,TOXIC,UPROAR,VENOMDRENCH,VOLTSWITCH,WILDCHARGE
-Pokedex = 它能够制造出１５０００伏特的电流，任何对手都不放在眼里。
+Pokedex = 它能够制造出15000伏特的电流，任何对手都不放在眼里。
 #-------------------------------
 [SINISTEA,1]
 FormName = 真品形态
@@ -3189,12 +3189,12 @@ Pokedex = 喜欢干净，个性一丝不苟。会让花香包裹全身来治愈�
 [MAUSHOLD,1]
 FormName = 三只家庭
 Weight = 2.3
-Pokedex = 不知不觉之间多了个小孩。虽然像一家子一样生活，但３只的关系仍是个迷。
+Pokedex = 不知不觉之间多了个小孩。虽然像一家子一样生活，但3只的关系仍是个迷。
 #-------------------------------
 [SQUAWKABILLY,1]
 FormName = 蓝色羽毛
 Color = Blue
-Pokedex = 庞大的队里成员能超过５０只。觅食时会在街上或森林里吵吵闹闹地四处盘旋。
+Pokedex = 庞大的队里成员能超过50只。觅食时会在街上或森林里吵吵闹闹地四处盘旋。
 #-------------------------------
 [SQUAWKABILLY,2]
 FormName = 黄色羽毛

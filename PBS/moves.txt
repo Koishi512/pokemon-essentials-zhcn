@@ -72,7 +72,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 吸取血液攻击对手。可以回复给予对手伤害的一半ＨＰ。
+Description = 吸取血液攻击对手。可以回复给予对手伤害的一半HP。
 #-------------------------------
 [LUNGE]
 Name = 猛扑
@@ -235,7 +235,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
-Description = 向对手发射锐针进行攻击。连续攻击２～５次。
+Description = 向对手发射锐针进行攻击。连续攻击2～5次。
 #-------------------------------
 [TWINEEDLE]
 Name = 双针
@@ -248,7 +248,7 @@ Target = NearOther
 FunctionCode = HitTwoTimesPoisonTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 20
-Description = 将２根针刺入对手，连续２次给予伤害。有时会让对手陷入中毒状态。
+Description = 将2根针刺入对手，连续2次给予伤害。有时会让对手陷入中毒状态。
 #-------------------------------
 [INFESTATION]
 Name = 纠缠不休
@@ -260,7 +260,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = BindTarget
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 在４～５回合内死缠烂打地进行攻击。在此期间对手将无法逃走。
+Description = 在4～5回合内死缠烂打地进行攻击。在此期间对手将无法逃走。
 #-------------------------------
 [DEFENDORDER]
 Name = 防御指令
@@ -280,7 +280,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = HealUserHalfOfTotalHP
-Description = 召唤手下疗伤。回复自己最大ＨＰ的一半。
+Description = 召唤手下疗伤。回复自己最大HP的一半。
 #-------------------------------
 [POWDER]
 Name = 粉尘
@@ -409,7 +409,7 @@ EffectChance = 20
 Description = 将愤怒转化为火焰般的气场进行攻击。有时会使对手畏缩。
 #-------------------------------
 [DARKESTLARIAT]
-Name = ＤＤ金勾臂
+Name = DD金勾臂
 Type = DARK
 Category = Physical
 Power = 85
@@ -506,7 +506,7 @@ Target = NearOther
 FunctionCode = DisableTargetSoundMoves
 Flags = Contact,CanProtect,CanMirrorMove
 EffectChance = 100
-Description = 受到此招式攻击的对手，会因为地狱般的痛苦，在２回合内，变得无法使出声音类招式。
+Description = 受到此招式攻击的对手，会因为地狱般的痛苦，在2回合内，变得无法使出声音类招式。
 #-------------------------------
 [LASHOUT]
 Name = 泄愤
@@ -518,7 +518,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = DoublePowerIfUserStatsLoweredThisTurn
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 攻击对手以发泄对其感到的恼怒情绪。如果在该回合内自身能力遭到降低，招式的威力会变成２倍。
+Description = 攻击对手以发泄对其感到的恼怒情绪。如果在该回合内自身能力遭到降低，招式的威力会变成2倍。
 #-------------------------------
 [WICKEDBLOW]
 Name = 暗冥强击
@@ -592,7 +592,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetLostHPThisTurn
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 如果此回合内对手已经受到伤害的话，招式威力会变成２倍。
+Description = 如果此回合内对手已经受到伤害的话，招式威力会变成2倍。
 #-------------------------------
 [BITE]
 Name = 咬住
@@ -678,7 +678,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetActed
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 蓄力攻击。如果能在对手之后攻击，招式的威力会变成２倍。
+Description = 蓄力攻击。如果能在对手之后攻击，招式的威力会变成2倍。
 #-------------------------------
 [PURSUIT]
 Name = 追打
@@ -690,7 +690,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = PursueSwitchingFoe
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 当对手替换宝可梦上场时使出此招式的话，能够以２倍的威力进行攻击。
+Description = 当对手替换宝可梦上场时使出此招式的话，能够以2倍的威力进行攻击。
 #-------------------------------
 [POWERTRIP]
 Name = 嚣张
@@ -750,7 +750,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamageHalfTargetHP
 Flags = CanProtect,CanMirrorMove,CannotMetronome
-Description = 引发毁灭性的灾厄，使对手的ＨＰ减半。
+Description = 引发毁灭性的灾厄，使对手的HP减半。
 #-------------------------------
 [DARKVOID]
 Name = 暗黑洞
@@ -772,7 +772,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = StartTargetCannotUseItem
 Flags = CanProtect,CanMirrorMove
-Description = 让对手在５回合内不能使用宝可梦携带的道具。训练家也不能给那只宝可梦使用道具。
+Description = 让对手在5回合内不能使用宝可梦携带的道具。训练家也不能给那只宝可梦使用道具。
 #-------------------------------
 [FAKETEARS]
 Name = 假哭
@@ -891,7 +891,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = DisableTargetStatusMoves
 Flags = CanProtect,CanMirrorMove
-Description = 使对手愤怒。在３回合内让对手只能使出给予伤害的招式。
+Description = 使对手愤怒。在3回合内让对手只能使出给予伤害的招式。
 #-------------------------------
 [TOPSYTURVY]
 Name = 颠倒
@@ -913,7 +913,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = DisableTargetUsingSameMoveConsecutively
 Flags = CanProtect,CanMirrorMove
-Description = 向对手无理取闹，令其不能连续２次使出相同招式。
+Description = 向对手无理取闹，令其不能连续2次使出相同招式。
 #-------------------------------
 [NIHILLIGHT]
 Name = 归无之光
@@ -949,7 +949,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = PowerHigherWithUserHP
 Flags = CanProtect,CanMirrorMove,CannotMetronome
-Description = 把生命力转换为力量攻击对手。自己的ＨＰ越少，招式的威力越小。
+Description = 把生命力转换为力量攻击对手。自己的HP越少，招式的威力越小。
 #-------------------------------
 [ROAROFTIME]
 Name = 时光咆哮
@@ -985,7 +985,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = UserVulnerableUntilNextAction
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 有勇无谋的舍身突击。使出招式后，对手的攻击必定会命中，且伤害会变成２倍。
+Description = 有勇无谋的舍身突击。使出招式后，对手的攻击必定会命中，且伤害会变成2倍。
 #-------------------------------
 [OUTRAGE]
 Name = 逆鳞
@@ -997,7 +997,7 @@ TotalPP = 10
 Target = RandomNearFoe
 FunctionCode = MultiTurnAttackConfuseUserAtEnd
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 在２～３回合内，乱打一气地进行攻击。大闹一番后自己会陷入混乱。
+Description = 在2～3回合内，乱打一气地进行攻击。大闹一番后自己会陷入混乱。
 #-------------------------------
 [CLANGINGSCALES]
 Name = 鳞片噪音
@@ -1046,7 +1046,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = None
 Flags = CanProtect,CannotMetronome
-Description = 从核心放出光束进行攻击。如果对手正处于极巨化状态，则造成的伤害会变为２倍。
+Description = 从核心放出光束进行攻击。如果对手正处于极巨化状态，则造成的伤害会变为2倍。
 #-------------------------------
 [SPACIALREND]
 Name = 亚空裂斩
@@ -1119,7 +1119,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = DoublePower30PercentChance
 Flags = CanProtect,CanMirrorMove
-Description = 发射光线进行攻击。有时其他的头也会合力发射镭射，让招式威力变成２倍。
+Description = 发射光线进行攻击。有时其他的头也会合力发射镭射，让招式威力变成2倍。
 #-------------------------------
 [BREAKINGSWIPE]
 Name = 广域破坏
@@ -1170,7 +1170,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoTimesTargetThenTargetAlly
 Flags = CanProtect,CanMirrorMove
-Description = 让多龙梅西亚进行２次攻击。如果对手有２只宝可梦，则对它们各进行１次攻击。
+Description = 让多龙梅西亚进行2次攻击。如果对手有2只宝可梦，则对它们各进行1次攻击。
 #-------------------------------
 [DUALCHOP]
 Name = 二连劈
@@ -1182,7 +1182,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用身体坚硬的部分拍打对手进行攻击。连续２次给予伤害。
+Description = 用身体坚硬的部分拍打对手进行攻击。连续2次给予伤害。
 #-------------------------------
 [TWISTER]
 Name = 龙卷风
@@ -1207,7 +1207,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimesRaiseUserSpd1LowerUserDef1
 Flags = CanProtect,CanMirrorMove
-Description = 发射鳞片进行攻击。连续攻击２～５次。速度会提高但防御会降低。
+Description = 发射鳞片进行攻击。连续攻击2～5次。速度会提高但防御会降低。
 #-------------------------------
 [DRAGONRAGE]
 Name = 龙之怒
@@ -1219,7 +1219,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamage40
 Flags = CanProtect,CanMirrorMove
-Description = 将愤怒的冲击波撞向对手进行攻击。必定会给予４０的伤害。
+Description = 将愤怒的冲击波撞向对手进行攻击。必定会给予40的伤害。
 #-------------------------------
 [CLANGOROUSSOUL]
 Name = 魂舞烈音爆
@@ -1230,7 +1230,7 @@ TotalPP = 5
 Target = User
 FunctionCode = RaiseUserMainStats1LoseThirdOfTotalHP
 Flags = Sound,CannotMetronome,Dance
-Description = 削减少许自己的ＨＰ，使所有能力都提高。
+Description = 削减少许自己的HP，使所有能力都提高。
 #-------------------------------
 [DRAGONCHEER]
 Name = 龙声鼓舞
@@ -1276,7 +1276,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackOneTurnInRainChargeRaiseUserSpAtk1
 Flags = CanProtect,CanMirrorMove
-Description = 第１回合收集电力提高特攻，第２回合将高压的电力发射出去。下雨天气时能立刻发射。
+Description = 第1回合收集电力提高特攻，第2回合将高压的电力发射出去。下雨天气时能立刻发射。
 #-------------------------------
 [DOUBLESHOCK]
 Name = 电光双击
@@ -1438,7 +1438,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetNotActed
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用带电的喙啄刺对手。如果比对手先出手攻击，招式的威力会变成２倍。
+Description = 用带电的喙啄刺对手。如果比对手先出手攻击，招式的威力会变成2倍。
 #-------------------------------
 [DISCHARGE]
 Name = 放电
@@ -1475,7 +1475,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget
 Flags = CanProtect,CanMirrorMove,CannotMetronome
-Description = 将对手困在电流四溅的囚笼中，在４～５回合内进行攻击。
+Description = 将对手困在电流四溅的囚笼中，在4～5回合内进行攻击。
 #-------------------------------
 [ZINGZAP]
 Name = 麻麻刺刺
@@ -1513,7 +1513,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = DoublePowerInElectricTerrain
 Flags = CanProtect,CanMirrorMove
-Description = 用从地面升腾而起的电击进行攻击。当对手处于电气场地上时，招式威力会变成２倍。
+Description = 用从地面升腾而起的电击进行攻击。当对手处于电气场地上时，招式威力会变成2倍。
 #-------------------------------
 [THUNDERCLAP]
 Name = 迅雷
@@ -1550,7 +1550,7 @@ TotalPP = 20
 Target = AllNearOthers
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = 给周围全体宝可梦造成伤害。可以回复给予伤害的一半ＨＰ。
+Description = 给周围全体宝可梦造成伤害。可以回复给予伤害的一半HP。
 #-------------------------------
 [SPARK]
 Name = 电光
@@ -1683,7 +1683,7 @@ Accuracy = 0
 TotalPP = 10
 Target = BothSides
 FunctionCode = StartElectricTerrain
-Description = 在５回合内变成电气场地。地面上的宝可梦将无法入眠。电属性的招式威力还会提高。
+Description = 在5回合内变成电气场地。地面上的宝可梦将无法入眠。电属性的招式威力还会提高。
 #-------------------------------
 [ELECTRIFY]
 Name = 输电
@@ -1715,7 +1715,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = StartUserAirborne
-Description = 利用电气产生的磁力浮在空中。在５回合内可以飘浮。
+Description = 利用电气产生的磁力浮在空中。在5回合内可以飘浮。
 #-------------------------------
 [MAGNETICFLUX]
 Name = 磁场操控
@@ -1874,7 +1874,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByThreeQuartersOfDamageDone
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用一个吻吸取对手的ＨＰ。回复给予对手伤害的一半以上的ＨＰ。
+Description = 用一个吻吸取对手的HP。回复给予对手伤害的一半以上的HP。
 #-------------------------------
 [DISARMINGVOICE]
 Name = 魅惑之声
@@ -1910,7 +1910,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamageHalfTargetHP
 Flags = CanProtect,CanMirrorMove,CannotMetronome
-Description = 向对手释放自然之怒。对手的ＨＰ会减半。
+Description = 向对手释放自然之怒。对手的HP会减半。
 #-------------------------------
 [AROMATICMIST]
 Name = 芳香薄雾
@@ -1987,7 +1987,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealTargetDependingOnGrassyTerrain
 Flags = CanProtect
-Description = 回复对手最大ＨＰ的一半。在青草场地时，效果会提高。
+Description = 回复对手最大HP的一半。在青草场地时，效果会提高。
 #-------------------------------
 [FLOWERSHIELD]
 Name = 鲜花防守
@@ -2007,7 +2007,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = TwoTurnAttackRaiseUserSpAtkSpDefSpd2
-Description = 第１回合吸收能量，第２回合大幅提高特攻、特防和速度。
+Description = 第1回合吸收能量，第2回合大幅提高特攻、特防和速度。
 #-------------------------------
 [MISTYTERRAIN]
 Name = 薄雾场地
@@ -2017,7 +2017,7 @@ Accuracy = 0
 TotalPP = 10
 Target = BothSides
 FunctionCode = StartMistyTerrain
-Description = 在５回合内，地面上的宝可梦不会陷入异常状态。龙属性招式的伤害也会减半。
+Description = 在5回合内，地面上的宝可梦不会陷入异常状态。龙属性招式的伤害也会减半。
 #-------------------------------
 [MOONLIGHT]
 Name = 月光
@@ -2027,7 +2027,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserDependingOnWeather
-Description = 回复自己的ＨＰ。根据天气的不同，回复量也会有所变化。
+Description = 回复自己的HP。根据天气的不同，回复量也会有所变化。
 #-------------------------------
 [SWEETKISS]
 Name = 天使之吻
@@ -2236,7 +2236,7 @@ Target = NearOther
 FunctionCode = LowerTargetDefense1FlinchTarget
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
 EffectChance = 101
-Description = 使出一记下压踢后同时发射３箭。自己的攻击会变得容易击中要害。会降低对手的防守力。
+Description = 使出一记下压踢后同时发射3箭。自己的攻击会变得容易击中要害。会降低对手的防守力。
 #-------------------------------
 [SECRETSWORD]
 Name = 神秘之剑
@@ -2320,7 +2320,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = Contact,CanProtect,CanMirrorMove,Punching
-Description = 用拳头吸取对手的力量。可以回复给予对手伤害的一半ＨＰ。
+Description = 用拳头吸取对手的力量。可以回复给予对手伤害的一半HP。
 #-------------------------------
 [VITALTHROW]
 Name = 借力摔
@@ -2411,7 +2411,7 @@ Target = NearOther
 Priority = -4
 FunctionCode = DoublePowerIfUserLostHPThisTurn
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 如果受到对手的招式攻击，就能给予对手２倍的伤害。
+Description = 如果受到对手的招式攻击，就能给予对手2倍的伤害。
 #-------------------------------
 [ROLLINGKICK]
 Name = 回旋踢
@@ -2512,7 +2512,7 @@ TotalPP = 30
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用２只脚踢飞对手进行攻击。连续２次给予伤害。
+Description = 用2只脚踢飞对手进行攻击。连续2次给予伤害。
 #-------------------------------
 [ARMTHRUST]
 Name = 猛推
@@ -2524,7 +2524,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用张开着的双手猛推对手进行攻击。连续攻击２～５次。
+Description = 用张开着的双手猛推对手进行攻击。连续攻击2～5次。
 #-------------------------------
 [TRIPLEKICK]
 Name = 三连踢
@@ -2536,7 +2536,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitThreeTimesPowersUpWithEachHit
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 连续３次踢对手进行攻击。每踢中一次，威力就会提高。
+Description = 连续3次踢对手进行攻击。每踢中一次，威力就会提高。
 #-------------------------------
 [COUNTER]
 Name = 双倍奉还
@@ -2549,7 +2549,7 @@ Target = None
 Priority = -5
 FunctionCode = CounterPhysicalDamage
 Flags = Contact,CanProtect
-Description = 从对手那里受到物理攻击的伤害将以２倍返还给同一个对手。
+Description = 从对手那里受到物理攻击的伤害将以2倍返还给同一个对手。
 #-------------------------------
 [FINALGAMBIT]
 Name = 搏命
@@ -2561,7 +2561,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = UserFaintsFixedDamageUserHP
 Flags = CanProtect
-Description = 拼命攻击对手。虽然自己陷入濒死，但会给予对手和自己目前ＨＰ等量的伤害。
+Description = 拼命攻击对手。虽然自己陷入濒死，但会给予对手和自己目前HP等量的伤害。
 #-------------------------------
 [LOWKICK]
 Name = 踢倒
@@ -2585,7 +2585,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = PowerLowerWithUserHP
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 竭尽全力进行攻击。自己的ＨＰ越少，招式的威力越大。
+Description = 竭尽全力进行攻击。自己的HP越少，招式的威力越大。
 #-------------------------------
 [SEISMICTOSS]
 Name = 地球上投
@@ -2682,10 +2682,10 @@ TotalPP = 10
 Target = User
 FunctionCode = RaiseUserAtkDefSpd1
 Flags = Dance
-Description = 凭借唤来胜利的舞蹈提高自己的进攻力和防守力，并让招式给予的伤害变成１.５倍。
+Description = 凭借唤来胜利的舞蹈提高自己的进攻力和防守力，并让招式给予的伤害变成1.5倍。
 #-------------------------------
 [VCREATE]
-Name = Ｖ热焰
+Name = V热焰
 Type = FIRE
 Category = Physical
 Power = 180
@@ -2718,7 +2718,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = PowerHigherWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = 爆发怒火攻击对手。自己的ＨＰ越少，招式的威力越小。
+Description = 爆发怒火攻击对手。自己的HP越少，招式的威力越小。
 #-------------------------------
 [MINDBLOWN]
 Name = 惊爆大头
@@ -2880,7 +2880,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = BindTarget
 Flags = CanProtect,CanMirrorMove
-Description = 将对手困在熊熊燃烧的火焰中，在４～５回合内进行攻击。
+Description = 将对手困在熊熊燃烧的火焰中，在4～5回合内进行攻击。
 #-------------------------------
 [SACREDFIRE]
 Name = 神圣之火
@@ -2931,7 +2931,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = Contact,CanProtect,CanMirrorMove,Slicing
-Description = 将对世间的留恋聚集于剑尖，并斩击对手。可以回复给予对手伤害的一半ＨＰ。
+Description = 将对世间的留恋聚集于剑尖，并斩击对手。可以回复给予对手伤害的一半HP。
 #-------------------------------
 [FLAMETHROWER]
 Name = 喷射火焰
@@ -3160,7 +3160,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget
 Flags = CanProtect,CanMirrorMove
-Description = 将对手困在激烈的火焰旋涡中，在４～５回合内进行攻击。
+Description = 将对手困在激烈的火焰旋涡中，在4～5回合内进行攻击。
 #-------------------------------
 [HEATCRASH]
 Name = 高温重压
@@ -3193,7 +3193,7 @@ Accuracy = 0
 TotalPP = 5
 Target = BothSides
 FunctionCode = StartSunWeather
-Description = 在５回合内阳光变得强烈，从而提高火属性的招式威力。水属性的招式威力则降低。
+Description = 在5回合内阳光变得强烈，从而提高火属性的招式威力。水属性的招式威力则降低。
 #-------------------------------
 [WILLOWISP]
 Name = 磷火
@@ -3217,7 +3217,7 @@ Target = Other
 FunctionCode = TwoTurnAttackFlinchTarget
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
 EffectChance = 30
-Description = 第２回合攻击对手。偶尔使对手畏缩。也容易击中要害。
+Description = 第2回合攻击对手。偶尔使对手畏缩。也容易击中要害。
 #-------------------------------
 [BRAVEBIRD]
 Name = 勇鸟猛攻
@@ -3304,7 +3304,7 @@ TotalPP = 15
 Target = Other
 FunctionCode = TwoTurnAttackInvulnerableInSky
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 第１回合飞上天空，第２回合攻击对手。
+Description = 第1回合飞上天空，第2回合攻击对手。
 #-------------------------------
 [BOUNCE]
 Name = 弹跳
@@ -3317,7 +3317,7 @@ Target = Other
 FunctionCode = TwoTurnAttackInvulnerableInSkyParalyzeTarget
 Flags = Contact,CanProtect,CanMirrorMove
 EffectChance = 30
-Description = 弹跳到高高的空中，第２回合攻击对手。有时会让对手陷入麻痹状态。
+Description = 弹跳到高高的空中，第2回合攻击对手。有时会让对手陷入麻痹状态。
 #-------------------------------
 [DRILLPECK]
 Name = 啄钻
@@ -3341,7 +3341,7 @@ TotalPP = 10
 Target = Other
 FunctionCode = HealUserByThreeQuartersOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = 从锁定的对手身上吸取ＨＰ。回复给予对手伤害的一半以上的ＨＰ。
+Description = 从锁定的对手身上吸取HP。回复给予对手伤害的一半以上的HP。
 #-------------------------------
 [AIRSLASH]
 Name = 空气之刃
@@ -3415,7 +3415,7 @@ TotalPP = 10
 Target = Other
 FunctionCode = TwoTurnAttackInvulnerableInSkyTargetCannotAct
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 第１回合将对手带到空中，第２回合将其摔下进行攻击。被带到空中的对手不能动弹。
+Description = 第1回合将对手带到空中，第2回合将其摔下进行攻击。被带到空中的对手不能动弹。
 #-------------------------------
 [WINGATTACK]
 Name = 翅膀攻击
@@ -3451,7 +3451,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 将翅膀撞向对手进行攻击。连续２次给予伤害。
+Description = 将翅膀撞向对手进行攻击。连续2次给予伤害。
 #-------------------------------
 [GUST]
 Name = 起风
@@ -3517,7 +3517,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserHalfOfTotalHPLoseFlyingTypeThisTurn
-Description = 降到地面，使身体休息。回复自己最大ＨＰ的一半。
+Description = 降到地面，使身体休息。回复自己最大HP的一半。
 #-------------------------------
 [TAILWIND]
 Name = 顺风
@@ -3528,7 +3528,7 @@ TotalPP = 15
 Target = UserSide
 FunctionCode = StartUserSideDoubleSpeed
 Flags = Wind
-Description = 刮起猛烈的旋风，在４回合内提高我方全员的速度。
+Description = 刮起猛烈的旋风，在4回合内提高我方全员的速度。
 #-------------------------------
 [ASTRALBARRAGE]
 Name = 星碎
@@ -3552,7 +3552,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
 Flags = Contact,CanMirrorMove
-Description = 第１回合消失踪影，第２回合攻击对手。即使对手正受保护，也能击中。
+Description = 第1回合消失踪影，第2回合攻击对手。即使对手正受保护，也能击中。
 #-------------------------------
 [POLTERGEIST]
 Name = 灵骚
@@ -3588,7 +3588,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
 Flags = Contact,CanMirrorMove
-Description = 第１回合消失在某处，第２回合攻击对手。可以无视守护进行攻击。
+Description = 第1回合消失在某处，第2回合攻击对手。可以无视守护进行攻击。
 #-------------------------------
 [SPECTRALTHIEF]
 Name = 暗影偷盗
@@ -3652,7 +3652,7 @@ Target = NearOther
 FunctionCode = LowerTargetAttack1
 Flags = CanProtect,CanMirrorMove
 EffectChance = 100
-Description = 用令人毛骨悚然的怨念进行攻击。有时还会让对手陷入冻伤状态。攻击处于异常状态的对手时，威力会变成２倍。
+Description = 用令人毛骨悚然的怨念进行攻击。有时还会让对手陷入冻伤状态。攻击处于异常状态的对手时，威力会变成2倍。
 #-------------------------------
 [SHADOWCLAW]
 Name = 暗影爪
@@ -3689,7 +3689,7 @@ Target = NearOther
 FunctionCode = DoublePowerIfTargetStatusProblemBurnTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 30
-Description = 用无数的火球进行攻击。有时会让对手陷入灼伤状态。攻击处于异常状态的对手时，威力会变成２倍。
+Description = 用无数的火球进行攻击。有时会让对手陷入灼伤状态。攻击处于异常状态的对手时，威力会变成2倍。
 #-------------------------------
 [OMINOUSWIND]
 Name = 奇异之风
@@ -3830,7 +3830,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = SetAttackerMovePPTo0IfUserFaints
-Description = 因对手的招式而陷入濒死时给对手施加怨念，让该招式的ＰＰ变成０。
+Description = 因对手的招式而陷入濒死时给对手施加怨念，让该招式的PP变成0。
 #-------------------------------
 [NIGHTMARE]
 Name = 恶梦
@@ -3841,7 +3841,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = StartDamageTargetEachTurnIfTargetAsleep
 Flags = CanProtect,CanMirrorMove
-Description = 让在睡眠状态下的对手做恶梦，每回合会缓缓减少ＨＰ。
+Description = 让在睡眠状态下的对手做恶梦，每回合会缓缓减少HP。
 #-------------------------------
 [SPITE]
 Name = 怨恨
@@ -3852,7 +3852,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = LowerPPOfTargetLastMoveBy4
 Flags = CanProtect,CanMirrorMove
-Description = 对对手最后使用的招式怀有怨恨，减少４ＰＰ该招式。
+Description = 对对手最后使用的招式怀有怨恨，减少4PP该招式。
 #-------------------------------
 [TRICKORTREAT]
 Name = 万圣夜
@@ -3911,7 +3911,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackOneTurnInSun
 Flags = Contact,CanProtect,CanMirrorMove,Slicing
-Description = 第１回合收集满满的日光，第２回合将此力量集中在剑上进行攻击。
+Description = 第1回合收集满满的日光，第2回合将此力量集中在剑上进行攻击。
 #-------------------------------
 [PETALDANCE]
 Name = 花瓣舞
@@ -3923,7 +3923,7 @@ TotalPP = 10
 Target = RandomNearFoe
 FunctionCode = MultiTurnAttackConfuseUserAtEnd
 Flags = Contact,CanProtect,CanMirrorMove,Dance
-Description = 在２～３回合内，散落花瓣攻击对手。之后自己会陷入混乱。
+Description = 在2～3回合内，散落花瓣攻击对手。之后自己会陷入混乱。
 #-------------------------------
 [POWERWHIP]
 Name = 强力鞭打
@@ -3960,7 +3960,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackOneTurnInSun
 Flags = CanProtect,CanMirrorMove
-Description = 第１回合收集满满的日光，第２回合发射光束进行攻击。
+Description = 第1回合收集满满的日光，第2回合发射光束进行攻击。
 #-------------------------------
 [WOODHAMMER]
 Name = 木槌
@@ -4085,7 +4085,7 @@ Target = AllNearFoes
 FunctionCode = HealUserByHalfOfDamageDoneBurnTarget
 Flags = CanProtect,CanMirrorMove,ThawsUser
 EffectChance = 20
-Description = 发射经搅拌的茶的大炮，可以回复给予对手伤害的一半ＨＰ，有时会让对手陷入灼伤状态。
+Description = 发射经搅拌的茶的大炮，可以回复给予对手伤害的一半HP，有时会让对手陷入灼伤状态。
 #-------------------------------
 [SEEDBOMB]
 Name = 种子炸弹
@@ -4109,7 +4109,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = 吸取对手的养分进行攻击。可以回复给予对手伤害的一半ＨＰ。
+Description = 吸取对手的养分进行攻击。可以回复给予对手伤害的一半HP。
 #-------------------------------
 [HORNLEECH]
 Name = 木角
@@ -4121,7 +4121,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 将角刺入，吸取对手的养分。可以回复给予对手伤害的一半ＨＰ。
+Description = 将角刺入，吸取对手的养分。可以回复给予对手伤害的一半HP。
 #-------------------------------
 [FLOWERTRICK]
 Name = 千变万花
@@ -4197,7 +4197,7 @@ Target = NearOther
 FunctionCode = StartSyrupBombTarget
 Flags = CanProtect,CanMirrorMove,Bomb
 EffectChance = 100
-Description = 使粘稠的麦芽糖浆爆炸，让对手陷入满身糖状态，在３回合内持续降低其速度。
+Description = 使粘稠的麦芽糖浆爆炸，让对手陷入满身糖状态，在3回合内持续降低其速度。
 #-------------------------------
 [GRASSYGLIDE]
 Name = 青草滑梯
@@ -4282,7 +4282,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = 吸取对手的养分进行攻击。可以回复给予对手伤害的一半ＨＰ。
+Description = 吸取对手的养分进行攻击。可以回复给予对手伤害的一半HP。
 #-------------------------------
 [SNAPTRAP]
 Name = 捕兽夹
@@ -4294,7 +4294,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget
 Flags = Contact,CanProtect,CanMirrorMove,CannotMetronome
-Description = 使用捕兽夹，在４～５回合内，夹住对手进行攻击。
+Description = 使用捕兽夹，在4～5回合内，夹住对手进行攻击。
 #-------------------------------
 [BULLETSEED]
 Name = 种子机关枪
@@ -4306,7 +4306,7 @@ TotalPP = 30
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove,Bomb
-Description = 向对手猛烈地发射种子进行攻击。连续攻击２～５次。
+Description = 向对手猛烈地发射种子进行攻击。连续攻击2～5次。
 #-------------------------------
 [ABSORB]
 Name = 吸取
@@ -4318,7 +4318,7 @@ TotalPP = 25
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
 Flags = CanProtect,CanMirrorMove
-Description = 吸取对手的养分进行攻击。可以回复给予对手伤害的一半ＨＰ。
+Description = 吸取对手的养分进行攻击。可以回复给予对手伤害的一半HP。
 #-------------------------------
 [GRASSKNOT]
 Name = 打草结
@@ -4393,7 +4393,7 @@ Accuracy = 0
 TotalPP = 10
 Target = BothSides
 FunctionCode = StartGrassyTerrain
-Description = 在５回合内变成青草场地。地面上的宝可梦每回合都能回复。草属性的招式威力还会提高。
+Description = 在5回合内变成青草场地。地面上的宝可梦每回合都能回复。草属性的招式威力还会提高。
 #-------------------------------
 [INGRAIN]
 Name = 扎根
@@ -4403,7 +4403,7 @@ Accuracy = 0
 TotalPP = 20
 Target = User
 FunctionCode = StartHealUserEachTurnTrapUserInBattle
-Description = 在大地上扎根，每回合回复自己的ＨＰ。因为扎根了，所以不能替换宝可梦。
+Description = 在大地上扎根，每回合回复自己的HP。因为扎根了，所以不能替换宝可梦。
 #-------------------------------
 [JUNGLEHEALING]
 Name = 丛林治疗
@@ -4414,7 +4414,7 @@ TotalPP = 10
 Target = UserAndAllies
 FunctionCode = HealUserAndAlliesQuarterOfTotalHPCureStatus
 Flags = CannotMetronome
-Description = 与丛林融为一体，回复自己和场上同伴的ＨＰ和状态。
+Description = 与丛林融为一体，回复自己和场上同伴的HP和状态。
 #-------------------------------
 [LEECHSEED]
 Name = 寄生种子
@@ -4425,7 +4425,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = StartLeechSeedTarget
 Flags = CanProtect,CanMirrorMove
-Description = 植入寄生种子后，将在每回合一点一点吸取对手的ＨＰ，从而用来回复自己的ＨＰ。
+Description = 植入寄生种子后，将在每回合一点一点吸取对手的HP，从而用来回复自己的HP。
 #-------------------------------
 [SLEEPPOWDER]
 Name = 催眠粉
@@ -4480,7 +4480,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByTargetAttackLowerTargetAttack1
 Flags = CanProtect,CanMirrorMove
-Description = 给自己回复和对手攻击力相同数值的ＨＰ，然后降低对手的攻击。
+Description = 给自己回复和对手攻击力相同数值的HP，然后降低对手的攻击。
 #-------------------------------
 [STUNSPORE]
 Name = 麻痹粉
@@ -4501,7 +4501,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserDependingOnWeather
-Description = 回复自己的ＨＰ。根据天气的不同，回复量也会有所变化。
+Description = 回复自己的HP。根据天气的不同，回复量也会有所变化。
 #-------------------------------
 [WORRYSEED]
 Name = 烦恼种子
@@ -4634,7 +4634,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderground
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 第１回合钻入，第２回合攻击对手。
+Description = 第1回合钻入，第2回合攻击对手。
 #-------------------------------
 [DRILLRUN]
 Name = 直冲钻
@@ -4735,7 +4735,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove
-Description = 用手中的骨头投掷对手，来回连续２次给予伤害。
+Description = 用手中的骨头投掷对手，来回连续2次给予伤害。
 #-------------------------------
 [SANDTOMB]
 Name = 流沙深渊
@@ -4747,7 +4747,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget
 Flags = CanProtect,CanMirrorMove
-Description = 将对手困在铺天盖地的沙暴中，在４～５回合内进行攻击。
+Description = 将对手困在铺天盖地的沙暴中，在4～5回合内进行攻击。
 #-------------------------------
 [BONERUSH]
 Name = 骨棒乱打
@@ -4759,7 +4759,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
-Description = 用坚硬的骨头殴打对手进行攻击。连续攻击２～５次。
+Description = 用坚硬的骨头殴打对手进行攻击。连续攻击2～5次。
 #-------------------------------
 [MUDSLAP]
 Name = 掷泥
@@ -4806,7 +4806,7 @@ Accuracy = 0
 TotalPP = 15
 Target = BothSides
 FunctionCode = StartWeakenElectricMoves
-Description = 一旦使用此招式，周围就会弄得到处是泥。在５回合内减弱电属性的招式。
+Description = 一旦使用此招式，周围就会弄得到处是泥。在5回合内减弱电属性的招式。
 #-------------------------------
 [ROTOTILLER]
 Name = 耕地
@@ -4837,7 +4837,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserDependingOnSandstorm
-Description = 回复自己最大ＨＰ的一半。在沙暴中回复得更多。
+Description = 回复自己最大HP的一半。在沙暴中回复得更多。
 #-------------------------------
 [SPIKES]
 Name = 撒菱
@@ -4860,7 +4860,7 @@ Target = NearOther
 FunctionCode = TwoTurnAttackParalyzeTarget
 Flags = CanProtect,CanMirrorMove,CannotMetronome
 EffectChance = 30
-Description = 用覆盖着电流的冰块，在第２回合撞向对手。有时会让对手陷入麻痹状态。
+Description = 用覆盖着电流的冰块，在第2回合撞向对手。有时会让对手陷入麻痹状态。
 #-------------------------------
 [ICEBURN]
 Name = 极寒冷焰
@@ -4873,7 +4873,7 @@ Target = NearOther
 FunctionCode = TwoTurnAttackBurnTarget
 Flags = CanProtect,CanMirrorMove,CannotMetronome
 EffectChance = 30
-Description = 用能够冻结一切的强烈冷气，在第２回合包裹住对手。有时会让对手陷入灼伤状态。
+Description = 用能够冻结一切的强烈冷气，在第2回合包裹住对手。有时会让对手陷入灼伤状态。
 #-------------------------------
 [GLACIALLANCE]
 Name = 雪矛
@@ -5039,7 +5039,7 @@ Target = NearOther
 Priority = -4
 FunctionCode = DoublePowerIfUserLostHPThisTurn
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 如果受到对手的招式攻击，就能给予该对手２倍威力的攻击。
+Description = 如果受到对手的招式攻击，就能给予该对手2倍威力的攻击。
 #-------------------------------
 [FROSTBREATH]
 Name = 冰息
@@ -5102,7 +5102,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = MultiTurnAttackPowersUpEachTurn
 Flags = Contact,CanProtect,CanMirrorMove,Bomb
-Description = 在５回合内攻击对手。招式每次击中，威力就会提高。
+Description = 在5回合内攻击对手。招式每次击中，威力就会提高。
 #-------------------------------
 [ICICLESPEAR]
 Name = 冰锥
@@ -5114,7 +5114,7 @@ TotalPP = 30
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
-Description = 向对手发射锋利的冰柱进行攻击。连续攻击２～５次。
+Description = 向对手发射锋利的冰柱进行攻击。连续攻击2～5次。
 #-------------------------------
 [TRIPLEAXEL]
 Name = 三旋击
@@ -5126,7 +5126,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitThreeTimesPowersUpWithEachHit
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 连续３次踢对手进行攻击。每踢中一次，威力就会提高。
+Description = 连续3次踢对手进行攻击。每踢中一次，威力就会提高。
 #-------------------------------
 [SHEERCOLD]
 Name = 绝对零度
@@ -5148,7 +5148,7 @@ Accuracy = 0
 TotalPP = 20
 Target = UserSide
 FunctionCode = StartWeakenDamageAgainstUserSideIfHail
-Description = 在５回合内减弱物理和特殊的伤害。只有冰雹时才能使出。
+Description = 在5回合内减弱物理和特殊的伤害。只有冰雹时才能使出。
 #-------------------------------
 [CHILLYRECEPTION]
 Name = 冷笑话
@@ -5159,7 +5159,7 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = StartSnowstormWeatherSwitchOutUser
 Flags = CannotMetronome
-Description = 留下冷场的冷笑话后，和后备宝可梦进行替换。在５回合内会下雪。
+Description = 留下冷场的冷笑话后，和后备宝可梦进行替换。在5回合内会下雪。
 #-------------------------------
 [HAIL]
 Name = 冰雹
@@ -5169,7 +5169,7 @@ Accuracy = 0
 TotalPP = 10
 Target = BothSides
 FunctionCode = StartHailWeather
-Description = 在５回合内一直降冰雹，除冰属性的宝可梦以外，给予全体宝可梦伤害。
+Description = 在5回合内一直降冰雹，除冰属性的宝可梦以外，给予全体宝可梦伤害。
 #-------------------------------
 [HAZE]
 Name = 黑雾
@@ -5189,7 +5189,7 @@ Accuracy = 0
 TotalPP = 30
 Target = UserSide
 FunctionCode = StartUserSideImmunityToStatStageLowering
-Description = 用白雾覆盖身体。在５回合内不会让对手降低自己的能力。
+Description = 用白雾覆盖身体。在5回合内不会让对手降低自己的能力。
 #-------------------------------
 [SNOWSCAPE]
 Name = 雪景
@@ -5200,7 +5200,7 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = StartSnowstormWeather
 Flags = CannotMetronome
-Description = 在５回合内会下雪。冰属性的防御会提高。
+Description = 在5回合内会下雪。冰属性的防御会提高。
 #-------------------------------
 [EXPLOSION]
 Name = 大爆炸
@@ -5260,7 +5260,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = CannotUseConsecutively
 Flags = CanProtect,CanMirrorMove
-Description = 从赤红如血的满月发射出全部的气势。这个招式无法连续使出２次。
+Description = 从赤红如血的满月发射出全部的气势。这个招式无法连续使出2次。
 #-------------------------------
 [BOOMBURST]
 Name = 爆音波
@@ -5296,7 +5296,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackChargeRaiseUserDefense1
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 第１回合把头缩进去，从而提高防御。第２回合攻击对手。
+Description = 第1回合把头缩进去，从而提高防御。第2回合攻击对手。
 #-------------------------------
 [DOUBLEEDGE]
 Name = 舍身冲撞
@@ -5380,7 +5380,7 @@ TotalPP = 10
 Target = RandomNearFoe
 FunctionCode = MultiTurnAttackConfuseUserAtEnd
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 在２～３回合内，乱打一气地攻击对手。大闹一番后自己会陷入混乱。
+Description = 在2～3回合内，乱打一气地攻击对手。大闹一番后自己会陷入混乱。
 #-------------------------------
 [EGGBOMB]
 Name = 炸蛋
@@ -5489,7 +5489,7 @@ TotalPP = 10
 Target = RandomNearFoe
 FunctionCode = MultiTurnAttackPreventSleeping
 Flags = CanProtect,CanMirrorMove,Sound
-Description = 在３回合内用骚乱攻击对手。在此期间谁都不能入眠。
+Description = 在3回合内用骚乱攻击对手。在此期间谁都不能入眠。
 #-------------------------------
 [BODYSLAM]
 Name = 泰山压顶
@@ -5552,7 +5552,7 @@ TotalPP = 10
 Target = AllNearFoes
 FunctionCode = TwoTurnAttack
 Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Wind
-Description = 制造风之刃，于第２回合攻击对手。容易击中要害。
+Description = 制造风之刃，于第2回合攻击对手。容易击中要害。
 #-------------------------------
 [SLAM]
 Name = 摔打
@@ -5601,7 +5601,7 @@ Target = NearOther
 FunctionCode = ParalyzeBurnOrFreezeTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 20
-Description = 用３种光线进行攻击。有时会让对手陷入麻痹、灼伤或冰冻的状态。
+Description = 用3种光线进行攻击。有时会让对手陷入麻痹、灼伤或冰冻的状态。
 #-------------------------------
 [CRUSHCLAW]
 Name = 撕裂爪
@@ -5664,7 +5664,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = DoublePowerIfUserPoisonedBurnedParalyzed
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 当自己处于中毒、麻痹、灼伤状态时，向对手使出此招式的话，威力会变成２倍。
+Description = 当自己处于中毒、麻痹、灼伤状态时，向对手使出此招式的话，威力会变成2倍。
 #-------------------------------
 [HEADBUTT]
 Name = 头锤
@@ -5726,7 +5726,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetParalyzedCureTarget
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 对于麻痹状态下的对手，威力会变成２倍。但相反对手的麻痹也会被治愈。
+Description = 对于麻痹状态下的对手，威力会变成2倍。但相反对手的麻痹也会被治愈。
 #-------------------------------
 [HORNATTACK]
 Name = 角撞
@@ -5911,7 +5911,7 @@ TotalPP = 40
 Target = NearOther
 FunctionCode = CannotMakeTargetFaint
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 对手的ＨＰ至少会留下１ＨＰ，如此般手下留情地攻击。
+Description = 对手的HP至少会留下1HP，如此般手下留情地攻击。
 #-------------------------------
 [HOLDBACK]
 Name = 手下留情
@@ -5923,7 +5923,7 @@ TotalPP = 40
 Target = NearOther
 FunctionCode = CannotMakeTargetFaint
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 在攻击的时候手下留情，从而使对手的ＨＰ至少会留下１ＨＰ。
+Description = 在攻击的时候手下留情，从而使对手的HP至少会留下1HP。
 #-------------------------------
 [PAYDAY]
 Name = 聚宝功
@@ -5996,7 +5996,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 使用尾巴等拍打对手进行攻击。连续２次给予伤害。
+Description = 使用尾巴等拍打对手进行攻击。连续2次给予伤害。
 #-------------------------------
 [FEINT]
 Name = 佯攻
@@ -6021,7 +6021,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用坚硬的尾巴拍打对手进行攻击。连续攻击２～５次。
+Description = 用坚硬的尾巴拍打对手进行攻击。连续攻击2～5次。
 #-------------------------------
 [POPULATIONBOMB]
 Name = 鼠数儿
@@ -6033,7 +6033,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTenTimes
 Flags = Contact,CanProtect,CanMirrorMove,CannotMetronome,Slicing
-Description = 伙伴们会纷纷赶来集合，以群体行动给予对手攻击。连续命中１～１０次。
+Description = 伙伴们会纷纷赶来集合，以群体行动给予对手攻击。连续命中1～10次。
 #-------------------------------
 [RAGE]
 Name = 愤怒
@@ -6057,7 +6057,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove
-Description = 向对手发射锐针进行攻击。连续攻击２～５次。
+Description = 向对手发射锐针进行攻击。连续攻击2～5次。
 #-------------------------------
 [COMETPUNCH]
 Name = 连续拳
@@ -6069,7 +6069,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = Contact,CanProtect,CanMirrorMove,Punching
-Description = 用拳头怒涛般的殴打对手进行攻击。连续攻击２～５次。
+Description = 用拳头怒涛般的殴打对手进行攻击。连续攻击2～5次。
 #-------------------------------
 [FURYSWIPES]
 Name = 乱抓
@@ -6081,7 +6081,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用爪子或镰刀等抓对手进行攻击。连续攻击２～５次。
+Description = 用爪子或镰刀等抓对手进行攻击。连续攻击2～5次。
 #-------------------------------
 [BARRAGE]
 Name = 投球
@@ -6093,7 +6093,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove,Bomb
-Description = 向对手投掷圆形物体进行攻击。连续攻击２～５次。
+Description = 向对手投掷圆形物体进行攻击。连续攻击2～5次。
 #-------------------------------
 [BIND]
 Name = 绑紧
@@ -6105,7 +6105,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = BindTarget
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 使用长长的身体或藤蔓等，在４～５回合内绑紧对手进行攻击。
+Description = 使用长长的身体或藤蔓等，在4～5回合内绑紧对手进行攻击。
 #-------------------------------
 [DOUBLESLAP]
 Name = 连环巴掌
@@ -6117,7 +6117,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用连环巴掌拍打对手进行攻击。连续攻击２～５次。
+Description = 用连环巴掌拍打对手进行攻击。连续攻击2～5次。
 #-------------------------------
 [FURYATTACK]
 Name = 乱击
@@ -6129,7 +6129,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用角或喙刺向对手进行攻击。连续攻击２～５次。
+Description = 用角或喙刺向对手进行攻击。连续攻击2～5次。
 #-------------------------------
 [WRAP]
 Name = 紧束
@@ -6141,7 +6141,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = BindTarget
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 使用长长的身体或藤蔓等，在４～５回合内紧束对手进行攻击。
+Description = 使用长长的身体或藤蔓等，在4～5回合内紧束对手进行攻击。
 #-------------------------------
 [CONSTRICT]
 Name = 缠绕
@@ -6167,7 +6167,7 @@ Target = None
 Priority = 1
 FunctionCode = MultiTurnAttackBideThenReturnDoubleDamage
 Flags = Contact,CanProtect
-Description = 在２回合内忍受攻击，受到的伤害会２倍返还给对手。
+Description = 在2回合内忍受攻击，受到的伤害会2倍返还给对手。
 #-------------------------------
 [CRUSHGRIP]
 Name = 捏碎
@@ -6179,7 +6179,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = PowerHigherWithTargetHP120
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用骇人的力量捏碎对手。对手的ＨＰ越多，威力越大。
+Description = 用骇人的力量捏碎对手。对手的HP越多，威力越大。
 #-------------------------------
 [ENDEAVOR]
 Name = 蛮干
@@ -6191,7 +6191,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = LowerTargetHPToUserHP
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 给予伤害，使对手的ＨＰ变得和自己的ＨＰ一样。
+Description = 给予伤害，使对手的HP变得和自己的HP一样。
 #-------------------------------
 [FLAIL]
 Name = 抓狂
@@ -6203,7 +6203,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = PowerLowerWithUserHP
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 抓狂般乱打进行攻击。自己的ＨＰ越少，招式的威力越大。
+Description = 抓狂般乱打进行攻击。自己的HP越少，招式的威力越大。
 #-------------------------------
 [FRUSTRATION]
 Name = 迁怒
@@ -6263,7 +6263,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = RandomlyDamageOrHealTarget
 Flags = CanProtect,CanMirrorMove
-Description = 递给对手设有圈套的盒子进行攻击。也有可能回复对手ＨＰ。
+Description = 递给对手设有圈套的盒子进行攻击。也有可能回复对手HP。
 #-------------------------------
 [RETURN]
 Name = 报恩
@@ -6287,7 +6287,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = FixedDamage20
 Flags = CanProtect,CanMirrorMove
-Description = 将冲击波撞向对手进行攻击。必定会给予２０的伤害。
+Description = 将冲击波撞向对手进行攻击。必定会给予20的伤害。
 #-------------------------------
 [SPITUP]
 Name = 喷出
@@ -6311,7 +6311,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = FixedDamageHalfTargetHP
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用锋利的门牙猛烈地咬住对手进行攻击。对手的ＨＰ减半。
+Description = 用锋利的门牙猛烈地咬住对手进行攻击。对手的HP减半。
 #-------------------------------
 [TRUMPCARD]
 Name = 王牌
@@ -6323,7 +6323,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = PowerHigherWithLessPP
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 王牌招式的剩余ＰＰ越少，招式的威力越大。
+Description = 王牌招式的剩余PP越少，招式的威力越大。
 #-------------------------------
 [WRINGOUT]
 Name = 绞紧
@@ -6335,7 +6335,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = PowerHigherWithTargetHP120
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用力勒紧对手进行攻击。对手的ＨＰ越多，威力越大。
+Description = 用力勒紧对手进行攻击。对手的HP越多，威力越大。
 #-------------------------------
 [ACUPRESSURE]
 Name = 点穴
@@ -6345,7 +6345,7 @@ Accuracy = 0
 TotalPP = 30
 Target = UserOrNearAlly
 FunctionCode = RaiseTargetRandomStat2
-Description = 通过点穴让身体舒筋活络。大幅提高某１项能力。
+Description = 通过点穴让身体舒筋活络。大幅提高某1项能力。
 #-------------------------------
 [AFTERYOU]
 Name = 您先请
@@ -6365,7 +6365,7 @@ Accuracy = 0
 TotalPP = 20
 Target = User
 FunctionCode = UseRandomMoveFromUserParty
-Description = 向我方紧急求助，从我方宝可梦已学会的招式中随机使用１个。
+Description = 向我方紧急求助，从我方宝可梦已学会的招式中随机使用1个。
 #-------------------------------
 [ATTRACT]
 Name = 迷人
@@ -6396,7 +6396,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = MaxUserAttackLoseHalfOfTotalHP
-Description = 将自己的ＨＰ减少到最大ＨＰ的一半，从而最大限度提高自己的攻击。
+Description = 将自己的HP减少到最大HP的一半，从而最大限度提高自己的攻击。
 #-------------------------------
 [BESTOW]
 Name = 传递礼物
@@ -6473,7 +6473,7 @@ FunctionCode = SetUserTypesToUserMoveType
 Description = 将自己的属性转换成和已学会的招式中第一个招式相同的属性。
 #-------------------------------
 [CONVERSION2]
-Name = 纹理２
+Name = 纹理2
 Type = NORMAL
 Category = Status
 Accuracy = 0
@@ -6522,7 +6522,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = DisableTargetLastMoveUsed
 Flags = CanProtect,CanMirrorMove
-Description = 阻碍对手行动，之前使出的招式将在４回合内无法使用。
+Description = 阻碍对手行动，之前使出的招式将在4回合内无法使用。
 #-------------------------------
 [DOODLE]
 Name = 描绘
@@ -6554,7 +6554,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = DisableTargetUsingDifferentMove
 Flags = CanProtect,CanMirrorMove
-Description = 让对手接受再来一次，连续３次使出最后使用的招式。
+Description = 让对手接受再来一次，连续3次使出最后使用的招式。
 #-------------------------------
 [ENDURE]
 Name = 挺住
@@ -6565,7 +6565,7 @@ TotalPP = 10
 Target = User
 Priority = 4
 FunctionCode = UserEnduresFaintingThisTurn
-Description = 即使受到攻击，也至少会留下１ＨＰ。连续使出则容易失败。
+Description = 即使受到攻击，也至少会留下1HP。连续使出则容易失败。
 #-------------------------------
 [ENTRAINMENT]
 Name = 找伙伴
@@ -6587,7 +6587,7 @@ TotalPP = 10
 Target = User
 FunctionCode = RaiseUserAtkSpAtkSpeed2LoseHalfOfTotalHP
 Flags = CannotMetronome
-Description = 削减自己的ＨＰ，大幅提高攻击和特攻以及速度。
+Description = 削减自己的HP，大幅提高攻击和特攻以及速度。
 #-------------------------------
 [FLASH]
 Name = 闪光
@@ -6778,7 +6778,7 @@ Accuracy = 0
 TotalPP = 30
 Target = UserSide
 FunctionCode = StartPreventCriticalHitsAgainstUserSide
-Description = 向天许愿，从而在５回合内不会被对手的攻击打中要害。
+Description = 向天许愿，从而在5回合内不会被对手的攻击打中要害。
 #-------------------------------
 [MEFIRST]
 Name = 抢先一步
@@ -6810,7 +6810,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = UseRandomMove
-Description = 挥动手指刺激自己的大脑，从所有的招式中任意使出１个。
+Description = 挥动手指刺激自己的大脑，从所有的招式中任意使出1个。
 #-------------------------------
 [MILKDRINK]
 Name = 喝牛奶
@@ -6820,7 +6820,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserHalfOfTotalHP
-Description = 回复自己最大ＨＰ的一半。
+Description = 回复自己最大HP的一半。
 #-------------------------------
 [MIMIC]
 Name = 模仿
@@ -6862,7 +6862,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserDependingOnWeather
-Description = 回复自己的ＨＰ。根据天气的不同，回复量也会有所变化。
+Description = 回复自己的HP。根据天气的不同，回复量也会有所变化。
 #-------------------------------
 [NATUREPOWER]
 Name = 自然之力
@@ -6905,7 +6905,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = UserTargetAverageHP
 Flags = CanProtect,CanMirrorMove
-Description = 将自己的ＨＰ和对手的ＨＰ相加，然后自己和对手友好地平分。
+Description = 将自己的HP和对手的HP相加，然后自己和对手友好地平分。
 #-------------------------------
 [PERISHSONG]
 Name = 终焉之歌
@@ -6916,7 +6916,7 @@ TotalPP = 5
 Target = AllBattlers
 FunctionCode = StartPerishCountsForAllBattlers
 Flags = Sound
-Description = 倾听歌声的宝可梦经过３回合陷入濒死。替换后效果消失。
+Description = 倾听歌声的宝可梦经过3回合陷入濒死。替换后效果消失。
 #-------------------------------
 [PLAYNICE]
 Name = 和睦相处
@@ -6969,7 +6969,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserHalfOfTotalHP
-Description = 让细胞再生，从而回复自己最大ＨＰ的一半。
+Description = 让细胞再生，从而回复自己最大HP的一半。
 #-------------------------------
 [RECYCLE]
 Name = 回收利用
@@ -7011,7 +7011,7 @@ TotalPP = 1
 Target = User
 FunctionCode = RevivePokemonToHalfHP
 Flags = CannotMetronome
-Description = 通过以慈爱之心祈祷，让陷入昏厥的后备宝可梦以回复一半ＨＰ的状态复活。
+Description = 通过以慈爱之心祈祷，让陷入昏厥的后备宝可梦以回复一半HP的状态复活。
 #-------------------------------
 [ROAR]
 Name = 吼叫
@@ -7033,7 +7033,7 @@ Accuracy = 0
 TotalPP = 25
 Target = UserSide
 FunctionCode = StartUserSideImmunityToInflictedStatus
-Description = 在５回合内被神奇的力量守护，从而不会陷入异常状态。
+Description = 在5回合内被神奇的力量守护，从而不会陷入异常状态。
 #-------------------------------
 [SCARYFACE]
 Name = 可怕面孔
@@ -7076,7 +7076,7 @@ TotalPP = 10
 Target = User
 FunctionCode = UserMakeSubstituteSwitchOutUser
 Flags = CannotMetronome
-Description = 削减自己的ＨＰ，制造分身后会返回，并和后备宝可梦进行替换。
+Description = 削减自己的HP，制造分身后会返回，并和后备宝可梦进行替换。
 #-------------------------------
 [SHELLSMASH]
 Name = 破壳
@@ -7118,7 +7118,7 @@ Accuracy = 0
 TotalPP = 1
 Target = NearOther
 FunctionCode = ReplaceMoveWithTargetLastMoveUsed
-Description = 将对手使用的招式变成自己的招式。使用１次后写生消失。
+Description = 将对手使用的招式变成自己的招式。使用1次后写生消失。
 #-------------------------------
 [SLACKOFF]
 Name = 偷懒
@@ -7128,7 +7128,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserHalfOfTotalHP
-Description = 偷懒休息。回复自己最大ＨＰ的一半。
+Description = 偷懒休息。回复自己最大HP的一半。
 #-------------------------------
 [SLEEPTALK]
 Name = 梦话
@@ -7138,7 +7138,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = UseRandomUserMoveIfAsleep
-Description = 从自己已学会的招式中任意使出１个。只能在自己睡觉时使用。
+Description = 从自己已学会的招式中任意使出1个。只能在自己睡觉时使用。
 #-------------------------------
 [SMOKESCREEN]
 Name = 烟幕
@@ -7159,7 +7159,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserHalfOfTotalHP
-Description = 回复自己最大ＨＰ的一半。
+Description = 回复自己最大HP的一半。
 #-------------------------------
 [SPLASH]
 Name = 跃起
@@ -7191,7 +7191,7 @@ Accuracy = 0
 TotalPP = 20
 Target = User
 FunctionCode = UserAddStockpileRaiseDefSpDef1
-Description = 积蓄力量，提高自己的防御和特防。最多积蓄３次。
+Description = 积蓄力量，提高自己的防御和特防。最多积蓄3次。
 #-------------------------------
 [STUFFCHEEKS]
 Name = 大快朵颐
@@ -7211,7 +7211,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = UserMakeSubstitute
-Description = 削减少许自己的ＨＰ，制造分身。分身将成为自己的替身。
+Description = 削减少许自己的HP，制造分身。分身将成为自己的替身。
 #-------------------------------
 [SUPERSONIC]
 Name = 超音波
@@ -7243,7 +7243,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = HealUserDependingOnUserStockpile
-Description = 将积蓄的力量吞下，从而回复自己的ＨＰ。积蓄得越多，回复越大。
+Description = 将积蓄的力量吞下，从而回复自己的HP。积蓄得越多，回复越大。
 #-------------------------------
 [SWEETSCENT]
 Name = 甜甜香气
@@ -7363,7 +7363,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = HealUserPositionNextTurn
-Description = 在下一回合回复自己或是替换出场的宝可梦最大ＨＰ的一半。
+Description = 在下一回合回复自己或是替换出场的宝可梦最大HP的一半。
 #-------------------------------
 [WORKUP]
 Name = 自我激励
@@ -7525,7 +7525,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetPoisoned
 Flags = CanProtect,CanMirrorMove
-Description = 将特殊的毒液泼向对手。对处于中毒状态的对手，威力会变成２倍。
+Description = 将特殊的毒液泼向对手。对处于中毒状态的对手，威力会变成2倍。
 #-------------------------------
 [BARBBARRAGE]
 Name = 毒千针
@@ -7538,7 +7538,7 @@ Target = NearOther
 FunctionCode = DoublePowerIfTargetPoisonedPoisonTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 50
-Description = 用无数的毒针进行攻击。有时还会让对手陷入中毒状态。攻击处于异常状态的对手时，威力会变成２倍。
+Description = 用无数的毒针进行攻击。有时还会让对手陷入中毒状态。攻击处于异常状态的对手时，威力会变成2倍。
 #-------------------------------
 [CLEARSMOG]
 Name = 清除之烟
@@ -7727,7 +7727,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = CureTargetStatusHealUserHalfOfTotalHP
 Flags = CanProtect,CanMirrorMove
-Description = 治愈对手的异常状态。治愈后可以回复自己的ＨＰ。
+Description = 治愈对手的异常状态。治愈后可以回复自己的HP。
 #-------------------------------
 [TOXIC]
 Name = 剧毒
@@ -7805,7 +7805,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
-Description = 在使用招式２回合后，向对手发送一团念力进行攻击。
+Description = 在使用招式2回合后，向对手发送一团念力进行攻击。
 #-------------------------------
 [SYNCHRONOISE]
 Name = 同步干扰
@@ -7829,7 +7829,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDoneIfTargetAsleep
 Flags = CanProtect,CanMirrorMove
-Description = 吃掉正在睡觉的对手的梦进行攻击。回复对手所受到伤害的一半ＨＰ。
+Description = 吃掉正在睡觉的对手的梦进行攻击。回复对手所受到伤害的一半HP。
 #-------------------------------
 [PHOTONGEYSER]
 Name = 光子喷涌
@@ -7930,7 +7930,7 @@ Target = NearOther
 FunctionCode = LowerPPOfTargetLastMoveBy3
 Flags = CanProtect,CanMirrorMove,Sound
 EffectChance = 100
-Description = 用强大的精神力量攻击。让对手最后使用的招式减少３ＰＰ。
+Description = 用强大的精神力量攻击。让对手最后使用的招式减少3PP。
 #-------------------------------
 [ESPERWING]
 Name = 气场之翼
@@ -8005,7 +8005,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = IncreasePowerInElectricTerrain
 Flags = Contact,CanProtect,CanMirrorMove,Slicing
-Description = 用无形的利刃劈开对手。处于电气场地时，招式威力会变成１．５倍。
+Description = 用无形的利刃劈开对手。处于电气场地时，招式威力会变成1．5倍。
 #-------------------------------
 [PSYSHOCK]
 Name = 精神冲击
@@ -8043,7 +8043,7 @@ Target = NearOther
 FunctionCode = StartTargetCannotHeal
 Flags = CanProtect,CanMirrorMove,Sound
 EffectChance = 100
-Description = 用令对手不舒服的音波进行攻击。让对手在２回合内无法通过招式、特性或携带的道具回复ＨＰ。
+Description = 用令对手不舒服的音波进行攻击。让对手在2回合内无法通过招式、特性或携带的道具回复HP。
 #-------------------------------
 [MYSTICALPOWER]
 Name = 神秘之力
@@ -8132,7 +8132,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove,CannotMetronome
-Description = 从两眼发射出神奇的光线攻击。连续２次给予伤害。
+Description = 从两眼发射出神奇的光线攻击。连续2次给予伤害。
 #-------------------------------
 [STOREDPOWER]
 Name = 辅助力量
@@ -8157,7 +8157,7 @@ Target = None
 Priority = -5
 FunctionCode = CounterSpecialDamage
 Flags = CanProtect
-Description = 从对手那里受到特殊攻击的伤害将以２倍返还给同一个对手。
+Description = 从对手那里受到特殊攻击的伤害将以2倍返还给同一个对手。
 #-------------------------------
 [PSYWAVE]
 Name = 精神波
@@ -8240,7 +8240,7 @@ Accuracy = 0
 TotalPP = 5
 Target = BothSides
 FunctionCode = StartGravity
-Description = 在５回合内，飘浮特性和飞行属性的宝可梦会被地面属性的招式击中。飞向空中的招式也将无法使用。
+Description = 在5回合内，飘浮特性和飞行属性的宝可梦会被地面属性的招式击中。飞向空中的招式也将无法使用。
 #-------------------------------
 [GUARDSPLIT]
 Name = 防守平分
@@ -8273,7 +8273,7 @@ TotalPP = 15
 Target = AllNearFoes
 FunctionCode = DisableTargetHealingMoves
 Flags = CanProtect,CanMirrorMove
-Description = 在５回合内无法通过招式、特性或携带的道具来回复ＨＰ。
+Description = 在5回合内无法通过招式、特性或携带的道具来回复HP。
 #-------------------------------
 [HEALPULSE]
 Name = 治愈波动
@@ -8284,7 +8284,7 @@ TotalPP = 10
 Target = Other
 FunctionCode = HealTargetHalfOfTotalHP
 Flags = CanProtect,Pulse
-Description = 放出治愈波动，从而回复对手最大ＨＰ的一半。
+Description = 放出治愈波动，从而回复对手最大HP的一半。
 #-------------------------------
 [HEALINGWISH]
 Name = 治愈之愿
@@ -8294,7 +8294,7 @@ Accuracy = 0
 TotalPP = 10
 Target = User
 FunctionCode = UserFaintsHealAndCureReplacement
-Description = 虽然自己陷入濒死，但可以治愈后备上场的宝可梦的异常状态以及回复ＨＰ。
+Description = 虽然自己陷入濒死，但可以治愈后备上场的宝可梦的异常状态以及回复HP。
 #-------------------------------
 [HEARTSWAP]
 Name = 心灵互换
@@ -8358,7 +8358,7 @@ Accuracy = 0
 TotalPP = 30
 Target = UserSide
 FunctionCode = StartWeakenSpecialDamageAgainstUserSide
-Description = 在５回合内使用神奇的墙，减弱从对手那受到的特殊攻击的伤害。
+Description = 在5回合内使用神奇的墙，减弱从对手那受到的特殊攻击的伤害。
 #-------------------------------
 [LUNARBLESSING]
 Name = 新月祈祷
@@ -8368,7 +8368,7 @@ Accuracy = 0
 TotalPP = 5
 Target = UserAndAllies
 FunctionCode = HealUserAndAlliesQuarterOfTotalHPCureStatus
-Description = 治愈自己的异常状态，同时回复自己的ＨＰ。会变得较容易闪避对手的招式。
+Description = 治愈自己的异常状态，同时回复自己的HP。会变得较容易闪避对手的招式。
 #-------------------------------
 [LUNARDANCE]
 Name = 新月舞
@@ -8412,7 +8412,7 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = StartNegateHeldItems
 Flags = CanMirrorMove
-Description = 制造出离奇的空间。在５回合内所有宝可梦携带道具的效果都会消失。
+Description = 制造出离奇的空间。在5回合内所有宝可梦携带道具的效果都会消失。
 #-------------------------------
 [MEDITATE]
 Name = 瑜伽姿势
@@ -8475,7 +8475,7 @@ Accuracy = 0
 TotalPP = 10
 Target = BothSides
 FunctionCode = StartPsychicTerrain
-Description = 在５回合内，地面上的宝可梦不会受到先制招式的攻击。超能力属性的招式威力会提高。
+Description = 在5回合内，地面上的宝可梦不会受到先制招式的攻击。超能力属性的招式威力会提高。
 #-------------------------------
 [PSYCHOSHIFT]
 Name = 精神转移
@@ -8496,7 +8496,7 @@ Accuracy = 0
 TotalPP = 20
 Target = UserSide
 FunctionCode = StartWeakenPhysicalDamageAgainstUserSide
-Description = 在５回合内使用神奇的墙，减弱从对手那受到的物理攻击的伤害。
+Description = 在5回合内使用神奇的墙，减弱从对手那受到的物理攻击的伤害。
 #-------------------------------
 [REST]
 Name = 睡觉
@@ -8506,7 +8506,7 @@ Accuracy = 0
 TotalPP = 5
 Target = User
 FunctionCode = HealUserFullyAndFallAsleep
-Description = 连续睡上２回合。回复自己的全部ＨＰ以及治愈所有异常状态。
+Description = 连续睡上2回合。回复自己的全部HP以及治愈所有异常状态。
 #-------------------------------
 [ROLEPLAY]
 Name = 扮演
@@ -8559,7 +8559,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = StartTargetAirborneAndAlwaysHitByMoves
 Flags = CanProtect,CanMirrorMove
-Description = 利用超能力使对手浮起来。在３回合内攻击会变得容易打中对手。
+Description = 利用超能力使对手浮起来。在3回合内攻击会变得容易打中对手。
 #-------------------------------
 [TELEPORT]
 Name = 瞬间移动
@@ -8593,7 +8593,7 @@ Target = BothSides
 Priority = -7
 FunctionCode = StartSlowerBattlersActFirst
 Flags = CanMirrorMove
-Description = 制造出离奇的空间。在５回合内速度慢的宝可梦可以先行动。
+Description = 制造出离奇的空间。在5回合内速度慢的宝可梦可以先行动。
 #-------------------------------
 [WONDERROOM]
 Name = 奇妙空间
@@ -8604,7 +8604,7 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = StartSwapAllBattlersBaseDefensiveStats
 Flags = CanMirrorMove
-Description = 制造出离奇的空间。在５回合内互换所有宝可梦的防御和特防。
+Description = 制造出离奇的空间。在5回合内互换所有宝可梦的防御和特防。
 #-------------------------------
 [HEADSMASH]
 Name = 双刃头锤
@@ -8640,7 +8640,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackChargeRaiseUserSpAtk1
 Flags = CanProtect,CanMirrorMove
-Description = 第１回合聚集宇宙之力提高特攻，第２回合攻击对手。
+Description = 第1回合聚集宇宙之力提高特攻，第2回合攻击对手。
 #-------------------------------
 [DIAMONDSTORM]
 Name = 钻石风暴
@@ -8803,7 +8803,7 @@ TotalPP = 20
 Target = NearOther
 FunctionCode = MultiTurnAttackPowersUpEachTurn
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 在５回合内连续滚动攻击对手。招式每次击中，威力就会提高。
+Description = 在5回合内连续滚动攻击对手。招式每次击中，威力就会提高。
 #-------------------------------
 [ROCKBLAST]
 Name = 岩石爆击
@@ -8815,7 +8815,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
 Flags = CanProtect,CanMirrorMove,Bomb
-Description = 向对手发射坚硬的岩石进行攻击。连续攻击２～５次。
+Description = 向对手发射坚硬的岩石进行攻击。连续攻击2～5次。
 #-------------------------------
 [ROCKPOLISH]
 Name = 岩石打磨
@@ -8836,7 +8836,7 @@ TotalPP = 10
 Target = BothSides
 FunctionCode = StartSandstormWeather
 Flags = Wind
-Description = 在５回合内扬起沙暴，除岩石、地面和钢属性以外的宝可梦，都会受到伤害。岩石属性的特防还会提高。
+Description = 在5回合内扬起沙暴，除岩石、地面和钢属性以外的宝可梦，都会受到伤害。岩石属性的特防还会提高。
 #-------------------------------
 [STEALTHROCK]
 Name = 隐形岩
@@ -8868,7 +8868,7 @@ TotalPP = 10
 Target = UserSide
 Priority = 3
 FunctionCode = ProtectUserSideFromMultiTargetDamagingMoves
-Description = 在１回合内防住击打我方全员的攻击。
+Description = 在1回合内防住击打我方全员的攻击。
 #-------------------------------
 [GIGATONHAMMER]
 Name = 巨力锤
@@ -8880,7 +8880,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = CannotUseConsecutively
 Flags = CanProtect,CanMirrorMove
-Description = 连同身体转起巨大的锤子进行攻击。这个招式无法连续使出２次。
+Description = 连同身体转起巨大的锤子进行攻击。这个招式无法连续使出2次。
 #-------------------------------
 [DOOMDESIRE]
 Name = 破灭之愿
@@ -8891,7 +8891,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
-Description = 使用招式２回合后，会用无数道光束攻击对手。
+Description = 使用招式2回合后，会用无数道光束攻击对手。
 #-------------------------------
 [STEELBEAM]
 Name = 铁蹄光线
@@ -8939,7 +8939,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = None
 Flags = Contact,CanProtect,CanMirrorMove,CannotMetronome
-Description = 变身为巨大的盾，撞击对手。如果对手正处于极巨化状态，则造成的伤害会变为２倍。
+Description = 变身为巨大的盾，撞击对手。如果对手正处于极巨化状态，则造成的伤害会变为2倍。
 #-------------------------------
 [BEHEMOTHBLADE]
 Name = 巨兽斩
@@ -8951,7 +8951,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = None
 Flags = Contact,CanProtect,CanMirrorMove,CannotMetronome,Slicing
-Description = 变身为巨大的剑，挥斩对手。如果对手正处于极巨化状态，则造成的伤害会变为２倍。
+Description = 变身为巨大的剑，挥斩对手。如果对手正处于极巨化状态，则造成的伤害会变为2倍。
 #-------------------------------
 [IRONTAIL]
 Name = 铁尾
@@ -9091,7 +9091,7 @@ Target = NearOther
 FunctionCode = HitTwoTimesFlinchTarget
 Flags = Contact,CanProtect,Punching,CannotMetronome
 EffectChance = 30
-Description = 以胸口的螺帽为中心旋转，并连续２次挥动手臂打击对手。有时会使对手畏缩。
+Description = 以胸口的螺帽为中心旋转，并连续2次挥动手臂打击对手。有时会使对手畏缩。
 #-------------------------------
 [MAGNETBOMB]
 Name = 磁铁炸弹
@@ -9115,7 +9115,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 向对手投掷钢铁齿轮进行攻击。连续２次给予伤害。
+Description = 向对手投掷钢铁齿轮进行攻击。连续2次给予伤害。
 #-------------------------------
 [METALCLAW]
 Name = 金属爪
@@ -9140,7 +9140,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoTimes
 Flags = CanProtect,CanMirrorMove,Slicing
-Description = 接连发射出粒子的利刃，连续２次给予伤害。攻击必定会命中。
+Description = 接连发射出粒子的利刃，连续2次给予伤害。攻击必定会命中。
 #-------------------------------
 [BULLETPUNCH]
 Name = 子弹拳
@@ -9177,7 +9177,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = PowerHigherWithTargetHP100
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用手臂或钳子压迫对手。对手剩余的ＨＰ越多，威力越大。
+Description = 用手臂或钳子压迫对手。对手剩余的HP越多，威力越大。
 #-------------------------------
 [HEAVYSLAM]
 Name = 重磅冲撞
@@ -9297,7 +9297,7 @@ TotalPP = 5
 Target = AllNearFoes
 FunctionCode = PowerHigherWithUserHP
 Flags = CanProtect,CanMirrorMove
-Description = 掀起潮水进行攻击。自己的ＨＰ越少，招式的威力越小。
+Description = 掀起潮水进行攻击。自己的HP越少，招式的威力越小。
 #-------------------------------
 [WAVECRASH]
 Name = 波动冲
@@ -9420,7 +9420,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetNotActed
 Flags = Contact,CanProtect,CanMirrorMove,Biting
-Description = 用坚硬的腮咬住对手。如果比对手先出手攻击，招式的威力会变成２倍。
+Description = 用坚硬的腮咬住对手。如果比对手先出手攻击，招式的威力会变成2倍。
 #-------------------------------
 [LIQUIDATION]
 Name = 水流裂破
@@ -9458,7 +9458,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderwater
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 第１回合潜入，第２回合浮上来进行攻击。
+Description = 第1回合潜入，第2回合浮上来进行攻击。
 #-------------------------------
 [HYDROSTEAM]
 Name = 水蒸气
@@ -9470,7 +9470,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = IncreasePowerInSun
 Flags = CanProtect,CanMirrorMove
-Description = 将煮得翻滚的开水猛烈地喷向对手。日照强烈时，招式威力不但不会降低，还会变成１．５倍。
+Description = 将煮得翻滚的开水猛烈地喷向对手。日照强烈时，招式威力不但不会降低，还会变成1．5倍。
 #-------------------------------
 [SCALD]
 Name = 热水
@@ -9557,7 +9557,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetHPLessThanHalf
 Flags = CanProtect,CanMirrorMove
-Description = 当对手的ＨＰ负伤到一半左右时，招式威力会变成２倍。
+Description = 当对手的HP负伤到一半左右时，招式威力会变成2倍。
 #-------------------------------
 [BUBBLEBEAM]
 Name = 泡沫光线
@@ -9684,7 +9684,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTarget
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 用非常坚固且厚实的贝壳，在４～５回合内夹住对手进行攻击。
+Description = 用非常坚固且厚实的贝壳，在4～5回合内夹住对手进行攻击。
 #-------------------------------
 [WHIRLPOOL]
 Name = 潮旋
@@ -9696,7 +9696,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = BindTargetDoublePowerIfTargetUnderwater
 Flags = CanProtect,CanMirrorMove
-Description = 将对手困在激烈的水流旋涡中，在４～５回合内进行攻击。
+Description = 将对手困在激烈的水流旋涡中，在4～5回合内进行攻击。
 #-------------------------------
 [TRIPLEDIVE]
 Name = 三连钻
@@ -9708,7 +9708,7 @@ TotalPP = 10
 Target = NearOther
 FunctionCode = HitThreeTimes
 Flags = Contact,CanProtect,CanMirrorMove
-Description = 以默契的跳跃溅起水花击向对手。连续３次给予伤害。
+Description = 以默契的跳跃溅起水花击向对手。连续3次给予伤害。
 #-------------------------------
 [SURGINGSTRIKES]
 Name = 水流连打
@@ -9720,7 +9720,7 @@ TotalPP = 5
 Target = NearOther
 FunctionCode = HitThreeTimesAlwaysCriticalHit
 Flags = Contact,CanProtect,CanMirrorMove,Punching,CannotMetronome
-Description = 将水之流派修炼至大成的仿若行云流水般的３次连击。必定会击中要害。
+Description = 将水之流派修炼至大成的仿若行云流水般的3次连击。必定会击中要害。
 #-------------------------------
 [WATERSHURIKEN]
 Name = 飞水手里剑
@@ -9733,7 +9733,7 @@ Target = NearOther
 Priority = 1
 FunctionCode = HitTwoToFiveTimesOrThreeForAshGreninja
 Flags = CanProtect,CanMirrorMove
-Description = 用粘液制成的手里剑，连续攻击２～５次。必定能够先制攻击。
+Description = 用粘液制成的手里剑，连续攻击2～5次。必定能够先制攻击。
 #-------------------------------
 [AQUARING]
 Name = 水流环
@@ -9743,7 +9743,7 @@ Accuracy = 0
 TotalPP = 20
 Target = User
 FunctionCode = StartHealUserEachTurn
-Description = 在自己身体的周围覆盖用水制造的幕。每回合回复ＨＰ。
+Description = 在自己身体的周围覆盖用水制造的幕。每回合回复HP。
 #-------------------------------
 [LIFEDEW]
 Name = 生命水滴
@@ -9754,7 +9754,7 @@ TotalPP = 10
 Target = UserAndAllies
 FunctionCode = HealUserAndAlliesQuarterOfTotalHP
 Flags = CannotMetronome
-Description = 喷洒出神奇的水，回复自己和场上同伴的ＨＰ。
+Description = 喷洒出神奇的水，回复自己和场上同伴的HP。
 #-------------------------------
 [RAINDANCE]
 Name = 求雨
@@ -9764,7 +9764,7 @@ Accuracy = 0
 TotalPP = 5
 Target = BothSides
 FunctionCode = StartRainWeather
-Description = 在５回合内一直降雨，从而提高水属性的招式威力。火属性的招式威力则降低。
+Description = 在5回合内一直降雨，从而提高水属性的招式威力。火属性的招式威力则降低。
 #-------------------------------
 [SOAK]
 Name = 浸水
@@ -9785,7 +9785,7 @@ Accuracy = 0
 TotalPP = 15
 Target = BothSides
 FunctionCode = StartWeakenFireMoves
-Description = 用水湿透周围。在５回合内减弱火属性的招式。
+Description = 用水湿透周围。在5回合内减弱火属性的招式。
 #-------------------------------
 [WITHDRAW]
 Name = 缩入壳中

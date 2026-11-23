@@ -29,7 +29,7 @@ Description = 弱小的野生宝可梦将完全不会出现。效果比白银喷
 #-------------------------------
 [BLACKFLUTE]
 Name = 黑色玻璃哨
-NamePlural = 黑色哨子
+NamePlural = 黑色玻璃哨
 Pocket = Items
 Price = 20
 FieldUse = Direct
@@ -39,7 +39,7 @@ Description = 以黑色玻璃制成的哨子。在使用的地方更容易遇到
 #-------------------------------
 [WHITEFLUTE]
 Name = 白色玻璃哨
-NamePlural = 白色哨子
+NamePlural = 白色玻璃哨
 Pocket = Items
 Price = 20
 FieldUse = Direct
@@ -244,7 +244,7 @@ Description = 用伽勒豆蔻枝编织的手环。给伽勒尔地区的呆呆兽
 #-------------------------------
 [GALARICAWREATH]
 Name = 伽勒豆蔻花圈
-NamePlural = 伽勒豆蔻花环
+NamePlural = 伽勒豆蔻花圈
 Pocket = Items
 Price = 6000
 BPPrice = 5
@@ -254,7 +254,7 @@ Description = 用伽勒豆蔻枝编织的花冠。给伽勒尔地区的呆呆兽
 #-------------------------------
 [BLACKAUGURITE]
 Name = 黑奇石
-NamePlural = 黑曜石
+NamePlural = 黑奇石
 PortionName = piece of Black Augurite
 PortionNamePlural = pieces of Black Augurite
 Pocket = Items
@@ -278,7 +278,7 @@ Description = 质地像是泥土的煤炭块。干燥后也能当成燃料使用
 #-------------------------------
 [SYRUPYAPPLE]
 Name = 蜜汁苹果
-NamePlural = 糖浆苹果
+NamePlural = 蜜汁苹果
 Pocket = Items
 Price = 500
 SellPrice = 550
@@ -289,7 +289,7 @@ Description = 这种神奇的苹果可以使特定的宝可梦进化。富含蜜
 #-------------------------------
 [UNREMARKABLETEACUP]
 Name = 凡作茶碗
-NamePlural = 朴素茶具
+NamePlural = 凡作茶碗
 Pocket = Items
 Price = 1600
 BPPrice = 5
@@ -299,7 +299,7 @@ Description = 这个神奇的茶碗可以使特定的宝可梦进化。虽然破
 #-------------------------------
 [MASTERPIECETEACUP]
 Name = 杰作茶碗
-NamePlural = 杰作茶具
+NamePlural = 杰作茶碗
 Pocket = Items
 Price = 38000
 BPPrice = 5
@@ -309,7 +309,7 @@ Description = 这个神奇的茶碗可以使特定的宝可梦进化。虽然破
 #-------------------------------
 [METALALLOY]
 Name = 复合金属
-NamePlural = 金属合金
+NamePlural = 复合金属
 PortionName = hunk of Metal Alloy
 PortionNamePlural = hunks of Metal Alloy
 Pocket = Items
@@ -399,7 +399,7 @@ Description = 黑色的球果。有种无法形容的气味。
 #-------------------------------
 [HELIXFOSSIL]
 Name = 贝壳化石
-NamePlural = 螺旋化石
+NamePlural = 贝壳化石
 Pocket = Items
 Price = 7000
 Flags = Fossil,Fling_100
@@ -407,7 +407,7 @@ Description = 很久以前栖息在海里的古代宝可梦的化石。好像是
 #-------------------------------
 [DOMEFOSSIL]
 Name = 甲壳化石
-NamePlural = 贝壳化石
+NamePlural = 甲壳化石
 Pocket = Items
 Price = 7000
 Flags = Fossil,Fling_100
@@ -567,7 +567,7 @@ Description = 散发着美丽银辉且相当大颗的珍珠。可以在商店高
 #-------------------------------
 [PEARLSTRING]
 Name = 丸子珍珠
-NamePlural = 珍珠串
+NamePlural = 丸子珍珠
 Pocket = Items
 Price = 20000
 Flags = Fling_30
@@ -575,7 +575,7 @@ Description = 散发着美丽银辉且非常大颗的珍珠。可以在商店高
 #-------------------------------
 [STARDUST]
 Name = 星星沙子
-NamePlural = 星砂
+NamePlural = 星星沙子
 PortionName = bag of Stardust
 PortionNamePlural = bags of Stardust
 Pocket = Items
@@ -624,11 +624,11 @@ Flags = Fling_30
 Description = 有着美丽心形外形且非常珍稀的鳞片。有些人收到会很高兴。
 #-------------------------------
 [SLOWPOKETAIL]
-Name = 呆呆兽的尾巴
-NamePlural = 呆呆兽的尾巴
+Name = 美味尾巴
+NamePlural = 美味尾巴
 Pocket = Items
 Price = 10000
-Description = 非常美味的某种生物的尾巴。可以高价卖给商店。
+Description = 非常美味的某种尾巴。可以在商店高价出售。
 #-------------------------------
 [RAREBONE]
 Name = 贵重骨头
@@ -670,7 +670,7 @@ Description = 约3000年前的文明使用的金币。
 #-------------------------------
 [RELICVASE]
 Name = 古代之壶
-NamePlural = 古代花瓶
+NamePlural = 古代之壶
 Pocket = Items
 Price = 0
 Flags = Fling_30
@@ -678,7 +678,7 @@ Description = 约3000年前的文明制造的壶。
 #-------------------------------
 [RELICBAND]
 Name = 古代手镯
-NamePlural = 古代手环
+NamePlural = 古代手镯
 Pocket = Items
 Price = 0
 Flags = Fling_30
@@ -686,7 +686,7 @@ Description = 约3000年前的文明制造的手镯。
 #-------------------------------
 [RELICSTATUE]
 Name = 古代石像
-NamePlural = 古代雕像
+NamePlural = 古代石像
 Pocket = Items
 Price = 0
 Flags = Fling_30
@@ -718,7 +718,7 @@ Description = 大大的珍贵竹笋。在部分美食家中拥有非常高人气
 #-------------------------------
 [GROWTHMULCH]
 Name = 速速肥
-NamePlural = 成长肥
+NamePlural = 速速肥
 PortionName = bag of Growth Mulch
 PortionNamePlural = bags of Growth Mulch
 Pocket = Items
@@ -728,33 +728,33 @@ Description = 培育树果时的肥料。但完全不适合丰缘地区的土壤
 #-------------------------------
 [DAMPMULCH]
 Name = 湿湿肥
-NamePlural = 潮湿肥
+NamePlural = 湿湿肥
 PortionName = bag of Damp Mulch
 PortionNamePlural = bags of Damp Mulch
 Pocket = Items
 Price = 200
 Flags = Mulch,Fling_30
-Description = 撒在松软土壤上的肥料。可以减缓树果生长，并使土壤干燥得更慢。
+Description = 在松软土壤上使用。减慢土地变干但也会减慢树果成长。
 #-------------------------------
 [STABLEMULCH]
 Name = 久久肥
-NamePlural = 稳定肥
+NamePlural = 久久肥
 PortionName = bag of Stable Mulch
 PortionNamePlural = bags of Stable Mulch
 Pocket = Items
 Price = 200
 Flags = Mulch,Fling_30
-Description = 撒在松软土壤上的肥料。可以延长成熟树果在植株上停留的时间。
+Description = 在松软土壤上使用。延长树果掉落之前的时间。
 #-------------------------------
 [GOOEYMULCH]
 Name = 粘粘肥
-NamePlural = 黏糊肥
+NamePlural = 粘粘肥
 PortionName = bag of Gooey Mulch
 PortionNamePlural = bags of Gooey Mulch
 Pocket = Items
 Price = 200
 Flags = Mulch,Fling_30
-Description = 撒在松软土壤上的肥料。可以增加成熟植株枯萎处长出新植株的次数。
+Description = 在松软土壤上使用。枯萎后长出新芽的次数增加。
 #-------------------------------
 [SHOALSALT]
 Name = 浅滩海盐
@@ -776,7 +776,7 @@ Description = 在浅滩洞穴这地方找到的贝壳。
 #-------------------------------
 [ODDKEYSTONE]
 Name = 楔石
-NamePlural = 怪异石块
+NamePlural = 楔石
 Pocket = Items
 Price = 2100
 Flags = Fling_80
@@ -784,7 +784,7 @@ Description = 没有它，石之塔就会崩塌的重要石头。有时能从石
 #-------------------------------
 [REDNECTAR]
 Name = 朱红色花蜜
-NamePlural = 红花蜜
+NamePlural = 朱红色花蜜
 PortionName = jar of Red Nectar
 PortionNamePlural = jars of Red Nectar
 Pocket = Items
@@ -795,7 +795,7 @@ Description = 朱红色花的花蜜。可以改变特定宝可梦的样子。
 #-------------------------------
 [YELLOWNECTAR]
 Name = 金黄色花蜜
-NamePlural = 黄花蜜
+NamePlural = 金黄色花蜜
 PortionName = jar of Yellow Nectar
 PortionNamePlural = jars of Yellow Nectar
 Pocket = Items
@@ -806,7 +806,7 @@ Description = 金黄色花的花蜜。可以改变特定宝可梦的样子。
 #-------------------------------
 [PINKNECTAR]
 Name = 桃粉色花蜜
-NamePlural = 粉花蜜
+NamePlural = 桃粉色花蜜
 PortionName = jar of Pink Nectar
 PortionNamePlural = jars of Pink Nectar
 Pocket = Items
@@ -817,7 +817,7 @@ Description = 桃粉色花的花蜜。可以改变特定宝可梦的样子。
 #-------------------------------
 [PURPLENECTAR]
 Name = 兰紫色花蜜
-NamePlural = 紫花蜜
+NamePlural = 兰紫色花蜜
 PortionName = jar of Purple Nectar
 PortionNamePlural = jars of Purple Nectar
 Pocket = Items
@@ -834,7 +834,7 @@ PortionNamePlural = pieces of Grass Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有新鲜绿草的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有清爽的绿色草原的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [FLAMEMAIL]
 Name = 火焰邮件
@@ -844,27 +844,27 @@ PortionNamePlural = pieces of Flame Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有红色火花的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有燃烧的深红色火焰的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [BUBBLEMAIL]
 Name = 水蓝邮件
-NamePlural = 泡沫邮件
+NamePlural = 水蓝邮件
 PortionName = piece of Bubble Mail
 PortionNamePlural = pieces of Bubble Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有水下藍色世界的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有蓝色水世界的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [BLOOMMAIL]
 Name = 绽放邮件
-NamePlural = 花朵邮件
+NamePlural = 绽放邮件
 PortionName = piece of Bloom Mail
 PortionNamePlural = pieces of Bloom Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有漂亮的花卉图案的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有漂亮的花瓣花纹的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [TUNNELMAIL]
 Name = 隧道邮件
@@ -874,7 +874,7 @@ PortionNamePlural = pieces of Tunnel Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有昏暗的煤矿的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有昏暗煤矿世界的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [STEELMAIL]
 Name = 钢铁邮件
@@ -884,37 +884,37 @@ PortionNamePlural = pieces of Steel Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有很酷的机械设计的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有帅气机械花纹的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [HEARTMAIL]
 Name = 甜蜜邮件
-NamePlural = 心灵邮件
+NamePlural = 甜蜜邮件
 PortionName = piece of Heart Mail
 PortionNamePlural = pieces of Heart Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有巨大的爱心的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有巨大爱心图案的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [SNOWMAIL]
 Name = 暴雪邮件
-NamePlural = 雪原邮件
+NamePlural = 暴雪邮件
 PortionName = piece of Snow Mail
 PortionNamePlural = pieces of Snow Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有寒冷的冰雪覆盖的世界的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有寒冷雪世界的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [SPACEMAIL]
 Name = 空间邮件
-NamePlural = 太空邮件
+NamePlural = 空间邮件
 PortionName = piece of Space Mail
 PortionNamePlural = pieces of Space Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有广袤无垠的空间的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有广袤宇宙空间的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [AIRMAIL]
 Name = 天空邮件
@@ -924,17 +924,17 @@ PortionNamePlural = pieces of Air Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有丰富多彩条纹的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有多彩信纸图案的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [MOSAICMAIL]
 Name = 彩嵌邮件
-NamePlural = 马赛克邮件
+NamePlural = 彩嵌邮件
 PortionName = piece of Mosaic Mail
 PortionNamePlural = pieces of Mosaic Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有一个生动的彩虹图案的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有生动虹色花纹的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [BRICKMAIL]
 Name = 砖块邮件
@@ -944,7 +944,7 @@ PortionNamePlural = pieces of Brick Mail
 Pocket = Mail
 Price = 50
 Flags = IconMail
-Description = 印有坚硬砖墙的特殊信纸。使用该道具时，需要让宝可梦携带着来用。
+Description = 印有坚硬砖块图案的信纸。使用该道具时，需要让宝可梦携带着来用。
 #-------------------------------
 [POTION]
 Name = 伤药
@@ -1010,7 +1010,7 @@ Description = 能让陷入濒死的全部宝可梦回复所有HP。
 #-------------------------------
 [AWAKENING]
 Name = 解眠药
-NamePlural = 觉醒药
+NamePlural = 解眠药
 Pocket = Medicine
 Price = 200
 FieldUse = OnPokemon
@@ -1040,7 +1040,7 @@ Description = 喷雾式药水。能治愈1只宝可梦的灼伤状态。
 #-------------------------------
 [PARALYZEHEAL]
 Name = 解麻药
-NamePlural = 麻痹药
+NamePlural = 解麻药
 Pocket = Medicine
 Price = 200
 FieldUse = OnPokemon
@@ -1092,7 +1092,7 @@ Description = 卡吉镇特产的馒头。能治愈1只宝可梦的所有异常�
 #-------------------------------
 [LAVACOOKIE]
 Name = 釜炎仙贝
-NamePlural = 熔岩饼干
+NamePlural = 釜炎仙贝
 Pocket = Medicine
 Price = 350
 FieldUse = OnPokemon
@@ -1102,7 +1102,7 @@ Description = 釜炎特产的仙贝。能治愈1只宝可梦的所有异常状�
 #-------------------------------
 [OLDGATEAU]
 Name = 森之羊羹
-NamePlural = 旧式格雷派饼
+NamePlural = 森之羊羹
 Pocket = Medicine
 Price = 350
 FieldUse = OnPokemon
@@ -1132,7 +1132,7 @@ Description = 在密阿雷市很受欢迎的点心。能治愈1只宝可梦的�
 #-------------------------------
 [SHALOURSABLE]
 Name = 娑罗沙布蕾
-NamePlural = 娑罗沙布利
+NamePlural = 娑罗沙布蕾
 Pocket = Medicine
 Price = 350
 FieldUse = OnPokemon
@@ -1173,7 +1173,7 @@ Description = 能让1只陷入濒死的宝可梦重获生机，并回复所有HP
 #-------------------------------
 [BERRYJUICE]
 Name = 树果汁
-NamePlural = 果汁
+NamePlural = 树果汁
 PortionName = cup of Berry Juice
 PortionNamePlural = cups of Berry Juice
 Pocket = Medicine
@@ -1185,7 +1185,7 @@ Description = 100％树果果汁。能让1只宝可梦回复20HP。
 #-------------------------------
 [SWEETHEART]
 Name = 心形甜点
-NamePlural = 甜美之心
+NamePlural = 心形甜点
 Pocket = Medicine
 Price = 3000
 FieldUse = OnPokemon
@@ -1219,7 +1219,7 @@ Description = 翻腾着气泡的汽水。能让1只宝可梦回复50HP。
 #-------------------------------
 [LEMONADE]
 Name = 果汁牛奶
-NamePlural = 柠檬水
+NamePlural = 果汁牛奶
 PortionName = can of Lemonade
 PortionNamePlural = cans of Lemonade
 Pocket = Medicine
@@ -1232,7 +1232,7 @@ Description = 非常香甜的牛奶。能让1只宝可梦回复70HP。
 #-------------------------------
 [MOOMOOMILK]
 Name = 哞哞鲜奶
-NamePlural = 哞哞牛奶
+NamePlural = 哞哞鲜奶
 PortionName = bottle of Moomoo Milk
 PortionNamePlural = bottles of Moomoo Milk
 Pocket = Medicine
@@ -1256,7 +1256,7 @@ Description = 非常苦的药粉。能让1只宝可梦回复60HP。
 #-------------------------------
 [ENERGYROOT]
 Name = 元气根
-NamePlural = 元气之根
+NamePlural = 元气根
 Pocket = Medicine
 Price = 1200
 FieldUse = OnPokemon
@@ -1266,7 +1266,7 @@ Description = 非常苦的根。能让1只宝可梦回复120HP。
 #-------------------------------
 [HEALPOWDER]
 Name = 万能粉
-NamePlural = 元气粉
+NamePlural = 万能粉
 PortionName = dose of Heal Powder
 PortionNamePlural = doses of Heal Powder
 Pocket = Medicine
@@ -1288,7 +1288,7 @@ Description = 非常苦的药草。能让1只濒死的宝可梦回复所有HP。
 #-------------------------------
 [MAXHONEY]
 Name = 极巨甜蜜
-NamePlural = 极甜蜜
+NamePlural = 极巨甜蜜
 PortionName = comb of Max Honey
 PortionNamePlural = combs of Max Honey
 Pocket = Medicine
@@ -1300,7 +1300,7 @@ Description = 极巨化的蜂女王制造出的蜜汁。放进极巨汤里，就
 #-------------------------------
 [ETHER]
 Name = PP单项小补剂
-NamePlural = 补药
+NamePlural = PP单项小补剂
 Pocket = Medicine
 Price = 1200
 BPPrice = 4
@@ -1311,7 +1311,7 @@ Description = 能让宝可梦学会的其中1个招式回复10PP。
 #-------------------------------
 [MAXETHER]
 Name = PP单项全补剂
-NamePlural = 全补药
+NamePlural = PP单项全补剂
 Pocket = Medicine
 Price = 2000
 FieldUse = OnPokemon
@@ -1321,7 +1321,7 @@ Description = 能让宝可梦学会的其中1个招式回复所有PP。
 #-------------------------------
 [ELIXIR]
 Name = PP多项小补剂
-NamePlural = 元气药
+NamePlural = PP多项小补剂
 Pocket = Medicine
 Price = 3000
 FieldUse = OnPokemon
@@ -1331,7 +1331,7 @@ Description = 能让宝可梦学会的4个招式各回复10PP。
 #-------------------------------
 [MAXELIXIR]
 Name = PP多项全补剂
-NamePlural = 全元气药
+NamePlural = PP多项全补剂
 Pocket = Medicine
 Price = 4500
 FieldUse = OnPokemon
@@ -1341,7 +1341,7 @@ Description = 能让宝可梦学会的4个招式回复所有PP。
 #-------------------------------
 [PPUP]
 Name = PP提升剂
-NamePlural = PP增强剂
+NamePlural = PP提升剂
 PortionName = bottle of PP Up
 PortionNamePlural = bottles of PP Up
 Pocket = Medicine
@@ -1439,7 +1439,7 @@ Description = 用于宝可梦的道具。能稍微提高1只宝可梦的HP的基
 #-------------------------------
 [MUSCLEFEATHER]
 Name = 肌力之羽
-NamePlural = 力量之羽
+NamePlural = 肌力之羽
 Pocket = Medicine
 Price = 300
 FieldUse = OnPokemon
@@ -1448,7 +1448,7 @@ Description = 用于宝可梦的道具。能稍微提高1只宝可梦的攻击�
 #-------------------------------
 [RESISTFEATHER]
 Name = 抵抗之羽
-NamePlural = 防御之羽
+NamePlural = 抵抗之羽
 Pocket = Medicine
 Price = 300
 FieldUse = OnPokemon
@@ -1484,7 +1484,7 @@ Description = 用于宝可梦的道具。能稍微提高1只宝可梦的速度�
 #-------------------------------
 [HEALTHMOCHI]
 Name = 体力粘糕
-NamePlural = 体力之饼
+NamePlural = 体力粘糕
 Pocket = Medicine
 Price = 500
 FieldUse = OnPokemon
@@ -1493,7 +1493,7 @@ Description = 糅合树果的粘糕。能提高1只宝可梦的HP的基础点数
 #-------------------------------
 [MUSCLEMOCHI]
 Name = 肌力粘糕
-NamePlural = 力量之饼
+NamePlural = 肌力粘糕
 Pocket = Medicine
 Price = 500
 FieldUse = OnPokemon
@@ -1502,7 +1502,7 @@ Description = 糅合树果的粘糕。能提高1只宝可梦的攻击的基础�
 #-------------------------------
 [RESISTMOCHI]
 Name = 抵抗粘糕
-NamePlural = 防御之饼
+NamePlural = 抵抗粘糕
 Pocket = Medicine
 Price = 500
 FieldUse = OnPokemon
@@ -1511,7 +1511,7 @@ Description = 糅合树果的粘糕。能提高1只宝可梦的防御的基础�
 #-------------------------------
 [GENIUSMOCHI]
 Name = 智力粘糕
-NamePlural = 智力之饼
+NamePlural = 智力粘糕
 Pocket = Medicine
 Price = 500
 FieldUse = OnPokemon
@@ -1520,7 +1520,7 @@ Description = 糅合树果的粘糕。能提高1只宝可梦的特攻的基础�
 #-------------------------------
 [CLEVERMOCHI]
 Name = 精神粘糕
-NamePlural = 精神之饼
+NamePlural = 精神粘糕
 Pocket = Medicine
 Price = 500
 FieldUse = OnPokemon
@@ -1529,7 +1529,7 @@ Description = 糅合树果的粘糕。能提高1只宝可梦的特防的基础�
 #-------------------------------
 [SWIFTMOCHI]
 Name = 瞬发粘糕
-NamePlural = 瞬发之饼
+NamePlural = 瞬发粘糕
 Pocket = Medicine
 Price = 500
 FieldUse = OnPokemon
@@ -1538,7 +1538,7 @@ Description = 糅合树果的粘糕。能提高1只宝可梦的速度的基础�
 #-------------------------------
 [FRESHSTARTMOCHI]
 Name = 净空粘糕
-NamePlural = 清爽之饼
+NamePlural = 净空粘糕
 Pocket = Medicine
 Price = 300
 FieldUse = OnPokemon
@@ -1619,7 +1619,7 @@ Description = 宝可梦闻了这种薄荷之后，会令防御容易提高，而
 #-------------------------------
 [LAXMINT]
 Name = 乐天薄荷
-NamePlural = 悠闲薄荷
+NamePlural = 乐天薄荷
 PortionName = sprig of Lax Mint
 PortionNamePlural = sprigs of Lax Mint
 Pocket = Medicine
@@ -1703,7 +1703,7 @@ Description = 宝可梦闻了这种薄荷之后，会令特防容易提高，而
 #-------------------------------
 [GENTLEMINT]
 Name = 温顺薄荷
-NamePlural = 温和薄荷
+NamePlural = 温顺薄荷
 PortionName = sprig of Gentle Mint
 PortionNamePlural = sprigs of Gentle Mint
 Pocket = Medicine
@@ -1917,7 +1917,7 @@ Description = 曾在关都地区的狩猎地带以及神奥地区的大湿地被
 #-------------------------------
 [SPORTBALL]
 Name = 竞赛球
-NamePlural = 运动球
+NamePlural = 竞赛球
 Pocket = PokeBalls
 Price = 300
 BattleUse = OnFoe
@@ -2017,7 +2017,7 @@ Description = 有点与众不同的球。如果在没有被对手察觉的状态
 #-------------------------------
 [CHERISHBALL]
 Name = 贵重球
-NamePlural = 珍贵球
+NamePlural = 贵重球
 Pocket = PokeBalls
 Price = 0
 BattleUse = OnFoe
@@ -2117,7 +2117,7 @@ Description = 让宝可梦携带后，可以治愈麻痹。
 #-------------------------------
 [CHESTOBERRY]
 Name = 零余果
-NamePlural = 零余子果
+NamePlural = 零余果
 Pocket = Berries
 Price = 20
 FieldUse = OnPokemon
@@ -2250,7 +2250,7 @@ NamePlural = 蔓莓果
 Pocket = Berries
 Price = 20
 Flags = Berry,Fling_10,NaturalGift_STEEL_80
-Description = 用于制作宝可方块，制作出来的宝可方块可用来打磨强壮。黄色的果实尝起来是酸的。
+Description = 用于制作宝可方块，制作出来的宝可方块可用来打磨帅气。红色的果实尝起来是辣的。
 #-------------------------------
 [BLUKBERRY]
 Name = 墨莓果
@@ -2286,7 +2286,7 @@ Description = 用于制作宝可方块，制作出来的宝可方块可用来打
 #-------------------------------
 [POMEGBERRY]
 Name = 榴石果
-NamePlural = 石榴果
+NamePlural = 榴石果
 Pocket = Berries
 Price = 20
 FieldUse = OnPokemon
@@ -2460,7 +2460,7 @@ Description = 让宝可梦携带后，在受到效果绝佳的格斗属性招式
 #-------------------------------
 [KEBIABERRY]
 Name = 通通果
-NamePlural = 通木果
+NamePlural = 通通果
 Pocket = Berries
 Price = 20
 Flags = Berry,Fling_10,NaturalGift_POISON_80
@@ -2540,7 +2540,7 @@ Description = 让宝可梦携带后，在受到效果绝佳的钢属性招式攻
 #-------------------------------
 [ROSELIBERRY]
 Name = 洛玫果
-NamePlural = 罗利果
+NamePlural = 洛玫果
 Pocket = Berries
 Price = 20
 Flags = Berry,Fling_10,NaturalGift_FAIRY_80
@@ -2612,7 +2612,7 @@ Description = 让宝可梦携带后，危机时，某一项能力就会大幅提
 #-------------------------------
 [ENIGMABERRY]
 Name = 谜芝果
-NamePlural = 谜之果
+NamePlural = 谜芝果
 Pocket = Berries
 Price = 20
 Flags = Berry,Fling_10,NaturalGift_BUG_100
@@ -2652,7 +2652,7 @@ Description = 让宝可梦携带后，在受到特殊招式攻击时，能给予
 #-------------------------------
 [KEEBERRY]
 Name = 亚开果
-NamePlural = 洛玫果
+NamePlural = 亚开果
 Pocket = Berries
 Price = 20
 Flags = Berry,Fling_10,NaturalGift_FAIRY_100
@@ -2751,7 +2751,7 @@ Description = 不单是天气造成的伤害，就连粉末类招式的效果也
 #-------------------------------
 [PROTECTIVEPADS]
 Name = 部位护具
-NamePlural = 保护垫
+NamePlural = 部位护具
 PortionName = set of Protective Pads
 PortionNamePlural = sets of Protective Pads
 Pocket = HeldItems
@@ -2809,7 +2809,7 @@ Description = 能骗过敌人眼睛的带帽披风。携带后，能够隐藏身
 #-------------------------------
 [EJECTBUTTON]
 Name = 逃脱按键
-NamePlural = 逃脱按钮
+NamePlural = 逃脱按键
 Pocket = HeldItems
 Price = 3000
 SellPrice = 2000
@@ -2819,7 +2819,7 @@ Description = 携带它的宝可梦如果受到招式攻击，就能逃脱战斗
 #-------------------------------
 [EJECTPACK]
 Name = 避难背包
-NamePlural = 逃脱背包
+NamePlural = 避难背包
 Pocket = HeldItems
 Price = 3000
 SellPrice = 2000
@@ -2874,7 +2874,7 @@ Description = 打开开关后，能让同行的所有宝可梦获得经验值的
 #-------------------------------
 [AMULETCOIN]
 Name = 护符金币
-NamePlural = 护身金币
+NamePlural = 护符金币
 Pocket = HeldItems
 Price = 10000
 Flags = Fling_30
@@ -2946,7 +2946,7 @@ Description = 携带它的宝可梦使出求雨的话，下雨的时间就会比
 #-------------------------------
 [SMOOTHROCK]
 Name = 沙沙岩石
-NamePlural = 光滑岩石
+NamePlural = 沙沙岩石
 Pocket = HeldItems
 Price = 4000
 BPPrice = 15
@@ -2964,7 +2964,7 @@ Description = 携带它的宝可梦使出冰雹的话，冰雹的时间就会比
 #-------------------------------
 [TERRAINEXTENDER]
 Name = 大地膜
-NamePlural = 场地延长器
+NamePlural = 大地膜
 Pocket = HeldItems
 Price = 4000
 BPPrice = 15
@@ -3136,7 +3136,7 @@ Description = 被针对弱点时，攻击和特攻就会大幅提高。
 #-------------------------------
 [BLUNDERPOLICY]
 Name = 打空保险
-NamePlural = 失误保险
+NamePlural = 打空保险
 Pocket = HeldItems
 Price = 4000
 BPPrice = 20
@@ -3145,7 +3145,7 @@ Description = 招式因命中率影响而落空时，速度会大幅提高。
 #-------------------------------
 [THROATSPRAY]
 Name = 爽喉喷雾
-NamePlural = 喉咙喷雾
+NamePlural = 爽喉喷雾
 PortionName = bottle of Throat Spray
 PortionNamePlural = bottles of Throat Spray
 Pocket = HeldItems
@@ -3267,7 +3267,7 @@ Description = 力如泉涌的头带。携带后，物理招式的威力就会少
 #-------------------------------
 [WISEGLASSES]
 Name = 博识眼镜
-NamePlural = 博士眼镜
+NamePlural = 博识眼镜
 PortionName = pair of Wise Glasses
 PortionNamePlural = pairs of Wise Glasses
 Pocket = HeldItems
@@ -3306,7 +3306,7 @@ Description = 能放大观看物体的镜片。携带后，招式的命中率就
 #-------------------------------
 [ZOOMLENS]
 Name = 对焦镜
-NamePlural = 放大镜
+NamePlural = 对焦镜
 Pocket = HeldItems
 Price = 4000
 BPPrice = 48
@@ -3481,7 +3481,7 @@ Description = 虽然携带后速度会降低，但宝可梦的速度会比平时
 #-------------------------------
 [LAXINCENSE]
 Name = 悠闲薰香
-NamePlural = 悠闲熏香
+NamePlural = 悠闲薰香
 PortionName = jar of Lax Incense
 PortionNamePlural = jars of Lax Incense
 Pocket = HeldItems
@@ -3491,7 +3491,7 @@ Description = 携带后，薰香的神奇香气会迷惑对手，其招式会变
 #-------------------------------
 [FULLINCENSE]
 Name = 饱腹薰香
-NamePlural = 满腹熏香
+NamePlural = 饱腹薰香
 PortionName = jar of Full Incense
 PortionNamePlural = jars of Full Incense
 Pocket = HeldItems
@@ -3501,7 +3501,7 @@ Description = 有着神奇香气的薰香。携带后，宝可梦的行动会比
 #-------------------------------
 [LUCKINCENSE]
 Name = 幸运薰香
-NamePlural = 幸运熏香
+NamePlural = 幸运薰香
 PortionName = jar of Luck Incense
 PortionNamePlural = jars of Luck Incense
 Pocket = HeldItems
@@ -3511,7 +3511,7 @@ Description = 只要携带它的宝可梦在战斗时出场一次，就能获得
 #-------------------------------
 [PUREINCENSE]
 Name = 洁净薰香
-NamePlural = 纯净熏香
+NamePlural = 洁净薰香
 PortionName = jar of Pure Incense
 PortionNamePlural = jars of Pure Incense
 Pocket = HeldItems
@@ -3521,7 +3521,7 @@ Description = 让排在最前面的宝可梦携带后，野生宝可梦就会不
 #-------------------------------
 [SEAINCENSE]
 Name = 海潮薰香
-NamePlural = 海之熏香
+NamePlural = 海潮薰香
 PortionName = jar of Sea Incense
 PortionNamePlural = jars of Sea Incense
 Pocket = HeldItems
@@ -3531,7 +3531,7 @@ Description = 有着神奇香气的薰香。携带后，水属性的招式威力
 #-------------------------------
 [WAVEINCENSE]
 Name = 涟漪薰香
-NamePlural = 波浪熏香
+NamePlural = 涟漪薰香
 PortionName = jar of Wave Incense
 PortionNamePlural = jars of Wave Incense
 Pocket = HeldItems
@@ -3541,7 +3541,7 @@ Description = 有着神奇香气的薰香。携带后，水属性的招式威力
 #-------------------------------
 [ROSEINCENSE]
 Name = 花朵薰香
-NamePlural = 玫瑰熏香
+NamePlural = 花朵薰香
 PortionName = jar of Rose Incense
 PortionNamePlural = jars of Rose Incense
 Pocket = HeldItems
@@ -3551,7 +3551,7 @@ Description = 有着神奇香气的薰香。携带后，草属性的招式威力
 #-------------------------------
 [ODDINCENSE]
 Name = 奇异薰香
-NamePlural = 怪异熏香
+NamePlural = 奇异薰香
 PortionName = jar of Odd Incense
 PortionNamePlural = jars of Odd Incense
 Pocket = HeldItems
@@ -3561,7 +3561,7 @@ Description = 有着神奇香气的薰香。携带后，超能力属性的招式
 #-------------------------------
 [ROCKINCENSE]
 Name = 岩石薰香
-NamePlural = 岩石熏香
+NamePlural = 岩石薰香
 PortionName = jar of Rock Incense
 PortionNamePlural = jars of Rock Incense
 Pocket = HeldItems
@@ -3649,7 +3649,7 @@ Description = 手感细腻的沙子。携带后，地面属性的招式威力就
 #-------------------------------
 [SHARPBEAK]
 Name = 锐利鸟嘴
-NamePlural = 尖锐鸟嘴
+NamePlural = 锐利鸟嘴
 Pocket = HeldItems
 Price = 3000
 SellPrice = 500
@@ -3667,7 +3667,7 @@ Description = 注入了念力的汤匙。携带后，超能力属性的招式威
 #-------------------------------
 [SILVERPOWDER]
 Name = 银粉
-NamePlural = 银色粉末
+NamePlural = 银粉
 PortionName = pile of Silver Powder
 PortionNamePlural = piles of Silver Powder
 Pocket = HeldItems
@@ -3686,7 +3686,7 @@ Flags = Fling_100
 Description = 绝对不会裂开的石头。携带后，岩石属性的招式威力就会提高。
 #-------------------------------
 [SPELLTAG]
-Name = 诅咒之符
+Name = 咒术之符
 NamePlural = 咒术之符
 Pocket = HeldItems
 Price = 3000
@@ -3769,7 +3769,7 @@ Description = 电属性的石板。携带后，电属性的招式威力就会增
 #-------------------------------
 [MEADOWPLATE]
 Name = 碧绿石板
-NamePlural = 草原石板
+NamePlural = 碧绿石板
 Pocket = HeldItems
 Price = 10000
 SellPrice = 500
@@ -3832,7 +3832,7 @@ Description = 超能力属性的石板。携带后，超能力属性的招式威
 #-------------------------------
 [INSECTPLATE]
 Name = 玉虫石板
-NamePlural = 昆虫石板
+NamePlural = 玉虫石板
 Pocket = HeldItems
 Price = 10000
 SellPrice = 500
@@ -3868,7 +3868,7 @@ Description = 龙属性的石板。携带后，龙属性的招式威力就会增
 #-------------------------------
 [DREADPLATE]
 Name = 恶颜石板
-NamePlural = 恶之石板
+NamePlural = 恶颜石板
 Pocket = HeldItems
 Price = 10000
 SellPrice = 500
@@ -3935,7 +3935,7 @@ Description = 冰属性的宝石。携带后，冰属性的招式威力仅会增
 #-------------------------------
 [FIGHTINGGEM]
 Name = 格斗宝石
-NamePlural = 格斗之宝石
+NamePlural = 格斗宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -3951,7 +3951,7 @@ Description = 毒属性的宝石。携带后，毒属性的招式威力仅会增
 #-------------------------------
 [GROUNDGEM]
 Name = 地面宝石
-NamePlural = 地面之宝石
+NamePlural = 地面宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -3959,7 +3959,7 @@ Description = 地面属性的宝石。携带后，地面属性的招式威力仅
 #-------------------------------
 [FLYINGGEM]
 Name = 飞行宝石
-NamePlural = 飞行之宝石
+NamePlural = 飞行宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -3967,7 +3967,7 @@ Description = 飞行属性的宝石。携带后，飞行属性的招式威力仅
 #-------------------------------
 [PSYCHICGEM]
 Name = 超能力宝石
-NamePlural = 超能力之宝石
+NamePlural = 超能力宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -3983,7 +3983,7 @@ Description = 虫属性的宝石。携带后，虫属性的招式威力仅会增
 #-------------------------------
 [ROCKGEM]
 Name = 岩石宝石
-NamePlural = 岩石之宝石
+NamePlural = 岩石宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -3991,7 +3991,7 @@ Description = 岩石属性的宝石。携带后，岩石属性的招式威力仅
 #-------------------------------
 [GHOSTGEM]
 Name = 幽灵宝石
-NamePlural = 幽灵之宝石
+NamePlural = 幽灵宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -4023,7 +4023,7 @@ Description = 钢属性的宝石。携带后，钢属性的招式威力仅会增
 #-------------------------------
 [FAIRYGEM]
 Name = 妖精宝石
-NamePlural = 妖精之宝石
+NamePlural = 妖精宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -4031,7 +4031,7 @@ Description = 妖精属性的宝石。携带后，妖精属性的招式威力会
 #-------------------------------
 [NORMALGEM]
 Name = 一般宝石
-NamePlural = 一般之宝石
+NamePlural = 一般宝石
 Pocket = HeldItems
 Price = 4000
 Flags = TypeGem
@@ -4047,7 +4047,7 @@ Description = 让皮卡丘携带后，攻击和特攻的威力就会提高的神
 #-------------------------------
 [LUCKYPUNCH]
 Name = 吉利拳
-NamePlural = 幸运拳套
+NamePlural = 吉利拳
 Pocket = HeldItems
 Price = 1000
 BPPrice = 7
@@ -4056,7 +4056,7 @@ Description = 能带来幸运的拳套。让吉利蛋携带后，招式会变得
 #-------------------------------
 [METALPOWDER]
 Name = 金属粉
-NamePlural = 金属粉末
+NamePlural = 金属粉
 PortionName = bag of Metal Powder
 PortionNamePlural = bags of Metal Powder
 Pocket = HeldItems
@@ -4066,7 +4066,7 @@ Description = 让百变怪携带后，防御就会提高的神奇粉末。非常
 #-------------------------------
 [QUICKPOWDER]
 Name = 速度粉
-NamePlural = 速度粉末
+NamePlural = 速度粉
 PortionName = bag of Quick Powder
 PortionNamePlural = bags of Quick Powder
 Pocket = HeldItems
@@ -4145,7 +4145,7 @@ Description = 让骑拉帝纳携带的话，龙和幽灵属性的招式威力就
 #-------------------------------
 [ADAMANTCRYSTAL]
 Name = 大金刚宝玉
-NamePlural = 金刚玉
+NamePlural = 大金刚宝玉
 Pocket = HeldItems
 Price = 4000
 SellPrice = 0
@@ -4154,7 +4154,7 @@ Description = 光辉灿烂的大珠子。对帝牙卢卡使用后，能使之力
 #-------------------------------
 [LUSTROUSGLOBE]
 Name = 大白宝玉
-NamePlural = 白玉
+NamePlural = 大白宝玉
 Pocket = HeldItems
 Price = 4000
 SellPrice = 0
@@ -4163,7 +4163,7 @@ Description = 光辉灿烂的大珠子。对帕路奇亚使用后，能使之力
 #-------------------------------
 [GRISEOUSCORE]
 Name = 大白金宝玉
-NamePlural = 白金玉
+NamePlural = 大白金宝玉
 Pocket = HeldItems
 Price = 4000
 SellPrice = 0
@@ -4210,7 +4210,7 @@ Description = 用结晶装饰的木雕面具。让厄诡椪携带后，就会用
 #-------------------------------
 [DOUSEDRIVE]
 Name = 水流卡带
-NamePlural = 清水卡带
+NamePlural = 水流卡带
 Pocket = HeldItems
 Price = 0
 Flags = Fling_70
@@ -4234,7 +4234,7 @@ Description = 这是让盖诺赛克特携带的卡带。携带后，高科技光
 #-------------------------------
 [CHILLDRIVE]
 Name = 冰冻卡带
-NamePlural = 冰冷卡带
+NamePlural = 冰冻卡带
 Pocket = HeldItems
 Price = 0
 Flags = Fling_70
@@ -4242,7 +4242,7 @@ Description = 这是让盖诺赛克特携带的卡带。携带后，高科技光
 #-------------------------------
 [FIREMEMORY]
 Name = 火焰存储碟
-NamePlural = 火之存储碟
+NamePlural = 火焰存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4250,7 +4250,7 @@ Description = 装有火属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [WATERMEMORY]
 Name = 清水存储碟
-NamePlural = 水之存储碟
+NamePlural = 清水存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4258,7 +4258,7 @@ Description = 装有水属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [ELECTRICMEMORY]
 Name = 电子存储碟
-NamePlural = 电之存储碟
+NamePlural = 电子存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4266,7 +4266,7 @@ Description = 装有电属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [GRASSMEMORY]
 Name = 青草存储碟
-NamePlural = 草之存储碟
+NamePlural = 青草存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4274,7 +4274,7 @@ Description = 装有草属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [ICEMEMORY]
 Name = 冰雪存储碟
-NamePlural = 冰之存储碟
+NamePlural = 冰雪存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4282,7 +4282,7 @@ Description = 装有冰属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [FIGHTINGMEMORY]
 Name = 战斗存储碟
-NamePlural = 格斗之存储碟
+NamePlural = 战斗存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4290,7 +4290,7 @@ Description = 装有格斗属性数据的存储碟。特定宝可梦携带后，
 #-------------------------------
 [POISONMEMORY]
 Name = 毒存储碟
-NamePlural = 毒之存储碟
+NamePlural = 毒存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4298,7 +4298,7 @@ Description = 装有毒属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [GROUNDMEMORY]
 Name = 大地存储碟
-NamePlural = 地面之存储碟
+NamePlural = 大地存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4306,7 +4306,7 @@ Description = 装有地面属性数据的存储碟。特定宝可梦携带后，
 #-------------------------------
 [FLYINGMEMORY]
 Name = 飞翔存储碟
-NamePlural = 飞行之存储碟
+NamePlural = 飞翔存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4314,7 +4314,7 @@ Description = 装有飞行属性数据的存储碟。特定宝可梦携带后，
 #-------------------------------
 [PSYCHICMEMORY]
 Name = 精神存储碟
-NamePlural = 超能力之存储碟
+NamePlural = 精神存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4322,7 +4322,7 @@ Description = 装有超能力属性数据的存储碟。特定宝可梦携带后
 #-------------------------------
 [BUGMEMORY]
 Name = 虫子存储碟
-NamePlural = 虫之存储碟
+NamePlural = 虫子存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4330,7 +4330,7 @@ Description = 装有虫属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [ROCKMEMORY]
 Name = 岩石存储碟
-NamePlural = 岩石之存储碟
+NamePlural = 岩石存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4338,7 +4338,7 @@ Description = 装有岩石属性数据的存储碟。特定宝可梦携带后，
 #-------------------------------
 [GHOSTMEMORY]
 Name = 幽灵存储碟
-NamePlural = 幽灵之存储碟
+NamePlural = 幽灵存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4346,7 +4346,7 @@ Description = 装有幽灵属性数据的存储碟。特定宝可梦携带后，
 #-------------------------------
 [DRAGONMEMORY]
 Name = 龙存储碟
-NamePlural = 龙之存储碟
+NamePlural = 龙存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4354,7 +4354,7 @@ Description = 装有龙属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [DARKMEMORY]
 Name = 黑暗存储碟
-NamePlural = 恶之存储碟
+NamePlural = 黑暗存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4362,7 +4362,7 @@ Description = 装有恶属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [STEELMEMORY]
 Name = 钢铁存储碟
-NamePlural = 钢之存储碟
+NamePlural = 钢铁存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4370,7 +4370,7 @@ Description = 装有钢属性数据的存储碟。特定宝可梦携带后，属
 #-------------------------------
 [FAIRYMEMORY]
 Name = 妖精存储碟
-NamePlural = 妖精之存储碟
+NamePlural = 妖精存储碟
 Pocket = HeldItems
 Price = 1000
 Flags = Fling_50
@@ -4519,7 +4519,7 @@ Description = 爱心形状的工艺糖果。让小仙奶携带的话，会高兴
 #-------------------------------
 [BERRYSWEET]
 Name = 野莓糖饰
-NamePlural = 莓果糖饰
+NamePlural = 野莓糖饰
 Pocket = HeldItems
 Price = 500
 BPPrice = 5
@@ -4564,7 +4564,7 @@ Description = 蝴蝶结形状的工艺糖果。让小仙奶携带的话，会高
 #-------------------------------
 [LEADERSCREST]
 Name = 头领凭证
-NamePlural = 首领之证
+NamePlural = 头领凭证
 Pocket = HeldItems
 Price = 3000
 Flags = Fling_30
@@ -5337,7 +5337,7 @@ Description = 让老翁龙携带后，在战斗时就能进行超级进化的一
 #-------------------------------
 [MAGEARNITE]
 Name = 玛机雅娜进化石
-NamePlural = 美录梅塔进化石
+NamePlural = 玛机雅娜进化石
 Pocket = MegaStones
 Price = 0
 BPPrice = 50
@@ -5400,7 +5400,7 @@ Description = 让戟脊龙携带后，在战斗时就能进行超级进化的一
 #-------------------------------
 [REDORB]
 Name = 朱红色宝珠
-NamePlural = 红色宝珠
+NamePlural = 朱红色宝珠
 Pocket = HeldItems
 Price = 10000
 SellPrice = 0
@@ -5409,7 +5409,7 @@ Description = 散发着红色光辉的宝珠。据说和丰缘地区的传说渊
 #-------------------------------
 [BLUEORB]
 Name = 靛蓝色宝珠
-NamePlural = 蓝色宝珠
+NamePlural = 靛蓝色宝珠
 Pocket = HeldItems
 Price = 10000
 SellPrice = 0
@@ -5634,7 +5634,7 @@ Description = 能极大提高战斗中宝可梦的命中。离场后，效果便
 #-------------------------------
 [MAXMUSHROOMS]
 Name = 极巨菇菇
-NamePlural = 极大蘑菇
+NamePlural = 极巨菇菇
 PortionName = cluster of Max Mushrooms
 PortionNamePlural = clusters of Max Mushrooms
 Pocket = BattleItems
@@ -5672,7 +5672,7 @@ Description = 击中要害的几率会大幅提高。每次使用效果都会提
 #-------------------------------
 [GUARDSPEC]
 Name = 能力防守
-NamePlural = 防御强化
+NamePlural = 能力防守
 Pocket = BattleItems
 Price = 1500
 BattleUse = Direct
@@ -5681,7 +5681,7 @@ Description = 在战斗中，5回合内不让我方能力降低的道具。
 #-------------------------------
 [RESETURGE]
 Name = 恢复召唤
-NamePlural = 重置激发器
+NamePlural = 恢复召唤
 Pocket = BattleItems
 Price = 0
 Flags = Fling_30
@@ -5689,7 +5689,7 @@ Description = 使用后，我方宝可梦的能力变化将消失。
 #-------------------------------
 [ABILITYURGE]
 Name = 特性召唤
-NamePlural = 特性激发器
+NamePlural = 特性召唤
 Pocket = BattleItems
 Price = 0
 Flags = Fling_30
@@ -5697,7 +5697,7 @@ Description = 使用后，能令我方宝可梦的特性启动。
 #-------------------------------
 [ITEMURGE]
 Name = 道具召唤
-NamePlural = 道具激发器
+NamePlural = 道具召唤
 Pocket = BattleItems
 Price = 0
 Flags = Fling_30
@@ -5705,7 +5705,7 @@ Description = 使用后，能立刻使用我方宝可梦携带的道具。
 #-------------------------------
 [ITEMDROP]
 Name = 道具击落
-NamePlural = 道具掉落
+NamePlural = 道具击落
 Pocket = BattleItems
 Price = 0
 Flags = Fling_30
@@ -5713,7 +5713,7 @@ Description = 使用后，能立刻丢弃我方宝可梦携带的道具。
 #-------------------------------
 [BLUEFLUTE]
 Name = 蓝色玻璃哨
-NamePlural = 蓝色哨子
+NamePlural = 蓝色玻璃哨
 Pocket = BattleItems
 Price = 20
 FieldUse = OnPokemon
@@ -5724,7 +5724,7 @@ Description = 以蓝色玻璃制成的哨子。可以治愈睡眠状态。
 #-------------------------------
 [YELLOWFLUTE]
 Name = 黄色玻璃哨
-NamePlural = 黄色哨子
+NamePlural = 黄色玻璃哨
 Pocket = BattleItems
 Price = 20
 BattleUse = OnBattler
@@ -5734,7 +5734,7 @@ Description = 以黄色玻璃制成的哨子。可以治愈混乱状态。
 #-------------------------------
 [REDFLUTE]
 Name = 红色玻璃哨
-NamePlural = 红色哨子
+NamePlural = 红色玻璃哨
 Pocket = BattleItems
 Price = 20
 BattleUse = OnBattler
@@ -5753,7 +5753,7 @@ Description = 能吸引宝可梦注意的道具。在和野生宝可梦的战斗
 #-------------------------------
 [FLUFFYTAIL]
 Name = 向尾喵的尾巴
-NamePlural = 毛茸茸的尾巴
+NamePlural = 向尾喵的尾巴
 Pocket = BattleItems
 Price = 300
 BattleUse = Direct
@@ -5762,7 +5762,7 @@ Description = 能吸引宝可梦注意的道具。在和野生宝可梦的战斗
 #-------------------------------
 [POKETOY]
 Name = 宝可尾草
-NamePlural = 宝可梦玩具
+NamePlural = 宝可尾草
 Pocket = BattleItems
 Price = 300
 BattleUse = Direct
@@ -5827,7 +5827,7 @@ Price = 1600
 FieldUse = TR
 Flags = Fling_10
 Move = SCARYFACE
-Description = 用恐怖的表情瞪着对手，使其害怕，从而大幅降低对手的速度。
+Description = 用恐怖的脸瞪着对手，使其害怕，从而大幅降低对手的速度。
 #-------------------------------
 [TM007]
 Name = TM007
@@ -5897,7 +5897,7 @@ Price = 3200
 FieldUse = TR
 Flags = Fling_40
 Move = ACIDSPRAY
-Description = 喷出能溶化对手的液体进行攻击。会大幅降低对手的特防。
+Description = 喷出能溶化对手的液体进行攻击。大幅降低对手的特防。
 #-------------------------------
 [TM014]
 Name = TM014
@@ -5917,7 +5917,7 @@ Price = 1600
 FieldUse = TR
 Flags = Fling_50
 Move = STRUGGLEBUG
-Description = 抵抗并攻击对手。会降低对手的特攻。
+Description = 抵抗并攻击对手。降低对手的特攻。
 #-------------------------------
 [TM016]
 Name = TM016
@@ -6047,7 +6047,7 @@ Price = 6000
 FieldUse = TR
 Flags = Fling_60
 Move = BULLDOZE
-Description = 用力踩踏地面并攻击自己周围所有的宝可梦。会降低对方的速度。
+Description = 用力踩踏地面并攻击自己周围所有的宝可梦。降低对方的速度。
 #-------------------------------
 [TM029]
 Name = TM029
@@ -6147,7 +6147,7 @@ Price = 3200
 FieldUse = TR
 Flags = Fling_50
 Move = FLAMECHARGE
-Description = 让火焰覆盖全身，攻击对手。积蓄力量来提高自己的速度。
+Description = 让火焰覆盖全身，攻击对手。积蓄力量并提高自己的速度。
 #-------------------------------
 [TM039]
 Name = TM039
@@ -6157,7 +6157,7 @@ Price = 12000
 FieldUse = TR
 Flags = Fling_65
 Move = LOWSWEEP
-Description = 以敏捷的动作瞄准对手的脚进行攻击。会降低对手的速度。
+Description = 以敏捷的动作瞄准对手的脚进行攻击。降低对手的速度。
 #-------------------------------
 [TM040]
 Name = TM040
@@ -6257,7 +6257,7 @@ Price = 12000
 FieldUse = TR
 Flags = Fling_10
 Move = SUNNYDAY
-Description = 在5回合内让日照变得强烈，从而提高火属性的招式威力。水属性的招式威力则降低。
+Description = 在5回合内阳光变得强烈，从而提高火属性的招式威力。水属性的招式威力则降低。
 #-------------------------------
 [TM050]
 Name = TM050
@@ -6317,7 +6317,7 @@ Price = 20000
 FieldUse = TR
 Flags = Fling_80
 Move = DIG
-Description = 第1回合钻入地底，第2回合攻击对手。
+Description = 第1回合钻入，第2回合攻击对手。
 #-------------------------------
 [TM056]
 Name = TM056
@@ -6507,7 +6507,7 @@ Price = 3200
 FieldUse = TR
 Flags = Fling_10
 Move = REFLECT
-Description = 利用神奇的墙壁，在5回合内减弱从对手那里受到的物理攻击的伤害。
+Description = 在5回合内使用神奇的墙，减弱从对手那受到的物理攻击的伤害。
 #-------------------------------
 [TM075]
 Name = TM075
@@ -6517,7 +6517,7 @@ Price = 3200
 FieldUse = TR
 Flags = Fling_10
 Move = LIGHTSCREEN
-Description = 利用神奇的墙壁，在5回合内减弱从对手那里受到的特殊攻击的伤害。
+Description = 在5回合内使用神奇的墙，减弱从对手那受到的特殊攻击的伤害。
 #-------------------------------
 [TM076]
 Name = TM076
@@ -6567,7 +6567,7 @@ Price = 1600
 FieldUse = TR
 Flags = Fling_10
 Move = METRONOME
-Description = 挥动手指刺激自己的大脑，从许多的招式中随机使出1个。
+Description = 挥动手指刺激自己的大脑，从所有的招式中任意使出1个。
 #-------------------------------
 [TM081]
 Name = TM081
@@ -6687,7 +6687,7 @@ Price = 12000
 FieldUse = TR
 Flags = Fling_10
 Move = IMPRISON
-Description = 自己会变为封印状态。
+Description = 如果对手有和自己相同的招式，那么只有对手无法使用该招式。
 #-------------------------------
 [TM093]
 Name = TM093
@@ -7237,7 +7237,7 @@ Price = 40000
 FieldUse = TR
 Flags = Fling_90
 Move = WILDCHARGE
-Description = 让电流覆盖全身，撞向对手进行攻击。自己也会受到少许伤害。
+Description = 让电流覆盖全身撞向对手进行攻击。自己也会受到少许伤害。
 #-------------------------------
 [TM148]
 Name = TM148
@@ -7477,7 +7477,7 @@ Price = 32000
 FieldUse = TR
 Flags = Fling_80
 Move = TERABLAST
-Description = 太晶化时，会放出太晶属性的能量攻击。比较自己的攻击和特攻，用数值相对较高的一项给予对方伤害。
+Description = 用攻击和特攻数值较高的一项给予伤害。对正处于太晶化的对手效果绝佳。自己的攻击和特攻会降低。
 #-------------------------------
 [TM172]
 Name = TM172
@@ -7497,7 +7497,7 @@ Price = 1600
 FieldUse = TR
 Flags = Fling_10
 Move = CHARGE
-Description = 变为充电状态，提高下次使出的电属性的招式威力。自己的特防也会提高。
+Description = 提高下一回合使出的电属性的招式威力。自己的特防也会提高。
 #-------------------------------
 [TM174]
 Name = TM174
@@ -7547,7 +7547,7 @@ Price = 1600
 FieldUse = TR
 Flags = Fling_10
 Move = GRAVITY
-Description = 在5回合内，<br>会让整个场地变为重力状态。
+Description = 在5回合内，飘浮特性和飞行属性的宝可梦会被地面属性的招式击中。飞向空中的招式也将无法使用。
 #-------------------------------
 [TM179]
 Name = TM179
@@ -7677,7 +7677,7 @@ Price = 20000
 FieldUse = TR
 Flags = Fling_90
 Move = UPROAR
-Description = 在3回合内大吵大闹攻击对手。在此期间谁都不能入眠。
+Description = 在3回合内用骚乱攻击对手。在此期间谁都不能入眠。
 #-------------------------------
 [TM192]
 Name = TM192
@@ -7777,7 +7777,7 @@ Price = 56000
 FieldUse = TR
 Flags = Fling_100
 Move = MISTYEXPLOSION
-Description = 对自己周围的所有宝可梦进行攻击，但使出后，自己会陷入昏厥。在薄雾场地上，招式威力会提高。
+Description = 对自己周围的所有宝可梦进行攻击，但使出后，自己会陷入濒死。在薄雾场地上，招式威力会提高。
 #-------------------------------
 [TM202]
 Name = TM202
@@ -7877,7 +7877,7 @@ Price = 3200
 FieldUse = TR
 Flags = Fling_55
 Move = ELECTROWEB
-Description = 用电网捉住对手进行攻击。会降低对手的速度。
+Description = 用电网捉住对手进行攻击。降低对手的速度。
 #-------------------------------
 [TM212]
 Name = TM212
@@ -8111,7 +8111,7 @@ Pocket = Machines
 Price = 0
 FieldUse = HM
 Move = DIVE
-Description = 第1回合潜入水中，第2回合浮上来进行攻击。
+Description = 第1回合潜入，第2回合浮上来进行攻击。
 #-------------------------------
 [BICYCLE]
 Name = 自行车
@@ -8124,7 +8124,7 @@ Description = 能比跑步鞋跑得还快的折叠式自行车。
 #-------------------------------
 [OLDROD]
 Name = 破旧钓竿
-NamePlural = 旧钓竿
+NamePlural = 破旧钓竿
 Pocket = KeyItems
 Price = 0
 FieldUse = Direct
@@ -8195,26 +8195,26 @@ Flags = KeyItem
 Description = 结实的长绳。可以从洞窟或迷宫中脱身。
 #-------------------------------
 [EXPALL]
-Name = Exp. Share
-NamePlural = Exp. Shares
+Name = 学习装置
+NamePlural = 学习装置
 Pocket = KeyItems
 Price = 0
 FieldUse = Direct
 Flags = KeyItem
-Description = This special device allows all the Pokémon on your team to share in Exp. Points gained.
+Description = 打开开关后，能让同行的所有宝可梦获得经验值的装置。
 #-------------------------------
 [EXPALLOFF]
-Name = Exp. Share
-NamePlural = Exp. Shares
+Name = 学习装置
+NamePlural = 学习装置
 Pocket = KeyItems
 Price = 0
 FieldUse = Direct
 Flags = KeyItem
-Description = Turning on this special device will allow all the Pokémon on your team to share in Exp. Points gained.
+Description = 打开开关后，能让同行的所有宝可梦获得经验值的装置。
 #-------------------------------
 [COINCASE]
 Name = 代币盒
-NamePlural = 硬币盒
+NamePlural = 代币盒
 Pocket = KeyItems
 Price = 0
 FieldUse = Direct
@@ -8249,7 +8249,7 @@ Description = 西尔佛公司制造的透视镜。可以看见人眼无法看见
 #-------------------------------
 [DEVONSCOPE]
 Name = 得文侦测镜
-NamePlural = 得文观测镜
+NamePlural = 得文侦测镜
 Pocket = KeyItems
 Price = 0
 Flags = KeyItem
@@ -8257,19 +8257,19 @@ Description = 会对看不见的宝可梦起反应，并发出声音的得文特
 #-------------------------------
 [SQUIRTBOTTLE]
 Name = 杰尼龟喷壶
-NamePlural = 喷壶
+NamePlural = 杰尼龟喷壶
 Pocket = KeyItems
 Price = 0
 Flags = KeyItem
 Description = 浇水的道具。能让树果种植盆里的树果快快长大。
 #-------------------------------
 [SPRAYDUCK]
-Name = 喷水壶
-NamePlural = 喷水壶
+Name = 可达鸭喷壶
+NamePlural = 可达鸭喷壶
 Pocket = KeyItems
 Price = 0
 Flags = KeyItem
-Description = 可达鸭形状的喷壶。能让种在松软土壤里的树果健康成长。
+Description = 浇水的道具。能让埋在松软土壤里的树果快快长大。
 #-------------------------------
 [WAILMERPAIL]
 Name = 吼吼鲸喷壶
@@ -8352,7 +8352,7 @@ Description = 据说是能让原本为一体的酋雷姆和某宝可梦合体的
 #-------------------------------
 [NSOLARIZER]
 Name = 奈克洛索尔合体器
-NamePlural = 奈克洛兹玛的日轮
+NamePlural = 奈克洛索尔合体器
 Pocket = KeyItems
 Price = 0
 FieldUse = OnPokemon
@@ -8361,7 +8361,7 @@ Description = 用来让需求光的奈克洛兹玛和索尔迦雷欧合体的机
 #-------------------------------
 [NSOLARIZERUSED]
 Name = 奈克洛索尔合体器
-NamePlural = 奈克洛兹玛的日轮
+NamePlural = 奈克洛索尔合体器
 Pocket = KeyItems
 Price = 0
 FieldUse = OnPokemon
@@ -8370,7 +8370,7 @@ Description = 用来让需求光的奈克洛兹玛和索尔迦雷欧合体的机
 #-------------------------------
 [NLUNARIZER]
 Name = 奈克洛露奈合体器
-NamePlural = 奈克洛兹玛的月轮
+NamePlural = 奈克洛露奈合体器
 Pocket = KeyItems
 Price = 0
 FieldUse = OnPokemon
@@ -8379,7 +8379,7 @@ Description = 用来让需求光的奈克洛兹玛和露奈雅拉合体的机器
 #-------------------------------
 [NLUNARIZERUSED]
 Name = 奈克洛露奈合体器
-NamePlural = 奈克洛兹玛的月轮
+NamePlural = 奈克洛露奈合体器
 Pocket = KeyItems
 Price = 0
 FieldUse = OnPokemon
@@ -8419,7 +8419,7 @@ Description = 落入流星瀑布里的陨石。
 #-------------------------------
 [SCROLLOFDARKNESS]
 Name = 恶之挂轴
-NamePlural = 暗之卷轴
+NamePlural = 恶之挂轴
 Pocket = KeyItems
 Price = 0
 FieldUse = OnPokemon
@@ -8428,7 +8428,7 @@ Description = 能让某些特定宝可梦进化的神奇挂轴。上面写着恶
 #-------------------------------
 [SCROLLOFWATERS]
 Name = 水之挂轴
-NamePlural = 水之卷轴
+NamePlural = 水之挂轴
 Pocket = KeyItems
 Price = 0
 FieldUse = OnPokemon
@@ -8453,7 +8453,7 @@ Description = 拥有它之后，会更容易遇见异色宝可梦的神奇闪耀
 #-------------------------------
 [CATCHINGCHARM]
 Name = 防晃护符
-NamePlural = 捕获护符
+NamePlural = 防晃护符
 Pocket = KeyItems
 Price = 0
 Flags = KeyItem
@@ -8489,7 +8489,7 @@ NamePlural = 极光船票
 Pocket = KeyItems
 Price = 0
 Flags = KeyItem
-Description = 乘坐前往泊岛船只所需的船票。散发着美丽的光芒。
+Description = 前往诞生之岛时必要的船票。美丽地散发着光芒。
 #-------------------------------
 [OLDSEAMAP]
 Name = 古航海图
@@ -8497,4 +8497,4 @@ NamePlural = 古航海图
 Pocket = KeyItems
 Price = 0
 Flags = KeyItem
-Description = 显示通往某座岛屿之路的褪色海图。
+Description = 记录着前往某座岛屿的路线的一张古老的航海图。
