@@ -251,7 +251,7 @@ class Battle::Move::UserFaintsExplosive
       count = @battle.pbAbleNonActiveCount(user.idxOwnSide)
       count += @battle.pbAbleNonActiveCount(user.idxOpposingSide)
       if count == 0
-        @battle.pbDisplay("But it failed!")
+        @battle.pbDisplay(_INTL("但是，没有起到效果！"))
         return false
       end
     end
@@ -260,7 +260,7 @@ class Battle::Move::UserFaintsExplosive
       count = @battle.pbAbleNonActiveCount(user.idxOwnSide)
       count += @battle.pbAbleNonActiveCount(user.idxOpposingSide)
       if count == 0
-        @battle.pbDisplay(_INTL("{1}'s team was disqualified!", user.pbThis))
+        @battle.pbDisplay(_INTL("{1}的队伍被判定失去资格！", user.pbThis))
         @battle.decision = (user.opposes?) ? Outcome::WIN : Outcome::LOSE
         return false
       end

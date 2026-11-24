@@ -46,7 +46,7 @@ class DuelWindow < Window_AdvancedTextPokemon
       name_tag = shadowc3tag(PLAYER_TEXT_BASE, PLAYER_TEXT_SHADOW)
     end
     hp_tag = shadowc3tag(HP_TEXT_BASE, HP_TEXT_SHADOW)
-    self.text = name_tag + fmtEscape(@name) + "\n" + hp_tag + _INTL("HP: {1}", @hp)
+    self.text = name_tag + fmtEscape(@name) + "\n" + hp_tag + _INTL("HP：{1}", @hp)
   end
 end
 
@@ -126,7 +126,7 @@ class PokemonDuel
         end
       end
       @special[1] = true if action == 3
-      pbMessage(_INTL("{1}: {2}", opponent.name, speeches[(action * 3) + rand(3)]))
+      pbMessage(_INTL("{1}：{2}", opponent.name, speeches[(action * 3) + rand(3)]))
       list = [
         _INTL("防守"),
         _INTL("准确攻击"),

@@ -38,7 +38,7 @@ class UIntProperty
     params = ChooseNumberParams.new
     params.setMaxDigits(@maxdigits)
     params.setDefaultValue(oldsetting || 0)
-    return pbMessageChooseNumber(_INTL("设置 {1} 的值。", settingname), params)
+    return pbMessageChooseNumber(_INTL("设置{1}的值。", settingname), params)
   end
 
   def defaultValue
@@ -63,7 +63,7 @@ class LimitProperty
     params = ChooseNumberParams.new
     params.setRange(0, @maxvalue)
     params.setDefaultValue(oldsetting)
-    return pbMessageChooseNumber(_INTL("设置 {1} 的值 (0-{2})。", settingname, @maxvalue), params)
+    return pbMessageChooseNumber(_INTL("设置{1}的值 (0-{2})。", settingname, @maxvalue), params)
   end
 
   def defaultValue
@@ -89,7 +89,7 @@ class LimitProperty2
     params.setRange(0, @maxvalue)
     params.setDefaultValue(oldsetting)
     params.setCancelValue(-1)
-    ret = pbMessageChooseNumber(_INTL("设置 {1} 的值 (0-{2})。", settingname, @maxvalue), params)
+    ret = pbMessageChooseNumber(_INTL("设置{1}的值 (0-{2})。", settingname, @maxvalue), params)
     return (ret >= 0) ? ret : nil
   end
 
@@ -115,7 +115,7 @@ class NonzeroLimitProperty
     params = ChooseNumberParams.new
     params.setRange(1, @maxvalue)
     params.setDefaultValue(oldsetting)
-    return pbMessageChooseNumber(_INTL("设置 {1} 的值。", settingname), params)
+    return pbMessageChooseNumber(_INTL("设置{1}的值。", settingname), params)
   end
 
   def defaultValue
@@ -164,7 +164,7 @@ end
 #===============================================================================
 module StringProperty
   def self.set(settingname, oldsetting)
-    return pbMessageFreeText(_INTL("设置 {1} 的值。", settingname),
+    return pbMessageFreeText(_INTL("设置{1}的值。", settingname),
                              (oldsetting) ? oldsetting : "", false, 250, Graphics.width)
   end
 
@@ -186,7 +186,7 @@ class LimitStringProperty
   end
 
   def set(settingname, oldsetting)
-    return pbMessageFreeText(_INTL("设置 {1} 的值。", settingname),
+    return pbMessageFreeText(_INTL("设置{1}的值。", settingname),
                              (oldsetting) ? oldsetting : "", false, @limit)
   end
 end
@@ -204,7 +204,7 @@ class EnumProperty
     @values.each do |value|
       commands.push(value)
     end
-    cmd = pbMessage(_INTL("选择 {1} 的值。", settingname), commands, -1)
+    cmd = pbMessage(_INTL("选择{1}的值。", settingname), commands, -1)
     return oldsetting if cmd < 0
     return cmd
   end
@@ -231,7 +231,7 @@ class EnumProperty2
     (0..@module.maxValue).each do |i|
       commands.push(getConstantName(@module, i))
     end
-    cmd = pbMessage(_INTL("选择 {1} 的值。", settingname), commands, -1, nil, oldsetting)
+    cmd = pbMessage(_INTL("选择{1}的值。", settingname), commands, -1, nil, oldsetting)
     return oldsetting if cmd < 0
     return cmd
   end
@@ -899,7 +899,7 @@ end
 #===============================================================================
 module ItemNameProperty
   def self.set(settingname, oldsetting)
-    return pbMessageFreeText(_INTL("设置 {1} 的值。", settingname),
+    return pbMessageFreeText(_INTL("设置{1}的值。", settingname),
                              (oldsetting) ? oldsetting : "", false, 30)
   end
 
@@ -947,7 +947,7 @@ module BaseStatsProperty
     GameData::Stat.each_main do |s|
       next if s.pbs_order < 0
       properties[s.pbs_order] = [_INTL("{1}种族值", s.name), NonzeroLimitProperty.new(255),
-                                 _INTL("宝可梦的基础 {1} 能力值。", s.name)]
+                                 _INTL("宝可梦的基础{1}能力值。", s.name)]
       data[s.pbs_order] = oldsetting[s.pbs_order] || 10
       stat_ids[s.pbs_order] = s.id
     end
@@ -982,7 +982,7 @@ module EffortValuesProperty
     GameData::Stat.each_main do |s|
       next if s.pbs_order < 0
       properties[s.pbs_order] = [_INTL("{1} 努力值", s.name), LimitProperty.new(255),
-                                 _INTL("从宝可梦获得的 {1} 努力值点数。", s.name)]
+                                 _INTL("从宝可梦获得的{1}努力值点数。", s.name)]
       data[s.pbs_order] = 0
       oldsetting.each { |ev| data[s.pbs_order] = ev[1] if ev[0] == s.id }
       stat_ids[s.pbs_order] = s.id
@@ -1204,7 +1204,7 @@ module LevelUpMovesProperty
           if entry[0] == -1
             commands.push(_INTL("[添加招式]"))
           else
-            commands.push(_INTL("{1}: {2}", entry[0], entry[3]))
+            commands.push(_INTL("{1}：{2}", entry[0], entry[3]))
           end
           cmd[1] = i if oldsel >= 0 && entry[2] == oldsel
         end
@@ -1398,14 +1398,14 @@ class EvolutionsProperty
             evo_method_data = GameData::Evolution.get(realcmds[i][1])
             param_type = evo_method_data.parameter
             if param_type.nil?
-              commands.push(_INTL("{1}: {2}",
+              commands.push(_INTL("{1}：{2}",
                                   GameData::Species.get(realcmds[i][0]).name, evo_method_data.real_name))
             else
               if param_type.is_a?(Symbol) && !GameData.const_defined?(param_type)
                 level = getConstantName(param_type, level)
               end
               level = "???" if !level || (level.is_a?(String) && level.empty?)
-              commands.push(_INTL("{1}: {2}, {3}",
+              commands.push(_INTL("{1}：{2}，{3}",
                                   GameData::Species.get(realcmds[i][0]).name, evo_method_data.real_name, level.to_s))
             end
           end
@@ -1602,16 +1602,16 @@ module EncounterSlotProperty
     species_data = GameData::Species.get(value[1])
     if species_data.form > 0
       if value[2] == value[3]
-        return _INTL("{1}，{2}_{3}（等级 {4}）", value[0],
+        return _INTL("{1}，{2}_{3}（Lv.{4}）", value[0],
                      species_data.real_name, species_data.form, value[2])
       end
-      return _INTL("{1}，{2}_{3}（等级 {4}-{5}）", value[0],
+      return _INTL("{1}，{2}_{3}（Lv.{4}-{5}）", value[0],
                    species_data.real_name, species_data.form, value[2], value[3])
     end
     if value[2] == value[3]
-      return _INTL("{1}，{2}（等级 {3}）", value[0], species_data.real_name, value[2])
+      return _INTL("{1}，{2}（Lv.{3}）", value[0], species_data.real_name, value[2])
     end
-    return _INTL("{1}，{2}（等级 {3}-{4}）", value[0], species_data.real_name, value[2], value[3])
+    return _INTL("{1}，{2}（Lv.{3}-{4}）", value[0], species_data.real_name, value[2], value[3])
   end
 end
 

@@ -987,7 +987,7 @@ class Battle
     return if !pbCanStartTerrain?(new_terrain)
     pbShowAbilitySplash(battler)
     if !Scene::USE_ABILITY_SPLASH
-      pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
+      pbDisplay(_INTL("{1}{2}发动了！", battler.pbOfThis, battler.abilityName))
     end
     fixed_duration = true
     pbStartTerrain(battler, new_terrain, fixed_duration, message)

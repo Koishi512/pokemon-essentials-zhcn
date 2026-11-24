@@ -45,7 +45,7 @@ module FileLineData
         return _INTL("文件 {1}，段落 {2}，键 {3}\n{4}", @file, @section, @key, @value) + "\n\n"
       end
     else
-      return _INTL("文件 {1}，第 {2} 行\n{3}", @file, @lineno, @linedata) + "\n\n"
+      return _INTL("文件 {1}，第{2}行\n{3}", @file, @lineno, @linedata) + "\n\n"
     end
   end
 end
@@ -170,7 +170,7 @@ module Compiler
           havesection = true
         else
           if sectionname.nil?
-            raise _INTL("文件开头应为一个段落（第 {1} 行）。段落应以“[段落名称]”开头。", lineno)
+            raise _INTL("文件开头应为一个段落（第{1}行）。段落应以“[段落名称]”开头。", lineno)
           end
           lastsection.push(line.strip)
         end
@@ -360,10 +360,10 @@ module Compiler
     when Module
       begin
         if nil_or_empty?(ret) || !enumer.const_defined?(ret)
-          raise _INTL("{2} 中存在未定义的值 {1}。", ret, enumer.name) + "\n" + FileLineData.linereport
+          raise _INTL("{2}中存在未定义的值{1}。", ret, enumer.name) + "\n" + FileLineData.linereport
         end
       rescue NameError
-        raise _INTL("{2} 中的值 {1} 不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
+        raise _INTL("{2}中的值{1}不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
       end
       return enumer.const_get(ret.to_sym)
     when Symbol, String
@@ -371,32 +371,32 @@ module Compiler
         enumer = GameData.const_get(enumer.to_sym)
         begin
           if nil_or_empty?(ret) || !enumer.exists?(ret.to_sym)
-            raise _INTL("{2} 中存在未定义的值 {1}。", ret, enumer.name) + "\n" + FileLineData.linereport
+            raise _INTL("{2}中存在未定义的值{1}。", ret, enumer.name) + "\n" + FileLineData.linereport
           end
         rescue NameError
-          raise _INTL("{2} 中的值 {1} 不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
+          raise _INTL("{2}中的值{1}不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
         end
         return ret.to_sym
       end
       enumer = Object.const_get(enumer.to_sym)
       begin
         if nil_or_empty?(ret) || !enumer.const_defined?(ret)
-          raise _INTL("{2} 中存在未定义的值 {1}。", ret, enumer.name) + "\n" + FileLineData.linereport
+          raise _INTL("{2}中存在未定义的值{1}。", ret, enumer.name) + "\n" + FileLineData.linereport
         end
       rescue NameError
-        raise _INTL("{2} 中的值 {1} 不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
+        raise _INTL("{2}中的值{1}不正确。", ret, enumer.name) + "\n" + FileLineData.linereport
       end
       return enumer.const_get(ret.to_sym)
     when Array
       idx = (nil_or_empty?(ret)) ? -1 : findIndex(enumer) { |item| ret == item }
       if idx < 0
-        raise _INTL("未定义的值 {1}（应为以下之一：{2}）。", ret, enumer.inspect) + "\n" + FileLineData.linereport
+        raise _INTL("未定义的值{1}（应为以下之一：{2}）。", ret, enumer.inspect) + "\n" + FileLineData.linereport
       end
       return idx
     when Hash
       value = (nil_or_empty?(ret)) ? nil : enumer[ret]
       if value.nil?
-        raise _INTL("未定义的值 {1}（应为以下之一：{2}）。", ret, enumer.keys.inspect) + "\n" + FileLineData.linereport
+        raise _INTL("未定义的值{1}（应为以下之一：{2}）。", ret, enumer.keys.inspect) + "\n" + FileLineData.linereport
       end
       return value
     end

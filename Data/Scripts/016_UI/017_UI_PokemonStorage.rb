@@ -1128,7 +1128,7 @@ class UI::PokemonStorageVisuals < UI::BaseVisuals
     commands = {}
     @storage.maxBoxes.times do |i|
       box = @storage[i]
-      commands[i] = _INTL("{1} ({2}/{3})", box.name, box.nitems, box.length) if box
+      commands[i] = _INTL("{1}（{2}/{3}）", box.name, box.nitems, box.length) if box
     end
     return show_menu(message, commands, commands.keys.index(start_box) || 0)
   end

@@ -94,7 +94,7 @@ class Battle
     end
     return if !moveUser
     move = position.effects[PBEffects::FutureSightMove]
-    pbDisplay(_INTL("{1} took the {2} attack!", @battlers[position_index].pbThis,
+    pbDisplay(_INTL("{1}受到了{2}的攻击！", @battlers[position_index].pbThis,
                     GameData::Move.get(move).name))
     # NOTE: Future Sight failing against the target here doesn't count towards
     #       Stomping Tantrum.

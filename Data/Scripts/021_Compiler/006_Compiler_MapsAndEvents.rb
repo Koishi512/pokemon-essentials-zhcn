@@ -133,10 +133,10 @@ module Compiler
     if imported
       save_data(mapinfos, "Data/MapInfos.rxdata")
       $game_temp.map_infos = nil
-      Console.echoln_li_done(_INTL("已导入 {1} 个地图", count))
+      Console.echoln_li_done(_INTL("已导入{1}个地图", count))
       Console.echo_warn(_INTL("RMXP 数据已被修改。请立即关闭 RMXP 且不要保存，以确保更改生效。"))
     else
-      Console.echoln_li(_INTL("找到 {1} 个地图，已导入 {2} 个", mapfiles.length, count))
+      Console.echoln_li(_INTL("找到{1}个地图，已导入{2}个", mapfiles.length, count))
       Console.echo_warn(_INTL("部分地图因未知原因未能导入。"))
     end
     return imported
@@ -163,7 +163,7 @@ module Compiler
       Console.echoln_li(@@categories[:create_missing_map_metadata][:skipped_text].call)
       return
     end
-    Console.echoln_li(_INTL("已为 {1} 个地图创建元数据。", added_count))
+    Console.echoln_li(_INTL("已为{1}个地图创建元数据。", added_count))
     Compiler.write_map_metadata
   end
 
@@ -529,7 +529,7 @@ module Compiler
     def pbTrainerTypeCheck(trainer_type)
       return if !$DEBUG || @dontaskagain
       return if GameData::TrainerType.exists?(trainer_type)
-      if pbConfirmMessage(_INTL("要添加新的训练家类型 {1} 吗？", trainer_type.to_s))
+      if pbConfirmMessage(_INTL("要添加新的训练家类型{1}吗？", trainer_type.to_s))
         pbTrainerTypeEditorNew(trainer_type.to_s)
       end
     end
@@ -1298,7 +1298,7 @@ module Compiler
                 push_text(newEvents, _INTL("\\G背包里没有空间了。"), oldIndent + 2)
                 push_branch_end(newEvents, oldIndent + 2)
                 push_else(newEvents, oldIndent + 1)
-                push_text(newEvents, _INTL("\\GYou don't have enough money."), oldIndent + 1)
+                push_text(newEvents, _INTL("\\G你的零花钱不够。"), oldIndent + 1)
               end
               push_branch_end(newEvents, oldIndent + 1)
               list[i, 0] = newEvents   # insert 'newEvents' at index 'i'
@@ -1770,7 +1770,7 @@ module Compiler
     Graphics.update
     trainerChecker = TrainerChecker.new
     change_record = []
-    Console.echo_li(_INTL("正在处理 {1} 张地图……", mapData.mapinfos.keys.length))
+    Console.echo_li(_INTL("正在处理{1}张地图……", mapData.mapinfos.keys.length))
     idx = 0
     mapData.mapinfos.keys.sort.each do |id|
       echo "." if idx % 100 == 0

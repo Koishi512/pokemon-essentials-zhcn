@@ -793,7 +793,7 @@ class AnimationEditor::ListedParticle < UIControls::BaseContainer
         default = GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[row] || 0
         ctrl = UIControls::FittedNumberTextBox.new(ctrl_width, ctrl_height, @list_viewport, *vals, default)
       else
-        raise _INTL("无法确定为属性 {1} 创建哪种控件。", row)
+        raise _INTL("无法确定为属性{1}创建哪种控件。", row)
       end
     end
     if ctrl

@@ -321,9 +321,9 @@ module Compiler
         FileLineData.setLine(line, lineno)
         record = get_csv_record(line, schema)
         if !pbRgssExists?(sprintf("Data/Map%03d.rxdata", record[0]))
-          print _INTL("警告：地图连接数据中提到的地图 {1} 不存在。", record[0]) + "\n" + FileLineData.linereport
+          print _INTL("警告：地图连接数据中提到的地图{1}不存在。", record[0]) + "\n" + FileLineData.linereport
         elsif !pbRgssExists?(sprintf("Data/Map%03d.rxdata", record[3]))
-          print _INTL("警告：地图连接数据中提到的地图 {1} 不存在。", record[3]) + "\n" + FileLineData.linereport
+          print _INTL("警告：地图连接数据中提到的地图{1}不存在。", record[3]) + "\n" + FileLineData.linereport
         end
         case record[1]
         when "N"
@@ -414,9 +414,9 @@ module Compiler
 
   def validate_compiled_move(hash)
     if (hash[:category] || 2) == 2 && (hash[:power] || 0) != 0
-      raise _INTL("招式 {1} 被定义为变化招式，但基础威力不为 0。", hash[:real_name]) + "\n" + FileLineData.linereport
+      raise _INTL("招式{1}被定义为变化招式，但基础威力不为 0。", hash[:real_name]) + "\n" + FileLineData.linereport
     elsif (hash[:category] || 2) != 2 && (hash[:power] || 0) == 0
-      print _INTL("警告：招式 {1} 被定义为物理或特殊招式，但基础威力为 0。将改为变化招式。", hash[:real_name]) + "\n" + FileLineData.linereport
+      print _INTL("警告：招式{1}被定义为物理或特殊招式，但基础威力为 0。将改为变化招式。", hash[:real_name]) + "\n" + FileLineData.linereport
       hash[:category] = 2
     end
   end
@@ -447,7 +447,7 @@ module Compiler
     if hash[:pocket]&.is_a?(Integer)
       all_pockets = GameData::BagPocket.all_pockets
       if hash[:pocket] <= 0 || !all_pockets[hash[:pocket] - 1]
-        raise _INTL("道具 {2} 的口袋编号 {1} 无效。", hash[:pocket], hash[:id])
+        raise _INTL("道具{2}的口袋编号{1}无效。", hash[:pocket], hash[:id])
       end
       hash[:pocket] = all_pockets[hash[:pocket] - 1]
     end
@@ -524,7 +524,7 @@ module Compiler
       FileLineData.setSection(hash[:id].to_s, "Evolution", "Evolution = #{evo[0]},#{evo[1]}")   # For error reporting
       param_type = GameData::Evolution.get(evo[1]).parameter
       next if evo[2] || param_type.nil?
-      raise _INTL("进化方式 {1} 需要参数，但未提供参数。", evo[1]) + "\n" + FileLineData.linereport
+      raise _INTL("进化方式{1}需要参数，但未提供参数。", evo[1]) + "\n" + FileLineData.linereport
     end
     # Record all evolutions as not being prevolutions
     if hash[:evolutions].is_a?(Array)
@@ -661,7 +661,7 @@ module Compiler
     if !GameData::Species.exists?(hash[:species])
       raise _INTL("未定义的宝可梦 ID“{1}”。", hash[:species]) + "\n" + FileLineData.linereport
     elsif GameData::Species.exists?(hash[:id])
-      raise _INTL("宝可梦 ID“{2}”的形态 {1} 被重复定义。", hash[:form], hash[:species]) + "\n" + FileLineData.linereport
+      raise _INTL("宝可梦 ID“{2}”的形态{1}被重复定义。", hash[:form], hash[:species]) + "\n" + FileLineData.linereport
     end
     # Perform the same validations on this form as for a regular species
     validate_compiled_pokemon(hash)
@@ -806,7 +806,7 @@ module Compiler
         if line[/^\s*\[\s*(\d+)\s*\]\s*$/]
           section = $~[1].to_i
           if dex_lists[section]
-            raise _INTL("图鉴列表编号 {1} 至少被定义了两次。", section) + "\n" + FileLineData.linereport
+            raise _INTL("图鉴列表编号{1}至少被定义了两次。", section) + "\n" + FileLineData.linereport
           end
           dex_lists[section] = []
         else
@@ -827,7 +827,7 @@ module Compiler
       next if list == unique_list
       list.each_with_index do |s, i|
         next if unique_list[i] == s
-        raise _INTL("图鉴列表编号 {1} 中的宝可梦 {2} 被列出两次。", index, s) + "\n" + FileLineData.linereport
+        raise _INTL("图鉴列表编号{1}中的宝可梦{2}被列出两次。", index, s) + "\n" + FileLineData.linereport
       end
     end
     # Save all data
@@ -878,15 +878,15 @@ module Compiler
         if current_type && line[/^\d+,/]   # Species line
           values = line.split(",").collect! { |v| v.strip }
           if !values || values.length < 3
-            raise _INTL("地图 {2} 的遭遇类型 {1} 应有一行宝可梦条目。",
+            raise _INTL("地图{2}的遭遇类型{1}应有一行宝可梦条目。",
                         GameData::EncounterType.get(current_type).real_name, encounter_hash[:map]) + "\n" + FileLineData.linereport
           end
           values = get_csv_record(line, [nil, "vevV", nil, :Species])
           values[3] = values[2] if !values[3]
           if values[2] > max_level
-            raise _INTL("等级数值 {1} 无效（最大为 {2}）。", values[2], max_level) + "\n" + FileLineData.linereport
+            raise _INTL("等级数值{1}无效（最大为 {2}）。", values[2], max_level) + "\n" + FileLineData.linereport
           elsif values[3] > max_level
-            raise _INTL("等级数值 {1} 无效（最大为 {2}）。", values[3], max_level) + "\n" + FileLineData.linereport
+            raise _INTL("等级数值{1}无效（最大为 {2}）。", values[3], max_level) + "\n" + FileLineData.linereport
           elsif values[2] > values[3]
             raise _INTL("最低等级大于最高等级。") + "\n" + FileLineData.linereport
           end
@@ -1086,11 +1086,11 @@ module Compiler
     hash[:pokemon].each do |pkmn|
       # Ensure valid level
       if pkmn[:level] > max_level
-        raise _INTL("宝可梦等级 {1} 无效（必须为 1 至 {2}）。", pkmn[:level], max_level) + "\n" + FileLineData.linereport
+        raise _INTL("宝可梦等级{1}无效（必须为 1 至 {2}）。", pkmn[:level], max_level) + "\n" + FileLineData.linereport
       end
       # Ensure valid name length
       if pkmn[:real_name] && pkmn[:real_name].length > Pokemon::MAX_NAME_SIZE
-        raise _INTL("无效的宝可梦昵称：{1}（必须为 1 至 {2} 个字符）。",
+        raise _INTL("无效的宝可梦昵称：{1}（必须为 1 至{2}个字符）。",
                     pkmn[:real_name], Pokemon::MAX_NAME_SIZE) + "\n" + FileLineData.linereport
       end
       # Ensure no duplicate moves
@@ -1102,7 +1102,7 @@ module Compiler
           next if s.pbs_order < 0
           iv_hash[s.id] = pkmn[:iv][s.pbs_order] || pkmn[:iv][0]
           if iv_hash[s.id] > Pokemon::IV_STAT_LIMIT
-            raise _INTL("个体值 {1} 无效（必须为 0 至 {2}）。", iv_hash[s.id], Pokemon::IV_STAT_LIMIT) + "\n" + FileLineData.linereport
+            raise _INTL("个体值{1}无效（必须为 0 至 {2}）。", iv_hash[s.id], Pokemon::IV_STAT_LIMIT) + "\n" + FileLineData.linereport
           end
         end
         pkmn[:iv] = iv_hash
@@ -1116,7 +1116,7 @@ module Compiler
           ev_hash[s.id] = pkmn[:ev][s.pbs_order] || pkmn[:ev][0]
           ev_total += ev_hash[s.id]
           if ev_hash[s.id] > Pokemon::EV_STAT_LIMIT
-            raise _INTL("努力值 {1} 无效（必须为 0 至 {2}）。", ev_hash[s.id], Pokemon::EV_STAT_LIMIT) + "\n" + FileLineData.linereport
+            raise _INTL("努力值{1}无效（必须为 0 至 {2}）。", ev_hash[s.id], Pokemon::EV_STAT_LIMIT) + "\n" + FileLineData.linereport
           end
         end
         pkmn[:ev] = ev_hash
@@ -1127,7 +1127,7 @@ module Compiler
       # Ensure valid happiness
       if pkmn[:happiness]
         if pkmn[:happiness] > 255
-          raise _INTL("亲密度 {1} 无效（必须为 0 至 255）。", pkmn[:happiness]) + "\n" + FileLineData.linereport
+          raise _INTL("亲密度{1}无效（必须为 0 至 255）。", pkmn[:happiness]) + "\n" + FileLineData.linereport
         end
       end
       # Ensure valid Poké Ball
@@ -1198,10 +1198,10 @@ module Compiler
           rsection[schema[0]] = record
         end
         if !rsection[0]
-          raise _INTL("段落 {1} 未指定训练家数据文件。", name) + "\n" + FileLineData.linereport
+          raise _INTL("段落{1}未指定训练家数据文件。", name) + "\n" + FileLineData.linereport
         end
         if !rsection[1]
-          raise _INTL("段落 {1} 未指定训练家数据文件。", name) + "\n" + FileLineData.linereport
+          raise _INTL("段落{1}未指定训练家数据文件。", name) + "\n" + FileLineData.linereport
         end
         rsection[3] = rsection[0]
         rsection[4] = rsection[1]
@@ -1433,7 +1433,7 @@ module Compiler
       hash[:id] = sprintf("%s_%d", hash[:area].to_s, hash[:version]).to_sym
     end
     if GameData::DungeonParameters.exists?(hash[:id])
-      raise _INTL("迷宫区域 {2} 的版本 {1} 被定义了两次。", hash[:version], hash[:area]) + "\n" + FileLineData.linereport
+      raise _INTL("迷宫区域{2}的版本{1}被定义了两次。", hash[:version], hash[:area]) + "\n" + FileLineData.linereport
     end
   end
 

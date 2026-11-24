@@ -635,7 +635,7 @@ class TrainerBattleLister
       tr_data = GameData::Trainer.get(@ids[index][0], @ids[index][1], @ids[index][2])
       tr_data&.pokemon.each_with_index do |pkmn, i|
         text += "\n" if i > 0
-        text += _INTL("{1} 等级 {2}", GameData::Species.get(pkmn[:species]).real_name, pkmn[:level])
+        text += _INTL("{1} Lv.{2}", GameData::Species.get(pkmn[:species]).real_name, pkmn[:level])
       end
     end
     @pkmnList.text = text

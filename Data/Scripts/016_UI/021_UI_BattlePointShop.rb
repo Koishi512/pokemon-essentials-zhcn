@@ -103,7 +103,7 @@ class UI::BPShopVisuals < UI::MartVisuals
   #-----------------------------------------------------------------------------
 
   def refresh_money_window
-    @sprites[:money_window].text = _INTL("BP:\n<r>{1}", $player.battle_points.to_s_formatted)
+    @sprites[:money_window].text = _INTL("BP：\n<r>{1}", $player.battle_points.to_s_formatted)
   end
 end
 

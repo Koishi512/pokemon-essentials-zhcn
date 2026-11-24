@@ -1006,9 +1006,9 @@ class UI::PokemonSummaryVisuals < UI::BaseVisuals
       month = pbGetMonthName(@pokemon.timeReceived.mon)
       year  = @pokemon.timeReceived.year
       if Translation.month_day_date_format?
-        memo += black_text_tag + _INTL("{1} {2}, {3}", month, date, year) + "\n"
+        memo += black_text_tag + _INTL("{3}年{1}{2}日", month, date, year) + "\n"
       else
-        memo += black_text_tag + _INTL("{1} {2}, {3}", date, month, year) + "\n"
+        memo += black_text_tag + _INTL("{3}年{2}{1}日", date, month, year) + "\n"
       end
     end
     # Add map name egg was received on to memo

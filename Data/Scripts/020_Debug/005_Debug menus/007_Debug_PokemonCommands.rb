@@ -46,7 +46,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_status, {
     loop do
       msg = _INTL("当前状态：{1}", GameData::Status.get(pkmn.status).name)
       if pkmn.status == :SLEEP
-        msg = _INTL("当前状态：{1}（剩余 {2} 回合）", GameData::Status.get(pkmn.status).name, pkmn.statusCount)
+        msg = _INTL("当前状态：{1}（剩余{2}回合）", GameData::Status.get(pkmn.status).name, pkmn.statusCount)
       end
       cmd = screen.show_menu(msg, commands, commands.keys.index(cmd))
       break if cmd.nil?
@@ -116,7 +116,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_pokerus, {
     loop do
       pokerus = (pkmn.pokerus) ? pkmn.pokerus : 0
       msg = [_INTL("{1} 没有宝可病毒。", pkmn.name),
-             _INTL("感染菌株 {1}，传染性还将持续 {2} 天。", pokerus / 16, pokerus % 16),
+             _INTL("感染菌株 {1}，传染性还将持续{2}天。", pokerus / 16, pokerus % 16),
              _INTL("感染菌株 {1}，已不具传染性。", pokerus / 16)][pkmn.pokerusStage]
       cmd = screen.show_menu(msg, commands, commands.keys.index(cmd))
       break if cmd.nil?
@@ -645,7 +645,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_nature, {
     commands = {}
     GameData::Nature.each do |nature|
       if nature.stat_changes.length == 0
-        commands[nature.id] = _INTL("{1} (---)", nature.real_name)
+        commands[nature.id] = _INTL("{1}（---）", nature.real_name)
         next
       end
       plus_text = ""
@@ -659,7 +659,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_nature, {
           minus_text += GameData::Stat.get(change[0]).name_brief
         end
       end
-      commands[nature.id] = _INTL("{1} (+{2}, -{3})", nature.real_name, plus_text, minus_text)
+      commands[nature.id] = _INTL("{1}（+{2}，-{3}）", nature.real_name, plus_text, minus_text)
     end
     commands[:reset_nature] = _INTL("[重置]")
     cmd = (commands.keys.include?(pkmn.nature_id)) ? pkmn.nature_id : commands.keys.first
@@ -999,7 +999,7 @@ MenuHandlers.add(:pokemon_debug_menu, :set_egg, {
     cmd = commands.keys.first
     loop do
       msg = [_INTL("不是蛋。"),
-             _INTL("蛋（还需 {1} 步孵化）。", pkmn.steps_to_hatch)][(pkmn.egg?) ? 1 : 0]
+             _INTL("蛋（还需{1}步孵化）。", pkmn.steps_to_hatch)][(pkmn.egg?) ? 1 : 0]
       cmd = screen.show_menu(msg, commands, commands.keys.index(cmd))
       break if cmd.nil?
       case cmd

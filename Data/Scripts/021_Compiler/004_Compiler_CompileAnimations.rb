@@ -382,11 +382,11 @@ module Compiler
         last_set_frame = -1
         particle[key].each do |cmd|
           if last_frame > cmd[0]
-            raise _INTL("动画的 {1} 属性存在重叠命令。",
+            raise _INTL("动画的{1}属性存在重叠命令。",
                         key.to_s.capitalize) + "\n" + FileLineData.linereport
           end
           if cmd[1] == 0 && last_set_frame >= cmd[0]
-            raise _INTL("动画在同一关键帧中为 {1} 属性包含多个“Set”命令。",
+            raise _INTL("动画在同一关键帧中为{1}属性包含多个“Set”命令。",
                         key.to_s.capitalize) + "\n" + FileLineData.linereport
           end
           last_frame = cmd[0] + cmd[1]

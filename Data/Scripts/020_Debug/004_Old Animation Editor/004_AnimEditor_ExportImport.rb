@@ -145,6 +145,6 @@ module BattleAnimationEditor
       save_data(animations, "Data/PkmnAnimations.rxdata")
       $game_temp.battle_animations_data = nil
     end
-    pbMessage(_INTL("已将 {1} 个动画转换为新格式。", count))
+    pbMessage(_INTL("已将{1}个动画转换为新格式。", count))
   end
 end

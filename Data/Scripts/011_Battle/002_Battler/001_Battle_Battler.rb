@@ -830,7 +830,7 @@ class Battle::Battler
   def canBeForcedOutOfBattle?(show_message = true)
     return false if @dummy
     if semiInvulnerable?
-      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      @battle.pbDisplay(_INTL("但是，没有起到效果！")) if show_message
       return false
     end
     if @effects[PBEffects::Commanding] >= 0 || @effects[PBEffects::CommandedBy] >= 0

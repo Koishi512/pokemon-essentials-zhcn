@@ -140,29 +140,26 @@ module Settings
   MOVE_RELEARNER_CAN_TEACH_ANY_LEVEL_MOVES = (MECHANICS_GENERATION == 7)
 
   #-----------------------------------------------------------------------------
-  # Breeding Pokémon and Day Care.
+  # 宝可梦培养与培育屋。
   #-----------------------------------------------------------------------------
 
-  # Whether Pokémon in the Day Care gain Exp for each step the player takes.
-  # This should be true for the Day Care and false for the Pokémon Nursery, both
-  # of which use the same code in Essentials.
+  # 玩家每走一步时，培育屋中的宝可梦是否会获得经验值。
+  # 对培育屋应当为true，对宝可梦寄放屋应当为false，
+  # 两者在Essentials中使用相同的代码。
   DAY_CARE_POKEMON_GAIN_EXP_FROM_WALKING     = (MECHANICS_GENERATION <= 6)
-  # Whether two Pokémon in the Day Care can learn egg moves from each other if
-  # they are the same species.
+  # 培育屋中的两只宝可梦为同一物种时，它们是否可以互相学习蛋招式。
   DAY_CARE_POKEMON_CAN_SHARE_EGG_MOVES       = (MECHANICS_GENERATION >= 8)
-  # Whether a bred baby Pokémon can inherit any TM/TR/HM moves from its father.
-  # It can never inherit TM/TR/HM moves from its mother.
+  # 是否允许培育出的宝可梦从其父亲那里继承TM/TR/HM招式。
+  # 它永远不能从其母亲那里继承TM/TR/HM招式。
   BREEDING_CAN_INHERIT_MACHINE_MOVES         = (MECHANICS_GENERATION <= 5)
-  # Whether a bred baby Pokémon can inherit egg moves from its mother. It can
-  # always inherit egg moves from its father.
+  # 是否允许培育出的宝可梦从其母亲那里继承蛋招式。它总是可以从其父亲那里继承蛋招式。
   BREEDING_CAN_INHERIT_EGG_MOVES_FROM_MOTHER = (MECHANICS_GENERATION >= 6)
 
   #-----------------------------------------------------------------------------
-  # Roaming Pokémon.
+  # 游走宝可梦。
   #-----------------------------------------------------------------------------
 
-  # A list of maps used by roaming Pokémon. Each map has an array of other maps
-  # it can lead to.
+  # 用于游走宝可梦的地图编号。每个地图都有可通往的其他地图数组。
   ROAMING_AREAS = {
     5  => [   21, 28, 31, 39, 41, 44, 47, 66, 69],
     21 => [5,     28, 31, 39, 41, 44, 47, 66, 69],
@@ -175,22 +172,19 @@ module Settings
     66 => [5, 21, 28, 31, 39, 41, 44, 47,     69],
     69 => [5, 21, 28, 31, 39, 41, 44, 47, 66    ]
   }
-  # A set of hashes, each containing the details of a roaming Pokémon. The
-  # information within each hash is as follows:
-  #   * :species
-  #   * :level
-  #   * :icon - Filename in Graphics/UI/Town Map/ of the roamer's Town Map icon.
-  #   * :game_switch - The Pokémon roams if this is nil or <=0 or if that Game
-  #                    Switch is ON. Optional.
-  #   * :encounter_type - One of:
-  #       :all     = grass, walking in cave, surfing (default)
-  #       :land    = grass, walking in cave
-  #       :water   = surfing, fishing
-  #       :surfing = surfing
-  #       :fishing = fishing
-  #   * :bgm - The BGM to play for the encounter. Optional.
-  #   * :areas - A hash of map IDs that determine where this Pokémon roams. Used
-  #              instead of ROAMING_AREAS above. Optional.
+  # 一组哈希，每个哈希包含一个游走宝可梦的详细信息。每个哈希中的信息如下：
+  #   * :species - 宝可梦的物种符号。
+  #   * :level - 宝可梦的等级。
+  #   * :icon - 游走宝可梦在城镇地图上的图标在Graphics/UI/Town Map/中的名称。
+  #   * :game_switch - 当此值为nil或小于等于0，或对应的游戏开关为ON时，宝可梦会游走。可选择。
+  #   * :encounter_type - 以下之一：
+  #       :all     = 草丛，洞穴中行走，冲浪，钓鱼（默认）
+  #       :land    = 草丛，洞穴中行走
+  #       :water   = 冲浪，钓鱼
+  #       :surfing = 冲浪
+  #       :fishing = 钓鱼
+  #   * :bgm - 本相遇播放的BGM。可选择。
+  #   * :areas - 决定该宝可梦游走的地图ID哈希。用于替代上面的ROAMING_AREAS。可选择。
   ROAMING_SPECIES = [
     {
       :species        => :LATIAS,
@@ -230,26 +224,24 @@ module Settings
   ]
 
   #-----------------------------------------------------------------------------
-  # Party and Pokémon storage.
+  # 队伍和宝可梦寄放系统。
   #-----------------------------------------------------------------------------
 
-  # The maximum number of Pokémon that can be in the party.
+  # 队伍中可以容纳的宝可梦的最大数量。
   MAX_PARTY_SIZE      = 6
-  # The number of boxes in Pokémon storage.
+  # 宝可梦寄放系统盒子的数量。
   NUM_STORAGE_BOXES   = 40
-  # Whether putting a Pokémon into Pokémon storage will heal it. If false, they
-  # are healed by the Recover All: Entire Party event command (at Poké Centers).
+  # 将宝可梦放入宝可梦寄放系统时是否会治愈它。
+  # 如果为false，则它们会在宝可梦中心使用“恢复全部：整个队伍”事件命令来治愈。
   HEAL_STORED_POKEMON = (MECHANICS_GENERATION <= 7)
 
   #-----------------------------------------------------------------------------
-  # Items.
+  # 道具。
   #-----------------------------------------------------------------------------
 
-  # Whether various HP-healing items heal the amounts they do in Gen 7+ (true)
-  # or in earlier Generations (false).
+  # 各种回复HP的道具回复HP的量根据第七世代之后(true)还是之前(false)的机制来决定。
   REBALANCED_HEALING_ITEM_AMOUNTS      = (MECHANICS_GENERATION >= 7)
-  # Whether vitamins can add EVs no matter how many that stat already has in it
-  # (true), or whether they can't make that stat's EVs greater than 100 (false).
+  # 基础点数道具能让宝可梦的基础点数达到最大值（true），还是不能让宝可梦的基础点数超过100（false）。
   NO_VITAMIN_EV_CAP                    = (MECHANICS_GENERATION >= 8)
   # Whether Rage Candy Bar acts as a Full Heal (true) or a Potion (false).
   RAGE_CANDY_BAR_CURES_STATUS_PROBLEMS = (MECHANICS_GENERATION >= 7)

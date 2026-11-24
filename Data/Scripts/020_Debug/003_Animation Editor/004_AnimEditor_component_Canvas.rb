@@ -527,11 +527,11 @@ class AnimationEditor::Canvas < Sprite
     case particle[:name]
     when "User"
       spr = @battler_sprites[user_index]
-      raise _INTL("不知何故未找到粒子 {1} 的精灵图（战斗者索引 {2}）。", particle[:name], user_index) if !spr
+      raise _INTL("不知何故未找到粒子{1}的精灵图（战斗者索引 {2}）。", particle[:name], user_index) if !spr
       frame = @battler_frame_sprites[user_index]
     when "Target"
       spr = @battler_sprites[target_idx]
-      raise _INTL("不知何故未找到粒子 {1} 的精灵图（战斗者索引 {2}）。", particle[:name], target_idx) if !spr
+      raise _INTL("不知何故未找到粒子{1}的精灵图（战斗者索引 {2}）。", particle[:name], target_idx) if !spr
       frame = @battler_frame_sprites[target_idx]
     else
       create_particle_sprite(index, target_idx)

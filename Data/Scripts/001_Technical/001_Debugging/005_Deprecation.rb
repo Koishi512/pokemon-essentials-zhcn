@@ -12,7 +12,7 @@ module Deprecation
   def warn_method(method_name, removal_version = nil, alternative = nil)
     text = _INTL('使用了被撤销的方法"{1}"或别名。', method_name)
     unless removal_version.nil?
-      text += "\n" + _INTL("该方法计划在 Essentials {1} 中被移除。", removal_version)
+      text += "\n" + _INTL("该方法计划在 Essentials{1}中被移除。", removal_version)
     end
     unless alternative.nil?
       text += "\n" + _INTL("请使用 \"{1}\" 代替。", alternative)

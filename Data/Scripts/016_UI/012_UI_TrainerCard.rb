@@ -54,7 +54,7 @@ class UI::TrainerCardVisuals < UI::BaseVisuals
     total_secs = $stats.play_time.to_i
     hour = (total_secs / 60) / 60
     min = (total_secs / 60) % 60
-    play_time_text = (hour > 0) ? _INTL("{1}h {2}m", hour, min) : _INTL("{1}m", min)
+    play_time_text = (hour > 0) ? _INTL("{1}时{2}分", hour, min) : _INTL("{1}分", min)
     # Create start date text
     $PokemonGlobal.startTime = Time.now if !$PokemonGlobal.startTime
     if Translation.month_day_date_format?

@@ -224,10 +224,10 @@ def pbRefreshMGCommands(master, online)
     if gift[1] == 0
       itemname = gift[2].speciesName
     elsif gift[1] > 0
-      itemname = GameData::Item.get(gift[2]).name + sprintf(" x%d", gift[1])
+      itemname = GameData::Item.get(gift[2]).name + sprintf(" ×%d", gift[1])
     end
-    ontext = ["[  ]", "[Y]"][(online.include?(gift[0])) ? 1 : 0]
-    commands.push(_INTL("{1} {2}: {3} ({4})", ontext, gift[0], gift[3], itemname))
+    ontext = ["[  ]", "[是]"][(online.include?(gift[0])) ? 1 : 0]
+    commands.push(_INTL("{1} {2}：{3}（{4}）", ontext, gift[0], gift[3], itemname))
   end
   commands.push(_INTL("导出选中礼物到文件"))
   commands.push(_INTL("取消"))

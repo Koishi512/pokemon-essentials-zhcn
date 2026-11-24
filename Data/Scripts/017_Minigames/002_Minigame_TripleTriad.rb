@@ -262,7 +262,7 @@ class TriadScene
     commands    = []
     chosenCards = []
     cardStorage.each do |item|
-      commands.push(_INTL("{1} x{2}", GameData::Species.get(item[0]).name, item[1]))
+      commands.push(_INTL("{1} ×{2}", GameData::Species.get(item[0]).name, item[1]))
     end
     command = Window_CommandPokemonEx.newWithSize(commands, 0, 0, Graphics.width / 2, Graphics.height - 64, @viewport)
     @sprites["helpwindow"].text = _INTL("请选择{1}张卡片用于本次决斗。", @battle.maxCards)
@@ -296,7 +296,7 @@ class TriadScene
           @battle.pbAdd(cardStorage, item)
           commands = []
           cardStorage.each do |itm|
-            commands.push(_INTL("{1} x{2}", GameData::Species.get(itm[0]).name, itm[1]))
+            commands.push(_INTL("{1} ×{2}", GameData::Species.get(itm[0]).name, itm[1]))
           end
           command.commands = commands
           index = -1
@@ -318,7 +318,7 @@ class TriadScene
           @battle.pbSubtract(cardStorage, item[0])
           commands = []
           cardStorage.each do |itm|
-            commands.push(_INTL("{1} x{2}", GameData::Species.get(itm[0]).name, itm[1]))
+            commands.push(_INTL("{1} ×{2}", GameData::Species.get(itm[0]).name, itm[1]))
           end
           command.commands = commands
           command.index = commands.length - 1 if command.index >= commands.length
@@ -1146,7 +1146,7 @@ def pbSellTriads
   $PokemonGlobal.triads.length.times do |i|
     item = $PokemonGlobal.triads[i]
     speciesname = GameData::Species.get(item[0]).name
-    commands.push(_INTL("{1} x{2}", speciesname, item[1]))
+    commands.push(_INTL("{1} ×{2}", speciesname, item[1]))
     total_cards += item[1]
   end
   commands.push(_INTL("取消"))
@@ -1227,7 +1227,7 @@ def pbSellTriads
             $PokemonGlobal.triads.length.times do |i|
               item = $PokemonGlobal.triads[i]
               speciesname = GameData::Species.get(item[0]).name
-              commands.push(_INTL("{1} x{2}", speciesname, item[1]))
+              commands.push(_INTL("{1} ×{2}", speciesname, item[1]))
             end
             commands.push(_INTL("取消"))
             cmdwindow.commands = commands
@@ -1252,7 +1252,7 @@ def pbTriadList
   $PokemonGlobal.triads.length.times do |i|
     item = $PokemonGlobal.triads[i]
     speciesname = GameData::Species.get(item[0]).name
-    commands.push(_INTL("{1} x{2}", speciesname, item[1]))
+    commands.push(_INTL("{1} ×{2}", speciesname, item[1]))
     total_cards += item[1]
   end
   commands.push(_INTL("取消"))

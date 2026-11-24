@@ -1324,9 +1324,9 @@ class UI::Party < UI::BaseScreen
     pkmn.moves.each do |move|
       next if !move || !move.id
       if move.total_pp <= 0
-        move_names.push(_INTL("{1} (PP: ---)", move.name))
+        move_names.push(_INTL("{1}（PP：---）", move.name))
       else
-        move_names.push(_INTL("{1} (PP: {2}/{3})", move.name, move.pp, move.total_pp))
+        move_names.push(_INTL("{1}（PP：{2}/{3}）", move.name, move.pp, move.total_pp))
       end
     end
     return show_menu(message, move_names, align: :vertical)

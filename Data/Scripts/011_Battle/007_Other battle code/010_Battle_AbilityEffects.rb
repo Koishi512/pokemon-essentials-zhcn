@@ -2972,7 +2972,7 @@ Battle::AbilityEffects::OnSwitchInNeutralizingGas.add(:NEUTRALIZINGGAS,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler, true)
     battle.pbHideAbilitySplash(battler)
-    battle.pbDisplay(_INTL("Neutralizing gas filled the area!"))
+    battle.pbDisplay(_INTL("周围充满了化学变化气体！"))
     battle.allBattlers(true).each do |b|
       # Slow Start - end all turn counts
       b.effects[PBEffects::SlowStart] = 0
@@ -2987,7 +2987,7 @@ Battle::AbilityEffects::OnSwitchInNeutralizingGas.add(:NEUTRALIZINGGAS,
         b.effects[PBEffects::Illusion] = nil
         if !b.effects[PBEffects::Transform]
           battle.visuals.pbChangePokemon(b, b.pokemon)
-          battle.pbDisplay(_INTL("{1} {2} wore off!", b.pbOfThis, b.abilityName))
+          battle.pbDisplay(_INTL("{1}{2}被解除了！", b.pbOfThis, b.abilityName))
           battle.pbSetSeen(b)
         end
       end
@@ -3009,11 +3009,11 @@ Battle::AbilityEffects::OnSwitchInNeutralizingGas.add(:NEUTRALIZINGGAS,
 Battle::AbilityEffects::OnSwitchInUnnerve.add(:ASONECHILLINGNEIGH,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} has two Abilities!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}同时拥有了两种特性！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
     battler.ability_id = :UNNERVE
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!", battler.pbOpposingTeam))
+    battle.pbDisplay(_INTL("{1}因太紧张而无法食用树果！", battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
     battler.ability_id = ability
   }
@@ -3024,7 +3024,7 @@ Battle::AbilityEffects::OnSwitchInUnnerve.copy(:ASONECHILLINGNEIGH, :ASONEGRIMNE
 Battle::AbilityEffects::OnSwitchInUnnerve.add(:UNNERVE,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} is too nervous to eat Berries!", battler.pbOpposingTeam))
+    battle.pbDisplay(_INTL("{1}因太紧张而无法食用树果！", battler.pbOpposingTeam))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3090,7 +3090,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:AURABREAK,
 Battle::AbilityEffects::OnSwitchIn.add(:BEADSOFRUIN,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1}{2}令周围的宝可梦的特防减弱了！",
+    battle.pbDisplay(_INTL("{1}{2}令周围的宝可梦的特攻减弱了！",
                            battler.pbOfThis, battler.abilityName))
     battle.pbHideAbilitySplash(battler)
   }
@@ -3518,7 +3518,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:SUPREMEOVERLORD,
 Battle::AbilityEffects::OnSwitchIn.add(:SWORDOFRUIN,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} {2} weakened the Defense of all surrounding Pokémon!",
+    battle.pbDisplay(_INTL("{1}{2}令周围的宝可梦的防御减弱了！",
                            battler.pbOfThis, battler.abilityName))
     battle.pbHideAbilitySplash(battler)
   }
@@ -3543,7 +3543,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:TERAFORMZERO,
 Battle::AbilityEffects::OnSwitchIn.add(:TABLETSOFRUIN,
   proc { |ability, battler, battle, switch_in|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} {2} weakened the Attack of all surrounding Pokémon!",
+    battle.pbDisplay(_INTL("{1}{2}令周围的宝可梦的攻击减弱了！",
                            battler.pbOfThis, battler.abilityName))
     battle.pbHideAbilitySplash(battler)
   }
@@ -3566,7 +3566,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:TRACE,
     choice = choices[battle.pbRandom(choices.length)]
     battle.pbShowAbilitySplash(battler)
     battler.ability = choice.ability
-    battle.pbDisplay(_INTL("{1} traced {2} {3}!", battler.pbThis, choice.pbOfThis(true), choice.abilityName))
+    battle.pbDisplay(_INTL("{1}复制了{2}{3}！", battler.pbThis, choice.pbOfThis(true), choice.abilityName))
     battle.pbHideAbilitySplash(battler)
     if !switch_in && (battler.unstoppableAbility? || battler.abilityActive?)
       Battle::AbilityEffects.triggerOnSwitchIn(battler.ability, battler, battle)
@@ -3602,7 +3602,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:ZEROTOHERO,
   proc { |ability, battler, battle, switch_in|
     next if battler.form != 1
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1} underwent a heroic transformation!", battler.pbThis))
+    battle.pbDisplay(_INTL("{1}变身后归来了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3643,7 +3643,7 @@ Battle::AbilityEffects::OnSwitchInDelayed.add(:COSTAR,
     battle.pbShowAbilitySplash(battler)
     GameData::Stat.each_battle { |s| battler.stages[s.id] = target.stages[s.id] }
     battler.setCriticalHitRate(target.criticalHitRate)
-    battle.pbDisplay(_INTL("{1} copied {2} stat changes!", battler.pbThis, target.pbOfThis(true)))
+    battle.pbDisplay(_INTL("{1}复制了{2}能力变化！", battler.pbThis, target.pbOfThis(true)))
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -3656,7 +3656,7 @@ Battle::AbilityEffects::OnSwitchInDelayed.add(:HOSPITALITY,
     battle.pbShowAbilitySplash(battler)
     allies.each do |ally|
       next if ally.pbRecoverHP(ally.totalhp / 4) == 0
-      battle.pbDisplay(_INTL("{1} drank down all the matcha that {2} made!", ally.pbThis, battler.pbThis(true)))
+      battle.pbDisplay(_INTL("{1}喝光了{2}泡的茶！", ally.pbThis, battler.pbThis(true)))
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3668,9 +3668,9 @@ Battle::AbilityEffects::OnSwitchInDelayed.add(:ICEFACE,
     next if ![:Hail, :Snowstorm].include?(battler.effectiveWeather)
     battle.pbShowAbilitySplash(battler)
     if !Battle::Visuals::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} {2} activated!", battler.pbOfThis, battler.abilityName))
+      battle.pbDisplay(_INTL("{1}{2}发动了！", battler.pbOfThis, battler.abilityName))
     end
-    battler.pbChangeForm(0, _INTL("{1} transformed!", battler.pbThis))
+    battler.pbChangeForm(0, _INTL("{1}变成其他样子了！", battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )

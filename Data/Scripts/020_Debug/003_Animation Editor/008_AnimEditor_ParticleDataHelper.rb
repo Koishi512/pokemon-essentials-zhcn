@@ -7,7 +7,7 @@ module AnimationEditor::ParticleDataHelper
   # Return value is [value, is_interpolating?].
   def get_keyframe_particle_value(particle, property, frame)
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(property)
-      raise _INTL("无法获取粒子 {2} 的属性 {1} 的默认值。",
+      raise _INTL("无法获取粒子{2}的属性{1}的默认值。",
                   property, particle[:name])
     end
     ret = [GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[property], false]
@@ -96,7 +96,7 @@ module AnimationEditor::ParticleDataHelper
   #       invisible automatically after their last command.
   def get_timeline_particle_visibilities(particle, duration, whitelist_properties = nil)
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(:visible)
-      raise _INTL("无法获取粒子 {2} 的属性 {1} 的默认值。",
+      raise _INTL("无法获取粒子{2}的属性{1}的默认值。",
                   property, particle[:name])
     end
     value = (GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[:visible]) ? 1 : 0
@@ -153,7 +153,7 @@ module AnimationEditor::ParticleDataHelper
       return ret
     end
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(property)
-      raise _INTL("PARTICLE_KEYFRAME_DEFAULT_VALUES 中的属性 {1} 没有默认值。", property)
+      raise _INTL("PARTICLE_KEYFRAME_DEFAULT_VALUES 中的属性{1}没有默认值。", property)
     end
     val = GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[property]
     commands.each do |cmd|
@@ -421,7 +421,7 @@ module AnimationEditor::ParticleDataHelper
     # Convert points and interps back into particle[property]
     ret = []
     if !GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES.include?(property)
-      raise _INTL("无法获取属性 {1} 的默认值。", property)
+      raise _INTL("无法获取属性{1}的默认值。", property)
     end
     val = GameData::Animation::PARTICLE_KEYFRAME_DEFAULT_VALUES[property]
     length = [set_points.length, end_points.length].max

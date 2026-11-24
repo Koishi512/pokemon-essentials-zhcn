@@ -276,9 +276,9 @@ def pbDebugDayCare
             msg += ", ♀"
           end
           if slot.level_gain > 0
-            msg += ", " + _INTL("等级 {1}（+{2}）", pkmn.level, slot.level_gain)
+            msg += ", " + _INTL("Lv.{1}（+{2}）", pkmn.level, slot.level_gain)
           else
-            msg += ", " + _INTL("等级 {1}", pkmn.level)
+            msg += ", " + _INTL("{1}级", pkmn.level)
           end
           commands.push(_INTL("[栏位 {1}] {2}", i, msg))
         else
@@ -448,7 +448,7 @@ class SpriteWindow_DebugRoamers < Window_DrawableCommand
       self.shadowtext(_INTL("[清除所有当前漫游者位置]"), rect.x, rect.y, nameWidth, rect.height)
     else
       pkmn = Settings::ROAMING_SPECIES[index]
-      name = _INTL("{1}（等级 {2}）", GameData::Species.get(pkmn[:species]).name, pkmn[:level])
+      name = _INTL("{1}（Lv.{2}）", GameData::Species.get(pkmn[:species]).name, pkmn[:level])
       status = ""
       statuscolor = 0
       if !pkmn[:game_switch] || pkmn[:game_switch] <= 0 || $game_switches[pkmn[:game_switch]]
@@ -472,7 +472,7 @@ class SpriteWindow_DebugRoamers < Window_DrawableCommand
           statuscolor = 2
         end
       else
-        status = _INTL("[未漫游][开关 {1} 已关闭]", pkmn[:game_switch])
+        status = _INTL("[未漫游][开关{1}已关闭]", pkmn[:game_switch])
       end
       self.shadowtext(name, rect.x, rect.y, nameWidth, rect.height)
       self.shadowtext(status, rect.x + nameWidth, rect.y, statusWidth, rect.height, 1, statuscolor)
@@ -698,7 +698,7 @@ def pbDebugFixInvalidTiles
   t = System.uptime
   Graphics.update
   total_maps = mapData.mapinfos.keys.length
-  Console.echo_h1(_INTL("检查 {1} 地图是否存在无效图块", total_maps))
+  Console.echo_h1(_INTL("检查{1}地图是否存在无效图块", total_maps))
   mapData.mapinfos.keys.sort.each do |id|
     if System.uptime - t >= 5
       t += 5
@@ -731,7 +731,7 @@ def pbDebugFixInvalidTiles
     end
     next if map_errors == 0
     # Map was changed; save it
-    Console.echoln_li(_INTL("在地图 {2}（{3}）上发现了 {1} 个无效图块。", map_errors, id, mapData.mapinfos[id].name))
+    Console.echoln_li(_INTL("在地图 {2}（{3}）上发现了{1}个无效图块。", map_errors, id, mapData.mapinfos[id].name))
     total_errors += map_errors
     num_error_maps += 1
     mapData.saveMap(id)
@@ -741,10 +741,10 @@ def pbDebugFixInvalidTiles
     pbMessage(_INTL("没有发现无效的图块。"))
   else
     echoln ""
-    Console.echo_h2(_INTL("完成。发现并修复了 {1} 个错误。", total_errors), text: :green)
+    Console.echo_h2(_INTL("完成。发现并修复了{1}个错误。", total_errors), text: :green)
     Console.echo_warn(_INTL("RMXP 数据已更改。请立即关闭 RMXP，并且不要保存，以确保更改生效。"))
     echoln ""
-    pbMessage(_INTL("共在 {2} 张地图上发现并修复了 {1} 个错误。", total_errors, num_error_maps))
+    pbMessage(_INTL("共在{2}张地图上发现并修复了{1}个错误。", total_errors, num_error_maps))
     pbMessage(_INTL("关闭 RPG Maker XP 以确保正确应用更改。"))
   end
 end

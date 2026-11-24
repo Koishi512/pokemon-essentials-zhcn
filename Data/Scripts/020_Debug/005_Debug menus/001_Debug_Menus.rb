@@ -159,7 +159,7 @@ module PokemonDebugMixin
     # Main loop
     command = 0
     loop do
-      command = show_menu(_INTL("用 {1} 做什么？", pkmn.name), commands.list, command)
+      command = show_menu(_INTL("用{1}做什么？", pkmn.name), commands.list, command)
       if command < 0
         parent = commands.getParent
         break if !parent
@@ -345,7 +345,7 @@ module Battle::DebugMixin
     ret += _INTL("状态：{1}", GameData::Status.get(battler.status).name)
     case battler.status
     when :SLEEP
-      ret += " " + _INTL("（剩余 {1} 回合）", battler.statusCount)
+      ret += " " + _INTL("（剩余{1}回合）", battler.statusCount)
     when :POISON
       if battler.statusCount > 0
         ret += " " + _INTL("（剧毒，{1}/16）", battler.effects[PBEffects::Toxic])
@@ -394,7 +394,7 @@ module Battle::DebugMixin
     ret += _INTL("状态：{1}", GameData::Status.get(pkmn.status).name)
     case pkmn.status
     when :SLEEP
-      ret += " " + _INTL("（剩余 {1} 回合）", pkmn.statusCount)
+      ret += " " + _INTL("（剩余{1}回合）", pkmn.statusCount)
     when :POISON
       ret += " " + _INTL("（剧毒）") if pkmn.statusCount > 0
     end

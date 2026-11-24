@@ -56,7 +56,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_status, {
     loop do
       msg = _INTL("当前状态：{1}", GameData::Status.get(pkmn.status).name)
       if pkmn.status == :SLEEP
-        msg += " " + _INTL("（剩余 {1} 回合）", pkmn.statusCount)
+        msg += " " + _INTL("（剩余{1}回合）", pkmn.statusCount)
       elsif pkmn.status == :POISON && pkmn.statusCount > 0
         if battler
           msg += " " + _INTL("（剧毒，计数：{1}）", battler.effects[PBEffects::Toxic])
@@ -215,7 +215,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_stat_values, {
         params.setRange(1, 9999)
         params.setDefaultValue(stat_vals[cmd])
         value = pbMessageChooseNumber(
-          "\\ts[]" + _INTL("设置 {1} 的值。", GameData::Stat.get(stat_ids[cmd]).name), params
+          "\\ts[]" + _INTL("设置{1}的值。", GameData::Stat.get(stat_ids[cmd]).name), params
         )
         case stat_ids[cmd]
         when :ATTACK          then battler.attack  = value
@@ -475,7 +475,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :teach_move, {
   "usage"  => :both,
   "effect" => proc { |pkmn, battler, battle|
     if pkmn.numMoves >= Pokemon::MAX_MOVES
-      pbMessage("\\ts[]" + _INTL("{1} 已经知道 {2} 个招式，需要先忘记一个招式。",
+      pbMessage("\\ts[]" + _INTL("{1} 已经知道{2}个招式，需要先忘记一个招式。",
                                  pkmn.name, pkmn.numMoves))
       next
     end
@@ -696,7 +696,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_nature, {
     ids = []
     GameData::Nature.each do |nature|
       if nature.stat_changes.length == 0
-        commands.push(_INTL("{1} (---)", nature.real_name))
+        commands.push(_INTL("{1}（---）", nature.real_name))
       else
         plus_text = ""
         minus_text = ""
@@ -709,7 +709,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_nature, {
             minus_text += GameData::Stat.get(change[0]).name_brief
           end
         end
-        commands.push(_INTL("{1} (+{2}, -{3})", nature.real_name, plus_text, minus_text))
+        commands.push(_INTL("{1}（+{2}，-{3}）", nature.real_name, plus_text, minus_text))
       end
       ids.push(nature.id)
     end
@@ -775,7 +775,7 @@ MenuHandlers.add(:battle_pokemon_debug_menu, :set_form, {
       cmd = formcmds[0].length - 1 if pkmn.form == sp.form
     end
     if formcmds[0].length <= 1
-      pbMessage("\\ts[]" + _INTL("物种 {1} 只有一种形态。", pkmn.speciesName))
+      pbMessage("\\ts[]" + _INTL("物种{1}只有一种形态。", pkmn.speciesName))
       next
     end
     loop do

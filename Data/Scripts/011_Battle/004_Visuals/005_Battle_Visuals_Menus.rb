@@ -411,7 +411,7 @@ class Battle::Visuals::FightMenu < Battle::Visuals::MenuBase
     if move.total_pp > 0
       pp_fraction = [(4.0 * move.pp / move.total_pp).ceil, 3].min
       pp_theme = [:pp_red, :pp_orange, :pp_yellow, :default][pp_fraction]
-      draw_text(_INTL("PP: {1}/{2}", move.pp, move.total_pp), area_middle, 58,
+      draw_text(_INTL("PP：{1}/{2}", move.pp, move.total_pp), area_middle, 58,
                 align: :center, theme: pp_theme)
     end
   end

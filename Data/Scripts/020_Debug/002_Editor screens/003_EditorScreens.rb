@@ -41,7 +41,7 @@ def pbEncountersEditor
         new_version = LimitProperty2.new(999).set(_INTL("版本号"), 0)
         if new_version && new_version >= 0
           if GameData::Encounter.exists?(new_map_ID, new_version)
-            pbMessage(_INTL("地图 {1} 版本 {2} 的一组遭遇战已存在。", new_map_ID, new_version))
+            pbMessage(_INTL("地图{1}版本{2}的一组遭遇战已存在。", new_map_ID, new_version))
           else
             # Construct encounter hash
             key = sprintf("%s_%d", new_map_ID, new_version).to_sym
@@ -72,7 +72,7 @@ def pbEncountersEditor
           new_version = LimitProperty2.new(999).set(_INTL("版本号"), 0)
           if new_version && new_version >= 0
             if GameData::Encounter.exists?(new_map_ID, new_version)
-              pbMessage(_INTL("地图 {1} 版本 {2} 的一组遭遇战已存在。", new_map_ID, new_version))
+              pbMessage(_INTL("地图{1}版本{2}的一组遭遇战已存在。", new_map_ID, new_version))
             else
               # Construct encounter hash
               key = sprintf("%s_%d", new_map_ID, new_version).to_sym
@@ -101,7 +101,7 @@ def pbEncountersEditor
           end
         end
       when 2   # Delete
-        if pbConfirmMessage(_INTL("删除地图 {1} 版本 {2} 的遭遇集吗？", this_set[0], this_set[1]))
+        if pbConfirmMessage(_INTL("删除地图{1}版本{2}的遭遇集吗？", this_set[0], this_set[1]))
           key = sprintf("%s_%d", this_set[0], this_set[1]).to_sym
           GameData::Encounter::DATA.delete(key)
           ret -= 1
@@ -192,7 +192,7 @@ def pbEncounterMapVersionEditor(enc_data)
       new_map_ID = pbListScreen(_INTL("选择新地图"), MapLister.new(old_map_ID))
       if new_map_ID > 0 && new_map_ID != old_map_ID
         if GameData::Encounter.exists?(new_map_ID, enc_data.version)
-          pbMessage(_INTL("地图 {1} 的版本 {2} 遭遇数据已存在。", new_map_ID, enc_data.version))
+          pbMessage(_INTL("地图{1}的版本{2}遭遇数据已存在。", new_map_ID, enc_data.version))
         else
           GameData::Encounter::DATA.delete(enc_data.id)
           enc_data.map = new_map_ID
@@ -206,7 +206,7 @@ def pbEncounterMapVersionEditor(enc_data)
       new_version = LimitProperty2.new(999).set(_INTL("版本号"), old_version)
       if new_version && new_version != old_version
         if GameData::Encounter.exists?(enc_data.map, new_version)
-          pbMessage(_INTL("地图 {1} 版本 {2} 的一组遭遇战已存在。", enc_data.map, new_version))
+          pbMessage(_INTL("地图{1}版本{2}的一组遭遇战已存在。", enc_data.map, new_version))
         else
           GameData::Encounter::DATA.delete(enc_data.id)
           enc_data.version = new_version
@@ -764,7 +764,7 @@ def pbEditPlayerMetadata(player_id = 1)
     end
     metadata = GameData::PlayerMetadata.new({:id => player_id})
   elsif !GameData::PlayerMetadata.exists?(player_id)
-    pbMessage(_INTL("找不到玩家角色 {1} 的元数据。", player_id))
+    pbMessage(_INTL("找不到玩家角色{1}的元数据。", player_id))
     return
   end
   data = []

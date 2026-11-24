@@ -296,11 +296,11 @@ class DayCare
     def choice_text
       return nil if !filled?
       if @pokemon.male?
-        return _INTL("{1} (♂, Lv.{2})", @pokemon.name, @pokemon.level)
+        return _INTL("{1}（♂，Lv.{2}）", @pokemon.name, @pokemon.level)
       elsif @pokemon.female?
-        return _INTL("{1} (♀, Lv.{2})", @pokemon.name, @pokemon.level)
+        return _INTL("{1}（♀，Lv.{2}）", @pokemon.name, @pokemon.level)
       end
-      return _INTL("{1} (Lv.{2})", @pokemon.name, @pokemon.level)
+      return _INTL("{1}（Lv.{2}）", @pokemon.name, @pokemon.level)
     end
 
     def add_exp(amount = 1)

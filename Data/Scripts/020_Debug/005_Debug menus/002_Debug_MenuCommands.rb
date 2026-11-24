@@ -308,10 +308,10 @@ MenuHandlers.add(:debug_menu, :test_wild_battle_advanced, {
     pkmnCmd = 0
     loop do
       pkmnCmds = []
-      pkmn.each { |p| pkmnCmds.push(_INTL("{1} 等级 {2}", p.name, p.level)) }
+      pkmn.each { |p| pkmnCmds.push(_INTL("{1} Lv.{2}", p.name, p.level)) }
       pkmnCmds.push(_INTL("[添加宝可梦]"))
       pkmnCmds.push(_INTL("[设置我方人数]"))
-      pkmnCmds.push(_INTL("[开始 {1} 对 {2} 对战]", size0, pkmn.length))
+      pkmnCmds.push(_INTL("[开始{1}对{2}对战]", size0, pkmn.length))
       pkmnCmd = pbShowCommands(nil, pkmnCmds, -1, pkmnCmd)
       break if pkmnCmd < 0
       if pkmnCmd == pkmnCmds.length - 1      # Start battle
@@ -396,7 +396,7 @@ MenuHandlers.add(:debug_menu, :test_trainer_battle_advanced, {
       trainerCmds.push(_INTL("[添加训练家]"))
       trainerCmds.push(_INTL("[设置我方人数]"))
       trainerCmds.push(_INTL("[设置对手人数]"))
-      trainerCmds.push(_INTL("[开始 {1} 对 {2} 对战]", size0, size1))
+      trainerCmds.push(_INTL("[开始{1}对{2}对战]", size0, size1))
       trainerCmd = pbShowCommands(nil, trainerCmds, -1, trainerCmd)
       break if trainerCmd < 0
       if trainerCmd == trainerCmds.length - 1      # Start battle
@@ -751,9 +751,9 @@ MenuHandlers.add(:debug_menu, :add_pokemon, {
         goes_to_party = !$player.party_full?
         if pbAddPokemonSilent(species, level)
           if goes_to_party
-            pbMessage(_INTL("已将 {1} 添加到队伍中。", GameData::Species.get(species).name))
+            pbMessage(_INTL("已将{1}添加到队伍中。", GameData::Species.get(species).name))
           else
-            pbMessage(_INTL("已将 {1} 传送到宝可梦寄放系统。", GameData::Species.get(species).name))
+            pbMessage(_INTL("已将{1}传送到宝可梦寄放系统。", GameData::Species.get(species).name))
           end
         else
           pbMessage(_INTL("无法添加宝可梦，因为队伍和寄放系统都已满。"))
@@ -801,7 +801,7 @@ MenuHandlers.add(:debug_menu, :fill_boxes, {
     $player.pokedex.refresh_accessible_dexes
     pbMessage(_INTL("盒子中已装满每个物种各一只宝可梦。"))
     if !completed
-      pbMessage(_INTL("注意：盒子的总容量（{1} 个盒子 × {2} 个位置）少于物种数量。",
+      pbMessage(_INTL("注意：盒子的总容量（{1} 个盒子 ×{2}个位置）少于物种数量。",
                       Settings::NUM_STORAGE_BOXES, box_qty))
     end
   }
@@ -960,7 +960,7 @@ MenuHandlers.add(:debug_menu, :add_item, {
                                           GameData::Item.get(item).name_plural), params)
         if qty > 0
           $bag.add(item, qty)
-          pbMessage(_INTL("获得了 {1} 个 {2}。", qty, GameData::Item.get(item).name))
+          pbMessage(_INTL("获得了{1}个 {2}。", qty, GameData::Item.get(item).name))
         end
       end
     end
@@ -993,7 +993,7 @@ MenuHandlers.add(:debug_menu, :fill_bag, {
       end
       # NOTE: Auto-sorting pockets don't need to be sorted afterwards, because
       #       items are added in the same order they would be sorted into.
-      pbMessage(_INTL("背包中已装满每种道具，各 {1} 个。", qty))
+      pbMessage(_INTL("背包中已装满每种道具，各{1}个。", qty))
     end
   }
 })

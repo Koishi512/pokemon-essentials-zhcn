@@ -1541,7 +1541,7 @@ Battle::ItemEffects::RestoreOnBeingHit.add(:ENIGMABERRY,
             target.damageState.disguise || target.damageState.iceFace
     next if !Effectiveness.super_effective?(target.damageState.typeMod)
     if Battle::ItemEffects.triggerForcedRestoreBerry(item, target, battle, false)
-      battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+      battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
       target.pbHeldItemTriggered(item)
     end
   }
@@ -1556,7 +1556,7 @@ Battle::ItemEffects::RestoreOnBeingHit.add(:KEEBERRY,
   proc { |item, user, target, move, battle|
     next if !move.physicalMove?
     if Battle::ItemEffects.triggerForcedRestoreBerry(item, target, battle, false)
-      battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+      battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
       target.pbHeldItemTriggered(item)
     end
   }
@@ -1571,7 +1571,7 @@ Battle::ItemEffects::RestoreOnBeingHit.add(:MARANGABERRY,
   proc { |item, user, target, move, battle|
     next if !move.specialMove?
     if Battle::ItemEffects.triggerForcedRestoreBerry(item, target, battle, false)
-      battle.pbDisplay(_INTL("The {1} was used up...", target.itemName))
+      battle.pbDisplay(_INTL("{1}已完成使命，消失了……", target.itemName))
       target.pbHeldItemTriggered(item)
     end
   }
@@ -1685,7 +1685,6 @@ Battle::ItemEffects::AfterMoveUseFromTarget.add(:REDCARD,
     next if newPkmn < 0
     battle.pbCommonAnimation("UseItem", battler)
     battle.pbDisplay(_INTL("{1}猛地向{3}出示了{2}！",
-                           battler.pbThis, battler.itemName, user.pbThis(true)))
                            battler.pbThis, battler.itemName, user.pbThis(true)))
     battler.pbConsumeItem
     next if !user.canBeForcedOutOfBattle?
